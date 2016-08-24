@@ -2181,7 +2181,7 @@ function boardMatchEvent(){
 	                        phtm+='</p>';
 	               }
 	               
-	                phtm+='</div>';	
+	                phtm+='</div></div>';	
 	                
 	                
 	             /*   var scheduleID="'"+event.tournamentSchedulerId+"'";
