@@ -34,15 +34,57 @@ function winpointAutoPopulate(){
 		var tiepoint = winTeamPoint/2;
 		$("#winTeamPoints").val(tiepoint);	
 		$("#loseTeamPoints").val(tiepoint);
+		
+		//vignesh changes
+		 console.log("First innings :"+$("#homeTeamName").val() +" hometeam "+homeTeamId);
+		 console.log($("#homeTeamName").val() == homeTeamId);
+		/*if($("#homeTeamName").val() == $("#hiddenHomeId").val())
+		{
+		    $("#WinTeamdetails").val('first');
+		}else{
+			$("#WinTeamdetails").val('second');
+		}*/
+		
+		
+		
+		
 	}else if($("#result").val() == firstTeamPlayersId[0].boardId){		
 		
 		$("#winTeamPoints").val(winTeamPoint);	
 		$("#loseTeamPoints").val(0);
+		
 	}else {
 		
 		$("#winTeamPoints").val(0);	
 		$("#loseTeamPoints").val(winTeamPoint);
 	}
+	
+	
+	
+	if($("#result").val() == "tie"){
+	
+	if($("#homeTeamName").val() == homeTeamId)
+	{
+	    $("#WinTeamdetails").val('first');
+	}else{
+		$("#WinTeamdetails").val('second');
+	}
+	
+	}	
+	else if($("#result").val() == $("#homeTeamName").val())
+	
+    {		
+		
+		$("#WinTeamdetails").val('first');
+	}else {
+		
+		
+		$("#WinTeamdetails").val('second');
+	}
+	
+	
+	
+	
 	/*if($("#result").val() == "00"){
 		$("#loseTeamPoints").val(0);
 		$("#winTeamPoints").val(0);

@@ -28,7 +28,7 @@
     
 
  <!-- jQuery -->
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
  
     <!-- Bootstrap Core JavaScript -->
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
@@ -91,12 +91,12 @@
                                             <li><a href="#">Point Table</a></li>
                                             <li><a href="#">Centuries</a></li>
                                             <li><a href="#">Half Centuries</a></li>
-                                            <li><a href="#">5 Wickets</a></li>
+                                            <li><a href="#">5fer</a></li>
                                             <li><a href="#">Top Batsmen</a></li>
                                             <li><a href="#">Top Bowlers</a></li>
                                             <li><a href="#">Top Umpires</a></li>
             
-                                            <li class="head"><a href="#">Dispute Managements</a></li>
+                                            <li class="head"><a href="#">Dispute Management</a></li>
                                                                 
                                         </ul>
                                                 </div>

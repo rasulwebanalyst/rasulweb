@@ -28,7 +28,7 @@
     
 
  <!-- jQuery -->
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
  
     <!-- Bootstrap Core JavaScript -->
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
@@ -86,6 +86,42 @@ var formatAMPMTime = function(date) {
 		
 </head>
 <body>
+
+<div id="ScoreCardPopup" class="modal" role="dialog" style="display: none;">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+     <!--  <div class="modal-header">
+        <button type="button" class="close" onclick="RoasterPopup()" data-dismiss="modal">&times;</button>
+        </div> -->
+        
+      <div class="modal-body">
+        
+        
+        <p >The operation you have requested will erase the match data .</p>
+        <br>
+        <p>Do you want to continue?</p>
+        
+        <input type="hidden" id="ScoreCardBoardId">
+        <input type="hidden" id="ScoreCardTournamentId">
+        <input type="hidden" id="ScoreCardtournmentShudulorId">
+        <input type="hidden" id="ScoreCardhomeId">
+        <input type="hidden" id="ScoreCardawayTeamId">
+        <input type="hidden" id="ScoreCarddate">
+        <input type="hidden" id="ScoreCardcreatedBy">
+        
+        
+      </div>
+      <div class="modal-footer action">
+      <button type="button" onclick="ScoreCardPopupok()" class="btn btn-default ok">Yes</button>
+      <button type="button" onclick="ScoreCardPopuphide()" class="btn btn-default ok">No</button>
+       </div>
+    </div>
+
+  </div>
+</div>  
+
+
 <input type="hidden" id="hiddenDate" value="${dateString}"> 
 <input type="hidden" id="hiddenDateStart" value="${startDate}">
 <% java.util.Calendar date=java.util.Calendar.getInstance();
@@ -387,6 +423,7 @@ date.add(java.util.Calendar.DATE, +6);
                           <th>Trophy</th>
                           <th>Umpire</th>
                           <th>Scorer</th>
+                          <th>Enter Scorecard</th>
                           <th>Match Status</th>  
                          </tr>
                         </thead>
@@ -409,6 +446,7 @@ date.add(java.util.Calendar.DATE, +6);
                           <th>Umpire</th>
                           <th>Scorer</th>
                           <th>Match Status</th>
+                          <th>Enter Scorecard</th>
                            <th>Scorercard</th>
                         </tr>
                        </thead>
@@ -443,6 +481,7 @@ date.add(java.util.Calendar.DATE, +6);
 						
                           
                             <td><span class="text-success">Active</span></td>
+                            <td align="center"><input type="button" value="Enter Scorecard" onclick="DeleteScoreCard('${boardId}','${inprogress.tournamentId}','${inprogress.tournamentSchedulerId }','${inprogress.homeTeamId}','${inprogress.awayTeamId }','${inprogress.dateString }','${inprogress.leagueCreatedBy}')">
                             <td align="center" ><a href="#" onclick="showScoreCardInProgress('${inprogress.tournamentSchedulerId}')"><i class="fa fa-newspaper-o editIcon"></i></a></td>
                         </tr>
                       </c:forEach>
@@ -981,7 +1020,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    				    htmlco1+="</div></td> ";
    				     htmlco1+="<td>"+incomepltelist[i].tournamentName+"</td>";
    				    htmlco1+="<td><span class='text-success'>Active</span></td>";
-   				    htmlco1+="<td align='center'><input type='button' value='Enter Scorecard' onclick='enterScoreCard("+boardid+","+incomepltelist[i].tournamentId+","+incomepltelist[i].tournamentSchedulerId+","+incomepltelist[i].homeTeamId+","+incomepltelist[i].awayTeamId+","+incomepltelist[i].dateString+","+incomepltelist[i].leagueCreatedBy+")'></td>";
+   				    htmlco1+="<td align='center'><input type='button' value='Enter Scorecard' onclick=enterScoreCard('"+boardid+"','"+incomepltelist[i].tournamentId+"','"+incomepltelist[i].tournamentSchedulerId+"','"+incomepltelist[i].homeTeamId+"','"+incomepltelist[i].awayTeamId+"','"+incomepltelist[i].dateString+"','"+incomepltelist[i].leagueCreatedBy+"')></td>";
    				    htmlco1+="<td align='center'><input type='button' value='cancel' onclick='cancelSchedule("+incomepltelist[i].tournamentSchedulerId+")'></td>"; 
    				    htmlco1+="</tr>";
    				}
@@ -1003,7 +1042,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    		
 			   var htmlco2="";
 			  htmlco2="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox'><h2 class='noBorder noLeftPad'>Inprogress Matches</h2>";
-			 htmlco2+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Trophy</th><th>Umpire</th><th>Scorer</th><th>Match Status</th><th>Scorecard</th></tr></thead>";
+			 htmlco2+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Trophy</th><th>Umpire</th><th>Scorer</th><th>Match Status</th><th>Enter Scorecard</th><th>Scorecard</th></tr></thead>";
 			if(inprogresslist.length!=0){
 				htmlco2+="<tbody>";
 				for(var i=0;i<inprogresslist.length;i++){
@@ -1036,6 +1075,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				    }
 				    htmlco2+="</div></td> ";
 				    htmlco2+="<td><span class='text-success'>Active</span></td>";
+				    htmlco2+="<td align='center'><input type='button' value='Enter Scorecard' onclick=DeleteScoreCard('"+boardid+"','"+inprogresslist[i].tournamentId+"','"+inprogresslist[i].tournamentSchedulerId+"','"+inprogresslist[i].homeTeamId+"','"+inprogresslist[i].awayTeamId+"','"+inprogresslist[i].dateString+"','"+inprogresslist[i].leagueCreatedBy+"')></td>";
 				    htmlco2+="<td align='center' ><a href=javascript:void(0); onclick=showScoreCardInProgress('"+inprogresslist[i].tournamentSchedulerId+"')><i class='fa fa-newspaper-o editIcon'></i></a></td>";
 				    htmlco2+="</tr>";
 				}
@@ -1153,6 +1193,101 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
        					$("#toDate").datepicker("update", endstr);
                			
                		})
+                	</script>
+                	<script type="text/javascript">
+                	
+                	function DeleteScoreCard(id,tournmentId,tournmentShudulorId,homeId,awayTeamId,date,createdBy)
+                	{
+                		
+                		
+                	//	alert("hello");
+                		 var tournamentBean = {
+                					   tournamentId : tournmentId,
+                					   createdBy : id,
+                			   }; 
+                			   
+                			  $.ajax({
+                				type :"Post",
+                				url:"${pageContext.request.contextPath}/getScheduleHomeAwayName",
+                				data:JSON.stringify(tournamentBean),
+                				contentType:"application/json",
+                				success:function(response){
+                					
+                					 if(response.length > 0){	  
+                					 
+                				//	 window.location.href = "${pageContext.request.contextPath}/EnterScoreSelectedMatchPublicProfile/boardId/"+boardId+"/"+tournmentId+"/"+tournmentShudulorId+"/"+homeId+"/"+awayTeamId+"/"+date+"/"+createdBy;
+                					
+                						 $("#ScoreCardBoardId").val(id);
+                	                		$("#ScoreCardTournamentId").val(tournmentId);
+                	                		$("#ScoreCardtournmentShudulorId").val(tournmentShudulorId);
+                	                		$("#ScoreCardhomeId").val(homeId);
+                	                		$("#ScoreCardawayTeamId").val(awayTeamId);
+                	                		$("#ScoreCarddate").val(date);
+                	                		$("#ScoreCardcreatedBy").val(createdBy);
+                	                		
+                	                		$("#ScoreCardPopup").show();
+                					 
+                					 }
+                					 else{					 
+                						 showNotification("You are not a valid user to enter the score", 2000);
+                						 hide_notificationpoup(2000);					 
+                					 }
+                					
+                					
+                				},
+                				error:function(err){
+                					console.log(err);
+                				}
+                				  
+                			  });
+                		
+                		
+                	}
+                	function ScoreCardPopuphide()
+                	{
+                		$("#ScoreCardPopup").hide();
+                	}
+                	function ScoreCardPopupok()
+                	{
+                		var boardid=$("#ScoreCardBoardId").val();
+                		var tournametid=$("#ScoreCardTournamentId").val();
+                		var tournamentschedulerid=$("#ScoreCardtournmentShudulorId").val();
+                	    var homeid=$("#ScoreCardhomeId").val();
+                	    var awayteamid= $("#ScoreCardawayTeamId").val();
+                	    var date=$("#ScoreCarddate").val();
+                	    var createdby=$("#ScoreCardcreatedBy").val();
+                	
+                	var request={
+                			boardId : boardid,
+                			tournamentId : tournametid,
+                			tournamentSchedulerId : tournamentschedulerid,
+                			homeTeamId : homeid,
+                			awayTeamId : awayteamid,
+                			dateString : date,
+                			createdBy : createdby,
+                	}
+                	
+                	$.ajax({
+                	type : "POST",
+                	url : "${pageContext.request.contextPath}/clearScore",
+                	contentType : "application/json; charset=utf-8",
+                	data : JSON.stringify(request),
+                	success : function(response)
+                	{
+                		$("#ScoreCardPopup").hide();
+                	if(response == 'Success')
+                		{
+                		window.location.href = "${pageContext.request.contextPath}/EnterScoreSelectedMatch/boardId/"+boardid+"/"+tournametid+"/"+tournamentschedulerid+"/"+homeid+"/"+awayteamid+"/"+date+"/"+createdby;	
+                		}else
+                			{
+                			showNotification("You are not a valid user to enter the score", 2000);
+                			hide_notificationpoup(2000);
+                			}
+                		}
+                	})
+                	
+                	}
+                	
                 	</script>
    
 </body>

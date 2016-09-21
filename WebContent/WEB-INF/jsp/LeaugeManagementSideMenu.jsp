@@ -39,7 +39,7 @@
                                             <li><a href="${pageContext.request.contextPath}/LeaguePoints/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Points Table</a></li>
                                             <li><a href="${pageContext.request.contextPath}/leaguecenturies/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Centuries</a></li>
                                             <li><a href="${pageContext.request.contextPath}/leaguehalfcenturies/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Half Centuries</a></li>
-                                            <li><a href="${pageContext.request.contextPath}/fivewickets/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> 5 Wickets</a></li>
+                                            <li><a href="${pageContext.request.contextPath}/fivewickets/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> 5fer</a></li>
                                             <li><a href="${pageContext.request.contextPath}/topbatsman/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Top Batsmen</a></li>
                                             <li><a href="${pageContext.request.contextPath}/topbowler/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Top Bowlers</a></li>
                                             <li><a href="${pageContext.request.contextPath}/topUmpire/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Top Umpires</a></li>
@@ -47,7 +47,7 @@
                                            <%-- <li><a href="${pageContext.request.contextPath}/EnterScore/boardId/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Enter Score</a></li> --%>
             
             
-                                            <li class="head"><a href="${pageContext.request.contextPath}/DisputeManagement/boardId/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Dispute Managements</a></li>
+                                            <li class="head"><a href="${pageContext.request.contextPath}/DisputeManagement/boardId/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Dispute Management</a></li>
                                                   
                                         </ul>
                                                 </div>

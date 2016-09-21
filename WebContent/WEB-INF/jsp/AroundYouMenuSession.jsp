@@ -14,7 +14,7 @@
                           
                           <div class="sidebar-container widget-MAU">
                             <div class="sidebar-content">
-                              <div class="sidebar-header"><a href="${pageContext.request.contextPath}/matchesAroundYou">Matches Around You</a></div>
+                              <div class="sidebar-header"><a href="javascript:void(0);" onclick="PleaseLogin()">Matches Around You</a></div>
                               
 	                               <c:choose>
 	                             	<c:when test="${empty MatchesArroundYou}">
@@ -28,18 +28,18 @@
 		                               <c:set var="board1" value="${match.awayTeamInfo}"></c:set>
 		                               
 		                               <div class="sidebar-list">
-	                              			<a href="${pageContext.request.contextPath}/${board.boardName }/board/${board.boardId}">${board.boardName}</a> vs <a href="${pageContext.request.contextPath}/${board1.boardName }/board/${board1.boardId}">${board1.boardName}</a><br> <strong>${match.gameDateStr}</strong>
+	                              			<a href="javascript:void(0);" onclick="PleaseLogin()">${board.boardName}</a> vs <a href="javascript:void(0);" onclick="PleaseLogin()">${board1.boardName}</a><br> <strong>${match.gameDateStr}</strong>
 	                              			
-	                              			<c:choose>
+	                              			<%-- <c:choose>
 	                              			<c:when  test="${match.status eq 'InProgress'}">
 	                              			<a class="vw-score" href="javascript:void(0);" onclick="showScoreCardInProgress('${match.tournamentSchedulerId}','${match.createdBy}')">Live Score</a>
 	                              			</c:when>
 	                              			<c:otherwise>
 	                              			<a class="vw-score" href="javascript:void(0);" onclick="showScoreCardInProgress('${match.tournamentSchedulerId}','no')">View Score</a>
 	                              			</c:otherwise>
-	                              			</c:choose>
+	                              			</c:choose> --%>
 	                                   		 <span class="teamLogos">
-	                                			<a href="${pageContext.request.contextPath}/${board.boardName }/board/${board.boardId}"><img src="${board.boardImageURL}?" class="teamLogo" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" ></a> <b>VS</b> <a href="${pageContext.request.contextPath}/${board1.boardName }/board/${board1.boardId}"><img src="${board1.boardImageURL}?" class="teamLogo"></a>
+	                                			<a href="javascript:void(0);" onclick="PleaseLogin()"><img src="${board.boardImageURL}?" class="teamLogo" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" ></a> <b>VS</b> <a href="javascript:void(0);" onclick="PleaseLogin()"><img src="${board1.boardImageURL}?" class="teamLogo"></a>
 	                                		</span>
 	                             		 </div>
 		                              		
@@ -53,7 +53,7 @@
                           
                           <div class="sidebar-container widget-MAU">
                             <div class="sidebar-content">
-                              <div class="sidebar-header"> <a href="${pageContext.request.contextPath}/LeaguesAroundYou">Leagues Around You</a></div>
+                              <div class="sidebar-header"> <a href="javascript:void(0);" onclick="PleaseLogin()">Leagues Around You</a></div>
                               
                               
                                <c:choose>
@@ -65,9 +65,9 @@
                              	<c:otherwise>
 	                              <c:forEach items="${BRDAroundYou}" var="brd" begin="0" end="5">
 	                              		<div class="sidebar-list">
-			                              		<a href="${pageContext.request.contextPath}/${brd.boardName }/board/${brd.boardId}">${brd.boardName}</a>  <br> <strong><fmt:formatDate value="${brd.createdDate}" pattern="MMM dd, YYYY"/></strong>
+			                              		<a href="javascript:void(0);" onclick="PleaseLogin()">${brd.boardName}</a>  <br> <strong><fmt:formatDate value="${brd.createdDate}" pattern="MMM dd, YYYY"/></strong>
 			                                    <div class="teamLogos">
-			                                		<a href="${pageContext.request.contextPath}/${brd.boardName }/board/${brd.boardId}"><img src="${brd.boardImageURL}?" class="teamLogo" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';"  ></a>
+			                                		<a href="javascript:void(0);" onclick="PleaseLogin()"><img src="${brd.boardImageURL}?" class="teamLogo" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';"  ></a>
 			                                	</div>
 	                             			 </div>
 	                              </c:forEach>
@@ -79,7 +79,7 @@
                          
                           <div class="sidebar-container widget-MAU BAU">
                               <div class="sidebar-content">
-                              <div class="sidebar-header"><a href="${pageContext.request.contextPath}/BuddyAroundYou">Buddies Around You </a><span class="sidebar-header-light"></span></div>
+                              <div class="sidebar-header"><a href="javascript:void(0);" onclick="PleaseLogin()">Buddies Around You </a><span class="sidebar-header-light"></span></div>
                                <c:choose>
                              	<c:when test="${empty BuddyAroundYou}">
                  		<div class="sidebar-list noContentDiv">
@@ -93,11 +93,11 @@
 				                             
 					                              <div class="sidebar-list" >
 					                                    <div class="teamLogos">
-					                                     <a href="${pageContext.request.contextPath}/buddy/${buddy.firstName}/${buddy.userId}">
+					                                     <a href="javascript:void(0);" onclick="PleaseLogin()">
 					                                		<img src="${buddy.userImageUrl}?" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';" class="teamLogo" >
 		                          						</a>
 		                          						</div>
-					                                     <a href="${pageContext.request.contextPath}/buddy/${buddy.firstName}/${buddy.userId}"> ${buddy.fullName}</a><%-- ${buddy.firstName}  ${buddy.lastName} --%> <br>
+					                                     <a href="javascript:void(0);" onclick="PleaseLogin()"> ${buddy.fullName}</a><%-- ${buddy.firstName}  ${buddy.lastName} --%> <br>
 														 ${buddy.city}
 					                              </div>
 				                            
@@ -116,7 +116,7 @@
                           
                           <div class="sidebar-container widget-TAU">
                             <div class="sidebar-content">
-                              <div class="sidebar-header"><a href="${pageContext.request.contextPath}/TeamAroundYou">Teams Around You</a></div>
+                              <div class="sidebar-header"><a href="javascript:void(0);" onclick="PleaseLogin()">Teams Around You</a></div>
                               
                               
                               
@@ -128,7 +128,7 @@
                               	</c:when>
                               	<c:otherwise>
                               		 <c:forEach items="${TEAMAroundYou}" var="brd" begin="0" end="5">
-                              		 <a href="${pageContext.request.contextPath}/${brd.boardName}/board/${brd.boardId}">
+                              		 <a href="javascript:void(0);" onclick="PleaseLogin()">
                               		<div class="sidebar-list"> 
                                    	 <img src="${brd.boardImageURL}?" class="teamLogo" title="${brd.boardName}" alt="${brd.boardName}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';" class="teamLogo">
                                      
@@ -148,7 +148,7 @@
                           
                             <div class="sidebar-container widget-MAU BAU">
                               <div class="sidebar-content">
-                              <div class="sidebar-header"><a href="${pageContext.request.contextPath}/merchantsAroundYou">Merchants Around You </a><span class="sidebar-header-light"></span></div>
+                              <div class="sidebar-header"><a href="javascript:void(0);" onclick="PleaseLogin()">Merchants Around You </a><span class="sidebar-header-light"></span></div>
                                <c:choose>
                              	<c:when test="${empty Merchants}">
                  		<div class="sidebar-list noContentDiv">
@@ -161,11 +161,11 @@
 			                              
 			                              <div class="sidebar-list" >
 			                                    <div class="teamLogos">
-			                                <a href="${pageContext.request.contextPath}/${merchant.boardName}/board/${merchant.boardId}">
+			                                <a href="javascript:void(0);" onclick="PleaseLogin()">
 			                                	<img src="${merchant.boardImageURL}?" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" class="teamLogo" >
 			                                	</a>
                           	</div>
-			                                     <a href="${pageContext.request.contextPath}/${merchant.boardName}/board/${merchant.boardId}">
+			                                     <a href="javascript:void(0);" onclick="PleaseLogin()">
 			                                     ${merchant.boardName}
 			                                     </a><br>
 			                                     ${merchant.city}

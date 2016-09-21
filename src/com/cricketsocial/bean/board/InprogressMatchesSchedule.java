@@ -46,6 +46,24 @@ public class InprogressMatchesSchedule {
 	
 	private String winTeamName;
 	private String loseTeamName;
+	private String leagueCreatedBy;
+	private String dateString;
+	
+	
+	
+	
+	public String getDateString() {
+		return dateString;
+	}
+	public void setDateString(String dateString) {
+		this.dateString = dateString;
+	}
+	public String getLeagueCreatedBy() {
+		return leagueCreatedBy;
+	}
+	public void setLeagueCreatedBy(String leagueCreatedBy) {
+		this.leagueCreatedBy = leagueCreatedBy;
+	}
 	public String getAwayTeamId() {
 		return awayTeamId;
 	}

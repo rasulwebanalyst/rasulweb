@@ -172,7 +172,8 @@
 				                        				</c:choose>
 	                        				  	  <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}"><span class="text-danger"><img alt="" src="${player.userImageUrl}" width="50px" height="50px" style="margin-right: 10px;">${player.userName} </span></a></td>	    
 	                        				  	  
-	                        				  	  <td><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}">${player.teamBoardInfo.boardName}</a></td>
+	                        				  	 <%--  <td><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}">${player.teamBoardInfo.boardName}</a></td> --%>
+	                        				  	 <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}"><img src="${player.teamBoardInfo.boardImageURL}" style="width: 30px;margin-right: 10px; ">  ${player.teamBoardInfo.boardName}</a></td>
 	                        				  	                    					  
 						                          <%-- <td><a href="${pageContext.request.contextPath}/${match.homeTeam}/board/${match.hometeamId}">${match.homeTeam}</a></td> --%>
 						                          <td>${player.games}</td>

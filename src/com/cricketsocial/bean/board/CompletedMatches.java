@@ -54,6 +54,14 @@ public class CompletedMatches {
 
 	private String winTeamId;
 	private String loseTeamId;
+	
+	public String getManOfTheMatchName() {
+		return manOfTheMatchName;
+	}
+	public void setManOfTheMatchName(String manOfTheMatchName) {
+		this.manOfTheMatchName = manOfTheMatchName;
+	}
+	private String manOfTheMatchName;
 		
 	public int getWinTeamPoints() {
 		return winTeamPoints;

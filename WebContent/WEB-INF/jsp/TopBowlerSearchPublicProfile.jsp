@@ -109,7 +109,7 @@ $(function(){
                  </div> 
                   </form>
             <div class="col-md-10 pull-right">
-      		<div class="col-md-12 whiteBox">
+      		<!-- <div class="col-md-12 whiteBox"> -->
                   
                   <%-- <c:choose>
                   <c:when test="${empty topplayer.matchsheduledtolist}">
@@ -132,7 +132,7 @@ $(function(){
                   </c:when>
                  <c:otherwise> --%>
                  
-                 <table>
+                <!--  <table>
                         <thead>
                         <tr>
                           <th>Tournament</th>
@@ -144,7 +144,7 @@ $(function(){
                        </thead>
 
                        <tbody>
-                        <tr>
+                        <tr> -->
                         <c:forEach items="${TopBowlerResponse}" var="topplayer">
 	                       		<c:forEach items="${topplayer.matchsheduledtolist}" var="matches" >  
 	                       		
@@ -155,25 +155,57 @@ $(function(){
 	                       		</c:when>
 	                       		
 	                       		<c:otherwise>
+	                       		<c:choose>
+	                       		<c:when test="${empty matches.bowlerlist}">
+	                       		</c:when>
 	                       		
+	                       		<c:otherwise>
+	                       		<br>
+	                       		<div class="col-md-12 whiteBox">
+	                       		<span class="text-danger" style="font-weight: bold; color: #3253a8 !important; ">Tournament Name : ${topplayer.tournamentName}</span>
+	                       		<br>
+	                       		<table>
+                        <thead>
+                        <tr>
+                          <th>S.No</th>
+                          <th>Player Name</th>
+                          <th>Team</th>
+                          <th>Matches</th>
+                          <th>Wickets</th>
+                        </tr>
+                       </thead>
+
+                       <tbody>
+                        <tr> 
 	                       		<c:forEach items="${matches.bowlerlist}" var="player" varStatus="index" begin="0" end="9">                       			
 	                       					<tr>                        				 	
-	                        				 	  		<c:choose>
+	                        				 	  		<%-- <c:choose>
 					                        				<c:when test="${index.count eq 1}">
 					                        					<td rowspan="${fn:length(matches.bowlerlist)}" >${topplayer.tournamentName}</td>
 					                        				</c:when>
 					                        				<c:otherwise>
 					                        				
 					                        				</c:otherwise>
-				                        				</c:choose>
+				                        				</c:choose> --%>
+				                        				<td>${index.count}</td>
 	                        				  	  <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}"><span class="text-danger"><img alt="" src="${player.userImageUrl}" width="50px" height="50px" style="margin-right: 10px;">${player.userName} </span></a></td>	                      					  
 						                         <%--  <td><a href="${pageContext.request.contextPath}/${matches.homeTeam}/board/${matches.hometeamId}">${matches.homeTeam}</a></td> --%>
 						                         
-						                         <td><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}">${player.teamBoardInfo.boardName}</a></td>
+						                        <%--  <td><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}">${player.teamBoardInfo.boardName}</a></td> --%>
+						                        <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}"><img src="${player.teamBoardInfo.boardImageURL}" style="width: 30px;margin-right: 10px; ">  ${player.teamBoardInfo.boardName}</a></td>
+						                        
 						                          <td>${player.games}</td>                  
 						                          <td>${player.wickets}</td>						                          
 						                     </tr>	            
 						                     </c:forEach>  
+						                     </tr>
+                        
+                       
+                     </tbody>
+                 </table>
+                 </div>
+	                       	</c:otherwise>	
+	                       	</c:choose>
 	                       		
 	                       		</c:otherwise>
 	                       		
@@ -183,11 +215,11 @@ $(function(){
 	                       		         			
 	                       		</c:forEach>                      
 	                       </c:forEach>
-                        </tr>
+                        <!-- </tr>
                         
                        
                      </tbody>
-                 </table>
+                 </table> -->
                  
              <%--     </c:otherwise>
                   
@@ -199,7 +231,7 @@ $(function(){
                  
           
                </div>
-            </div>
+            <!-- </div> -->
           </div>    
       </div>
           

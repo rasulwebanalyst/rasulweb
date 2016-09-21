@@ -35,7 +35,17 @@ private String filterByYear;
 private int noofLeaguesParticipated;
 private double bowlerovers;
 private int positionOfStandOrder;
+private String manOfMatch ;
 
+private String flag;
+private int catchStumpingCount;
+
+public String getManOfMatch() {
+	return manOfMatch;
+}
+public void setManOfMatch(String manOfMatch) {
+	this.manOfMatch = manOfMatch;
+}
 public String getLeagueBoardId() {
 	return leagueBoardId;
 }
@@ -223,9 +233,18 @@ public int getPositionOfStandOrder() {
 public void setPositionOfStandOrder(int positionOfStandOrder) {
 	this.positionOfStandOrder = positionOfStandOrder;
 }
-
-
-
+public String getFlag() {
+	return flag;
+}
+public void setFlag(String flag) {
+	this.flag = flag;
+}
+public int getCatchStumpingCount() {
+	return catchStumpingCount;
+}
+public void setCatchStumpingCount(int catchStumpingCount) {
+	this.catchStumpingCount = catchStumpingCount;
+}
 
 
 }

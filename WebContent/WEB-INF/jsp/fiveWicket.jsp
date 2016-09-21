@@ -15,7 +15,16 @@
 <title>Cricket Social</title>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/cricketSocial/topList.js"></script>
+<style type="text/css">
+.css-serial {
+  counter-reset: serial-number;  /* Set the serial number counter to 0 */
+}
 
+.css-serial td:first-child:before {
+  counter-increment: serial-number;  /* Increment the serial number counter */
+  content: counter(serial-number);  /* Display the counter */
+}
+</style>
 </head>
 <body>
 
@@ -35,7 +44,7 @@
       <form action="${pageContext.request.contextPath}/leagueTopFiveWicketsList" id="centuriesSearchForm" name="centuriesSearchForm" method="post" onsubmit="return searchValiation()">
       <div class="col-md-10">
       		<div class="col-md-12 whiteBox">
-		          <h1 class="pageHead noBorder">5 Wickets
+		          <h1 class="pageHead noBorder">5fer
                   
                  <!--  <div class="h1Sbox">
                                 <div class="selectdiv pull-right">
@@ -105,91 +114,112 @@
                   </form>
                   
             <div class="col-md-10 pull-right">
-      		<div class="col-md-12 whiteBox">
-                  
-                  <c:choose>
-                  <c:when test="${empty fiveWicketResponse}">
-                  
-                  <table>
-                        <thead>
-                        <tr>
-                          <th>Tournament</th>
-                          <th>Player Name</th>
-                          <th>Wickets</th>
-                          <th>Team Name</th>
-                          <th>Team Against</th>
-                          <th>Ground</th>
-                          <th>Match Date</th>
-                          <th>Score Card</th>
-                        </tr>
-                       </thead>
-                       </table>
-                       <span style="color:red">No Details Available</span>
-                  
-                  
-                  </c:when>
-                  <c:otherwise>
-                  
-                  <table>
-                        <thead>
-                        <tr>
-                          <th>Tournament</th>
-                          <th>Player Name</th>
-                          <th>Wickets</th>
-                          <th>Team Name</th>
-                          <th>Team Against</th>
-                          <th>Ground</th>
-                          <th>Match Date</th>
-                          <th>Score Card</th>
-                        </tr>
-                       </thead>
+    <!-- <div class="col-md-12 whiteBox"> -->
 
-                       <tbody>
-                    <!--    <tr> -->
-                        <c:forEach items="${fiveWicketResponse}" var="fiveWicket">
-	                       		<c:if test="${fiveWicket.size ne 0}">
-	                       		<tr>
-                       			<td rowspan="${fiveWicket.size}" ><span class="text-danger">${fiveWicket.tournamentName}</span></td>
-	                       		<c:forEach items="${fiveWicket.matchsheduledtolist}" var="matches">
-	                       			<c:forEach items="${matches.playerlist}" var="player" varStatus="index">
-	                       					<!-- <tr>    -->                     				 	
-	                        				 	  		<c:choose>
+    <c:forEach items="${fiveWicketResponse}" var="fiveWicket">
+        <c:choose>
+            <c:when test="${empty fiveWicketResponse}">
+
+                <table class="css-serial">
+                    <thead>
+                        <tr>
+                            <th>S.No</th> 
+                            <th>Player Name</th>
+                            <th>Wickets</th>
+                            <th>Team Name</th>
+                            <th>Team Against</th>
+                            <th>Ground</th>
+                            <th>Match Date</th>
+                            <th>Score Card</th>
+                        </tr>
+                    </thead>
+                </table>
+                <span style="color:red">No Details Available</span>
+
+
+            </c:when>
+            <c:otherwise>
+
+
+                <c:choose>
+                    <c:when test="${fiveWicket.size eq 0}">
+                    </c:when>
+                    <c:otherwise>
+
+
+                        <div class="col-md-12 whiteBox">
+                            <span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">${fiveWicket.tournamentName}</span>
+
+                            <table class="css-serial">
+                                <thead>
+                                    <tr>
+                                         <th>S.No</th> 
+                                        <th>Player Name</th>
+                                        <th>Wickets</th>
+                                        <th>Team Name</th>
+                                        <th>Team Against</th>
+                                        <th>Ground</th>
+                                        <th>Match Date</th>
+                                        <th>Score Card</th>
+                                    </tr>
+                                </thead>
+
+
+                                <!--    <tr> -->
+                                <c:forEach items="${fiveWicket.matchsheduledtolist}" var="matches">
+                                    <c:forEach items="${matches.playerlist}" var="player" varStatus="index">
+                                        <tbody>
+
+
+                                            <%-- <c:if test="${fiveWicket.size ne 0}"> --%>
+                                                <tr>
+
+
+
+                                                    <!-- <tr>    -->
+                                                    <%-- <c:choose>
 					                        				<c:when test="${index.count eq 1}">
-					                        					<%-- <td rowspan="${fn:length(matches.playerlist)}" >${fiveWicket.tournamentName}</td> --%>
+					                        					<td rowspan="${fn:length(matches.playerlist)}" >${fiveWicket.tournamentName}</td>
 					                        				</c:when>
 					                        				<c:otherwise>
 					                        				
 					                        				</c:otherwise>
-				                        				</c:choose>
-	                        				  	  <td class="tdAlignLeft">${player.userName} </td>
-	                      					      <td><span class="text-danger">${player.wickets}</span></td>
-						                          <td><a href="${pageContext.request.contextPath}/${player.homeTeamName}/board/${player.homeTeamId}">${player.homeTeamName}</a></td>
-						                          <td><a href="${pageContext.request.contextPath}/${player.awayTeamName}/board/${player.awayTeamId}">${player.awayTeamName}</a> </td>
-						                          <td>${matches.groundName}</td>
-						                          <td><fmt:formatDate pattern="MM/dd/YYYY"  value="${matches.gameDate}" /></td>
-						                          <td align="center"><a href="${pageContext.request.contextPath}/showScoreCard/boardId/${BoradInfo.boardId}/matchId/${matches.sheduledId}"><i class="fa fa-newspaper-o"></i></a></td>
-						                     </tr>
-	                       			</c:forEach>
-	                       		</c:forEach>     
-	                       		</c:if>                 
-	                       </c:forEach>
-                      <!--   </tr> -->
-                        
-                     </tbody>
-                 </table>
-                  
-                  </c:otherwise>
-                  
-                  
-                  </c:choose>
-                  
-                  
-                 
-          
-               </div>
-            </div>
-                    
-                    
+				                        				</c:choose> --%>
+                                                        <td></td>
+                                                        <td class="tdAlignLeft">${player.userName} </td>
+                                                        <td><span class="text-danger">${player.wickets}</span></td>
+                                                       <%--  <td><a href="${pageContext.request.contextPath}/${player.homeTeamName}/board/${player.homeTeamId}">${player.homeTeamName}</a></td>
+                                                        <td><a href="${pageContext.request.contextPath}/${player.awayTeamName}/board/${player.awayTeamId}">${player.awayTeamName}</a> </td>
+                                                         --%>
+                                                         <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${player.homeTeamName}/board/${player.homeTeamId}"><img 	src="${player.homeTeamImgUrl}" style="width: 30px;margin-right: 10px; ">${player.homeTeamName}</a></td>
+
+														<td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${player.awayTeamName}/board/${player.awayTeamId}"><img src="${player.awayTeamImgUrl}" style="width: 30px;margin-right: 10px; ">${player.awayTeamName}</a> </td>
+                                                         
+                                                         <td>${matches.groundName}</td>
+                                                        <td>
+                                                            <fmt:formatDate pattern="MM/dd/YYYY" value="${matches.gameDate}" />
+                                                        </td>
+                                                        <td align="center"><a href="${pageContext.request.contextPath}/showScoreCard/boardId/${BoradInfo.boardId}/matchId/${matches.sheduledId}"><i class="fa fa-newspaper-o"></i></a></td>
+                                                </tr>
+                                        </tbody>
+                                    </c:forEach>
+                                </c:forEach>
+                            </table>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
+    <!--   </tr> -->
+
+
+
+
+
+    <!--   </div> -->
+</div>
+
                     
                     
                     

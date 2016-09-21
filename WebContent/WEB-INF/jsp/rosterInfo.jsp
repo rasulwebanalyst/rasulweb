@@ -11,7 +11,7 @@
 
     <title>Cricket Social</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/colorbox.css" />
-    <link href="http://hayageek.github.io/jQuery-Upload-File/4.0.8/uploadfile.css" rel="stylesheet">
+    <link href="https://hayageek.github.io/jQuery-Upload-File/4.0.8/uploadfile.css" rel="stylesheet">
       <script>var ctx="${pageContext.request.contextPath}";</script>
     
       
@@ -123,11 +123,11 @@
 </div>
 </div>
 </section>       
-   <script src="http://hayageek.github.io/jQuery-Upload-File/4.0.8/jquery.uploadfile.min.js"></script> 
-   <script src="http://malsup.github.com/jquery.form.js"></script>
-   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
-   <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
-<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+   <script src="https://hayageek.github.io/jQuery-Upload-File/4.0.8/jquery.uploadfile.min.js"></script> 
+   <script src="https://malsup.github.com/jquery.form.js"></script>
+   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+   <script src="https://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+<script src="https://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function(){

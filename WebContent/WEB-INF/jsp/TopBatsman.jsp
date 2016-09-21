@@ -107,7 +107,7 @@ var pageNum=500;
                   </form>
                   
             <div class="col-md-10 pull-right">
-      		<div class="col-md-12 whiteBox">
+      		<!-- <div class="col-md-12 whiteBox"> -->
                   
                   <%-- <c:choose>
                   <c:when test="${empty topplayer.matchsheduledtolist}">
@@ -132,10 +132,39 @@ var pageNum=500;
                   </c:when>
                   <c:otherwise> --%>
                   
-                  <table>
+                  <!-- <table>
                         <thead>
                         <tr>
-                          <th>Tournament</th>
+                          <th>Sl no.</th>
+                          <th>Player Name</th>
+                          <th>Team</th>
+                          <th>Matches</th>
+                          <th>Innings</th>
+                          <th>NO</th>
+                          <th>Runs</th>
+                          <th>Avg</th>
+                        </tr>
+                       </thead>
+
+                       <tbody id="topbatsmanTableBody">
+                        <tr> -->
+                        <c:forEach items="${TopBatsmanResponse}" var="topplayer">
+	                       		<c:forEach items="${topplayer.matchsheduledtolist}" var="match">  
+	                       		<c:choose>
+	                       		<c:when test="${empty topplayer.matchsheduledtolist}">
+	                       			<!-- <span style="color:red">No Details Available</span> -->
+	                       		
+	                       		</c:when>
+	                       		
+	                       		<c:otherwise>
+	                       		<br>
+	                       		<div class="col-md-12 whiteBox">
+	                       		<span class="text-danger" style="font-weight: bold; color: #3253a8 !important; ">Tournament Name : ${topplayer.tournamentName}</span>
+	                       		<br>
+	                       		<table>
+                        <thead>
+                        <tr>
+                          <th>S.No</th>
                           <th>Player Name</th>
                           <th>Team</th>
                           <th>Matches</th>
@@ -148,33 +177,25 @@ var pageNum=500;
 
                        <tbody id="topbatsmanTableBody">
                         <tr>
-                        <c:forEach items="${TopBatsmanResponse}" var="topplayer">
-	                       		<c:forEach items="${topplayer.matchsheduledtolist}" var="match">  
-	                       		<c:choose>
-	                       		<c:when test="${empty topplayer.matchsheduledtolist}">
-	                       			<!-- <span style="color:red">No Details Available</span> -->
-	                       		
-	                       		</c:when>
-	                       		
-	                       		<c:otherwise>
-	                       		
 	                       		        
 	                       		<c:forEach items="${match.playerlist}" var="player" varStatus="index">  
 	                       		
 	                       		<c:choose>
 	                       		<c:when test="${!empty match.playerlist}">
 	                       		<tr>                        				 	
-	                        				 	  		<c:choose>
+	                        				 	  		<%-- <c:choose>
 					                        				<c:when test="${index.count eq 1}">
 					                        					<td rowspan="${fn:length(match.playerlist)}" >${topplayer.tournamentName}</td>
 					                        				</c:when>
 					                        				<c:otherwise>
 					                        				
 					                        				</c:otherwise>
-				                        				</c:choose>
+				                        				</c:choose> --%>
+				                        				<td>${index.count}</td>
 	                        				  	  <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}"><span class="text-danger"><img alt="" src="${player.userImageUrl}" width="50px" height="50px" style="margin-right: 10px;">${player.userName} </span></a></td>	 
 	                        				  	                       					  
-						                          <td><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}">${player.teamBoardInfo.boardName}</a></td>
+						                          <%-- <td><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}">${player.teamBoardInfo.boardName}</a></td> --%>
+						                          <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}"><img src="${player.teamBoardInfo.boardImageURL}" style="width: 30px;margin-right: 10px; ">  ${player.teamBoardInfo.boardName}</a></td>
 						                          <td>${player.games}</td>
 						                          <td>${player.innings}</td>
 						                          <td>${player.notOuts}</td>
@@ -195,18 +216,24 @@ var pageNum=500;
 	                       		</c:choose>
 	                       		           			
 	                       						 
-						                     </c:forEach> 
+						                     </c:forEach>
+						                     </tr>
+                        
+                       
+                     </tbody>
+                 </table> 
+                 </div>
 						                     
 						                     </c:otherwise>
 						                     
 						                     </c:choose>                     			
 	                       		</c:forEach>                      
 	                       </c:forEach>
-                        </tr>
+                        <!-- </tr>
                         
                        
                      </tbody>
-                 </table>
+                 </table> -->
                   
                  <%--  </c:otherwise>
                   
@@ -216,7 +243,7 @@ var pageNum=500;
                   
                  
           
-               </div>
+               <!-- </div> -->
             </div>
           </div>    
       </div>

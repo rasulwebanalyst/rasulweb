@@ -190,7 +190,7 @@
                                         <th>RUNS</th>
                                         <th>4s</th>
                                         <th>6s</th>
-                                        <th>DISMISS TYPE</th>
+                                        <th>DISMISSAL TYPE</th>
                                         <th>SR</th>
                                         <th>MAN OF THE MATCH</th>
                                         <th>SCORE CARD</th>
@@ -216,7 +216,7 @@
                                         <th>RUNS</th>
                                         <th>4s</th>
                                         <th>6s</th>
-                                        <th>DISMISS TYPE</th>
+                                        <th>DISMISSAL TYPE</th>
                                         <th>SR</th>
                                         <th>MAN OF THE MATCH</th>
                                         <th>SCORE CARD</th>
@@ -440,7 +440,7 @@
                           
                       
                         <div class="col-md-4 noPadding">
-                        	<h5>Bowling Performance</h5>
+                        	<h5>Bowling Performances</h5>
                            <!--  --><br><div id="bowlingYearId"></div>
                             </div>
                          <%-- <div class="col-md-5 drop pull-right">
@@ -702,7 +702,7 @@ function loadMoreBattings(){
 				 html += '<th>RUNS</th>';
 				 html += '<th>4s</th>';
 				 html += '<th>6s</th>';
-				 html += '<th>DISMISS TYPE</th>';
+				 html += '<th>DISMISSAL TYPE</th>';
 				 html += '<th>SR</th>';
 				 html += '<th>MAN OF THE MATCH</th>';
 				 html += '<th>SCORE CARD</th>';
@@ -771,7 +771,7 @@ function loadMoreBattings(){
 				 html += '<th>RUNS</th>';
 				 html += '<th>4s</th>';
 				 html += '<th>6s</th>';
-				 html += '<th>DISMISS TYPE</th>';
+				 html += '<th>DISMISSAL TYPE</th>';
 				 html += '<th>SR</th>';
 				 html += '<th>MAN OF THE MATCH</th>';
 				 html += '<th>SCORE CARD</th>';
@@ -1034,7 +1034,7 @@ function yearWiseBatting(val){
 				 html += '<th>RUNS</th>';
 				 html += '<th>4s</th>';
 				 html += '<th>6s</th>';
-				 html += '<th>DISMISS TYPE</th>';
+				 html += '<th>DISMISSAL TYPE</th>';
 				 html += '<th>SR</th>';
 				 html += '<th>MAN OF THE MATCH</th>';
 				 html += '<th>SCORE CARD</th>';

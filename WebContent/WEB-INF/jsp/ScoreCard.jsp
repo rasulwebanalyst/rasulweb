@@ -366,10 +366,10 @@ var formatAMPMTime = function(date) {
                          	<c:forEach var="wickets" items="${fallOfWicketsFirstInningsWebPortal}" varStatus = "loop">
                                  <c:choose>
                          				<c:when test="${loop.count eq 1}">
-                         					  ${wickets.runs}-${wickets.wicketNumber}
+                         					  ${wickets.runs}-${wickets.wicketNumber} (${wickets.playerName}, ${wickets.overNumber} ov)
                          				</c:when>
                          				<c:otherwise>
-                         						 , ${wickets.runs}-${wickets.wicketNumber}
+                         						 , ${wickets.runs}-${wickets.wicketNumber} (${wickets.playerName}, ${wickets.overNumber} ov)
                          				</c:otherwise>
                          			</c:choose>
                             
@@ -659,10 +659,10 @@ var formatAMPMTime = function(date) {
                          	<c:forEach var="wickets" items="${fallOfWicketsSecondInningsWebPortal}" varStatus = "loop">
                                  <c:choose>
                          				<c:when test="${loop.count eq 1}">
-                         					 ${wickets.runs}-${wickets.wicketNumber}
+                         					 ${wickets.runs}-${wickets.wicketNumber} (${wickets.playerName}, ${wickets.overNumber} ov)
                          				</c:when>
                          				<c:otherwise>
-                         						 , ${wickets.runs}-${wickets.wicketNumber}
+                         						 , ${wickets.runs}-${wickets.wicketNumber} (${wickets.playerName}, ${wickets.overNumber} ov)
                          				</c:otherwise>
                          			</c:choose>
                             

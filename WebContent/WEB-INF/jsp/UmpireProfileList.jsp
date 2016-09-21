@@ -47,6 +47,7 @@
                   <table id="tableId" >
                                     	<thead>
                                         	<tr>
+                                        	<th style="text-align: center !important;">S.No</th>
                                         	<th>Name</th>
                                             <th>Rating</th>
                                             <th>Address</th>
@@ -70,6 +71,7 @@
                   <table id="tableId" >
                                     	<thead>
                                         	<tr>
+                                        	<th style="text-align: center !important;">S.No</th>
                                         	<th>Name</th>
                                             <th>Rating</th>
                                             <th>Address</th>
@@ -83,8 +85,9 @@
                                             
                                            </thead>
                                            <tbody>
-                                          <c:forEach var="brdUmpire" items="${BoardUmpireList}">
+                                          <c:forEach var="brdUmpire" items="${BoardUmpireList}" varStatus="index">
                                            <tr>
+                                           <td style="text-align: center !important;">{index.count}</td>
                                           	<td><a href="${pageContext.request.contextPath}/buddy/${brdUmpire.umpireName}/${brdUmpire.umpireId}">${brdUmpire.umpireName}</a></td>
                                             <td>
                                                 <div class="tdStars">

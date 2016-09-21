@@ -362,6 +362,7 @@
 		                                 </c:when>
 		                                 <c:otherwise>
 		                                <!--   <a href="#"  class="btn btn-default btn-sm blueBtn">View Details</a> -->
+		                                <a href="#" class="btn btn-default btn-sm dBtn" onclick="showScoreCardInProgresserror()">View Score</a>
 		                                 </c:otherwise>
 		                                 
 		                                 </c:choose>
@@ -522,6 +523,10 @@
 function showScoreCardInProgress(id,leagueBoardId){
 	 window.location.href = "${pageContext.request.contextPath}/showScoreCardForInProgress/boardId/"+leagueBoardId+"/matchId/"+id;
 }
+function showScoreCardInProgresserror()
+{
+	displaynotification('Match not yet started',2000);
+	}
 //$(document).ready(function(){
 	
 	

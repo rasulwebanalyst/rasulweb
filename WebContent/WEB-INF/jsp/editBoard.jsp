@@ -886,6 +886,7 @@ function readURL(input) {
         var reader = new FileReader();
         reader.onload = function (e) {
         	console.log(e);
+        	console.log(reader);
         	 //alert("e.target.result"+e.target.result);
             $('#profileimg').attr('src', e.target.result);
         };

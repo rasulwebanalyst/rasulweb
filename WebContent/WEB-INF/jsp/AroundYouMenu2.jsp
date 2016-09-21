@@ -33,7 +33,7 @@
 	                                   		 
 	                                   		 <c:choose>
 	                              			<c:when  test="${match.status eq 'InProgress'}">
-	                              			<a class="vw-score" href="javascript:void(0);" onclick="showScoreCardInProgress('${match.tournamentSchedulerId}','${match.createdBy}')">View Score</a>
+	                              			<a class="vw-score" href="javascript:void(0);" onclick="showScoreCardInProgress('${match.tournamentSchedulerId}','${match.createdBy}')">Live Score</a>
 	                              			</c:when>
 	                              			<c:otherwise>
 	                              			<a class="vw-score" href="javascript:void(0);" onclick="showScoreCardInProgress('${match.tournamentSchedulerId}','no')">View Score</a>

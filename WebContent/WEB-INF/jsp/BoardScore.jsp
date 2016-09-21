@@ -64,7 +64,7 @@
                          	
                          	<c:choose>
                          	<c:when test="${completedMatchesListSize eq 0 }">
-                         	<table>
+                         	<table  style="font-size: 14px">
                             	<thead>
                                 	<tr>
                                     	<th>Date (MM/DD/YYYY)</th>
@@ -81,7 +81,7 @@
                          	</c:when>
                          	<c:otherwise>
                          	
-                         	<table id="dataTable">
+                         	<table id="dataTable" style="font-size: 14px">
                             	<thead>
                                 	<tr>
                                     	<th>Date (MM/DD/YYYY)</th>
@@ -119,9 +119,9 @@
                         </c:choose>
                        
                                        <c:choose><c:when test="${completed.manOfTheMatch eq ''  }">
-                                        <td></td>
+                                        <td>-</td>
                                         </c:when><c:otherwise>
-                                        <td><img src="${pageContext.request.contextPath}/images/mfmimg.png" title="mfm"></td>
+                                        <td>${completed.manOfTheMatchName}</td>
                                         </c:otherwise>
                                         </c:choose>
                                       <td><img src="${pageContext.request.contextPath}/images/scorecard.png" onclick="showScoreCard('${completed.tournamentSchedulerId}')"></td>
@@ -167,7 +167,7 @@
                                 <div class="col-md-12 teem" id="tournamentsDiv">
                                 	
                                 	<!-- <div class="crol"> -->
-                                	<h1 class="noBorder">No. of Tournaments</h1>
+                                	<h1 class="noBorder">Tournaments</h1>
                                     
                                     
                                     <%-- <c:forEach var="tournaments" items="${boardAchieveMents.tournamentList}" varStatus = "loop">
@@ -437,7 +437,7 @@
 				
 				
 				var html = '';
-				html += '<table id="dataTable"><thead><tr>';
+				/* html += '<table id="dataTable"><thead><tr>';
 				html += '<th>Date (MM/DD/YYYY)</th>';
 				html += '<th>Trophy</th>';
 				html += '<th>Home Team</th>';
@@ -446,7 +446,7 @@
 				html += '<th>Man Of The Match</th>';
 				html += '<th>Score Card</th>';
 				html += '</tr></thead>';
-				html += '<tbody align="center">';
+				html += '<tbody align="center">'; */
 				for(var i=0; i<res.length; i++){
 				html += '<tr>';
 				
@@ -465,7 +465,7 @@
 				html += '<td><a href="${pageContext.request.contextPath}/'+res[i].awayTeamName+'/board/'+res[i].awayTeamId+'">'+res[i].awayTeamName+'</a></td>';
 			
 				if(res[i].statusOfMatch == 'tie'){
-					html += '<td align="center"><span class="text-danger">Match Tie</span><br> <a href="${pageContext.request.contextPath}/'+res[i].winTeamName+'/board/'+res[i].winTeamName+'">'+res[i].winTeamId+' </a>: '+res[i].winTeamRuns+'/'+res[i].winTeamWickets+' in '+res[i].winTeamOvers+' <br> <a href="${pageContext.request.contextPath}/'+res[i].loseTeamName+'/board/'+res[i].loseTeamId+'"> '+res[i].loseTeamName+'</a> : '+res[i].loseTeamRuns+'/'+res[i].loseTeamWickets+' in'+ res[i].loseTeamOvers+'</td>';
+					html += '<td align="center"><span class="text-danger">Match Tied</span><br> <a href="${pageContext.request.contextPath}/'+res[i].winTeamName+'/board/'+res[i].winTeamId+'">'+res[i].winTeamName+' </a>: '+res[i].winTeamRuns+'/'+res[i].winTeamWickets+' in '+res[i].winTeamOvers+' <br> <a href="${pageContext.request.contextPath}/'+res[i].loseTeamName+'/board/'+res[i].loseTeamId+'"> '+res[i].loseTeamName+'</a> : '+res[i].loseTeamRuns+'/'+res[i].loseTeamWickets+' in'+ res[i].loseTeamOvers+'</td>';
 					
 				}else{
 					html += '<td align="center"><span class="text-danger">'+res[i].winTeamName+' won</span><br><a href="${pageContext.request.contextPath}/'+res[i].winTeamName+'/board/'+res[i].winTeamId+'"> '+res[i].winTeamName+'</a> : '+res[i].winTeamRuns+'/'+res[i].winTeamWickets+' in '+res[i].winTeamOvers+' <br>  <a href="${pageContext.request.contextPath}/'+res[i].loseTeamName+'/board/'+res[i].loseTeamId+'">'+res[i].loseTeamName+'</a> : '+res[i].loseTeamRuns+'/'+res[i].loseTeamWickets+' in'+ res[i].loseTeamOvers+'';
@@ -475,17 +475,17 @@
 				
 				
 				 if(res[i].manOfTheMatch == ""){
-					 html += '<td></td>';
+					 html += '<td>-</td>';
 				 }else{
-					 html += '<td><img src="${pageContext.request.contextPath}/images/mfmimg.png" title="mfm"></td>';
+					 html += '<td>'+res[i].manOfTheMatchName+'</td>';
 				 }
 				 html += "<td><img src='${pageContext.request.contextPath}/images/scorecard.png' onclick='showScoreCard(\""+id+"\")''></td>";
 				html += '</tr>';
 				}
-				html += '</tbody>';
+				/* html += '</tbody>'; */
 			
 				
-				$("#dataTable").html(html).trigger('create');
+				$("#dataTable").append(html);
 				
 				start = startNode;
 				end = endNode;

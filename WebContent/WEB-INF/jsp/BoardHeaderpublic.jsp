@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slider.css" />
     
     <!--Google Default Fonts-->
-	<link href='http://fonts.googleapis.com/css?family=Cabin:400,500,600,700,400italic,600italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Cabin:400,500,600,700,400italic,600italic' rel='stylesheet' type='text/css'>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

@@ -192,7 +192,7 @@ return result;
 	<script>
         
    </script>      
-     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+     <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
           <script type="text/javascript" src="${pageContext.request.contextPath}/js/cricketSocial/boardfunction.js"></script>
      
 <script type="text/javascript">

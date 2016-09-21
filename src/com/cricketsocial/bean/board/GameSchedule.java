@@ -18,7 +18,7 @@ public class GameSchedule {
 	private List<UpcomingMatches> incompleteMatchesList;
 	private String filterByYear;
 	private String userId;
-	
+	private String flag;
 	
 	public List<UpcomingMatches> getUpComingMatchesList() {
 		return upComingMatchesList;
@@ -97,6 +97,12 @@ public class GameSchedule {
 	}
 	public void setIncompleteMatchesList(List<UpcomingMatches> incompleteMatchesList) {
 		this.incompleteMatchesList = incompleteMatchesList;
+	}
+	public String getFlag() {
+		return flag;
+	}
+	public void setFlag(String flag) {
+		this.flag = flag;
 	}
 
 	

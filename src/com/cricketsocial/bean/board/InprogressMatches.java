@@ -6,6 +6,9 @@ import java.util.Map;
 import java.util.UUID;
 
 
+
+
+
 import com.cricketsocial.bean.board.BoardProfile;
 
 public class InprogressMatches {
@@ -42,6 +45,7 @@ public class InprogressMatches {
 	private List<BoardProfile> boardProfList;
 	private double loseTeamOvers;
 	private double winTeamOvers;
+	private String dateString;
 	
 	private UUID tournamentSchedulerId;
 	
@@ -50,6 +54,16 @@ public class InprogressMatches {
 	
 	private String winTeamName;
 	private String loseTeamName;
+	private String leagueCreatedBy;
+	private String boardId;
+	
+	
+	public String getBoardId() {
+		return boardId;
+	}
+	public void setBoardId(String boardId) {
+		this.boardId = boardId;
+	}
 	public String getAwayTeamId() {
 		return awayTeamId;
 	}
@@ -271,6 +285,18 @@ public class InprogressMatches {
 	}
 	public void setLoseTeamName(String loseTeamName) {
 		this.loseTeamName = loseTeamName;
+	}
+	public String getDateString() {
+		return dateString;
+	}
+	public void setDateString(String dateString) {
+		this.dateString = dateString;
+	}
+	public String getLeagueCreatedBy() {
+		return leagueCreatedBy;
+	}
+	public void setLeagueCreatedBy(String leagueCreatedBy) {
+		this.leagueCreatedBy = leagueCreatedBy;
 	}
 	
 	

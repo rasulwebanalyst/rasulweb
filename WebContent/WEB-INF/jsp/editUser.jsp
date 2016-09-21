@@ -330,7 +330,7 @@ var imageValidate=1;
 <input type="checkbox" class="cboxBtnLeft" id="${sub1.sub_role_level_one_id}" name="subcat1" value="${sub1.sub_role_level_one_id}">
 </c:otherwise>
 </c:choose>
-<label for="${sub1.sub_role_level_one_id}"><span class="cboxImg"> <img src="http://thamaramurthy.s3.amazonaws.com/cricketsocial-images/subcat1/${sub1.sub_role_level_one_id}.png">  </span>${sub1.sub_role_level_one}</label>
+<label for="${sub1.sub_role_level_one_id}"><span class="cboxImg"> <img src="https://thamaramurthy.s3.amazonaws.com/cricketsocial-images/subcat1/${sub1.sub_role_level_one_id}.png">  </span>${sub1.sub_role_level_one}</label>
 </c:forEach>
                                  
                                  </div>
@@ -368,7 +368,7 @@ var imageValidate=1;
 <input type="checkbox" class="cboxBtnLeft" id="${sub1.sub_role_level_one_id}" name="subcat1" value="${sub1.sub_role_level_one_id}">
 </c:otherwise>
 </c:choose>
-<label for="${sub1.sub_role_level_one_id}"><span class="cboxImg"> <img src="http://thamaramurthy.s3.amazonaws.com/cricketsocial-images/subcat1/${sub1.sub_role_level_one_id}.png">  </span>${sub1.sub_role_level_one}</label>
+<label for="${sub1.sub_role_level_one_id}"><span class="cboxImg"> <img src="https://thamaramurthy.s3.amazonaws.com/cricketsocial-images/subcat1/${sub1.sub_role_level_one_id}.png">  </span>${sub1.sub_role_level_one}</label>
 </c:forEach>
                                 </div>
                                 
@@ -476,7 +476,7 @@ var imageValidate=1;
 <input type="checkbox" class="cboxBtnLeft" id="${sub1.sub_role_level_one_id}" name="subcat1" value="${sub1.sub_role_level_one_id}">
 </c:otherwise>
 </c:choose>
-<label for="${sub1.sub_role_level_one_id}"><span class="cboxImg"> <img src="http://thamaramurthy.s3.amazonaws.com/cricketsocial-images/subcat1/${sub1.sub_role_level_one_id}.png">  </span>${sub1.sub_role_level_one}</label>
+<label for="${sub1.sub_role_level_one_id}"><span class="cboxImg"> <img src="https://thamaramurthy.s3.amazonaws.com/cricketsocial-images/subcat1/${sub1.sub_role_level_one_id}.png">  </span>${sub1.sub_role_level_one}</label>
 </c:forEach>
                                  </div>
                                  </div>
@@ -495,7 +495,7 @@ var imageValidate=1;
 <input type="checkbox" class="cboxBtnLeft" id="${sub1.sub_role_level_one_id}" name="subcat1" value="${sub1.sub_role_level_one_id}">
 </c:otherwise>
 </c:choose>
-<label for="${sub1.sub_role_level_one_id}"><span class="cboxImg"> <img src="http://thamaramurthy.s3.amazonaws.com/cricketsocial-images/subcat1/${sub1.sub_role_level_one_id}.png">  </span>${sub1.sub_role_level_one}</label>
+<label for="${sub1.sub_role_level_one_id}"><span class="cboxImg"> <img src="https://thamaramurthy.s3.amazonaws.com/cricketsocial-images/subcat1/${sub1.sub_role_level_one_id}.png">  </span>${sub1.sub_role_level_one}</label>
 </c:forEach>
 								</div>
                                 

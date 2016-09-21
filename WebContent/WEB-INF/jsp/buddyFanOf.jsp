@@ -303,7 +303,7 @@ return result;
 			});
 		});
    </script>      
-     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+     <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
      
      
      

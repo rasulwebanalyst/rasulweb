@@ -327,14 +327,41 @@ var formatAMPMTime = function(date) {
                             </c:forEach></p> 
                             </c:if> --%>
                             
+                            <c:choose>
+                         	<c:when test="${ empty fallOfWicketsFirstInnings}">
+                         		<p style="color:red" id="firstInningsFallOfWicketsScoriingApp">Fall of wickets : No fall of wickets</p>
+                         	</c:when>
+                         	<c:otherwise>
+                         	<p style="color: red;margin-top:5px;">Fall of wickets :  
+                         
+                         	<c:forEach var="wickets" items="${fallOfWicketsFirstInnings}" varStatus = "loop">
+                                 <c:choose>
+                         				<c:when test="${loop.count eq 1}">
+                         					  ${wickets.runs}-${wickets.wicketNumber} (${wickets.playerName}, ${wickets.overNumber} ov)
+                         				</c:when>
+                         				<c:otherwise>
+                         						 , ${wickets.runs}-${wickets.wicketNumber} (${wickets.playerName}, ${wickets.overNumber} ov)
+                         				</c:otherwise>
+                         			</c:choose>
+                            
+                            </c:forEach>
+                         	
+                         	 </p>
+                         	</c:otherwise>
+                         
+                         
+                         </c:choose>
+                            
                             <c:if test="${empty fallOfWicketsFirstInningsWebPortal }">
                               <p style="color:red" id="firstInningsFallOfWicketsWebPortal">Fall of wickets - No fall of wickets </p> 
                             </c:if>
                             <c:if test="${! empty fallOfWicketsFirstInningsWebPortal }">
                             <p class="redtext">Fall of wickets  <c:forEach var="wickets" items="${fallOfWicketsFirstInningsWebPortal}" varStatus = "loop">
-                            ${wickets.wicketNumber}-${wickets.runs} <c:if test="${!loop.last}">,</c:if>
+                            ${wickets.wicketNumber}-${wickets.runs} (${wickets.playerName}, ${wickets.overNumber} ov)<c:if test="${!loop.last}">,</c:if>
                             </c:forEach></p> 
                             </c:if>
+                            
+                            
                             
                             
                             <c:choose>
@@ -592,13 +619,38 @@ var formatAMPMTime = function(date) {
                               
                               </c:if> --%>
                               
+                              <c:choose>
+                         	<c:when test="${ empty fallOfWicketsSecondInnings}">
+                         		<p style="color:red" id="secondInningsFallOfWicketsScoriingApp">Fall of wickets : No fall Of Wickets</p>
+                         	</c:when>
+                         	<c:otherwise>
+                         	<p style="color: red;margin-top:5px;">Fall of wickets :
+                         
+                         	<c:forEach var="wickets" items="${fallOfWicketsSecondInnings}" varStatus = "loop">
+                                 <c:choose>
+                         				<c:when test="${loop.count eq 1}">
+                         					 ${wickets.runs}-${wickets.wicketNumber} (${wickets.playerName}, ${wickets.overNumber} ov)
+                         				</c:when>
+                         				<c:otherwise>
+                         						 , ${wickets.runs}-${wickets.wicketNumber} (${wickets.playerName}, ${wickets.overNumber} ov)
+                         				</c:otherwise>
+                         			</c:choose>
+                            
+                            </c:forEach>
+                         	
+                         	 </p>
+                         	</c:otherwise>
+                         
+                         
+                         </c:choose>
+                              
                                <c:if test="${ empty fallOfWicketsSecondInningsWebPortal}">
                                <p style="color:red" id="secondInningsFallOfWicketsWebPortal">Fall of wickets - No fall of wickets</p> 
                               </c:if>
                               
                               <c:if test="${! empty fallOfWicketsSecondInningsWebPortal}">
                                 <p class="redtext">Fall of wickets  <c:forEach var="wickets" items="${fallOfWicketsSecondInningsWebPortal}" varStatus = "loop">
-                            ${wickets.wicketNumber}-${wickets.runs}<c:if test="${!loop.last}">,</c:if>
+                            ${wickets.wicketNumber}-${wickets.runs} (${wickets.playerName}, ${wickets.overNumber} ov)<c:if test="${!loop.last}">,</c:if>
                             </c:forEach></p>
                               
                               </c:if>

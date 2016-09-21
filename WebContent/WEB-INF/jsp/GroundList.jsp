@@ -28,7 +28,7 @@
     
 
  <!-- jQuery -->
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
  
     <!-- Bootstrap Core JavaScript -->
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
@@ -118,6 +118,7 @@
                   <table id="tableId">
                   <thead>
                 	<tr>
+                	<th style="text-align: center !important;">S.No</th>
                     	<th class="alignCenter">Ground Name</th>
                         <th>Address</th>
                         <th>City</th>
@@ -135,6 +136,7 @@
                   <table id="tableId">
             	<thead>
                 	<tr>
+                	<th style="text-align: center !important;">S.No</th>
                     	<th class="alignCenter">Ground Name</th>
                         <th>Address</th>
                         <th>City</th>
@@ -143,8 +145,9 @@
                   </thead>
                   
                   <tbody>
-                  <c:forEach var="grndList" items="${groundList}">
+                  <c:forEach var="grndList" items="${groundList}" varStatus="index">
                     <tr>
+                    <td style="text-align: center !important;">${index.count}</td>
                     	<td class="alignCenter">${grndList.groundName}</td>
                         <td>${grndList.address1}</td>
                         <td>${grndList.city}</td>

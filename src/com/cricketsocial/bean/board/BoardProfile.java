@@ -69,6 +69,18 @@ private String oldlatLang;
 
 private String imageExtension;
 
+private String coOwnerId;
+
+
+
+public String getCoOwnerId() {
+	return coOwnerId;
+}
+
+public void setCoOwnerId(String coOwnerId) {
+	this.coOwnerId = coOwnerId;
+}
+
 public String getBoardfancount() {
 	return boardfancount;
 }

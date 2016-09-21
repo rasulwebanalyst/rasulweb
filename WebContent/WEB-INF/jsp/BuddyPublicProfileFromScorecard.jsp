@@ -27,6 +27,40 @@
     <!--Content Block-->
     <div class="col-md-12 middleContBlock noPadding">
       <div class="col-md-12 noPadding">
+      <script>
+   var formatAMPMTime = function(date) {
+	  var hours = date.getHours();
+	  console.log(hours);
+	  var minutes = date.getMinutes();
+	  var ampm = hours >= 12 ? 'PM' : 'AM';
+	  hours = hours % 12;
+	  hours = hours ? hours : 12; // the hour '0' should be '12'
+	  minutes = minutes < 10 ? '0'+minutes : minutes;
+	  hours = hours < 10 ? '0'+hours : hours ;
+	  var strTime = (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear();
+	  return strTime;
+	};
+	function test(id){
+		var date = $("#formatDate_"+id).html();	
+	    var offset = new Date().getTimezoneOffset() * 60 * 1000;
+	var gettingFromServer= new Date(date);
+	gettingFromServer = new Date(gettingFromServer.valueOf() - offset);
+	return formatAMPMTime(gettingFromServer); 
+	
+	};
+	
+	/* function getDateInObject(timestamp)
+	{
+		
+		var date = new Date(timestamp);
+		var dateNew = new Date(date.getTime() + date.getTimezoneOffset()*60000);
+		var offset = new Date().getTimezoneOffset() * 60 * 1000;
+		var gettingFromServer= new Date(dateNew);
+		gettingFromServer = new Date(gettingFromServer.valueOf() - offset);
+		return formatAMPMTime(gettingFromServer); 
+	}; */
+	 
+</script>
         
            	<%@ include file="BuddyPublicSideMenu.jsp" %>
 
@@ -208,7 +242,7 @@
                         <!-- <div class="col-md-4 noPadding">
                         	<h5>Batting Performance</h5> -->
                         	<div class="col-md-12 statusUpdateBox noPadding">
-                        	 <div class="buluback" style="font-weight:100;">Batting Performance</div>
+                        	 <div class="buluback" style="font-weight:100;">Batting & Fielding Performances</div>
                            <!--  --><br><span id="battingYearId">&nbsp</span>
                             </div>
                             <script type="text/javascript">
@@ -233,15 +267,17 @@
                             	<thead>
                                 	<tr>
                                     	<th>Date</th>
+                                    	<th>HOME TEAM</th>
+                                    	<th>AWAY TEAM</th>
                                         <th>TROPHY</th>
                                         <th>LEAGUE</th>
                                         <th>POS</th>
                                         <th>RUNS</th>
                                         <th>4s</th>
                                         <th>6s</th>
-                                        <th>DISMISS TYPE</th>
+                                        <th>DISMISSAL TYPE</th>
                                         <th>SR</th>
-                                        <th>MAN OF THE MATCH</th>
+                                        <th>MOM</th>
                                         <th>SCORE CARD</th>
                                     </tr>
                                 </thead>
@@ -259,15 +295,17 @@
                             	<thead>
                                 	<tr>
                                     	<th>DATE</th>
+                                    	<th>HOME TEAM</th>
+                                    	<th>AWAY TEAM</th>
                                         <th>TROPHY</th>
                                         <th>LEAGUE</th>
                                         <th>POS</th>
                                         <th>RUNS</th>
                                         <th>4s</th>
                                         <th>6s</th>
-                                        <th>DISMISS TYPE</th>
+                                        <th>DISMISSAL TYPE</th>
                                         <th>SR</th>
-                                        <th>MAN OF THE MATCH</th>
+                                        <th>MOM</th>
                                         <th>SCORE CARD</th>
                                     </tr>
                                 </thead>
@@ -276,15 +314,24 @@
                                 <c:forEach var="batting" items="${battingPerformanceList}">
                                 	<tr><td><fmt:formatDate value="${batting.gamedate}"
 														pattern="MM/dd/yyyy" /></td>
+									<td><a href="${pageContext.request.contextPath}/${batting.homeTeamName}/board/${batting.hometeamId}">${batting.homeTeamName}</a></td>	
+									<td><a href="${pageContext.request.contextPath}/${batting.awayTeamName}/board/${batting.awayTeamId}">${batting.awayTeamName}</a></td>
                                     	<td>${batting.tournamentName}</td>
                                     	
                                     	
                                         <td><a href="${pageContext.request.contextPath}/${batting.leagueBoardName}/board/${batting.leagueBoardId}">${batting.leagueBoardName}</a></td>
                                       
                                         
-                                       <c:choose>
-                                        <c:when test="${batting.positionOfStand == '' || batting.positionOfStand == 'null' || batting.positionOfStand == 'NO'}">
-                                       <td>-</td>
+                                      <c:choose>
+                                        	<c:when test="${batting.positionOfStand == '' || batting.positionOfStand == 'null' || batting.positionOfStand == 'NO'}">
+                                       			<c:choose>
+                                       				<c:when test="${empty batting.positionOfStandOrder}">
+                                       	 				<td>-</td>
+                                       	 			</c:when>
+                                       	 			<c:otherwise>
+                                       	 				<td>${batting.positionOfStandOrder}</td>
+                                       	 			</c:otherwise>
+                                       			</c:choose>
                                         </c:when>
                                         <c:otherwise>
                                           <td>${batting.positionOfStandOrder}</td>
@@ -295,14 +342,21 @@
                                         <td>${batting.runs}</td>
                                         <td>${batting.fours}</td>
                                         <td>${batting.sixs}</td>
+                                       <%--   <c:choose><c:when test ="${empty batting.dismissType}">
+                                        <td>-<td>
+                                        </c:when>
+                                        <c:otherwise> --%> 
                                         <td>${batting.dismissType}</td>
+                                        <%--  </c:otherwise>
+                                        </c:choose> 
+                                         --%>
                                         <td>${batting.strikeRate}</td>
-                                        <%-- <c:choose><c:when test="${batting.manOftheMatch eq 0 }">
-                                        <td></td>
-                                        </c:when><c:otherwise> --%>
+                                         <c:choose><c:when test="${batting.manOftheMatch eq 0 }">
+                                        <td>-</td>
+                                        </c:when><c:otherwise> 
                                         <td><img src="${pageContext.request.contextPath}/images/mfmimg.png" title="mfm"></td>
-                                       <%--  </c:otherwise>
-                                        </c:choose> --%>
+                                         </c:otherwise>
+                                        </c:choose> 
                                         
                                         
                                         <td><img src="${pageContext.request.contextPath}/images/scorecard.png" onclick="showScoreCard('${batting.matchId}')"></td>
@@ -338,7 +392,7 @@
                         <!-- <div class="col-md-4 noPadding">
                         	<h5>Bowling Performance</h5> -->
                         	<div class="col-md-12 statusUpdateBox noPadding">
-                        	  <div class="buluback" style="font-weight:100;">Bowling Performance</div>
+                        	  <div class="buluback" style="font-weight:100;">Bowling Performances</div>
                            <!--  --><br><span id="bowlingYearId"></span>
                             </div>
                          <div class="col-md-5 drop pull-right" style="margin-bottom: 15px;">
@@ -361,6 +415,8 @@
                             	<thead>
                                 	<tr>
                                     	<th>DATE</th>
+                                    	<th>HOME TEAM</th>
+                                    	<th>AWAY TEAM</th>
                                         <th>TROPHY</th>
                                         <th>LEAGUE</th>
                                         <th>OVERS</th>
@@ -368,7 +424,7 @@
                                         <th>RUNS</th>
                                         <th>WICKETS</th>
                                        	<th>SR</th>
-                                        <th>MAN OF THE MATCH</th>
+                                        <th>MOM</th>
                                         <th>SCORE CARD</th>
                                     </tr>
                                 </thead></table>
@@ -382,6 +438,8 @@
                             	<thead>
                                 	<tr>
                                     	<th>DATE</th>
+                                    	<th>HOME TEAM</th>
+                                    	<th>AWAY TEAM</th>
                                         <th>TROPHY</th>
                                         <th>LEAGUE</th>
                                         <th>OVERS</th>
@@ -389,7 +447,7 @@
                                         <th>RUNS</th>
                                         <th>WICKETS</th>
                                        	<th>SR</th>
-                                        <th>MAN OF THE MATCH</th>
+                                        <th>MOM</th>
                                         <th>SCORE CARD</th>
                                     </tr>
                                 </thead>
@@ -397,6 +455,8 @@
                                 <c:forEach var="bowling" items="${bowlingPerformanceList}">
                                 	<tr><td><fmt:formatDate value="${bowling.gameDate}"
 														pattern="MM/dd/yyyy" /></td>
+		<td><a href="${pageContext.request.contextPath}/${bowling.homeTeamName}/board/${bowling.hometeamId}">${bowling.homeTeamName}</a></td>	
+		<td><a href="${pageContext.request.contextPath}/${bowling.awayTeamName}/board/${bowling.awayTeamId}">${bowling.awayTeamName}</a></td>
                                     	<td>${bowling.tournamentName}</td>
                                         
                                         <td>${bowling.leagueBoardName}</td>
@@ -406,12 +466,12 @@
                                         <td>${bowling.bowlingruns}</td>
                                         <td>${bowling.wickets}</td>
                                         <td>${bowling.strikeRate}</td>
-                                      <%--  <c:choose><c:when test="${bowling.manOftheMatch eq 0 }">
-                                        <td></td>
-                                        </c:when><c:otherwise> --%>
+                                       <c:choose><c:when test="${bowling.manOftheMatch eq 0 }">
+                                        <td>-</td>
+                                        </c:when><c:otherwise> 
                                         <td><img src="${pageContext.request.contextPath}/images/mfmimg.png" title="mfm"></td>
-                                      <%--   </c:otherwise>
-                                        </c:choose> --%>
+                                        </c:otherwise>
+                                        </c:choose> 
                                         <td><img src="${pageContext.request.contextPath}/images/scorecard.png" onclick="showScoreCard('${bowling.matchId}')"></td>
                                     </tr>
                                     </c:forEach>
@@ -425,72 +485,86 @@
                          </div>
                          
                         <div class="col-md-12 statusUpdateBox noPadding">
-                        <div class="buluback" style="font-weight:100;">Achievement</div>
+                        <div class="buluback" style="font-weight:100;">Achievements</div>
                             	<div class="col-md-12 noPadding AchHead">
                                 	<!-- <h4>ODI Series Match Record</h4> -->
                                 	
                                 	<c:choose>  <c:when test="${achievementsListSize eq 0 }">
                          	<table>
-                            	<thead>
-                                	<tr>
-                                    	<th>DATE</th>
-                                        <th>TROPHY</th>
-                                        <th>LEAGUE</th>
-                                        <th>OVERS</th>
-                                        <th>MAIDENS</th>
-                                        <th>RUNS</th>
-                                        <th>WICKETS</th>
-                                       	<th>SR</th>
-                                        <th>MAN OF THE MATCH</th>
-                                        <th>SCORE CARD</th>
-                                    </tr>
-                                </thead></table>
-                         	<span style="color:red">No Details Available</span>
-                  
-                       
-                       </c:when>
-                       
-                       <c:otherwise>
-                       <table id="achievementsTable">
-                            	<thead>
-                                	<tr>
-                                    	<th>DATE</th>
-                                        <th>TROPHY</th>
-                                        <th>LEAGUE</th>
-                                        <th>OVERS</th>
-                                        <th>MAIDENS</th>
-                                        <th>RUNS</th>
-                                        <th>WICKETS</th>
-                                       	<th>SR</th>
-                                        <th>MAN OF THE MATCH</th>
-                                        <th>SCORE CARD</th>
-                                    </tr>
-                                </thead>
-                                <tbody align="center">
-                                <c:forEach var="achieve" items="${achievementsList}">
-                                	<tr><td><fmt:formatDate value="${achieve.gameDate}"
-														pattern="MM/dd/yyyy" /></td>
-                                    	<td>${achieve.tournamentName}</td>
-                                      
-                                    	
-                                        <td>${achieve.leagueBoardName}</td>
-                                        
-                                        <td>${achieve.bowlerovers}</td>
-                                        <td>${achieve.maidenOvers}</td>
-                                        <td>${achieve.bowlingruns}</td>
-                                        <td>${achieve.wickets}</td>
-                                        <td>${achieve.strikeRate}</td>
-                                      <%--   <c:choose><c:when test="${achieve.manOftheMatch eq 0 }">
+													<thead>
+														<tr>
+															<th>DATE</th>
+															<th>HOME TEAM</th>
+															<th>AWAY TEAM</th>
+															<th>TROPHY</th>
+															<th>LEAGUE</th>
+															<th>RUNS SCORED</th>
+															<th>WICKETS</th>
+															<th>CATCHES/STUMPINGS</th>
+															<th>SCORE CARD</th>
+														</tr>
+													</thead>
+												</table>
+												<div class="noContentDivRed">No Details Available</div>
+
+
+											</c:when>
+
+											<c:otherwise>
+												<table id="achievementsTable">
+													<thead>
+														<tr>
+															<th>DATE</th>
+															<th>HOME TEAM</th>
+															<th>AWAY TEAM</th>
+															<th>TROPHY</th>
+															<th>LEAGUE</th>
+															<th>RUNS SCORED</th>
+															<th>WICKETS</th>
+															<th>CATCHES/STUMPINGS</th>
+															<th>SCORE CARD</th>
+														</tr>
+													</thead>
+													<tbody align="center">
+														<c:forEach var="achieve" items="${achievementsList}">
+															<tr>
+																<td><p id="formatDate_${achieve.matchId}"
+																		style="display: none">
+																		<fmt:formatDate pattern="M/d/YYYY hh:mm a"
+																			value="${achieve.gameDate}" />
+																	</p>
+																	<script>
+																		document
+																				.writeln(test("${achieve.matchId}"));
+																	</script></td>
+																<%-- <td><fmt:formatDate value="${achieve.gameDate}"
+														pattern="MM/dd/yyyy" /></td> --%>
+																<td><a
+																	href="${pageContext.request.contextPath}/${achieve.homeTeamName}/board/${achieve.hometeamId}">${achieve.homeTeamName}</a></td>
+																<td><a
+																	
+																	href="${pageContext.request.contextPath}/${achieve.awayTeamName}/board/${achieve.awayTeamId}">${achieve.awayTeamName}</a></td>
+																<td>${achieve.tournamentName}</td>
+
+
+																<td><a
+																	href="${pageContext.request.contextPath}/${achieve.leagueBoardName}/board/${achieve.leagueBoardId}">${achieve.leagueBoardName}</a></td>
+
+																<td>${achieve.runs}</td>
+																<td>${achieve.wickets}</td>
+																<%--   <c:choose><c:when test="${achieve.manOftheMatch eq 0 }">
                                         <td></td>
                                         </c:when><c:otherwise> --%>
-                                        <td><img src="${pageContext.request.contextPath}/images/mfmimg.png" title="mfm"></td>
-                                   <%--      </c:otherwise>
+																<%--      </c:otherwise>
                                         </c:choose> --%>
-                                        <td><img src="${pageContext.request.contextPath}/images/scorecard.png" onclick="showScoreCard('${achieve.matchId}')"></td>
-                                    </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
+                                                                <td>${achieve.catchStumpingCount}</td>
+																<td><img
+																	src="${pageContext.request.contextPath}/images/scorecard.png"
+																	onclick="showScoreCard('${achieve.matchId}')"></td>
+															</tr>
+														</c:forEach>
+													</tbody>
+												</table>
                          	<button class="btn btn-default dBtn pull-right lodbtn" onclick="loadMoreAchievements()">LOAD MORE</button>
                        </c:otherwise>
                          
@@ -594,6 +668,9 @@ function loadMoreBattings(){
 					 console.log("format Date :"+formatDate);
 					 
 					 html += '<tr><td>'+dateChange+'</td>';
+					 html += '<td><a href="${pageContext.request.contextPath}/'+res[i].homeTeamName+'/board/'+res[i].hometeamId+'">'+res[i].homeTeamName+'</a></td>';
+					 html += '<td><a href="${pageContext.request.contextPath}/'+res[i].awayTeamName+'/board/'+res[i].awayTeamId+'">'+res[i].awayTeamName+'</a></td>';
+					 
 					 html += '<td>'+res[i].tournamentName+'</td>';
 					 
 						 html += '<td>'+res[i].leagueBoardName+'</td>';
@@ -611,11 +688,11 @@ function loadMoreBattings(){
 					 html += '<td>'+res[i].sixs+'</td>';
 					 html += '<td>'+res[i].dismissType+'</td>';
 					 html += '<td>'+res[i].strikeRate+'</td>';
-					/*  if(res[i].manOftheMatch == 0){
-						 html += '<td></td>';
-					 }else{ */
+					 if(res[i].manOftheMatch == 0){
+						 html += '<td>-</td>';
+					 }else{ 
 						 html += '<td><img src="${pageContext.request.contextPath}/images/mfmimg.png" title="mfm"></td>';
-					// }
+					 }
 					 html += "<td><img src='${pageContext.request.contextPath}/images/scorecard.png' onclick='showScoreCard(\""+id+"\")''></td>";
 					 html += '</tr>';
 				 }
@@ -667,11 +744,12 @@ function loadMoreBowlings(){
 	var add = 10;
 	var startNode = startBowl+add;
 	var endNode = endBowl+add;
-	
+	var flag ="forMyScore";
 	var gameBean = {
 			userId : uid,
 			startNode : startNode,
 			endNode : endNode,
+			flag :flag,
 	}
 	$.ajax({
 		type:"post",
@@ -679,7 +757,15 @@ function loadMoreBowlings(){
 		data : JSON.stringify(gameBean),
 		contentType : "application/json",
 		success : function(res){
-			if(res.length != 0){
+			var flag=0;
+			if(res.length!=0){
+				for(var i=0;i<res.length; i++){
+					if(res[i].bowlerovers!=0.0 || res[i].bowlerovers!=0){
+						flag=1;
+					}
+				}
+			}
+			if(res.length != 0 && flag!=0){
 				var html = '';
 		
 				/*  html += '<table id="bowlingTable"><thead><tr>';
@@ -695,6 +781,7 @@ function loadMoreBowlings(){
 				 html += '<th>SCORE CARD</th>';
 				 html += '</tr></thead><tbody align="center">'; */
 				 for(var i=0; i< res.length; i++){
+					 if(res[i].bowlerovers!=0.0 || res[i].bowlerovers!=0){
 					 var date  = new Date(res[i].gameDate);
 					 var id = res[i].matchId;
 					 console.log("date ======="+date.toLocaleDateString());
@@ -713,23 +800,26 @@ function loadMoreBowlings(){
 					 console.log("format Date :"+formatDate);
 					 
 					 html += '<tr><td>'+dateChange+'</td>';
+					 html += '<td><a href="${pageContext.request.contextPath}/'+res[i].homeTeamName+'/board/'+res[i].hometeamId+'">'+res[i].homeTeamName+'</a></td>';
+					 html += '<td><a href="${pageContext.request.contextPath}/'+res[i].awayTeamName+'/board/'+res[i].awayTeamId+'">'+res[i].awayTeamName+'</a></td>';
 					 html += '<td>'+res[i].tournamentName+'</td>';
 					
-						 html += '<td>'+res[i].leagueBoardName+'</td>';
+				     html += '<td>'+res[i].leagueBoardName+'</td>';
 					
 					 html += '<td>'+res[i].bowlerovers+'</td>';
 					 html += '<td>'+res[i].maidenOvers+'</td>';
 					 html += '<td>'+res[i].bowlingruns+'</td>';
 					 html += '<td>'+res[i].wickets+'</td>';
 					 html += '<td>'+res[i].strikeRate+'</td>';
-					/*  if(res[i].manOftheMatch == 0){
-						 html += '<td></td>';
-					 }else{ */
+					  if(res[i].manOftheMatch == 0){
+						 html += '<td>-</td>';
+					 }else{ 
 						 html += '<td><img src="${pageContext.request.contextPath}/images/mfmimg.png" title="mfm"></td>';
-					// }
+					}
 					 html += "<td><img src='${pageContext.request.contextPath}/images/scorecard.png' onclick='showScoreCard(\""+id+"\")''></td>";
 					 html += '</tr>';
 				 }
+			}
 				// html += '</tbody>';
 				// html += '</table>';
 				
@@ -769,10 +859,10 @@ function loadMoreBowlings(){
 }
 
 var startAchieve = 0;
-var endAchieve = 10;
+var endAchieve = 500;
 function loadMoreAchievements(){
 	var uid = "${publicUserId}";
-	var add = 10;
+	var add = 500;
 	var startNode = startAchieve+add;
 	var endNode = endAchieve+add;
 	
@@ -821,18 +911,20 @@ function loadMoreAchievements(){
 					 console.log("format Date :"+formatDate);
 					 
 					 html += '<tr><td>'+dateChange+'</td>';
-					 html += '<td>'+res[i].tournamentName+'</td>';
-				     html += '<td>'+res[i].leagueBoardName+'</td>';
+					 html += '<td><a href="${pageContext.request.contextPath}/'+res[i].homeTeamName+'/board/'+res[i].hometeamId+'">'
+						+ res[i].homeTeamName + '</a></td>';
+				html += '<td><a href="${pageContext.request.contextPath}/'+res[i].awayTeamName+'/board/'+res[i].awayTeamId+'">'
+						+ res[i].awayTeamName + '</a></td>';
+				html += '<td>' + res[i].tournamentName
+						+ '</td>';
+				html += '<td><a href="${pageContext.request.contextPath}/'+res[i].leagueBoardName+'/board/'+res[i].leagueBoardId+'">'
+						+ res[i].leagueBoardName + '</a></td>';
 					
-					 html += '<td>'+res[i].bowlerovers+'</td>';
-					 html += '<td>'+res[i].maidenOvers+'</td>';
-					 html += '<td>'+res[i].bowlingruns+'</td>';
+					 html += '<td>'+res[i].runs+'</td>';
 					 html += '<td>'+res[i].wickets+'</td>';
-					 html += '<td>'+res[i].strikeRate+'</td>';
 					/*  if(res[i].manOftheMatch == 0){
 						 html += '<td></td>';
 					 }else{ */
-						 html += '<td><img src="${pageContext.request.contextPath}/images/mfmimg.png" title="mfm"></td>';
 					// }
 					 html += "<td><img src='${pageContext.request.contextPath}/images/scorecard.png' onclick='showScoreCard(\""+id+"\")''></td>";
 					 html += '</tr>';
@@ -883,9 +975,9 @@ function yearWiseBatting(val){
 		document.getElementById("battingYearId").innerHTML = val;
 		
 		
-	}else{
+	/* }else{
 		document.getElementById("battingYearId").innerHTML = "";
-	}
+	} */
 	
 	console.log(" Batting years :"+val);
 
@@ -905,6 +997,8 @@ function yearWiseBatting(val){
 		
 				 html += '<table id="battingTable"><thead><tr>';
 				 html += '<th>DATE</th>';
+				 html += '<th>HOME TEAM</th>';
+				 html += '<th>AWAY TEAM</th>';
 				 html += '<th>TROPHY</th>';
 				 html += '<th>LEAGUE</th>';
 				 html += '<th>POS</th>';
@@ -913,7 +1007,7 @@ function yearWiseBatting(val){
 				 html += '<th>6s</th>';
 				 html += '<th>DISMISS TYPE</th>';
 				 html += '<th>SR</th>';  
-				 html += '<th>MAN OF THE MATCH</th>';
+				 html += '<th>MOM</th>';
 				 html += '<th>SCORE CARD</th>';
 				 html += '</tr></thead><tbody align="center">';
 				 for(var i=0; i< res.length; i++){
@@ -935,12 +1029,16 @@ function yearWiseBatting(val){
 					 console.log("format Date :"+formatDate);
 					 
 					 html += '<td>'+dateChange+'</td>';
+					 html += '<td><a href="${pageContext.request.contextPath}/'+res[i].homeTeamName+'/board/'+res[i].hometeamId+'">'+res[i].homeTeamName+'</a></td>';
+					 html += '<td><a href="${pageContext.request.contextPath}/'+res[i].awayTeamName+'/board/'+res[i].awayTeamId+'">'+res[i].awayTeamName+'</a></td>';
 					 html += '<td>'+res[i].tournamentName+'</td>';
 					
-						 html += '<td>'+res[i].leagueBoardName+'</td>';
+					html += '<td>'+res[i].leagueBoardName+'</td>';
 					
 						 if(res[i].positionOfStand == '' || res[i].positionOfStand == 'null' || res[i].positionOfStand == 'NO'){
-							 html += '<td>-</td>';
+							/*  html += '<td>-</td>'; */
+							 if(res[i].positionOfStandOrder == 'null'){
+								 html += '<td>-</td>';}else{html += '<td>'+res[i].positionOfStandOrder+'</td>';}
 							 
 						 }else{
 							 html += '<td>'+res[i].positionOfStandOrder+'</td>';
@@ -950,11 +1048,11 @@ function yearWiseBatting(val){
 					 html += '<td>'+res[i].sixs+'</td>';
 					 html += '<td>'+res[i].dismissType+'</td>';
 					 html += '<td>'+res[i].strikeRate+'</td>';
-					 /* if(res[i].manOftheMatch == 0){
-						 html += '<td></td>';
-					 }else{ */
+					  if(res[i].manOftheMatch == 0){
+						 html += '<td>-</td>';
+					 }else{ 
 						 html += '<td><img src="${pageContext.request.contextPath}/images/mfmimg.png" title="mfm"></td>';
-					// }
+					 }
 					 html += "<td><img src='${pageContext.request.contextPath}/images/scorecard.png' onclick='showScoreCard(\""+id+"\")''></td>";
 					 html += '</tr>';
 				 }
@@ -991,12 +1089,15 @@ function yearWiseBatting(val){
 		
 		
 	})
-	
+}else{
+	document.getElementById("battingYearId").innerHTML = "";
+}
 	
 }
 
 
 function yearWiseBowling(val){
+	var flag="forMyScore";
 	var uid = "${publicUserId}";
 	console.log(" Bowling Years"+val);
 	if(val != 'Years'){
@@ -1007,6 +1108,7 @@ function yearWiseBowling(val){
 	var year = {
 			playerId : uid,
 			filterByYear : val,
+			flag :flag,
 	}
 	$.ajax({
 	
@@ -1015,11 +1117,21 @@ function yearWiseBowling(val){
 		data:JSON.stringify(year),
 		contentType : "application/json",
 		success : function(res){
-			if(res.length != 0){
+			var flag=0;
+			if(res.length!=0){
+				for(var i=0;i<res.length; i++){
+					if(res[i].bowlerovers!=0.0 || res[i].bowlerovers!=0){
+						flag=1;
+					}
+				}
+			}
+			if(res.length != 0 && flag!=0){
 				var html = '';
 		
 				 html += '<table id="bowlingTable"><thead><tr>';
 				 html += '<th>DATE</th>';
+				 html += '<th>HOME TEAM</th>';
+				 html += '<th>AWAY TEAM</th>';
 				 html += '<th>TROPHY</th>';
 				 html += '<th>LEAGUE</th>';
 				 html += '<th>OVERS</th>';
@@ -1027,10 +1139,11 @@ function yearWiseBowling(val){
 				 html += '<th>RUNS</th>';
 				 html += '<th>WICKETS</th>';
 				 html += '<th>SR</th>';
-				 html += '<th>MAN OF THE MATCH</th>';
+				 html += '<th>MOM</th>';
 				 html += '<th>SCORE CARD</th>';
 				 html += '</tr></thead><tbody align="center">';
 				 for(var i=0; i< res.length; i++){
+					 if(res[i].bowlerovers!=0.0 || res[i].bowlerovers!=0){
 					 var date  = new Date(res[i].gameDate);
 					 var id = res[i].matchId;
 					 console.log("date ======="+date.toLocaleDateString());
@@ -1049,6 +1162,8 @@ function yearWiseBowling(val){
 					 console.log("format Date :"+formatDate);
 					 
 					 html += '<tr><td>'+dateChange+'</td>';
+					 html += '<td><a href="${pageContext.request.contextPath}/'+res[i].homeTeamName+'/board/'+res[i].hometeamId+'">'+res[i].homeTeamName+'</a></td>';
+					  html += '<td><a href="${pageContext.request.contextPath}/'+res[i].awayTeamName+'/board/'+res[i].awayTeamId+'">'+res[i].awayTeamName+'</a></td>';
 					 html += '<td>'+res[i].tournamentName+'</td>';
 					 html += '<td>'+res[i].leagueBoardName+'</td>';
 					 html += '<td>'+res[i].bowlerovers+'</td>';
@@ -1056,13 +1171,14 @@ function yearWiseBowling(val){
 					 html += '<td>'+res[i].bowlingruns+'</td>';
 					 html += '<td>'+res[i].wickets+'</td>';
 					 html += '<td>'+res[i].strikeRate+'</td>';
-					/*  if(res[i].manOftheMatch == 0){
-						 html += '<td></td>';
-					 }else{ */
+					 if(res[i].manOftheMatch == 0){
+						 html += '<td>-</td>';
+					 }else{
 						 html += '<td><img src="${pageContext.request.contextPath}/images/mfmimg.png" title="mfm"></td>';
-					// }
+					 }
 					 html += "<td><img src='${pageContext.request.contextPath}/images/scorecard.png' onclick='showScoreCard(\""+id+"\")''></td>";
 					 html += '</tr>';
+				 }
 				 }
 				 html += '</tbody>';
 				 html += '</table>';

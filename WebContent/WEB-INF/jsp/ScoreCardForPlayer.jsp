@@ -342,7 +342,7 @@ var formatAMPMTime = function(date) {
                                         </th> --%>
                                         
                                         <th class="botmhed" colspan="7" >
-                                        <p>Total Score  (${getFirstInnings.totalWickets} wickets; ${getFirstInnings.totalOvers } overs</p>
+                                        <p>Total Score  (${getFirstInnings.totalWickets} wickets; ${getFirstInnings.totalOvers } overs)</p>
                                         <button class="btn btn-default dBtn color">${getFirstInnings.totalRuns }</button>
                                         <p>(${getFirstInnings.rpo} Runs per over)</p>
                                         </th>
@@ -374,13 +374,40 @@ var formatAMPMTime = function(date) {
                               </c:choose> --%>
                               
                               <c:if test="${empty fallOfWicketsFirstInnings }">
-                              <p style="color:red">Fall of wickets : No fall of wickets</p> 
+                              <p style="color:red" id="firstInningsFallOfWicketsScoriingApp">Fall of wickets : No fall of wickets</p> 
                             </c:if>
                             <c:if test="${! empty fallOfWicketsFirstInnings }">
                             <p class="redtext">Fall of wickets : <c:forEach var="wickets" items="${fallOfWicketsFirstInnings}" varStatus = "loop">
-                            ${wickets.wicketNumber}-${wickets.runs}  <c:if test="${!loop.last}">,</c:if>
+                            ${wickets.wicketNumber}-${wickets.runs} (${wickets.playerName}, ${wickets.overNumber} ov)  <c:if test="${!loop.last}">,</c:if>
                             </c:forEach></p> 
                             </c:if>
+                            
+                            
+                            <c:choose>
+                         	<c:when test="${ empty fallOfWicketsFirstInningsWebPortal}">
+                         		<p style="color:red" id="firstInningsFallOfWicketsWebPortal">Fall of wickets : No fall of wickets</p>
+                         	</c:when>
+                         	<c:otherwise>
+                         	<p style="color: red;margin-top:5px;">Fall of wickets :  
+                         
+                         	<c:forEach var="wickets" items="${fallOfWicketsFirstInningsWebPortal}" varStatus = "loop">
+                                 <c:choose>
+                         				<c:when test="${loop.count eq 1}">
+                         					  ${wickets.runs}-${wickets.wicketNumber} (${wickets.playerName}, ${wickets.overNumber} ov)
+                         				</c:when>
+                         				<c:otherwise>
+                         						 , ${wickets.runs}-${wickets.wicketNumber} (${wickets.playerName}, ${wickets.overNumber} ov)
+                         				</c:otherwise>
+                         			</c:choose>
+                            
+                            </c:forEach>
+                         	
+                         	 </p>
+                         	</c:otherwise>
+                         
+                         </c:choose>
+                         
+                            
                             <c:choose>
                          
                          	<c:when test="${!empty getFirstInnings.doNotBatList}">
@@ -595,7 +622,7 @@ var formatAMPMTime = function(date) {
                                         <p>(${scoreCardList.rpo} Runs per over)</p>
                                         </th> --%>
                                         <th class="botmhed" colspan="7" >
-                                        <p>Total Score  (${getSecondInnings.totalWickets} wickets; ${getSecondInnings.totalOvers } overs</p>
+                                        <p>Total Score  (${getSecondInnings.totalWickets} wickets; ${getSecondInnings.totalOvers } overs)</p>
                                         <button class="btn btn-default dBtn color">${getSecondInnings.totalRuns }</button>
                                         <p>(${getSecondInnings.rpo} Runs per over)</p>
                                         </th>
@@ -625,15 +652,56 @@ var formatAMPMTime = function(date) {
                               </c:choose> --%>
                               
                               <c:if test="${ empty fallOfWicketsSecondInnings}">
-                               <p style="color:red">Fall of wickets - No fall of wickets</p> 
+                               <p style="color:red" id="secondInningsFallOfWicketsScoriingApp">Fall of wickets - No fall of wickets</p> 
                               </c:if>
                               
                               <c:if test="${! empty fallOfWicketsSecondInnings}">
                                 <p class="redtext">Fall of wickets  <c:forEach var="wickets" items="${fallOfWicketsSecondInnings}" varStatus = "loop">
-                            ${wickets.wicketNumber}-${wickets.runs}<c:if test="${!loop.last}">,</c:if>
+                            ${wickets.wicketNumber}-${wickets.runs} (${wickets.playerName}, ${wickets.overNumber} ov)<c:if test="${!loop.last}">,</c:if>
                             </c:forEach></p>
                               
                               </c:if>
+                              
+                              <c:choose>
+                         	<c:when test="${ empty fallOfWicketsSecondInningsWebPortal}">
+                         		<p style="color:red" id="secondInningsFallOfWicketsWebPortal">Fall of wickets : No fall of wickets</p>
+                         	</c:when>
+                         	<c:otherwise>
+                         	<p style="color: red;margin-top:5px;">Fall of wickets : 
+                         
+                         	<c:forEach var="wickets" items="${fallOfWicketsSecondInningsWebPortal}" varStatus = "loop">
+                                 <c:choose>
+                         				<c:when test="${loop.count eq 1}">
+                         					 ${wickets.runs}-${wickets.wicketNumber} (${wickets.playerName}, ${wickets.overNumber} ov)
+                         				</c:when>
+                         				<c:otherwise>
+                         						 , ${wickets.runs}-${wickets.wicketNumber} (${wickets.playerName}, ${wickets.overNumber} ov)
+                         				</c:otherwise>
+                         			</c:choose>
+                            
+                            </c:forEach>
+                         	
+                         	 </p>
+                         	</c:otherwise>
+                         
+                         
+                         </c:choose>
+                         
+                         
+                         <c:if test="${!empty webPortalScoreCard}">
+                             <script type="text/javascript">
+                             	 $("#secondInningsFallOfWicketsScoriingApp").hide();
+                             	 $("#firstInningsFallOfWicketsScoriingApp").hide();
+                             </script>
+                         </c:if>
+                          <c:if test="${empty webPortalScoreCard}">
+                             <script type="text/javascript">
+                             	 $("#secondInningsFallOfWicketsWebPortal").hide();
+                             	 $("#firstInningsFallOfWicketsWebPortal").hide();
+                             </script>
+                         </c:if>
+                              
+                              
                               <c:choose>
                          
                          	<c:when test="${!empty getSecondInnings.doNotBatList}">

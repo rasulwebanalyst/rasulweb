@@ -31,7 +31,10 @@
             <div class="col-md-10 pull-right">
       			<div class="col-md-12 whiteBox">
                 	<h1 class="">Team Details</h1>
-                       
+                       </div>
+                       <c:forEach items="${TeamdetailsResponse}" var="team">
+                       <div class="col-md-12 whiteBox">
+                       <span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament Name : ${team.tournamentName}</span>
                       <table class="table table-striped table-bordered" cellspacing="0" width="100%" id="example">
                       <!-- <thead> 
                         <tr>
@@ -43,27 +46,29 @@
                        </thead> -->
                        <thead> 
                         <tr>
+                        <th>S.No</th>
                           <th>Team Name </th>
                           <th>Team Abbreviation </th>
-                          <th>Tournament </th>
                           <th>Home Ground </th>
                         </tr>
                        </thead>
 
                         <tbody>
-                        <c:forEach items="${TeamdetailsResponse}" var="team">
+                        <c:forEach items="${team.tournamentList}" var ="teamlist" varStatus="index">
                         	 <tr>
-		                          <td><img src="${team.boardUrl}" style="width: 25px;" onerror="imgError(this)"  ><a href="${pageContext.request.contextPath}/${team.teamBoardName}/board/${team.teamBoardId}"> ${team.teamBoardName}</a></td>
-		                          <td>${team.boardAbbrivation}</td>
-		                          <td>${team.tournamentName}</td>
-		                          <td>${team.homeGround}</td>
-                        	</tr>                       
-                        </c:forEach>
+                        	 <td>${index.count}</td>
+		                          <td><img src="${teamlist.boardUrl}" style="width: 25px;" onerror="imgError(this)"  ><a href="${pageContext.request.contextPath}/${teamlist.teamBoardName}/board/${teamlist.teamBoardId}"> ${teamlist.teamBoardName}</a></td>
+		                          <td>${teamlist.boardAbbrivation}</td>
+		                          <td>${teamlist.homeGround}</td>
+                        	</tr> 
+                        	</c:forEach>                      
+                        
                         
                     </tbody>
                  </table>
                  
-            </div>
+             </div> 
+             </c:forEach>
             </div>
                     
                     

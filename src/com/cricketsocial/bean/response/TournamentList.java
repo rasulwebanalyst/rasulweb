@@ -1,20 +1,6 @@
 package com.cricketsocial.bean.response;
 
-import java.util.List;
-
-public class TeamDetailsList {
-
-	/*
-	 
-	 "teamBoardId": "743142ed-f43b-4002-81ee-c3496ab1388f",
-     "teamBoardName": "DTM  Team Tirupati",
-     "tournamentId": "743142ed-f43b-4002-81ee-c3496ab1388f",
-     "tournamentName": "ICL Tournamenet 2015 ",
-     "homeGround": "Chepak",
-     "boardAbbrivation": "DTM  Team Tirupati" 
-     
-     */
-	
+public class TournamentList {
 	private String teamBoardId;
 	private String teamBoardName;
 	private String tournamentId;
@@ -22,8 +8,6 @@ public class TeamDetailsList {
 	private String homeGround;
 	private String boardAbbrivation;
 	private String boardUrl;
-	private List<TournamentList> tournamentList;
-	
 	public String getTeamBoardId() {
 		return teamBoardId;
 	}
@@ -66,13 +50,6 @@ public class TeamDetailsList {
 	public void setBoardUrl(String boardUrl) {
 		this.boardUrl = boardUrl;
 	}
-	public List<TournamentList> getTournamentList() {
-		return tournamentList;
-	}
-	public void setTournamentList(List<TournamentList> tournamentList) {
-		this.tournamentList = tournamentList;
-	}
-	
 	
 	
 }

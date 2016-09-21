@@ -66,6 +66,7 @@ var formatAMPMTime = function(date) {
         
     </div>
     
+    
     <div class="container">
 
         <div class="row">
@@ -73,7 +74,7 @@ var formatAMPMTime = function(date) {
         	<!--Content Block-->
             <div class="col-md-12 middleContBlock noPadding">
                  <div class="col-md-12 noPadding">
-                 <%@ include file="BoardSideMenu.jsp" %>
+                 <%@ include file="BoardSideMenuSession.jsp" %>
 
                  
                  <div class="col-md-7 pageMiddleBlock">
@@ -181,7 +182,7 @@ var formatAMPMTime = function(date) {
                             		<div style="float: left; width: 50%;text-align: left;color: #3253a8">
                                 	<%-- <span style="width: 100%;font-size: 16px">${scoreCardList.homeTeamName} Vs ${scoreCardList.awayTeamName }</span><br> --%>
                                 	<p class="summary" style="width: 100%;font-size: 16px;">${scoreCardList.tournamentName}</p>
-                                	<a style="width: 100%;font-size: 14px; color: #3253a8" href="${pageContext.request.contextPath}/${scoreCardList.homeTeamName }/board/${scoreCardList.homeTeamId}">${scoreCardList.homeTeamName}</a> vs <a style="width: 100%;font-size: 14px; color: #3253a8" href="${pageContext.request.contextPath}/${scoreCardList.awayTeamName }/board/${scoreCardList.awayTeamId}">${scoreCardList.awayTeamName}</a><br><br>
+                                	<a style="width: 100%;font-size: 14px; color: #3253a8" href="javascript:void(0);" onclick="PleaseLogin()">${scoreCardList.homeTeamName}</a> vs <a style="width: 100%;font-size: 14px; color: #3253a8" href="javascript:void(0);" onclick="PleaseLogin()">${scoreCardList.awayTeamName}</a><br><br>
                                 	<b style="width: 100%;font-size: 12px;margin-top: 50px;color:red">${scoreCardList.message}</b>
                                 	</div>
                                 	<div style="float: right; width: 50%; text-align:right;color: black;">
@@ -234,7 +235,7 @@ var formatAMPMTime = function(date) {
                                 <tbody>
                                
                                  <c:forEach var="list1" items="${firstInningsBattingPlayer}">
-                                	<tr><td style="width: 190px;"><a href="${pageContext.request.contextPath}/scorecard/buddy/${list1.playerName}/${list1.playerId}">${list1.playerFullName}</a></td>
+                                	<tr><td style="width: 190px;"><a href="javascript:void(0);" onclick="PleaseLogin()">${list1.playerFullName}</a></td>
                                     	<c:choose>
                                     	<c:when test="${list1.wicketBy == 'NotOut'}">
                                     	<td style="width: 150px;">Not Out</td>
@@ -366,10 +367,10 @@ var formatAMPMTime = function(date) {
                          	<c:forEach var="wickets" items="${fallOfWicketsFirstInningsWebPortal}" varStatus = "loop">
                                  <c:choose>
                          				<c:when test="${loop.count eq 1}">
-                         					  ${wickets.runs}-${wickets.wicketNumber}
+                         					  ${wickets.runs}-${wickets.wicketNumber} (${wickets.playerName}, ${wickets.overNumber} ov)
                          				</c:when>
                          				<c:otherwise>
-                         						 , ${wickets.runs}-${wickets.wicketNumber}
+                         						 , ${wickets.runs}-${wickets.wicketNumber} (${wickets.playerName}, ${wickets.overNumber} ov)
                          				</c:otherwise>
                          			</c:choose>
                             
@@ -436,7 +437,7 @@ var formatAMPMTime = function(date) {
                                
                                
                                  <c:forEach var="list" items="${firstInningsBowlingPlayer}">
-                                	<tr><td><a href="${pageContext.request.contextPath}/scorecard/buddy/${list.playerName}/${list.playerId}">${list.playerFullName }</a></td>
+                                	<tr><td><a href="javascript:void(0);" onclick="PleaseLogin()">${list.playerFullName }</a></td>
                                     	<td>${list.bowlingOvers}</td>
                                         <td>${list.meidan}</td>
                                         <td>${list.runs}</td>
@@ -541,7 +542,7 @@ var formatAMPMTime = function(date) {
                                 </thead>
                                 <tbody>
                                  <c:forEach var="list1" items="${SecondInningsBattingPlayer}">
-                                	<tr><td style="width: 190px;"><a href="${pageContext.request.contextPath}/scorecard/buddy/${list1.playerName}/${list1.playerId}">${list1.playerFullName}</a>	</td>
+                                	<tr><td style="width: 190px;"><a href="javascript:void(0);" onclick="PleaseLogin()">${list1.playerFullName}</a>	</td>
                                     	<c:choose>
                                     	<c:when test="${list1.wicketBy == 'NotOut'}">
                                     	<td style="width: 150px;">Not Out</td>
@@ -659,10 +660,10 @@ var formatAMPMTime = function(date) {
                          	<c:forEach var="wickets" items="${fallOfWicketsSecondInningsWebPortal}" varStatus = "loop">
                                  <c:choose>
                          				<c:when test="${loop.count eq 1}">
-                         					 ${wickets.runs}-${wickets.wicketNumber}
+                         					 ${wickets.runs}-${wickets.wicketNumber} (${wickets.playerName}, ${wickets.overNumber} ov)
                          				</c:when>
                          				<c:otherwise>
-                         						 , ${wickets.runs}-${wickets.wicketNumber}
+                         						 , ${wickets.runs}-${wickets.wicketNumber} (${wickets.playerName}, ${wickets.overNumber} ov)
                          				</c:otherwise>
                          			</c:choose>
                             
@@ -675,7 +676,7 @@ var formatAMPMTime = function(date) {
                          </c:choose>
                          
                          
-                         <c:if test="${!empty webPortalScoreCard}">
+                        <%--  <c:if test="${!empty webPortalScoreCard}">
                              <script type="text/javascript">
                              	 $("#secondInningsFallOfWicketsScoriingApp").hide();
                              	 $("#firstInningsFallOfWicketsScoriingApp").hide();
@@ -686,7 +687,7 @@ var formatAMPMTime = function(date) {
                              	 $("#secondInningsFallOfWicketsWebPortal").hide();
                              	 $("#firstInningsFallOfWicketsWebPortal").hide();
                              </script>
-                         </c:if>
+                         </c:if> --%>
                          
                          <c:choose>
                          
@@ -742,7 +743,7 @@ var formatAMPMTime = function(date) {
                                
                                
                                  <c:forEach var="list" items="${SecondInningsBowlingPlayer}">
-                                	<tr><td><a href="${pageContext.request.contextPath}/scorecard/buddy/${list.playerName}/${list.playerId}">${list.playerFullName }</a></td>
+                                	<tr><td><a href="javascript:void(0);" onclick="PleaseLogin()">${list.playerFullName }</a></td>
                                     	<td>${list.bowlingOvers}</td>
                                         <td>${list.meidan}</td>
                                         <td>${list.runs}</td>
@@ -859,7 +860,7 @@ var formatAMPMTime = function(date) {
                       </div>
 
                      <!--Right Block-->
-                     	 <%@ include file="AroundYouMenu.jsp" %>
+                     	 <%@ include file="AroundYouMenuSession.jsp" %>
                      
                      <!--/Right Block End-->
                             
@@ -874,8 +875,44 @@ var formatAMPMTime = function(date) {
     </div>
  </section>
     
+    <div id="ScoreCardPopup" class="modal" role="dialog" style="display: none;">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+     <!--  <div class="modal-header">
+        <button type="button" class="close" onclick="RoasterPopup()" data-dismiss="modal">&times;</button>
+        </div> -->
+        
+      <div class="modal-body">
+        
+        <div id="RoasterPopupText">
+        <p style="text-align: center; id="RoasterPopupText">Please login or Signup to proceed further.</p>
+        <ol type="number" class="roa-ol">
+        	
+        </ol>
+        </div>
+      </div>
+      <div class="modal-footer action">
+      <button type="button" onclick="PleaseLoginSuccess()" class="btn btn-default ok">OK</button>
+      <button type="button" onclick="ScoreCardPopuphide()" class="btn btn-default ok">cancel</button>
+       </div>
+    </div>
+
+  </div>
+</div>  
     
-    
+     <c:if test="${!empty webPortalScoreCard}">
+                             <script type="text/javascript">
+                             	 $("#secondInningsFallOfWicketsScoriingApp").hide();
+                             	 $("#firstInningsFallOfWicketsScoriingApp").hide();
+                             </script>
+                         </c:if>
+                          <c:if test="${empty webPortalScoreCard}">
+                             <script type="text/javascript">
+                             	 $("#secondInningsFallOfWicketsWebPortal").hide();
+                             	 $("#firstInningsFallOfWicketsWebPortal").hide();
+                             </script>
+                         </c:if>
     
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -924,6 +961,19 @@ var formatAMPMTime = function(date) {
 			$(this).parent().find(".fa-chevron-up").removeClass("fa-chevron-up").addClass("fa-chevron-down");
 			});
 		});
+        
+        function PleaseLogin()
+        {
+        	$("#ScoreCardPopup").show();
+        }
+        function ScoreCardPopuphide()
+        {
+        	$("#ScoreCardPopup").hide();
+        }
+        function PleaseLoginSuccess()
+        {
+        	window.location.href="${pageContext.request.contextPath}/";
+        }
    </script>            
     
 

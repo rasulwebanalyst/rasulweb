@@ -131,7 +131,7 @@
                   </c:when>
                   <c:otherwise> --%>
                   
-                  <table>
+                  <!-- <table>
                         <thead>
                         <tr>
                           <th>Tournament</th>
@@ -146,7 +146,7 @@
                        </thead>
 
                        <tbody id="topbatsmanTableBody">
-                        <tr>
+                        <tr> -->
                         <c:forEach items="${TopBatsmanResponse}" var="topplayer">
 	                       		<c:forEach items="${topplayer.matchsheduledtolist}" var="match">  
 	                       		<c:choose>
@@ -156,24 +156,43 @@
 	                       		</c:when>
 	                       		
 	                       		<c:otherwise>
-	                       		
-	                       		        
+	                       		<br>
+	                       		<span class="text-danger" style="font-weight: bold; color: #3253a8 !important; ">Tournament Name : ${topplayer.tournamentName}</span>
+	                       		<br>
+	                       		  <table>
+                        <thead>
+                        <tr>
+                          <th>S.No</th>
+                          <th>Player Name</th>
+                          <th>Team</th>
+                          <th>Matches</th>
+                          <th>Innings</th>
+                          <th>NO</th>
+                          <th>Runs</th>
+                          <th>Avg</th>
+                        </tr>
+                       </thead>
+
+                       <tbody id="topbatsmanTableBody">
+                        <tr>      
 	                       		<c:forEach items="${match.playerlist}" var="player" varStatus="index">  
 	                       		
 	                       		<c:choose>
 	                       		<c:when test="${!empty match.playerlist}">
 	                       		<tr>                        				 	
-	                        				 	  		<c:choose>
+	                        				 	  		<%-- <c:choose>
 					                        				<c:when test="${index.count eq 1}">
 					                        					<td rowspan="${fn:length(match.playerlist)}" >${topplayer.tournamentName}</td>
 					                        				</c:when>
 					                        				<c:otherwise>
 					                        				
 					                        				</c:otherwise>
-				                        				</c:choose>
+				                        				</c:choose> --%>
+				                        				<td>${index.count}</td>
 	                        				  	  <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}"><span class="text-danger"><img alt="" src="${player.userImageUrl}" style="margin-right: 10px;" width="50px" height="50px">${player.userName} </span></a></td>	    
 	                        				  	  
-	                        				  	  <td><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}">${player.teamBoardInfo.boardName}</a></td>
+	                        				  	  <%-- <td><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}">${player.teamBoardInfo.boardName}</a></td> --%>
+	                        				  	  <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}"><img src="${player.teamBoardInfo.boardImageURL}" style="width: 30px;margin-right: 10px; ">  ${player.teamBoardInfo.boardName}</a></td>
 	                        				  	                    					  
 						                          <%-- <td><a href="${pageContext.request.contextPath}/${match.homeTeam}/board/${match.hometeamId}">${match.homeTeam}</a></td> --%>
 						                          <td>${player.games}</td>
@@ -197,17 +216,22 @@
 	                       		           			
 	                       						 
 						                     </c:forEach> 
+						                      </tr>
+                        
+                       
+                     </tbody>
+                 </table>
 						                     
 						                     </c:otherwise>
 						                     
 						                     </c:choose>                     			
 	                       		</c:forEach>                      
 	                       </c:forEach>
-                        </tr>
+                       <!--  </tr>
                         
                        
                      </tbody>
-                 </table>
+                 </table> -->
                   
                  <%--  </c:otherwise>
                   

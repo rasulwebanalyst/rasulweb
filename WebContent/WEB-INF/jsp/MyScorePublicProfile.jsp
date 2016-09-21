@@ -178,7 +178,7 @@
                         <!-- <div class="col-md-4 noPadding">
                         	<h5>Batting Performance</h5> -->
                         	<div class="col-md-12 statusUpdateBox noPadding">
-                        	 <div class="buluback" style="font-weight:100;">Batting Performance</div>
+                        	 <div class="buluback" style="font-weight:100;">Batting & Fielding Performances</div>
                            <!--  --><br><div id="battingYearId">&nbsp</div>
                             </div>
                          
@@ -209,7 +209,7 @@
                                         <th>RUNS</th>
                                         <th>4s</th>
                                         <th>6s</th>
-                                        <th>DISMISS TYPE</th>
+                                        <th>DISMISSAL TYPE</th>
                                         <th>SR</th>
                                         <th>MOM</th>
                                         <th>SCORE CARD</th>
@@ -236,7 +236,7 @@
                                         <th>RUNS</th>
                                         <th>4s</th>
                                         <th>6s</th>
-                                        <th>DISMISS TYPE</th>
+                                        <th>DISMISSAL TYPE</th>
                                         <th>SR</th>
                                         <th>MOM</th>
                                         <th>SCORE CARD</th>
@@ -256,9 +256,16 @@
                                     	
                                         <td><a href="${pageContext.request.contextPath}/${batting.leagueBoardName}/board/${batting.leagueBoardId}">${batting.leagueBoardName}</a></td>
                                       
-                                      <c:choose>
-                                        <c:when test="${batting.positionOfStand == '' || batting.positionOfStand == 'null' || batting.positionOfStand == 'NO'}">
-                                       <td>-</td>
+                                    <c:choose>
+                                        	<c:when test="${batting.positionOfStand == '' || batting.positionOfStand == 'null' || batting.positionOfStand == 'NO'}">
+                                       			<c:choose>
+                                       				<c:when test="${empty batting.positionOfStandOrder}">
+                                       	 				<td>-</td>
+                                       	 			</c:when>
+                                       	 			<c:otherwise>
+                                       	 				<td>${batting.positionOfStandOrder}</td>
+                                       	 			</c:otherwise>
+                                       			</c:choose>
                                         </c:when>
                                         <c:otherwise>
                                           <td>${batting.positionOfStandOrder}</td>
@@ -266,6 +273,7 @@
                                         </c:otherwise>
                                         
                                         </c:choose>
+
                                         
                                         <%-- <td>${batting.positionOfStand}</td> --%>
                                         <td>${batting.runs}</td>
@@ -276,6 +284,9 @@
                                     	<c:when test="${batting.dismissType == 'NotOut'}">
                                     	<td>Not Out</td>
                                     	</c:when>
+                                    	<c:when test="${batting.dismissType == 'Catch'}">
+                                    	<td>Caught</td>
+                                    	</c:when>
                                     	<c:otherwise>
                                     	<td>${batting.dismissType }</td>
                                     	</c:otherwise>
@@ -283,13 +294,13 @@
                                         
                                        <%--  <td>${batting.dismissType}</td> --%>
                                         <td><fmt:formatNumber type="number" pattern="##########.##" value="${batting.strikeRate}" /></td>
-                                       <%--  <c:choose><c:when test="${batting.manOftheMatch eq 0 }">
-                                        <td></td>
-                                        </c:when><c:otherwise> --%>
+                                        <c:choose><c:when test="${batting.manOftheMatch eq 0 }">
+                                        <td>-</td>
+                                        </c:when><c:otherwise> 
                                         <td><img src="${pageContext.request.contextPath}/images/mfmimg.png" title="mfm"></td>
-                                   <%--      </c:otherwise>
+                                        </c:otherwise>
                                         </c:choose>
-                                         --%>
+                                         
                                         
                                         <td><img src="${pageContext.request.contextPath}/images/scorecard.png" onclick="showScoreCard('${batting.matchId}')"></td>
                                     </tr>
@@ -309,7 +320,7 @@
                      <!--    <div class="col-md-4 noPadding">
                         	<h5>Bowling Performance</h5> -->
                         	<div class="col-md-12 statusUpdateBox noPadding">
-                        	  <div class="buluback" style="font-weight:100;">Bowling Performance</div>
+                        	  <div class="buluback" style="font-weight:100;">Bowling Performances</div>
                            <!--  --><br><div id="bowlingYearId"></div>
                             </div>
                          <div class="col-md-5 drop pull-right" style="margin-bottom: 15px;">
@@ -385,12 +396,12 @@
                                         <td>${bowling.bowlingruns}</td>
                                         <td>${bowling.wickets}</td>
                                         <td><fmt:formatNumber type="number" pattern="##########.##" value="${bowling.strikeRate}" /></td>
-                                       <%-- <c:choose><c:when test="${bowling.manOftheMatch eq 0 }">
-                                        <td></td>
-                                        </c:when><c:otherwise> --%>
+                                        <c:choose><c:when test="${bowling.manOftheMatch eq 0 }">
+                                        <td>-</td>
+                                        </c:when><c:otherwise> 
                                         <td><img src="${pageContext.request.contextPath}/images/mfmimg.png" title="mfm"></td>
-                                       <%--  </c:otherwise>
-                                        </c:choose> --%>
+                                        </c:otherwise>
+                                        </c:choose> 
                                         <td><img src="${pageContext.request.contextPath}/images/scorecard.png" onclick="showScoreCard('${bowling.matchId}')"></td>
                                     </tr>
                                     </c:forEach>
@@ -404,31 +415,32 @@
                          </div>
                          
                         <div class="col-md-12 statusUpdateBox noPadding">
-                        <div class="buluback" style="font-weight:100;">Achievement</div>
+                        <div class="buluback" style="font-weight:100;">Achievements</div>
+                        
+                        
+                        
+                        
                             	<div class="col-md-12 noPadding AchHead">
                                 	<!-- <h4>ODI Series Match Record</h4> -->
                                 	
                                 	<c:choose>  <c:when test="${achievementsListSize eq 0 }">
                          	<table>
-                            	<thead>
-                                	<tr>
-                                    	<th>DATE</th>
-                                    	<th>HOME TEAM</th>
-                                    	<th>AWAY TEAM</th>
-                                        <th>TROPHY</th>
-                                        <th>LEAGUE</th>
-                                        <th>OVERS</th>
-                                        <th>MAIDENS</th>
-                                        <th>RUNS</th>
-                                        <th>WICKETS</th>
-                                       	<th>SR</th>
-                                        <th>MOM</th>
-                                        <th>SCORE CARD</th>
-                                    </tr>
-                                </thead></table>
-                         	<div class="noContentDivRed">No Details Available</div>
-                  
-                       
+  <thead>
+    <tr>
+    	<th>DATE</th>
+    	<th>HOME TEAM</th>
+    	<th>AWAY TEAM</th>
+        <th>TROPHY</th>
+        <th>LEAGUE</th>
+        <th>RUNS SCORED</th>
+        <th>WICKETS</th>
+        <th>CATCHES/STUMPINGS</th>
+        <th>SCORE CARD</th>
+    </tr>
+  </thead></table>
+  <div class="noContentDivRed">No Details Available</div>
+
+
                        </c:when>
                        
                        <c:otherwise>
@@ -440,12 +452,9 @@
                                     	<th>AWAY TEAM</th>
                                         <th>TROPHY</th>
                                         <th>LEAGUE</th>
-                                        <th>OVERS</th>
-                                        <th>MAIDENS</th>
-                                        <th>RUNS</th>
+                                        <th>RUNS SCORED</th>
                                         <th>WICKETS</th>
-                                       	<th>SR</th>
-                                        <th>MOM</th>
+                                        <th>CATCHES/STUMPINGS</th>
                                         <th>SCORE CARD</th>
                                     </tr>
                                 </thead>
@@ -455,24 +464,22 @@
                                 	<td><p id="formatDate_${achieve.matchId}" style="display:none"><fmt:formatDate pattern="M/d/YYYY hh:mm a" value="${achieve.gameDate}" /></p><script>document.writeln(test("${achieve.matchId}"));</script></td>
                                 	<%-- <td><fmt:formatDate value="${achieve.gameDate}"
 														pattern="MM/dd/yyyy" /></td> --%>
-                                    	<td>${achieve.awayTeamName}</td>
-                                    	<td>${achieve.homeTeamName}</td>
+                                    	
+                                    	<td><a href="${pageContext.request.contextPath}/${achieve.homeTeamName}/board/${achieve.hometeamId}">${achieve.homeTeamName}</a></td>
+                                    	<td><a href="${pageContext.request.contextPath}/${achieve.awayTeamName}/board/${achieve.awayTeamId}">${achieve.awayTeamName}</a></td>
                                     	<td>${achieve.tournamentName}</td>
                                       
                                     	
                                         <td><a href="${pageContext.request.contextPath}/${achieve.leagueBoardName}/board/${achieve.leagueBoardId}">${achieve.leagueBoardName}</a></td>
                                         
-                                        <td>${achieve.bowlerovers}</td>
-                                        <td>${achieve.maidenOvers}</td>
-                                        <td>${achieve.bowlingruns}</td>
+                                        <td>${achieve.runs}</td>
                                         <td>${achieve.wickets}</td>
-                                        <td><fmt:formatNumber type="number" pattern="##########.##" value="${achieve.strikeRate}" /></td>
-                                       <%--  <c:choose><c:when test="${achieve.manOftheMatch eq 0 }">
+                                      <%--   <c:choose><c:when test="${achieve.manOftheMatch eq 0 }">
                                         <td></td>
                                         </c:when><c:otherwise> --%>
-                                        <td><img src="${pageContext.request.contextPath}/images/mfmimg.png" title="mfm"></td>
-                                     <%--    </c:otherwise>
+                                   <%--      </c:otherwise>
                                         </c:choose> --%>
+                                        <td>${achieve.catchStumpingCount}</td>
                                         <td><img src="${pageContext.request.contextPath}/images/scorecard.png" onclick="showScoreCard('${achieve.matchId}')"></td>
                                     </tr>
                                     </c:forEach>
@@ -530,6 +537,7 @@ var startBat = 0;
 var endBat = 10;
 
 function loadMoreBattings(){
+	var uid = "${publicUserId}";
 	
 	var add = 10;
 	var startNode = startBat+add;
@@ -538,6 +546,7 @@ function loadMoreBattings(){
 	var gameBean = {
 			startNode : startNode,
 			endNode : endNode,
+			userId:uid,
 	}
 	$.ajax({
 		type:"post",
@@ -590,7 +599,9 @@ function loadMoreBattings(){
 					
 					 
 						 if(res[i].positionOfStand == '' || res[i].positionOfStand == 'null' || res[i].positionOfStand == 'NO'){
-							 html += '<td>-</td>';
+							 
+							 if(res[i].positionOfStandOrder == 'null'){
+							 html += '<td>-</td>';}else{html += '<td>'+res[i].positionOfStandOrder+'</td>';}
 							 
 						 }else{
 							 html += '<td>'+res[i].positionOfStandOrder+'</td>';
@@ -605,11 +616,11 @@ function loadMoreBattings(){
 						 html += '<td>'+res[i].dismissType+'</td>';
 					 }
 					 html += '<td>'+res[i].strikeRate+'</td>';
-					/*  if(res[i].manOftheMatch == 0){
-						 html += '<td></td>';
-					 }else{ */
+					  if(res[i].manOftheMatch == 0){
+						 html += '<td>-</td>';
+					 }else{ 
 						 html += '<td><img src="${pageContext.request.contextPath}/images/mfmimg.png" title="mfm"></td>';
-					// }
+					 }
 					 html += "<td><img src='${pageContext.request.contextPath}/images/scorecard.png' onclick='showScoreCard(\""+id+"\")''></td>";
 					 html += '</tr>';
 				 }
@@ -662,10 +673,11 @@ function loadMoreBowlings(){
 	var add = 10;
 	var startNode = startBowl+add;
 	var endNode = endBowl+add;
-	
+	var flag = "forMyScore";
 	var gameBean = {
 			startNode : startNode,
 			endNode : endNode,
+			flag :flag,
 	}
 	$.ajax({
 		type:"post",
@@ -673,7 +685,15 @@ function loadMoreBowlings(){
 		data : JSON.stringify(gameBean),
 		contentType : "application/json",
 		success : function(res){
-			if(res.length != 0){
+			var flag=0;
+			if(res.length!=0){
+				for(var i=0;i<res.length; i++){
+					if(res[i].bowlerovers!=0.0 || res[i].bowlerovers!=0){
+						flag=1;
+					}
+				}
+			}
+			if(res.length != 0 && flag!=0){
 				var html = '';
 		
 				/*  html += '<table id="bowlingTable"><thead><tr>';
@@ -689,6 +709,7 @@ function loadMoreBowlings(){
 				 html += '<th>SCORE CARD</th>';
 				 html += '</tr></thead><tbody align="center">'; */
 				 for(var i=0; i< res.length; i++){
+					 if(res[i].bowlerovers!=0.0 || res[i].bowlerovers!=0){
 					 var date  = new Date(res[i].gameDate);
 					 var id = res[i].matchId;
 					 console.log("date ======="+date.toLocaleDateString());
@@ -719,13 +740,14 @@ function loadMoreBowlings(){
 					 html += '<td>'+res[i].bowlingruns+'</td>';
 					 html += '<td>'+res[i].wickets+'</td>';
 					 html += '<td>'+res[i].strikeRate+'</td>';
-					/*  if(res[i].manOftheMatch == 0){
-						 html += '<td></td>';
-					 }else{ */
+					  if(res[i].manOftheMatch == 0){
+						 html += '<td>-</td>';
+					 }else{ 
 						 html += '<td><img src="${pageContext.request.contextPath}/images/mfmimg.png" title="mfm"></td>';
-					// }
+					 }
 					 html += "<td><img src='${pageContext.request.contextPath}/images/scorecard.png' onclick='showScoreCard(\""+id+"\")''></td>";
 					 html += '</tr>';
+				 }
 				 }
 				/*  html += '</tbody>';
 				 html += '</table>'; */
@@ -768,16 +790,17 @@ function loadMoreBowlings(){
 }
 
 var startAchieve = 0;
-var endAchieve = 10;
+var endAchieve = 500;
 function loadMoreAchievements(){
 	
-	var add = 10;
+	var add = 500;
 	var startNode = startAchieve+add;
 	var endNode = endAchieve+add;
 	
 	var gameBean = {
 			startNode : startNode,
 			endNode : endNode,
+		
 	}
 	$.ajax({
 		type:"post",
@@ -826,16 +849,13 @@ function loadMoreAchievements(){
 					    html += '<td><a href="${pageContext.request.contextPath}/'+res[i].awayTeamName+'/board/'+res[i].awayTeamId+'">'+res[i].awayTeamName+'</a></td>';					 html += '<td>'+res[i].tournamentName+'</td>';
 				     html += '<td><a href="${pageContext.request.contextPath}/'+res[i].leagueBoardName+'/board/'+res[i].leagueBoardId+'">'+res[i].leagueBoardName+'</a></td>';
 					
-					 html += '<td>'+res[i].bowlerovers+'</td>';
-					 html += '<td>'+res[i].maidenOvers+'</td>';
-					 html += '<td>'+res[i].bowlingruns+'</td>';
+					 html += '<td>'+res[i].runs+'</td>';
 					 html += '<td>'+res[i].wickets+'</td>';
-					 html += '<td>'+res[i].strikeRate+'</td>';
-					/*  if(res[i].manOftheMatch == 0){
+					  /* if(res[i].manOftheMatch == 0){
 						 html += '<td></td>';
-					 }else{ */
+					 }else{ 
 						 html += '<td><img src="${pageContext.request.contextPath}/images/mfmimg.png" title="mfm"></td>';
-					// }
+					 } */
 					 html += "<td><img src='${pageContext.request.contextPath}/images/scorecard.png' onclick='showScoreCard(\""+id+"\")''></td>";
 					 html += '</tr>';
 				 }
@@ -951,11 +971,11 @@ function yearWiseBatting(val){
 							 html += '<td>'+res[i].dismissType+'</td>';
 						 }
 						 html += '<td>'+res[i].strikeRate+'</td>';
-						/*  if(res[i].manOftheMatch == 0){
-							 html += '<td></td>';
-						 }else{ */
+						  if(res[i].manOftheMatch == 0){
+							 html += '<td>-</td>';
+						 }else{ 
 							 html += '<td><img src="${pageContext.request.contextPath}/images/mfmimg.png" title="mfm"></td>';
-						 //}
+						 }
 						 html += "<td><img src='${pageContext.request.contextPath}/images/scorecard.png' onclick='showScoreCard(\""+id+"\")''></td>";
 						 html += '</tr>';
 					 }
@@ -1017,7 +1037,15 @@ function yearWiseBowling(val){
 			data:JSON.stringify(year),
 			contentType : "application/json",
 			success : function(res){
-				if(res.length != 0){
+				var flag=0;
+				if(res.length!=0){
+					for(var i=0;i<res.length; i++){
+						if(res[i].bowlerovers!=0.0 || res[i].bowlerovers!=0){
+							flag=1;
+						}
+					}
+				}
+				if(res.length != 0 && flag!=0){
 					var html = '';
 			
 					 html += '<table id="bowlingTable"><thead><tr>';
@@ -1035,6 +1063,8 @@ function yearWiseBowling(val){
 					 html += '<th>SCORE CARD</th>';
 					 html += '</tr></thead><tbody align="center">';
 					 for(var i=0; i< res.length; i++){
+						 if(res[i].bowlerovers!=0.0 || res[i].bowlerovers!=0){
+
 						 var date  = new Date(res[i].gameDate);
 						 var id = res[i].matchId;
 						 console.log("date ======="+date.toLocaleDateString());
@@ -1063,13 +1093,14 @@ function yearWiseBowling(val){
 						 html += '<td>'+res[i].bowlingruns+'</td>';
 						 html += '<td>'+res[i].wickets+'</td>';
 						 html += '<td>'+res[i].strikeRate+'</td>';
-						 /* if(res[i].manOftheMatch == 0){
-							 html += '<td></td>';
-						 }else{ */
+						  if(res[i].manOftheMatch == 0){
+							 html += '<td>-</td>';
+						 }else{ 
 							 html += '<td><img src="${pageContext.request.contextPath}/images/mfmimg.png" title="mfm"></td>';
-						// }
+						 }
 						 html += "<td><img src='${pageContext.request.contextPath}/images/scorecard.png' onclick='showScoreCard(\""+id+"\")''></td>";
 						 html += '</tr>';
+					 }
 					 }
 					 html += '</tbody>';
 					 html += '</table>';

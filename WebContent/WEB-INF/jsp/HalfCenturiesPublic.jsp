@@ -12,7 +12,16 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cricket Social</title>
+<style type="text/css">
+.css-serial {
+  counter-reset: serial-number;  /* Set the serial number counter to 0 */
+}
 
+.css-serial td:first-child:before {
+  counter-increment: serial-number;  /* Increment the serial number counter */
+  content: counter(serial-number);  /* Display the counter */
+}
+</style>
 </head>
 <body>
 <%@ include file="CSCommon.jsp" %>
@@ -97,52 +106,73 @@
                  </div> 
              </form> 
             <div class="col-md-10 pull-right">
-      		<div class="col-md-12 whiteBox font13px">
-                  
-                  <table>
+    <!-- <div class="col-md-12 whiteBox font13px"> -->
+    <c:forEach items="${halfcentueryList}" var="century" varStatus="trcount">
+        <c:choose>
+            <c:when test="${century.size eq 0}">
+            </c:when>
+            <c:otherwise>
+                <div class="col-md-12 whiteBox font13px">
+                    <span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament
+											Name : ${century.tournamentName}</span>
+                    <table class="css-serial">
                         <thead>
-                        <tr>
-                          <th>Tournament</th>
-                          <th>Player Name</th>
-                          <th>Score</th>
-                          <th>Team Name</th>
-                          <th>Team Against</th>
-                          <th>Ground</th>
-                          <th>Match Date</th>
-                          <th>Score Card</th>
-                        </tr>
-                       </thead>
+                            <tr>
+                                <!-- <th>Tournament</th> -->
+                                <th>S.No</th>
+                                <th>Player Name</th>
+                                <th>Score</th>
+                                <th>Team Name</th>
+                                <th>Team Against</th>
+                                <th>Ground</th>
+                                <th>Match Date</th>
+                                <th>Score Card</th>
+                            </tr>
+                        </thead>
 
-                       <tbody>
-                       <c:forEach items="${halfcentueryList}" var="century">
-                       		<c:forEach items="${century.matchsheduledtolist}" var="matches">
-                       			<c:forEach items="${matches.playerlist}" var="player" varStatus="index">
-                       					<tr>                        				 	
-                        				 	  		<c:choose>
+                        <c:forEach items="${century.matchsheduledtolist}" var="matches">
+                            <c:forEach items="${matches.playerlist}" var="player" varStatus="index">
+                                <tbody id="halfCenturyListBodyTable">
+
+
+
+                                    <tr>
+
+                                      <td></td>
+
+                                        <%-- <c:choose>
 				                        				<c:when test="${index.count eq 1}">
 				                        					<td rowspan="${fn:length(matches.playerlist)}" ><span class="text-danger">${century.tournamentName}</span></td>
 				                        				</c:when>
 				                        				<c:otherwise>
-				                        				
 				                        				</c:otherwise>
-			                        				</c:choose>
-                        				  	  <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}"><span class="text-danger">${player.userName}</span> </a></td>
-                      					      <td>${player.totalruns}</td>
-					                        <%--   <td><a href="#">${matches.homeTeam}</a></td>
-					                          <td><a href="#">${matches.awayTeam}</a> </td> --%>
-					                          <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${player.homeTeamName}/board/ ${player.homeTeamId}"><img src="${player.homeTeamImgUrl}" style="width:30px;"> ${player.homeTeamName}</a></td>
-					                          <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${player.awayTeamName}/board/ ${player.awayTeamId}"><img src="${player.awayTeamImgUrl}" style="width:30px;"> ${player.awayTeamName}</a> </td>
-					                          <td class="tdAlignLeft">${matches.groundName}</td>
-					                          <td><fmt:formatDate pattern="MM/dd/YYYY"  value="${matches.gameDate}" /></td>
-					                          <td align="center"><a href="${pageContext.request.contextPath}/showScoreCardPublicProfile/boardId/${BoradInfo.boardId}/matchId/${matches.sheduledId}"><i class="fa fa-newspaper-o"></i></a></td>
-					                     </tr>
-                       			</c:forEach>
-                       		</c:forEach>                      
-                       </c:forEach>
-                        
-                     </tbody>
-                 </table>
-                 	
+			                        				</c:choose> --%>
+                                            <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}"><span
+																	class="text-danger">${player.userName}</span> </a></td>
+                                            <td>${player.totalruns}</td>
+                                            <td class="tdAlignLeft">
+                                                <a href="${pageContext.request.contextPath}/${player.homeTeamName}/board/ ${player.homeTeamId}"><img src="${player.homeTeamImgUrl}?" onError="imgError()" style="width: 30px;"> ${player.homeTeamName}</a>
+                                            </td>
+                                            <td class="tdAlignLeft">
+                                                <a href="${pageContext.request.contextPath}/${player.awayTeamName}/board/ ${player.awayTeamId}"><img src="${player.awayTeamImgUrl}?" onError="imgError()" style="width: 30px;"> ${player.awayTeamName}</a>
+                                            </td>
+                                            <td class="tdAlignLeft">${matches.groundName}</td>
+                                            <td>
+                                                <fmt:formatDate pattern="MM/dd/YYYY" value="${matches.gameDate}" />
+                                            </td>
+                                            <td align="center"><a href="${pageContext.request.contextPath}/showScoreCardPublicProfile/boardId/${BoradInfo.boardId}/matchId/${matches.sheduledId}"><i
+																	class="fa fa-newspaper-o"></i></a></td>
+                                    </tr>
+
+                                </tbody>
+                            </c:forEach>
+                        </c:forEach>
+                    </table>
+                </div>
+            </c:otherwise>
+        </c:choose>
+        <%-- </c:if>             --%>
+    </c:forEach>
                  	<c:choose>
                  		<c:when test="${empty halfcentueryList}">
                  			<div style="color: red; margin-top: 16px;">No Tournament available</div>
@@ -150,8 +180,6 @@
                  	</c:choose>
           
                </div>
-            </div>
-                    
                     
                     
                     

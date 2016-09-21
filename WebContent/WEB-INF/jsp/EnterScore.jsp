@@ -272,6 +272,7 @@ var secondInninBowlingArrayObjectList=[];
   	<tr><th>Wides</th><th>No Balls</th><th>Byes</th><th>Leg Byes</th><th>Penalties</th></tr>
   	<tr><td><input type="text" id="firstInningsWide" value=""></td><td><input type="text" id="firstInningsNoBalls" value=""></td><td><input type="text" id="firstInningsByes" value=""></td><td><input type="text" id="firstInningsLegByes" value=""></td><td><input type="text" id="firstInningsPenalties" value=""></td></tr>
   	</table>
+  	<input type="hidden" id="WinTeamdetails">
   	<div class="score-details-in">		
     	<label for="email" class="totscor">TOTAL SCORE</label>
         <input type="text" class="TOT-E OnlyNumber" id="firstInnigsScore" onfocus="numberCheck(this);" onblur="firstInningsTotalScore(this.value)">
@@ -496,9 +497,9 @@ var secondInninBowlingArrayObjectList=[];
   	</table>
   	<div class="score-details-in">		
     	<label for="email" class="totscor">TOTAL SCORE</label>
-        <input type="text" class="TOT-E OnlyNumber"  onfocus="numberCheck(this);" onblur="secondInningsTotalScore(this.value)">
+        <input type="text" class="TOT-E OnlyNumber" id="secondInnigsScore" onfocus="numberCheck(this);" onblur="secondInningsTotalScore(this.value)">
         <label for="email" class="totscor">TOTAL WICKET</label>
-        <input type="text" class="TOT-E OnlyNumber" onfocus="numberCheck(this);" onblur="secondInningsWickets(this.value)">
+        <input type="text" class="TOT-E OnlyNumber" id="secondInnigsTotalWicket" onfocus="numberCheck(this);" onblur="secondInningsWickets(this.value)">
          <label for="text" class="totscor">TOTAL OVER</label>
         <input type="text" class="TOT-E" id="secondBattingTotalOvers" onfocus="numberCheck(this);" onblur="secondInningsTotalOversChange()">
   	</div><!-- score details in end -->	
@@ -1987,7 +1988,7 @@ function saveFunction(){
 	var umpireId = $("#hiddenUmpireId").val();
 	var homeTeamCoach = $("#addMemberIDDIVHomeCoach").val();
 	var awayTeamCoach = $("#addMemberIDDIVAwayCoach").val();
-	var winTeamOvers = $("#winTeamOvers").val();
+	/* var winTeamOvers = $("#winTeamOvers").val();
 	var winTeamPoints = $("#winTeamPoints").val();
 	var winTeamRuns = $("#winTeamRuns").val();	
 	
@@ -1995,13 +1996,57 @@ function saveFunction(){
 	var loseTeamOvers = $("#loseTeamOvers").val();
 	var loseTeamPoints = $("#loseTeamPoints").val();
 	var loseTeamRuns = $("#loseTeamRuns").val();
-	var loseTeamWickets = $("#loseTeamWickets").val();
+	var loseTeamWickets = $("#loseTeamWickets").val(); */
+	var winTeamPoints = $("#winTeamPoints").val();
+	var loseTeamPoints = $("#loseTeamPoints").val();
+	
+	
+	if($("#winTeamPoints").val() == '0')
+		{
+		winTeamPoints=$("#loseTeamPoints").val();
+		loseTeamPoints=$("#winTeamPoints").val();
+		}
+	
+	
+	// Vignesh Changes
+	
+	var WinTeamdetailsinfo=$("#WinTeamdetails").val();
+	if( WinTeamdetailsinfo == 'first')
+		{
+		
+		var winTeamOvers = $("#firstBattingTotalOvers").val();
+		var winTeamRuns = $("#firstInnigsScore").val();	
+		
+		var winTeamWickets = $("#firstInnigsTotalWicket").val();
+		var loseTeamOvers = $("#secondBattingTotalOvers").val();
+		var loseTeamRuns = $("#secondInnigsScore").val();
+		var loseTeamWickets = $("#secondInnigsTotalWicket").val();
+		}else
+			{
+			
+			var winTeamOvers = $("#secondBattingTotalOvers").val();
+			var winTeamRuns = $("#secondInnigsScore").val();	
+			
+			var winTeamWickets = $("#secondInnigsTotalWicket").val();
+			var loseTeamOvers = $("#firstBattingTotalOvers").val();
+			var loseTeamRuns = $("#firstInnigsScore").val();
+			var loseTeamWickets = $("#firstInnigsTotalWicket").val();
+			
+			}
+	
+	
+	
+	
+	
+	
 	var gameType = $("#gameType").val();
 	
 	var gameDate = $("#gameDate").val();
 	
-	  var homeId = document.getElementById("hiddenHomeId").value;
-	   var awayId = document.getElementById("hiddenAwayId").value;
+	  /* var homeId = document.getElementById("hiddenHomeId").value;
+	   var awayId = document.getElementById("hiddenAwayId").value; */
+	   var homeId = "${homeTeamId}";
+	   var awayId = "${awayTeamId}";
 	   
 	   var result = $("#result").val();
    
@@ -2480,9 +2525,10 @@ console.log('--------------------------------  loseTeamRuns --------------------
 	//console.log(JSON.strngify(scorerBean));	
    // alert("score card"+JSON.stringify(scorerBean));
 	
-	  $.ajax({
+	      $.ajax({
 	
 		type:"post",
+		
 		url:"${pageContext.request.contextPath}/enterScoreInsert",
 		data:JSON.stringify(scorerBean),
 		contentType :"application/json",
@@ -2505,7 +2551,7 @@ console.log('--------------------------------  loseTeamRuns --------------------
 		}
 		
 		
-	})  
+	})      
 		}else{
 			
 		}
@@ -2554,6 +2600,7 @@ function numberCheck(elem){
 	        displaynotification("Please enter numeric numbers only",1000);
 	               return false;
 	    }else{
+	    	
 	    	
 	    }
 	   });
