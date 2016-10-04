@@ -137,6 +137,112 @@ a.vw-score {
 }
 .black-bg {
 }
+/* new changes */
+ul.nav.nav-tabs-details li {
+	width: auto;
+}
+ul.nav.nav-tabs-details li a {
+	font-size: 12px;
+}
+.tab-content-details {
+	padding: 10px;
+}
+.tab-content-details .tab-pane .text-show-field {
+	padding: 10px;
+	width: 100%;
+	min-height: 10px;
+	border: 1px solid #efefef;
+	color: #444;
+    font-size: 12px;
+}
+.tab-content-details h1 {
+    padding: 10px !important;
+    color: #2d3e50 !important;
+    width: 100%;
+    font-size: 14px !important;
+    margin-bottom: 0 !important;
+}
+.tab-content-details .tab-pane label {
+     font-size: 12px;
+    padding: 6px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-weight: 600;
+    background: #00a5e7;
+}
+i.err-holder {
+	color: #111;
+	font-size: 12px;
+}
+i.err-holder .error {
+	color: red;
+	font-size: 12px;
+}
+h1.others-title {
+	color: #22437f !important;
+    font-size: 14px;
+    border-bottom: none !important;
+    padding: 10px 0 !important;
+}
+.tab-content-details .tab-pane p {
+	font-size: 12px;
+    color: #111;
+    padding: 4px;
+    margin: 0px;
+    width: 100%;
+}
+.tab-content-details .tab-pane h1 {
+	padding: 10px 0 !important;
+}
+.tab-add {
+	width: 30%;
+    float: left;
+    margin-right: 2%;
+    border: 1px solid #ccc;
+    min-height: 155px;
+    padding: 0px;
+    border-top: 0;
+}
+a.tab-link-doc,a.tab-link  {
+    padding: 2px 10px;
+    font-size: 12px;
+  	color: #2d3e50;
+    display: inline-block !important;
+    text-decoration: underline;
+}
+.tab-link-holder,.tab-link-doc-holder {
+	display: block;	
+	margin: 10px 0;
+}
+.tab-link-holder img,.tab-link-doc-holder img {
+	width: 25px;
+	height: 25px;
+	border-radius: 30px;
+	margin-right: 0px;
+}
+table.directors th {
+	background: #00a5e7;
+	font-size: 12px;
+	color: #fff !important;
+	border: 0;
+	border-bottom: 1px dashed #00a5e7 !important;
+}
+table.directors th:first-child,table.directors td:first-child {
+	text-align: center;
+}
+table.directors td {
+	background: #fff;
+	border: 0;
+	border: 1px dashed #ccc !important;
+	font-size: 12px;
+	height: 100px;
+
+}
+table.directors td.usr-img img {
+	width: 90px;
+	height: 90px;
+}
 .modal-dialog {
 	margin: 140px auto;
 }
@@ -159,7 +265,7 @@ a.vw-score {
     border-radius: 0;	
 }
 .modal-dialog {
-	width: 400px;
+	width: 500px;
 }
 .modal-body {
 	text-align: center;
@@ -324,6 +430,199 @@ ol.roa-ol li {
 .loginCenterBlock p {
 	line-height: 25px;
 }
+
+/* NEW PAGE CHANGES */
+
+
+.cs-org .panel-heading h4 {
+	margin: 0px;
+	color: #fff;
+	font-size: 13px;
+}
+.cs-org .panel-heading a span {
+	float: right;
+	margin-right: 0px;
+} 
+.cs-org .panel-heading {
+	background-color: #224E6B;
+	border-color: #224E6B;
+}
+.cs-org .panel-group {
+	margin-bottom: 0px;
+}
+.cs-org .panel-body .form-group button {
+	background-color: #0E7AC3;
+	padding: 8px 20px;
+}
+.cs-button button {
+	background-color: #0E7AC3;
+	padding: 8px 20px;
+	color: #fff;	
+}
+.cs-org .panel-body .form-group button:hover,
+.cs-org .panel-body .form-group button:focus {
+	box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3) inset;
+}
+.cs-org-holder .btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.cs-org-holder .btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+.cs-org-holder .btn-primary {
+	background-color: #0E7AC3;
+	border-color: #0E7AC3;
+}
+.cs-org-holder h4 {
+	text-align: left;
+}
+.cs-org-holder .dk-align-right {
+	text-align: right;
+}
+.cs-org-holder textarea {
+	width: 100%;
+	float: left;
+	height: 250px; margin-bottom:2%
+}
+.cs-org-holder .form-group span.greenText {
+	float: left;
+	margin: 0 auto; 
+	display: block; 
+	width: auto; 
+	padding: 2px 4px;
+	margin-left: 1%;
+	background: #fff;
+    box-shadow: 0px 0px 8px #ccc inset;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+}
+.cs-bd-holder button {
+	margin-top: 26px;	
+}
+.cs-bd-holder span.req-star {
+	color: red;
+	float: none;
+}
+table.bd-table tr td textarea {
+	    height: 35px;
+    overflow: auto;
+}
+.bd-block button {
+	padding: 6px 12px;
+	background-color: #0E7AC3;
+}
+
+.cs-button button {
+	margin-right: 2px;
+	float: right;
+}
+.cs-button button:hover {
+	color: #fff;
+	box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3) inset;
+}
+.cs-bd-holder {
+/* 	background-color: #DCE0E1; */
+	background-color: #9ca9b9;
+	padding: 10px 0;
+}
+.cs-bd-holder input {
+	border: none;
+}
+.cs-bd-holder label {
+	color: #fff;
+	font-weight: 600;
+}
+.palyerCount.bd-player-count {
+	background-color: #0E7AC3 !important;
+	border-color: #0E7AC3 !important;
+	color: #fff !important;
+	font-weight: bold;
+}
+.bd-block {
+	border-bottom: 1px solid #DCE0E1;
+}
+.bd-block .form-control[readonly] {
+/* 	background-color: #DCE0E1;
+	border: 0; */
+    background-color: #9ca9b9;
+    border: 0 none;
+    color: #fff;
+    font-weight: 600;
+}
+
+.btn-wide {
+	padding: 6px 20px;
+	min-width: 15%;
+}
+.file-drop {
+	border: 2px dashed #9ca9b9;
+	padding-bottom: 10px;
+}
+.file-drop div {
+	padding: 10px;
+	clear: both;
+}
+table.bd-table {
+	margin-bottom: 5px;
+}
+table.bd-table tr {
+	background-color: #fff !important;
+	border: 0;
+}
+table.bd-table tr td span.palyerCount.bd-player-count {
+	
+}
+table.bd-table tr td img,table.bd-table tr td .tb-browse {
+	display: inline-block;
+}
+table.bd-table tr td button {
+	padding: 6px 12px;
+	background-color: #0E7AC3;
+	color: #fff;
+	margin: 0 2px;
+	display: inline-block;
+}
+table.bd-table tr td label {
+	display: block;
+	text-align: left;
+}
+table.bd-table tr td input {
+    background-color: #9ca9b9 !important;
+    border: 0 none;
+    color: #fff;
+    font-weight: 600;	
+}
+.cs-align-center {
+	text-align: center;
+}
+.upload-file-name {
+ 	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 70px;
+    float: left;
+    font-size: 11px;
+    padding: 4px;
+}
+
+
+
+
+
+
 /*CheckBox And Radio Btns*/
 input[type="checkbox"] {
 	display: none;

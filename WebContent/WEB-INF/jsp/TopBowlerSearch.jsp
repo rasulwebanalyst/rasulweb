@@ -165,7 +165,17 @@
                           <th>Player Name</th>
                           <th>Team</th>
                           <th>Matches</th>
-                          <th>Wickets</th>
+                          <th>Innings</th>
+                          <th>Overs</th>
+                          <th>Maidens</th>
+                          <th>Runs</th>
+                          <th>Wkts</th>
+                          <th>BBI</th>
+                          <th>Avg</th>
+                          <th>Economy</th>
+                          <th>SR</th>
+                          <th>4fer</th>
+                          <th>5fer</th>
                         </tr>
                        </thead>
 
@@ -183,14 +193,24 @@
 					                        				</c:otherwise>
 				                        				</c:choose> --%>
 				                        				<td>${index.count}</td>
-	                        				  	  <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}"><span class="text-danger"><img alt="" src="${player.userImageUrl}" width="50px" height="50px" style="margin-right: 10px;">${player.userName} </span></a></td>	                      					  
+	                        				  	  <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}"><span class="text-danger"><img alt="" src="${player.userImageUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';" width="30px" style="margin-right: 10px;">${player.userName} </span></a></td>	                      					  
 						                          <%-- <td><a href="${pageContext.request.contextPath}/${matches.homeTeam}/board/${matches.hometeamId}">${matches.homeTeam}</a></td> --%>
 						                          
 						                         <%--  <td><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}">${player.teamBoardInfo.boardName}</a></td> --%>
-						                         <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}"><img src="${player.teamBoardInfo.boardImageURL}" style="width: 30px;margin-right: 10px; ">  ${player.teamBoardInfo.boardName}</a></td>
+						                         <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}"><img src="${player.teamBoardInfo.boardImageURL}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" style="width: 30px;margin-right: 10px; ">  ${player.teamBoardInfo.boardName}</a></td>
 						                         
 						                          <td>${player.games}</td>                  
-						                          <td>${player.wickets}</td>						                          
+						                          <td>${player.innings}</td>
+						                          <td>${player.bowlingOvers}</td>
+						                          <td>${player.maidenOvers}</td>
+						                          <td>${player.bowlingRuns}</td>
+						                          <td>${player.wickets}</td>
+						                          <td>-</td>
+						                          <td>${player.average}</td>
+						                          <td>${player.economy}</td>
+						                          <td>${player.strikeRate}</td>
+						                          <td>${player.fourFer}</td>
+						                          <td>${player.fiveFer}</td>						                          
 						                     </tr>	            
 						                     </c:forEach>  
 						                     </tr>

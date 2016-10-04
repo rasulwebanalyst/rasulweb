@@ -29,6 +29,15 @@ public class BowlersDTO implements Comparable<BowlersDTO>{
 	private BoardProfile teamBoardInfo;
 	private String userImageUrl;
 	
+	private String bowlingOvers;
+	private String maidenOvers;
+	private String bowlingRuns;
+	private String economy;
+	private String strikeRate;
+	private String fourFer;
+	private String fiveFer;
+	private String bbi;
+	
 	
 	public UUID getUserId() {
 		return userId;
@@ -165,6 +174,54 @@ public class BowlersDTO implements Comparable<BowlersDTO>{
 	}
 	public void setUserImageUrl(String userImageUrl) {
 		this.userImageUrl = userImageUrl;
+	}
+	public String getBowlingOvers() {
+		return bowlingOvers;
+	}
+	public void setBowlingOvers(String bowlingOvers) {
+		this.bowlingOvers = bowlingOvers;
+	}
+	public String getMaidenOvers() {
+		return maidenOvers;
+	}
+	public void setMaidenOvers(String maidenOvers) {
+		this.maidenOvers = maidenOvers;
+	}
+	public String getBowlingRuns() {
+		return bowlingRuns;
+	}
+	public void setBowlingRuns(String bowlingRuns) {
+		this.bowlingRuns = bowlingRuns;
+	}
+	public String getEconomy() {
+		return economy;
+	}
+	public void setEconomy(String economy) {
+		this.economy = economy;
+	}
+	public String getStrikeRate() {
+		return strikeRate;
+	}
+	public void setStrikeRate(String strikeRate) {
+		this.strikeRate = strikeRate;
+	}
+	public String getFourFer() {
+		return fourFer;
+	}
+	public void setFourFer(String fourFer) {
+		this.fourFer = fourFer;
+	}
+	public String getFiveFer() {
+		return fiveFer;
+	}
+	public void setFiveFer(String fiveFer) {
+		this.fiveFer = fiveFer;
+	}
+	public String getBbi() {
+		return bbi;
+	}
+	public void setBbi(String bbi) {
+		this.bbi = bbi;
 	}
 	
 	
