@@ -76,7 +76,7 @@ overflow-y: auto !important;
                         
                         <div id="Boardinfo">
                          <h1 class="noBorder" style="width:100%;">Welcome to ${BoradInfo.boardName}</h1>
-                         <div class="tab-add">
+                      <%--    <div class="tab-add">
                          <label>Contact Information</label>
                          <p>${BoradInfo.city},${BoradInfo.state},${BoradInfo.country},${BoradInfo.zipcode}</p>    
                          </div>
@@ -93,7 +93,20 @@ overflow-y: auto !important;
                           <c:forEach items="${BoradInfo.boardCoOwnerList}" var="coowner">
                          <span>${coowner.user.fullName}</span>
                          </c:forEach>   </p>
-                         </div>
+                         </div> --%>
+                         
+                         
+                         
+                         
+                          Board Name : ${BoradInfo.boardName}
+                          Short Description :${BoradInfo.shortDescription}
+                          Board Address : ${BoradInfo.city},${BoradInfo.state},${BoradInfo.country},${BoradInfo.zipcode}
+                          Contact Email Id :${BoradInfo.emailId}
+                          Web Site  :${BoradInfo.website}
+                         
+                         
+                         
+                         
                          </div>
                                         
                         <div id="Sponsertables">
@@ -291,19 +304,42 @@ $("#Headervalue").text(bname+"Sponser");
              var sponserlist=res.boardSponsorsList;
                if(sponserlist.length >0)
             	   {
-            	   htmltable+="<table class='directors'><thead><tr><th>S.NO</th><th>Image</th><th>Name</th><th>Comments</th></tr></thead><tbody>";
+            	//   htmltable+="<table class='directors'><thead><tr><th>S.NO</th><th>Image</th><th>Name</th><th>Comments</th></tr></thead><tbody>";
             	   for(var i=0;i<sponserlist.length;i++)
                        {
-            		   var count=i+1;
+            		   
+            		   
+            		   htmltable +="<table class='bd-table' >";
+            		   htmltable +="<tr> <td></td></tr>";
+            		   htmltable +="<tr><td><label>Name</label><input type='text' class='form-control' readonly value='"+sponserlist[i].sponsorName+"'></td>";
+            		   htmltable +="<td class='bd-txt-holder' rowspan='2'><label>Summary</label><textarea type='text' class='form-control' >"+sponserlist[i].comments+"</textarea></td></tr>";
+            		   htmltable +="<tr><td><label for='' >Image</label>";
+            		   htmltable +="<img  src="+sponserlist[i].imageUrl+" onerror=errorImages(this)></td></tr>";
+            		   htmltable +="<tr><td colspan='2'><label style='width: 100%;'>Social Media</label>";
+                       
+            		   htmltable +="<div class='bd-soc-holder'><img src='${pageContext.request.contextPath}/images/facebook.png'><span >"+sponserlist[i].facebookUrl+"</span></div>";
+            		   htmltable +="<div class='bd-soc-holder'><img src='${pageContext.request.contextPath}/images/twitter.png'><span >"+sponserlist[i].twitterUrl+"</span></div>";
+            		   htmltable +="<div class='bd-soc-holder'><img src='${pageContext.request.contextPath}/images/linkedin.png'><span >"+sponserlist[i].linkedinUrl+"</span></div>";
+            		   htmltable +="<div class='bd-soc-holder'><img src='${pageContext.request.contextPath}/images/linkedin.png'><span >"+sponserlist[i].websiteUrl+"</span></div>";
+            		   htmltable +="</td></tr></table>";
+            		   
+            		   
+            		   
+            		   
+            		   
+            		   
+            		   
+            		   
+            		  /*  var count=i+1;
             		   htmltable+="	<tr>";
             		   htmltable+="<td>"+count+"</td>";
             		   htmltable+="<td class='usr-img'><img  src="+sponserlist[i].imageUrl+" onerror=errorImages(this) width='30px' style='margin-right: 10px;''></td>";
             		   htmltable+="<td>"+sponserlist[i].sponsorName+"</td>";
             		   htmltable+="<td>"+sponserlist[i].comments+"</td>";
-            		   htmltable+="</tr>";
+            		   htmltable+="</tr>"; */
                        }
-            	   htmltable+="</tbody>"; 
-            	   htmltable+="</table>";
+            	  /*  htmltable+="</tbody>"; 
+            	   htmltable+="</table>"; */
             	   }
                  var filelist=res.uploadFileAttachementsList;
                       if(filelist.length > 0)
@@ -376,11 +412,28 @@ $("#Headervalue").text(bname+"Directors");
             var Boardlist=res.boardDirectorsList;
               if(Boardlist.length >0)
            	   {
-           	   htmltable+="<table class='directors'><thead><tr><th>S.NO</th><th>Image</th><th>Name</th><th>Position</th><th>FromYear</th><th>ToYear</th><th>Comment</th></tr></thead><tbody>";
+           	  /*  htmltable+="<table class='directors'><thead><tr><th>S.NO</th><th>Image</th><th>Name</th><th>Position</th><th>FromYear</th><th>ToYear</th><th>Comment</th></tr></thead><tbody>"; */
            	   
            	   for(var i=0;i<Boardlist.length;i++)
                       {
-           		   var count=i+1;
+           		   
+           		   
+           		htmltable +="<table class='bd-table' >";
+           		//htmltable +="<tr> </tr>";
+           		htmltable +="<tr><td><label>Name</label><input type='text'  class='form-control' value='"+Boardlist[i].directorName+"'></td>";
+           		htmltable +="<td class='bd-txt-holder' rowspan='3'><label>Summary</label><textarea type='text' class='form-control' >"+Boardlist[i].comments+"</textarea></td></tr>";
+           		htmltable +="<tr><td><label>Position</label><input type='text' class='form-control' value='"+Boardlist[i].position+"' ></td></tr>";
+           		htmltable +="<tr><td><label>Year</label><input type='text' class='form-control' style='width: 60px; display: inline-block;' value='"+Boardlist[i].fromDate+"' ><span style='float: none; display: inline-block; padding: 0 5px;'>-</span><input type='text' class='form-control' style='width: 60px; display: inline-block;' value='"+Boardlist[i].toDate+"' ></td></tr>";
+           		htmltable +="<tr><td colspan='2'><label style='width: 100%;'>Social Media</label>";
+           		htmltable +="<div class='bd-soc-holder'><img src='${pageContext.request.contextPath}/images/facebook.png'><span>"+Boardlist[i].facebookUrl+"</span></div>";
+           		htmltable +="<div class='bd-soc-holder'><img src='${pageContext.request.contextPath}/images/twitter.png'><span>"+Boardlist[i].twitterUrl+"</span></div>";
+           		htmltable +="<div class='bd-soc-holder'><img src='${pageContext.request.contextPath}/images/linkedin.png'><span>"+Boardlist[i].linkedinUrl+"</span></div>";
+           		htmltable +="</td></tr>";
+           		htmltable +="</table>";
+           		   
+           		   
+           		   
+           		  /*  var count=i+1;
            		   htmltable+="	<tr>";
            		   htmltable+="<td>"+count+"</td>";
            		   htmltable+="<td class='usr-img'><img  src="+Boardlist[i].imageUrl+" onerror=errorImages(this)  width='30px' style='margin-right: 10px;''></td>";
@@ -389,10 +442,10 @@ $("#Headervalue").text(bname+"Directors");
            		   htmltable+="<td>"+Boardlist[i].fromDate+"</td>";
            		   htmltable+="<td>"+Boardlist[i].toDate+"</td>";
            		   htmltable+="<td>"+Boardlist[i].comments+"</td>";
-           		   htmltable+="</tr>";
+           		   htmltable+="</tr>"; */
                       }
-           	   htmltable+="</tbody>"; 
-           	   htmltable+="</table>";
+           	   /* htmltable+="</tbody>"; 
+           	   htmltable+="</table>"; */
            	   }
                 var filelist=res.uploadFileAttachementsList;
                      if(filelist.length > 0)

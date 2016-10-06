@@ -531,21 +531,29 @@
 		    <div class="panel panel-default">
 		      <div class="panel-heading">
 		        <h4 class="panel-title">
-		          <a data-toggle="collapse" href="#collapse1">Additional Information
-		          <span>Click Here</span></a>
+		          <span>Additional Information </span>
 		          <div class="clearfix"></div>
 		        </h4>
 		      </div>
-		      <div id="collapse1" class="panel-collapse collapse">
+		      <div id="" class="panel-collapse">
 		        <div class="panel-body">
-		        	<div class="form-group col-md-12 centerbtns">
-		        		<input type="button" class="btn btn-default dBtn" onclick="aboutOrganization()" value="About Organization"></button>
+		        	<div class="form-group col-md-12 noPadding centerbtns">
+		        	<a href="${pageContext.request.contextPath}/aboutOrganization/${BoradInfo.boardId}" >About Organization</a>
+		        	<a href="${pageContext.request.contextPath}/Directors/${BoradInfo.boardId}" >Directors</a>
+		        	<a href="${pageContext.request.contextPath}/aboutHistory/${BoradInfo.boardId}" >History</a>
+		        	<a href="${pageContext.request.contextPath}/aboutRulesRegulation/${BoradInfo.boardId}" >Rules & Regulations</a>
+		        	<a href="${pageContext.request.contextPath}/Sponser/${BoradInfo.boardId}" >Sponser</a>
+		        	<a href="${pageContext.request.contextPath}/aboutAwardhonor/${BoradInfo.boardId}" >Award & Honor</a>
+		        	<a href="${pageContext.request.contextPath}/aboutFaq/${BoradInfo.boardId}" >FAQ</a>
+		        	
+		        	
+		        	<!-- 	<input type="button" class="btn btn-default dBtn" onclick="aboutOrganization()" value="About Organization"></button>
 		        		<input type="button" class="btn btn-default dBtn" value="Directors" onclick="Directors()"></button>
 		        		<input type="button" class="btn btn-default dBtn" onclick="aboutHistory()" value="History"></button>
 		        		<input type="button" class="btn btn-default dBtn" onclick="aboutRulesRegulation()" value="Rules & Regulations"></button>
 		        		<input type="button" class="btn btn-default dBtn" value="Sponser" onclick="Sponser()"></button>
 		        		<input type="button" class="btn btn-default dBtn" onclick="aboutawardhonor()"value="Award & Honor" ></button>
-		        		<input type="button" class="btn btn-default dBtn" onclick="aboutfaq()" value="FAQ" ></button>
+		        		<input type="button" class="btn btn-default dBtn" onclick="aboutfaq()" value="FAQ" ></button> -->
 
 		        	</div><!-- form-group -->
 		        </div><!-- panel-body -->

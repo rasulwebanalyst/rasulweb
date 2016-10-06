@@ -36641,8 +36641,30 @@ public ModelAndView aboutOrganization(HttpServletRequest req,@PathVariable Strin
 	OrganizationResponse orgresponse=new OrganizationResponse();
 	long filesize=0;
 	Gson gson=new Gson();
+	HttpSession session = req.getSession(true);
 	try{
 		mav=new ModelAndView("OrgDetails");
+		
+		hubReq= new HubRequest();
+		 hubReq.setMsgType(41);
+		 ModelMap map=new ModelMap();
+		 map.put("userId", session.getAttribute("USRID"));
+		 map.put("startNode", 0);
+		 map.put("endNode", 200);
+		  hubReq.setRequestParam(map);
+			 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
+			 GsonBuilder builder = new GsonBuilder();
+			 Gson gson1 = builder.create();
+			 if(strBoardList!=null)
+			 {
+				 HubResponse hubResponse= gson1.fromJson(strBoardList, HubResponse.class);
+				 if(hubResponse!=null && hubResponse.getResults()!=null)
+				 {
+					 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
+				 }
+			 }
+			 
+			 
 		UUID uid=UUID.fromString(boardId);
 		HubRequest hubreq1=new HubRequest(261);
 		OrganizationDetails orgdetails=new OrganizationDetails();
@@ -36696,8 +36718,29 @@ public ModelAndView aboutHistory(HttpServletRequest req,@PathVariable String boa
 	OrganizationResponse orgresponse=new OrganizationResponse();
 	long filesize=0;
 	Gson gson=new Gson();
+	HttpSession session = req.getSession(true);
 	try{
 		mav=new ModelAndView("OrgDetails");
+		
+		hubReq= new HubRequest();
+		 hubReq.setMsgType(41);
+		 ModelMap map=new ModelMap();
+		 map.put("userId", session.getAttribute("USRID"));
+		 map.put("startNode", 0);
+		 map.put("endNode", 200);
+		  hubReq.setRequestParam(map);
+			 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
+			 GsonBuilder builder = new GsonBuilder();
+			 Gson gson1 = builder.create();
+			 if(strBoardList!=null)
+			 {
+				 HubResponse hubResponse= gson1.fromJson(strBoardList, HubResponse.class);
+				 if(hubResponse!=null && hubResponse.getResults()!=null)
+				 {
+					 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
+				 }
+			 }
+			 
 		UUID uid=UUID.fromString(boardId);
 		HubRequest hubreq1=new HubRequest(261);
 		OrganizationDetails orgdetails=new OrganizationDetails();
@@ -36752,8 +36795,30 @@ public ModelAndView aboutRulesRegulation(HttpServletRequest req,@PathVariable St
 	OrganizationResponse orgresponse=new OrganizationResponse();
 	long filesize=0;
 	Gson gson=new Gson();
+	HttpSession session = req.getSession(true);
 	try{
 		mav=new ModelAndView("OrgDetails");
+		
+		
+		hubReq= new HubRequest();
+		 hubReq.setMsgType(41);
+		 ModelMap map=new ModelMap();
+		 map.put("userId", session.getAttribute("USRID"));
+		 map.put("startNode", 0);
+		 map.put("endNode", 200);
+		  hubReq.setRequestParam(map);
+			 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
+			 GsonBuilder builder = new GsonBuilder();
+			 Gson gson1 = builder.create();
+			 if(strBoardList!=null)
+			 {
+				 HubResponse hubResponse= gson1.fromJson(strBoardList, HubResponse.class);
+				 if(hubResponse!=null && hubResponse.getResults()!=null)
+				 {
+					 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
+				 }
+			 }
+			 
 		UUID uid=UUID.fromString(boardId);
 		HubRequest hubreq1=new HubRequest(261);
 		OrganizationDetails orgdetails=new OrganizationDetails();
@@ -36807,8 +36872,30 @@ public ModelAndView aboutawardhonor(HttpServletRequest req,@PathVariable String 
 	OrganizationResponse orgresponse=new OrganizationResponse();
 	long filesize=0;
 	Gson gson=new Gson();
+	HttpSession session = req.getSession(true);
 	try{
 		mav=new ModelAndView("OrgDetails");
+		
+		
+		hubReq= new HubRequest();
+		 hubReq.setMsgType(41);
+		 ModelMap map=new ModelMap();
+		 map.put("userId", session.getAttribute("USRID"));
+		 map.put("startNode", 0);
+		 map.put("endNode", 200);
+		  hubReq.setRequestParam(map);
+			 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
+			 GsonBuilder builder = new GsonBuilder();
+			 Gson gson1 = builder.create();
+			 if(strBoardList!=null)
+			 {
+				 HubResponse hubResponse= gson1.fromJson(strBoardList, HubResponse.class);
+				 if(hubResponse!=null && hubResponse.getResults()!=null)
+				 {
+					 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
+				 }
+			 }
+			 
 		UUID uid=UUID.fromString(boardId);
 		HubRequest hubreq1=new HubRequest(261);
 		OrganizationDetails orgdetails=new OrganizationDetails();
@@ -36861,8 +36948,30 @@ public ModelAndView aboutFaq(HttpServletRequest req,@PathVariable String boardId
 	OrganizationResponse orgresponse=new OrganizationResponse();
 	long filesize=0;
 	Gson gson=new Gson();
+	HttpSession session = req.getSession(true);
 	try{
 		mav=new ModelAndView("OrgDetails");
+		
+		
+		hubReq= new HubRequest();
+		 hubReq.setMsgType(41);
+		 ModelMap map=new ModelMap();
+		 map.put("userId", session.getAttribute("USRID"));
+		 map.put("startNode", 0);
+		 map.put("endNode", 200);
+		  hubReq.setRequestParam(map);
+			 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
+			 GsonBuilder builder = new GsonBuilder();
+			 Gson gson1 = builder.create();
+			 if(strBoardList!=null)
+			 {
+				 HubResponse hubResponse= gson1.fromJson(strBoardList, HubResponse.class);
+				 if(hubResponse!=null && hubResponse.getResults()!=null)
+				 {
+					 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
+				 }
+			 }
+			 
 		UUID uid=UUID.fromString(boardId);
 		HubRequest hubreq1=new HubRequest(261);
 		OrganizationDetails orgdetails=new OrganizationDetails();
@@ -36909,14 +37018,39 @@ public ModelAndView aboutFaq(HttpServletRequest req,@PathVariable String boardId
 @RequestMapping(value="/Directors/{boardId}",method=RequestMethod.GET)
 public ModelAndView Directors(HttpServletRequest req,@PathVariable String boardId )
 {
+	
 	ModelAndView mav=null;
 	System.out.println("the board id :"+boardId);
 	BoardResponse boardresponse=new BoardResponse();
 	long filesize=0;
 	long sponsersize=0;
 	Gson gson=new Gson();
+	HttpSession session = req.getSession(true);
 	try{
 		mav=new ModelAndView("BoardDirectors");
+		
+		
+		
+		hubReq= new HubRequest();
+		 hubReq.setMsgType(41);
+		 ModelMap map=new ModelMap();
+		 map.put("userId", session.getAttribute("USRID"));
+		 map.put("startNode", 0);
+		 map.put("endNode", 200);
+		  hubReq.setRequestParam(map);
+			 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
+			 GsonBuilder builder = new GsonBuilder();
+			 Gson gson1 = builder.create();
+			 if(strBoardList!=null)
+			 {
+				 HubResponse hubResponse= gson1.fromJson(strBoardList, HubResponse.class);
+				 if(hubResponse!=null && hubResponse.getResults()!=null)
+				 {
+					 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
+				 }
+			 }
+		
+		
 		UUID uid=UUID.fromString(boardId);
 		HubRequest hubreq1=new HubRequest(262);
 		OrganizationDetails orgdetails=new OrganizationDetails();
@@ -36976,8 +37110,33 @@ public ModelAndView Sponser(HttpServletRequest req,@PathVariable String boardId 
 	long filesize=0;
 	long sponsersize=0;
 	Gson gson=new Gson();
+	HttpSession session = req.getSession(true);
 	try{
 		mav=new ModelAndView("Sponsers");
+		
+		
+		
+		hubReq= new HubRequest();
+		 hubReq.setMsgType(41);
+		 ModelMap map=new ModelMap();
+		 map.put("userId", session.getAttribute("USRID"));
+		 map.put("startNode", 0);
+		 map.put("endNode", 200);
+		  hubReq.setRequestParam(map);
+			 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
+			 GsonBuilder builder = new GsonBuilder();
+			 Gson gson1 = builder.create();
+			 if(strBoardList!=null)
+			 {
+				 HubResponse hubResponse= gson1.fromJson(strBoardList, HubResponse.class);
+				 if(hubResponse!=null && hubResponse.getResults()!=null)
+				 {
+					 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
+				 }
+			 }
+		
+		
+		
 		UUID uid=UUID.fromString(boardId);
 		HubRequest hubreq1=new HubRequest(263);
 		OrganizationDetails orgdetails=new OrganizationDetails();
