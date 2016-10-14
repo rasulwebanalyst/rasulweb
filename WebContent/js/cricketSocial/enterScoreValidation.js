@@ -967,9 +967,9 @@ function getBuddiesAutoCompleteFirstBowling(elem,divId,hiddenId){
    
  }
 
-/*function cancelValues(){
+function cancelValues(){
 	window.location.reload();
-}*/
+}
 
 
 function teamValidation(){

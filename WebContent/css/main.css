@@ -436,23 +436,16 @@ ol.roa-ol li {
 
 .cs-org .panel-heading h4 {
 	margin: 0px;
-    color: #2d3e50;
-    font-size: 14px;
+	color: #fff;
+	font-size: 13px;
 }
-.cs-org .panel-body .form-group a {
-    font-size: 13px;
-    padding: 0 10px;
-    color: #444;
-    text-decoration: underline;
-}
-.cs-org .panel-body {
-	border-top-color: transparent !important;
-}
-.cs-org .panel-default {
-    border-color: transparent;
-}
+.cs-org .panel-heading a span {
+	float: right;
+	margin-right: 0px;
+} 
 .cs-org .panel-heading {
-	background-color: transparent;
+	background-color: #224E6B;
+	border-color: #224E6B;
 }
 .cs-org .panel-group {
 	margin-bottom: 0px;
@@ -524,7 +517,7 @@ ol.roa-ol li {
 	float: none;
 }
 table.bd-table tr td textarea {
-	height: 90%;
+	    height: 35px;
     overflow: auto;
 }
 .bd-block button {
@@ -542,21 +535,21 @@ table.bd-table tr td textarea {
 }
 .cs-bd-holder {
 /* 	background-color: #DCE0E1; */
-/* 	background-color: #9ca9b9; */
+	background-color: #9ca9b9;
 	padding: 10px 0;
 }
 .cs-bd-holder input {
-	border: 1px solid #ccc;
+	border: none;
 }
 .cs-bd-holder label {
-	color: #444;
+	color: #fff;
+	font-weight: 600;
 }
 .palyerCount.bd-player-count {
 	background-color: #0E7AC3 !important;
 	border-color: #0E7AC3 !important;
 	color: #fff !important;
 	font-weight: bold;
-	border-radius: 0;
 }
 .bd-block {
 	border-bottom: 1px solid #DCE0E1;
@@ -569,34 +562,21 @@ table.bd-table tr td textarea {
     color: #fff;
     font-weight: 600;
 }
-.bd-table td {
-	border: none;
-	width: 50%;
-}
+
 .btn-wide {
 	padding: 6px 20px;
 	min-width: 15%;
 }
 .file-drop {
-	border: 1px dashed #9ca9b9;
+	border: 2px dashed #9ca9b9;
 	padding-bottom: 10px;
 }
 .file-drop div {
 	padding: 10px;
 	clear: both;
 }
-.cs-page-title {
-	background: #224e6b;
-	color: #fff;
-	padding: 5px;
-}
 table.bd-table {
 	margin-bottom: 5px;
-/* 	border-bottom: 2px solid #eee; */
-	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05)
-}
-table.bd-table tr:first-child td:last-child {
-	text-align: right;
 }
 table.bd-table tr {
 	background-color: #fff !important;
@@ -616,92 +596,14 @@ table.bd-table tr td button {
 	display: inline-block;
 }
 table.bd-table tr td label {
-    text-align: left;
-    min-width: 75px;
-    padding: 6px 10px 6px 0;
-}
-table.bd-table tr td input.form-control {
-	display: inline-block;
-	background-color: #efefef;
-    border: 1px solid #efefef;
-    width: 80%;
-    color: #444;
-    border-radius: 0;
-    height: 30px;
-    box-shadow: none !important;
+	display: block;
+	text-align: left;
 }
 table.bd-table tr td input {
-    background-color: transparent;
-    border: 1px solid #ccc;
-    width: 100%;
-    color: #444;
-}
-table.bd-table tr td.bd-txt-holder label {
-	width: 100%;
-}
-table.bd-table tr td .bd-soc-holder img {
-	width: 25px;
-	height: 25px;
-	
-}
-table.bd-table tr td .bd-soc-holder span {
-    float: none;
-    color: #444;
-    font-size: 11px;
-    padding: 0 5px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 172px;
-    display: inline-block;
-    vertical-align: middle;
-}
-table.bd-table tr td .bd-soc-holder {
-	display: inline-block;
-	width: 30%;
-}
-table.bd-table tr td .bd-soc-holder input {
-	display: inline-block;
-	background-color: transparent;
-    border: 1px solid #efefef;
-    width: 80%;
-    color: #444;
-    border-radius: 0;
-    height: 25px;
-    font-size: 12px;
-    box-shadow: none !important;
-    margin: 0 10px;
-}
-table.bd-table tr td .cs-pro-img-holder {
-	position: relative;
-	width: 100px;
-	height: 100px;
-	display: inline-block;
-	
-} 
-table.bd-table tr td .cs-pro-img-holder img {
-	width: 100px;
-	height: 100px;
-	border: 1px solid #ccc;
-} 
-table.bd-table tr td img {
-	width: 80px;
-	height: 80px;
-}
-table.bd-table tr td .cs-pro-img-holder span {
-    position: absolute;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.7);
-    width: 100%;
-    padding: 6px 2px;
-    font-size: 11px;
-    height: 30px;
+    background-color: #9ca9b9 !important;
+    border: 0 none;
     color: #fff;
-    cursor: pointer;
-}
-table.bd-table tr td .cs-pro-img-holder span i {
-	font-size: 12px;
-    margin-right: 5px;
+    font-weight: 600;	
 }
 .cs-align-center {
 	text-align: center;
@@ -715,6 +617,9 @@ table.bd-table tr td .cs-pro-img-holder span i {
     font-size: 11px;
     padding: 4px;
 }
+
+
+
 
 
 

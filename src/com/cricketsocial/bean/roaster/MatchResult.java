@@ -26,8 +26,8 @@ public class MatchResult {
 	private String tournamentName;
 	private String homeTeamId;
 	private String awayTeamId;
-	private String endMatchReason;
-
+    private String endMatchReason;
+    
 	
 	
 	public String getEndMatchReason() {

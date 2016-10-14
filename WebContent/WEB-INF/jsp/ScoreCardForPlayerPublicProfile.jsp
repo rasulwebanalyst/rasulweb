@@ -66,39 +66,18 @@ var formatAMPMTime = function(date) {
                           <div class="col-md-12 membersBlock whiteBox">
                      	<h1 class="noBorder">${UserInfo.firstName} ${UserInfo.lastName}</h1>
                      
-                     <div class="col-md-6 statusUpdateBox ">
+                     <div class="col-md-5 statusUpdateBox ">
                             <p><span>Role  </span><strong><c:forEach var = "roleDetails" items="${UserInfo.userRoleMap}" varStatus = "loop">                      
                             ${roleDetails.role}<c:if test="${!loop.last}">,</c:if>                                          
                         </c:forEach></strong></p> 
                             <p><span>Bats </span> <strong>${SelectedPlayersInfo.player1.battingInfo}</strong></p> 
                             <p><span>Bowls </span> <strong>${SelectedPlayersInfo.player1.bowlingInfo}</strong></p>
                             <p><span>Country </span> <strong>${UserInfo.country}</strong></p>
-
-								<c:if test="${UserInfo.enableEmailAddress eq 1}">
-									<p>
-										<span>E-mail </span> <strong>${UserInfo.emailAddress}</strong>
-									</p>
-								</c:if>
-
-								<c:if test="${UserInfo.enablePhoneNo eq 1}">
-									<c:choose>
-										<c:when test="${UserInfo.phoneNumber eq 0}">
-											<p>
-												<span>Phone Number </span> <strong></strong>
-											</p>
-										</c:when>
-										<c:otherwise>
-											<p>
-												<span>Phone Number </span> <strong>${UserInfo.phoneNumber}</strong>
-											</p>
-										</c:otherwise>
-									</c:choose>
-								</c:if>
-							</div> 
+                    	</div> 
                      
                      	
                         
-                        <div class="col-md-6 feedcube">
+                        <div class="col-md-7 feedcube">
                             <div class="cube bulucolor">${UserMatchInfo.playedMatches}<br><p>Matches</p></div>
                             <div class="cube greencolor">${UserMatchInfo.totalMadeRuns}<br> <p>Runs</p></div>
                             <div class="cube redcolor">${UserMatchInfo.totalWicketTaken}<br> <p>Wickets<p></div>
@@ -628,7 +607,7 @@ var formatAMPMTime = function(date) {
                          
                          </c:choose>
                          
-                         <%-- <c:if test="${!empty webPortalScoreCard}">
+                         <c:if test="${!empty webPortalScoreCard}">
                              <script type="text/javascript">
                              	 $("#secondInningsFallOfWicketsScoriingApp").hide();
                              	 $("#firstInningsFallOfWicketsScoriingApp").hide();
@@ -639,7 +618,7 @@ var formatAMPMTime = function(date) {
                              	 $("#secondInningsFallOfWicketsWebPortal").hide();
                              	 $("#firstInningsFallOfWicketsWebPortal").hide();
                              </script>
-                         </c:if> --%>
+                         </c:if>
                               
                          <c:choose>
                          
@@ -738,19 +717,6 @@ var formatAMPMTime = function(date) {
                             
                             </div>
                           </div>
-                          
-                          <c:if test="${!empty webPortalScoreCard}">
-                             <script type="text/javascript">
-                             	 $("#secondInningsFallOfWicketsScoriingApp").hide();
-                             	 $("#firstInningsFallOfWicketsScoriingApp").hide();
-                             </script>
-                         </c:if>
-                          <c:if test="${empty webPortalScoreCard}">
-                             <script type="text/javascript">
-                             	 $("#secondInningsFallOfWicketsWebPortal").hide();
-                             	 $("#firstInningsFallOfWicketsWebPortal").hide();
-                             </script>
-                         </c:if>
                          
                          <div class="points">
                             <c:if test="${!empty PlayerOfTheMatch}">

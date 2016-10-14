@@ -520,7 +520,7 @@ var formatAMPMTime = function(date) {
                                     </tr>
                                 </thead></table>
                                  <span style="color:red">No Details Available</span>
-                                </c:when>div
+                                </c:when>
                                 <c:otherwise>
                                 
                                 <table>
@@ -816,11 +816,12 @@ var formatAMPMTime = function(date) {
                          </div>
                          
                          <div class="points">
-                        <c:if test="${!empty scoreCardList.endMatchReason}">
-                         <p ><strong>Match Details:</strong></p>
-                           <p> ${scoreCardList.endMatchReason}</p>
-                        </c:if>
-                           </div>
+                         <c:if test="${!empty scoreCardList.endMatchReason}">
+                          <p ><strong>Match Details:</strong></p>
+                            <p> ${scoreCardList.endMatchReason}</p>
+                         </c:if>
+                            </div>
+                         
                          
                       <c:if test="${!empty  CommentryAvailable}">
                            

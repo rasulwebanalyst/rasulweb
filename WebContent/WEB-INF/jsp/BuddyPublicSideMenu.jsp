@@ -14,12 +14,12 @@
                         
                         
                      		<ul class="leftMenu">
-                            	<li><a href="${pageContext.request.contextPath}/MyScorePublicProfile/${BuddyPublicUserId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyScore.png"></i>Score</a></li>
-                            	<li><a href="${pageContext.request.contextPath}/userEvent/buddy/${BuddyPublicFirstName}/${BuddyPublicUserId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyEvents.png"></i>Events</a></li>
-                            	<li><a href="${pageContext.request.contextPath}/${BuddyPublicFirstName}/fans/${BuddyPublicUserId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyFans.png"></i>Fans</a></li>
-                            	<li><a href="${pageContext.request.contextPath}/${BuddyPublicFirstName}/fanOf/${BuddyPublicUserId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/IAmFanOf.png"></i>Fan Of</a></li>                            	
+                            	<li><a href="${pageContext.request.contextPath}/MyScorePublicProfile/${BuddyPublicUserId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyScore.png"></i>My Score</a></li>
+                            	<li><a href="${pageContext.request.contextPath}/userEvent/buddy/${BuddyPublicFirstName}/${BuddyPublicUserId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyEvents.png"></i>My Events</a></li>
+                            	<li><a href="${pageContext.request.contextPath}/${BuddyPublicFirstName}/fans/${BuddyPublicUserId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyFans.png"></i>My Fans</a></li>
+                            	<li><a href="${pageContext.request.contextPath}/${BuddyPublicFirstName}/fanOf/${BuddyPublicUserId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/IAmFanOf.png"></i>I Am Fan Of</a></li>                            	
                             	<li><a href="${pageContext.request.contextPath}/buddyBoard/${BuddyPublicFirstName}/${BuddyPublicUserId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/IAmFanOf.png"></i>Board</a></li>
-                            	<li><a href="${pageContext.request.contextPath}/buddyFriends/${BuddyPublicFirstName}/${BuddyPublicUserId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyBuddyList.png"></i>Buddies</a></li>
+                            	<li><a href="${pageContext.request.contextPath}/buddyFriends/${BuddyPublicFirstName}/${BuddyPublicUserId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyBuddyList.png"></i>Buddy List</a></li>
          <%--                    	<li><a href="#"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/PlayerCompare.png"></i>Player Compare</a></li> --%>
                             	<li><a href="${pageContext.request.contextPath}/BuddyCricketBook/${BuddyPublicUserId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>Cricket Book</a></li>
                             </ul>

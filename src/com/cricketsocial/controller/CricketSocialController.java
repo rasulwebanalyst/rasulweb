@@ -165,7 +165,6 @@ import com.cricketsocial.restservice.CricketSocialRestTemplateService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
-import com.google.zxing.Result;
 
 @Controller
 public class CricketSocialController {
@@ -516,7 +515,7 @@ public class CricketSocialController {
 					    	//model.addObject("loginvalidation", "Invalid Credentials");
 					    	request.setAttribute("loginvalidation", "Invalid Credentials");}
 					    }else{
-					    	
+					    	 System.out.println("The wtf");
 					    	model=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid Credentials");
 					    	//model.addObject("loginvalidation", "Invalid Credentials");
 					    	request.setAttribute("loginvalidation", "Invalid Credentials");
@@ -3876,16 +3875,8 @@ public ModelAndView addBoard(HttpServletRequest request)
 						 request.setAttribute("UserName", firstName);
 						 System.out.println("boardRequestParametersResponse  "+boardFormAttributes.getPage_visibility().size());
 					 }
-					 /*----------------added by dhanapriyanga--------*/
-					 hubReq = new HubRequest();
-					 hubReq.setMsgType(249);
-					 String contryCodeString=cricketSocialRestTemplateService.userRegistration(hubReq);		
-					 if(contryCodeString != null){
-					 HubResponse userDetails=GsonConverters.getGsonObject().fromJson(contryCodeString, HubResponse.class);
-					 List<CountryCodes> countryCodes = userDetails.getResults().getItemFound().getCountryCodes();
-					 model.addObject("countryCodes", countryCodes);
-					 }	 
-					 /*---------------added by dhanapriyanga end---------*/
+					 
+					 
 					 hubReq= new HubRequest();
 					 hubReq.setMsgType(41);
 					 ModelMap map1=new ModelMap();
@@ -4023,22 +4014,7 @@ public ModelAndView boardProfileSubmit(HttpServletRequest request,@ModelAttribut
 	 }
 	 
 	 boardProfile.setBoardCoordinatorList(coOrdinators);
-	 /**********added by dhanapriyanga*****************/
 	 
-	 Long phoneNumber2=null;
-	 Long phoneNumber1=null;
-	 
-	 if(boardProfile.getPhoneNumber2()!=null){
-		 phoneNumber2= boardProfile.getPhoneNumber2();
-	 }
-		 boardProfile.setPhoneNumber2(phoneNumber2);
-	 
-	 if(boardProfile.getPhoneNumber1()!=null){
-		 phoneNumber1= boardProfile.getPhoneNumber1();
-	 }
-	 boardProfile.setPhoneNumber1(phoneNumber1);
-	 
-	 /**************end(DP)****************************/
 	 hubReq.setRequestParam(boardProfile);
 	 boardProfile.setCreatedBy(userId.toString());
 	 
@@ -8187,18 +8163,8 @@ public ModelAndView boardProfile(@RequestParam String bid, HttpServletRequest re
 					 ballPreferences=ballResponse.getResults().getBallPrefenrenceList();	
 				  }
 				  model.addObject("BallPreferences",ballPreferences);
+			 
 				  
-				  /*-----------added--------by----dhanapriyanga---start*/
-				  hubReq = new HubRequest();
-				  hubReq.setMsgType(249);
-				  String contryCodeString=cricketSocialRestTemplateService.userRegistration(hubReq);		
-				  if(contryCodeString != null){
-					  HubResponse userDetails=GsonConverters.getGsonObject().fromJson(contryCodeString, HubResponse.class);
-					  List<CountryCodes> countryCodes = userDetails.getResults().getItemFound().getCountryCodes();
-					  model.addObject("countryCodes", countryCodes);
-
-				  }
-                  /*----------added--by---dhanapriyanga end--*/
 				  hubReq= new HubRequest();
 					 hubReq.setMsgType(41);
 					 ModelMap map1=new ModelMap();
@@ -8347,21 +8313,6 @@ public ModelAndView updateBoardProfile(HttpServletRequest request, BoardProfile 
 	 }
 	 
 	 boardProfile.setBoardCoordinatorList(coOrdinators);
-	 
-	 Long phoneNumber2=null;
-	 Long phoneNumber1=null;
-	 
-	 if(boardProfile.getPhoneNumber2()!=null){
-		 phoneNumber2= boardProfile.getPhoneNumber2();
-	 }
-		 boardProfile.setPhoneNumber2(phoneNumber2);
-	 
-	 if(boardProfile.getPhoneNumber1()!=null){
-		 phoneNumber1= boardProfile.getPhoneNumber1();
-	 }
-	 boardProfile.setPhoneNumber1(phoneNumber1);
-
-
 	 
 	 hubReq.setRequestParam(boardProfile);
 	 boardProfile.setCreatedBy(userId.toString());
@@ -9683,24 +9634,6 @@ public ModelAndView updateUserDetail(@ModelAttribute UserProfileUpdate2 userProf
 		String reqString2 = gson.toJson(subRoleLevelTwo);
 		userProfile.setUserimgfile(null);
 		
-		if(request.getParameter("rr")!=null &&  request.getParameter("rr").length()>0){
-			String rr[] = request.getParameterValues("rr");
-			for(String r :rr){
-				if(r.equalsIgnoreCase("email")){
-					userProfile.setEnableEmailAddress(1);
-				}else if(r.equalsIgnoreCase("phone")){
-					userProfile.setEnablePhoneNo(1);
-				}else{
-					userProfile.setEnablePhoneNo(0);
-					userProfile.setEnableEmailAddress(0);
-					}
-
-			}
-		}else{
-			userProfile.setEnablePhoneNo(0);
-			userProfile.setEnableEmailAddress(0);
-		}
-
 		if(userProfile.getSubcat1()!=null)
 		{
 			
@@ -9906,10 +9839,10 @@ public ModelAndView updateUserDetail(@ModelAttribute UserProfileUpdate2 userProf
 		{
 			userProfile.setPhoneNumber("0");
 		}
-		/*if(userProfile.getLandLineNumber().length()<=0)
+		if(userProfile.getLandLineNumber().length()<=0)
 		{
 			userProfile.setLandLineNumber("0");
-		}*/
+		}
 		if(userProfile.getZipcode().length()<=0)
 		{
 			userProfile.setZipcode("0");
@@ -9922,7 +9855,7 @@ public ModelAndView updateUserDetail(@ModelAttribute UserProfileUpdate2 userProf
 		userProfile.setSubRoleLevelOne(subRoleLevelOne);
 		//String reqString3 = gson.toJson(subRoleLevelOne);
 		
-		 hubReq=new HubRequest(78);
+		hubReq=new HubRequest(78);
 		 hubReq.setMsgType(78);
 		 byte[] img=userProfile.getUpload();			 
 		
@@ -13965,47 +13898,17 @@ public ModelAndView leaguecenturies(@PathVariable String bid, HttpServletRequest
 			{
 				UUID  userId = (UUID) session.getAttribute("USRID");
 				model= new ModelAndView("Centuries");
-				model.addObject("boardId", bid);
-				System.out.println("boardid==============================>"+bid);
+				 
 				
-				hubReq= new HubRequest();
-				hubReq.setMsgType(170);
-				ModelMap yearsMap = new ModelMap();
-				yearsMap.put("boardId", bid);
-				yearsMap.put("startNode", 0);
-				yearsMap.put("endNode", 10);
-				hubReq.setRequestParam(yearsMap);
-				String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-				String yearVal = null;
-				
-				
-				if(strYears!=null)
-				{
-					HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-					if(response!=null && response.getResults()!=null && response.getResults() != null)
-					{
-						model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-						if(response.getResults().getCreateUmpire().getYearslist().size() != 0){
-							model.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-							model.addObject("defaultload", "yes");
-							yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-						}else{
-							model.addObject("yearListSize",0);
-						}
-					}
-				}
-				
-				
-					HubRequest hubReq=new HubRequest();
-					// hubReq.setMsgType(107);
-					 ModelMap map=new ModelMap();			
-					 hubReq.setMsgType(122);
+				HubRequest hubReq=new HubRequest();
+				// hubReq.setMsgType(107);
+				 ModelMap map=new ModelMap();			
+				 hubReq.setMsgType(122);
 					//ModelMap map=new ModelMap();			
 					 map.put("userId", userId);			 
 					 map.put("boardId", bid);
 					 map.put("startNode", 0);
 					 map.put("endNode", 500);
-					 map.put("filterByYear", yearVal);
 					 
 					 CenturiesSerach search= new CenturiesSerach();
 					 search.setAgainstTeamId("");
@@ -14013,8 +13916,6 @@ public ModelAndView leaguecenturies(@PathVariable String bid, HttpServletRequest
 					 search.setBoardId(bid);
 					 search.setStartNode(0);
 					 search.setEndNode(500);
-					 search.setFilterByYear(yearVal);
-					 
 				 hubReq.setRequestParam(search);
 				 String strCentury=cricketSocialRestTemplateService.userRegistration(hubReq);
 			
@@ -14024,7 +13925,7 @@ public ModelAndView leaguecenturies(@PathVariable String bid, HttpServletRequest
 					if(hubResponse1!=null && hubResponse1.getResults().getCentueryList()!=null)
 					{
 						model.addObject("centueryList", hubResponse1.getResults().getCentueryList());
-						model.addObject("centueryListSize", hubResponse1.getResults().getCentueryList().size());
+						
 					}
 				 }
 				
@@ -14110,236 +14011,6 @@ public ModelAndView leaguecenturies(@PathVariable String bid, HttpServletRequest
 	return model;
 }
 
-
-
-
-@RequestMapping(value="/yearWiseCenturies", method = RequestMethod.POST)
-public @ResponseBody List<TournamentDTO> yearWiseCenturies(@RequestBody CenturiesSerach search, HttpServletRequest req){
-	List<TournamentDTO> centuriesList = null;
-	try{
-		HttpSession session = req.getSession(true);
-		if(session != null && session.getAttribute("USRID") != null){
-			UUID userId = (UUID) session.getAttribute("USRID");
-			System.out.println("boardId=======Here====>"+search.getBoardId());
-			HubRequest hubReq=new HubRequest();
-			// hubReq.setMsgType(107);
-			 ModelMap map=new ModelMap();			
-			 hubReq.setMsgType(122);
-			//ModelMap map=new ModelMap();			
-			 map.put("userId", userId);			 
-			 map.put("boardId", search.getBoardId());
-			 map.put("startNode", 0);
-			 map.put("endNode", 500);
-			 map.put("filterByYear", search.getFilterByYear());
-			 map.put("homeTeamId", "");
-			 map.put("againstTeamId", "");
-			 
-			 hubReq.setRequestParam(map);
-			String centuriesResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
-			
-			if(centuriesResponse!=null)
-			{
-				HubResponse response= GsonConverters.getGsonObject().fromJson(centuriesResponse, HubResponse.class);
-				if(response!=null && response.getResults().getCentueryList()!=null)
-				{
-					centuriesList = response.getResults().getCentueryList();
-					
-				}
-			}
-			
-		}else{
-			
-		}
-}catch(Exception ex){
-	ex.printStackTrace();
-}
-	return centuriesList;
-
-}
-
-
-
-
-
-
-@RequestMapping(value="/yearWiseHalfCenturies", method = RequestMethod.POST)
-public @ResponseBody List<TournamentDTO> yearWiseHalfCenturies(@RequestBody CenturiesSerach search, HttpServletRequest req){
-	List<TournamentDTO> halfCenturiesList = null;
-	try{
-		HttpSession session = req.getSession(true);
-		if(session != null && session.getAttribute("USRID") != null){
-			UUID userId = (UUID) session.getAttribute("USRID");
-			
-			HubRequest hubReq=new HubRequest();
-			// hubReq.setMsgType(107);
-			 ModelMap map=new ModelMap();			
-			 hubReq.setMsgType(131);
-			//ModelMap map=new ModelMap();			
-			 map.put("userId", userId);			 
-			 map.put("boardId", search.getBoardId());
-			 map.put("startNode", 0);
-			 map.put("endNode", 500);
-			 map.put("filterByYear", search.getFilterByYear());
-			 map.put("homeTeamId", "");
-			 map.put("againstTeamId", "");
-			 
-			 hubReq.setRequestParam(map);
-			String centuriesResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
-			
-			if(centuriesResponse!=null)
-			{
-				HubResponse response= GsonConverters.getGsonObject().fromJson(centuriesResponse, HubResponse.class);
-				if(response!=null && response.getResults().getHalfCenturyList()!=null)
-				{
-					halfCenturiesList = response.getResults().getHalfCenturyList();
-					
-				}
-			}
-			
-		}else{
-			
-		}
-}catch(Exception ex){
-	ex.printStackTrace();
-}
-	return halfCenturiesList;
-
-}
-
-@RequestMapping(value="/yearWise5fer", method = RequestMethod.POST)
-public @ResponseBody List<TournamentDTO> yearWise5fer(@RequestBody CenturiesSerach search, HttpServletRequest req){
-	List<TournamentDTO> fivewktList = null;
-	try{
-		HttpSession session = req.getSession(true);
-		if(session != null && session.getAttribute("USRID") != null){
-			UUID userId = (UUID) session.getAttribute("USRID");
-			
-			
-			hubReq = new HubRequest();
-			 hubReq.setMsgType(184);
-			 ModelMap map = new ModelMap();
-			 map.put("boardId", search.getBoardId());
-			 map.put("tournamentId","");
-			 map.put("homeTeamId", "");
-			 map.put("againstTeamId", "");
-			 map.put("filterByYear", search.getFilterByYear());
-			 map.put("startNode", 0);
-			 map.put("endNode", 500);
-			 hubReq.setRequestParam(map);
-			 
-			String centuriesResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
-			
-			if(centuriesResponse!=null)
-			{
-				HubResponse response= GsonConverters.getGsonObject().fromJson(centuriesResponse, HubResponse.class);
-				if(response!=null && response.getResults().getFiveWicketsPlayerList()!=null)
-				{
-					fivewktList = response.getResults().getFiveWicketsPlayerList();
-					
-				}
-			}
-			
-		}else{
-			
-		}
-}catch(Exception ex){
-	ex.printStackTrace();
-}
-	return fivewktList;
-
-}
-
-@RequestMapping(value="/yearWiseTopBatsman", method = RequestMethod.POST)
-public @ResponseBody List<TournamentDTO> yearWiseTopBatsman(@RequestBody CenturiesSerach search, HttpServletRequest req){
-	List<TournamentDTO> topBatsmanList = null;
-	try{
-		HttpSession session = req.getSession(true);
-		if(session != null && session.getAttribute("USRID") != null){
-			UUID userId = (UUID) session.getAttribute("USRID");
-			System.out.println("CAME TO CONTROLLER>>>>>>>>>>>>>>>>");
-			
-			hubReq = new HubRequest();
-			hubReq.setMsgType(182);
-			 ModelMap map = new ModelMap();
-			 map.put("boardId", search.getBoardId());
-			 map.put("tournamentId","");
-			 map.put("homeTeamId", "");
-			 map.put("againstTeamId", "");
-			 map.put("filterByYear", search.getFilterByYear());
-			 map.put("startNode", 0);
-			 map.put("endNode", 500);
-			 hubReq.setRequestParam(map);
-			 
-			String centuriesResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
-			
-			if(centuriesResponse!=null)
-			{
-				HubResponse response= GsonConverters.getGsonObject().fromJson(centuriesResponse, HubResponse.class);
-				if(response!=null && response.getResults().getTopBatsmanList()!=null)
-				{
-					topBatsmanList = response.getResults().getTopBatsmanList();
-					
-				}
-			}
-			
-		}else{
-			
-		}
-}catch(Exception ex){
-	ex.printStackTrace();
-}
-	return topBatsmanList;
-
-}
-
-
-
-@RequestMapping(value="/yearWiseTopBowler", method = RequestMethod.POST)
-public @ResponseBody List<TournamentDTO> yearWiseTopBowler(@RequestBody CenturiesSerach search, HttpServletRequest req){
-	List<TournamentDTO> topBowlerList = null;
-	try{
-		HttpSession session = req.getSession(true);
-		if(session != null && session.getAttribute("USRID") != null){
-			UUID userId = (UUID) session.getAttribute("USRID");
-			
-			hubReq = new HubRequest();
-			 hubReq.setMsgType(183);
-			 ModelMap map = new ModelMap();
-			 map.put("boardId", search.getBoardId());
-			 map.put("tournamentId","");
-			 map.put("homeTeamId", "");
-			 map.put("againstTeamId", "");
-			 map.put("filterByYear", search.getFilterByYear());
-			 map.put("startNode", 0);
-			 map.put("endNode", 500);
-			 hubReq.setRequestParam(map);
-			 
-			String centuriesResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
-			
-			if(centuriesResponse!=null)
-			{
-				HubResponse response= GsonConverters.getGsonObject().fromJson(centuriesResponse, HubResponse.class);
-				if(response!=null && response.getResults().getTopBowlersList()!=null)
-				{
-					topBowlerList = response.getResults().getTopBowlersList();
-					
-				}
-			}
-			
-		}else{
-			
-		}
-}catch(Exception ex){
-	ex.printStackTrace();
-}
-	return topBowlerList;
-
-}
-
-
-
-
-
 @RequestMapping(value="/leaguehalfcenturies/{bid}", method=RequestMethod.GET)
 public ModelAndView leaguehalfcenturies(@PathVariable String bid, HttpServletRequest request)
 {
@@ -14351,39 +14022,6 @@ public ModelAndView leaguehalfcenturies(@PathVariable String bid, HttpServletReq
 				UUID  userId = (UUID) session.getAttribute("USRID");
 			//	model= new ModelAndView("HalfCenturies");
 				model= new ModelAndView("HalfCenturiesSearch"); 
-				model.addObject("boardId", bid);
-				
-				hubReq= new HubRequest();
-				hubReq.setMsgType(170);
-				ModelMap yearsMap = new ModelMap();
-				yearsMap.put("boardId", bid);
-				yearsMap.put("startNode", 0);
-				yearsMap.put("endNode", 10);
-				hubReq.setRequestParam(yearsMap);
-				String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-				String yearVal = null;
-				
-				
-				if(strYears!=null)
-				{
-					HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-					if(response!=null && response.getResults()!=null && response.getResults() != null)
-					{
-						model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-						if(response.getResults().getCreateUmpire().getYearslist().size() != 0){
-							model.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-							model.addObject("defaultload", "yes");
-							yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-						}else{
-							model.addObject("yearListSize",0);
-						}
-					}
-				}
-				
-				
-				
-				
-				
 				
 				HubRequest hubReq=new HubRequest();
 				// hubReq.setMsgType(108);
@@ -14396,8 +14034,6 @@ public ModelAndView leaguehalfcenturies(@PathVariable String bid, HttpServletReq
 				 serach.setStartNode(0);
 				 serach.setTournamentId("");
 				 serach.setHomeTeamId("");
-				 serach.setFilterByYear(yearVal);
-				 
 				
 				 ModelMap map=new ModelMap();			
 				 map.put("userId", userId);			 
@@ -14492,7 +14128,6 @@ public ModelAndView leaguecenturiesProfile(@PathVariable String bid, HttpServlet
 			{
 				UUID  userId = (UUID) session.getAttribute("USRID");
 				model= new ModelAndView("CenturiesPublic");
-				model.addObject("publicboardId", bid);
 				 
 				final String context = request.getContextPath();
 				System.out.println("------------------------------------> "+context);
@@ -14508,35 +14143,6 @@ public ModelAndView leaguecenturiesProfile(@PathVariable String bid, HttpServlet
 				 * */
 				
 				
-				hubReq= new HubRequest();
-				hubReq.setMsgType(170);
-				ModelMap yearsMap = new ModelMap();
-				yearsMap.put("boardId", bid);
-				yearsMap.put("startNode", 0);
-				yearsMap.put("endNode", 10);
-				hubReq.setRequestParam(yearsMap);
-				String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-				String yearVal = null;
-				
-				
-				if(strYears!=null)
-				{
-					HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-					if(response!=null && response.getResults()!=null && response.getResults() != null)
-					{
-						model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-						if(response.getResults().getCreateUmpire().getYearslist().size() != 0){
-							model.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-							model.addObject("defaultload", "yes");
-							yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-						}else{
-							model.addObject("yearListSize",0);
-						}
-					}
-				}
-				
-				
-				
 				 hubReq.setMsgType(122);
 				ModelMap map=new ModelMap();			
 				 map.put("userId", userId);			 
@@ -14549,7 +14155,6 @@ public ModelAndView leaguecenturiesProfile(@PathVariable String bid, HttpServlet
 				 search.setBoardId(bid);
 				 search.setStartNode(0);
 				 search.setEndNode(500);
-				 search.setFilterByYear(yearVal);
 			 hubReq.setRequestParam(search);
 				 //hubReq.setRequestParam(map);
 				 String strCentury=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -14660,7 +14265,7 @@ public ModelAndView leaguecenturieslist(CenturiesSerach search , HttpServletRequ
 			{
 				UUID  userId = (UUID) session.getAttribute("USRID");
 				model= new ModelAndView("Centuries");
-				model.addObject("boardId", search.getBoardId()); 
+				 
 				/*
 				 
 				 {
@@ -14676,32 +14281,8 @@ public ModelAndView leaguecenturieslist(CenturiesSerach search , HttpServletRequ
 }
 }
 				 * */
-				System.out.println("in leaguesenturylist>>>>>>>>>>>>>>>>>>>>>>"+search.getBoardId());
-				hubReq= new HubRequest();
-				hubReq.setMsgType(170);
-				ModelMap yearsMap = new ModelMap();
-				yearsMap.put("boardId", search.getBoardId());
-				yearsMap.put("startNode", 0);
-				yearsMap.put("endNode", 10);
-				hubReq.setRequestParam(yearsMap);
-				String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-				String yearVal = null;
 				
 				
-				if(strYears!=null)
-				{
-					HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-					if(response!=null && response.getResults()!=null && response.getResults() != null)
-					{
-						model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-						if(response.getResults().getCreateUmpire().getYearslist().size() != 0){
-							model.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-							yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-						}else{
-							model.addObject("yearListSize",0);
-						}
-					}
-				}
 				
 				
 				HubRequest hubReq=new HubRequest();
@@ -14786,7 +14367,7 @@ public ModelAndView leaguecenturieslistprofile(CenturiesSerach search , HttpServ
 			{
 				UUID  userId = (UUID) session.getAttribute("USRID");
 				model= new ModelAndView("CenturiesPublic");
-				model.addObject("publicboardId", search.getBoardId());  
+				 
 				/*
 				 
 				 {
@@ -14802,35 +14383,6 @@ public ModelAndView leaguecenturieslistprofile(CenturiesSerach search , HttpServ
 }
 }
 				 * */
-				
-				
-				hubReq= new HubRequest();
-				hubReq.setMsgType(170);
-				ModelMap yearsMap = new ModelMap();
-				yearsMap.put("boardId", search.getBoardId());
-				yearsMap.put("startNode", 0);
-				yearsMap.put("endNode", 10);
-				hubReq.setRequestParam(yearsMap);
-				String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-				String yearVal = null;
-				
-				
-				if(strYears!=null)
-				{
-					HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-					if(response!=null && response.getResults()!=null && response.getResults() != null)
-					{
-						model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-						if(response.getResults().getCreateUmpire().getYearslist().size() != 0){
-							model.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-							yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-						}else{
-							model.addObject("yearListSize",0);
-						}
-					}
-				}
-				
-				
 				
 				
 				
@@ -14910,7 +14462,6 @@ public ModelAndView leaguecenturieslistprofile(CenturiesSerach search , HttpServ
 	return model;
 }
 
-//JITHIN changes mav to same page
 
 @RequestMapping(value="/leaguehalfcenturieslist", method=RequestMethod.POST)
 public ModelAndView leaguehalfcenturieslist(CenturiesSerach search , HttpServletRequest request)
@@ -14921,8 +14472,8 @@ public ModelAndView leaguehalfcenturieslist(CenturiesSerach search , HttpServlet
 			if(session!=null && session.getAttribute("USRID")!=null)
 			{
 				UUID  userId = (UUID) session.getAttribute("USRID");
-				model= new ModelAndView("HalfCenturiesSearch");
-				model.addObject("boardId", search.getBoardId()); 
+				model= new ModelAndView("HalfCenturies");
+				
 				
 				 
 				/*
@@ -14941,31 +14492,7 @@ public ModelAndView leaguehalfcenturieslist(CenturiesSerach search , HttpServlet
 }
 				 * */
 				
-				hubReq= new HubRequest();
-				hubReq.setMsgType(170);
-				ModelMap yearsMap = new ModelMap();
-				yearsMap.put("boardId", search.getBoardId());
-				yearsMap.put("startNode", 0);
-				yearsMap.put("endNode", 10);
-				hubReq.setRequestParam(yearsMap);
-				String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-				String yearVal = null;
 				
-				
-				if(strYears!=null)
-				{
-					HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-					if(response!=null && response.getResults()!=null && response.getResults() != null)
-					{
-						model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-						if(response.getResults().getCreateUmpire().getYearslist().size() != 0){
-							model.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-							yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-						}else{
-							model.addObject("yearListSize",0);
-						}
-					}
-				}
 				
 				
 				HubRequest hubReq=new HubRequest();
@@ -15045,8 +14572,6 @@ public ModelAndView leaguehalfcenturieslist(CenturiesSerach search , HttpServlet
 	}
 	return model;
 }
-
-//JITHIN changed mav to same page
 @RequestMapping(value="profile/leaguehalfcenturieslist", method=RequestMethod.POST)
 public ModelAndView leaguehalfcenturieslistprofile(CenturiesSerach search , HttpServletRequest request)
 {
@@ -15056,8 +14581,8 @@ public ModelAndView leaguehalfcenturieslistprofile(CenturiesSerach search , Http
 			if(session!=null && session.getAttribute("USRID")!=null)
 			{
 				UUID  userId = (UUID) session.getAttribute("USRID");
-				model= new ModelAndView("HalfCenturiesPublicSearch");
-				model.addObject("publicBoardId", search.getBoardId()); 
+				model= new ModelAndView("HalfCenturiesPublic");
+				 
 				/*
 				 
 				 {
@@ -15074,31 +14599,7 @@ public ModelAndView leaguehalfcenturieslistprofile(CenturiesSerach search , Http
 }
 				 * */
 				
-				hubReq= new HubRequest();
-				hubReq.setMsgType(170);
-				ModelMap yearsMap = new ModelMap();
-				yearsMap.put("boardId", search.getBoardId());
-				yearsMap.put("startNode", 0);
-				yearsMap.put("endNode", 10);
-				hubReq.setRequestParam(yearsMap);
-				String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-				String yearVal = null;
 				
-				
-				if(strYears!=null)
-				{
-					HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-					if(response!=null && response.getResults()!=null && response.getResults() != null)
-					{
-						model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-						if(response.getResults().getCreateUmpire().getYearslist().size() != 0){
-							model.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-							yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-						}else{
-							model.addObject("yearListSize",0);
-						}
-					}
-				}
 				
 				
 				HubRequest hubReq=new HubRequest();
@@ -15218,38 +14719,9 @@ public ModelAndView leaguehalfcenturiesprofile(@PathVariable String bid, HttpSer
 				UUID  userId = (UUID) session.getAttribute("USRID");
 				//model= new ModelAndView("HalfCenturiesPublic");
 				model= new ModelAndView("HalfCenturiesPublicSearch");
-				model.addObject("publicBoardId", bid);
+				
 				final String context = request.getContextPath();
 
-				
-				
-				hubReq= new HubRequest();
-				hubReq.setMsgType(170);
-				ModelMap yearsMap = new ModelMap();
-				yearsMap.put("boardId", bid);
-				yearsMap.put("startNode", 0);
-				yearsMap.put("endNode", 10);
-				hubReq.setRequestParam(yearsMap);
-				String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-				String yearVal = null;
-				
-				
-				if(strYears!=null)
-				{
-					HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-					if(response!=null && response.getResults()!=null && response.getResults() != null)
-					{
-						model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-						if(response.getResults().getCreateUmpire().getYearslist().size() != 0){
-							model.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-							model.addObject("defaultload", "yes");
-							yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-						}else{
-							model.addObject("yearListSize",0);
-						}
-					}
-				}
-				
 				
 				HubRequest hubReq=new HubRequest();
 				 //hubReq.setMsgType(108);
@@ -15262,8 +14734,6 @@ public ModelAndView leaguehalfcenturiesprofile(@PathVariable String bid, HttpSer
 				 serach.setStartNode(0);
 				 serach.setTournamentId("");
 				 serach.setHomeTeamId("");
-				 serach.setFilterByYear(yearVal);
-				 
 				
 				 ModelMap map=new ModelMap();			
 				 map.put("userId", userId);			 
@@ -15742,7 +15212,6 @@ public ModelAndView fiveWickets(@PathVariable String bid, HttpServletRequest req
 		{
 			final String context = request.getContextPath();
 			model= new ModelAndView("fiveWicket");
-			model.addObject("boardId", bid);
 			UUID userId = (UUID) session.getAttribute("USRID");
 			//********************************** Getting User Board List  *******************************************************	 
 			 hubReq=new HubRequest(41);
@@ -15803,35 +15272,7 @@ public ModelAndView fiveWickets(@PathVariable String bid, HttpServletRequest req
 				}else{
 					model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 				}*/
-				 
-				 hubReq= new HubRequest();
-					hubReq.setMsgType(170);
-					ModelMap yearsMap = new ModelMap();
-					yearsMap.put("boardId", bid);
-					yearsMap.put("startNode", 0);
-					yearsMap.put("endNode", 10);
-					hubReq.setRequestParam(yearsMap);
-					String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-					String yearVal = null;
-					
-					
-					if(strYears!=null)
-					{
-						HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-						if(response!=null && response.getResults()!=null && response.getResults() != null)
-						{
-							model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-							if(response.getResults().getCreateUmpire().getYearslist().size() != 0){
-								model.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-								model.addObject("defaultload", "yes");
-								yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-							}else{
-								model.addObject("yearListSize",0);
-							}
-						}
-					}
-				 
-				 
+			
 				 
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(184);
@@ -15840,7 +15281,6 @@ public ModelAndView fiveWickets(@PathVariable String bid, HttpServletRequest req
 				 map.put("tournamentId","");
 				 map.put("homeTeamId", "");
 				 map.put("againstTeamId", "");
-				 map.put("filterByYear", yearVal);
 				 map.put("startNode", 0);
 				 map.put("endNode", 500);
 				 hubReq.setRequestParam(map);
@@ -15875,7 +15315,7 @@ public ModelAndView fiveWickets(@PathVariable String bid, HttpServletRequest req
 @RequestMapping(value="/topbatsman/{bid}", method=RequestMethod.GET)
 public ModelAndView topbatsman(@PathVariable String bid , HttpServletRequest request)
 {
-System.out.println("IN CONTROLLER 1");
+
 	ModelAndView model= null;
 	try{
 		HttpSession session=request.getSession(true);
@@ -15953,35 +15393,6 @@ System.out.println("IN CONTROLLER 1");
 					model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 				}*/
 			 
-				 System.out.println("IN CONTROLLER 2");
-				 	hubReq= new HubRequest();
-					hubReq.setMsgType(170);
-					ModelMap yearsMap = new ModelMap();
-					yearsMap.put("boardId", bid);
-					yearsMap.put("startNode", 0);
-					yearsMap.put("endNode", 10);
-					hubReq.setRequestParam(yearsMap);
-					String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-					String yearVal = null;
-					
-					
-					if(strYears!=null)
-					{
-						HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-						if(response!=null && response.getResults()!=null && response.getResults() != null)
-						{
-							model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-							if(response.getResults().getCreateUmpire().getYearslist().size() != 0){
-								model.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-								model.addObject("defaultload", "yes");
-								yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-							}else{
-								model.addObject("yearListSize",0);
-							}
-						}
-					}
-				 
-				 
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(182);
 				 ModelMap map = new ModelMap();
@@ -15989,7 +15400,6 @@ System.out.println("IN CONTROLLER 1");
 				 map.put("tournamentId","");
 				 map.put("homeTeamId", "");
 				 map.put("againstTeamId", "");
-				 map.put("filterByYear", yearVal);
 				 map.put("startNode", 0);
 				 map.put("endNode", 500);
 				 hubReq.setRequestParam(map);
@@ -16034,7 +15444,6 @@ public ModelAndView topbowler(@PathVariable String bid , HttpServletRequest requ
 		{
 			final String context = request.getContextPath();
 			model= new ModelAndView("TopBowler");
-			model.addObject("boardId", bid);
 			UUID userId = (UUID) session.getAttribute("USRID");
 			//********************************** Getting User Board List  *******************************************************	 
 			 hubReq=new HubRequest(41);
@@ -16103,35 +15512,6 @@ public ModelAndView topbowler(@PathVariable String bid , HttpServletRequest requ
 				}*/
 				 
 				
-				 hubReq= new HubRequest();
-					hubReq.setMsgType(170);
-					ModelMap yearsMap = new ModelMap();
-					yearsMap.put("boardId", bid);
-					yearsMap.put("startNode", 0);
-					yearsMap.put("endNode", 10);
-					hubReq.setRequestParam(yearsMap);
-					String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-					String yearVal = null;
-					
-					
-					if(strYears!=null)
-					{
-						HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-						if(response!=null && response.getResults()!=null && response.getResults() != null)
-						{
-							model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-							if(response.getResults().getCreateUmpire().getYearslist().size() != 0){
-								model.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-								model.addObject("defaultload", "yes");
-								yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-							}else{
-								model.addObject("yearListSize",0);
-							}
-						}
-					}
-				 
-				 
-				 
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(183);
 				 ModelMap map = new ModelMap();
@@ -16139,7 +15519,6 @@ public ModelAndView topbowler(@PathVariable String bid , HttpServletRequest requ
 				 map.put("tournamentId","");
 				 map.put("homeTeamId", "");
 				 map.put("againstTeamId", "");
-				 map.put("filterByYear", yearVal);
 				 map.put("startNode", 0);
 				 map.put("endNode", 500);
 				 hubReq.setRequestParam(map);
@@ -17157,46 +16536,13 @@ public ModelAndView myScore(HttpServletRequest request)throws CSException
 				
 				
 				//if(userRoleName.equalsIgnoreCase("Player")){
-			hubReq= new HubRequest();
-			hubReq.setMsgType(170);
-			ModelMap yearsMap = new ModelMap();
-			yearsMap.put("uid", userId);
-			yearsMap.put("startNode", 0);
-			yearsMap.put("endNode", 10);
-			hubReq.setRequestParam(yearsMap);
-			String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-			String yearVal = null;
-			
-			
-			if(strYears!=null)
-			{
-				HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-				if(response!=null && response.getResults()!=null && response.getResults() != null)
-				{
-					model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-					if(response.getResults().getCreateUmpire().getYearslist() != null){
-						if(response.getResults().getCreateUmpire().getYearslist().size() !=0){
-							model.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-							yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-						}
-						
-					}else{
-						model.addObject("yearListSize",0);
-					}
-				}
-			}
-			
-			
-			
-			
-			
+				
 					hubReq= new HubRequest();
 					hubReq.setMsgType(155);
 					ModelMap battingmap = new ModelMap();
 					battingmap.put("uid", userId);
 					battingmap.put("startNode", 0);
 					battingmap.put("endNode", 10);
-					battingmap.put("filterByYear",yearVal);
 					hubReq.setRequestParam(battingmap);
 					String strBattingResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
 					
@@ -17222,7 +16568,6 @@ public ModelAndView myScore(HttpServletRequest request)throws CSException
 					bowlingmap.put("startNode", 0);
 					bowlingmap.put("endNode", 10);
 					bowlingmap.put("flag", "forMyScore");
-					bowlingmap.put("filterByYear",yearVal);
 					hubReq.setRequestParam(bowlingmap);
 					String strBowlingResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
 				
@@ -17246,7 +16591,6 @@ public ModelAndView myScore(HttpServletRequest request)throws CSException
 					achievements.put("uid", userId);
 					achievements.put("startNode", 0);
 					achievements.put("endNode", 500);
-					achievements.put("filterByYear",yearVal);
 					hubReq.setRequestParam(achievements);
 					String strAchievementsResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
 					
@@ -17267,7 +16611,7 @@ public ModelAndView myScore(HttpServletRequest request)throws CSException
 					}
 					
 					
-					/*hubReq= new HubRequest();
+					hubReq= new HubRequest();
 					hubReq.setMsgType(170);
 					ModelMap yearsMap = new ModelMap();
 					yearsMap.put("uid", userId);
@@ -17284,13 +16628,9 @@ public ModelAndView myScore(HttpServletRequest request)throws CSException
 						if(response!=null && response.getResults()!=null && response.getResults() != null)
 						{
 							model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-							if(response.getResults().getCreateUmpire().getYearslist() != null){
-								model.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-							}else{
-								model.addObject("yearListSize",0);
-							}
+							
 						}
-					}*/
+					}
 					
 					
 					
@@ -19703,19 +19043,16 @@ public ModelAndView showScoreCard(HttpServletRequest req, @PathVariable String b
 									}
 									
 									String manOfTheMatch = "";
-									if(res.getResults().getMatchResult().getManOfTheMatch() != null){
-										if(res.getResults().getMatchResult().getManOfTheMatch().size() > 0){
-											for(int i=0;i<res.getResults().getMatchResult().getManOfTheMatch().size();i++){
-										
-												if(i == 0){
-													manOfTheMatch += res.getResults().getMatchResult().getManOfTheMatch().get(i);
-												}else{
-													manOfTheMatch += ", "+res.getResults().getMatchResult().getManOfTheMatch().get(i);
-												}
+									if(res.getResults().getMatchResult().getManOfTheMatch().size() > 0){
+										for(int i=0;i<res.getResults().getMatchResult().getManOfTheMatch().size();i++){
+									
+											if(i == 0){
+												manOfTheMatch += res.getResults().getMatchResult().getManOfTheMatch().get(i);
+											}else{
+												manOfTheMatch += ", "+res.getResults().getMatchResult().getManOfTheMatch().get(i);
 											}
 										}
 									}
-									
 									
 									if(manOfTheMatch != ""){
 									mav.addObject("PlayerOfTheMatch", manOfTheMatch);
@@ -24682,7 +24019,6 @@ public @ResponseBody List<UserBattingPerformanceDTO> paginationBattingPerformanc
 			}
 			battingmap.put("startNode", game.getStartNode());
 			battingmap.put("endNode", game.getEndNode());
-			battingmap.put("filterByYear",game.getFilterByYear());
 			hubReq.setRequestParam(battingmap);
 			String strBattingResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
 			
@@ -24719,11 +24055,10 @@ public @ResponseBody List<UserBattingPerformanceDTO> paginationBowlingPerformanc
 			hubReq= new HubRequest();
 			hubReq.setMsgType(147);
 			ModelMap bowlingmap = new ModelMap();
-			bowlingmap.put("uid", game.getUserId());
+			bowlingmap.put("uid", userId);
 			bowlingmap.put("startNode", game.getStartNode());
 			bowlingmap.put("endNode", game.getEndNode());
 			bowlingmap.put("flag", game.getFlag());
-			bowlingmap.put("filterByYear",game.getFilterByYear());
 			hubReq.setRequestParam(bowlingmap);
 			String strBowlingResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
 			
@@ -24759,10 +24094,9 @@ public @ResponseBody List<UserBattingPerformanceDTO> paginationMatchAchievements
 			hubReq= new HubRequest();
 			hubReq.setMsgType(148);
 			ModelMap achievements = new ModelMap();
-			achievements.put("uid", game.getUserId());
+			achievements.put("uid", userId);
 			achievements.put("startNode", game.getStartNode());
 			achievements.put("endNode", game.getEndNode());
-			achievements.put("filterByYear",game.getFilterByYear());
 			hubReq.setRequestParam(achievements);
 			String strAchievementsResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
 			
@@ -24865,92 +24199,6 @@ public @ResponseBody List<UserBattingPerformanceDTO> yearWiseBowling(@RequestBod
 	}
 	return bowlingList;
 }
-
-
-	@RequestMapping(value = "/yearWiseAchievements", method = RequestMethod.POST)
-	public @ResponseBody List<UserBattingPerformanceDTO> yearWiseAchievements(
-			@RequestBody UserBattingPerformanceDTO userAch,
-			HttpServletRequest req) {
-		List<UserBattingPerformanceDTO> achievementList = null;
-		try {
-			HttpSession session = req.getSession(true);
-			if (session != null && session.getAttribute("USRID") != null) {
-				UUID userId = (UUID) session.getAttribute("USRID");
-
-				hubReq = new HubRequest();
-				hubReq.setMsgType(148);
-				ModelMap achievementmap = new ModelMap();
-				achievementmap.put("uid", userId);
-				achievementmap.put("startNode", 0);
-				achievementmap.put("endNode", 500);
-				achievementmap.put("filterByYear", userAch.getFilterByYear());
-				hubReq.setRequestParam(achievementmap);
-				String strAchievementResponse = cricketSocialRestTemplateService
-						.userRegistration(hubReq);
-
-				if (strAchievementResponse != null) {
-					HubResponse response = GsonConverters
-							.getGsonObject()
-							.fromJson(strAchievementResponse, HubResponse.class);
-					if (response != null && response.getResults() != null
-							&& response.getResults() != null) {
-						achievementList = response.getResults()
-								.getUseronedaymatchsachivements();
-					}
-				}
-
-			} else {
-
-			}
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return achievementList;
-	}
-
-
-
-@RequestMapping(value="/yearWiseAchievementScorer",method = RequestMethod.POST)
-public @ResponseBody List<UserBattingPerformanceDTO> yearWiseAchievementScorer(@RequestBody UserBattingPerformanceDTO userAch,HttpServletRequest req){
-	List<UserBattingPerformanceDTO> achievementList = null;
-	try{
-		HttpSession session = req.getSession(true);
-		if(session != null && session.getAttribute("USRID") != null){
-			UUID userId = (UUID) session.getAttribute("USRID");
-			
-			
-			hubReq= new HubRequest();
-			hubReq.setMsgType(148);
-			ModelMap achievementmap = new ModelMap();
-			achievementmap.put("uid", userAch.getPlayerId());
-			achievementmap.put("startNode", 0);
-			achievementmap.put("endNode", 500);
-			achievementmap.put("filterByYear", userAch.getFilterByYear());
-			hubReq.setRequestParam(achievementmap);
-			String strAchievementResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
-			
-	
-			if(strAchievementResponse!=null)
-			{
-				HubResponse response= GsonConverters.getGsonObject().fromJson(strAchievementResponse, HubResponse.class);
-				if(response!=null && response.getResults()!=null && response.getResults() != null)
-				{
-					achievementList = response.getResults().getUseronedaymatchsachivements();
-				}
-			}
-			
-		}else{
-			
-		}
-		
-	}catch(Exception ex){
-		ex.printStackTrace();
-	}
-	return achievementList;
-}
-
-
 @RequestMapping(value="/EnterScore/boardId/{boardId}", method = RequestMethod.GET)
 public ModelAndView enterScore(HttpServletRequest req, @PathVariable String boardId){
 	ModelAndView mav = null;
@@ -25578,7 +24826,6 @@ public @ResponseBody List<CompletedMatches> loadMoreBoardAchievementsData(@Reque
 		matchesMap.put("boardId", game.getBoardId());
 		matchesMap.put("startNode", game.getStartNode());
 		matchesMap.put("endNode", game.getEndNode());
-		matchesMap.put("filterByYear", game.getFilterByYear());
 		hubReq.setRequestParam(matchesMap);
 
 		String response  = cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -25588,42 +24835,8 @@ public @ResponseBody List<CompletedMatches> loadMoreBoardAchievementsData(@Reque
 				
 				if(hubRes.getResults().getBoardAchievements() != null){
 					completedMatches = hubRes.getResults().getBoardAchievements().getCompletedMatchesList();
-				}
 				
-				}
-		}
-		
-	}catch(Exception ex){
-		ex.printStackTrace();
-	}
-	return completedMatches;
-
-}
-
-
-@RequestMapping(value="/yearWiseMatches", method=RequestMethod.POST)
-public @ResponseBody List<CompletedMatches> yearWiseMatches(@RequestBody GameSchedule gameData){
-	List<CompletedMatches> completedMatches = null;
-	
-	try{
-		hubReq = new HubRequest(173);
-		hubReq.setMsgType(173);
-
-		ModelMap matchesMap= new ModelMap();
-		matchesMap.put("boardId", gameData.getBoardId());
-		matchesMap.put("startNode", 0);
-		matchesMap.put("endNode", 10);
-		matchesMap.put("filterByYear", gameData.getFilterByYear());
-		hubReq.setRequestParam(matchesMap);
-
-		String response  = cricketSocialRestTemplateService.userRegistration(hubReq);
-		if(response != null){
-			HubResponse hubRes = GsonConverters.getGsonObject().fromJson(response, HubResponse.class);
-			if(hubRes !=  null && hubRes.getResults() != null){
 				
-				if(hubRes.getResults().getBoardAchievements() != null){
-					System.out.println("size1=========>"+hubRes.getResults().getBoardAchievements().getCompletedMatchesList().size());
-					completedMatches = hubRes.getResults().getBoardAchievements().getCompletedMatchesList();
 				}
 				
 				}
@@ -28010,7 +27223,7 @@ public ModelAndView cancelTournament(@PathVariable String boardId, HttpServletRe
 	return mav;
 }
 
-//JITHIN CHANGED MAV TO SAME PAGE
+
 @RequestMapping(value="/leagueTopBatsmanList", method=RequestMethod.POST)
 public ModelAndView leagueTopBatsmanList(CenturiesSerach search , HttpServletRequest request)
 {
@@ -28023,36 +27236,8 @@ public ModelAndView leagueTopBatsmanList(CenturiesSerach search , HttpServletReq
 				
 				search.setAgainstTeamId(search.getHomeTeamId());
 				//model= new ModelAndView("TopBatsman");
-				model= new ModelAndView("TopBatsman");
+				model= new ModelAndView("TopBatsmanSearch");
 				model.addObject("boardId", search.getBoardId());
-				
-				
-				hubReq.setMsgType(170);
-				ModelMap yearsMap = new ModelMap();
-				yearsMap.put("boardId", search.getBoardId());
-				yearsMap.put("startNode", 0);
-				yearsMap.put("endNode", 10);
-				hubReq.setRequestParam(yearsMap);
-				String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-				String yearVal = null;
-				
-				
-				if(strYears!=null)
-				{
-					HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-					if(response!=null && response.getResults()!=null && response.getResults() != null)
-					{
-						model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-						if(response.getResults().getCreateUmpire().getYearslist().size() != 0){
-							model.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-							yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-						}else{
-							model.addObject("yearListSize",0);
-						}
-					}
-				}
-				
-				
 				
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(182);
@@ -28132,8 +27317,6 @@ public ModelAndView leagueTopBatsmanList(CenturiesSerach search , HttpServletReq
 	return model;
 }
 
-//JITHIN CHANGED MAV TO SAME PAGE
-
 @RequestMapping(value="/leagueTopBowlerList", method=RequestMethod.POST)
 public ModelAndView leagueTopBowlerList(CenturiesSerach search , HttpServletRequest request)
 {
@@ -28145,35 +27328,8 @@ public ModelAndView leagueTopBowlerList(CenturiesSerach search , HttpServletRequ
 				UUID  userId = (UUID) session.getAttribute("USRID");
 				//model= new ModelAndView("TopBowler");
 				search.setAgainstTeamId(search.getHomeTeamId());
-				model= new ModelAndView("TopBowler");
+				model= new ModelAndView("TopBowlerSearch");
 				model.addObject("boardId", search.getBoardId());
-				
-				
-				hubReq.setMsgType(170);
-				ModelMap yearsMap = new ModelMap();
-				yearsMap.put("boardId", search.getBoardId());
-				yearsMap.put("startNode", 0);
-				yearsMap.put("endNode", 10);
-				hubReq.setRequestParam(yearsMap);
-				String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-				String yearVal = null;
-				
-				
-				if(strYears!=null)
-				{
-					HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-					if(response!=null && response.getResults()!=null && response.getResults() != null)
-					{
-						model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-						if(response.getResults().getCreateUmpire().getYearslist().size() != 0){
-							model.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-							yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-						}else{
-							model.addObject("yearListSize",0);
-						}
-					}
-				}
-				
 				
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(183);
@@ -28264,34 +27420,6 @@ public ModelAndView leagueTopFiveWicketsList(CenturiesSerach search , HttpServle
 				UUID  userId = (UUID) session.getAttribute("USRID");
 				model= new ModelAndView("fiveWicket");
 				model.addObject("boardId", search.getBoardId());
-				
-				
-				
-				hubReq.setMsgType(170);
-				ModelMap yearsMap = new ModelMap();
-				yearsMap.put("boardId", search.getBoardId());
-				yearsMap.put("startNode", 0);
-				yearsMap.put("endNode", 10);
-				hubReq.setRequestParam(yearsMap);
-				String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-				String yearVal = null;
-				
-				
-				if(strYears!=null)
-				{
-					HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-					if(response!=null && response.getResults()!=null && response.getResults() != null)
-					{
-						model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-						if(response.getResults().getCreateUmpire().getYearslist().size() != 0){
-							model.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-							yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-						}else{
-							model.addObject("yearListSize",0);
-						}
-					}
-				}
-				
 				
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(184);
@@ -29590,7 +28718,6 @@ public ModelAndView fivewicketsPublicProfile(@PathVariable String bid, HttpServl
 		{
 			final String context = request.getContextPath();
 			model= new ModelAndView("fiveWicketPublicProfile");
-			model.addObject("publicBoardId", bid);
 			UUID userId = (UUID) session.getAttribute("USRID");
 			//********************************** Getting User Board List  *******************************************************	 
 			 hubReq=new HubRequest(41);
@@ -29679,34 +28806,7 @@ public ModelAndView fivewicketsPublicProfile(@PathVariable String bid, HttpServl
 						 System.out.println("board : "+buddyFan);
 						 model.addObject("BoardFanReq", buddyFan);
 						 
-					
 						 
-						 hubReq= new HubRequest();
-							hubReq.setMsgType(170);
-							ModelMap yearsMap = new ModelMap();
-							yearsMap.put("boardId", bid);
-							yearsMap.put("startNode", 0);
-							yearsMap.put("endNode", 10);
-							hubReq.setRequestParam(yearsMap);
-							String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-							String yearVal = null;
-							
-							
-							if(strYears!=null)
-							{
-								HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-								if(response!=null && response.getResults()!=null && response.getResults() != null)
-								{
-									model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-									if(response.getResults().getCreateUmpire().getYearslist().size() != 0){
-										model.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-										model.addObject("defaultload", "yes");
-										yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-									}else{
-										model.addObject("yearListSize",0);
-									}
-								}
-							}
 						 
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(184);
@@ -29715,7 +28815,6 @@ public ModelAndView fivewicketsPublicProfile(@PathVariable String bid, HttpServl
 				 map.put("tournamentId","");
 				 map.put("homeTeamId", "");
 				 map.put("againstTeamId", "");
-				 map.put("filterByYear", yearVal);
 				 map.put("startNode", 0);
 				 map.put("endNode", 500);
 				 hubReq.setRequestParam(map);
@@ -29850,7 +28949,7 @@ public ModelAndView topbatsmanPublicProfile(@PathVariable String bid , HttpServl
 		{
 			final String context = request.getContextPath();
 			model= new ModelAndView("TopBatsmanPublicProfile");
-			model.addObject("publicboardId", bid);
+			model.addObject("boardId", bid);
 			
 			UUID userId = (UUID) session.getAttribute("USRID");
 			//********************************** Getting User Board List  *******************************************************	 
@@ -29923,34 +29022,6 @@ public ModelAndView topbatsmanPublicProfile(@PathVariable String bid , HttpServl
 					model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 				}*/
 			 
-				 hubReq= new HubRequest();
-					hubReq.setMsgType(170);
-					ModelMap yearsMap = new ModelMap();
-					yearsMap.put("boardId", bid);
-					yearsMap.put("startNode", 0);
-					yearsMap.put("endNode", 10);
-					hubReq.setRequestParam(yearsMap);
-					String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-					String yearVal = null;
-					
-					
-					if(strYears!=null)
-					{
-						HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-						if(response!=null && response.getResults()!=null && response.getResults() != null)
-						{
-							model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-							if(response.getResults().getCreateUmpire().getYearslist().size() != 0){
-								model.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-								model.addObject("defaultload", "yes");
-								yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-							}else{
-								model.addObject("yearListSize",0);
-							}
-						}
-					}
-				 
-				 
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(182);
 				 ModelMap map = new ModelMap();
@@ -29958,7 +29029,6 @@ public ModelAndView topbatsmanPublicProfile(@PathVariable String bid , HttpServl
 				 map.put("tournamentId","");
 				 map.put("homeTeamId", "");
 				 map.put("againstTeamId", "");
-				 map.put("filterByYear", yearVal);
 				 map.put("startNode", 0);
 				 map.put("endNode", 500);
 				 hubReq.setRequestParam(map);
@@ -30018,7 +29088,7 @@ public ModelAndView topbatsmanPublicProfile(@PathVariable String bid , HttpServl
 
 }
 
-//JITHIN CHANGED MAV TO SAME PAGE
+
 @RequestMapping(value="/leagueTopBatsmanListPublicProfile", method=RequestMethod.POST)
 public ModelAndView leagueTopBatsmanListPublicProfile(CenturiesSerach search , HttpServletRequest request)
 {
@@ -30029,38 +29099,10 @@ public ModelAndView leagueTopBatsmanListPublicProfile(CenturiesSerach search , H
 			{
 				UUID  userId = (UUID) session.getAttribute("USRID");
 				//model= new ModelAndView("TopBatsmanPublicProfile");
-				model= new ModelAndView("TopBatsmanPublicProfile");
-				model.addObject("publicboardId", search.getBoardId());
+				model= new ModelAndView("TopBatsmanSearchPublic");
+				model.addObject("boardId", search.getBoardId());
 				
 				search.setAgainstTeamId(search.getHomeTeamId());
-				
-				
-				
-				hubReq.setMsgType(170);
-				ModelMap yearsMap = new ModelMap();
-				yearsMap.put("boardId", search.getBoardId());
-				yearsMap.put("startNode", 0);
-				yearsMap.put("endNode", 10);
-				hubReq.setRequestParam(yearsMap);
-				String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-				String yearVal = null;
-				
-				
-				if(strYears!=null)
-				{
-					HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-					if(response!=null && response.getResults()!=null && response.getResults() != null)
-					{
-						model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-						if(response.getResults().getCreateUmpire().getYearslist().size() != 0){
-							model.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-							yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-						}else{
-							model.addObject("yearListSize",0);
-						}
-					}
-				}
-				
 				
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(182);
@@ -30152,7 +29194,7 @@ public ModelAndView topbowlerPublicProfile(@PathVariable String bid , HttpServle
 		{
 			final String context = request.getContextPath();
 			model= new ModelAndView("TopBowlerPublicProfile");
-			model.addObject("publicboardId", bid);
+			
 			UUID userId = (UUID) session.getAttribute("USRID");
 			//********************************** Getting User Board List  *******************************************************	 
 			 hubReq=new HubRequest(41);
@@ -30226,35 +29268,6 @@ public ModelAndView topbowlerPublicProfile(@PathVariable String bid , HttpServle
 				}*/
 				 
 				
-				 hubReq= new HubRequest();
-					hubReq.setMsgType(170);
-					ModelMap yearsMap = new ModelMap();
-					yearsMap.put("boardId", bid);
-					yearsMap.put("startNode", 0);
-					yearsMap.put("endNode", 10);
-					hubReq.setRequestParam(yearsMap);
-					String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-					String yearVal = null;
-					
-					
-					if(strYears!=null)
-					{
-						HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-						if(response!=null && response.getResults()!=null && response.getResults() != null)
-						{
-							model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-							if(response.getResults().getCreateUmpire().getYearslist().size() != 0){
-								model.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-								model.addObject("defaultload", "yes");
-								yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-							}else{
-								model.addObject("yearListSize",0);
-							}
-						}
-					}
-				 
-				 
-				 
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(183);
 				 ModelMap map = new ModelMap();
@@ -30262,7 +29275,6 @@ public ModelAndView topbowlerPublicProfile(@PathVariable String bid , HttpServle
 				 map.put("tournamentId","");
 				 map.put("homeTeamId", "");
 				 map.put("againstTeamId", "");
-				 map.put("filterByYear", yearVal);
 				 map.put("startNode", 0);
 				 map.put("endNode", 500);
 				 hubReq.setRequestParam(map);
@@ -30323,8 +29335,6 @@ public ModelAndView topbowlerPublicProfile(@PathVariable String bid , HttpServle
 
 }
 
-
-//JITHIN CHANGED MAV TO SAME PAGE
 @RequestMapping(value="/leagueTopBowlerListPublicProfile", method=RequestMethod.POST)
 public ModelAndView leagueTopBowlerListPublicProfile(CenturiesSerach search , HttpServletRequest request)
 {
@@ -30336,38 +29346,8 @@ public ModelAndView leagueTopBowlerListPublicProfile(CenturiesSerach search , Ht
 				UUID  userId = (UUID) session.getAttribute("USRID");
 				//model= new ModelAndView("TopBowlerPublicProfile");
 				search.setAgainstTeamId(search.getHomeTeamId());
-				model= new ModelAndView("TopBowlerPublicProfile");
-				model.addObject("publicboardId", search.getBoardId());
-				
-				
-				hubReq.setMsgType(170);
-				ModelMap yearsMap = new ModelMap();
-				yearsMap.put("boardId", search.getBoardId());
-				yearsMap.put("startNode", 0);
-				yearsMap.put("endNode", 10);
-				hubReq.setRequestParam(yearsMap);
-				String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-				String yearVal = null;
-				
-				
-				if(strYears!=null)
-				{
-					HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-					if(response!=null && response.getResults()!=null && response.getResults() != null)
-					{
-						model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-						if(response.getResults().getCreateUmpire().getYearslist().size() != 0){
-							model.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-							yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-						}else{
-							model.addObject("yearListSize",0);
-						}
-					}
-				}
-				
-				
-				
-				
+				model= new ModelAndView("TopBowlerSearchPublicProfile");
+				model.addObject("boardId", search.getBoardId());
 				
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(183);
@@ -30788,38 +29768,6 @@ public ModelAndView myScorePublicProfile(HttpServletRequest request,@PathVariabl
 				
 				
 				//if(userRoleName.equalsIgnoreCase("Player")){
-			
-			
-
-			hubReq= new HubRequest();
-			hubReq.setMsgType(170);
-			ModelMap yearsMap = new ModelMap();
-			yearsMap.put("uid", userIdUUID);
-			yearsMap.put("startNode", 0);
-			yearsMap.put("endNode", 10);
-			hubReq.setRequestParam(yearsMap);
-			String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-			String yearVal = null;
-			
-			
-			if(strYears!=null)
-			{
-				HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-				if(response!=null && response.getResults()!=null && response.getResults() != null)
-				{
-					model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-					//yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);*/
-					if(response.getResults().getCreateUmpire().getYearslist().size() != 0){
-						model.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-						yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-					}else{
-						model.addObject("yearListSize",0);
-					}
-				}
-			}
-			
-			
-			
 				
 					hubReq= new HubRequest();
 					hubReq.setMsgType(155);
@@ -30827,7 +29775,6 @@ public ModelAndView myScorePublicProfile(HttpServletRequest request,@PathVariabl
 					battingmap.put("uid", userIdUUID);
 					battingmap.put("startNode", 0);
 					battingmap.put("endNode", 10);
-					battingmap.put("filterByYear",yearVal);
 					hubReq.setRequestParam(battingmap);
 					String strBattingResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
 					
@@ -30852,7 +29799,6 @@ public ModelAndView myScorePublicProfile(HttpServletRequest request,@PathVariabl
 					bowlingmap.put("startNode", 0);
 					bowlingmap.put("endNode", 10);
 					bowlingmap.put("flag", "forMyScore");
-					bowlingmap.put("filterByYear",yearVal);
 					hubReq.setRequestParam(bowlingmap);
 					String strBowlingResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
 				
@@ -30864,7 +29810,6 @@ public ModelAndView myScorePublicProfile(HttpServletRequest request,@PathVariabl
 							model.addObject("bowlingPerformanceList", response.getResults().getUserBowlingPerformanceList());
 							if(response.getResults().getUserBowlingPerformanceList() != null){
 								model.addObject("bowlingPerformanceListSize",response.getResults().getUserBowlingPerformanceList().size());
-								System.out.println("The bowlingPerformanceListSize :"+response.getResults().getUserBowlingPerformanceList().size());
 							}else{
 								model.addObject("bowlingPerformanceListSize",0);
 							}
@@ -30877,7 +29822,6 @@ public ModelAndView myScorePublicProfile(HttpServletRequest request,@PathVariabl
 					achievements.put("uid", userIdUUID);
 					achievements.put("startNode", 0);
 					achievements.put("endNode", 500);
-					achievements.put("filterByYear",yearVal);
 					hubReq.setRequestParam(achievements);
 					String strAchievementsResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
 					
@@ -30897,7 +29841,7 @@ public ModelAndView myScorePublicProfile(HttpServletRequest request,@PathVariabl
 						}
 					}
 					
-					/*
+					
 					hubReq= new HubRequest();
 					hubReq.setMsgType(170);
 					ModelMap yearsMap = new ModelMap();
@@ -30917,7 +29861,7 @@ public ModelAndView myScorePublicProfile(HttpServletRequest request,@PathVariabl
 							model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
 							
 						}
-					}*/
+					}
 					
 					
 					
@@ -31498,42 +30442,13 @@ public ModelAndView boardScore(HttpServletRequest req, @PathVariable String boar
 					 }
 				 }
 				 
-				hubReq= new HubRequest();
-				hubReq.setMsgType(170);
-				ModelMap yearsMap = new ModelMap();
-				yearsMap.put("boardId", boardId);
-				yearsMap.put("startNode", 0);
-				yearsMap.put("endNode", 10);
-				hubReq.setRequestParam(yearsMap);
-				String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-				String yearVal = null;
-				
-				
-				if(strYears!=null)
-				{
-					HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-					if(response!=null && response.getResults()!=null && response.getResults() != null)
-					{
-						mav.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-						if(response.getResults().getCreateUmpire().getYearslist().size() != 0){
-							mav.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-							yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-						}else{
-							mav.addObject("yearListSize",0);
-						}
-					}
-				}
-				 
-				 
-				 
-				 	hubReq = new HubRequest(173);
+				 hubReq = new HubRequest(173);
 					hubReq.setMsgType(173);
 					
 					ModelMap matchesMap= new ModelMap();
 					matchesMap.put("boardId", boardId);
 					matchesMap.put("startNode", 0);
 					matchesMap.put("endNode", 10);
-					matchesMap.put("filterByYear", yearVal);
 					hubReq.setRequestParam(matchesMap);
 					
 					String response  = cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -31620,50 +30535,13 @@ public ModelAndView boardScorePublicProfile(HttpServletRequest req, @PathVariabl
 					 }
 				 }
 				 
-				 	hubReq= new HubRequest();
-					hubReq.setMsgType(170);
-					ModelMap yearsMap = new ModelMap();
-					yearsMap.put("boardId", boardId);
-					yearsMap.put("startNode", 0);
-					yearsMap.put("endNode", 10);
-					hubReq.setRequestParam(yearsMap);
-					String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-					String yearVal = null;
-					
-					
-					if(strYears!=null)
-					{
-						HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-						if(response!=null && response.getResults()!=null && response.getResults() != null)
-						{
-							mav.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-							/*if(response.getResults().getCreateUmpire().getYearslist() != null){
-								mav.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-								yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-							}else{
-								mav.addObject("yearListSize",0);
-							}*/
-							if(response.getResults().getCreateUmpire().getYearslist().size() != 0){
-								mav.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-								yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-							}else{
-								mav.addObject("yearListSize",0);
-							}
-						}
-					}
-				 
-				 
-				 
-				 
-				 
-				 	hubReq = new HubRequest(173);
+				 hubReq = new HubRequest(173);
 					hubReq.setMsgType(173);
 					
 					ModelMap matchesMap= new ModelMap();
 					matchesMap.put("boardId", boardId);
 					matchesMap.put("startNode", 0);
 					matchesMap.put("endNode", 10);
-					matchesMap.put("filterByYear", yearVal);
 					hubReq.setRequestParam(matchesMap);
 					
 					String response  = cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -33052,35 +31930,6 @@ public ModelAndView getBuddyPublicProfileFromScoreCard(HttpServletRequest reques
 			
 			
 			//if(userRoleName.equalsIgnoreCase("Player")){
-		
-		hubReq= new HubRequest();
-		hubReq.setMsgType(170);
-		ModelMap yearsMap = new ModelMap();
-		yearsMap.put("uid", buddyId);
-		yearsMap.put("startNode", 0);
-		yearsMap.put("endNode", 10);
-		hubReq.setRequestParam(yearsMap);
-		String strYears = cricketSocialRestTemplateService.userRegistration(hubReq);
-		String yearVal = null;
-		
-		
-		if(strYears!=null)
-		{
-			HubResponse response= GsonConverters.getGsonObject().fromJson(strYears, HubResponse.class);
-			if(response!=null && response.getResults()!=null && response.getResults() != null)
-			{
-				model.addObject("yearsList", response.getResults().getCreateUmpire().getYearslist());
-				if(response.getResults().getCreateUmpire().getYearslist() != null){
-					if(response.getResults().getCreateUmpire().getYearslist().size() !=0){
-						model.addObject("yearListSize",response.getResults().getCreateUmpire().getYearslist().size());
-						yearVal = response.getResults().getCreateUmpire().getYearslist().get(0);
-					}
-					
-				}else{
-					model.addObject("yearListSize",0);
-				}
-			}
-		}
 			
 				hubReq= new HubRequest();
 				hubReq.setMsgType(155);
@@ -33088,7 +31937,6 @@ public ModelAndView getBuddyPublicProfileFromScoreCard(HttpServletRequest reques
 				battingmap.put("uid", userIdUUID);
 				battingmap.put("startNode", 0);
 				battingmap.put("endNode", 10);
-				battingmap.put("filterByYear",yearVal);
 				hubReq.setRequestParam(battingmap);
 				String strBattingResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
 				
@@ -33113,7 +31961,6 @@ public ModelAndView getBuddyPublicProfileFromScoreCard(HttpServletRequest reques
 				bowlingmap.put("startNode", 0);
 				bowlingmap.put("endNode", 10);
 				bowlingmap.put("flag", "forMyScore");
-				bowlingmap.put("filterByYear",yearVal);
 				hubReq.setRequestParam(bowlingmap);
 				String strBowlingResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
 			
@@ -33137,7 +31984,6 @@ public ModelAndView getBuddyPublicProfileFromScoreCard(HttpServletRequest reques
 				achievements.put("uid", userIdUUID);
 				achievements.put("startNode", 0);
 				achievements.put("endNode", 500);
-				achievements.put("filterByYear",yearVal);
 				hubReq.setRequestParam(achievements);
 				String strAchievementsResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
 				
@@ -33158,7 +32004,7 @@ public ModelAndView getBuddyPublicProfileFromScoreCard(HttpServletRequest reques
 				}
 				
 				
-				/*hubReq= new HubRequest();
+				hubReq= new HubRequest();
 				hubReq.setMsgType(170);
 				ModelMap yearsMap = new ModelMap();
 				yearsMap.put("uid", userIdUUID);
@@ -33179,7 +32025,7 @@ public ModelAndView getBuddyPublicProfileFromScoreCard(HttpServletRequest reques
 					}
 				}
 				
-				*/
+				
 				
 			/*}else{
 				model.addObject("battingPerformanceListSize",0);
@@ -35751,7 +34597,6 @@ public @ResponseBody List<UserBattingPerformanceDTO> paginationBattingPerformanc
 			battingmap.put("uid", game.getUserId());
 			battingmap.put("startNode", game.getStartNode());
 			battingmap.put("endNode", game.getEndNode());
-			battingmap.put("filterByYear",game.getFilterByYear());
 			
 			hubReq.setRequestParam(battingmap);
 			String strBattingResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -35791,7 +34636,6 @@ public @ResponseBody List<UserBattingPerformanceDTO> paginationBowlingPerformanc
 			bowlingmap.put("uid", game.getUserId());
 			bowlingmap.put("startNode", game.getStartNode());
 			bowlingmap.put("endNode", game.getEndNode());
-			bowlingmap.put("filterByYear", game.getFilterByYear());
 			bowlingmap.put("flag", game.getFlag());
 			hubReq.setRequestParam(bowlingmap);
 			String strBowlingResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -35831,7 +34675,6 @@ public @ResponseBody List<UserBattingPerformanceDTO> paginationMatchAchievements
 			achievements.put("uid", game.getUserId());
 			achievements.put("startNode", game.getStartNode());
 			achievements.put("endNode", game.getEndNode());
-			achievements.put("filterByYear",game.getFilterByYear());
 			hubReq.setRequestParam(achievements);
 			String strAchievementsResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
 			
@@ -35913,7 +34756,7 @@ public @ResponseBody List<UserBattingPerformanceDTO> yearWiseBowlingScorer(@Requ
 			bowlingmap.put("startNode", 0);
 			bowlingmap.put("endNode", 10);
 			bowlingmap.put("filterByYear", userBat.getFilterByYear());
-			bowlingmap.put("flag", "forMyScore");
+			bowlingmap.put("flag", userBat.getFlag());
 			hubReq.setRequestParam(bowlingmap);
 			String strBowlingResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
 			
@@ -36641,30 +35484,8 @@ public ModelAndView aboutOrganization(HttpServletRequest req,@PathVariable Strin
 	OrganizationResponse orgresponse=new OrganizationResponse();
 	long filesize=0;
 	Gson gson=new Gson();
-	HttpSession session = req.getSession(true);
 	try{
 		mav=new ModelAndView("OrgDetails");
-		
-		hubReq= new HubRequest();
-		 hubReq.setMsgType(41);
-		 ModelMap map=new ModelMap();
-		 map.put("userId", session.getAttribute("USRID"));
-		 map.put("startNode", 0);
-		 map.put("endNode", 200);
-		  hubReq.setRequestParam(map);
-			 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
-			 GsonBuilder builder = new GsonBuilder();
-			 Gson gson1 = builder.create();
-			 if(strBoardList!=null)
-			 {
-				 HubResponse hubResponse= gson1.fromJson(strBoardList, HubResponse.class);
-				 if(hubResponse!=null && hubResponse.getResults()!=null)
-				 {
-					 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
-				 }
-			 }
-			 
-			 
 		UUID uid=UUID.fromString(boardId);
 		HubRequest hubreq1=new HubRequest(261);
 		OrganizationDetails orgdetails=new OrganizationDetails();
@@ -36718,29 +35539,8 @@ public ModelAndView aboutHistory(HttpServletRequest req,@PathVariable String boa
 	OrganizationResponse orgresponse=new OrganizationResponse();
 	long filesize=0;
 	Gson gson=new Gson();
-	HttpSession session = req.getSession(true);
 	try{
 		mav=new ModelAndView("OrgDetails");
-		
-		hubReq= new HubRequest();
-		 hubReq.setMsgType(41);
-		 ModelMap map=new ModelMap();
-		 map.put("userId", session.getAttribute("USRID"));
-		 map.put("startNode", 0);
-		 map.put("endNode", 200);
-		  hubReq.setRequestParam(map);
-			 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
-			 GsonBuilder builder = new GsonBuilder();
-			 Gson gson1 = builder.create();
-			 if(strBoardList!=null)
-			 {
-				 HubResponse hubResponse= gson1.fromJson(strBoardList, HubResponse.class);
-				 if(hubResponse!=null && hubResponse.getResults()!=null)
-				 {
-					 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
-				 }
-			 }
-			 
 		UUID uid=UUID.fromString(boardId);
 		HubRequest hubreq1=new HubRequest(261);
 		OrganizationDetails orgdetails=new OrganizationDetails();
@@ -36795,30 +35595,8 @@ public ModelAndView aboutRulesRegulation(HttpServletRequest req,@PathVariable St
 	OrganizationResponse orgresponse=new OrganizationResponse();
 	long filesize=0;
 	Gson gson=new Gson();
-	HttpSession session = req.getSession(true);
 	try{
 		mav=new ModelAndView("OrgDetails");
-		
-		
-		hubReq= new HubRequest();
-		 hubReq.setMsgType(41);
-		 ModelMap map=new ModelMap();
-		 map.put("userId", session.getAttribute("USRID"));
-		 map.put("startNode", 0);
-		 map.put("endNode", 200);
-		  hubReq.setRequestParam(map);
-			 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
-			 GsonBuilder builder = new GsonBuilder();
-			 Gson gson1 = builder.create();
-			 if(strBoardList!=null)
-			 {
-				 HubResponse hubResponse= gson1.fromJson(strBoardList, HubResponse.class);
-				 if(hubResponse!=null && hubResponse.getResults()!=null)
-				 {
-					 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
-				 }
-			 }
-			 
 		UUID uid=UUID.fromString(boardId);
 		HubRequest hubreq1=new HubRequest(261);
 		OrganizationDetails orgdetails=new OrganizationDetails();
@@ -36872,30 +35650,8 @@ public ModelAndView aboutawardhonor(HttpServletRequest req,@PathVariable String 
 	OrganizationResponse orgresponse=new OrganizationResponse();
 	long filesize=0;
 	Gson gson=new Gson();
-	HttpSession session = req.getSession(true);
 	try{
 		mav=new ModelAndView("OrgDetails");
-		
-		
-		hubReq= new HubRequest();
-		 hubReq.setMsgType(41);
-		 ModelMap map=new ModelMap();
-		 map.put("userId", session.getAttribute("USRID"));
-		 map.put("startNode", 0);
-		 map.put("endNode", 200);
-		  hubReq.setRequestParam(map);
-			 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
-			 GsonBuilder builder = new GsonBuilder();
-			 Gson gson1 = builder.create();
-			 if(strBoardList!=null)
-			 {
-				 HubResponse hubResponse= gson1.fromJson(strBoardList, HubResponse.class);
-				 if(hubResponse!=null && hubResponse.getResults()!=null)
-				 {
-					 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
-				 }
-			 }
-			 
 		UUID uid=UUID.fromString(boardId);
 		HubRequest hubreq1=new HubRequest(261);
 		OrganizationDetails orgdetails=new OrganizationDetails();
@@ -36948,30 +35704,8 @@ public ModelAndView aboutFaq(HttpServletRequest req,@PathVariable String boardId
 	OrganizationResponse orgresponse=new OrganizationResponse();
 	long filesize=0;
 	Gson gson=new Gson();
-	HttpSession session = req.getSession(true);
 	try{
 		mav=new ModelAndView("OrgDetails");
-		
-		
-		hubReq= new HubRequest();
-		 hubReq.setMsgType(41);
-		 ModelMap map=new ModelMap();
-		 map.put("userId", session.getAttribute("USRID"));
-		 map.put("startNode", 0);
-		 map.put("endNode", 200);
-		  hubReq.setRequestParam(map);
-			 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
-			 GsonBuilder builder = new GsonBuilder();
-			 Gson gson1 = builder.create();
-			 if(strBoardList!=null)
-			 {
-				 HubResponse hubResponse= gson1.fromJson(strBoardList, HubResponse.class);
-				 if(hubResponse!=null && hubResponse.getResults()!=null)
-				 {
-					 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
-				 }
-			 }
-			 
 		UUID uid=UUID.fromString(boardId);
 		HubRequest hubreq1=new HubRequest(261);
 		OrganizationDetails orgdetails=new OrganizationDetails();
@@ -37018,39 +35752,14 @@ public ModelAndView aboutFaq(HttpServletRequest req,@PathVariable String boardId
 @RequestMapping(value="/Directors/{boardId}",method=RequestMethod.GET)
 public ModelAndView Directors(HttpServletRequest req,@PathVariable String boardId )
 {
-	
 	ModelAndView mav=null;
 	System.out.println("the board id :"+boardId);
 	BoardResponse boardresponse=new BoardResponse();
 	long filesize=0;
 	long sponsersize=0;
 	Gson gson=new Gson();
-	HttpSession session = req.getSession(true);
 	try{
 		mav=new ModelAndView("BoardDirectors");
-		
-		
-		
-		hubReq= new HubRequest();
-		 hubReq.setMsgType(41);
-		 ModelMap map=new ModelMap();
-		 map.put("userId", session.getAttribute("USRID"));
-		 map.put("startNode", 0);
-		 map.put("endNode", 200);
-		  hubReq.setRequestParam(map);
-			 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
-			 GsonBuilder builder = new GsonBuilder();
-			 Gson gson1 = builder.create();
-			 if(strBoardList!=null)
-			 {
-				 HubResponse hubResponse= gson1.fromJson(strBoardList, HubResponse.class);
-				 if(hubResponse!=null && hubResponse.getResults()!=null)
-				 {
-					 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
-				 }
-			 }
-		
-		
 		UUID uid=UUID.fromString(boardId);
 		HubRequest hubreq1=new HubRequest(262);
 		OrganizationDetails orgdetails=new OrganizationDetails();
@@ -37110,33 +35819,8 @@ public ModelAndView Sponser(HttpServletRequest req,@PathVariable String boardId 
 	long filesize=0;
 	long sponsersize=0;
 	Gson gson=new Gson();
-	HttpSession session = req.getSession(true);
 	try{
 		mav=new ModelAndView("Sponsers");
-		
-		
-		
-		hubReq= new HubRequest();
-		 hubReq.setMsgType(41);
-		 ModelMap map=new ModelMap();
-		 map.put("userId", session.getAttribute("USRID"));
-		 map.put("startNode", 0);
-		 map.put("endNode", 200);
-		  hubReq.setRequestParam(map);
-			 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
-			 GsonBuilder builder = new GsonBuilder();
-			 Gson gson1 = builder.create();
-			 if(strBoardList!=null)
-			 {
-				 HubResponse hubResponse= gson1.fromJson(strBoardList, HubResponse.class);
-				 if(hubResponse!=null && hubResponse.getResults()!=null)
-				 {
-					 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
-				 }
-			 }
-		
-		
-		
 		UUID uid=UUID.fromString(boardId);
 		HubRequest hubreq1=new HubRequest(263);
 		OrganizationDetails orgdetails=new OrganizationDetails();
@@ -37266,30 +35950,6 @@ public ModelAndView Organizationdetails(HttpServletRequest req, @PathVariable St
 			mav = new ModelAndView("OrganizationInfo");
 			mav.addObject("boardId", boardId);
 			UUID uid=UUID.fromString(boardId);
-			
-			
-			
-			
-			hubReq= new HubRequest();
-			 hubReq.setMsgType(41);
-			 ModelMap map=new ModelMap();
-			 map.put("userId", session.getAttribute("USRID"));
-			 map.put("startNode", 0);
-			 map.put("endNode", 200);
-			  hubReq.setRequestParam(map);
-				 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
-				 GsonBuilder builder = new GsonBuilder();
-				 Gson gson1 = builder.create();
-				 if(strBoardList!=null)
-				 {
-					 HubResponse hubResponse= gson1.fromJson(strBoardList, HubResponse.class);
-					 if(hubResponse!=null && hubResponse.getResults()!=null)
-					 {
-						 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
-					 }
-				 }
-			
-			
 			HubRequest hubreq1=new HubRequest(261);
 			OrganizationDetails orgdetails=new OrganizationDetails();
 			orgdetails.setBoardId(uid);
@@ -37425,39 +36085,38 @@ public @ResponseBody SponserResponse sponsersInfoDetails(HttpServletRequest req,
 }
 
 @RequestMapping(value="/directorsInfoDetails",method=RequestMethod.POST)
-	public @ResponseBody BoardResponse directorsInfoDetails(
-			HttpServletRequest req, @RequestBody OrganizationDetails orgdetails) {
-		System.out.println("The organization details called :"
-				+ orgdetails.getBoardInfoType());
-		BoardResponse boardresponse = new BoardResponse();
-		Gson gson = new Gson();
+public @ResponseBody BoardResponse directorsInfoDetails(HttpServletRequest req,@RequestBody OrganizationDetails orgdetails )
+{
+	System.out.println("The organization details called :"+orgdetails.getBoardInfoType());
+	BoardResponse boardresponse=new BoardResponse();
+	Gson gson=new Gson();
+	
+	try{
+		hubReq=new HubRequest(262);
+		hubReq.setRequestParam(orgdetails);
+		String response=cricketSocialRestTemplateService.userRegistration(hubReq);
+		System.out.println("The response 262 is :"+response);
+		 if(response != null){
+			
 
-		try {
-			hubReq = new HubRequest(262);
-			hubReq.setRequestParam(orgdetails);
-			String response = cricketSocialRestTemplateService
-					.userRegistration(hubReq);
-			System.out.println("The response 262 is :" + response);
-			if (response != null) {
-
-				JSONObject jobj = new JSONObject(response);
-				JSONObject jresult = jobj.getJSONObject("results");
-				JSONObject jboardobj = jresult
-						.getJSONObject("boardDirectorsResponse");
-
-				if (jboardobj.length() != 0) {
-					boardresponse = gson.fromJson(jboardobj.toString(),
-							BoardResponse.class);
-
-				}
-
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return boardresponse;
+			 JSONObject jobj=new JSONObject(response);
+			 JSONObject jresult=jobj.getJSONObject("results");
+			 JSONObject jboardobj=jresult.getJSONObject("boardDirectorsResponse");
+			  
+			 if(jboardobj.length() !=0)
+			 {
+				 boardresponse= gson.fromJson(jboardobj.toString(), BoardResponse.class);
+				 		  
+			 }
+			  
+			 }
+		
+	}catch(Exception e)
+	{
+		e.printStackTrace();
 	}
+	return boardresponse;
+}
 
 
 
@@ -37590,38 +36249,6 @@ public ModelAndView BoardInfoPublic(@PathVariable String bid, HttpServletRequest
 	return model;
 }
 
-
-
-/*@RequestMapping(value="/testurl",method=RequestMethod.GET)
-public @ResponseBody String testurl(HttpServletRequest req){
-
-	try {
-		hubReq= new HubRequest();
-		hubReq.setMsgType(11);
-		ModelMap test = new ModelMap();
-		test.put("overNumber", "0");
-		test.put("bowlingRosterId", "5f41fd53-4043-4a4f-a3eb-ddc8c3bf7d5f");
-		test.put("innings", "1");
-		test.put("battingRosterId", "2f7eab3a-fd8d-4fa0-adc8-17033570cc05");
-		test.put("tournamentSchedulerId", "2ee8e04f-32c1-46c6-aba2-3cba398eed97");
-		test.put("scorerId", "462cf8c3-941a-491e-8907-f90a119c4d18");
-		hubReq.setRequestParam(test);
-		ModelMap test1 = new ModelMap();
-		test1.put("scorerId", "f61760a0-f9b4-4172-9430-137a5380c8a8");
-		test1.put("matchId", "2ee8e04f-32c1-46c6-aba2-3cba398eed97");
-		hubReq.setScorerInfo(test1);
-	
-		String res = cricketSocialRestTemplateService.userRegistration1(hubReq);
-		System.out.println("response========>"+res);
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	
-	
-	return "Sucess";
-	
-}*/
 
 
 }

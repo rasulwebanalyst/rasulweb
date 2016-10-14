@@ -28,474 +28,444 @@ public class BoardProfile {
 	private String classification;
 	private String country;
 	private String createdBy;
-
+	
 	private String notification;
-
+	
 	private String latlang;
 	private int likesReceived;
 	private Date createdDate;
-	private String modifiedBy;
-	private Date modifiedDate;
-	private int pageVisibility;
-	private int postingAbility;
-	private String statusId;
-	private UUID boardId;
-	private String boardDefaultfan;  
-	private List<Integer> ampireList;
-	private List<Integer> schedulerList;  
-	private String ampires;
-	private String schedulesr;  
-	//private List<String> boardCoOwnerList;
-	//private List<ModelMap> boardCoOwnerList;
-	private List<BoardCoordinatorMap> boardCoOwnerList;
+  private String modifiedBy;
+  private Date modifiedDate;
+  private int pageVisibility;
+  private int postingAbility;
+  private String statusId;
+  private UUID boardId;
+  private String boardDefaultfan;  
+  private List<Integer> ampireList;
+  private List<Integer> schedulerList;  
+  private String ampires;
+  private String schedulesr;  
+//private List<String> boardCoOwnerList;
+//private List<ModelMap> boardCoOwnerList;
+  private List<BoardCoordinatorMap> boardCoOwnerList;
 
-	private String boardCoOwners;
-	private String fansCount="0";
+private String boardCoOwners;
+private String fansCount="0";
 
-	// Board Fans
-	private boolean isYourBoard;
-	private String hasAdminRights;
-	private String boardfancount;
+// Board Fans
+private boolean isYourBoard;
+private String hasAdminRights;
+private String boardfancount;
 
 
-	private List<CoOrdinator> boardCoordinatorList;
-	private UserProfile user;
-	private String id;
-	private String zipcode;
+private List<CoOrdinator> boardCoordinatorList;
+private UserProfile user;
+private String id;
+private String zipcode;
 
-	private boolean scheduleFlag;
+private boolean scheduleFlag;
 
-	private String oldlatLang;
+private String oldlatLang;
 
-	private String imageExtension;
+private String imageExtension;
 
-	private String coOwnerId;
+private String coOwnerId;
 
-	private Long phoneNumber1;
-	private Long phoneNumber2;
-	private String countryCode1;
-	private String countryCode2;
 
-	public String getCoOwnerId() {
-		return coOwnerId;
-	}
 
-	public void setCoOwnerId(String coOwnerId) {
-		this.coOwnerId = coOwnerId;
-	}
+public String getCoOwnerId() {
+	return coOwnerId;
+}
 
-	public String getBoardfancount() {
-		return boardfancount;
-	}
+public void setCoOwnerId(String coOwnerId) {
+	this.coOwnerId = coOwnerId;
+}
 
-	public void setBoardfancount(String boardfancount) {
-		this.boardfancount = boardfancount;
-	}
+public String getBoardfancount() {
+	return boardfancount;
+}
 
-	public UserProfile getUser() {
-		return user;
-	}
+public void setBoardfancount(String boardfancount) {
+	this.boardfancount = boardfancount;
+}
 
-	public void setUser(UserProfile user) {
-		this.user = user;
-	}
+public UserProfile getUser() {
+	return user;
+}
 
-	public String getNotification() {
-		return notification;
-	}
+public void setUser(UserProfile user) {
+	this.user = user;
+}
 
-	public void setNotification(String notification) {
-		this.notification = notification;
-	}
+public String getNotification() {
+	return notification;
+}
 
-	public String getHasAdminRights() {
-		return hasAdminRights;
-	}
+public void setNotification(String notification) {
+	this.notification = notification;
+}
 
-	public void setHasAdminRights(String hasAdminRights) {
-		this.hasAdminRights = hasAdminRights;
-	}
+public String getHasAdminRights() {
+	return hasAdminRights;
+}
 
+public void setHasAdminRights(String hasAdminRights) {
+	this.hasAdminRights = hasAdminRights;
+}
 
 
 
-	public List<BoardCoordinatorMap> getBoardCoOwnerList() {
-		return boardCoOwnerList;
-	}
 
-	public void setBoardCoOwnerList(List<BoardCoordinatorMap> boardCoOwnerList) {
-		this.boardCoOwnerList = boardCoOwnerList;
-	}
+public List<BoardCoordinatorMap> getBoardCoOwnerList() {
+	return boardCoOwnerList;
+}
 
-	public List<CoOrdinator> getBoardCoordinatorList() {
-		return boardCoordinatorList;
-	}
+public void setBoardCoOwnerList(List<BoardCoordinatorMap> boardCoOwnerList) {
+	this.boardCoOwnerList = boardCoOwnerList;
+}
 
-	public void setBoardCoordinatorList(List<CoOrdinator> boardCoordinatorList) {
-		this.boardCoordinatorList = boardCoordinatorList;
-	}
+public List<CoOrdinator> getBoardCoordinatorList() {
+	return boardCoordinatorList;
+}
 
-	public String getFansCount() {
-		return fansCount;
-	}
+public void setBoardCoordinatorList(List<CoOrdinator> boardCoordinatorList) {
+	this.boardCoordinatorList = boardCoordinatorList;
+}
 
-	public void setFansCount(String fansCount) {
-		this.fansCount = fansCount;
-	}
+public String getFansCount() {
+	return fansCount;
+}
 
-	public int getActive() {
-		return active;
-	}
+public void setFansCount(String fansCount) {
+	this.fansCount = fansCount;
+}
 
-	public void setActive(int active) {
-		this.active = active;
-	}
+public int getActive() {
+	return active;
+}
 
-	public String getAddress1() {
-		return address1;
-	}
+public void setActive(int active) {
+	this.active = active;
+}
 
-	public void setAddress1(String address1) {
-		this.address1 = address1;
-	}
+public String getAddress1() {
+	return address1;
+}
 
-	public String getAddress2() {
-		return address2;
-	}
+public void setAddress1(String address1) {
+	this.address1 = address1;
+}
 
-	public void setAddress2(String address2) {
-		this.address2 = address2;
-	}
+public String getAddress2() {
+	return address2;
+}
 
+public void setAddress2(String address2) {
+	this.address2 = address2;
+}
 
 
-	public String getBoardName() {
-		return boardName;
-	}
 
-	public void setBoardName(String boardName) {
-		this.boardName = boardName;
-	}
+public String getBoardName() {
+	return boardName;
+}
 
-	public String getCategory() {
-		return category;
-	}
+public void setBoardName(String boardName) {
+	this.boardName = boardName;
+}
 
-	public void setCategory(String category) {
-		this.category = category;
-	}
+public String getCategory() {
+	return category;
+}
 
-	public String getCity() {
-		return city;
-	}
+public void setCategory(String category) {
+	this.category = category;
+}
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+public String getCity() {
+	return city;
+}
 
+public void setCity(String city) {
+	this.city = city;
+}
 
 
-	public String getBoardImageURL() {
-		return boardImageURL;
-	}
 
-	public void setBoardImageURL(String boardImageURL) {
-		this.boardImageURL = boardImageURL;
-	}
+public String getBoardImageURL() {
+	return boardImageURL;
+}
 
-	public byte[] getBoardProfilePic() {
-		return boardProfilePic;
-	}
+public void setBoardImageURL(String boardImageURL) {
+	this.boardImageURL = boardImageURL;
+}
 
-	public void setBoardProfilePic(byte[] boardProfilePic) {
-		this.boardProfilePic = boardProfilePic;
-	}
+public byte[] getBoardProfilePic() {
+	return boardProfilePic;
+}
 
+public void setBoardProfilePic(byte[] boardProfilePic) {
+	this.boardProfilePic = boardProfilePic;
+}
 
 
-	public boolean isYourBoard() {
-		return isYourBoard;
-	}
 
-	public void setYourBoard(boolean isYourBoard) {
-		this.isYourBoard = isYourBoard;
-	}
+public boolean isYourBoard() {
+	return isYourBoard;
+}
 
-	public  String getImageData() {
-		return imageData;
-	}
+public void setYourBoard(boolean isYourBoard) {
+	this.isYourBoard = isYourBoard;
+}
 
-	public void setImageData( String imageData) {
-		this.imageData = imageData;
-	}
+public  String getImageData() {
+	return imageData;
+}
 
-	public String getClassification() {
-		return classification;
-	}
+public void setImageData( String imageData) {
+	this.imageData = imageData;
+}
 
-	public void setClassification(String classification) {
-		this.classification = classification;
-	}
+public String getClassification() {
+	return classification;
+}
 
-	public String getCountry() {
-		return country;
-	}
+public void setClassification(String classification) {
+	this.classification = classification;
+}
 
-	public void setCountry(String country) {
-		this.country = country;
-	}
+public String getCountry() {
+	return country;
+}
 
-	public String getCreatedBy() {
-		return createdBy;
-	}
+public void setCountry(String country) {
+	this.country = country;
+}
 
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
+public String getCreatedBy() {
+	return createdBy;
+}
 
-	public String getEmailId() {
-		return emailId;
-	}
+public void setCreatedBy(String createdBy) {
+	this.createdBy = createdBy;
+}
 
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
+public String getEmailId() {
+	return emailId;
+}
 
-	public String getLatlang() {
-		return latlang;
-	}
+public void setEmailId(String emailId) {
+	this.emailId = emailId;
+}
 
-	public void setLatlang(String latlang) {
-		this.latlang = latlang;
-	}
+public String getLatlang() {
+	return latlang;
+}
 
-	public int getLikesReceived() {
-		return likesReceived;
-	}
+public void setLatlang(String latlang) {
+	this.latlang = latlang;
+}
 
-	public void setLikesReceived(int likesReceived) {
-		this.likesReceived = likesReceived;
-	}
+public int getLikesReceived() {
+	return likesReceived;
+}
 
-	public String getLongDescription() {
-		return longDescription;
-	}
+public void setLikesReceived(int likesReceived) {
+	this.likesReceived = likesReceived;
+}
 
-	public void setLongDescription(String longDescription) {
-		this.longDescription = longDescription;
-	}
+public String getLongDescription() {
+	return longDescription;
+}
 
-	public Date getCreatedDate() {
-		return createdDate;
-	}
+public void setLongDescription(String longDescription) {
+	this.longDescription = longDescription;
+}
 
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
+public Date getCreatedDate() {
+	return createdDate;
+}
 
-	public String getModifiedBy() {
-		return modifiedBy;
-	}
+public void setCreatedDate(Date createdDate) {
+	this.createdDate = createdDate;
+}
 
-	public void setModifiedBy(String modifiedBy) {
-		this.modifiedBy = modifiedBy;
-	}
+public String getModifiedBy() {
+	return modifiedBy;
+}
 
-	public Date getModifiedDate() {
-		return modifiedDate;
-	}
+public void setModifiedBy(String modifiedBy) {
+	this.modifiedBy = modifiedBy;
+}
 
-	public void setModifiedDate(Date modifiedDate) {
-		this.modifiedDate = modifiedDate;
-	}
+public Date getModifiedDate() {
+	return modifiedDate;
+}
 
-	public int getPageVisibility() {
-		return pageVisibility;
-	}
+public void setModifiedDate(Date modifiedDate) {
+	this.modifiedDate = modifiedDate;
+}
 
-	public void setPageVisibility(int pageVisibility) {
-		this.pageVisibility = pageVisibility;
-	}
+public int getPageVisibility() {
+	return pageVisibility;
+}
 
+public void setPageVisibility(int pageVisibility) {
+	this.pageVisibility = pageVisibility;
+}
 
-	public int getPostingAbility() {
-		return postingAbility;
-	}
 
-	public void setPostingAbility(int postingAbility) {
-		this.postingAbility = postingAbility;
-	}
+public int getPostingAbility() {
+	return postingAbility;
+}
 
-	public String getShortDescription() {
-		return shortDescription;
-	}
+public void setPostingAbility(int postingAbility) {
+	this.postingAbility = postingAbility;
+}
 
-	public void setShortDescription(String shortDescription) {
-		this.shortDescription = shortDescription;
-	}
+public String getShortDescription() {
+	return shortDescription;
+}
 
-	public String getState() {
-		return state;
-	}
+public void setShortDescription(String shortDescription) {
+	this.shortDescription = shortDescription;
+}
 
-	public void setState(String state) {
-		this.state = state;
-	}
+public String getState() {
+	return state;
+}
 
-	public String getStatusId() {
-		return statusId;
-	}
+public void setState(String state) {
+	this.state = state;
+}
 
-	public void setStatusId(String statusId) {
-		this.statusId = statusId;
-	}
+public String getStatusId() {
+	return statusId;
+}
 
-	public String getWebsite() {
-		return website;
-	}
+public void setStatusId(String statusId) {
+	this.statusId = statusId;
+}
 
-	public void setWebsite(String website) {
-		this.website = website;
-	}
+public String getWebsite() {
+	return website;
+}
 
-	public UUID getBoardId() {
-		return boardId;
-	}
+public void setWebsite(String website) {
+	this.website = website;
+}
 
-	public void setBoardId(UUID boardId) {
-		this.boardId = boardId;
-	}
+public UUID getBoardId() {
+	return boardId;
+}
 
+public void setBoardId(UUID boardId) {
+	this.boardId = boardId;
+}
 
 
-	public List<Integer> getAmpireList() {
-		return ampireList;
-	}
 
-	public void setAmpireList(List<Integer> ampireList) {
-		this.ampireList = ampireList;
-	}
+public List<Integer> getAmpireList() {
+	return ampireList;
+}
 
+public void setAmpireList(List<Integer> ampireList) {
+	this.ampireList = ampireList;
+}
 
 
-	public List<Integer> getSchedulerList() {
-		return schedulerList;
-	}
 
-	public void setSchedulerList(List<Integer> schedulerList) {
-		this.schedulerList = schedulerList;
-	}
+public List<Integer> getSchedulerList() {
+	return schedulerList;
+}
 
-	public String getAmpires() {
-		return ampires;
-	}
+public void setSchedulerList(List<Integer> schedulerList) {
+	this.schedulerList = schedulerList;
+}
 
-	public void setAmpires(String ampires) {
-		this.ampires = ampires;
-	}
+public String getAmpires() {
+	return ampires;
+}
 
-	public String getSchedulesr() {
-		return schedulesr;
-	}
+public void setAmpires(String ampires) {
+	this.ampires = ampires;
+}
 
-	public void setSchedulesr(String schedulesr) {
-		this.schedulesr = schedulesr;
-	}
+public String getSchedulesr() {
+	return schedulesr;
+}
 
-	public String getBoardCoOwners() {
-		return boardCoOwners;
-	}
+public void setSchedulesr(String schedulesr) {
+	this.schedulesr = schedulesr;
+}
 
-	public void setBoardCoOwners(String boardCoOwners) {
-		this.boardCoOwners = boardCoOwners;
-	}
+public String getBoardCoOwners() {
+	return boardCoOwners;
+}
 
-	public MultipartFile getBoardImagefile() {
-		return boardImagefile;
-	}
+public void setBoardCoOwners(String boardCoOwners) {
+	this.boardCoOwners = boardCoOwners;
+}
 
-	public void setBoardImagefile(MultipartFile boardImagefile) {
-		this.boardImagefile = boardImagefile;
-	}
+public MultipartFile getBoardImagefile() {
+	return boardImagefile;
+}
 
-	public String getBoardDefaultfan() {
-		return boardDefaultfan;
-	}
+public void setBoardImagefile(MultipartFile boardImagefile) {
+	this.boardImagefile = boardImagefile;
+}
 
-	public void setBoardDefaultfan(String boardDefaultfan) {
-		this.boardDefaultfan = boardDefaultfan;
-	}
+public String getBoardDefaultfan() {
+	return boardDefaultfan;
+}
 
-	public String getId() {
-		return id;
-	}
+public void setBoardDefaultfan(String boardDefaultfan) {
+	this.boardDefaultfan = boardDefaultfan;
+}
 
-	public void setId(String id) {
-		this.id = id;
-	}
+public String getId() {
+	return id;
+}
 
-	public boolean isScheduleFlag() {
-		return scheduleFlag;
-	}
+public void setId(String id) {
+	this.id = id;
+}
 
-	public void setScheduleFlag(boolean scheduleFlag) {
-		this.scheduleFlag = scheduleFlag;
-	}
+public boolean isScheduleFlag() {
+	return scheduleFlag;
+}
 
-	public String getZipcode() {
-		return zipcode;
-	}
+public void setScheduleFlag(boolean scheduleFlag) {
+	this.scheduleFlag = scheduleFlag;
+}
 
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
-	}
+public String getZipcode() {
+	return zipcode;
+}
 
-	public String getOldlatLang() {
-		return oldlatLang;
-	}
+public void setZipcode(String zipcode) {
+	this.zipcode = zipcode;
+}
 
-	public void setOldlatLang(String oldlatLang) {
-		this.oldlatLang = oldlatLang;
-	}
+public String getOldlatLang() {
+	return oldlatLang;
+}
 
-	public String getImageExtension() {
-		return imageExtension;
-	}
+public void setOldlatLang(String oldlatLang) {
+	this.oldlatLang = oldlatLang;
+}
 
-	public void setImageExtension(String imageExtension) {
-		this.imageExtension = imageExtension;
-	}
+public String getImageExtension() {
+	return imageExtension;
+}
 
-	public Long getPhoneNumber1() {
-		return phoneNumber1;
-	}
-
-	public void setPhoneNumber1(Long phoneNumber1) {
-		this.phoneNumber1 = phoneNumber1;
-	}
-
-	public Long getPhoneNumber2() {
-		return phoneNumber2;
-	}
-
-	public void setPhoneNumber2(Long phoneNumber2) {
-		this.phoneNumber2 = phoneNumber2;
-	}
-
-	public String getCountryCode1() {
-		return countryCode1;
-	}
-
-	public void setCountryCode1(String countryCode1) {
-		this.countryCode1 = countryCode1;
-	}
-
-	public String getCountryCode2() {
-		return countryCode2;
-	}
-
-	public void setCountryCode2(String countryCode2) {
-		this.countryCode2 = countryCode2;
-	}
-
+public void setImageExtension(String imageExtension) {
+	this.imageExtension = imageExtension;
+}
+  
+  
+  
+	
+	
+	
 }

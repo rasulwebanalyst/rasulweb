@@ -675,7 +675,7 @@ var formatAMPMTime = function(date) {
                          </c:choose>
                          
                          
-                         <%-- <c:if test="${!empty webPortalScoreCard}">
+                         <c:if test="${!empty webPortalScoreCard}">
                              <script type="text/javascript">
                              	 $("#secondInningsFallOfWicketsScoriingApp").hide();
                              	 $("#firstInningsFallOfWicketsScoriingApp").hide();
@@ -686,7 +686,7 @@ var formatAMPMTime = function(date) {
                              	 $("#secondInningsFallOfWicketsWebPortal").hide();
                              	 $("#firstInningsFallOfWicketsWebPortal").hide();
                              </script>
-                         </c:if> --%>
+                         </c:if>
                          
                          <c:choose>
                          
@@ -801,7 +801,6 @@ var formatAMPMTime = function(date) {
                          </c:if>
                             
                             </div>
-                                
                                 </c:otherwise>
                                   
                                 
@@ -813,27 +812,16 @@ var formatAMPMTime = function(date) {
 
                          
                          </div>
-                         <div class="points">
-                        <c:if test="${!empty scoreCardList.endMatchReason}">
-                         <p ><strong>Match Details:</strong></p>
-                           <p> ${scoreCardList.endMatchReason}</p>
-                        </c:if>
-                           </div>
-                           
-                           <c:if test="${!empty webPortalScoreCard}">
-                             <script type="text/javascript">
-                             	 $("#secondInningsFallOfWicketsScoriingApp").hide();
-                             	 $("#firstInningsFallOfWicketsScoriingApp").hide();
-                             </script>
-                         </c:if>
-                          <c:if test="${empty webPortalScoreCard}">
-                             <script type="text/javascript">
-                             	 $("#secondInningsFallOfWicketsWebPortal").hide();
-                             	 $("#firstInningsFallOfWicketsWebPortal").hide();
-                             </script>
-                         </c:if>
                          
-                      <c:if test="${!empty  CommentryAvailable}">
+                         
+                         <div class="points">
+                         <c:if test="${!empty scoreCardList.endMatchReason}">
+                          <p ><strong>Match Details:</strong></p>
+                            <p> ${scoreCardList.endMatchReason}</p>
+                         </c:if>
+                            </div>
+                         
+                      <c:if	 test="${!empty  CommentryAvailable}">
                            
 	                           <p ><strong>First Innings Match Notes:</strong></p>
 	                             <c:forEach var="powerPlayComments" items="${firstInningsPowerPlayDetails}">

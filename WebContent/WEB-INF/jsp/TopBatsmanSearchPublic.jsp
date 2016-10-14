@@ -170,12 +170,6 @@
                           <th>NO</th>
                           <th>Runs</th>
                           <th>Avg</th>
-                          <th>HS</th>
-                          <th>SR</th>
-                          <th>100s</th>
-                          <th>50s</th>
-                          <th>6s</th>
-                          <th>4s</th>
                         </tr>
                        </thead>
 
@@ -195,30 +189,17 @@
 					                        				</c:otherwise>
 				                        				</c:choose> --%>
 				                        				<td>${index.count}</td>
-	                        				  	  <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}"><span class="text-danger"><img alt="" src="${player.userImageUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';" style="margin-right: 10px;" width="50px" height="50px">${player.userName} </span></a></td>	    
+	                        				  	  <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}"><span class="text-danger"><img alt="" src="${player.userImageUrl}" style="margin-right: 10px;" width="50px" height="50px">${player.userName} </span></a></td>	    
 	                        				  	  
 	                        				  	  <%-- <td><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}">${player.teamBoardInfo.boardName}</a></td> --%>
-	                        				  	  <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}"><img src="${player.teamBoardInfo.boardImageURL}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" style="width: 30px;margin-right: 10px; ">  ${player.teamBoardInfo.boardName}</a></td>
+	                        				  	  <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}"><img src="${player.teamBoardInfo.boardImageURL}" style="width: 30px;margin-right: 10px; ">  ${player.teamBoardInfo.boardName}</a></td>
 	                        				  	                    					  
 						                          <%-- <td><a href="${pageContext.request.contextPath}/${match.homeTeam}/board/${match.hometeamId}">${match.homeTeam}</a></td> --%>
 						                          <td>${player.games}</td>
 						                          <td>${player.innings}</td>
 						                          <td>${player.notOuts}</td>
 						                          <td>${player.sumOfRuns}</td>	
-						                           <c:choose>
-							                          <c:when test="${player.average eq 0}">
-							                          	<td>-</td>
-							                          </c:when>
-							                          <c:otherwise>
-							                          	<td><fmt:formatNumber type="number"  pattern="##########.##"  value="${player.average}" /></td>
-							                          </c:otherwise>
-						                          </c:choose>
-						                          <td>${player.highest}</td>	
-						                          <td>${player.strikeRate}</td>	
-						                          <td>${player.centuryCount}</td>	
-						                          <td>${player.halfCenturyCount}</td>	
-						                          <td>${player.sixsCount}</td>
-						                          <td>${player.foursCount}</td>								                          
+						                          <td><fmt:formatNumber type="number"  pattern="##########.##"  value="${player.average}" /></td>						                          
 						                     </tr>
 	                       		
 	                       		

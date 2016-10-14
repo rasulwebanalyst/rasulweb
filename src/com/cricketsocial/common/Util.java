@@ -286,12 +286,12 @@ public class Util {
 	 
 	 public static String webServiceDomainName(String keyValue) 
 	 {
-		    String URL=null;
+		 String URL=null;
 			Properties prop = new Properties();		
 			InputStream input = null;
 			File file= null;
+			//String propertyFilePath = "/opt/cricket_social/Config_properties";	//AWS
 			String propertyFilePath = "/home/vignesh/opt/cricket_social/Config_properties";	//AWS
-		    //String propertyFilePath = "/opt/cricket_social/Config_properties";	//AWS
 			String path=propertyFilePath;
 			file= new File(path);
 			if(!file.exists())

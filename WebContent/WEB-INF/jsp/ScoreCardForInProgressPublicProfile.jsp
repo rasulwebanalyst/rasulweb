@@ -677,7 +677,7 @@ var formatAMPMTime = function(date) {
                          </c:choose> --%>
                          
                          
-                         <%-- <c:if test="${!empty webPortalScoreCard}">
+                         <c:if test="${!empty webPortalScoreCard}">
                              <script type="text/javascript">
                              	 $("#secondInningsFallOfWicketsScoriingApp").hide();
                              	 $("#firstInningsFallOfWicketsScoriingApp").hide();
@@ -688,7 +688,7 @@ var formatAMPMTime = function(date) {
                              	 $("#secondInningsFallOfWicketsWebPortal").hide();
                              	 $("#firstInningsFallOfWicketsWebPortal").hide();
                              </script>
-                         </c:if> --%>
+                         </c:if>
                          
                          <c:choose>
                          
@@ -811,18 +811,7 @@ var formatAMPMTime = function(date) {
      
                          
                          </div>
-                         <c:if test="${!empty webPortalScoreCard}">
-                             <script type="text/javascript">
-                             	 $("#secondInningsFallOfWicketsScoriingApp").hide();
-                             	 $("#firstInningsFallOfWicketsScoriingApp").hide();
-                             </script>
-                         </c:if>
-                          <c:if test="${empty webPortalScoreCard}">
-                             <script type="text/javascript">
-                             	 $("#secondInningsFallOfWicketsWebPortal").hide();
-                             	 $("#firstInningsFallOfWicketsWebPortal").hide();
-                             </script>
-                         </c:if>
+                         
                         <c:if test="${!empty  FirstInningsCommentary}">
                                <p ><strong>First Innings Match Notes:</strong></p>
 	               

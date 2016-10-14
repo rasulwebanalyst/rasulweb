@@ -126,73 +126,9 @@
                                   <label for="email"><span>*</span>Zip Code</label>
                                   <input type="text" class="form-control" placeholder="" id="zipcode" name="zipcode" value="${BoradInfo.zipcode}">
                                 </div>
+                                </div>
+                                
                               </div>
-
-							<div class="col-md-12 noPadding" style="margin-bottom: 0">
-								<div class="col-md-4 PhoneNumber">
-									<label for="email">PhoneNumber 1</label>
-
-									<div style="float: left;" class="PhoneNumberT">
-
-												<select name="countryCode1" id="countryCode1"
-													class="form-control tcol1 number"
-													style="width: 46%; font-size: 10px; padding: 6px 5px;">
-													<option value="">Country Code</option>
-													<c:forEach var="codes" items="${countryCodes}"
-														varStatus="i">
-														<option value="${codes.countryCode}">${codes.countryName}
-															+${codes.countryCode}</option>
-													</c:forEach>
-												</select>
-												<c:choose>
-											<c:when test="${BoradInfo.phoneNumber1 ne 0}">
-												<input type="text" class="form-control tcol3 number"
-													style="width: 54%" placeholder="" id="phoneNumber1"
-													name="phoneNumber1" value="${BoradInfo.phoneNumber1}">
-											</c:when>
-											<c:otherwise>
-												<input type="text" class="form-control tcol3 number"
-													style="width: 54%" placeholder="" id="phoneNumber1"
-													name="phoneNumber1" value="">
-											</c:otherwise>
-										</c:choose>
-									</div>
-								</div>
-
-
-							<div class="col-md-4 PhoneNumber">
-								<label for="email">PhoneNumber 2</label>
-
-								<div style="float: left;" class="PhoneNumberT">
-							<select name="countryCode2" id="countryCode2"
-								class="form-control tcol1 number"
-								style="width: 46%; font-size: 10px; padding: 6px 5px;">
-								<option value="">Country Code</option>
-								<c:forEach var="codes" items="${countryCodes}"
-									varStatus="i">
-									<option value="${codes.countryCode}">${codes.countryName}
-										+${codes.countryCode}</option>
-								</c:forEach>
-							</select>
-									<c:choose>
-										<c:when test="${BoradInfo.phoneNumber2 ne 0}">
-
-											<input type="text" class="form-control tcol3 number"
-												style="width: 54%" placeholder="" id="phoneNumber2"
-												name="phoneNumber2" value="${BoradInfo.phoneNumber2}">
-										</c:when>
-										<c:otherwise>
-											<input type="text" class="form-control tcol3 number"
-												style="width: 54%" placeholder="" id="phoneNumber2"
-												name="phoneNumber2" value="">
-										</c:otherwise>
-									</c:choose>
-								</div>
-							</div>
-
-							</div>
-
-						</div>
                             
     
                         </div>
@@ -526,34 +462,26 @@
          </div>
          
          
-          <div class="col-md-10 whiteBox pull-right cs-org">
+         <div class="col-md-10 whiteBox pull-right cs-org">
             <div class="panel-group">
 		    <div class="panel panel-default">
 		      <div class="panel-heading">
 		        <h4 class="panel-title">
-		          <span>Additional Information </span>
+		          <a data-toggle="collapse" href="#collapse1">More Information
+		          <span>Click Here</span></a>
 		          <div class="clearfix"></div>
 		        </h4>
 		      </div>
-		      <div id="" class="panel-collapse">
+		      <div id="collapse1" class="panel-collapse collapse">
 		        <div class="panel-body">
-		        	<div class="form-group col-md-12 noPadding centerbtns">
-		        	<a href="${pageContext.request.contextPath}/aboutOrganization/${BoradInfo.boardId}" >About Organization</a>
-		        	<a href="${pageContext.request.contextPath}/Directors/${BoradInfo.boardId}" >Directors</a>
-		        	<a href="${pageContext.request.contextPath}/aboutHistory/${BoradInfo.boardId}" >History</a>
-		        	<a href="${pageContext.request.contextPath}/aboutRulesRegulation/${BoradInfo.boardId}" >Rules & Regulations</a>
-		        	<a href="${pageContext.request.contextPath}/Sponser/${BoradInfo.boardId}" >Sponser</a>
-		        	<a href="${pageContext.request.contextPath}/aboutAwardhonor/${BoradInfo.boardId}" >Award & Honor</a>
-		        	<a href="${pageContext.request.contextPath}/aboutFaq/${BoradInfo.boardId}" >FAQ</a>
-		        	
-		        	
-		        	<!-- 	<input type="button" class="btn btn-default dBtn" onclick="aboutOrganization()" value="About Organization"></button>
+		        	<div class="form-group col-md-12 centerbtns">
+		        		<input type="button" class="btn btn-default dBtn" onclick="aboutOrganization()" value="About Organization"></button>
 		        		<input type="button" class="btn btn-default dBtn" value="Directors" onclick="Directors()"></button>
 		        		<input type="button" class="btn btn-default dBtn" onclick="aboutHistory()" value="History"></button>
 		        		<input type="button" class="btn btn-default dBtn" onclick="aboutRulesRegulation()" value="Rules & Regulations"></button>
 		        		<input type="button" class="btn btn-default dBtn" value="Sponser" onclick="Sponser()"></button>
 		        		<input type="button" class="btn btn-default dBtn" onclick="aboutawardhonor()"value="Award & Honor" ></button>
-		        		<input type="button" class="btn btn-default dBtn" onclick="aboutfaq()" value="FAQ" ></button> -->
+		        		<input type="button" class="btn btn-default dBtn" onclick="aboutfaq()" value="FAQ" ></button>
 
 		        	</div><!-- form-group -->
 		        </div><!-- panel-body -->
@@ -561,8 +489,8 @@
 		    </div><!-- panel end -->
 		  </div><!-- panel group end-->
       </div><!-- col md 10 whitebox end -->
-      
-      
+         
+         
            <div class="form-group col-md-10 centerbtns pull-right">
               <button  onclick="validateBoardForm(event)" class="btn btn-default dBtn" >Finish</button>
               <button type="button" class="btn btn-default blueBtn" onclick="window.location.href='${pageContext.request.contextPath}/board?bid=${BoradInfo.boardId}'">Cancel</button>
@@ -580,13 +508,7 @@
 
 <script>
 
-$(document).ready(function(){
-	 //var countrycode1 = "${BoradInfo.countryCode1}";
-	 $('#countryCode1').val("${BoradInfo.countryCode1}");
-	 $('#countryCode2').val("${BoradInfo.countryCode2}");
 
-
-}); 
 
 function enableCoOrdinatorDiv(id){
 	if(id == 10){
@@ -852,14 +774,6 @@ function validateBoardForm(e){
 
          			 
                  }, 
-                 phoneNumber1 :{
-                    	number : true,
-                    	maxlength : 15
-                     },
-                 phoneNumber2 : {
-                    	number :true,
-                    	maxlength:15
-                     }, 
                  state: {
                      required: true,
                      minlength : 2,
@@ -878,7 +792,7 @@ function validateBoardForm(e){
                      required: true,
                      minlength : 5,
                      maxlength : 10,
-                    // number : true,
+                     number : true,
          			 
                  }, 
                  pageVisibility: {
@@ -959,16 +873,9 @@ function validateBoardForm(e){
                         	required: "Please enter the zip code",
                         	 minlength: "Zip code should be at least 5 numbers ",
                         	maxlength : "Zip code should be maximum of 10 numbers ",
-                        	//number :"Please enter numbers only"
+                        	number :"Please enter numbers only"
                           
                         },
-                        phoneNumber1:{
-                        	maxlength :"PhoneNumber should be maximum of 15 digits",
-                        },
-                        phoneNumber2:{
-                        	
-                        	maxlength :"PhoneNumber should be maximum of 15 digits",
-                        }, 
                         pageVisibility: {
                          	required: "Please choose the page visibility option",
                          	
@@ -1107,7 +1014,6 @@ function geolocate() {
 	}
 	}
 	
-	
 function aboutOrganization()
 {
 	window.location.href="${pageContext.request.contextPath}/aboutOrganization/${BoradInfo.boardId}";
@@ -1137,6 +1043,7 @@ function Sponser()
 {
 	window.location.href="${pageContext.request.contextPath}/Sponser/${BoradInfo.boardId}";
 	}
+	
 
 </script>
 <script type="text/javascript" src="/cricketsocial-web/WebContent/js/cricketSocial/BoardPageFunction.js"></script>

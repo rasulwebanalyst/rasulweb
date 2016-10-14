@@ -14,16 +14,8 @@ public class CenturiesSerach {
 	private String againTeamName;
 	
 	private String searchKey;
-	private String filterByYear;
 	
 	
-	
-	public String getFilterByYear() {
-		return filterByYear;
-	}
-	public void setFilterByYear(String filterByYear) {
-		this.filterByYear = filterByYear;
-	}
 	public String getTournamentId() {
 		return tournamentId;
 	}
