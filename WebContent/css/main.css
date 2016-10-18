@@ -167,7 +167,7 @@ ul.nav.nav-tabs-details li a {
     padding: 6px;
     width: 100%;
     text-align: center;
-    color: #fff;
+    color: #fff;88%
     font-weight: 600;
     background: #00a5e7;
 }
@@ -431,21 +431,128 @@ ol.roa-ol li {
 	line-height: 25px;
 }
 
-/* NEW PAGE CHANGES */
 
+/* Dashboard changes */
+body.cs-dboard .galleryBlock img {
+	max-width: 100%;
+}
+body.cs-dboard .media-heading {
+	display: inline;
+}
+body.cs-dboard .media-body {
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 10px;
+}
+body.cs-dboard .cs-view-list {
+    margin-bottom: 6px;
+    margin-right: 10px;
+    width: 48%;
+}
+body.cs-dboard .cs-view-list h4,body.cs-dboard .cs-gm-list h4 {
+    border-bottom: 1px solid;
+    color: #111;
+    padding: 10px 5px;
+    text-align: left;
+    text-transform: uppercase;
+    width: 100%;
+}
+body.cs-dboard .cs-db-title {
+    color: #00a5e7;
+    font-size: 16px;
+    padding: 10px 5px 0;
+    text-align: left;
+    text-transform: uppercase;
+    width: 100%;	
+}
+body.cs-dboard .cs-view-list ul li {
+    box-shadow: 0 2px 4px #ddd;
+    list-style: outside none none;
+    margin-bottom: 5px;
+    padding: 10px 5px;
+    text-align: left;
+}
+body.cs-dboard .cs-view-list ul li img {
+	vertical-align: middle;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+body.cs-dboard .cs-view-list ul li .cs-list-holder {
+	display: inline-block;
+	margin-left: 10px;
+	vertical-align: middle;
+}
+body.cs-dboard .cs-view-list ul li p.cs-list-team {
+	color: #224E6B;
+	font-size: 13px;
+}
+body.cs-dboard .cs-view-list ul li p {
+
+    margin: 2px 0;
+}
+body.cs-dboard .cs-view-list ul,
+body.cs-dboard ul.result-list {
+	padding: 0;
+}
+body.cs-dboard ul.result-list li {
+    box-shadow: 0 2px 4px #ddd;
+    list-style: outside none none;
+    padding: 10px 5px;
+    color: #224E6B;
+    text-align: left;
+    margin-bottom: 8px;
+}
+body.cs-dboard ul.result-list li span {
+	/* color: #00a5e7;	 */
+	font-size: 13px;
+}
+body.cs-dboard .sidebar-container {
+	min-height: 0;
+
+	overflow: auto;
+}
+
+
+
+/* NEW PAGE CHANGES */
+.EntryMenu h4,.ViewMenu h4 {
+	color: #00a5e7;
+}
+.moreview,.lessview {
+	text-align: right;
+	color: #00a5e7;
+	cursor: pointer;
+}
+.EntryMenu a,.ViewMenu a {
+    background: #eee none repeat scroll 0 0;
+    color: #111;
+    display: block;
+    margin-bottom: 1px;
+    padding: 7px 10px;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+}
 
 .cs-org .panel-heading h4 {
 	margin: 0px;
-	color: #fff;
-	font-size: 13px;
+    color: #2d3e50;
+    font-size: 14px;
 }
-.cs-org .panel-heading a span {
-	float: right;
-	margin-right: 0px;
-} 
+.cs-org .panel-body .form-group a {
+    font-size: 13px;
+    padding: 0 10px;
+    color: #444;
+    text-decoration: underline;
+}
+.cs-org .panel-body {
+	border-top-color: transparent !important;
+}
+.cs-org .panel-default {
+    border-color: transparent;
+}
 .cs-org .panel-heading {
-	background-color: #224E6B;
-	border-color: #224E6B;
+	background-color: transparent;
 }
 .cs-org .panel-group {
 	margin-bottom: 0px;
@@ -517,7 +624,7 @@ ol.roa-ol li {
 	float: none;
 }
 table.bd-table tr td textarea {
-	    height: 35px;
+	height: 90%;
     overflow: auto;
 }
 .bd-block button {
@@ -535,21 +642,21 @@ table.bd-table tr td textarea {
 }
 .cs-bd-holder {
 /* 	background-color: #DCE0E1; */
-	background-color: #9ca9b9;
+/* 	background-color: #9ca9b9; */
 	padding: 10px 0;
 }
 .cs-bd-holder input {
-	border: none;
+	border: 1px solid #ccc;
 }
 .cs-bd-holder label {
-	color: #fff;
-	font-weight: 600;
+	color: #444;
 }
 .palyerCount.bd-player-count {
 	background-color: #0E7AC3 !important;
 	border-color: #0E7AC3 !important;
 	color: #fff !important;
 	font-weight: bold;
+	border-radius: 0;
 }
 .bd-block {
 	border-bottom: 1px solid #DCE0E1;
@@ -562,21 +669,35 @@ table.bd-table tr td textarea {
     color: #fff;
     font-weight: 600;
 }
-
+.bd-table td {
+	border: none;
+	width: 50%;
+	padding: 0 5px;
+}
 .btn-wide {
 	padding: 6px 20px;
 	min-width: 15%;
 }
 .file-drop {
-	border: 2px dashed #9ca9b9;
+	border: 1px dashed #9ca9b9;
 	padding-bottom: 10px;
 }
 .file-drop div {
 	padding: 10px;
 	clear: both;
 }
+.cs-page-title {
+	background: #224e6b;
+	color: #fff;
+	padding: 5px;
+}
 table.bd-table {
-	margin-bottom: 5px;
+	margin-bottom: 20px;
+/* 	border-bottom: 2px solid #eee; */
+	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05)
+}
+table.bd-table tr:nth-child(2) td:last-child {
+	text-align: left;
 }
 table.bd-table tr {
 	background-color: #fff !important;
@@ -596,17 +717,234 @@ table.bd-table tr td button {
 	display: inline-block;
 }
 table.bd-table tr td label {
-	display: block;
-	text-align: left;
+	width: auto !important;
+    text-align: left !important;
+    min-width: 65px !important;
+    padding: 0px 10px 0px 0 !important;
+    font-size: 12px !important;
+    color: #111 !important;
+    font-weight: 600 !important;
+    background: transparent !important;
+}
+table.bd-table tr td input.form-control {
+	padding: 6px 0px 6px 12px;;
+	display: inline-block;
+    border-bottom: 1px solid #ccc;
+    width: auto;
+    color: #444;
+    border-radius: 0;
+    height: 30px;
+    border: 0;
+    box-shadow: none !important;
 }
 table.bd-table tr td input {
-    background-color: #9ca9b9 !important;
-    border: 0 none;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    width: 100%;
+    color: #444;
+}
+table.bd-table tr td.bd-txt-holder label {
+	width: 100%;
+}
+table.bd-table tr td .bd-soc-holder img {
+	width: 25px;
+	height: 25px;
+	
+}
+table.bd-table tr td .bd-soc-holder span {
+    float: none;
+    color: #444;
+    font-size: 11px;
+    padding: 0 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 130px;
+    display: inline-block;
+    vertical-align: middle;
+}
+table.bd-table tr td .bd-soc-holder {
+
+}
+table.bd-table tr td .bd-soc-holder input {
+    display: inline-block;
+    background-color: transparent;
+    border-bottom: 1px solid #ccc !important;
+    width: 74%;
+    border: 0;
+    color: #444;
+    border-radius: 0;
+    outline: 0;
+    height: 25px;
+    font-size: 12px;
+    box-shadow: none !important;
+    margin: 0 10px;
+}
+table.bd-table tr td .cs-pro-img-holder {
+	position: relative;
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+	
+} 
+table.bd-table tr td .cs-pro-img-holder img {
+	width: 100px;
+	height: 100px;
+	border: 1px solid #ccc;
+} 
+table.bd-table tr td img {
+	width: 80px;
+	height: 80px;
+	border: 3px solid #fff;
+    /* box-shadow: 0px 1px 2px #ccc; */
+}
+table.bd-table tr td .cs-pro-img-holder label {
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.6);
+    width: 100%;
+    padding: 8px 2px 6px 2px;
+    font-size: 11px;
+    height: 30px;
     color: #fff;
-    font-weight: 600;	
+    cursor: pointer;
+    opacity: 0.5;
+}
+table.bd-table tr td .cs-pro-img-holder:hover label {
+	opacity: 1;
+	transition: all 0.1s fade-in;
+} 
+table.bd-table tr td .cs-pro-img-holder label i {
+	font-size: 12px;
+    margin-left: 5px;
+}
+table.brd-info tr {
+	border: 0;
+}
+table.brd-info tr td {
+	background: #fff;
+	text-align: left;
+	border: 0;
+	color: #111;
+    font-size: 12px;
+}
+table.bd-table.direc tr td .bd-soc-holder,table.bd-table.direc.direc-main tr td .bd-soc-holder {
+	width: 100%;
+}
+table.bd-table.direc.direc-main tr td label.direc-soc-lab,table.bd-table.direc.direc-main tr td label,table.bd-table.direc tr:last-child td label {
+	display: block;
+	font-weight: 500 !important;
+	
+}
+table.bd-table.direc tr td label {
+	font-weight: 500 !important;
+	
+}
+table.bd-table.direc tr td span {
+	float: none;
+	color: #444;
+}
+table.bd-table.direc.direc-main tr td {
+	padding: 5px 0;
+}
+table.bd-table.direc.direc-main tr td input {
+	border-bottom: 1px solid #ccc; 
+}
+table.bd-table.direc.direc-main tr td span.req-star {
+	color: red;
+}
+table.bd-table.direc tr:first-child td:last-child {
+	text-align: right;
+}
+table.bd-table.direc tr td input.form-control {
+	width: 80%;
+}
+table.bd-table.direc.direc-edit tr td textarea {
+	/* height: 300px; */
+}
+table.bd-table.direc.direc-edit tr td span.req-star {
+	color: red;
+}
+table.bd-table.direc.direc-edit tr:first-child td:last-child {
+    text-align: left;
+}
+table.bd-table.direc.direc-edit tr td .bd-soc-holder input {
+	width: 40%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+
+}
+table.bd-table.direc.direc-edit tr td input {
+	border-bottom: 1px solid #ccc;
+}
+table.bd-table.direc.direc-edit tr td .bd-soc-holder {
+	width: 80%;
+}
+table.bd-table.spons tr:first-child td:last-child {
+	text-align: right;
+	vertical-align: bottom;
+}
+table.bd-table.spons tr td input {
+   width: 75%;	
+}
+table.bd-table.spons tr td.usr-img img {
+    border: 4px solid #fff;
+    box-shadow: 0px 2px 2px #ccc;
+    margin-bottom: 10px;
+    width: 100px;
+    height: 100px;
+}
+table.bd-table.spons tr td span {
+	float: none;
+	color: #444;
 }
 .cs-align-center {
 	text-align: center;
+}
+table.bd-table.spons-main tr td .cs-pro-img-holder img,table.bd-table.spons-edit tr td .cs-pro-img-holder img {
+    border: 4px solid #fff;
+    box-shadow: 0px 2px 2px #ccc;
+     width: 100px;
+    height: 100px;	
+}
+table.bd-table.spons-main tr td {
+	padding: 5px;
+}
+table.bd-table.spons-main tr td input {
+	border-bottom: 1px solid #ccc;
+}
+table.bd-table.spons-main tr td span {
+	float: none;
+	color: #444;
+}
+table.bd-table.spons-main tr td span.req-star {
+	color: red;
+}
+table.bd-table.spons-edit tr td .cs-pro-img-holder {
+	
+   margin-bottom: 10px;	
+}
+table.bd-table.spons-main tr td .cs-pro-img-holder label,table.bd-table.spons-edit tr td .cs-pro-img-holder label {
+	background: rgba(0,0,0,0.6) !important;
+    color: #fff !important;
+    font-size: 10px !important;
+    padding: 3px 6px 3px 0 !important;
+    opacity: 1 !important;
+    margin: 0 0 0 4px;
+    bottom: 4px;
+    border-radius: 0;
+    height: auto;
+	
+}
+table.bd-table.spons-main tr td .cs-pro-img-holder:hover label,table.bd-table.spons-edit tr td .cs-pro-img-holder:hover label {
+	    opacity: 1 !important;
+}
+table.bd-table.spons-main tr:first-child td:last-child {
+	text-align: left;
+}
+table.bd-table.spons-edit tr:first-child td:last-child  {
+	text-align: left;
 }
 .upload-file-name {
  	white-space: nowrap;
@@ -618,10 +956,9 @@ table.bd-table tr td input {
     padding: 4px;
 }
 
-
-
-
-
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+	background: #fff;
+}
 
 /*CheckBox And Radio Btns*/
 input[type="checkbox"] {

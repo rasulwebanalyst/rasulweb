@@ -3,8 +3,8 @@
 //110086556012641
 
 //var fbURL='1037086509684954'; // local
-   var fbURL='480457342143824'; // Production
- //var fbURL='110086556012641'; // QA
+ //  var fbURL='480457342143824'; // Production
+ var fbURL='110086556012641'; // QA
   window.fbAsyncInit = function() {
     FB.init({
       appId      :fbURL ,
@@ -208,7 +208,7 @@ function oAuthsubmit()
 			  gapi.auth.signIn(myParams);
 } */// Dev Environment
 
-/*function googleLogin()
+function googleLogin()
 {
 	  var myParams = {
 			  'clientid' : '1077808914943-6qc5il3h9odjpnna5j1qsmh7i81pg4d6.apps.googleusercontent.com',
@@ -218,9 +218,9 @@ function oAuthsubmit()
 			    'scope' : 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.google.com/m8/feeds/ https://www.googleapis.com/auth/contacts.readonly',
 			  };
 			  gapi.auth.signIn(myParams);
-} */  // QA Environment
+}   // QA Environment
 
-function googleLogin()
+/*function googleLogin()
 {
 	  var myParams = {
 			  'clientid' : '575004365806-75h30uhausuu6pamhqaf304r312kk6q6.apps.googleusercontent.com',
@@ -230,7 +230,7 @@ function googleLogin()
 			    'scope' : 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.google.com/m8/feeds/ https://www.googleapis.com/auth/contacts.readonly',
 			  };
 			  gapi.auth.signIn(myParams);
-}  // Production Environment
+}*/  // Production Environment
 	 
 function loginCallback(result)
 {
@@ -284,8 +284,8 @@ function loginCallback(result)
 function onLoadCallback()
 {
   // gapi.client.setApiKey("AIzaSyA0fVf7zr2HemJ5ItsizriAF2Vxvf9k-28");//FOR  QA AIzaSyBkJTuE1F2YOwLGOzHqNx5Q9beqbQdZW_8
-	// gapi.client.setApiKey("AIzaSyA9laDOXif5a3Cd4Ha03JXC77vXnfFZu0g"); // For Dev 
-	gapi.client.setApiKey("AIzaSyBzCBzUjAh3MCIMyL74VKzDvRxR91XCZHQ"); // Production Environment 
+	 gapi.client.setApiKey("AIzaSyA9laDOXif5a3Cd4Ha03JXC77vXnfFZu0g"); // For Dev 
+	//gapi.client.setApiKey("AIzaSyBzCBzUjAh3MCIMyL74VKzDvRxR91XCZHQ"); // Production Environment 
   
 	
     gapi.client.load('plus', 'v1',function(){});
@@ -303,8 +303,8 @@ function onLoadCallback()
 function getGmailContacts() {
     var config = {
      // 'client_id': '199727375065-10dcv13ql2vkdijvfrl6q1ifnruld40n.apps.googleusercontent.com', // Dev 
-    	//	'client_id': '1077808914943-6qc5il3h9odjpnna5j1qsmh7i81pg4d6.apps.googleusercontent.com',  // QA
-    		'client_id': '575004365806-sbdnc074cvqg3bqioomamtoirfnl2789.apps.googleusercontent.com',  // Prod
+    		'client_id': '1077808914943-6qc5il3h9odjpnna5j1qsmh7i81pg4d6.apps.googleusercontent.com',  // QA
+    	//	'client_id': '575004365806-sbdnc074cvqg3bqioomamtoirfnl2789.apps.googleusercontent.com',  // Prod
     		
       'scope': 'https://www.google.com/m8/feeds'
     };

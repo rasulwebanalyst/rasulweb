@@ -207,11 +207,11 @@ var imageValidate=1;
                               
                               </div>
                               
-                              <div class="col-md-4 Landline">
+                              <%-- <div class="col-md-4 Landline">
                               <label for="email">Landline</label> 
                               
                               <div style="float: left;" class="LandlineT">
-                              <%-- <input type="text" class="form-control" placeholder="" id="landLineNumber" name="landLineNumber" value="${UserProfileOBJ.landLineNumber}"> --%>
+                              <input type="text" class="form-control" placeholder="" id="landLineNumber" name="landLineNumber" value="${UserProfileOBJ.landLineNumber}">
                               <input type="text" class="form-control tcol1 number" placeholder="" id="landLineContry" name="landLineCountrycode"  value="${UserProfileOBJ.landLineCountrycode}">
                                         <input type="text" class="form-control tcol2 number" placeholder="" id="landLineSTDcode" name="landLineSTDcode"  value="${UserProfileOBJ.landLineSTDcode}">
                                         <c:choose>
@@ -228,11 +228,20 @@ var imageValidate=1;
                              </div>
                               
                               
+                              </div> --%>
+                              
+                            <div class="col-md-4"><label for="email"><span></span>Place Of Birth</label> 
+					
+					    <div id="locationField">
+   							 <input class="form-control" id="placeOfBirth" name="placeOfBirth" placeholder="" onFocus="geolocate()" type="text" value="${UserProfileOBJ.placeOfBirth}"></input>
+ 							 </div>
+  						<input type="hidden" id="latlang" name="latLang" value="">
+                            
                               </div>
                             </div>
                             
                             <div class="col-md-12 noPadding">
-                              <div class="col-md-4"><label for="email">Languages known</label> <input type="text" class="form-control" placeholder="" id="userLanguageMapString" name="userLanguageMapString" value="${strLanguage}"></div>
+                             <%--  <div class="col-md-4"><label for="email">Languages known</label> <input type="text" class="form-control" placeholder="" id="userLanguageMapString" name="userLanguageMapString" value="${strLanguage}"></div> --%>
                               <!-- <div class="col-md-4"><label for="email">Places Lived</label> <input type="text" class="form-control" placeholder="" onfocus="geolocate()" id="placesMapString" name="placesMapString"></div> -->
                               <div class="col-md-4"><label for="email"><span>*</span>Place Living</label> 
 							                          
@@ -246,11 +255,13 @@ var imageValidate=1;
                               
                  </div>
                  <div class="col-md-4"><label for="email">Address 1</label> <input type="text" class="form-control" placeholder="" id="address1" name="address1" value="${UserProfileOBJ.address1}"></div>
+                  <div class="col-md-4"><label for="email">Address 2</label> <input type="text" class="form-control" placeholder="" id="address2" name="address2" value="${UserProfileOBJ.address2}"></div>
+                 
                  </div>    
                               
                              <div class="col-md-12 noPadding">  
                               
-                              <div class="col-md-4"><label for="email">Address 2</label> <input type="text" class="form-control" placeholder="" id="address2" name="address2" value="${UserProfileOBJ.address2}"></div>
+                             <%--  <div class="col-md-4"><label for="email">Address 2</label> <input type="text" class="form-control" placeholder="" id="address2" name="address2" value="${UserProfileOBJ.address2}"></div> --%>
                               <div class="col-md-4"><label for="email"><span>*</span>City</label>
                               	<div class="selectdiv">
                                       	<input type="text" class="form-control" placeholder="" id="city" name="city" value="${UserProfileOBJ.city}">
@@ -263,13 +274,6 @@ var imageValidate=1;
                                 </div>
                               </div>
                                <div class="col-md-4"><label for="email"><span>*</span>State</label> <input type="text" class="form-control" placeholder="" id="state" name="state" value="${UserProfileOBJ.state}" readonly ></div>
-                              
-                              
-                              </div>
-                              
-                               <div class="col-md-12 noPadding">
-                              
-                             
                               <div class="col-md-4"><label for="email"><span>*</span>Country</label>
                               	<div class="selectdiv">
                                     <!-- <select class="selectboxdiv">
@@ -280,9 +284,59 @@ var imageValidate=1;
                                     <input type="text" class="form-control" placeholder="" id="country" name="country" value="${UserProfileOBJ.country}" readonly>    
                                 </div>
                               </div>
-                              <div class="col-md-4"><label for="email"><span>*</span>Zip Code</label> <input type="text" class="form-control" placeholder="" id="zipcode" name="zipcode"  value="${UserProfileOBJ.zipcode eq '0' ? '':UserProfileOBJ.zipcode}"></div>
-                             
+                              
                               </div>
+                              
+                               <div class="col-md-12 noPadding">
+                              
+                             
+                              <%-- <div class="col-md-4"><label for="email"><span>*</span>Country</label>
+                              	<div class="selectdiv">
+                                    <!-- <select class="selectboxdiv">
+                                        <option>India</option>
+                                        <option>USA </option>
+                                    </select>
+                                    <div class="out"></div> -->
+                                    <input type="text" class="form-control" placeholder="" id="country" name="country" value="${UserProfileOBJ.country}" readonly>    
+                                </div>
+                              </div> --%>
+										<div class="col-md-4">
+											<label for="email"><span>*</span>Zip Code</label> <input
+												type="text" class="form-control" placeholder="" id="zipcode"
+												name="zipcode"
+												value="${UserProfileOBJ.zipcode eq '0' ? '':UserProfileOBJ.zipcode}">
+										</div>
+										<!-- <div class="col-md-4">
+											<label for="email" style="display: block;">Contact visibility to public</label> -->
+											<div class="col-md-6">
+				                            <label for="email" style="display: block;">Contact Visibility&nbsp;(<span style="float:none;">*</span><span style="color:#bbb;font-size:10px;float:none;">complete address should not be display to public</span>)</label>
+											<c:choose>
+												<c:when test="${UserProfileOBJ.enablePhoneNo eq 1 }">
+													<input type="checkbox" class="cboxBtn" id="Fan" name="rr"
+														value="phone" checked>
+													<label for="Fan"><span></span>Phone Number</label>
+												</c:when>
+												<c:otherwise>
+													<input type="checkbox" class="cboxBtn" id="Fan" name="rr"
+														value="phone">
+													<label for="Fan"><span></span>Phone Number</label>
+												</c:otherwise>
+											</c:choose>
+											<c:choose>
+												<c:when test="${UserProfileOBJ.enableEmailAddress eq 1 }">
+													<input type="checkbox" class="cboxBtn" id="Player"
+														name="rr" value="email" checked>
+													<label for="Player"><span></span>E-mail</label>
+												</c:when>
+												<c:otherwise>
+													<input type="checkbox" class="cboxBtn" id="Player"
+														name="rr" value="email">
+													<label for="Player"><span></span>E-mail</label>
+												</c:otherwise>
+											</c:choose>
+										</div>
+
+									</div>
                             </div>
                         </div>
                         </div>
@@ -531,7 +585,7 @@ var imageValidate=1;
                          <div class="col-md-10 whiteBox pull-right">
                         <div class="form-group col-md-12 noPadding profileForm">
                               <div class="col-md-12">
-                               <label for="email">Cricket Teams Board</label>
+                               <label for="email">Cricket Teams Associated</label>
                               
                                <input type="text" class="form-control" placeholder="Cricket Teams Board" name="teamBoard" id="teamAutoCompleteTextBoxId" onkeyup="boardAutocomplete(this,'Team','ctAutoComplateDiv')" value="${UserProfileOBJ.teamboardlist[0].boardName}" />
                               <div class="autoComplete" id="ctAutoComplateDiv" style="display:none;">
@@ -541,7 +595,7 @@ var imageValidate=1;
                           
                                 </div>
                               <div class="col-md-12">
-                               <label for="email">Cricket League Board</label>
+                               <label for="email">Cricket Leagues Associated</label>
                               
                                <input type="text" class="form-control" placeholder="Cricket League Board" name="leagueBoard" id="leagueAutoCompleteTextBoxId" onkeypress="boardAutocomplete(this,'League','clAutoComplateDiv')" value="${UserProfileOBJ.leagueboardlist[0].boardName}"/>
                               <div class="autoComplete" id="clAutoComplateDiv" style="display:none;">
@@ -551,6 +605,8 @@ var imageValidate=1;
                           
                                 </div>
                               <div class="col-md-12">
+                               <label for="email">Interests</label>
+                              
                               	<div class="selectdiv">
                                     <select class="selectboxdiv" name="ballId">
                                     
@@ -1407,6 +1463,10 @@ function initAutocomplete() {
   autocomplete = new google.maps.places.Autocomplete(
       /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
       {types: ['geocode']});
+   autocomplete1 = new google.maps.places.Autocomplete(
+	      /** @type {!HTMLInputElement} */(document.getElementById('placeOfBirth')),
+	      {types: ['geocode']});
+
 
   // When the user selects an address from the dropdown, populate the address
   // fields in the form.

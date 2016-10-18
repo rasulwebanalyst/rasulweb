@@ -127,6 +127,37 @@
                                 </div>
                                 </div>
                                 
+                             <div class="col-md-12 noPadding" style="margin-bottom:0">
+                          <div class="col-md-4 PhoneNumber"><label for="email">Phone number 1</label> 
+                            
+                            <div style="float: left;" class="PhoneNumberT">
+                            
+                            <select  name="countryCode1" id="countryCode1" class="form-control tcol1 number" style="width: 46%; font-size: 10px; padding: 6px 5px;">                           
+                             <option value="">Country Code</option>                                                     
+                          <c:forEach var="codes" items="${countryCodes}" varStatus="i">
+                             <option value="${codes.countryCode}">${codes.countryName} +${codes.countryCode}</option>
+                          </c:forEach>
+                          </select>
+                           <input type="text" class="form-control tcol3 number" style="width:54%" placeholder="" id="phoneNumber1" name="phoneNumber1" value="">
+                           </div>
+                           </div>
+                           
+                           
+                           <div class="col-md-4 PhoneNumber"><label for="email">Phone number 2</label> 
+                            
+                            <div style="float: left;" class="PhoneNumberT">
+                            <select  name="countryCode2" id="countryCode2" class="form-control tcol1 number" style="width: 46%; font-size: 10px; padding: 6px 5px;">                           
+                             <option value="">Country Code</option>                                                     
+                          <c:forEach var="codes" items="${countryCodes}" varStatus="i">
+                             <option value="${codes.countryCode}">${codes.countryName} +${codes.countryCode}</option>
+                          </c:forEach>
+                          </select>
+                           <input type="text" class="form-control tcol3 number" style="width:54%" placeholder="" id="phoneNumber2" name="phoneNumber2" value="" >
+                     
+                           </div>
+                           </div>
+                          
+                          </div>
                               </div>
                             
                             
@@ -278,7 +309,7 @@
            </div>
            
            </div><!-- col md 10 whitebox end -->    
-           <!-- <div class="col-md-10 whiteBox pull-right cs-org">
+        <!--    <div class="col-md-10 whiteBox pull-right cs-org">
             <div class="panel-group">
 		    <div class="panel panel-default">
 		      <div class="panel-heading">
@@ -305,6 +336,7 @@
 		    </div>panel end
 		  </div>panel group end
       </div>col md 10 whitebox end -->
+           
          
            <div class="form-group col-md-10 centerbtns pull-right">
               <button  onclick="validateBoardForm(event)" class="btn btn-default dBtn" >Finish</button>
@@ -325,7 +357,10 @@
 </div>
 
 <script>
-
+/* document.getElementById("boardFormId").onsubmit = function () {
+	console .log("in enter check");
+    validateBoardForm(event);
+}; */
 
 
 function enableCoOrdinatorDiv(id){
@@ -479,7 +514,7 @@ function validateBoardForm(e){
 	         	
 			 boardName: {
                      required: true,
-                     minlength : 5,
+                     minlength : 2,
          			 maxlength : 60,
          			// regax : true
                  }, 
@@ -529,9 +564,17 @@ function validateBoardForm(e){
                      required: true,
                      minlength : 5,
                      maxlength : 10,
-                     number : true,
+                   //  number : true,
          			 
                  }, 
+                 phoneNumber1 :{
+                    	number : true,
+                    	maxlength : 15
+                  },
+                 phoneNumber2 : {
+                    	number :true,
+                    	maxlength:15
+                     },
                  pageVisibility: {
                      required: true,
                     
@@ -599,6 +642,14 @@ function validateBoardForm(e){
                      	 minlength: "City should be atleast 2 character's ",
                      	maxlength : "City should be maximum of 26 character's",
                      },
+                     phoneNumber1:{
+                    	 number : "Please enter the number",
+                    	 maxlength :"Phone number should be maximum of 15 digits",
+                    	 },
+                     phoneNumber2:{
+                    	 number : "Please enter the number",
+                    	 maxlength :"Phone number should be maximum of 15 digits",
+                    	 }, 
                      state: {
                       required: "Please enter the state",
                      	 minlength: "State should be atleast 2 character's ",
@@ -613,7 +664,7 @@ function validateBoardForm(e){
                         	required: "Please enter the zip code",
                         	 minlength: "Zip code should be atleast 5 numbers ",
                         	maxlength : "Zip code should be maximum of 10 numbers ",
-                        	number : "Please enter numbers only",
+                        	//number : "Please enter numbers only",
                           
                         },
                         pageVisibility: {

@@ -24,15 +24,57 @@ public class PlayerDTO {
 	private String innings;
 	private String notOuts;
 	private String runs;
-	private String average;
+	private double average;
 	private String games;
 	private int sumOfRuns;
 	private BoardProfile teamBoardInfo;
 	private String userImageUrl;
 	
+	private String highest;
+	private String centuryCount;
+	private String halfCenturyCount;
+	private String sixsCount;
+	private String foursCount;
+	private String strikeRate;
 	
 	
 	
+	public String getHighest() {
+		return highest;
+	}
+	public void setHighest(String highest) {
+		this.highest = highest;
+	}
+	public String getCenturyCount() {
+		return centuryCount;
+	}
+	public void setCenturyCount(String centuryCount) {
+		this.centuryCount = centuryCount;
+	}
+	public String getHalfCenturyCount() {
+		return halfCenturyCount;
+	}
+	public void setHalfCenturyCount(String halfCenturyCount) {
+		this.halfCenturyCount = halfCenturyCount;
+	}
+	public String getSixsCount() {
+		return sixsCount;
+	}
+	public void setSixsCount(String sixsCount) {
+		this.sixsCount = sixsCount;
+	}
+	public String getFoursCount() {
+		return foursCount;
+	}
+	public void setFoursCount(String foursCount) {
+		this.foursCount = foursCount;
+	}
+	public String getStrikeRate() {
+		return strikeRate;
+	}
+	public void setStrikeRate(String strikeRate) {
+		this.strikeRate = strikeRate;
+	}
 	public UUID getUserId() {
 		return userId;
 	}
@@ -123,10 +165,10 @@ public class PlayerDTO {
 	public void setRuns(String runs) {
 		this.runs = runs;
 	}
-	public String getAverage() {
+	public double getAverage() {
 		return average;
 	}
-	public void setAverage(String average) {
+	public void setAverage(double average) {
 		this.average = average;
 	}
 	public String getGames() {

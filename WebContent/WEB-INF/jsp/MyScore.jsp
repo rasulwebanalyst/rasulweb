@@ -76,7 +76,7 @@
                      	<h1 class="noBorder">${UserInfo.firstName} ${UserInfo.lastName}</h1>
                      
                      
-                     	<div class="col-md-5 statusUpdateBox colon">
+                     	<div class="col-md-6 statusUpdateBox colon">
                      	<script type="text/javascript">
                      	var roleinfotopdf="";
                      	</script>
@@ -99,9 +99,25 @@
                             <p><span>Bats </span> <strong>${SelectedPlayersInfo.player1.battingInfo}</strong></p> 
                             <p><span>Bowls  </span> <strong>${SelectedPlayersInfo.player1.bowlingInfo}</strong></p>
                             <p><span>Country  </span> <strong>${UserInfo.country}</strong></p>
+                            
+                            <c:if test="${UserInfo.enableEmailAddress eq 1}">
+                            <p><span>E-mail</span> <strong>${UserInfo.emailAddress}</strong></p>
+                           </c:if>
+                           
+                            <c:if test="${UserInfo.enablePhoneNo eq 1}">
+                            <c:choose>
+                            <c:when test="${UserInfo.phoneNumber eq 0}">
+ 							<p><span>Phone Number  </span> <strong></strong></p>
+ 							</c:when>
+ 							<c:otherwise>
+ 							<p><span>Phone Number  </span> <strong>${UserInfo.phoneNumber}</strong></p>
+ 							</c:otherwise>
+ 							</c:choose>
+                            </c:if>
+                            
                     	</div> 
                         
-                        <div class="col-md-7 feedcube ">
+                        <div class="col-md-6 feedcube ">
                             <div class="cube bulucolor">${UserMatchInfo.playedMatches}<br><p>Matches</p></div>
                             <div class="cube greencolor">${UserMatchInfo.totalMadeRuns}<br> <p>Runs</p></div>
                             <div class="cube redcolor">${UserMatchInfo.totalWicketTaken}<br> <p>Wickets<p></div>
@@ -195,28 +211,46 @@
                        <!--  <div class="col-md-4 noPadding"> -->
                         	<!-- <h5>Batting Performance</h5> -->
                         	<div class="col-md-12 statusUpdateBox noPadding">
-                        	 <div class="buluback" style="font-weight:100;">Batting & Fielding Performances</div>
-                           <!--  --><br><div id="battingYearId">&nbsp</div>
+                        	 <div class="buluback" style="font-weight:100;">Batting & Fielding Performances
+                        	 	
+                        	 	
+                        	 	
+                        	 	
+                        	 	<div class="col-md-5 drop pull-right" style="margin-right:-15px; width: 120px !important;">
+								    <div class="selectdiv" style="height: 25px !important;">
+								        <c:choose>
+								            <c:when test="${yearListSize eq 0 }">
+								                <select class="selectboxdiv" style="color: black; font-size: 12px !important; height: 25px !important;">
+									            	<option style="color: black; font-size: 12px !important; height: 25px !important;"></option>
+									            </select>
+								                <div class="out" style="font-size: 12px; height: 25px !important; margin: -6px -6px"></div>
+								            </c:when>
+								            <c:otherwise>
+								                <select name="yearDropDown" class="selectboxdiv" id="battingYears" onchange="yearWiseBatting(this.value)" style="color: black; font-size: 12px !improtant; height: 25px !important;">
+			                                        <!-- <option>Years</option> -->
+			                                        <c:forEach var = "yearsBatting" items="${yearsList}">
+			                                            <option value="${yearsBatting}" style="font-size: 12px; height: 25px !important;">${yearsBatting}</option>
+			                                        </c:forEach>
+								                                       
+								                </select>
+								                <div class="out" style="font-size: 12px; height: 25px !important; margin: -6px -6px"></div> 
+								            </c:otherwise>
+								        </c:choose>
+								    </div>
+								</div>
+                         
+                         
+                         
+                        	 </div>
+                             <div id="battingYearId" style="display: none;"></div>
                             </div>
                             <script type="text/javascript">
                        var battingrowObj=[];
                        </script>
-                         <div class="col-md-5 drop pull-right" style="margin-bottom: 15px;">
-                         	<div class="selectdiv">
-                                    <select class="selectboxdiv" id="battingYears" onchange="yearWiseBatting(this.value)">
-                                        <option>Years</option>
-                                        <c:forEach var = "years" items="${yearsList}">
-                                        
-                                            <option value="${years}">${years}</option>
-                                        </c:forEach>
-                                       
-                                    </select>
-                                    <div class="out">Years</div>    
-                                </div>
-                         </div>
+                         
                          <div class="col-md-12 noPadding MyScor-table">
                        <c:choose>  <c:when test="${battingPerformanceListSize eq 0 }">
-                       <table>
+                       <table id="battingTable">
                             	<thead>
                                 	<tr>
                                     	<th>DATE</th>
@@ -236,7 +270,7 @@
                                 </thead>
                                </table>
                                 	<div id="battingNoData" class="noContentDivRed">No Details Available</div>
-                                   
+                                  <button class="btn btn-default dBtn pull-right lodbtn" id="loadmoreBatings" onclick="loadMoreBattings()" style="display: none;">LOAD MORE</button> 
                               
                            
                        
@@ -277,23 +311,14 @@
                                     	
                                         <td><a href="${pageContext.request.contextPath}/${batting.leagueBoardName}/board/${batting.leagueBoardId}">${batting.leagueBoardName}</a></td>
                                       
-                                        <c:choose>
-                                        	<c:when test="${batting.positionOfStand == '' || batting.positionOfStand == 'null' || batting.positionOfStand == 'NO'}">
-                                       			<c:choose>
-                                       				<c:when test="${empty batting.positionOfStandOrder}">
+                                       <c:choose>
+                                       				<c:when test="${batting.positionOfStandOrder eq 0}">
                                        	 				<td>-</td>
                                        	 			</c:when>
                                        	 			<c:otherwise>
                                        	 				<td>${batting.positionOfStandOrder}</td>
                                        	 			</c:otherwise>
                                        			</c:choose>
-                                        </c:when>
-                                        <c:otherwise>
-                                          <td>${batting.positionOfStandOrder}</td>
-                                       
-                                        </c:otherwise>
-                                        
-                                        </c:choose>
 
                                        <%--  <td>${batting.positionOfStand}</td> --%>
                                         <td>${batting.runs}</td>
@@ -342,7 +367,8 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
-                         	<button class="btn btn-default dBtn pull-right lodbtn" onclick="loadMoreBattings()">LOAD MORE</button>
+                            <div id="battingNoData" class="noContentDivRed" style="display: none;">No Details Available</div>
+                         	<button class="btn btn-default dBtn pull-right lodbtn" id="loadmoreBatings" onclick="loadMoreBattings()">LOAD MORE</button>
                        </c:otherwise>
                          
                          </c:choose>
@@ -353,29 +379,45 @@
                           
                       
                         <!-- <div class="col-md-4 noPadding"> -->
-                        	<!-- <h5>Bowling Performance</h5> -->
-                        	<div class="col-md-12 statusUpdateBox noPadding">
-                        	  <div class="buluback" style="font-weight:100;">Bowling Performances</div>
-                           <!--  --><br><div id="bowlingYearId"></div>
-                            </div>
-                         <div class="col-md-5 drop pull-right" style="margin-bottom: 15px;">
-                         	<div class="selectdiv">
-                                    <select class="selectboxdiv" onchange="yearWiseBowling(this.value)">
-                                        <option>Years</option>
-                                        <c:forEach var = "years" items="${yearsList}">
-                                        
-                                            <option value="${years}">${years}</option>
-                                        </c:forEach>
-                                       
-                                    </select>
-                                    <div class="out">Years</div>    
-                                </div>
-                         </div>
+                        <!-- <h5>Bowling Performance</h5> -->
+                        
+                        <div class="col-md-12 statusUpdateBox noPadding">
+                        <div class="buluback" style="font-weight:100;">Bowling Performances
+                        	
+                        	
+                        	<div class="col-md-5 drop pull-right" style="margin-right:-15px; width: 120px !important;">
+								    <div class="selectdiv" style="height: 25px !important;">
+								        <c:choose>
+								            <c:when test="${yearListSize eq 0 }">
+								                <select class="selectboxdiv" style="color: black; font-size: 12px !important; height: 25px !important;">
+									            	<option style="color: black; font-size: 12px !important; height: 25px !important;"></option>
+									            </select>
+								                <div class="out" style="font-size: 12px; height: 25px !important; margin: -6px -6px"></div>
+								            </c:when>
+								            <c:otherwise>
+								                <select class="selectboxdiv" id="bowlingyears" onchange="yearWiseBowling(this.value)" style="color: black; font-size: 10px !improtant; height: 25px !important;">
+			                                        <!-- <option>Years</option> -->
+			                                        <c:forEach var = "years" items="${yearsList}">
+			                                            <option value="${years}" style="font-size: 12px; height: 25px !important;">${years}</option>
+			                                        </c:forEach>
+								                                       
+								                </select>
+								               <div class="out" style="font-size: 12px; height: 25px !important; margin: -6px -6px"></div> 
+								            </c:otherwise>
+								        </c:choose>
+								    </div>
+								</div>
+                        </div>
+                        <div id="bowlingYearId" style="display: none;"></div>
+                        
+                       
+                         
+                         
                          <div class="col-md-12 noPadding MyScor-table">
                          	
                          	<c:choose>  
                          	<c:when test="${bowlingPerformanceListSize eq 0 }">
-                         	<table>
+                         	<table id="bowlingTable">
                             	<thead>
                                 	<tr>
                                     	<th>DATE</th>
@@ -392,8 +434,8 @@
                                         <th>SCORE CARD</th>
                                     </tr>
                                 </thead></table>
-                         	<div class="noContentDivRed">No Details Available</div>
-                  
+                         	<div class="noContentDivRed" id="noBowlingData">No Details Available</div>
+                  <button class="btn btn-default dBtn pull-right lodbtn" id="loadmoreBowl" onclick="loadMoreBowlings()" style="display: none;">LOAD MORE</button>
                        
                        </c:when>
                        
@@ -448,7 +490,8 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
-                         	<button class="btn btn-default dBtn pull-right lodbtn" onclick="loadMoreBowlings()">LOAD MORE</button>
+                            <div class="noContentDivRed" id="noBowlingData" style="display: none;">No Details Available</div>
+                         	<button class="btn btn-default dBtn pull-right lodbtn" id="loadmoreBowl" onclick="loadMoreBowlings()">LOAD MORE</button>
                        </c:otherwise>
                          
                          </c:choose>    
@@ -456,14 +499,42 @@
                          </div>
                          
                         <div class="col-md-12 statusUpdateBox noPadding">
-                        <div class="buluback" style="font-weight:100;">Achievements</div>
+                        <div class="buluback" style="font-weight:100;">Achievements
+                        
+                        	<div class="col-md-5 drop pull-right" style="margin-right:-15px; width: 120px !important;">
+								    <div class="selectdiv" style="height: 25px !important;">
+								        <c:choose>
+								            <c:when test="${yearListSize eq 0 }">
+								                <select class="selectboxdiv" style="color: black; font-size: 12px !important; height: 25px !important;">
+									            	<option style="color: black; font-size: 12px !important; height: 25px !important;"></option>
+									            </select>
+								                <div class="out" style="font-size: 12px; height: 25px !important; margin: -6px -6px"></div>
+								            </c:when>
+								            <c:otherwise>
+								                <select class="selectboxdiv" id = "achievementYears" onchange="yearWiseAchievements(this.value)" style="color: black; font-size: 10px !improtant; height: 25px !important;">
+			                                        <!-- <option>Years</option> -->
+			                                        <c:forEach var = "years" items="${yearsList}">
+			                                            <option value="${years}" style="font-size: 12px; height: 25px !important;">${years}</option>
+			                                        </c:forEach>
+								                                       
+								                </select>
+								               <div class="out" style="font-size: 12px; height: 25px !important; margin: -6px -6px"></div> 
+								            </c:otherwise>
+								        </c:choose>
+								    </div>
+								</div>
+                        
+                        
+                        </div>
+                        <div id="achievementYearId" style="display: none;"></div>
+                        
                             	<div class="col-md-12 noPadding AchHead">
                                 	<!-- <h4>ODI Series Match Record</h4> -->
 
 										<c:choose>
 											<c:when test="${achievementsListSize eq 0 }">
 
-												<table>
+												<table id="achievementsTable">
 													<thead>
 														<tr>
 															<th>DATE</th>
@@ -478,8 +549,8 @@
 														</tr>
 													</thead>
 												</table>
-												<div class="noContentDivRed">No Details Available</div>
-
+												<div id="noAcheivementData" class="noContentDivRed">No Details Available</div>
+							<button class="btn btn-default dBtn pull-right lodbtn" id="loadmoreAchiev" onclick="loadMoreAchievements()" style="display: none;">LOAD MORE</button>
 
 											</c:when>
 
@@ -538,8 +609,8 @@
 														</c:forEach>
 													</tbody>
 												</table>
-												<button class="btn btn-default dBtn pull-right lodbtn"
-													onclick="loadMoreAchievements()">LOAD MORE</button>
+												<div id="noAcheivementData" class="noContentDivRed" style="display: none;">No Details Available</div>
+												<button class="btn btn-default dBtn pull-right lodbtn" id="loadmoreAchiev" onclick="loadMoreAchievements()">LOAD MORE</button>
 											</c:otherwise>
 
 										</c:choose>
@@ -550,25 +621,8 @@
                         	
   </div>
   
-  
-  
-  
-  
-  
-            
-            
-            
-            
-            
-            
  </div>
                     
-                    
-                    
-                    
-                    
-            
-          	
           </div>    
       </div>
           
@@ -595,10 +649,12 @@
 		var add = 10;
 		var startNode = startBat + add;
 		var endNode = endBat + add;
-
+		var val = document.getElementById("battingYears").value;
+		
 		var gameBean = {
 			startNode : startNode,
 			endNode : endNode,
+			filterByYear : val,
 		}
 		$
 				.ajax({
@@ -656,18 +712,10 @@
 								html += '<td><a href="${pageContext.request.contextPath}/'+res[i].leagueBoardName+'/board/'+res[i].leagueBoardId+'">'
 										+ res[i].leagueBoardName + '</a></td>';
 
-								if (res[i].positionOfStand == ''
-										|| res[i].positionOfStand == 'null'
-										|| res[i].positionOfStand == 'NO') {
-									/* html += '<td>-</td>'; */
-									
-									if(res[i].positionOfStandOrder == 'null'){
-										 html += '<td>-</td>';}else{html += '<td>'+res[i].positionOfStandOrder+'</td>';}
-
+								if (res[i].positionOfStandOrder == 0) {
+										 html += '<td>-</td>';
 								} else {
-									html += '<td>'
-											+ res[i].positionOfStandOrder
-											+ '</td>';
+									html += '<td>'+ res[i].positionOfStandOrder+ '</td>';
 								}
 
 								html += '<td>' + res[i].runs + '</td>';
@@ -740,10 +788,12 @@
 		var startNode = startBowl + add;
 		var endNode = endBowl + add;
 		var flag = "forMyScore";
+		var val = document.getElementById("bowlingyears").value;
 		var gameBean = {
 			startNode : startNode,
 			endNode : endNode,
 			flag : flag,
+			filterByYear : val,
 		}
 		$
 				.ajax({
@@ -876,11 +926,12 @@
 		var add = 500;
 		var startNode = startAchieve + add;
 		var endNode = endAchieve + add;
-	
+		var val = document.getElementById("achievementYears").value;
+		
 		var gameBean = {
 			startNode : startNode,
 			endNode : endNode,
-			
+			filterByYear : val,
 		}
 		$
 				.ajax({
@@ -983,8 +1034,13 @@
 
 				})
 	}
-
+	var i=0;
 	function yearWiseBatting(val) {
+		if(i==0)
+	 	 {
+	 	 i=1;
+	 	 return false;
+	 	 }
 		if (val != 'Years') {
 			document.getElementById("battingYearId").innerHTML = val;
 			var year = {
@@ -998,9 +1054,11 @@
 						data : JSON.stringify(year),
 						contentType : "application/json",
 						success : function(res) {
+							startBat = 0;
+							endBat = 10;
 							if (res.length != 0) {
 								var html = '';
-
+								$('#battingNoData').hide();
 								html += '<table id="battingTable"><thead><tr>';
 								html += '<th>DATE</th>';
 								html += '<th>HOME TEAM</th>';
@@ -1011,7 +1069,7 @@
 								html += '<th>RUNS</th>';
 								html += '<th>4s</th>';
 								html += '<th>6s</th>';
-								html += '<th>DISMISS TYPE</th>';
+								html += '<th>DISMISSAL TYPE</th>';
 								html += '<th>SR</th>';
 								html += '<th>MOM</th>';
 								html += '<th>SCORE CARD</th>';
@@ -1049,16 +1107,11 @@
 											+ res[i].leagueBoardName
 											+ '</a></td>';
 
-									if (res[i].positionOfStand == ''
-											|| res[i].positionOfStand == 'null'
-											|| res[i].positionOfStand == 'NO') {
-										html += '<td>-</td>';
-
-									} else {
-										html += '<td>'
-												+ res[i].positionOfStandOrder
-												+ '</td>';
-									}
+											if (res[i].positionOfStandOrder == 0) {
+												 html += '<td>-</td>';
+										} else {
+											html += '<td>'+ res[i].positionOfStandOrder+ '</td>';
+										}
 									// html += '<td>'+res[i].positionOfStand+'</td>';
 									html += '<td>' + res[i].runs + '</td>';
 									html += '<td>' + res[i].fours + '</td>';
@@ -1082,27 +1135,32 @@
 								}
 								html += '</tbody>';
 								html += '</table>';
-
 								$("#battingTable").html(html).trigger('create');
+								$('#battingNoData').hide();
+								$('#loadmoreBatings').show();
 
 							} else {
-								/* var html = '';
+								 var html = '';
 								
 								html += '<table id="battingTable"><thead><tr>';
 								html += '<th>DATE</th>';
+								html += '<th>HOME TEAM</th>';
+								html += '<th>AWAY TEAM</th>';
+								html += '<th>TROPHY</th>';
 								html += '<th>LEAGUE</th>';
-								html += '<th>No Of Leagues Participated</th>';
 								html += '<th>POS</th>';
 								html += '<th>RUNS</th>';
 								html += '<th>4s</th>';
 								html += '<th>6s</th>';
-								html += '<th>DISMISS TYPE</th>';
+								html += '<th>DISMISSAL TYPE</th>';
 								html += '<th>SR</th>';
-								html += '<th>MAN OF THE MATCH</th>';
+								html += '<th>MOM</th>';
 								html += '<th>SCORE CARD</th>';
 								html += '</tr></thead></table>';
-								html += '<span style="color:red">No More Data</span>';
-								$("#battingTable").html(html).trigger('create');  */
+								/* html += '<span style="color:red">No More Data</span>'; */
+								$("#battingTable").html(html).trigger('create');  
+								$('#battingNoData').show();
+								$('#loadmoreBatings').hide();
 							}
 						},
 						error : function(err) {
@@ -1118,8 +1176,13 @@
 		console.log(" Batting years :" + val);
 
 	}
-
+	var j=0;
 	function yearWiseBowling(val) {
+		if(j==0)
+	 	 {
+	 	 j=1;
+	 	 return false;
+	 	 }
 		console.log(" Bowling Years" + val);
 		if (val != 'Years') {
 			document.getElementById("bowlingYearId").innerHTML = val;
@@ -1134,6 +1197,8 @@
 						data : JSON.stringify(year),
 						contentType : "application/json",
 						success : function(res) {
+							startBowl = 0;
+							endBowl = 10;
 							var flag = 0;
 							if (res.length != 0) {
 								for (var i = 0; i < res.length; i++) {
@@ -1145,7 +1210,7 @@
 							}
 							if (res.length != 0 && flag != 0) {
 								var html = '';
-
+								$('#noBowlingData').hide();
 								html += '<table id="bowlingTable"><thead><tr>';
 								html += '<th>DATE</th>';
 								html += '<th>HOME TEAM</th>';
@@ -1220,25 +1285,29 @@
 								}
 								html += '</tbody>';
 								html += '</table>';
-
 								$("#bowlingTable").html(html).trigger('create');
-
+								$('#noBowlingData').hide();
+								$('#loadmoreBowl').show();
 							} else {
-								/* var html = '';
-								
+								 var html = '';
+								 
 								 html += '<table id="bowlingTable"><thead><tr>';
 								 html += '<th>DATE</th>';
-								 html += '<th>LEAGUE</th>';
-								 html += '<th>No Of Leagues Participated</th>';
-								 html += '<th>OVERS</th>';
-								 html += '<th>MAIDENS</th>';
-								 html += '<th>RUNS</th>';
-								 html += '<th>WICKETS</th>';
-								 html += '<th>SR</th>';
-								 html += '<th>MAN OF THE MATCH</th>';
-								 html += '<th>SCORE CARD</th>';
+									html += '<th>HOME TEAM</th>';
+									html += '<th>AWAY TEAM</th>';
+									html += '<th>TROPHY</th>';
+									html += '<th>LEAGUE</th>';
+									html += '<th>OVERS</th>';
+									html += '<th>MAIDENS</th>';
+									html += '<th>RUNS</th>';
+									html += '<th>WICKETS</th>';
+									html += '<th>SR</th>';
+									html += '<th>MOM</th>';
+									html += '<th>SCORE CARD</th>';
 								 html += '</tr></thead></table>';
-								 $("#bowlingTable").html(html).trigger('create'); */
+								 $("#bowlingTable").html(html).trigger('create');
+								 $('#noBowlingData').show();
+								 $('#loadmoreBowl').hide();
 							}
 
 						},
@@ -1252,6 +1321,132 @@
 		}
 
 	}
+	
+	var k=0;
+	function yearWiseAchievements(val) {
+		if(k==0)
+	 	 {
+	 	 k=1;
+	 	 return false;
+	 	 }
+		if (val != 'Years') {
+			document.getElementById("achievementYearId").innerHTML = val;
+			var year = {
+				filterByYear : val,
+			}
+			$
+					.ajax({
+
+						type : "Post",
+						url : "${pageContext.request.contextPath}/yearWiseAchievements",
+						data : JSON.stringify(year),
+						contentType : "application/json",
+						success : function(res) {
+							startAchieve = 0;
+							endAchieve = 500;
+							if (res.length != 0) {
+								$('#noAcheivementData').hide();
+								var html = '';
+
+								html += '<table id="achievementsTable"><thead><tr>';
+								html += '<th>DATE</th>';
+								html += '<th>HOME TEAM</th>';
+								html += '<th>AWAY TEAM</th>';
+								html += '<th>TROPHY</th>';
+								html += '<th>LEAGUE</th>';
+								html += '<th>RUNS SCORED</th>';
+								html += '<th>WICKETS</th>';
+								html += '<th>CATCHES/STUMPINGS</th>';
+								html += '<th>SCORE CARD</th>';
+								html += '</tr></thead><tbody align="center">';
+								for (var i = 0; i < res.length; i++) {
+									var date = new Date(res[i].gameDate);
+									var id = res[i].matchId;
+									console.log("date ======="
+											+ date.toLocaleDateString());
+									var dateChange = date.toLocaleDateString();
+
+									var formatDate = null;
+									if (date != null) {
+
+										formatDate = dateChange;
+										//formatDate = date.getDate().format("{MM}/{dd}/{yyyy}"); 
+									} else {
+										formatDate = "";
+									}
+
+									console.log("format Date :" + formatDate);
+
+									var dateNewObject = getDateInObject(res[i].gamedate);
+									html += '<td>' + formatDate + '</td>';
+									// html += '<tr><td>'+dateChange+'</td>';
+									html += '<td><a href="${pageContext.request.contextPath}/'+res[i].homeTeamName+'/board/'+res[i].hometeamId+'">'
+											+ res[i].homeTeamName + '</a></td>';
+									html += '<td><a href="${pageContext.request.contextPath}/'+res[i].awayTeamName+'/board/'+res[i].awayTeamId+'">'
+											+ res[i].awayTeamName + '</a></td>';
+
+									html += '<td>' + res[i].tournamentName
+											+ '</td>';
+
+									html += '<td><a href="${pageContext.request.contextPath}/'+res[i].leagueBoardName+'/board/'+res[i].leagueBoardId+'">'
+											+ res[i].leagueBoardName
+											+ '</a></td>';
+
+									
+									// html += '<td>'+res[i].positionOfStand+'</td>';
+									html += '<td>' + res[i].runs + '</td>';
+									html += '<td>' + res[i].wickets + '</td>';
+									html += '<td>' + res[i].catchStumpingCount + '</td>';
+									
+									html += "<td><img src='${pageContext.request.contextPath}/images/scorecard.png' onclick='showScoreCard(\""
+											+ id + "\")''></td>";
+									html += '</tr>';
+								}
+								html += '</tbody>';
+								html += '</table>';
+
+								$("#achievementsTable").html(html).trigger('create');
+								$('#loadmoreAchiev').show();
+
+							} else {
+								var html = '';
+								
+								html += '<table id="achievementsTable"><thead><tr>';
+								html += '<th>DATE</th>';
+								html += '<th>HOME TEAM</th>';
+								html += '<th>AWAY TEAM</th>';
+								html += '<th>TROPHY</th>';
+								html += '<th>LEAGUE</th>';
+								html += '<th>RUNS SCORED</th>';
+								html += '<th>WICKETS</th>';
+								html += '<th>CATCHES/STUMPINGS</th>';
+								html += '<th>SCORE CARD</th>';
+								/* html += '<span style="color:red">No More Data</span>'; */
+								$("#achievementsTable").html(html).trigger('create');
+								$('#noAcheivementData').show();
+								$('#loadmoreAchiev').hide();
+							}
+						},
+						error : function(err) {
+							console.log(err);
+						}
+
+					})
+
+		} else {
+			document.getElementById("achievementYearId").innerHTML = "";
+		}
+
+		console.log(" Achievement years :" + val);
+
+	}
+	
+	
+	
+	
+	
+	
+	
 </script>
  
    <script type="text/javascript">

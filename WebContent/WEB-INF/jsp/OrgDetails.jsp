@@ -54,11 +54,11 @@ var deletedarray=[];
             	       </c:if>
             	       
             	       <c:if test="${boardInfoType eq 'Rules&Regulations'}">
-            	         <h4 id="Headervalue">Rules&Regulations</h4>   
+            	         <h4 id="Headervalue">Rules & Regulations</h4>   
             	       </c:if>
             	       
             	       <c:if test="${boardInfoType eq 'Awards&Honors'}">
-            	         <h4 id="Headervalue">Awards&Honors</h4>   
+            	         <h4 id="Headervalue">Awards & Honors</h4>   
             	       </c:if>
             	       
             	       <c:if test="${boardInfoType eq 'FAQ'}">
@@ -76,7 +76,7 @@ var deletedarray=[];
 		            
 		            <div class="form-group col-md-12 noPadding cs-align-center file-drop" style="margin-top:2%">
             	       <div class="col-lg-12 col-sm-12 col-12">
-		            <label for="email" style="width:100%; color: #9CA9B9">We having file upload option also</label>  
+		            <!-- <label for="email" style="width:100%; color: #9CA9B9">We having file upload option also</label>  --> 
 		            <label class="btn btn-primary btn-wide">
 		                Browse <input type="file" style="display: none;" id="uploadfile" onchange="selectpdf(this)">
 		            </label>
@@ -136,7 +136,7 @@ var deletedarray=[];
 
 function selectpdf(finput)
 {
-	var format=["pdf","doc"];
+	var format=["pdf","doc","docx"];
 	
 	var imageUrl=$('#uploadfile')[0].files[0];
 	if(typeof imageUrl === "undefined" || imageUrl==null){
@@ -148,7 +148,7 @@ function selectpdf(finput)
 	 if(pos==-1)
 		 {
 		// alert("file should be in pdf,docx,doc,txt format")
-		displaynotification('Please choose pdf or doc file',2000);
+		displaynotification('Please choose pdf or doc or docx file',2000);
 		 $("#uploadfile").val('');
 		 return false;
 		 }
