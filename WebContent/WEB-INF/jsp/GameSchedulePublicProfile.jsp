@@ -174,89 +174,7 @@ var formatAMPMTime = function(date) {
 
   </div>
 </div> 
-     
-     <div id="EditSCoreCard" class="modal" role="dialog"
-		style="display: none;">
-		<div class="modal-dialog">
-
-			<div class="modal-content">
-			
-				<div class="modal-body">
-					<p style="text-align:left;">Please choose options.</p>
-				</div>
-				<div class="modal-footer action" style="text-align:center;">
-                   <div style="text-align:left !important;">
-					<input type="radio" id="Male" name="gender" value="1"> <label
-						for="Male"><span></span>Do you want to edit Scorecard?</label> <input
-						type="radio" id="female" name="gender" value="2"> <label
-						for="female"><span></span>Do you want to enter Scorecard?</label>
-				   </div>
-					<button type="button" onclick="EnterScoreCardPopupok()"
-						class="btn btn-default ok">OK</button>
-					<button type="button" onclick="ScoreCardPopuphide()"
-						class="btn btn-default ok">Cancel</button>
-
-				</div>
-			</div>
-
-		</div>
-	</div>
-
-
-
-	<div id="editScoreCardPopUp" class="modal" role="dialog"
-		style="display: none;">
-		<div class="modal-dialog">
-
-			<div class="modal-content">
-				<!--  <div class="modal-header">
-        <button type="button" class="close" onclick="RoasterPopup()" data-dismiss="modal">&times;</button>
-        </div> -->
-
-				<div class="modal-body">
-					<p style="text-align:center;">Under Development</p>
-					<br>
-				</div>
-				<div class="modal-footer action">
-					<button type="button" onclick="ScoreCardPopuphide()"
-						class="btn btn-default ok">OK</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-<!-- ---for pop up----------- -->
-
-<div id="EditSCoreCard1" class="modal" role="dialog" style="display: none;">
-  <div class="modal-dialog">
-
-    <div class="modal-content">
-        
-      <div class="modal-body">
-        
-        
-        <p >The operation you have requested will erase the match data .</p>
-        <br>
-        <p>Do you want to continue?</p>
-        
-        <input type="hidden" id="ScoreCardBoardId">
-        <input type="hidden" id="ScoreCardTournamentId">
-        <input type="hidden" id="ScoreCardtournmentShudulorId">
-        <input type="hidden" id="ScoreCardhomeId">
-        <input type="hidden" id="ScoreCardawayTeamId">
-        <input type="hidden" id="ScoreCarddate">
-        <input type="hidden" id="ScoreCardcreatedBy">
-        
-        
-      </div>
-      <div class="modal-footer action">
-      <button type="button" onclick="EnterScoreCardPopupok1()" class="btn btn-default ok">Yes</button>
-      <button type="button" onclick="ScoreCardPopuphide()" class="btn btn-default ok">No</button>
-       </div>
-    </div>
-
-  </div>
-</div>
+      
       <div class="col-md-10">
       		<div class="col-md-12 whiteBox">
 		          <h1 class="">Schedule & Scores</h1>
@@ -542,7 +460,7 @@ var formatAMPMTime = function(date) {
                           <th>Scorer</th>
                           <th>Match Status</th>
                           <th>Enter Scorecard</th>
-                           <th>Scorecard</th>
+                           <th>Scorercard</th>
                         </tr>
                        </thead>
 
@@ -609,8 +527,7 @@ var formatAMPMTime = function(date) {
                           <th>Umpire</th>
                           <th>Scorer</th>
                           <th>Result</th>
-                          <th>Edit Scorecard</th>
-                          <th>Scorecard</th>
+                          <th>Scorercard</th>
                          </tr>
                         </thead>
 
@@ -631,8 +548,7 @@ var formatAMPMTime = function(date) {
                           <th>Umpire</th>
                           <th>Scorer</th>
                           <th>Result</th>
-                          <th>Edit Scorecard</th>
-                          <th>Scorecard</th>
+                          <th>Scorercard</th>
                         </tr>
                        </thead>
 
@@ -669,10 +585,7 @@ var formatAMPMTime = function(date) {
                            
                            <c:choose>
                            <c:when test="${completed.statusOfMatch eq 'tie'}">
-                           		<span class="text-danger">Match Tied</span>
-                           </c:when>
-                           <c:when test="${completed.statusOfMatch eq 'draw'}">
-                           		<span class="text-danger">Match Drawn</span>
+                           <span class="text-danger">Match Tied</span>
                            </c:when>
                            <c:otherwise>
                            <span class="text-danger">${completed.winTeamName} won</span>
@@ -684,10 +597,6 @@ var formatAMPMTime = function(date) {
                            <br>
 							  ${completed.winTeamName} : ${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}<br>
 							  ${completed.loseTeamName} : ${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers}</td>
-                         <td> 
-                             <a href="javascript:void(0)" onclick="EDITSCORECARD('${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')"><i class="fa fa-pencil" title="Edit Profile"></i></a>
-                        	 <a href="javascript:void(0)" onclick="EDITSCORECARD('${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')">Edit Scorecard</a>
-                       </td>
                           <td align="center" ><a href="#" onclick="showScoreCard('${completed.tournamentSchedulerId}')"><i class="fa fa-newspaper-o editIcon"></i></a></td>
                         </tr>
                       </c:forEach>
@@ -1208,7 +1117,7 @@ var dateString = null;
 			// completed
 			   var htmlco3="";
 			  htmlco3="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox'><h2 class='noBorder noLeftPad'>Completed Matches</h2>";
-			 htmlco3+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Trophy</th><th>Umpire</th><th>Scorer</th><th>Result</th><th>Edit Scorecard</th><th>Scorecard</th></tr></thead>";
+			 htmlco3+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Trophy</th><th>Umpire</th><th>Scorer</th><th>Result</th><th>Scorecard</th></tr></thead>";
 			if(completedlist.length!=0){
 				htmlco3+="<tbody>";
 				for(var i=0;i<completedlist.length;i++){
@@ -1244,20 +1153,14 @@ var dateString = null;
 				  //  htmlco3+="<td align='center'><span class='text-danger'>"+completedlist[i].winTeamName+" won</span><br>";
 				    
 				    
-				    if(completedlist[i].statusOfMatch == 'tie'){
-				    	
-					    htmlco3+="<td align='center'><span class='text-danger'>Match Tied</span><br>";}
-					   else if(completedlist[i].statusOfMatch == 'draw'){
-						   htmlco3+="<td align='center'><span class='text-danger'>Match Drawn</span><br>";
-					   }else{
-						    htmlco3+="<td align='center'><span class='text-danger'>"+completedlist[i].winTeamName+" won</span><br>";
-					   }
+				    if(completedlist[i].statusOfMatch != 'tie'){
+					    htmlco3+="<td align='center'><span class='text-danger'>"+completedlist[i].winTeamName+" won</span><br>";}
+					   else{
+						   htmlco3+="<td align='center'><span class='text-danger'>Match Tied</span><br>";}
 				    
 				    
 				    htmlco3+=""+completedlist[i].winTeamName+": "+completedlist[i].winTeamRuns+"/"+completedlist[i].winTeamWickets+" in "+completedlist[i].winTeamOvers+"<br>";
 				    htmlco3+=""+completedlist[i].loseTeamName+" : "+completedlist[i].loseTeamRuns+"/"+completedlist[i].loseTeamWickets+" in "+completedlist[i].loseTeamOvers+"</td>";
-
-				    htmlco3+="<td><a href=javascript:void(0); onclick=EDITSCORECARD('${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')><i class='fa fa-pencil' title='Edit Profile'></i></a><a href=javascript:void(0); onclick=EDITSCORECARD('${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')>Edit Scorecard</a></td>";
 				    htmlco3+="<td align='center' ><a href=javascript:void(0); onclick=showScoreCard('"+completedlist[i].tournamentSchedulerId+"')><i class='fa fa-newspaper-o editIcon'></i></a></td>";
 				    htmlco3+="</tr>";
 				}
@@ -1360,11 +1263,7 @@ var dateString = null;
                 	function ScoreCardPopuphide()
                 	{
                 		$("#ScoreCardPopup").hide();
-                		$("#EditSCoreCard").hide();
-                		$("#EditSCoreCard1").hide();
-                		$("#editScoreCardPopUp").hide();
                 	}
-
                 	function ScoreCardPopupok()
                 	{
                 		var boardid=$("#ScoreCardBoardId").val();
@@ -1407,99 +1306,6 @@ var dateString = null;
                 	
                 	}
                 	
-                	function EDITSCORECARD(id,tournmentId,tournmentShudulorId,homeId,awayTeamId,date,createdBy)
-                	{
-            	  var tournamentBean = {
-                					   tournamentId : tournmentId,
-                					   createdBy : id,
-                			   }; 
-                			   
-                			  $.ajax({
-                				type :"Post",
-                				url:"${pageContext.request.contextPath}/getScheduleHomeAwayName",
-                				data:JSON.stringify(tournamentBean),
-                				contentType:"application/json",
-                				success:function(response){
-                					
-                					 if(response.length > 0){	  
-                					 		$("#ScoreCardBoardId").val(id);
-                	                		$("#ScoreCardTournamentId").val(tournmentId);
-                	                		$("#ScoreCardtournmentShudulorId").val(tournmentShudulorId);
-                	                		$("#ScoreCardhomeId").val(homeId);
-                	                		$("#ScoreCardawayTeamId").val(awayTeamId);
-                	                		$("#ScoreCarddate").val(date);
-                	                		$("#ScoreCardcreatedBy").val(createdBy);
-                	                
-                	                		$("#EditSCoreCard").show();
-                					 
-                					 }
-                					 else{					 
-                						 showNotification("You are not a valid user to enter the score", 2000);
-                						 hide_notificationpoup(2000);					 
-                					 }
-                					
-                					
-                				},
-                				error:function(err){
-                					console.log(err);
-                				}
-                				  
-                			  });
-                		
-                		
-                	}
-                	
-                	 function EnterScoreCardPopupok1(){
-                 		
-                 		$("#EditSCoreCard1").hide();
-                 		var boardid=$("#ScoreCardBoardId").val();
-                 		var tournametid=$("#ScoreCardTournamentId").val();
-                 		var tournamentschedulerid=$("#ScoreCardtournmentShudulorId").val();
-                 	    var homeid=$("#ScoreCardhomeId").val();
-                 	    var awayteamid= $("#ScoreCardawayTeamId").val();
-                 	    var date=$("#ScoreCarddate").val();
-                 	    var createdby=$("#ScoreCardcreatedBy").val();
-                 	
-                 	 var request={
-                 			boardId : boardid,
-                 			tournamentId : tournametid,
-                 			tournamentSchedulerId : tournamentschedulerid,
-                 			homeTeamId : homeid,
-                 			awayTeamId : awayteamid,
-                 			dateString : date,
-                 			createdBy : createdby,
-                 	}
-                 	
-                 	$.ajax({
-                 	type : "POST",
-                 	url : "${pageContext.request.contextPath}/clearScore",
-                 	contentType : "application/json; charset=utf-8",
-                 	data : JSON.stringify(request),
-                 	success : function(response)
-                 	{
-                 	 	
-                 	if(response == 'Success')
-                 		{
-                 		window.location.href = "${pageContext.request.contextPath}/EnterScoreSelectedMatch/boardId/"+boardid+"/"+tournametid+"/"+tournamentschedulerid+"/"+homeid+"/"+awayteamid+"/"+date+"/"+createdby;	
-                 		}else
-                 			{
-                 			showNotification("You are not a valid user to enter the score", 2000);
-                 			hide_notificationpoup(2000);
-                 			} 
-                 		}
-                 	});
-                 	} 
-                 	function EnterScoreCardPopupok(){
-                 		var completedPop = $("input[name='gender']:checked").val();
-                 		if(completedPop=='2'){
-                 		$("#EditSCoreCard").hide();
-                 		$("#EditSCoreCard1").show();
-                 		}else{
-                 			$("#EditSCoreCard").hide();
-                 			$("#editScoreCardPopUp").show();
-                 			
-                 		}
-                 	}
                 	</script>
    
 </body>

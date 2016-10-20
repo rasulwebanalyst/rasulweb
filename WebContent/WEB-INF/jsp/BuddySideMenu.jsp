@@ -20,7 +20,7 @@
                             	<li><a href="${pageContext.request.contextPath}/myfans"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyFans.png"></i>My Fans</a></li>
                             	<li><a href="${pageContext.request.contextPath}/fanOf"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/IAmFanOf.png"></i>I Am Fan Of</a></li>                            	
                             	<li><a href="${pageContext.request.contextPath}/My Boards"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/IAmFanOf.png"></i>My Board</a></li>
-                            	<li><a href="${pageContext.request.contextPath}/buddies"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyBuddyList.png"></i>My Buddies</a></li>
+                            	<li><a href="${pageContext.request.contextPath}/buddies"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyBuddyList.png"></i>My Buddy List</a></li>
                             	<li><a href="${pageContext.request.contextPath}/playerCompare#"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/PlayerCompare.png"></i>Player Compare</a></li>
                             	<li><a href="${pageContext.request.contextPath}/MyCricketBook"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>Cricket Book</a></li>
                         </ul>

@@ -10,8 +10,6 @@ public class HubRequest {
 	private Object requestParam;
 	
 	
-	
-
 	public Properties getProperties() {
 		return properties;
 	}

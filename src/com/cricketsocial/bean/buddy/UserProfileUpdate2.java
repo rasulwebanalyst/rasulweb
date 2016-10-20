@@ -13,7 +13,7 @@ import com.cricketsocial.bean.role.SubRoleLevelTwo;
 
 public class UserProfileUpdate2 {
 
-
+	
 	private UUID userId;
 	private int active;
 	private String address1;
@@ -59,32 +59,28 @@ public class UserProfileUpdate2 {
 	private String subcat2BowlerOptions;
 	private String subcat2BatsmanOptions;
 	// for getting role info 
-	private String roleinfo;
-	private String placesMapString;
-	private String strDate;
-	private String userLanguageMapString;
-	//private String placesMapString;
-	private byte[] upload;
-	private byte[] userProfilePic;
-
-	private String countryCode;
-	private String landLineCountrycode;
-	private String landLineContry;
-	private String landLineSTDcode;
-
-	private String leagueBoardId;
-	private String teamBoardId;
-
-	private String oldLatlong;
-
-	private String profileStrength;
-
-	private String imageExtension;
-	
-	private String placeOfBirth;
-	private Integer enablePhoneNo;
-	private Integer enableEmailAddress;
-
+		private String roleinfo;
+		private String placesMapString;
+		private String strDate;
+		private String userLanguageMapString;
+		//private String placesMapString;
+		private byte[] upload;
+		private byte[] userProfilePic;
+		
+		private String countryCode;
+		private String landLineCountrycode;
+		private String landLineContry;
+		private String landLineSTDcode;
+		
+		private String leagueBoardId;
+		private String teamBoardId;
+		 
+		private String oldLatlong;
+		
+		private String profileStrength;
+		
+		private String imageExtension;
+		
 	public String getSubcat2Allrounder() {
 		return subcat2Allrounder;
 	}
@@ -127,12 +123,12 @@ public class UserProfileUpdate2 {
 	public void setSubcat4(String[] subcat4) {
 		this.subcat4 = subcat4;
 	}
-
-
-
-
-
-
+	
+	
+	
+	
+	
+	
 	public List<SubRoleLevelThree> getSubRoleLevelThreeList() {
 		return subRoleLevelThreeList;
 	}
@@ -153,9 +149,9 @@ public class UserProfileUpdate2 {
 		this.subRoleLevelFourList = subRoleLevelFourList;
 	}
 
-
-
-
+	
+	
+	
 	public ImageDetails getImageDetails() {
 		return imageDetails;
 	}
@@ -175,8 +171,8 @@ public class UserProfileUpdate2 {
 		this.userLanguageMapString = userLanguageMapString;
 	}
 
-
-
+	
+	
 	public byte[] getUserProfilePic() {
 		return userProfilePic;
 	}
@@ -274,7 +270,7 @@ public class UserProfileUpdate2 {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-
+	
 	public String getLastName() {
 		return lastName;
 	}
@@ -299,7 +295,7 @@ public class UserProfileUpdate2 {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
 	public String getState() {
 		return state;
 	}
@@ -312,14 +308,14 @@ public class UserProfileUpdate2 {
 	public void setUserImageUrl(String userImageUrl) {
 		this.userImageUrl = userImageUrl;
 	}
-
+	
 	public String getLoginType() {
 		return loginType;
 	}
 	public void setLoginType(String loginType) {
 		this.loginType = loginType;
 	}
-
+	
 	public String getUserRoleMapString() {
 		return userRoleMapString;
 	}
@@ -380,7 +376,7 @@ public class UserProfileUpdate2 {
 	public void setLeagueBoard(String leagueBoard) {
 		this.leagueBoard = leagueBoard;
 	}
-
+	
 	public String getBallId() {
 		return ballId;
 	}
@@ -453,23 +449,8 @@ public class UserProfileUpdate2 {
 	public void setImageExtension(String imageExtension) {
 		this.imageExtension = imageExtension;
 	}
-	public String getPlaceOfBirth() {
-		return placeOfBirth;
-	}
-	public void setPlaceOfBirth(String placeOfBirth) {
-		this.placeOfBirth = placeOfBirth;
-	}
-	public Integer getEnablePhoneNo() {
-		return enablePhoneNo;
-	}
-	public void setEnablePhoneNo(Integer enablePhoneNo) {
-		this.enablePhoneNo = enablePhoneNo;
-	}
-	public Integer getEnableEmailAddress() {
-		return enableEmailAddress;
-	}
-	public void setEnableEmailAddress(Integer enableEmailAddress) {
-		this.enableEmailAddress = enableEmailAddress;
-	}
+	
+	
+	
 	
 }

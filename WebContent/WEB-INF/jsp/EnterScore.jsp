@@ -2558,10 +2558,6 @@ console.log('--------------------------------  loseTeamRuns --------------------
 	}
 	
 }
-function cancelValues(){
-	//window.location.reload();
-	window.location.href="${pageContext.request.contextPath}/GameSchedule/boardId/${boardId}";
-}
 
 function checkFunction(){
 	
@@ -2692,7 +2688,7 @@ function blurFunction()
 			// document.getElementById('tournament').value= 0;
 			
 			var htm="test";
-			$('#tournamentTextVal').html(htm);
+			$('#tournamentTextVal').html(htm);€‹
 	});
    
    function tet(){

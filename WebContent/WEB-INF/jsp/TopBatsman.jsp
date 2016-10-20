@@ -38,10 +38,10 @@ var pageNum=500;
          <%@ include file="LeaugeManagementSideMenu.jsp" %>
 
 
-     
+      <form action="${pageContext.request.contextPath}/leagueTopBatsmanList" id="centuriesSearchForm" name="centuriesSearchForm" method="post" onsubmit="return searchValiation()">
       <div class="col-md-10">
       		<div class="col-md-12 whiteBox">
-		        <div class="col-md-10">  <h1 class="pageHead noBorder">Top Batsman
+		          <h1 class="pageHead noBorder">Top Batsman
                   
                  <!--  <div class="h1Sbox">
                                 <div class="selectdiv pull-right">
@@ -54,43 +54,10 @@ var pageNum=500;
                                 </div>
                               </div> -->
                   
-                  </h1></div>
-                  <div class="col-md-2" style="display: inline-block;">
-								    <label style="text-align: center;">Filter</label>
-								    <div class="selectdiv" style="height: 25px !important;">
-								        <c:choose>
-								            <c:when test="${yearListSize eq 0 }">
-								                <select class="selectboxdiv" id="centuryYears" style="color: black; font-size: 12px !important; height: 25px !important;">
-									            	<option style="color: black; font-size: 12px !important; height: 25px !important;"></option>
-									            </select>
-								                <div class="out" style="font-size: 12px; height: 25px !important; margin: -6px -6px"></div>
-								            </c:when>
-								            <c:otherwise>
-								                <select name="yearDropDown" class="selectboxdiv" id="centuryYears" onchange="yearWiseTopBatsman(this.value)" style="color: black; font-size: 12px !improtant; height: 25px !important;">
-			                                        <!-- <option>Years</option> -->
-			                                       <c:choose>
-			                                        		<c:when test="${defaultload == 'yes'}">
-			                                        			 <c:forEach var = "yearsCentury" items="${yearsList}">
-			                                        			<option value="${yearsCentury}" style="font-size: 12px; height: 25px !important;">${yearsCentury}</option>	
-			                                        			 </c:forEach>
-			                                        		</c:when>
-			                                        		<c:otherwise>
-			                                        			<option value="Years" style="font-size: 12px; height: 25px !important;">Years</option>
-			                                        			 <c:forEach var = "yearsCentury" items="${yearsList}">
-			                                        				<option value="${yearsCentury}" style="font-size: 12px; height: 25px !important;">${yearsCentury}</option>
-			                                        			</c:forEach>
-			                                        		</c:otherwise>
-			                                        	</c:choose>
-								                                       
-								                </select>
-								                <div class="out" style="font-size: 12px; height: 25px !important; margin: -6px -6px"></div> 
-								            </c:otherwise>
-								        </c:choose>
-								    </div>
-								</div>
-								<div id="centuryYearId" style="display: none;"></div>
+                  </h1>
+                  
                   </div></div>
-                   <form action="${pageContext.request.contextPath}/leagueTopBatsmanList" id="centuriesSearchForm" name="centuriesSearchForm" method="post" onsubmit="return searchValiation()">
+                  
                   <div class="col-md-10">
       		<div class="col-md-12 whiteBox">
                   
@@ -140,47 +107,81 @@ var pageNum=500;
                   </form>
                   
             <div class="col-md-10 pull-right">
-      		 <div class="col-md-12 whiteBox font13px"> 
-     <div id="centTable" >
+      		<!-- <div class="col-md-12 whiteBox"> -->
                   
+                  <%-- <c:choose>
+                  <c:when test="${empty topplayer.matchsheduledtolist}">
                   
+                  <table>
+                        <thead>
+                        <tr>
+                          <th>Tournament</th>
+                          <th>Player Name</th>
+                          <th>Team</th>
+                          <th>Games</th>
+                          <th>Matches</th>
+                          <th>NO</th>
+                          <th>Runs</th>
+                          <th>Avg</th>
+                        </tr>
+                       </thead>
+                       </table>
+                       
+                       <span style="color:red">No Details Available</span>
+                  
+                  </c:when>
+                  <c:otherwise> --%>
+                  
+                  <!-- <table>
+                        <thead>
+                        <tr>
+                          <th>Sl no.</th>
+                          <th>Player Name</th>
+                          <th>Team</th>
+                          <th>Matches</th>
+                          <th>Innings</th>
+                          <th>NO</th>
+                          <th>Runs</th>
+                          <th>Avg</th>
+                        </tr>
+                       </thead>
+
+                       <tbody id="topbatsmanTableBody">
+                        <tr> -->
                         <c:forEach items="${TopBatsmanResponse}" var="topplayer">
-                        	<c:choose>
-            					<c:when test="${topplayer.size eq 0}">
-            					</c:when>
-           						<c:otherwise>
-                        			<br>
-	                       			<div class="col-md-12 whiteBox font13px" id="centTable1">
-	                       				<span class="text-danger" style="font-weight: bold; color: #3253a8 !important; ">Tournament Name : ${topplayer.tournamentName}</span>
-	                       					<br>
-				                       		<table>
-						                        <thead>
-						                        <tr>
-						                          <th>S.No</th>
-						                          <th>Player Name</th>
-						                          <th>Team</th>
-						                          <th>Matches</th>
-						                          <th>Innings</th>
-						                          <th>NO</th>
-						                          <th>Runs</th>
-						                          <th>Avg</th>
-						                          <th>HS</th>
-						                          <th>SR</th>
-						                          <th>100s</th>
-						                          <th>50s</th>
-						                          <th>6s</th>
-						                          <th>4s</th>
-						                          
-						                        </tr>
-						                       </thead>
-                        
 	                       		<c:forEach items="${topplayer.matchsheduledtolist}" var="match">  
+	                       		<c:choose>
+	                       		<c:when test="${empty topplayer.matchsheduledtolist}">
+	                       			<!-- <span style="color:red">No Details Available</span> -->
 	                       		
-	                       			<c:forEach items="${match.playerlist}" var="player" varStatus="index">  
+	                       		</c:when>
+	                       		
+	                       		<c:otherwise>
+	                       		<br>
+	                       		<div class="col-md-12 whiteBox">
+	                       		<span class="text-danger" style="font-weight: bold; color: #3253a8 !important; ">Tournament Name : ${topplayer.tournamentName}</span>
+	                       		<br>
+	                       		<table>
+                        <thead>
+                        <tr>
+                          <th>S.No</th>
+                          <th>Player Name</th>
+                          <th>Team</th>
+                          <th>Matches</th>
+                          <th>Innings</th>
+                          <th>NO</th>
+                          <th>Runs</th>
+                          <th>Avg</th>
+                        </tr>
+                       </thead>
+
+                       <tbody id="topbatsmanTableBody">
+                        <tr>
+	                       		        
+	                       		<c:forEach items="${match.playerlist}" var="player" varStatus="index">  
 	                       		
 	                       		<c:choose>
 	                       		<c:when test="${!empty match.playerlist}">
-	                       		<tbody id="topbatsmanTableBody">
 	                       		<tr>                        				 	
 	                        				 	  		<%-- <c:choose>
 					                        				<c:when test="${index.count eq 1}">
@@ -191,45 +192,43 @@ var pageNum=500;
 					                        				</c:otherwise>
 				                        				</c:choose> --%>
 				                        				<td>${index.count}</td>
-	                        				  	  <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}"><span class="text-danger"><img alt="" src="${player.userImageUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';" width="30px" height="30px" style="margin-right: 10px;"></span><b>${player.userName}</b></a></td>	 
+	                        				  	  <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}"><span class="text-danger"><img alt="" src="${player.userImageUrl}" width="50px" height="50px" style="margin-right: 10px;">${player.userName} </span></a></td>	 
 	                        				  	                       					  
 						                          <%-- <td><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}">${player.teamBoardInfo.boardName}</a></td> --%>
-						                          <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}"><img src="${player.teamBoardInfo.boardImageURL}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" style="width: 30px;margin-right: 10px; ">  ${player.teamBoardInfo.boardName}</a></td>
+						                          <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}"><img src="${player.teamBoardInfo.boardImageURL}" style="width: 30px;margin-right: 10px; ">  ${player.teamBoardInfo.boardName}</a></td>
 						                          <td>${player.games}</td>
 						                          <td>${player.innings}</td>
 						                          <td>${player.notOuts}</td>
-						                          <td>${player.sumOfRuns}</td>
-						                          <c:choose>
-							                          <c:when test="${player.average eq 0}">
-							                          	<td>-</td>
-							                          </c:when>
-							                          <c:otherwise>
-							                          	<td><fmt:formatNumber type="number"  pattern="##########.##"  value="${player.average}" /></td>
-							                          </c:otherwise>
-						                          </c:choose>
-						                          <td>${player.highest}</td>	
-						                          <td>${player.strikeRate}</td>	
-						                          <td>${player.centuryCount}</td>	
-						                          <td>${player.halfCenturyCount}</td>	
-						                          <td>${player.sixsCount}</td>
-						                          <td>${player.foursCount}</td>					                          
+						                          <td>${player.sumOfRuns}</td>	
+						                          <td><fmt:formatNumber type="number"  pattern="##########.##"  value="${player.average}" /></td>						                          
 						                     </tr>
-	                       		</tbody>
+	                       		
+	                       		
+	                       		
+	                       		
 	                       		</c:when>
+	                       		
 	                       		<c:otherwise>
+	                       	<!-- 	<span style="color:red">No Details Available</span> -->
+	                       		
 	                       		</c:otherwise>
+	                       		
 	                       		</c:choose>
 	                       		           			
+	                       						 
 						                     </c:forEach>
-                     </c:forEach>  
+						                     </tr>
+                        
+                       
+                     </tbody>
                  </table> 
                  </div>
-				</c:otherwise>		                     
-					</c:choose>	                     
-	                       		                    
+						                     
+						                     </c:otherwise>
+						                     
+						                     </c:choose>                     			
+	                       		</c:forEach>                      
 	                       </c:forEach>
-	                       <div class="clearfix"></div>
-	                       </div>
                         <!-- </tr>
                         
                        
@@ -244,7 +243,7 @@ var pageNum=500;
                   
                  
           
-                </div> 
+               <!-- </div> -->
             </div>
           </div>    
       </div>
@@ -262,142 +261,12 @@ var pageNum=500;
   <script type="text/javascript">
   // function loading()
   //{
-	  var url = window.location.href;
-   
-   if(url.indexOf('leagueTopBatsmanList') != -1){
-   	//alert("inside contains");
-   }else{
 	   $(window).bind("pageshow", function() {
 	   $("#teamBoardInField").val("");
 	   $("#tournmentInField").val("");
 	   $('#selectTeamBoardId').val("");
 	   $('#SelectTournMent').val("");
   });
-   }
-   
-   
-   var i=0;
-   function yearWiseTopBatsman(val) {
-   	if(i==0)
-   	 {
-   	 i=1;
-   	 return false;
-   	 }
-   	if(val != "Years"){
-   		document.getElementById("centuryYearId").innerHTML = val;
-   	   	var year = {
-   	   			boardId : "${boardId}",
-   	   			filterByYear : val,
-   	   		
-   	   	}
-   	 $('#loading').show();
-   	   	$.ajax({
-
-   	   		type : "Post",
-   	   		url : "${pageContext.request.contextPath}/yearWiseTopBatsman",
-   	   		data : JSON.stringify(year),
-   	   		contentType : "application/json",
-   	   		success : function(res) {
-   	   			$('#centTable').hide();
-   	   			var html = '';
-   	   			
-   	   			if (res.length != 0) {
-   	   				for (var i = 0; i < res.length; i++) {
-   	   					if(res[i].size != 0){
-   	   						
-   	   						html += '<div class="whiteBox">';
-   							html += '<span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament Name : '+res[i].tournamentName+'</span>'
-   	   						html += '<table id="centTable"><thead><tr>';
-   	   						html += '<th>S.No</th>';
-   	   						html += '<th>Player Name</th>';
-   	   						html += '<th>Team</th>';
-   	   						html += '<th>Matches</th>';
-   	   						html += '<th>Innings</th>';
-   	   						html += '<th>NO</th>';
-   	   						html += '<th>Runs</th>';
-   	   						html += '<th>Avg</th>';
-   	   						html += '<th>HS</th>';
-   	   						html += '<th>SR</th>';
-   	   						html += '<th>100s</th>';
-   	   						html += '<th>50s</th>';
-   	   						html += '<th>6s</th>';
-   	   						html += '<th>4s</th>';
-   	   						html += '</tr></thead><tbody align="center">';
-   	   						var mat = res[i].matchsheduledtolist;
-   	   						if(mat != null){
-   	   							for (var j=0;j<mat.length;j++){
-   	   	   							var plist = mat[j].playerlist;
-   	   	   							if(plist != null){
-   	   	   								for(var k=0;k<plist.length;k++){
-   	   										var slno = k+1;
-   	   										console.log("value"+plist[k].teamBoardInfo.boardName);
-   	   										html += '<tr>';
-   	   	   									html +='<td>'+ slno +'</td>';
-   	   	   								html += '<td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/'+ plist[k].userName+ '/' +plist[k].userId+ '"><span class="text-danger"><img alt="" src="'+plist[k].userImageUrl+'" width="30px" style="margin-right: 10px;"></span><b>' +plist[k].userName+ '</b> </a></td>';
-   	   	   									html += '<td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/' + plist[k].teamBoardInfo.boardName + '/board/' + plist[k].teamBoardInfo.boardId + '"><img src="'+plist[k].teamBoardInfo.boardImageURL+ '"style="margin-right: 10px; width:30px;">' + plist[k].teamBoardInfo.boardName + '</a></td>';
-   	   	   									html += '<td class="tdAlignLeft">' + plist[k].games + '</td>';
-   	   	   									html += '<td class="tdAlignLeft">' + plist[k].innings + '</td>';
-   	   	   									html += '<td class="tdAlignLeft">' + plist[k].notOuts + '</td>';
-   	   	   									html += '<td class="tdAlignLeft">' + plist[k].sumOfRuns + '</td>';
-   	   	   									if(plist[k].average != 0){
-   	   	   										console.log("average val : "+plist[k].average);
-   	   	   										html += '<td class="tdAlignLeft">'+ plist[k].average +'</td>';
-   	   	   									}else{
-   	   	   										html += '<td class="tdAlignLeft">-</td>';
-   	   	   									}
-   	   	   									
-   	   	   									html += '<td class="tdAlignLeft">' + plist[k].highest + '</td>';
-   	   	   									html += '<td class="tdAlignLeft">' + plist[k].strikeRate + '</td>'; 
-   	   	   									html += '<td class="tdAlignLeft">' + plist[k].centuryCount + '</td>'; 
-   	   	   									html += '<td class="tdAlignLeft">' + plist[k].halfCenturyCount + '</td>'; 
-   	   	   									html += '<td class="tdAlignLeft">' + plist[k].sixsCount + '</td>'; 
-   	   	   									html += '<td class="tdAlignLeft">' + plist[k].foursCount + '</td>';
-   	   	   									
-   	   	   							        html += '</tr>'; 
-   	   	   									
-   	   	   									
-   	   	   									
-   	   	   									 
-   	   	   								}
-   	   	   							
-   	   	   							
-   	   	   							}
-   	   	   							
-   	   	   						}
-   	   							html += '</tbody>';
-   		    						html += '</table>';
-   		    						html += '</div>';
-   	   						}
-   	   						
-   	   					}
-   	   				}
-   	   			} else {
-   	   		}
-   	   			
-   	   			$("#centTable").html(html).trigger('create');
-   						
-   						$('#centTable').show();
-   						$('#centTable1').hide();
-   						$('#tournmentInField').val("");
-   						$('#teamBoardInField').val("");
-   						$('#selectTeamBoardId').val("");
-   						$('#SelectTournMent').val("");
-   						$('#loading').hide();
-   	   	},
-   	   	error : function(err) {
-   	   		console.log(err);
-   	   	}
-   	   	})
-   	   console.log(" Matches years :" + val);
-   	}
-   	
-   }
-    
-   
-   
-   
-   
-   
    </script>
    
 </body>
