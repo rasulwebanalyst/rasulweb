@@ -66,6 +66,10 @@ public class UserProfileRole {
 	private String boardId;
 	private List<CountryCodes> countryCodes;
 	
+	private String placeOfBirth;
+	private Integer enablePhoneNo;
+	private Integer enableEmailAddress;
+	
 	//**** hyder
 
 List<UserPlaceMap> userplacemap;
@@ -510,7 +514,23 @@ public void setUserboardmap(List<UserBoardMap> userboardmap) {
 	public void setCountryCodes(List<CountryCodes> countryCodes) {
 		this.countryCodes = countryCodes;
 	}
-
-	
+	public String getPlaceOfBirth() {
+		return placeOfBirth;
+	}
+	public void setPlaceOfBirth(String placeOfBirth) {
+		this.placeOfBirth = placeOfBirth;
+	}
+	public Integer getEnablePhoneNo() {
+		return enablePhoneNo;
+	}
+	public void setEnablePhoneNo(Integer enablePhoneNo) {
+		this.enablePhoneNo = enablePhoneNo;
+	}
+	public Integer getEnableEmailAddress() {
+		return enableEmailAddress;
+	}
+	public void setEnableEmailAddress(Integer enableEmailAddress) {
+		this.enableEmailAddress = enableEmailAddress;
+	}
 	
 }

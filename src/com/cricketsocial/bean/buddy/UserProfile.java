@@ -69,9 +69,12 @@ public class UserProfile {
 	private List<String> zipList;
 	
 	private String codeNumber;
+	private String placeOfBirth;
 	
 	private String checkConnect;//Ramya added for req check
 	private int buddyFansBoardsCount;
+	private Integer enablePhoneNo;
+	private Integer enableEmailAddress;
 	
 	private String type;
 	
@@ -341,9 +344,23 @@ public class UserProfile {
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
-	
-	
-	
-
+	public String getPlaceOfBirth() {
+		return placeOfBirth;
+	}
+	public void setPlaceOfBirth(String placeOfBirth) {
+		this.placeOfBirth = placeOfBirth;
+	}
+	public Integer getEnablePhoneNo() {
+		return enablePhoneNo;
+	}
+	public void setEnablePhoneNo(Integer enablePhoneNo) {
+		this.enablePhoneNo = enablePhoneNo;
+	}
+	public Integer getEnableEmailAddress() {
+		return enableEmailAddress;
+	}
+	public void setEnableEmailAddress(Integer enableEmailAddress) {
+		this.enableEmailAddress = enableEmailAddress;
+	}
 	
 }

@@ -137,6 +137,112 @@ a.vw-score {
 }
 .black-bg {
 }
+/* new changes */
+ul.nav.nav-tabs-details li {
+	width: auto;
+}
+ul.nav.nav-tabs-details li a {
+	font-size: 12px;
+}
+.tab-content-details {
+	padding: 10px;
+}
+.tab-content-details .tab-pane .text-show-field {
+	padding: 10px;
+	width: 100%;
+	min-height: 10px;
+	border: 1px solid #efefef;
+	color: #444;
+    font-size: 12px;
+}
+.tab-content-details h1 {
+    padding: 10px !important;
+    color: #2d3e50 !important;
+    width: 100%;
+    font-size: 14px !important;
+    margin-bottom: 0 !important;
+}
+.tab-content-details .tab-pane label {
+     font-size: 12px;
+    padding: 6px;
+    width: 100%;
+    text-align: center;
+    color: #fff;88%
+    font-weight: 600;
+    background: #00a5e7;
+}
+i.err-holder {
+	color: #111;
+	font-size: 12px;
+}
+i.err-holder .error {
+	color: red;
+	font-size: 12px;
+}
+h1.others-title {
+	color: #22437f !important;
+    font-size: 14px;
+    border-bottom: none !important;
+    padding: 10px 0 !important;
+}
+.tab-content-details .tab-pane p {
+	font-size: 12px;
+    color: #111;
+    padding: 4px;
+    margin: 0px;
+    width: 100%;
+}
+.tab-content-details .tab-pane h1 {
+	padding: 10px 0 !important;
+}
+.tab-add {
+	width: 30%;
+    float: left;
+    margin-right: 2%;
+    border: 1px solid #ccc;
+    min-height: 155px;
+    padding: 0px;
+    border-top: 0;
+}
+a.tab-link-doc,a.tab-link  {
+    padding: 2px 10px;
+    font-size: 12px;
+  	color: #2d3e50;
+    display: inline-block !important;
+    text-decoration: underline;
+}
+.tab-link-holder,.tab-link-doc-holder {
+	display: block;	
+	margin: 10px 0;
+}
+.tab-link-holder img,.tab-link-doc-holder img {
+	width: 25px;
+	height: 25px;
+	border-radius: 30px;
+	margin-right: 0px;
+}
+table.directors th {
+	background: #00a5e7;
+	font-size: 12px;
+	color: #fff !important;
+	border: 0;
+	border-bottom: 1px dashed #00a5e7 !important;
+}
+table.directors th:first-child,table.directors td:first-child {
+	text-align: center;
+}
+table.directors td {
+	background: #fff;
+	border: 0;
+	border: 1px dashed #ccc !important;
+	font-size: 12px;
+	height: 100px;
+
+}
+table.directors td.usr-img img {
+	width: 90px;
+	height: 90px;
+}
 .modal-dialog {
 	margin: 140px auto;
 }
@@ -144,7 +250,7 @@ a.vw-score {
 	background: #224e6b;
 	color: #fff;
 } 
-.action button.cancel {
+.action button.cancel {88%
 	background: #bbb;
 	color: #fff;
 }
@@ -159,7 +265,7 @@ a.vw-score {
     border-radius: 0;	
 }
 .modal-dialog {
-	width: 400px;
+	width: 500px;
 }
 .modal-body {
 	text-align: center;
@@ -324,6 +430,436 @@ ol.roa-ol li {
 .loginCenterBlock p {
 	line-height: 25px;
 }
+
+/* NEW PAGE CHANGES */
+
+
+.cs-org .panel-heading h4 {
+	margin: 0px;
+    color: #2d3e50;
+    font-size: 14px;
+}
+.cs-org .panel-body .form-group a {
+    font-size: 13px;
+    padding: 0 10px;
+    color: #444;
+    text-decoration: underline;
+}
+.cs-org .panel-body {
+	border-top-color: transparent !important;
+}
+.cs-org .panel-default {
+    border-color: transparent;
+}
+.cs-org .panel-heading {
+	background-color: transparent;
+}
+.cs-org .panel-group {
+	margin-bottom: 0px;
+}
+.cs-org .panel-body .form-group button {
+	background-color: #0E7AC3;
+	padding: 8px 20px;
+}
+.cs-button button {
+	background-color: #0E7AC3;
+	padding: 8px 20px;
+	color: #fff;	
+}
+.cs-org .panel-body .form-group button:hover,
+.cs-org .panel-body .form-group button:focus {
+	box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3) inset;
+}
+.cs-org-holder .btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.cs-org-holder .btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+.cs-org-holder .btn-primary {
+	background-color: #0E7AC3;
+	border-color: #0E7AC3;
+}
+.cs-org-holder h4 {
+	text-align: left;
+}
+.cs-org-holder .dk-align-right {
+	text-align: right;
+}
+.cs-org-holder textarea {
+	width: 100%;
+	float: left;
+	height: 250px; margin-bottom:2%
+}
+.cs-org-holder .form-group span.greenText {
+	float: left;
+	margin: 0 auto; 
+	display: block; 
+	width: auto; 
+	padding: 2px 4px;
+	margin-left: 1%;
+	background: #fff;
+    box-shadow: 0px 0px 8px #ccc inset;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+}
+.cs-bd-holder button {
+	margin-top: 26px;	
+}
+.cs-bd-holder span.req-star {
+	color: red;
+	float: none;
+}
+table.bd-table tr td textarea {
+	height: 90%;
+    overflow: auto;
+}
+.bd-block button {
+	padding: 6px 12px;
+	background-color: #0E7AC3;
+}
+
+.cs-button button {
+	margin-right: 2px;
+	float: right;
+}
+.cs-button button:hover {
+	color: #fff;
+	box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3) inset;
+}
+.cs-bd-holder {
+/* 	background-color: #DCE0E1; */
+/* 	background-color: #9ca9b9; */
+	padding: 10px 0;
+}
+.cs-bd-holder input {
+	border: 1px solid #ccc;
+}
+.cs-bd-holder label {
+	color: #444;
+}
+.palyerCount.bd-player-count {
+	background-color: #0E7AC3 !important;
+	border-color: #0E7AC3 !important;
+	color: #fff !important;
+	font-weight: bold;
+	border-radius: 0;
+}
+.bd-block {
+	border-bottom: 1px solid #DCE0E1;
+}
+.bd-block .form-control[readonly] {
+/* 	background-color: #DCE0E1;
+	border: 0; */
+    background-color: #9ca9b9;
+    border: 0 none;
+    color: #fff;
+    font-weight: 600;
+}
+.bd-table td {
+	border: none;
+	width: 50%;
+	padding: 0 5px;
+}
+.btn-wide {
+	padding: 6px 20px;
+	min-width: 15%;
+}
+.file-drop {
+	border: 1px dashed #9ca9b9;
+	padding-bottom: 10px;
+}
+.file-drop div {
+	padding: 10px;
+	clear: both;
+}
+.cs-page-title {
+	background: #224e6b;
+	color: #fff;
+	padding: 5px;
+}
+table.bd-table {
+	margin-bottom: 20px;
+/* 	border-bottom: 2px solid #eee; */
+	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05)
+}
+table.bd-table tr:nth-child(2) td:last-child {
+	text-align: left;
+}
+table.bd-table tr {
+	background-color: #fff !important;
+	border: 0;
+}
+table.bd-table tr td span.palyerCount.bd-player-count {
+	
+}
+table.bd-table tr td img,table.bd-table tr td .tb-browse {
+	display: inline-block;
+}
+table.bd-table tr td button {
+	padding: 6px 12px;
+	background-color: #0E7AC3;
+	color: #fff;
+	margin: 0 2px;
+	display: inline-block;
+}
+table.bd-table tr td label {
+	width: auto !important;
+    text-align: left !important;
+    min-width: 65px !important;
+    padding: 0px 10px 0px 0 !important;
+    font-size: 12px !important;
+    color: #111 !important;
+    font-weight: 600 !important;
+    background: transparent !important;
+}
+table.bd-table tr td input.form-control {
+	padding: 6px 0px 6px 12px;;
+	display: inline-block;
+    border-bottom: 1px solid #ccc;
+    width: auto;
+    color: #444;
+    border-radius: 0;
+    height: 30px;
+    border: 0;
+    box-shadow: none !important;
+}
+table.bd-table tr td input {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    width: 100%;
+    color: #444;
+}
+table.bd-table tr td.bd-txt-holder label {
+	width: 100%;
+}
+table.bd-table tr td .bd-soc-holder img {
+	width: 25px;
+	height: 25px;
+	
+}
+table.bd-table tr td .bd-soc-holder span {
+    float: none;
+    color: #444;
+    font-size: 11px;
+    padding: 0 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 130px;
+    display: inline-block;
+    vertical-align: middle;
+}
+table.bd-table tr td .bd-soc-holder {
+
+}
+table.bd-table tr td .bd-soc-holder input {
+    display: inline-block;
+    background-color: transparent;
+    border-bottom: 1px solid #ccc !important;
+    width: 74%;
+    border: 0;
+    color: #444;
+    border-radius: 0;
+    outline: 0;
+    height: 25px;
+    font-size: 12px;
+    box-shadow: none !important;
+    margin: 0 10px;
+}
+table.bd-table tr td .cs-pro-img-holder {
+	position: relative;
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+	
+} 
+table.bd-table tr td .cs-pro-img-holder img {
+	width: 100px;
+	height: 100px;
+	border: 1px solid #ccc;
+} 
+table.bd-table tr td img {
+	width: 80px;
+	height: 80px;
+	border: 3px solid #fff;
+    /* box-shadow: 0px 1px 2px #ccc; */
+}
+table.bd-table tr td .cs-pro-img-holder label {
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.6);
+    width: 100%;
+    padding: 8px 2px 6px 2px;
+    font-size: 11px;
+    height: 30px;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0.5;
+}
+table.bd-table tr td .cs-pro-img-holder:hover label {
+	opacity: 1;
+	transition: all 0.1s fade-in;
+} 
+table.bd-table tr td .cs-pro-img-holder label i {
+	font-size: 12px;
+    margin-left: 5px;
+}
+table.brd-info tr {
+	border: 0;
+}
+table.brd-info tr td {
+	background: #fff;
+	text-align: left;
+	border: 0;
+	color: #111;
+    font-size: 12px;
+}
+table.bd-table.direc tr td .bd-soc-holder,table.bd-table.direc.direc-main tr td .bd-soc-holder {
+	width: 100%;
+}
+table.bd-table.direc.direc-main tr td label.direc-soc-lab,table.bd-table.direc.direc-main tr td label,table.bd-table.direc tr:last-child td label {
+	display: block;
+	font-weight: 500 !important;
+	
+}
+table.bd-table.direc tr td label {
+	font-weight: 500 !important;
+	
+}
+table.bd-table.direc tr td span {
+	float: none;
+	color: #444;
+}
+table.bd-table.direc.direc-main tr td {
+	padding: 5px 0;
+}
+table.bd-table.direc.direc-main tr td input {
+	border-bottom: 1px solid #ccc; 
+}
+table.bd-table.direc.direc-main tr td span.req-star {
+	color: red;
+}
+table.bd-table.direc tr:first-child td:last-child {
+	text-align: right;
+}
+table.bd-table.direc tr td input.form-control {
+	width: 80%;
+}
+table.bd-table.direc.direc-edit tr td textarea {
+	/* height: 300px; */
+}
+table.bd-table.direc.direc-edit tr td span.req-star {
+	color: red;
+}
+table.bd-table.direc.direc-edit tr:first-child td:last-child {
+    text-align: left;
+}
+table.bd-table.direc.direc-edit tr td .bd-soc-holder input {
+	width: 40%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+
+}
+table.bd-table.direc.direc-edit tr td input {
+	border-bottom: 1px solid #ccc;
+}
+table.bd-table.direc.direc-edit tr td .bd-soc-holder {
+	width: 80%;
+}
+table.bd-table.spons tr:first-child td:last-child {
+	text-align: right;
+	vertical-align: bottom;
+}
+table.bd-table.spons tr td input {
+   width: 75%;	
+}
+table.bd-table.spons tr td.usr-img img {
+    border: 4px solid #fff;
+    box-shadow: 0px 2px 2px #ccc;
+    margin-bottom: 10px;
+    width: 100px;
+    height: 100px;
+}
+table.bd-table.spons tr td span {
+	float: none;
+	color: #444;
+}
+.cs-align-center {
+	text-align: center;
+}
+table.bd-table.spons-main tr td .cs-pro-img-holder img,table.bd-table.spons-edit tr td .cs-pro-img-holder img {
+    border: 4px solid #fff;
+    box-shadow: 0px 2px 2px #ccc;
+     width: 100px;
+    height: 100px;	
+}
+table.bd-table.spons-main tr td {
+	padding: 5px;
+}
+table.bd-table.spons-main tr td input {
+	border-bottom: 1px solid #ccc;
+}
+table.bd-table.spons-main tr td span {
+	float: none;
+	color: #444;
+}
+table.bd-table.spons-main tr td span.req-star {
+	color: red;
+}
+table.bd-table.spons-edit tr td .cs-pro-img-holder {
+	
+   margin-bottom: 10px;	
+}
+table.bd-table.spons-main tr td .cs-pro-img-holder label,table.bd-table.spons-edit tr td .cs-pro-img-holder label {
+	background: rgba(0,0,0,0.6) !important;
+    color: #fff !important;
+    font-size: 10px !important;
+    padding: 3px 6px 3px 0 !important;
+    opacity: 1 !important;
+    margin: 0 0 0 4px;
+    bottom: 4px;
+    border-radius: 0;
+    height: auto;
+	
+}
+table.bd-table.spons-main tr td .cs-pro-img-holder:hover label,table.bd-table.spons-edit tr td .cs-pro-img-holder:hover label {
+	    opacity: 1 !important;
+}
+table.bd-table.spons-main tr:first-child td:last-child {
+	text-align: left;
+}
+table.bd-table.spons-edit tr:first-child td:last-child  {
+	text-align: left;
+}
+.upload-file-name {
+ 	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 70px;
+    float: left;
+    font-size: 11px;
+    padding: 4px;
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+	background: #fff;
+}
+
 /*CheckBox And Radio Btns*/
 input[type="checkbox"] {
 	display: none;

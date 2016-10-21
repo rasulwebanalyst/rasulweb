@@ -27,6 +27,7 @@
                         
                         
                      		<ul class="leftMenu">
+                     		<li><a href="${pageContext.request.contextPath}/Organizationdetails/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/board-icon.png"></i>Board Info</a></li>
                             	<li><a href="${pageContext.request.contextPath}/Boardscore/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyScore.png"></i>Score</a></li>
                             	<%-- <li><a href="#"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyScore.png"></i>Edit Profile</a></li> --%>
                             	<li><a href="${pageContext.request.contextPath}/boardEvent/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyEvents.png"></i>Events</a></li>

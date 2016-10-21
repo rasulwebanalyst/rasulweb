@@ -148,13 +148,13 @@
 				                        				</c:otherwise>
 			                        				</c:choose> --%>
                                             <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}"><span
-																	class="text-danger">${player.userName}</span> </a></td>
+																	class="text-danger"><img alt="" src="${player.userImageUrl}" width="30px"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';" style="margin-right: 10px;">${player.userName}</span> </a></td>
                                             <td>${player.totalruns}</td>
                                             <td class="tdAlignLeft">
-                                                <a href="${pageContext.request.contextPath}/${player.homeTeamName}/board/ ${player.homeTeamId}"><img src="${player.homeTeamImgUrl}?" onError="imgError()" style="width: 30px;"> ${player.homeTeamName}</a>
+                                                <a href="${pageContext.request.contextPath}/${player.homeTeamName}/board/ ${player.homeTeamId}"><img src="${player.homeTeamImgUrl}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" style="width: 30px;"> ${player.homeTeamName}</a>
                                             </td>
                                             <td class="tdAlignLeft">
-                                                <a href="${pageContext.request.contextPath}/${player.awayTeamName}/board/ ${player.awayTeamId}"><img src="${player.awayTeamImgUrl}?" onError="imgError()" style="width: 30px;"> ${player.awayTeamName}</a>
+                                                <a href="${pageContext.request.contextPath}/${player.awayTeamName}/board/ ${player.awayTeamId}"><img src="${player.awayTeamImgUrl}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" style="width: 30px;"> ${player.awayTeamName}</a>
                                             </td>
                                             <td class="tdAlignLeft">${matches.groundName}</td>
                                             <td>

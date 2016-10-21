@@ -29,8 +29,8 @@ public class CompletedMatches {
 	private UUID tossWonBy;
 	private int winTeamRuns;
 	private int winTeamWickets;
-    private Map<String,String> umpireList;
-    private List<UUID> scorerList;
+	private Map<String,String> umpireList;
+	private List<UUID> scorerList;
 	private String homeTeamName;
 	private String awayTeamName;
 	private String groundName;
@@ -40,21 +40,24 @@ public class CompletedMatches {
 	private List<BoardProfile> boardProfList;
 	private double loseTeamOvers;
 	private double winTeamOvers;
-	
+
 	private UUID tournamentSchedulerId;
-	
+
 	private int winTeamPoints;
 	private int loseTeamPoints;
 	private String winTeamName;
 	private String loseTeamName;
-	
-		private int homeTeamPoints;
-		private int awayTeamPoints;
+
+	private int homeTeamPoints;
+	private int awayTeamPoints;
 	private String manOfTheMatch;
 
 	private String winTeamId;
 	private String loseTeamId;
 	
+	private String dateString;
+	private String leagueCreatedBy;
+
 	public String getManOfTheMatchName() {
 		return manOfTheMatchName;
 	}
@@ -62,7 +65,7 @@ public class CompletedMatches {
 		this.manOfTheMatchName = manOfTheMatchName;
 	}
 	private String manOfTheMatchName;
-		
+
 	public int getWinTeamPoints() {
 		return winTeamPoints;
 	}
@@ -315,7 +318,19 @@ public class CompletedMatches {
 	public void setLoseTeamId(String loseTeamId) {
 		this.loseTeamId = loseTeamId;
 	}
+	public String getDateString() {
+		return dateString;
+	}
+	public void setDateString(String dateString) {
+		this.dateString = dateString;
+	}
+	public String getLeagueCreatedBy() {
+		return leagueCreatedBy;
+	}
+	public void setLeagueCreatedBy(String leagueCreatedBy) {
+		this.leagueCreatedBy = leagueCreatedBy;
+	}
 
-	
-	
+
+
 }
