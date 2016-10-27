@@ -1,8 +1,9 @@
 <div class="col-md-2 profileLogo pLUpdated">
                     	<span class="pLUpdatedImg">
-                    		
+                    		<%-- <a href="${pageContext.request.contextPath}/Organizationdetails/boardId/${BoradInfo.boardId}"> --%>
+                    		<a href="${pageContext.request.contextPath}/board?bid=${BoradInfo.boardId}">
                     		<img src="${BoradInfo.boardImageURL}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';">
-                        	
+                        	</a>
                         	<a href="${pageContext.request.contextPath}/boardProfile?bid=${BoradInfo.boardId}"><i class="fa fa-pencil" title="Edit Profile"></i></a>
                         	 <a href="${pageContext.request.contextPath}/board?bid=${BoradInfo.boardId}">
                         	 ${BoradInfo.boardName}
@@ -12,7 +13,7 @@
                         
                      		<ul class="leftMenu">
                             	
-                            	<li><a href="#"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a>
+                            	 <li><a href="#"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a> 
 								
                                 <div class="leftMenu2">
                                     	<ul>

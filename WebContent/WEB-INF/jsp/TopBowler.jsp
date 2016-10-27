@@ -17,6 +17,8 @@
 </style>
 <head>
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+ <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,7 +40,7 @@ var pageNum=500;
 <div class="profileBanner"> <img src="${pageContext.request.contextPath}/images/innerBanner.png"> </div>
 <div class="container">
   <div class="row">
-    <!--Content Block-->
+    <!--Content Block--> table-responsive
     <div class="col-md-12 middleContBlock noPadding">
       <div class="col-md-12 noPadding">
         
@@ -166,6 +168,7 @@ var pageNum=500;
 	                       		<div class="col-md-12 whiteBox font13px" id="centTable1">
 	                       			<span class="text-danger" style="font-weight: bold; color: #3253a8 !important; ">Tournament Name : ${topplayer.tournamentName}</span>
 	                       			<br>
+	                       			<div class="form-group">
 	                       			<table class="css-serial">
 				                        <thead>
 				                        <tr>
@@ -191,12 +194,12 @@ var pageNum=500;
 				                       <tbody id="topBowlerTableBody">
 				                        <tr>
 			                        		  <td></td>
-	                       				  	  <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}">
-	                       				  	  <span class="text-danger"> <img alt="" src="${player.userImageUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';" width="30px" style="margin-right: 10px;"></span><b>${player.userName}</b></a></td>	                      					  
+	                       				  	  <td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}">
+	                       				  	 <img alt="" src="${player.userImageUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';" ><b>${player.userName}</b><div class="clearfix"></div></a></td>	                      					  
 					                          <%-- <td><a href="${pageContext.request.contextPath}/${matches.homeTeam}/board/${matches.hometeamId}">${matches.homeTeam}</a></td> --%>
 					                          
 					                          <%-- <td><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}">${player.teamBoardInfo.boardName}</a></td> --%>
-					                          <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}"><img src="${player.teamBoardInfo.boardImageURL}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" style="width: 30px;margin-right: 10px; ">  ${player.teamBoardInfo.boardName}</a></td>
+					                          <td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}"><img src="${player.teamBoardInfo.boardImageURL}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" >  <b>${player.teamBoardInfo.boardName}</b><div class="clearfix"></div></a></td>
 					                          
 					                          <td>${player.games}</td>                  
 					                          <td>${player.innings}</td>
@@ -217,6 +220,7 @@ var pageNum=500;
                      
                  		</table>
                   </div>
+                  </div><!-- form group end -->
 	             </c:otherwise>	
 	           </c:choose>
 	       </c:forEach>                      
@@ -330,8 +334,10 @@ var pageNum=500;
   		  	   								for(var k=0;k<plist.length;k++){
   		  										html += '<tr>';
   		  	   									html +='<td></td>';
-  		  	   									html += '<td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/'+ plist[k].userName+ '/' +plist[k].userId+ '"><span class="text-danger"><img alt="" src="'+plist[k].userImageUrl+'" width="30px" style="margin-right: 10px;"></span><b>' +plist[k].userName+ '</b> </a></td>';
-  		  	   									html += '<td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/' + plist[k].teamBoardInfo.boardName + '/board/' + plist[k].teamBoardInfo.boardId + '"><img src="'+plist[k].teamBoardInfo.boardImageURL+ '"style="margin-right: 10px; width:30px;">' + plist[k].teamBoardInfo.boardName + '</a></td>';
+  		  	   									
+  		  	   									html += '<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/buddy/'+ plist[k].userName+ '/' +plist[k].userId+ '"><img alt="" src="'+plist[k].userImageUrl+'" ><b>' +plist[k].userName+ '</b><div class="clearfix"></div></a></td>';
+  		  	   									
+  		  	   									html += '<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/' + plist[k].teamBoardInfo.boardName + '/board/' + plist[k].teamBoardInfo.boardId + '"><img src="'+plist[k].teamBoardInfo.boardImageURL+ '"><b>' + plist[k].teamBoardInfo.boardName + '</b><div class="clearfix"></div></a></td>';
   		  	   									html += '<td class="tdAlignLeft">' + plist[k].games + '</td>';
   		  	   									html += '<td class="tdAlignLeft">' + plist[k].innings + '</td>';
   		  	   									html += '<td class="tdAlignLeft">' + plist[k].bowlingOvers + '</td>';

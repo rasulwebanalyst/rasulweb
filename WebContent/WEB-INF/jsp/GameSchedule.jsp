@@ -25,8 +25,9 @@
 
 <!--Google Fonts-->    
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
     
-
  <!-- jQuery -->
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
  
@@ -239,8 +240,6 @@ date.add(java.util.Calendar.DATE, +6);
             </div>
  
  	</div>
- 	
- 	
       
       
       <div class="col-md-10">
@@ -317,6 +316,7 @@ date.add(java.util.Calendar.DATE, +6);
             <div class="col-md-10 pull-right">
       		<div class="col-md-12 whiteBox">
                   <h2 class="noBorder noLeftPad">Upcoming Matches</h2>
+                  <div class="form-group">
                   <c:choose>
                        <c:when test="${upcomingMatchesListSize == 0 }">
                       <table>
@@ -337,6 +337,7 @@ date.add(java.util.Calendar.DATE, +6);
                      
                        
                       </table>
+                      
                        <span class="noContentDivRed">No Upcoming Matches</span>
 
                        </c:when>
@@ -397,12 +398,13 @@ date.add(java.util.Calendar.DATE, +6);
                 	</div>
                 	
                 	</div>
-                	
+                	</div><!-- form group end-->
                 	
                 	<div id="incompletegamesdiv">
                 	<div class="col-md-10 pull-right">
       		<div class="col-md-12 whiteBox">
                   <h2 class="noBorder noLeftPad">InComplete Matches</h2>
+                  <div class="form-group">
                   <c:choose>
                        <c:when test="${inCompletedMatchesListSize == 0 }">
                       <table>
@@ -483,11 +485,12 @@ date.add(java.util.Calendar.DATE, +6);
                 	</div>
                 	
                 	</div>
+                	</div><!-- form group end -->
                     <div id="inprogressmatchesdiv">
                     <div class="col-md-10 pull-right">
       		<div class="col-md-12 whiteBox">
                   <h2 class="noBorder noLeftPad">Inprogress Matches</h2>
-                  
+                  <div class="form-group">
                    <c:choose>
                        <c:when test="${inprogressMatchesListSize == 0 }">
                       <table>
@@ -572,12 +575,13 @@ date.add(java.util.Calendar.DATE, +6);
                        </div>
                 	</div>
                     </div>
+                    </div><!-- form group end -->
                     
                     <div id="completedmatchesdiv">
                     <div class="col-md-10 pull-right">
       		<div class="col-md-12 whiteBox">
                   <h2 class="noBorder noLeftPad">Completed Matches</h2>
-                  
+                  <div class="form-group">
                    <c:choose>
                        <c:when test="${completedMatchesListSize == 0 }">
                       <table>
@@ -694,6 +698,7 @@ date.add(java.util.Calendar.DATE, +6);
           
     </div>
   </div>
+  </div><!-- form group -->
   <!--/Content Block-->
 
 </section>

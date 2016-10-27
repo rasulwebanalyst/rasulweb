@@ -4,6 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+  <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -87,7 +89,7 @@ var sequencNumber2=[];
                     
                             <h2 style="padding-left:0">Add Member <a href="#" class="pull-right"></a></h2>
                             
-                            <div class="form-group col-md-12 noPadding profileForm">
+                            <div class="form-group col-md-12 noPadding profileForm" >
                              
                                 
                                  <div class="col-md-12 noPadding" id="memberMainDIV">

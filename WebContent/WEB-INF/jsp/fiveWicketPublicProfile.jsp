@@ -94,7 +94,7 @@
 								<div id="centuryYearId" style="display: none;"></div>
                   
                   </div></div>
-                 <form action="${pageContext.request.contextPath}/leagueTopFiveWicketsList" id="centuriesSearchForm" name="centuriesSearchForm" method="post" onsubmit="return searchValiation()">  
+                 <form action="${pageContext.request.contextPath}/leagueTopFiveWicketsListPublicProfile" id="centuriesSearchForm" name="centuriesSearchForm" method="post" onsubmit="return searchValiation()">  
                   <div class="col-md-10">
       		<div class="col-md-12 whiteBox">
                   
@@ -221,14 +221,14 @@
 					                        				</c:otherwise>
 				                        				</c:choose> --%>
                                                         <td></td>
-                                                        <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}"><span class="text-danger"><img alt="" src="${player.userImageUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';" width="30px" style="margin-right: 10px;"></span><b>${player.userName}</b> </a></td>
+                                                        <td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}"><img alt="" src="${player.userImageUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';" ><b >${player.userName}</b><div class="clearfix"></div></a></td>
                                                         <td><span class="text-danger">${player.wickets}</span></td>
                                                        <%--  <td><a href="${pageContext.request.contextPath}/${player.homeTeamName}/board/${player.homeTeamId}">${player.homeTeamName}</a></td>
                                                         <td><a href="${pageContext.request.contextPath}/${player.awayTeamName}/board/${player.awayTeamId}">${player.awayTeamName}</a> </td>
                                                          --%>
-                                                         <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${player.homeTeamName}/board/${player.homeTeamId}"><img 	src="${player.homeTeamImgUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" style="width: 30px;margin-right: 10px; ">${player.homeTeamName}</a></td>
+                                                         <td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/${player.homeTeamName}/board/${player.homeTeamId}"><img 	src="${player.homeTeamImgUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" ><b>${player.homeTeamName}</b><div class="clearfix"></div></a></td>
 
-														<td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${player.awayTeamName}/board/${player.awayTeamId}"><img src="${player.awayTeamImgUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" style="width: 30px;margin-right: 10px; ">${player.awayTeamName}</a> </td>
+														<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/${player.awayTeamName}/board/${player.awayTeamId}"><img src="${player.awayTeamImgUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" ><b>${player.awayTeamName}</b><div class="clearfix"></div></a> </td>
                                                          
                                                          <td>${matches.groundName}</td>
                                                         <td>
@@ -366,11 +366,11 @@
         							if(plist != null){
         								for(var k=0;k<plist.length;k++){
         									 html +='<td></td>';
-        									html += '<td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/'+ plist[k].userName+ '/' +plist[k].userId+ '"><span class="text-danger"><img alt="" src="'+plist[k].userImageUrl+'" onError="this.onerror=null;this.src=${pageContext.request.contextPath}/images/profileIcon.png;" width="30px" style="margin-right: 10px;"></span><b>' +plist[k].userName+ '</b> </a></td>';
+        									html += '<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/buddy/'+ plist[k].userName+ '/' +plist[k].userId+ '"><img alt="" src="'+plist[k].userImageUrl+'" onError="this.onerror=null;this.src=${pageContext.request.contextPath}/images/profileIcon.png;" ><b >' +plist[k].userName+ '</b><div class="clearfix"></div></a></td>';
         									html += '<td class="tdAlignLeft">' + plist[k].wickets + '</td>';
         									              
-        									html += '<td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/' + plist[k].homeTeamName + '/board/' + plist[k].homeTeamId + '"><img src="'+plist[k].homeTeamImgUrl+ '"style="margin-right: 10px; width:30px;">' + plist[k].homeTeamName + '</a></td>';
-        								    html += '<td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/' + plist[k].awayTeamName + '/board/' + plist[k].awayTeamId + '"><img src="'+plist[k].awayTeamImgUrl+ '"style="margin-right: 10px; width:30px;">' + plist[k].awayTeamName + '</a></td>';
+        									html += '<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/' + plist[k].homeTeamName + '/board/' + plist[k].homeTeamId + '"><img src="'+plist[k].homeTeamImgUrl+ '"><b>' + plist[k].homeTeamName + '</b><div class="clearfix"></div></a></td>';
+        								    html += '<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/' + plist[k].awayTeamName + '/board/' + plist[k].awayTeamId + '"><img src="'+plist[k].awayTeamImgUrl+ '"><b>' + plist[k].awayTeamName + '</b><div class="clearfix"></div></a></td>';
         								    html += '<td class="tdAlignLeft">' +mat[j].groundName+ '</td>';
         									html += '<td class="tdAlignLeft">'+dateNewObject+'</td>';
         									 

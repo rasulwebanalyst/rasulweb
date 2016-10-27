@@ -352,7 +352,7 @@ var fbURL='110086556012641'; // QA
           	</div>
          
          <span class="forgotPw"><a href="${pageContext.request.contextPath}/account-recovery">I can't access my account</a></span>
-
+<div class="clearfix"></div>
           <div class="row">
           <div class="col-md-12 loginSocial">
               <a href="#" class="btn btn-default fbbtn" onclick="fbAccount()"> <i class="fa fa-facebook-f"></i>Facebook</a>

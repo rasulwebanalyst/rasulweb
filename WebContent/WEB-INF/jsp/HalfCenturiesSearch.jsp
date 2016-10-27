@@ -6,6 +6,8 @@
 <html lang="en">
 <head>
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+ <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -156,6 +158,7 @@ var pageNum=110;
             <c:otherwise>
                 <div class="col-md-12 whiteBox font13px" id="centTable1">
                     <span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament Name : ${century.tournamentName}</span>
+                    <div class="form-group">
                     <table class="css-serial">
                         <thead>
                             <tr>
@@ -188,14 +191,15 @@ var pageNum=110;
 				                        				<c:otherwise>
 				                        				</c:otherwise>
 			                        				</c:choose> --%>
-                                            <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}"><span
-																	class="text-danger"><img alt="" src="${player.userImageUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';" width="30px" style="margin-right: 10px;"></span><b>${player.userName}</b> </a></td>
+			                        				
+			                        				
+                                            <td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}"><img alt="" src="${player.userImageUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';" ><b >${player.userName}</b> <div class="clearfix"></div></a></td>
                                             <td>${player.totalruns}</td>
-                                            <td class="tdAlignLeft">
-                                                <a href="${pageContext.request.contextPath}/${player.homeTeamName}/board/ ${player.homeTeamId}"><img src="${player.homeTeamImgUrl}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" style="width: 30px;"> ${player.homeTeamName}</a>
+                                            <td class="tdAlignLeft TB_table">
+                                                <a href="${pageContext.request.contextPath}/${player.homeTeamName}/board/ ${player.homeTeamId}"><img src="${player.homeTeamImgUrl}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" ><b> ${player.homeTeamName}</b> <div class="clearfix"></div></a>
                                             </td>
-                                            <td class="tdAlignLeft">
-                                                <a href="${pageContext.request.contextPath}/${player.awayTeamName}/board/ ${player.awayTeamId}"><img src="${player.awayTeamImgUrl}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" style="width: 30px;"> ${player.awayTeamName}</a>
+                                            <td class="tdAlignLeft TB_table">
+                                                <a href="${pageContext.request.contextPath}/${player.awayTeamName}/board/ ${player.awayTeamId}"><img src="${player.awayTeamImgUrl}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" ><b> ${player.awayTeamName}</b> <div class="clearfix"></div></a>
                                             </td>
                                             <td class="tdAlignLeft">${matches.groundName}</td>
                                             <td>
@@ -210,6 +214,7 @@ var pageNum=110;
                         </c:forEach>
                     </table>
                 </div>
+                </div><!-- form group end -->
             </c:otherwise>
         </c:choose>
         <%-- </c:if>             --%>
@@ -324,11 +329,11 @@ var pageNum=110;
 										if(plist != null){
 											for(var k=0;k<plist.length;k++){
 												 html +='<td></td>';
-												html += '<td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/'+ plist[k].userName+ '/' +plist[k].userId+ '"><span class="text-danger"><img alt="" src="'+plist[k].userImageUrl+'" onError="this.onerror=null;this.src=${pageContext.request.contextPath}/images/profileIcon.png;" width="30px" style="margin-right: 10px;"></span><b>' +plist[k].userName+ '</b> </a></td>';
+												html += '<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/buddy/'+ plist[k].userName+ '/' +plist[k].userId+ '"><img alt="" src="'+plist[k].userImageUrl+'" onError="this.onerror=null;this.src=${pageContext.request.contextPath}/images/profileIcon.png;" ></span><b>' +plist[k].userName+ '</b> <div class="clearfix"></div> </a></td>';
 												html += '<td class="tdAlignLeft">' + plist[k].totalruns + '</td>';
 												              
-												html += '<td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/' + plist[k].homeTeamName + '/board/' + plist[k].homeTeamId + '"><img src="'+plist[k].homeTeamImgUrl+ '"style="margin-right: 10px; width:30px;">' + plist[k].homeTeamName + '</a></td>';
-											    html += '<td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/' + plist[k].awayTeamName + '/board/' + plist[k].awayTeamId + '"><img src="'+plist[k].awayTeamImgUrl+ '"style="margin-right: 10px; width:30px;">' + plist[k].awayTeamName + '</a></td>';
+												html += '<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/' + plist[k].homeTeamName + '/board/' + plist[k].homeTeamId + '"><img src="'+plist[k].homeTeamImgUrl+ '"><b>' + plist[k].homeTeamName + '</b> <div class="clearfix"></div></a></td>';
+											    html += '<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/' + plist[k].awayTeamName + '/board/' + plist[k].awayTeamId + '"><img src="'+plist[k].awayTeamImgUrl+ '"><b>' + plist[k].awayTeamName + '</b> <div class="clearfix"></div></a></td>';
 											    html += '<td class="tdAlignLeft">' +mat[j].groundName+ '</td>';
 												html += '<td class="tdAlignLeft">'+dateNewObject+'</td>';
 												 

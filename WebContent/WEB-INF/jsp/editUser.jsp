@@ -308,8 +308,8 @@ var imageValidate=1;
 										</div>
 										<!-- <div class="col-md-4">
 											<label for="email" style="display: block;">Contact visibility to public</label> -->
-											<div class="col-md-6">
-				                            <label for="email" style="display: block;">Contact Visibility&nbsp;(<span style="float:none;">*</span><span style="color:#bbb;font-size:10px;float:none;">complete address should not be display to public</span>)</label>
+											<div class="col-md-8">
+				                            <label for="email" style="display: block;">Contact Information&nbsp;(<span style="float:none;">*</span><span style="color:#bbb;font-size:10px;float:none;">Select if you would like your email and/or phone number to be visble to public</span>)</label>
 											<c:choose>
 												<c:when test="${UserProfileOBJ.enablePhoneNo eq 1 }">
 													<input type="checkbox" class="cboxBtn" id="Fan" name="rr"

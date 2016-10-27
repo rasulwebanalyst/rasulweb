@@ -36,9 +36,25 @@ public class PlayerDTO {
 	private String sixsCount;
 	private String foursCount;
 	private String strikeRate;
+	private String notOutFlag;
+	private int battingBalls;
 	
 	
 	
+	
+	
+	public int getBattingBalls() {
+		return battingBalls;
+	}
+	public void setBattingBalls(int battingBalls) {
+		this.battingBalls = battingBalls;
+	}
+	public String getNotOutFlag() {
+		return notOutFlag;
+	}
+	public void setNotOutFlag(String notOutFlag) {
+		this.notOutFlag = notOutFlag;
+	}
 	public String getHighest() {
 		return highest;
 	}

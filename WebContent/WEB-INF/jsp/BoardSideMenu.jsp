@@ -8,9 +8,9 @@
 </head>
 <body>
 <div class="col-md-2 profileLogo pLUpdated">
-                    	<span class="pLUpdatedImg">
+                    	<span class="pLUpdatedImg"><a href="${pageContext.request.contextPath}/board?bid=${BoradInfo.boardId}">
                     	<img src="${BoradInfo.boardImageURL}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';">
-                        	
+                        	</a>
                         	<a href="${pageContext.request.contextPath}/boardProfile?bid=${BoradInfo.boardId}"><i class="fa fa-pencil" title="Edit Profile"></i></a>
                         	 ${BoradInfo.boardName} <br>
                         	
@@ -28,6 +28,7 @@
                         
                      		<ul class="leftMenu">
                      		<li><a href="${pageContext.request.contextPath}/Organizationdetails/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/board-icon.png"></i>Board Info</a></li>
+                     		<li><a href="${pageContext.request.contextPath}/Pitch?bid=${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/pitch-icon.png"></i>Pitch</a></li>
                             	<li><a href="${pageContext.request.contextPath}/Boardscore/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyScore.png"></i>Score</a></li>
                             	<%-- <li><a href="#"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyScore.png"></i>Edit Profile</a></li> --%>
                             	<li><a href="${pageContext.request.contextPath}/boardEvent/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyEvents.png"></i>Events</a></li>
@@ -47,20 +48,23 @@
                         	  </c:choose>
    
  <li><a href="${pageContext.request.contextPath}/inviteBoardPage/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/inviteIcon.png"></i>Invite</a></li>     
+ 
+ <c:if test="${LeaguManagement ne 'No'}">
+ 
  <c:if test="${BoradInfo.category eq 'Academy' }">
                                <c:choose>
                         	  	<c:when test="${BoradInfo.statusId==19}">	
                         	  	 	
-                        	  		<li ><a href="javascript:"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li>
+                        	  		<%-- <li ><a href="javascript:"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
                         	  	</c:when>
                         	  	<c:otherwise>
                      				<%-- ${BoradInfo.scheduleFlag} --%>
                      				<c:choose>
                               <c:when test="${BoradInfo.scheduleFlag}">
-                             			<li><a href="${pageContext.request.contextPath}/SchedulerList/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li>
+                             			<%-- <li><a href="${pageContext.request.contextPath}/SchedulerList/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
                               </c:when>
                               <c:otherwise>
-                                  <li><a href="${pageContext.request.contextPath}/CreateUmpire/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li>
+                                 <%--  <li><a href="${pageContext.request.contextPath}/CreateUmpire/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
                               </c:otherwise>
                               </c:choose>
                      			</c:otherwise>
@@ -73,16 +77,16 @@
                             	 <c:choose>
                         	  	<c:when test="${BoradInfo.statusId==19}">	
                         	  	 	
-                        	  		<li ><a href="javascript:"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li>
+                        	  		<%-- <li ><a href="javascript:"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
                         	  	</c:when>
                         	  	<c:otherwise>
                      				<%-- ${BoradInfo.scheduleFlag} --%>
                      				<c:choose>
                               <c:when test="${BoradInfo.scheduleFlag}">
-                             			<li><a href="${pageContext.request.contextPath}/SchedulerList/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li>
+                             			<%-- <li><a href="${pageContext.request.contextPath}/SchedulerList/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
                               </c:when>
                               <c:otherwise>
-                                  <li><a href="${pageContext.request.contextPath}/CreateUmpire/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li>
+                                  <%-- <li><a href="${pageContext.request.contextPath}/CreateUmpire/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
                               </c:otherwise>
                               </c:choose>
                      			</c:otherwise>
@@ -90,7 +94,8 @@
                             	
                             	
                             	<%-- <li><a href="${pageContext.request.contextPath}/CreateUmpire/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>Create Umpire</a></li> --%>
-                            	</c:if>		
+                            	</c:if>	
+                            	</c:if>	
                             </ul>
                         
                         

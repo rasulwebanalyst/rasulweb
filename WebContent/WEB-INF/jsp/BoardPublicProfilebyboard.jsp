@@ -16,7 +16,7 @@
 var pageNum=10;
 </script>
 <SCRIPT>
-function feedDuration(feeddate)
+/* function feedDuration(feeddate)
 {
 	//alert("feeddate"+feeddate );
 //var date2= new Date(feeddate).toISOString();
@@ -41,7 +41,50 @@ if(sec<60)
 }
 
 return result;
+} */
+
+function feedDuration(feeddate)
+{
+	
+	var date2= new Date(feeddate);
+	 var date = new Date(date2.getFullYear()+"-"+(date2.getMonth()+1)+"-"+date2.getDate()+" "+date2.getHours()+":"+(date2.getMinutes()-1)+":"+date2.getSeconds()+" UTC");
+	 var d1=new Date();
+	 console.log("local dates"+d1);
+	 console.log("utc to ist date "+date);
+	var  result;
+	var hours = Math.abs(d1 - date) / 36e5;
+	var min=Math.abs(d1 - date) / (60*1000);
+	var sec=Math.abs(d1 - date) /(1000);
+	if(sec<60)
+	{
+		result=Math.round(sec)+' sec';
+		
+	}else if(min<60){
+		result=Math.round(min)+' minutes';
+	}else if(hours<=24){
+		result=Math.round(hours)+' hours';
+	}else{
+		 var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+		 var days=(d1.getTime() - date2.getTime())/(oneDay);
+		/*  if(days<=30)
+			 {
+			 	result=Math.round(Math.abs(days))+' days';
+			 	
+			 }else{
+				var differemonth=days/30; 
+				 result=Math.round(Math.abs(differemonth))+' months ago';
+			 }
+		 */
+		 var monthNames = ["January", "February", "March", "April", "May", "June",
+		                   "July", "August", "September", "October", "November", "December"
+		                 ];
+			var monthNme= monthNames[date2.getMonth()];
+			result=date2.getDate()+' '+monthNme+' '+date2.getFullYear()+' at '+date2.getHours()+':'+date2.getMinutes();
+	}
+
+return result;
 }
+
 
 </SCRIPT>
 
@@ -87,11 +130,15 @@ return result;
             
             </div>
           
-             <span class="owner"><strong>${BoradInfo.user.firstName}</strong> (Owner)
+             <span class="owner"><strong><a href="${pageContext.request.contextPath}/buddy/${BoradInfo.user.firstName}/${BoradInfo.createdBy}" style="color: white;">${BoradInfo.user.firstName}</a></strong> (Owner)
              
                  <c:choose>
                    		<c:when test="${not empty BoradInfo.boardCoOwnerList[0].user.firstName}">
-                   			,${BoradInfo.boardCoOwnerList[0].user.firstName} (Co-Owner)
+                   		
+                   		<c:forEach var="coowner" items="${BoradInfo.boardCoOwnerList}">
+                   		, <a href="${pageContext.request.contextPath}/buddy/${coowner.user.firstName}/${coowner.coOwnerId}" style="color: white;">${coowner.user.firstName}</a> (Co-Owner)
+                   		</c:forEach>
+                   			<%-- ,${BoradInfo.boardCoOwnerList[0].user.firstName} (Co-Owner) --%>
                    		</c:when>
                    		<c:otherwise>
                    				
@@ -160,12 +207,23 @@ return result;
 	                                  <div class="media-body">
 	                                    <h4 class="media-heading">${feed.postedByName}</h4>
 		                                    <div class="headRight">
+		                                    
+		                                    <c:choose>
+		                                    		<c:when test="${feed.postedBy eq USRID}">
+		                                    			<span class="trash-holder" onclick="feedDelete('${feed.feedId}')" title="Delete"><i class="fa fa-trash trash"></i> </span>
+		                                    		</c:when>
+		                                    		<c:otherwise>
+		                                    			<span class="trash-holder" onclick="feedSpam('${feed.feedId}')" title="Report spam"><i class="fa fa-ban"></i> </span>
+		                                    		</c:otherwise>
+		                                    	</c:choose>
+		                                    
 		                                    	<span id="HitCountDIv${feed.feedId}"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" >${feed.feedHitCount}</span><span id="commentCount${feed.feedId}" onclick="getAllComments('${feed.feedId}')"><i class="fa fa-commenting-o"></i>${feed.feedCommentCount}</span>
 		                                    </div>
 	                                    
 	                                    <span class="postTime"><script type="text/javascript">
                                     	
-                                    	document.write(feedDuration("<fmt:formatDate  type='both'  value='${feed.modifiedDate}'/>"));
+                                    	/* document.write(feedDuration("<fmt:formatDate  type='both'  value='${feed.modifiedDate}'/>")); */
+                                    	document.write(feedDisplayDate("<fmt:formatDate  type='both'  value='${feed.modifiedDate}'/>"));
                                     	</script></span>
 	                                    <div class="galleryBlock">
 	                                     <c:if test="${not empty feed.fileAttachement }">

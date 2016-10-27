@@ -36,6 +36,7 @@ import com.cricketsocial.bean.event.EventType;
 import com.cricketsocial.bean.event.SheduleAcceptEventResponse;
 import com.cricketsocial.bean.feed.FeedComment;
 import com.cricketsocial.bean.ground.Ground;
+import com.cricketsocial.bean.leauge.PlayerDTO;
 import com.cricketsocial.bean.leauge.TournamentDTO;
 import com.cricketsocial.bean.leauge.UmpireRating;
 import com.cricketsocial.bean.notification.EventNotificationDTO;
@@ -56,7 +57,7 @@ import com.cricketsocial.bean.user.MergeDTO;
 public class ResponseType {
 
 	private List<UserProfile> gettingUserSearchListDetails;
-
+	
     private SearchResponse searchResponse;
 	
     private FeedResponse feedResponse;
@@ -271,6 +272,10 @@ public class ResponseType {
 	 private BuddyEventInvitationList getBuddyEventInvitationList;
 	 
 	 private List<EventType> eventTypeList;
+	 
+	 private List<PlayerDTO> starBatsmen;
+	 
+	 private List<PlayerDTO> starBowlers; 
 	 
 	 // Umpire And Scorer Details
 	 private UmpireAndScorerDetails umpireAndScorerDetails;
@@ -1126,7 +1131,21 @@ public class ResponseType {
 		this.umpireAndScorerDetails = umpireAndScorerDetails;
 	}
 
+	public List<PlayerDTO> getStarBatsmen() {
+		return starBatsmen;
+	}
 
+	public void setStarBatsmen(List<PlayerDTO> starBatsmen) {
+		this.starBatsmen = starBatsmen;
+	}
+
+	public List<PlayerDTO> getStarBowlers() {
+		return starBowlers;
+	}
+
+	public void setStarBowlers(List<PlayerDTO> starBowlers) {
+		this.starBowlers = starBowlers;
+	}
 
 
 }

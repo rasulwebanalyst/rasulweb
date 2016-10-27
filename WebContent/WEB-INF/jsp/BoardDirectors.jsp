@@ -679,7 +679,7 @@ var deletedarray=[];
     	if(typeof imageUrl === "undefined" || imageUrl==null){
     		ext1 = null;
     	}else{
-    	var iamgeExtension=imageUrl.name;
+    	var iamgeExtension=imageUrl.name.replace(/ /g,"~");
     	 ext1 = iamgeExtension.substr(iamgeExtension.lastIndexOf('.') + 1);
     	 var pos=format.indexOf(ext1);
     	 if(pos==-1)
@@ -697,10 +697,10 @@ var deletedarray=[];
              	 var htmlco="";
              	 var j=i+1;
              	 htmlco+="<input type='hidden' id='uploadedsrcsponser"+j+"' value="+e.target.result+">";
-             	htmlco+="<input type='hidden' id='iamgeExtensionname"+j+"' value="+iamgeExtension.replace(" ","")+">";
+             	htmlco+="<input type='hidden' id='iamgeExtensionname"+j+"' value="+iamgeExtension+">";
              	 $("#uploadedpdfs").append(htmlco);
              	 i=j;
-             	 var htmlco1="<span class='greenText' id='uploadednamesponser"+j+"'><span class='upload-file-name'>"+iamgeExtension+"</span><span onclick=deletename('uploadednamesponser"+j+"','uploadedsrcsponser"+j+"') style='margin-left: 4px; padding: 10px 1px 1px 1px; float: left;'><img src='${pageContext.request.contextPath}/images/cross.png'></span></span>";
+             	 var htmlco1="<span class='greenText' id='uploadednamesponser"+j+"'><span class='upload-file-name'>"+iamgeExtension.replace(/~/g," ")+"</span><span onclick=deletename('uploadednamesponser"+j+"','uploadedsrcsponser"+j+"') style='margin-left: 4px; padding: 10px 1px 1px 1px; float: left;'><img src='${pageContext.request.contextPath}/images/cross.png'></span></span>";
              	$("#uploadname").append(htmlco1);
              	uploadedarr.push("uploadedsrcsponser"+j);
              	uploadextension.push("iamgeExtensionname"+j);
@@ -830,7 +830,8 @@ var deletedarray=[];
 			{
 			
 			//var Filename=uploadextension[i];
-			var Filename=$("#"+uploadextension[i]).val();
+			var Filename2=$("#"+uploadextension[i]).val();
+			var Filename=Filename2.replace(/~/g," ");
 			var base64=$("#"+uploadedarr[i]).val();
 			var base64trimedsplit=base64.split(',');
 			if(base64trimedsplit.length ==1)

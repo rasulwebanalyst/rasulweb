@@ -2,6 +2,7 @@
 <html lang="en">
   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <head>
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
     <meta charset="utf-8">
@@ -60,7 +61,6 @@ return result;
 }
 
 </SCRIPT>
-
 <script>
 var formatAMPMTime = function(date) {
 	  var hours = date.getHours();
@@ -88,15 +88,16 @@ var formatAMPMTime = function(date) {
 	
 	 
 </script>
+
 </head>
 
 <body class="cs-dboard">
    <%@ include file="CSCommon.jsp" %>
-   <%@ include file="BoardHeader.jsp" %>
+   <%@ include file="BoardHeaderpublic.jsp" %>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/cricketSocial/boardfunction.js"></script>
      <script type="text/javascript" src="${pageContext.request.contextPath}/js/cricketSocial/feedFunction.js"></script>
     <section class="middleContentBlock">
-       <%@ include file="BoardBanner.jsp" %>
+       <%@ include file="BoardPublicProfileBanner.jsp" %>
        
  
    <div class="container">
@@ -108,7 +109,8 @@ var formatAMPMTime = function(date) {
                  <div class="col-md-12 noPadding">
                         
                    
-           <%@ include file="BoardSideMenu.jsp" %>
+           <%@ include file="BoardPublicProfileSideMenu.jsp" %>
+           <%@ include file="BoardFanMenu.jsp" %>
                     <div class="col-md-7 pageMiddleBlock">
 
                       <input type="hidden" name="projectURL" id="projectURL" value="${pageContext.request.contextPath}">
@@ -124,6 +126,7 @@ var formatAMPMTime = function(date) {
                         	<div class="col-md-6 col-xs-6 noPadding cs-view-list">
                         	<h4>Star Batsmen of the Week</h4>
                         	<ul>
+                        	
                         	<c:choose>
                         	<c:when test="${!empty StarBatsman}">
                         	<c:forEach items="${StarBatsman}" var="Batsman">
@@ -136,9 +139,7 @@ var formatAMPMTime = function(date) {
                         	<span>${Batsman.totalruns}</span>
                         	<c:if test="${Batsman.notOutFlag eq 'NotOut'}">
                         	 <div class="star-rating">*</div></c:if>
-                        	 <span style="margin-left: -6px;">(${Batsman.battingBalls})</span></span>
-                        	 
-                        	 </div> 
+                        	 <span style="margin-left: -6px;">(${Batsman.battingBalls})</span></span></div> 
                         	<p class="cs-list-team">
                         	 <a href="${pageContext.request.contextPath}/${Batsman.teamBoardInfo.boardName}/board/${Batsman.teamBoardInfo.boardId}">${Batsman.teamBoardInfo.boardName}</a> 
                         	 </p> 
@@ -150,12 +151,30 @@ var formatAMPMTime = function(date) {
                         	<li style="font-size: 13px; color: #FF5722">No Star Batsman for the week</li>
                         	</c:otherwise>
                         	</c:choose>
+                        	
+                        	<%-- <c:choose>
+                        	<c:when test="${!empty StarBatsman}">
+                        	<c:forEach items="${StarBatsman}" var="Batsman">
+                        	<li><img src="${Batsman.userImageUrl}" onerror="this.src='${pageContext.request.contextPath}/images/profileIcon.png'">
+                        	<div class="cs-list-holder">
+                        	<p><a href="${pageContext.request.contextPath}/buddy/${Batsman.userName}/${Batsman.userId}" >${Batsman.userName}</a></p>
+                        	<p class="cs-list-team">
+                        	 <a href="${pageContext.request.contextPath}/${Batsman.teamBoardInfo.boardName}/board/${Batsman.teamBoardInfo.boardId}">${Batsman.teamBoardInfo.boardName} </a>
+                        	 </p> 
+                        	</div></li>
+                        	</c:forEach>
+                        	</c:when>
+                        	<c:otherwise>
+                        	<li  style="font-size: 13px; color: #FF5722">No Star Batsman for the week</li>
+                        	</c:otherwise>
+                        	</c:choose> --%>
+                        	
+                        	
                         	<!-- <li><img src="http://s.ndtvimg.com/images/entities/300/lokesh-rahul-1688.png">
                         	<div class="cs-list-holder">
                         	<p>Raj Sundaram</p>
                         	<p class="cs-list-team">AW League</p>
-                        	</div></li>    
-                        	                    	
+                        	</div></li>                        	
                         	<li><img src="http://s.ndtvimg.com/images/entities/300/lokesh-rahul-1688.png">
                         	<div class="cs-list-holder">
                         	<p>Dinesh Chandrasekaran</p>
@@ -194,7 +213,22 @@ var formatAMPMTime = function(date) {
                         	</c:otherwise>
                         	</c:choose>
                         	
-                        	
+                        	<%-- <c:choose>
+                        	<c:when test="${!empty StarBowler}">
+                        	<c:forEach items="${StarBowler}" var="Bowler">
+                        	<li><img src="${Bowler.userImageUrl}" onerror="this.src='${pageContext.request.contextPath}/images/profileIcon.png'">
+                        	<div class="cs-list-holder">
+                        	<p><a href="${pageContext.request.contextPath}/buddy/${Bowler.userName}/${Bowler.userId}">${Bowler.userName}</a></p>
+                        	<p class="cs-list-team">
+                        	<a href="${pageContext.request.contextPath}/${Bowler.teamBoardInfo.boardName}/board/${Bowler.teamBoardInfo.boardId}"> ${Bowler.teamBoardInfo.boardName}</a> 
+                        	 </p> 
+                        	</div></li>
+                        	</c:forEach>
+                        	</c:when>
+                        	<c:otherwise>
+                        	<li  style="font-size: 13px; color: #FF5722">No Star Bowler for the week</li>
+                        	</c:otherwise>
+                        	</c:choose> --%>
                         	<!-- <li><img src="http://s.ndtvimg.com/images/entities/300/lokesh-rahul-1688.png">
                         	<div class="cs-list-holder">
                         	<p>Raj Sundaram</p>
@@ -215,9 +249,6 @@ var formatAMPMTime = function(date) {
                         	</ul>
                         	
                         	</div><!-- col md 6 -->
-                        	
-                        	
-                        	
                         	
                         	<div class="col-md-12 col-xs-12 whiteBox cs-gm-list">
                         	<h4>Recent Match Results</h4>
@@ -246,7 +277,7 @@ var formatAMPMTime = function(date) {
                            <c:when test="${completed.statusOfMatch eq 'draw'}">
                            		<span >Match Drawn</span>
                            </c:when>
-                           <c:when test="${completed.statusOfMatch eq 'forfeit'}">
+                            <c:when test="${completed.statusOfMatch eq 'forfeit'}">
                            		<span >${completed.winTeamName} won the match by forfeit</span>
                            </c:when>
                            <c:otherwise>
@@ -262,7 +293,7 @@ var formatAMPMTime = function(date) {
                         	<li><span> <%--  <a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName} </a> ${completed.statusOfMatch} --%>
                         	<c:choose>
                         	<c:when test="${!empty completed.resultMessage}">
-                        	<span > ${completed.resultMessage} </span></c:when><c:otherwise> 
+                        	 <span >${completed.resultMessage}</span> </c:when><c:otherwise> 
                         	 
                         	 <c:choose>
                            <c:when test="${completed.statusOfMatch eq 'tie'}">
@@ -292,48 +323,13 @@ var formatAMPMTime = function(date) {
                         	
                         	</c:choose>
                         	
-                        	
-                        	<%-- <c:choose>
-                        	<c:when test="${empty completedMatchesList}">
-                        	<li><span style="font-size: 13px; color: #FF5722">No completed match results</span></li>
-                        	
-                        	</c:when>
-                        	<c:otherwise>
-                        	<c:forEach items="${completedMatchesList}" var ="completed">
-                        	<c:choose>
-                        	<c:when test="${completed.matchWonBy eq completed.homeTeamId}">
-                        	<li><span>  <a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName} </a> ${completed.statusOfMatch}
-                        	
-                        	 ${completed.resultMessage} (<a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName}</a>:${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}, <a href="${pageContext.request.contextPath}/${completed.loseTeamName}/board/${completed.awayTeamId}">${completed.loseTeamName}</a>:${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers})  </span></li>
-                        	
-                        	</c:when>
-                        	<c:otherwise>
-                        	<li><span>  <a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName} </a> ${completed.statusOfMatch} 
-                        	
-                        	${completed.resultMessage} (<a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName}</a>:${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}, <a href="${pageContext.request.contextPath}/${completed.loseTeamName}/board/${completed.homeTeamId}">${completed.loseTeamName}</a>:${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers})   </span></li>
-                        	
-                        	</c:otherwise>
-                        	</c:choose>
-                        	
-                        	
-                        	</c:forEach>
-                        	
-                        	</c:otherwise>
-                        	
-                        	
-                        	</c:choose> --%>
-                        	
-                        	
-                        	
                         		<!-- <li><span>Somerset Cavalier Won (hbcc:60/10 in 31.2, Somerset Cavalier:61/1 in 6.3)</span></li>
                         		<li><span>Somerset Cavalier Won (hbcc:60/10 in 31.2, Somerset Cavalier:61/1 in 6.3)</span></li>
                         		<li><span>Somerset Cavalier Won (hbcc:60/10 in 31.2, Somerset Cavalier:61/1 in 6.3)</span></li>
                         		<li><span>Somerset Cavalier Won (hbcc:60/10 in 31.2, Somerset Cavalier:61/1 in 6.3)</span></li>
                         		<li><span>Somerset Cavalier Won (hbcc:60/10 in 31.2, Somerset Cavalier:61/1 in 6.3)</span></li> -->
-                        	
-                        	
                         	</ul>
-                        	</div><!-- result view scroller end -->
+                        	</div>
                         	</div><!-- col 12 end -->
                         	
                         	
@@ -341,9 +337,10 @@ var formatAMPMTime = function(date) {
                         	<h4>Upcoming Matches</h4>
                         	<div class="result-list-scroller">
                         	<ul class="result-list">
+                        	
                         	<c:choose>
                         	<c:when test="${empty upcomingMatchesList}">
-                        	<li><span style="font-size: 13px; color: #FF5722">No upcoming matches</span></li>
+                        	<li><span  style="font-size: 13px; color: #FF5722">No upcoming matches</span></li>
                         	
                         	</c:when>
                         	<c:otherwise>
@@ -356,17 +353,19 @@ var formatAMPMTime = function(date) {
                         	
                         	
                         	</c:choose>
+                        	
                         		<!-- <li><span>3rd ODI: Bangladesh v England at Chittagong - Oct 12, 2016 </span></li>
                         		<li><span>3rd ODI: Bangladesh v England at Chittagong - Oct 12, 2016 </span></li>
                         		<li><span>3rd ODI: Bangladesh v England at Chittagong - Oct 12, 2016 </span></li>
                         		<li><span>3rd ODI: Bangladesh v England at Chittagong - Oct 12, 2016 </span></li>
                         		<li><span>3rd ODI: Bangladesh v England at Chittagong - Oct 12, 2016 </span></li> -->
                         	</ul>
+                        	</div>
                         	
                         	</div><!-- col 12 end -->
                         	                                                                                
 						</div><!-- whitebox end -->
-                       </div>
+
                       </div>
 
     
@@ -390,284 +389,308 @@ var formatAMPMTime = function(date) {
                              		<!--                 For Side menu start                -->
                              		
                              		
-                             		
-                             		
                              		 <c:if test="${BoradInfo.category eq 'Academy' }">
-                               <c:choose>
-                        	  	<c:when test="${BoradInfo.statusId==19}">	
-                        	  	 	
-                        	  		<%-- <li ><a href="javascript:"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
-                        	  	
-                             		
-                             		<div class="EntryMenu">
+                            		
+		                            	<c:choose>
+		                        	  	<c:when test="${BoradInfo.statusId==19}">	
+		                        	  	 	
+		                        	  		<%-- <li ><a href="javascript:"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
+		                        	  		
+		                        	  		
+		                        	  		 <!-- <div class="EntryMenu">
                              		<h4>Entry Menu</h4>
-                             		    <a href="javascript:" class="active"> Create Umpire</a>
-                             			<a href="javascript:"> Create Ground</a>
-                             			<a href="javascript:"> Create Trophy</a>
-                             			<div class="moreview" id="more">...More</div>
-                             			<span class="showmore" id="showmore">
-                              			<a href="javascript:"> Create Schedule</a>
-                             			<a href="javascript:"> Assign Umpire to Schedule </a>
-                             			<a href="javascript:"> Assign Scorer to Schedule</a>
-                             			<a href="javascript:"> Cancel Game by date</a>
-                             			<a href="javascript:"> Cancel Tournament</a>
-                             			</span>
-                             			<div class="lessview" id="less">...Less</div>
-                             		</div>
+                             			
+                             		</div> -->
                              		<div class="ViewMenu">
                              		<h4>View Menu</h4>
-                             	        <a href="javascript:"> Umpire List</a>
-                             			<a href="javascript:"> Ground List</a>
-                             			<a href="javascript:"> Schedule List</a>
+                             		<a href="javascript:"><i class="fa fa-angle-right"></i> Umpire List</a>                                         
+                                            <a href="javascript:"><i class="fa fa-angle-right"></i> Ground List</a>
+                                            <a href="javascript:"><i class="fa fa-angle-right"></i> Schedule List</a>
+                             	            
                              			<div class="moreview" id="more1">...More</div>
-                             			<span class="showmore" id="showmore1">                             			
-                             			<a href="javascript:"> Schedule & Scores</a>
-                             			<a href="javascript:"> Team Details</a>
-                             			<a href="javascript:"> Points Table</a>
-                             			<a href="javascript:"> Centuries</a>
-                             			<a href="javascript:"> Half Centuries</a>
-                             			<a href="javascript:"> 5fer</a>
-                             			<a href="javascript:"> Top Batsmen</a>
-                             			<a href="javascript:"> Top Bowlers</a>
-                             			<a href="javascript:"> Top Umpires</a>
-                             			<a href="javascript:"> Dispute Management</a>
+                             			<span class="showmore" id="showmore1"> 
+                             			<a href="javascript:"><i class="fa fa-angle-right"></i> Schedule & Scores</a>
+                             			<a href="javascript:"><i class="fa fa-angle-right"></i> Team Details</a>                                         
+                                            <a href="javascript:"><i class="fa fa-angle-right"></i> Points Table</a>
+                                            <a href="javascript:"><i class="fa fa-angle-right"></i> Centuries</a>                            			
+                             			    <a href="javascript:"><i class="fa fa-angle-right"></i> Half Centuries</a>
+											<a href="javascript:"><i class="fa fa-angle-right"></i> 5fer</a>
+                                            <a href="javascript:"><i class="fa fa-angle-right"></i> Top Batsmen</a>
+                                            <a href="javascript:"><i class="fa fa-angle-right"></i> Top Bowlers</a>
+                                            <a href="javascript:"><i class="fa fa-angle-right"></i> Top Umpires</a>
                              			</span>
                              			<div class="lessview" id="less1">...Less</div>
                              		</div>
+		                        	  		
+		                        	  		
+		                        	  		
+		                        	  		
+		                        	  		
+		                        	  	</c:when>
+		                        	  	<c:otherwise>
+		                     				<%-- <li><a href="${pageContext.request.contextPath}/LeaguePointsProfile/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
+		                     			
+		                     			
+		                     			<div class="EntryMenu">
+                             		<h4>Entry Menu</h4>
+                             		   
+                             			
+                             			
+                             			<%-- <c:if test="${!empty LeaugeMenuList}">
+                                    	      			<c:if test="${!empty LeaugeMenuList.umpireList}">
+                                    	      		   			<c:forEach var="ground" items="${LeaugeMenuList.umpireList}" varStatus="i">                                   	      		   			
+                                    	      		   						${ground.URL}                                    	      		   
+                                    	      		   				</c:forEach>                                   	      		   			
+                                    	      		   </c:if>
+                                    	      		   <c:if test="${!empty LeaugeMenuList.groundList}">
+                                    	      		   				  <c:forEach var="ground" items="${LeaugeMenuList.groundList}" varStatus="i">                                   	      		   			
+                                    	      		   						${ground.URL}                                    	      		   
+                                    	      		   				</c:forEach>			
+                                    	      		   </c:if>
+                                    	      		   <c:if test="${!empty LeaugeMenuList.scheduleList}">
+                                    	      		   				<c:forEach var="ground" items="${LeaugeMenuList.scheduleList}" varStatus="i">                                   	      		   			
+                                    	      		   						${ground.URL}                                    	      		   
+                                    	      		   				</c:forEach>                                             	      		   			
+                                    	      		   </c:if>
+                                    	      </c:if>     --%>  
+                                    	      <c:choose>
+                                    	      <c:when test="${fn:length(entrymenu) gt 3}">
+                                    	      
+                                    	      <c:forEach var="ground" items="${entrymenu}" begin="0" end="2">                                   	      		   			
+                                    	      		   						${ground}                                    	      		   
+                                    	      		   				</c:forEach>
+                                    	      
+                                    	      </c:when>
+                                    	      <c:otherwise>
+                                    	      <c:if test="${!empty entrymenu}">
+                                    	      		   			<c:forEach var="ground" items="${entrymenu}" >                                   	      		   			
+                                    	      		   						${ground}                                    	      		   
+                                    	      		   				</c:forEach>                                   	      		   			
+                                    	      </c:if>
+                                    	      </c:otherwise>
+                                    	     </c:choose>
+                                    	      
+                                    	        
+                             			
+                             			<div class="moreview" id="more">...More</div>
+                             			<span class="showmore" id="showmore">
+                             			
+                             			
+                             			<c:if test="${fn:length(entrymenu) gt 3}">
+										 <c:forEach var="ground1" items="${entrymenu}" begin="3">
+											${ground1}  
+											</c:forEach> 
+											</c:if>
+                             			
+                             			
+                             			</span>
+                             			<div class="lessview" id="less">...Less</div>
+                             			
+                             			
+                             		</div>
+                             		<div class="ViewMenu">
+                             		<h4>View Menu</h4>
+                             		
+                             		
+                             		<c:if test="${!empty Viewmenu}">
+										 <c:forEach var="ground1" items="${Viewmenu}" begin="0" end="2">
+											${ground1}  
+											</c:forEach> 
+											</c:if>
+                             	       
+                                            
+
+                             			<div class="moreview" id="more1">...More</div>
+                             			<span class="showmore" id="showmore1">
+                             			
+                             			<c:if test="${!empty Viewmenu}">
+                                    	      <c:if test="${fn:length(Viewmenu) gt 3}">
+										 <c:forEach var="ground1" items="${Viewmenu}" begin="3" >
+											
+											${ground1}  
+											
+											</c:forEach> 
+											</c:if>
+											</c:if>
+                             			
+                             			<a href="${pageContext.request.contextPath}/teamdetailsPublicProfile/${BoradInfo.boardId}"> Team Details</a>                                         
+                                            <a href="${pageContext.request.contextPath}/LeaguePointsProfile/${BoradInfo.boardId}"> Points Table</a>
+                                            <a href="${pageContext.request.contextPath}/leaguecenturiesprofile/${BoradInfo.boardId}"> Centuries</a>                             			
+                             			 <a href="${pageContext.request.contextPath}/leaguehalfcenturiesprofile/${BoradInfo.boardId}"> Half Centuries</a>
+											<a href="${pageContext.request.contextPath}/fivewicketsPublicProfile/${BoradInfo.boardId}"> 5fer</a></li>
+                                            <a href="${pageContext.request.contextPath}/topbatsmanPublicProfile/${BoradInfo.boardId}"> Top Batsmen</a>
+                                            <a href="${pageContext.request.contextPath}/topbowlerPublicProfile/${BoradInfo.boardId}"> Top Bowlers</a>
+                                            <a href="${pageContext.request.contextPath}/topUmpirePublicProfile/${BoradInfo.boardId}"> Top Umpires</a>  
+                                             
+                                             <c:if test="${!empty LeaugeMenuList}">
+                                             <c:if test="${!empty LeaugeMenuList.disputeManagment}">
+                                            	 <li>${LeaugeMenuList.disputeManagment}</li>        
+                                             </c:if>
+                                             
+                                             </c:if>
+                             			</span>
+                             			<div class="lessview" id="less1">...Less</div>
+                             		</div>
+		                     			
+		                     			
+		                     			
+		                     			
+		                     			</c:otherwise>
+		                        	  </c:choose>
+                            	</c:if> 	  
+ 								<c:if test="${BoradInfo.category eq 'League' }">
+                            		
+		                            	<c:choose>
+		                        	  	<c:when test="${BoradInfo.statusId==19}">	
+		                        	  	 	
+		                        	  		<%-- <li ><a href="javascript:"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
+		                        	  		
+		                        	  		<!-- <div class="EntryMenu">
+                             		<h4>Entry Menu</h4>
+                             			
+                             		</div> -->
+                             		<div class="ViewMenu">
+                             		<h4>View Menu</h4>
+                             	            <a href="javascript:"><i class="fa fa-angle-right"></i> Umpire List</a>                                         
+                                            <a href="javascript:"><i class="fa fa-angle-right"></i> Ground List</a>
+                                            <a href="javascript:"><i class="fa fa-angle-right"></i> Schedule List</a>
+                             			<div class="moreview" id="more1">...More</div>
+                             			<span class="showmore" id="showmore1">    
+                             			<a href="javascript:"><i class="fa fa-angle-right"></i> Schedule & Scores</a>
+                             			    <a href="javascript:"><i class="fa fa-angle-right"></i> Team Details</a>                                         
+                                            <a href="javascript:"><i class="fa fa-angle-right"></i> Points Table</a>
+                                            <a href="javascript:"><i class="fa fa-angle-right"></i> Centuries</a>                         			
+                             			    <a href="javascript:"><i class="fa fa-angle-right"></i> Half Centuries</a>
+											<a href="javascript:"><i class="fa fa-angle-right"></i> 5fer</a>
+                                            <a href="javascript:"><i class="fa fa-angle-right"></i> Top Batsmen</a>
+                                            <a href="javascript:"><i class="fa fa-angle-right"></i> Top Bowlers</a>
+                                            <a href="javascript:"><i class="fa fa-angle-right"></i> Top Umpires</a>
+                             			</span>
+                             			<div class="lessview" id="less1">...Less</div>
+                             		</div>
+		                        	  		
+		                        	  		
+		                        	  		
+		                        	  	</c:when>
+		                        	  	<c:otherwise>
+		                     				<%-- <li><a href="${pageContext.request.contextPath}/LeaguePointsProfile/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
+		                     				
+		                     			<c:if test="${!empty entrymenu}">	
+		                     			<div class="EntryMenu">
+                             		<h4>Entry Menu</h4>
+                             		   
+                             			
+                             			
+                             			<%-- <c:if test="${!empty LeaugeMenuList}">
+                                    	      			<c:if test="${!empty LeaugeMenuList.umpireList}">
+                                    	      		   			<c:forEach var="ground" items="${LeaugeMenuList.umpireList}" varStatus="i">                                   	      		   			
+                                    	      		   						${ground.URL}                                   	      		   
+                                    	      		   				</c:forEach>                                   	      		   			
+                                    	      		   </c:if>
+                                    	      		   <c:if test="${!empty LeaugeMenuList.groundList}">
+                                    	      		   				  <c:forEach var="ground" items="${LeaugeMenuList.groundList}" varStatus="i">                                   	      		   			
+                                    	      		   						${ground.URL}                                    	      		   
+                                    	      		   				</c:forEach>			
+                                    	      		   </c:if>
+                                    	      		   <c:if test="${!empty LeaugeMenuList.scheduleList}">
+                                    	      		   				<c:forEach var="ground" items="${LeaugeMenuList.scheduleList}" varStatus="i">                                   	      		   			
+                                    	      		   						${ground.URL}                                    	      		   
+                                    	      		   				</c:forEach>                                             	      		   			
+                                    	      		   </c:if>
+                                    	      		   
+                                    	      </c:if>   --%>   
+                                    	      
+                                    	         <c:choose>
+                                    	      <c:when test="${fn:length(entrymenu) gt 3}">
+                                    	      
+                                    	      <c:forEach var="ground" items="${entrymenu}" begin="0" end="2">                                   	      		   			
+                                    	      		   						${ground}                                    	      		   
+                                    	      		   				</c:forEach>
+                                    	      
+                                    	      </c:when>
+                                    	      <c:otherwise>
+                                    	      <c:if test="${!empty entrymenu}">
+                                    	      		   			<c:forEach var="ground" items="${entrymenu}" >                                   	      		   			
+                                    	      		   						${ground}                                    	      		   
+                                    	      		   				</c:forEach>                                   	      		   			
+                                    	      </c:if>
+                                    	      </c:otherwise>
+                                    	     </c:choose>
+                                    	       
+                             			<c:if test="${fn:length(entrymenu) gt 3}">
+                             			<div class="moreview" id="more">...More</div>
+                             			<span class="showmore" id="showmore">
+                             			
+                             			<c:if test="${fn:length(entrymenu) gt 3}">
+										 <c:forEach var="ground1" items="${entrymenu}" begin="3">
+											${ground1}  
+											</c:forEach> 
+											</c:if>
+											
+                             			</span>
+                             			<div class="lessview" id="less">...Less</div>
+                             			
+                             			</c:if>
+                             			
+                             		</div>
+                             		
+                             		</c:if>
+                             		
+                             		
+                             		<div class="ViewMenu">
+                             		<h4>View Menu</h4>
                              		
                              		
                              		
                              		
-                        	  	
-                        	  	
-                        	  	
-                        	  	</c:when>
-                        	  	<c:otherwise>
-                     				<c:choose>
-                              <c:when test="${BoradInfo.scheduleFlag}">
-                             			<%-- <li><a href="${pageContext.request.contextPath}/SchedulerList/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
-                             			
-                             			
-                             			
-                             			<div class="EntryMenu">
-                             		<h4>Entry Menu</h4>
-                             		    <a href="${pageContext.request.contextPath}/CreateUmpire/boardId/${BoradInfo.boardId}" class="active"> Create Umpire</a>
-                             			<a href="${pageContext.request.contextPath}/CreateGround/boardId/${BoradInfo.boardId}"> Create Ground</a>
-                             			<a href="${pageContext.request.contextPath}/CreateTrophy/boardId/${BoradInfo.boardId}"> Create Trophy</a>
-                             			<div class="moreview" id="more">...More</div>
-                             			<span class="showmore" id="showmore">
-                              			<a href="${pageContext.request.contextPath}/CreateSchedule/boardId/${BoradInfo.boardId}"> Create Schedule</a>
-                             			<a href="${pageContext.request.contextPath}/AssignUmpire/boardId/${BoradInfo.boardId}"> Assign Umpire to Schedule </a>
-                             			<a href="${pageContext.request.contextPath}/AssignScorer/boardId/${BoradInfo.boardId}"> Assign Scorer to Schedule</a>
-                             			<a href="${pageContext.request.contextPath}/CancelGameByDate/boardId/${BoradInfo.boardId}"> Cancel Game by date</a>
-                             			<a href="${pageContext.request.contextPath}/CancelTournament/boardId/${BoradInfo.boardId}"> Cancel Tournament</a>
-                             			</span>
-                             			<div class="lessview" id="less">...Less</div>
-                             		</div>
-                             		<div class="ViewMenu">
-                             		<h4>View Menu</h4>
-                             	        <a href="${pageContext.request.contextPath}/UmpireList/boardId/${BoradInfo.boardId}"> Umpire List</a>
-                             			<a href="${pageContext.request.contextPath}/GroundList/boardId/${BoradInfo.boardId}"> Ground List</a>
-                             			<a href="${pageContext.request.contextPath}/SchedulerList/boardId/${BoradInfo.boardId}"> Schedule List</a>
+                                    	      
+                                    	      
+                                    	      <c:if test="${!empty Viewmenu}">
+										 <c:forEach var="ground1" items="${Viewmenu}" begin="0" end="2">
+											${ground1}  
+											</c:forEach> 
+											</c:if>
+                             	       
+
                              			<div class="moreview" id="more1">...More</div>
-                             			<span class="showmore" id="showmore1">                             			
-                             			<a href="${pageContext.request.contextPath}/GameSchedule/boardId/${BoradInfo.boardId}"> Schedule & Scores</a>
-                             			<a href="${pageContext.request.contextPath}/teamdetails/${BoradInfo.boardId}"> Team Details</a>
-                             			<a href="${pageContext.request.contextPath}/LeaguePoints/${BoradInfo.boardId}"> Points Table</a>
-                             			<a href="${pageContext.request.contextPath}/leaguecenturies/${BoradInfo.boardId}"> Centuries</a>
-                             			<a href="${pageContext.request.contextPath}/leaguehalfcenturies/${BoradInfo.boardId}"> Half Centuries</a>
-                             			<a href="${pageContext.request.contextPath}/fivewickets/${BoradInfo.boardId}"> 5fer</a>
-                             			<a href="${pageContext.request.contextPath}/topbatsman/${BoradInfo.boardId}"> Top Batsmen</a>
-                             			<a href="${pageContext.request.contextPath}/topbowler/${BoradInfo.boardId}"> Top Bowlers</a>
-                             			<a href="${pageContext.request.contextPath}/topUmpire/${BoradInfo.boardId}"> Top Umpires</a>
-                             			<a href="${pageContext.request.contextPath}/DisputeManagement/boardId/${BoradInfo.boardId}"> Dispute Management</a>
+                             			<span class="showmore" id="showmore1">
+                             			
+                             			<c:if test="${!empty Viewmenu}">
+                                    	      <c:if test="${fn:length(Viewmenu) gt 3}">
+										 <c:forEach var="ground1" items="${Viewmenu}" begin="3">
+											
+											${ground1}  
+											
+											</c:forEach> 
+											</c:if>
+											</c:if>
+                             			
+                             			 
+                             			<a href="${pageContext.request.contextPath}/teamdetailsPublicProfile/${BoradInfo.boardId}"> Team Details</a>                                         
+                                            <a href="${pageContext.request.contextPath}/LeaguePointsProfile/${BoradInfo.boardId}"> Points Table</a>
+                                            <a href="${pageContext.request.contextPath}/leaguecenturiesprofile/${BoradInfo.boardId}"> Centuries</a>                            			
+                             			 <a href="${pageContext.request.contextPath}/leaguehalfcenturiesprofile/${BoradInfo.boardId}"> Half Centuries</a>
+											<a href="${pageContext.request.contextPath}/fivewicketsPublicProfile/${BoradInfo.boardId}"> 5fer</a></li>
+                                            <a href="${pageContext.request.contextPath}/topbatsmanPublicProfile/${BoradInfo.boardId}"> Top Batsmen</a>
+                                            <a href="${pageContext.request.contextPath}/topbowlerPublicProfile/${BoradInfo.boardId}"> Top Bowlers</a>
+                                            <a href="${pageContext.request.contextPath}/topUmpirePublicProfile/${BoradInfo.boardId}"> Top Umpires</a>  
+                                             
+                                             <c:if test="${!empty LeaugeMenuList}">
+                                             <c:if test="${!empty LeaugeMenuList.disputeManagment}">
+                                            	 <li>${LeaugeMenuList.disputeManagment}</li>        
+                                             </c:if>
+                                             
+                                             </c:if>
                              			</span>
                              			<div class="lessview" id="less1">...Less</div>
-                             		</div>
-                             			
-                             			
-                             			
-                             			
-                             			
-                              </c:when>
-                              <c:otherwise>
-                                  <%-- <li><a href="${pageContext.request.contextPath}/CreateUmpire/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
-                                  		
-                                  		<div class="EntryMenu">
-                             		<h4>Entry Menu</h4>
-                             		    <a href="${pageContext.request.contextPath}/CreateUmpire/boardId/${BoradInfo.boardId}" class="active"> Create Umpire</a>
-                             			<a href="${pageContext.request.contextPath}/CreateGround/boardId/${BoradInfo.boardId}"> Create Ground</a>
-                             			<a href="${pageContext.request.contextPath}/CreateTrophy/boardId/${BoradInfo.boardId}"> Create Trophy</a>
-                             			<div class="moreview" id="more">...More</div>
-                             			<span class="showmore" id="showmore">
-                              			<a href="${pageContext.request.contextPath}/CreateSchedule/boardId/${BoradInfo.boardId}"> Create Schedule</a>
-                             			<a href="${pageContext.request.contextPath}/AssignUmpire/boardId/${BoradInfo.boardId}"> Assign Umpire to Schedule </a>
-                             			<a href="${pageContext.request.contextPath}/AssignScorer/boardId/${BoradInfo.boardId}"> Assign Scorer to Schedule</a>
-                             			<a href="${pageContext.request.contextPath}/CancelGameByDate/boardId/${BoradInfo.boardId}"> Cancel Game by date</a>
-                             			<a href="${pageContext.request.contextPath}/CancelTournament/boardId/${BoradInfo.boardId}"> Cancel Tournament</a>
-                             			</span>
-                             			<div class="lessview" id="less">...Less</div>
-                             		</div>
-                             		<div class="ViewMenu">
-                             		<h4>View Menu</h4>
-                             	        <a href="${pageContext.request.contextPath}/UmpireList/boardId/${BoradInfo.boardId}"> Umpire List</a>
-                             			<a href="${pageContext.request.contextPath}/GroundList/boardId/${BoradInfo.boardId}"> Ground List</a>
-                             			<a href="${pageContext.request.contextPath}/SchedulerList/boardId/${BoradInfo.boardId}"> Schedule List</a>
-                             			<div class="moreview" id="more1">...More</div>
-                             			<span class="showmore" id="showmore1">                             			
-                             			<a href="${pageContext.request.contextPath}/GameSchedule/boardId/${BoradInfo.boardId}"> Schedule & Scores</a>
-                             			<a href="${pageContext.request.contextPath}/teamdetails/${BoradInfo.boardId}"> Team Details</a>
-                             			<a href="${pageContext.request.contextPath}/LeaguePoints/${BoradInfo.boardId}"> Points Table</a>
-                             			<a href="${pageContext.request.contextPath}/leaguecenturies/${BoradInfo.boardId}"> Centuries</a>
-                             			<a href="${pageContext.request.contextPath}/leaguehalfcenturies/${BoradInfo.boardId}"> Half Centuries</a>
-                             			<a href="${pageContext.request.contextPath}/fivewickets/${BoradInfo.boardId}"> 5fer</a>
-                             			<a href="${pageContext.request.contextPath}/topbatsman/${BoradInfo.boardId}"> Top Batsmen</a>
-                             			<a href="${pageContext.request.contextPath}/topbowler/${BoradInfo.boardId}"> Top Bowlers</a>
-                             			<a href="${pageContext.request.contextPath}/topUmpire/${BoradInfo.boardId}"> Top Umpires</a>
-                             			<a href="${pageContext.request.contextPath}/DisputeManagement/boardId/${BoradInfo.boardId}"> Dispute Management</a>
-                             			</span>
-                             			<div class="lessview" id="less1">...Less</div>
-                             		</div>
-                              </c:otherwise>
-                              </c:choose>
-                     			</c:otherwise>
-                        	  </c:choose> 
-                               </c:if>                                              	
-                               <c:if test="${BoradInfo.category eq 'League' }">
- 						
-                            	 <c:choose>
-                        	  	<c:when test="${BoradInfo.statusId==19}">	
-                        	  	 	
-                        	  		<%-- <li ><a href="javascript:"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
-                        	  		
-                        	  		
-                        	  		<div class="EntryMenu">
-                             		<h4>Entry Menu</h4>
-                             		    <a href="javascript:" class="active"> Create Umpire</a>
-                             			<a href="javascript:"> Create Ground</a>
-                             			<a href="javascript:"> Create Trophy</a>
-                             			<div class="moreview" id="more">...More</div>
-                             			<span class="showmore" id="showmore">
-                              			<a href="javascript:"> Create Schedule</a>
-                             			<a href="javascript:"> Assign Umpire to Schedule </a>
-                             			<a href="javascript:"> Assign Scorer to Schedule</a>
-                             			<a href="javascript:"> Cancel Game by date</a>
-                             			<a href="javascript:"> Cancel Tournament</a>
-                             			</span>
-                             			<div class="lessview" id="less">...Less</div>
-                             		</div>
-                             		<div class="ViewMenu">
-                             		<h4>View Menu</h4>
-                             	        <a href="javascript:"> Umpire List</a>
-                             			<a href="javascript:"> Ground List</a>
-                             			<a href="javascript:"> Schedule List</a>
-                             			<div class="moreview" id="more1">...More</div>
-                             			<span class="showmore" id="showmore1">                             			
-                             			<a href="javascript:"> Schedule & Scores</a>
-                             			<a href="javascript:"> Team Details</a>
-                             			<a href="javascript:"> Points Table</a>
-                             			<a href="javascript:"> Centuries</a>
-                             			<a href="javascript:"> Half Centuries</a>
-                             			<a href="javascript:"> 5fer</a>
-                             			<a href="javascript:"> Top Batsmen</a>
-                             			<a href="javascript:"> Top Bowlers</a>
-                             			<a href="javascript:"> Top Umpires</a>
-                             			<a href="javascript:"> Dispute Management</a>
-                             			</span>
-                             			<div class="lessview" id="less1">...Less</div>
-                             		</div>
-                        	  		
-                        	  		
-                        	  		
-                        	  	</c:when>
-                        	  	<c:otherwise>
-                     				<c:choose>
-                              <c:when test="${BoradInfo.scheduleFlag}">
-                             			<%-- <li><a href="${pageContext.request.contextPath}/SchedulerList/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
-                             			
-                             			
-                             			<div class="EntryMenu">
-                             		<h4>Entry Menu</h4>
-                             		    <a href="${pageContext.request.contextPath}/CreateUmpire/boardId/${BoradInfo.boardId}" class="active"> Create Umpire</a>
-                             			<a href="${pageContext.request.contextPath}/CreateGround/boardId/${BoradInfo.boardId}"> Create Ground</a>
-                             			<a href="${pageContext.request.contextPath}/CreateTrophy/boardId/${BoradInfo.boardId}"> Create Trophy</a>
-                             			<div class="moreview" id="more">...More</div>
-                             			<span class="showmore" id="showmore">
-                              			<a href="${pageContext.request.contextPath}/CreateSchedule/boardId/${BoradInfo.boardId}"> Create Schedule</a>
-                             			<a href="${pageContext.request.contextPath}/AssignUmpire/boardId/${BoradInfo.boardId}"> Assign Umpire to Schedule </a>
-                             			<a href="${pageContext.request.contextPath}/AssignScorer/boardId/${BoradInfo.boardId}"> Assign Scorer to Schedule</a>
-                             			<a href="${pageContext.request.contextPath}/CancelGameByDate/boardId/${BoradInfo.boardId}"> Cancel Game by date</a>
-                             			<a href="${pageContext.request.contextPath}/CancelTournament/boardId/${BoradInfo.boardId}"> Cancel Tournament</a>
-                             			</span>
-                             			<div class="lessview" id="less">...Less</div>
-                             		</div>
-                             		<div class="ViewMenu">
-                             		<h4>View Menu</h4>
-                             	        <a href="${pageContext.request.contextPath}/UmpireList/boardId/${BoradInfo.boardId}"> Umpire List</a>
-                             			<a href="${pageContext.request.contextPath}/GroundList/boardId/${BoradInfo.boardId}"> Ground List</a>
-                             			<a href="${pageContext.request.contextPath}/SchedulerList/boardId/${BoradInfo.boardId}"> Schedule List</a>
-                             			<div class="moreview" id="more1">...More</div>
-                             			<span class="showmore" id="showmore1">                             			
-                             			<a href="${pageContext.request.contextPath}/GameSchedule/boardId/${BoradInfo.boardId}"> Schedule & Scores</a>
-                             			<a href="${pageContext.request.contextPath}/teamdetails/${BoradInfo.boardId}"> Team Details</a>
-                             			<a href="${pageContext.request.contextPath}/LeaguePoints/${BoradInfo.boardId}"> Points Table</a>
-                             			<a href="${pageContext.request.contextPath}/leaguecenturies/${BoradInfo.boardId}"> Centuries</a>
-                             			<a href="${pageContext.request.contextPath}/leaguehalfcenturies/${BoradInfo.boardId}"> Half Centuries</a>
-                             			<a href="${pageContext.request.contextPath}/fivewickets/${BoradInfo.boardId}"> 5fer</a>
-                             			<a href="${pageContext.request.contextPath}/topbatsman/${BoradInfo.boardId}"> Top Batsmen</a>
-                             			<a href="${pageContext.request.contextPath}/topbowler/${BoradInfo.boardId}"> Top Bowlers</a>
-                             			<a href="${pageContext.request.contextPath}/topUmpire/${BoradInfo.boardId}"> Top Umpires</a>
-                             			<a href="${pageContext.request.contextPath}/DisputeManagement/boardId/${BoradInfo.boardId}"> Dispute Management</a>
-                             			</span>
-                             			<div class="lessview" id="less1">...Less</div>
-                             		</div>
-                             			
-                              </c:when>
-                              <c:otherwise>
-                                  <%-- <li><a href="${pageContext.request.contextPath}/CreateUmpire/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
-                                  
-                                  
-                                  		<div class="EntryMenu">
-                             		<h4>Entry Menu</h4>
-                             		    <a href="${pageContext.request.contextPath}/CreateUmpire/boardId/${BoradInfo.boardId}" class="active"> Create Umpire</a>
-                             			<a href="${pageContext.request.contextPath}/CreateGround/boardId/${BoradInfo.boardId}"></i> Create Ground</a>
-                             			<a href="${pageContext.request.contextPath}/CreateTrophy/boardId/${BoradInfo.boardId}"></i> Create Trophy</a>
-                             			<div class="moreview" id="more">...More</div>
-                             			<span class="showmore" id="showmore">
-                              			<a href="${pageContext.request.contextPath}/CreateSchedule/boardId/${BoradInfo.boardId}"> Create Schedule</a>
-                             			<a href="${pageContext.request.contextPath}/AssignUmpire/boardId/${BoradInfo.boardId}"> Assign Umpire to Schedule </a>
-                             			<a href="${pageContext.request.contextPath}/AssignScorer/boardId/${BoradInfo.boardId}"> Assign Scorer to Schedule</a>
-                             			<a href="${pageContext.request.contextPath}/CancelGameByDate/boardId/${BoradInfo.boardId}"> Cancel Game by date</a>
-                             			<a href="${pageContext.request.contextPath}/CancelTournament/boardId/${BoradInfo.boardId}"> Cancel Tournament</a>
-                             			</span>
-                             			<div class="lessview" id="less">...Less</div>
-                             		</div>
-                             		<div class="ViewMenu">
-                             		<h4>View Menu</h4>
-                             	        <a href="${pageContext.request.contextPath}/UmpireList/boardId/${BoradInfo.boardId}"> Umpire List</a>
-                             			<a href="${pageContext.request.contextPath}/GroundList/boardId/${BoradInfo.boardId}"> Ground List</a>
-                             			<a href="${pageContext.request.contextPath}/SchedulerList/boardId/${BoradInfo.boardId}"> Schedule List</a>
-                             			<div class="moreview" id="more1">...More</div>
-                             			<span class="showmore" id="showmore1">                             			
-                             			<a href="${pageContext.request.contextPath}/GameSchedule/boardId/${BoradInfo.boardId}"> Schedule & Scores</a>
-                             			<a href="${pageContext.request.contextPath}/teamdetails/${BoradInfo.boardId}"> Team Details</a>
-                             			<a href="${pageContext.request.contextPath}/LeaguePoints/${BoradInfo.boardId}"> Points Table</a>
-                             			<a href="${pageContext.request.contextPath}/leaguecenturies/${BoradInfo.boardId}"> Centuries</a>
-                             			<a href="${pageContext.request.contextPath}/leaguehalfcenturies/${BoradInfo.boardId}"> Half Centuries</a>
-                             			<a href="${pageContext.request.contextPath}/fivewickets/${BoradInfo.boardId}"> 5fer</a>
-                             			<a href="${pageContext.request.contextPath}/topbatsman/${BoradInfo.boardId}"> Top Batsmen</a>
-                             			<a href="${pageContext.request.contextPath}/topbowler/${BoradInfo.boardId}"> Top Bowlers</a>
-                             			<a href="${pageContext.request.contextPath}/topUmpire/${BoradInfo.boardId}"> Top Umpires</a>
-                             			<a href="${pageContext.request.contextPath}/DisputeManagement/boardId/${BoradInfo.boardId}"> Dispute Management</a>
-                             			</span>
-                             			<div class="lessview" id="less1">...Less</div>
-                             		</div>
-                              </c:otherwise>
-                              </c:choose>
-                     			</c:otherwise>
-                        	  </c:choose>
-                            	</c:if>	
+                             		</div>	
+		                     				
+		                     				
+		                     			</c:otherwise>
+		                        	  </c:choose>
+                            	</c:if>		
                              		
+                            		
                              		
                              		
                              		<!--                 For Side menu end                -->
@@ -729,7 +752,7 @@ var formatAMPMTime = function(date) {
                         		
                         	<c:otherwise>
                         	
-                        		 <c:forEach var="feed" items="${FeedsList}" varStatus="index">
+                     		 <c:forEach var="feed" items="${FeedsList}" varStatus="index">
 
                                 <div class="media feedDiv${feed.feedId}">
 	                                  <!-- <div class="media-left"> -->
@@ -755,7 +778,7 @@ var formatAMPMTime = function(date) {
 		                                    		</c:otherwise>
 		                                    	</c:choose>
 		                                    	<p id="commentCount${feed.feedId}" onclick="getAllComments('${feed.feedId}')"><i class="fa fa-commenting-o"></i>${feed.feedCommentCount}</p>
-		                                    	 <p id="HitCountDIv${index.count}"><img src="images/hitIcon1.png" width="18" class="hitIcon1" >${feed.feedHitCount}</p>
+		                                    	 <p id="HitCountDIv${index.count}"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" >${feed.feedHitCount}</p>
 		                                    </div>
 	                                    
 	                                    <span class="postTime"><script type="text/javascript">

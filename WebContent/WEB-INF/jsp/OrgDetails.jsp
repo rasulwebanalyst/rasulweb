@@ -92,7 +92,7 @@ var deletedarray=[];
 		            <div id="uploadedpdfs">
 		             <c:forEach items="${OrgResponse.fileDetails}" var="filedetail" varStatus="loop">
 		             <input type='hidden' id='uploadedsrc${loop.index}' value="${filedetail.fileUrl}">
-		                 	<input type='hidden' id='uploadedsrcext${loop.index}' value="${filedetail.fileName}">
+		                 	<input type='hidden' id='uploadedsrcext${loop.index}' value='${filedetail.fileName}'>
 		            
 		            </c:forEach> 
 		            
@@ -142,7 +142,7 @@ function selectpdf(finput)
 	if(typeof imageUrl === "undefined" || imageUrl==null){
 		ext1 = null;
 	}else{
-	var iamgeExtension=imageUrl.name;
+	var iamgeExtension=imageUrl.name.replace(/ /g,"~");
 	 ext1 = iamgeExtension.substr(iamgeExtension.lastIndexOf('.') + 1);
 	 var pos=format.indexOf(ext1);
 	 if(pos==-1)
@@ -165,7 +165,7 @@ function selectpdf(finput)
          	 $("#uploadedpdfs").append(htmlco);
          	 i=j;
          	 
-         	 var htmlco1="<span class='greenText' id='uploadedname"+j+"'><span class='upload-file-name'>"+iamgeExtension+"</span><span onclick=deletename('uploadedname"+j+"','uploadedsrc"+j+"')><img style='margin-left: 4px; padding: 10px 1px 1px 1px; float: left;' src='${pageContext.request.contextPath}/images/cross.png'></span></span>";
+         	 var htmlco1="<span class='greenText' id='uploadedname"+j+"'><span class='upload-file-name'>"+iamgeExtension.replace(/~/g," ")+"</span><span onclick=deletename('uploadedname"+j+"','uploadedsrc"+j+"')><img style='margin-left: 4px; padding: 10px 1px 1px 1px; float: left;' src='${pageContext.request.contextPath}/images/cross.png'></span></span>";
          	$("#uploadname").append(htmlco1);
          	 /* var htmlco1="";
          	// htmlco1= */
@@ -213,7 +213,8 @@ function selectpdf(finput)
 		for(var i=0;i<uploadedarr.length;i++)
 			{
 			
-			var Filename=$("#"+uploadextension[i]).val();
+			var Filename2=$("#"+uploadextension[i]).val();
+			var Filename=Filename2.replace(/~/g," ");
 			var base64=$("#"+uploadedarr[i]).val();
 			/* alert(base64) */
 			/* var base64trimed=base64.split(',')[1]; */

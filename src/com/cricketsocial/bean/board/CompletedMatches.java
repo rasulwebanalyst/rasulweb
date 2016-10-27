@@ -57,7 +57,16 @@ public class CompletedMatches {
 	
 	private String dateString;
 	private String leagueCreatedBy;
+	private String resultMessage;
+	
+	
 
+	public String getResultMessage() {
+		return resultMessage;
+	}
+	public void setResultMessage(String resultMessage) {
+		this.resultMessage = resultMessage;
+	}
 	public String getManOfTheMatchName() {
 		return manOfTheMatchName;
 	}

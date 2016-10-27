@@ -9,6 +9,8 @@
 <title>Cricket Social</title>
 <link href="${pageContext.request.contextPath}/css/dataTables.bootstrap.min.css" rel="stylesheet">
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+ <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
 </head>
 <body>
 
@@ -32,6 +34,7 @@
       			<div class="col-md-12 whiteBox">
                 	<h1 class="">Team Details</h1>
                        </div>
+                       <div class="form-group">
                        <c:forEach items="${TeamdetailsResponse}" var="team">
                        <div class="col-md-12 whiteBox">
                        <span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament Name : ${team.tournamentName}</span>
@@ -86,6 +89,7 @@
   <!--/Content Block-->
 </div>
 </div>
+</div><!-- form group -->
 </section>
 
 <!--Data Table-->   

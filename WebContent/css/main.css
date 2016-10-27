@@ -138,6 +138,40 @@ a.vw-score {
 .black-bg {
 }
 /* new changes */
+.TB_table img {
+	width: 35px;
+    float: left;
+    margin-right: 10px;	
+}
+.TB_table b {
+	vertical-align: middle;
+    font-size: 12px;	
+}
+.list-holder-txt {
+	color: #111;
+}
+.list-holder-txt span {
+	padding: 3px;
+	font-size: 12px;
+}
+.list-holder-txt a {
+	padding-right: 5px;
+	color: #00a5e7;
+}
+.cs-list-team a {
+	color: #00a5e7;	
+}
+.star-rating {
+	position: relative;
+    top: -5px;
+    display: inline-block;
+    left: -5px;
+}
+.result-list-scroller {
+	min-height: 10px;
+    max-height: 230px;
+	overflow: auto;
+}
 ul.nav.nav-tabs-details li {
 	width: auto;
 }
@@ -167,7 +201,7 @@ ul.nav.nav-tabs-details li a {
     padding: 6px;
     width: 100%;
     text-align: center;
-    color: #fff;88%
+    color: #fff;
     font-weight: 600;
     background: #00a5e7;
 }
@@ -250,7 +284,7 @@ table.directors td.usr-img img {
 	background: #224e6b;
 	color: #fff;
 } 
-.action button.cancel {88%
+.action button.cancel {
 	background: #bbb;
 	color: #fff;
 }
@@ -431,8 +465,108 @@ ol.roa-ol li {
 	line-height: 25px;
 }
 
-/* NEW PAGE CHANGES */
+/* Dashboard changes */
+body.cs-dboard .galleryBlock img {
+	max-width: 100%;
+}
+body.cs-dboard .media-heading {
+	display: inline;
+}
+body.cs-dboard .media-body {
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 10px;
+}
+body.cs-dboard .cs-view-list {
+    margin-bottom: 6px;
+    margin-right: 10px;
+    width: 48%;
+}
+body.cs-dboard .cs-view-list h4,body.cs-dboard .cs-gm-list h4 {
+    border-bottom: 1px solid;
+    color: #111;
+    padding: 10px 5px;
+    text-align: left;
+    text-transform: uppercase;
+    width: 100%;
+}
+body.cs-dboard .cs-db-title {
+    color: #00a5e7;
+    font-size: 16px;
+    padding: 10px 5px 0;
+    text-align: left;
+    text-transform: uppercase;
+    width: 100%;	
+}
+body.cs-dboard .cs-view-list ul li {
+    box-shadow: 0 2px 4px #ddd;
+    list-style: outside none none;
+    margin-bottom: 5px;
+    padding: 10px 5px;
+    text-align: left;
+}
+body.cs-dboard .cs-view-list ul li img {
+	vertical-align: middle;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+body.cs-dboard .cs-view-list ul li .cs-list-holder {
+	display: inline-block;
+	margin-left: 10px;
+	vertical-align: middle;
+}
+body.cs-dboard .cs-view-list ul li p.cs-list-team {
+	color: #224E6B;
+	font-size: 13px;
+}
+body.cs-dboard .cs-view-list ul li p {
 
+    margin: 2px 0;
+}
+body.cs-dboard .cs-view-list ul,
+body.cs-dboard ul.result-list {
+	padding: 0;
+}
+body.cs-dboard ul.result-list li {
+    box-shadow: 0 2px 4px #ddd;
+    list-style: outside none none;
+    padding: 10px 5px;
+    color: #224E6B;
+    text-align: left;
+    margin-bottom: 8px;
+}
+body.cs-dboard ul.result-list li span {
+	/* color: #00a5e7;	 */
+	font-size: 13px;
+}
+body.cs-dboard .sidebar-container {
+	min-height: 0;
+
+	overflow: auto;
+}
+
+/* NEW PAGE CHANGES */
+.EntryMenu a i, .ViewMenu a i {
+	display: none;
+}
+.EntryMenu h4,.ViewMenu h4 {
+	color: #00a5e7;
+}
+.moreview,.lessview {
+	text-align: right;
+	color: #00a5e7;
+	cursor: pointer;
+}
+.EntryMenu a,.ViewMenu a {
+    background: #eee none repeat scroll 0 0;
+    color: #111;
+    display: block;
+    margin-bottom: 1px;
+    padding: 7px 10px;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+}
 
 .cs-org .panel-heading h4 {
 	margin: 0px;
@@ -1611,6 +1745,7 @@ textarea {
 }
 .galleryBlock {
 	margin: 10px 0;
+	display: table-cell;
 }
 .galleryBlock img {
 	/* max-width: 497px; */

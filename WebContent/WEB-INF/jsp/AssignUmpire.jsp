@@ -1,6 +1,7 @@
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
  <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
-
+<!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/cricketSocial/umpireSearch.js">
 
@@ -146,6 +147,7 @@ var formatAMPMTime = function(date) {
 		          
 		         <!--  </h1>
 		           -->
+		           <div class="form-group">
 		          <c:choose>
 		          <c:when test="${empty tournamentList}">
 		          
@@ -265,7 +267,7 @@ var formatAMPMTime = function(date) {
           	<input type="hidden" id="hiddenDate" value="${dateString}"> 
 		 	<input type="hidden" id="hiddenDateStart" value="${startDate}"> 
           
-          
+      </div>    
     </div>
   </div>
   <!--/Content Block-->
