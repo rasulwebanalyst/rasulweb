@@ -9,6 +9,9 @@ public class MenuList {
 	private List<MenuURL> scheduleList;
 	private List<MenuURL> coOwnerList;
 	private List<MenuURL> ownerList;
+	private List<String> entryMenu;
+	private List<String> viewMenu;
+	
 	private String disputeManagment;
 	
 	

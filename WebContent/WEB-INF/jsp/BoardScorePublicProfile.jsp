@@ -54,6 +54,36 @@
                      
     		<div class="col-md-10">
                      	<div class="col-md-12 statusUpdateBox whiteBox">
+                     	
+                     	<div class="buluback" style="font-weight:100; width: 100%">Match Details
+                     	 
+                     	 <div class="col-md-5 drop pull-right" style="margin-right:-15px; width: 120px !important;">
+								    <div class="selectdiv" style="height: 25px !important;">
+								        <c:choose>
+								            <c:when test="${yearListSize eq 0 }">
+								                <select class="selectboxdiv" id="matchesYears" style="color: black; font-size: 12px !important; height: 25px !important;">
+									            	<option style="color: black; font-size: 12px !important; height: 25px !important;"></option>
+									            </select>
+								                <div class="out" style="font-size: 12px; height: 25px !important; margin: -6px -6px"></div>
+								            </c:when>
+								            <c:otherwise>
+								                <select name="yearDropDown" class="selectboxdiv" id="matchesYears" onchange="yearWiseMatches(this.value)" style="color: black; font-size: 12px !improtant; height: 25px !important;">
+			                                        <!-- <option>Years</option> -->
+			                                        <c:forEach var = "yearsMatches" items="${yearsList}">
+			                                            <option value="${yearsMatches}" style="font-size: 12px; height: 25px !important;">${yearsMatches}</option>
+			                                        </c:forEach>
+								                                       
+								                </select>
+								                <div class="out" style="font-size: 12px; height: 25px !important; margin: -6px -6px"></div> 
+								            </c:otherwise>
+								        </c:choose>
+								    </div>
+						</div>
+                     	 
+                     	 </div> 
+                     	 <div id="matchesYearId" style="display: none;"></div>
+                     	
+                     	
                         <div class="col-md-12 Padding">
                      
 <!--                        <button  class="btn btn-default dBtn  lodbtn  pull-right" onclick="enterScore()" style="margin-left: 10px;">Enter Score</button>
@@ -77,7 +107,7 @@
                                         <th>Score card</th>
                                     </tr>
                                 </thead></table>
-                         	<span class="noContentDivRed">No Matches available</span>
+                         	<span id="noMatchData" class="noContentDivRed">No Matches available</span>
                          	
                          	</c:when>
                          	<c:otherwise>
@@ -108,6 +138,13 @@
                         <td align="center"><span class="text-danger">Match Tied</span><br>
                               <a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.winTeamId}">${completed.winTeamName}</a> : ${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}<br>
 							  <a href="${pageContext.request.contextPath}/${completed.loseTeamName}/board/${completed.loseTeamId}">${completed.loseTeamName}</a> : ${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers}</td>
+                        
+                        </c:when>
+                        <c:when test="${completed.statusOfMatch eq 'draw' }">
+                        	<td align="center"><span class="text-danger">Match Drawn</span><br>
+                              <a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.winTeamId}">${completed.winTeamName}</a> : ${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}<br>
+							  <a href="${pageContext.request.contextPath}/${completed.loseTeamName}/board/${completed.loseTeamId}">${completed.loseTeamName}</a> : ${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers}</td>
+                        
                         
                         </c:when>
                         <c:otherwise>
@@ -419,12 +456,13 @@
 		var startNode = start+add;
 		var endNode = end+add;
 		var boardId = "${boardId}";
-		
+		var val = document.getElementById("matchesYears").value;
 		
 		var gameBean = {
 				startNode : startNode,
 				endNode : endNode,
 				boardId : boardId,
+				filterByYear : val,
 		}
 		$.ajax({
 		type:"Post",
@@ -493,9 +531,9 @@
 				
 			}else{
 				
-				var html = '';
-				html += '<table id="dataTable"><thead><tr>';
-				html += '<th>Date</th>';
+				 var html = '';
+				 /*	html += '<table id="dataTable"><thead><tr>';
+				html += '<th>Date (MM/DD/YYYY)</th>';
 				html += '<th>Trophy</th>';
 				html += '<th>Home Team</th>';
 				html += '<th>Away Team</th>';
@@ -505,7 +543,9 @@
 				html += '</tr></thead>';
 				html += '</table>';
 				html += '<span class="noContentDivRed">No More Data</span>';
-					$("#dataTable").html(html).trigger('create');
+					$("#dataTable").html(html).trigger('create'); */
+					
+				displaynotification("No More Data",1000);
 			}
 			
 		},
@@ -518,6 +558,100 @@
 	 
 	 
  }
+	
+	var i=0;
+function yearWiseMatches(val) {
+	if(i==0)
+	 {
+	 i=1;
+	 return false;
+	 }
+		
+		document.getElementById("matchesYearId").innerHTML = val;
+		var year = {
+				boardId : "${boardId}",
+				filterByYear : val,
+			
+		}
+		$.ajax({
+
+			type : "Post",
+			url : "${pageContext.request.contextPath}/yearWiseMatches",
+			data : JSON.stringify(year),
+			contentType : "application/json",
+			success : function(res) {
+				start = 0;
+				end = 10;
+				if (res.length != 0) {
+					var html = '';
+
+					html += '<table id="dataTable"><thead><tr>';
+					html += '<th>Date (MM/DD/YYYY)</th>';
+					html += '<th>Trophy</th>';
+					html += '<th>Home Team</th>';
+					html += '<th>Away Team</th>';
+					html += '<th style="min-width:200px;">Result</th>';
+					html += '<th>Man Of The Match</th>';
+					html += '<th>SCORE CARD</th>';
+					html += '</tr></thead><tbody align="center">';
+					for (var i = 0; i < res.length; i++) {
+						html += '<tr>';
+						 var date  = new Date(res[i].gameDate);
+						 var id = res[i].tournamentSchedulerId;
+						
+						 var dateChange = date.toLocaleDateString();
+					
+						 console.log(dateChange);
+						 
+						 var dateNewObject = getDateInObject(res[i].gameDate);
+						 html += '<td>'+dateNewObject+'</td>';
+						//html += '<tr><td>'+dateChange+'</td>';
+						html += '<td>' + res[i].tournamentName + '</td>';
+				        html += '<td><a href="${pageContext.request.contextPath}/' + res[i].homeTeamName + '/board/' + res[i].homeTeamId + '">' + res[i].homeTeamName + '</a></td>';
+				        html += '<td><a href="${pageContext.request.contextPath}/' + res[i].awayTeamName + '/board/' + res[i].awayTeamId + '">' + res[i].awayTeamName + '</a></td>';
+				        
+				        if (res[i].statusOfMatch == 'tie') {
+				            html += '<td align="center"><span class="text-danger">Match Tied</span><br> <a href="${pageContext.request.contextPath}/' + res[i].winTeamName + '/board/' + res[i].winTeamId + '">' + res[i].winTeamName + ' </a>: ' + res[i].winTeamRuns + '/' + res[i].winTeamWickets + ' in ' + res[i].winTeamOvers + ' <br> <a href="${pageContext.request.contextPath}/' + res[i].loseTeamName + '/board/' + res[i].loseTeamId + '"> ' + res[i].loseTeamName + '</a> : ' + res[i].loseTeamRuns + '/' + res[i].loseTeamWickets + ' in' + res[i].loseTeamOvers + '</td>';
+
+				        }else if (res[i].statusOfMatch == 'draw') {
+				            html += '<td align="center"><span class="text-danger">Match Drawn</span><br> <a href="${pageContext.request.contextPath}/' + res[i].winTeamName + '/board/' + res[i].winTeamId + '">' + res[i].winTeamName + ' </a>: ' + res[i].winTeamRuns + '/' + res[i].winTeamWickets + ' in ' + res[i].winTeamOvers + ' <br> <a href="${pageContext.request.contextPath}/' + res[i].loseTeamName + '/board/' + res[i].loseTeamId + '"> ' + res[i].loseTeamName + '</a> : ' + res[i].loseTeamRuns + '/' + res[i].loseTeamWickets + ' in' + res[i].loseTeamOvers + '</td>';
+
+				        } else {
+				            html += '<td align="center"><span class="text-danger">' + res[i].winTeamName + ' won</span><br><a href="${pageContext.request.contextPath}/' + res[i].winTeamName + '/board/' + res[i].winTeamId + '"> ' + res[i].winTeamName + '</a> : ' + res[i].winTeamRuns + '/' + res[i].winTeamWickets + ' in ' + res[i].winTeamOvers + ' <br>  <a href="${pageContext.request.contextPath}/' + res[i].loseTeamName + '/board/' + res[i].loseTeamId + '">' + res[i].loseTeamName + '</a> : ' + res[i].loseTeamRuns + '/' + res[i].loseTeamWickets + ' in' + res[i].loseTeamOvers + '';
+				        }
+				        if (res[i].manOfTheMatch == "") {
+				            html += '<td>-</td>';
+				        } else {
+				            html += '<td>' + res[i].manOfTheMatchName + '</td>';
+				        }
+				        html += "<td><img src='${pageContext.request.contextPath}/images/scorecard.png' onclick='showScoreCard(\"" + id + "\")''></td>";
+				        html += '</tr>';
+					}
+					html += '</tbody>';
+					html += '</table>';
+
+					$("#dataTable").html(html).trigger('create');
+					$('#noMatchData').hide();
+				} else {
+					html += '<table id="dataTable"><thead><tr>';
+					html += '<th>Date (MM/DD/YYYY)</th>';
+					html += '<th>Trophy</th>';
+					html += '<th>Home Team</th>';
+					html += '<th>Away Team</th>';
+					html += '<th style="min-width:200px;">Result</th>';
+					html += '<th>Man Of The Match</th>';
+					html += '<th>SCORE CARD</th>';
+					html += '</tr></thead></table>';
+					$("#dataTable").html(html).trigger('create');
+					$('#noMatchData').show();
+				}
+			},
+			error : function(err) {
+				console.log(err);
+			}
+		})
+	console.log(" Matches years :" + val);
+}
  
  function enterScore(){
 	 

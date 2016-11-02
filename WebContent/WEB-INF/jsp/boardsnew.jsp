@@ -4,6 +4,8 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+  <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -154,7 +156,7 @@ return result;
                             <div class="postBlock" id="BowlOptionDiv">
                             	<img src="${USRIMG}" class="nav-avatar" onerror="userErrorDefaultImg(this)">
                                	<textarea class="form-control" id="content" placeholder="What is your Delivery?" name="content"></textarea>
-								
+								<div class="clearfix"></div>
 								<input type="hidden" value="${BoradInfo.boardId}" name="boardId" id="boardId">
 								<div class="uploadedFiles">
                                     

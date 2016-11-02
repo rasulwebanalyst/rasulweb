@@ -1,4 +1,6 @@
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+ <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
  <title>Cricket Social</title>
 <%@ include file="BoardHeader.jsp" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -47,7 +49,7 @@ var formatAMPMTime = function(date) {
                   
                   
                   <div class="form-group col-md-12 noPadding overflow">
-                  
+                  <!-- <div class="form-group"> -->
                   <c:choose>
                        <c:when test="${completedMatchesListSize == 0 }">
                       <table>
@@ -70,11 +72,13 @@ var formatAMPMTime = function(date) {
                         </thead>
 
                         </table>
+                       <!--  </div> --><!-- form group end -->
                      <span class="noContentDivRed"> No completed Matches</span>
                        
 
                        </c:when>
                        <c:otherwise>
+                       <!-- <div class="form-group"> -->
 						<table>
                        <thead> 
                         <tr>
@@ -157,7 +161,7 @@ var formatAMPMTime = function(date) {
                        </c:choose> 
                   
                                        	
-                                  
+                         <!--  </div> --><!-- form group end -->        
                             </div>
             
           	<input type="hidden" value="" id="hiddenId">

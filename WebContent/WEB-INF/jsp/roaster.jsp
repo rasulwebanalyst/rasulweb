@@ -3,6 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+ <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -291,6 +293,7 @@ var pageNum=10;
                                          	 		<input type="hidden" id="leagueHiddenId" />
                                          	 		
                                         		 </span>
+                                        		<!--  <div class="clearfix"></div> -->
                                         		 <a  href="#" onclick="affiliateRoster('${RoasterResponseById.rosterDetails.rosterId}','leagueHiddenId')" id="affButtonId"> Affiliate </a>
                                         		 
                                          	</c:otherwise>
@@ -356,7 +359,7 @@ var pageNum=10;
                                 </div>
                                 <div id="collapseOne" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                    
+                                    <div class="form-group">
                                     	<table>
                                     	<thead>
                                         	<tr>                                        
@@ -403,6 +406,7 @@ var pageNum=10;
                                             
                                            </tbody> 
                                     </table>
+                                    </div>
                                       	<c:choose>
                                       		<c:when test="${ not empty BattingPerformance}">
                                       					
@@ -596,7 +600,7 @@ var pageNum=10;
                             <div class="postBlock">
                             	<img src="${USRIMG}?" class="nav-avatar" onerror="userErrorDefaultImg(this)" >
                                	<textarea class="form-control" id="content" placeholder="What is your Delivery?" name="content"></textarea>
-								
+								<div class="clearfix"></div>
 								<input type="hidden" value="${RoasterResponseById.rosterDetails.rosterId}" name="rosterId" id="rosterId">
 								<input type="hidden" value="${BoradInfo.boardId }" name="rosterBoardId" id="rosterBoardId" >
 								 <div class="uploadedFiles">

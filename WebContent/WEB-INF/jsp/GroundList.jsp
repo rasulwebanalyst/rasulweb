@@ -22,6 +22,9 @@
 
 	<!--Font-Awesome Icons-->
     <link href="${pageContext.request.contextPath}/icons/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 
 <!--Google Fonts-->    
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
@@ -113,6 +116,7 @@
       <div class="col-md-10">
       		<div class="col-md-12 whiteBox">
 		          <h1 class="">Ground List <a href="${pageContext.request.contextPath}/CreateGround/boardId/${boardId}" class="btn btn-default dBtn pull-right">Create Ground</a></h1>
+                  <div class="form-group">
                   <c:choose>
                   <c:when test="${groundListSize == 0 }">
                   <table id="tableId">
@@ -176,7 +180,7 @@
                         
                         </c:choose>    --%> 
                   
-                  
+                  </div>
                 </div>
             
           <%-- 	<input type="hidden" id="hiddenToken" value="${hiddenToken}"> --%>

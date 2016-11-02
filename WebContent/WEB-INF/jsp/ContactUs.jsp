@@ -5,6 +5,10 @@
 
 
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+ 
+ <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
+ 
  <title>Cricket Social</title>
 
 <%@ include file="BuddyHeader.jsp" %>

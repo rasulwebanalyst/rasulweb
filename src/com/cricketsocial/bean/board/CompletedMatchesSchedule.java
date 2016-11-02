@@ -52,6 +52,24 @@ public class CompletedMatchesSchedule {
 
 	private String winTeamId;
 	private String loseTeamId;
+	private String dateString;
+	private String leagueCreatedBy;
+	
+	
+	
+	
+	public String getDateString() {
+		return dateString;
+	}
+	public void setDateString(String dateString) {
+		this.dateString = dateString;
+	}
+	public String getLeagueCreatedBy() {
+		return leagueCreatedBy;
+	}
+	public void setLeagueCreatedBy(String leagueCreatedBy) {
+		this.leagueCreatedBy = leagueCreatedBy;
+	}
 	public String getAwayTeamId() {
 		return awayTeamId;
 	}

@@ -10,9 +10,32 @@ public class BoardDirectorsList {
 	private String fromDate;
 	private String toDate;
 	private String imageUrl;
+	private String twitterUrl;
+	private String facebookUrl;
+	private String linkedinUrl;
 	
 	
 	
+	
+	
+	public String getTwitterUrl() {
+		return twitterUrl;
+	}
+	public void setTwitterUrl(String twitterUrl) {
+		this.twitterUrl = twitterUrl;
+	}
+	public String getFacebookUrl() {
+		return facebookUrl;
+	}
+	public void setFacebookUrl(String facebookUrl) {
+		this.facebookUrl = facebookUrl;
+	}
+	public String getLinkedinUrl() {
+		return linkedinUrl;
+	}
+	public void setLinkedinUrl(String linkedinUrl) {
+		this.linkedinUrl = linkedinUrl;
+	}
 	public String getImageUrl() {
 		return imageUrl;
 	}

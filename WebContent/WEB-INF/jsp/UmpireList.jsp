@@ -19,6 +19,10 @@
     <!-- Custom CSS -->
     <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
      <link href="${pageContext.request.contextPath}/css/jquery.realperson.css" rel="stylesheet">
+     
+     
+     <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 
 	<!--Font-Awesome Icons-->
     <link href="${pageContext.request.contextPath}/icons/css/font-awesome.min.css" rel="stylesheet">

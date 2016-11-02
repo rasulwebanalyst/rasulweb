@@ -6,6 +6,8 @@
 <html>
 <head>
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+ <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cricket Social</title>
 <script>var ctx="${pageContext.request.contextPath}";</script>
@@ -124,6 +126,7 @@ return result;
                             <div class="postBlock" id="BowlOptionDiv">
                             	<img src="${USRIMG}" class="nav-avatar">
                                	<textarea class="form-control" id="content" placeholder="What is your Delivery?" name="content" onfocus="bowloption(this)"></textarea>
+								 <div class="clearfix"></div>
 								 <div class="uploadedFiles">
                                    
                                 </div>

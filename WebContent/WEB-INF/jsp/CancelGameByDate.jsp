@@ -21,6 +21,9 @@
 
 	<!--Font-Awesome Icons-->
     <link href="${pageContext.request.contextPath}/icons/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
 
 <!--Google Fonts-->    
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
@@ -141,6 +144,7 @@ var formatAMPMTime = function(date) {
             <div class="col-md-10 pull-right">
       		<div class="col-md-12 whiteBox">
                   <h2 class="noBorder noLeftPad">Upcoming Matches</h2>
+                  <div class="form-group">
                   <c:choose>
                        <c:when test="${upcomingMatchesListSize == 0 }">
                       <table>
@@ -237,6 +241,7 @@ var formatAMPMTime = function(date) {
   <!--/Content Block-->
 </div>
 </div>
+</div><!-- form-group end -->
 </section>
 <%@include file="Footer.jsp" %>
    

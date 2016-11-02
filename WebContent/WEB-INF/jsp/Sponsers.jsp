@@ -26,6 +26,14 @@ var uploadextension=[];
 var deletedarray=[];
 </script>
 </head>
+<style>
+.modal-dialog {
+    width: 60% !important;
+}
+.modal-content {
+	padding: 15px !important;
+}
+</style>
 <body onload="sequencenumberinsert()">
 
 
@@ -37,13 +45,13 @@ var deletedarray=[];
         <button type="button" class="close" onclick="RoasterPopup()" data-dismiss="modal">&times;</button>
         </div> -->
         
-      <div class="modal-body">
+  <!--   <div class="modal-body">
         
-        <div id="RoasterPopupText">
-        <div class="col-md-4">
-                                <label for="" style="width:99%; text-align:left">Name</label>  
+         <div id="RoasterPopupText">
+        <div class="col-md-4"> -->
+                                <!--  <label for="" style="width:99%; text-align:left">Name</label>  
                                   <input type="text" style="width:99%;" class="form-control" value="" style="" placeholder="" id="Editname">
-                                  </div><!-- col end-->
+                                  </div>col end
                                   <div class="col-md-4">
                                   <label for="" style="width:99%;">Image</label>
                                   <img style="width: 36px; height: 36px; margin-left: 1%;" id='Editfilesrc1' src="">
@@ -51,15 +59,62 @@ var deletedarray=[];
 		                			Browse <input type="file" id='Editfile' style="display: none;" onchange="readurl2(this)">
 		                			<img  style="display: none;" id='Editfilesrc'  src="">
 		            				</label>
-                                  </div><!-- col end-->
+                                  </div>col end
                                   <div class="col-md-4">
                                   <label for="" style="width:99%; text-align:left" >Comments</label>
                                   <textarea class="form-control" placeholder="" style="height: 35px; overflow: auto;" id="EditComment"></textarea>
-                                 <!--  <input type="text" class="form-control" value="" style="" placeholder="" id="EditComment"> -->
+                                  <input type="text" class="form-control" value="" style="" placeholder="" id="EditComment">
+                                  </div>  --> 
+                                  
+                                    <table class='bd-table spons-edit' id='' style="box-shadow: none;">
+			                     
+			                     <!-- <tr><td><label>Name<span class="req-star">*</span></label><input type='text' class='form-control' id="Editname" ></td>
+			                     
+			                     
+			                     
+			                     
+			                     </tr> -->
+			                     <tr><td>
+			                     <div class="cs-pro-img-holder">
+                                  <img id='Editfilesrc1' src="">
+                                  <label><i class="fa fa-pencil" aria-hidden="true">
+                                  
+                                  <input type="file" id='Editfile' style="display: none;" onchange="readurl2(this)">
+		                			<img  style="display: none;" id='Editfilesrc'  src="">
+                                  
+                                  </i>Change Picture</label>
                                   </div>
+                                  </td>
+                                  <td class="bd-txt-holder" rowspan="2"><label>Summary</label><textarea type='text' class='form-control' id="EditComment"></textarea></td>
+                                  </tr>
+			                     <tr><td><label>Name<span class="req-star">*</span></label><span>:</span><input type='text' class='form-control' id="Editname" onkeyup="getBuddiesAutoComplete1(this,'addMemberautoCompleteDIV1','addMemberIDDIV')"></td>
+			                    
+			                     
+			                     <div class="autoComplete" id="addMemberautoCompleteDIV1" style="display:none;">
+													<ul>
+			                                        	<li>Vikki</li>
+			                                        </ul>                                  	
+			                                  </div>
+			                    
+			                    
+			                    
+			                     <tr><td><label style="width: 100%;">Social Media</label>
+			                     <div class="bd-soc-holder"><img src="${pageContext.request.contextPath}/images/facebook.png"><input type="text" id='editMemberfaceboof'></div>
+			                     <div class="bd-soc-holder"><img src="${pageContext.request.contextPath}/images/twitter.png"><input type="text" id='editMembertwitter'></div>
+			                     <div class="bd-soc-holder"><img src="${pageContext.request.contextPath}/images/linkedin.png"><input type="text" id='editMemberlinkedin'></div>
+			                     <div class="bd-soc-holder"><img src="${pageContext.request.contextPath}/images/web.png"><input type="text" id='editMemberwebsite'></div>
+			                    
+			                    <input type="hidden" id="EditUserid">
+			                     </td></tr>
+			                     </table> 
+                                  
+                                  
+                                  
+                                  
+                                  
         
-        </div>
-      </div>
+       <!--  </div>
+      </div> -->
       <div class="modal-footer action">
       <input type="hidden" id="Editmemberid"> 
       <button type="button" onclick="EditPopupSave()" class="btn btn-default ok">OK</button>
@@ -97,29 +152,90 @@ var deletedarray=[];
                              
                                 
                                  <div class="col-md-12 noPadding" id="memberMainDIV">
-                                  <label for="email" style="width:100%;">Sponsers</label>   
+                                  <label for="email" style="width:100%;">Sponsors</label>   
                                   
                                   <c:forEach items="${spoResponse.boardSponsorsList}" var="sponserlist" varStatus="loop">
                                   
+                              
+                              <table class='bd-table spons' id='memberListDIV${loop.count}'>
+                               <tr><td class='usr-img'><img id='image${loop.count}' src='${sponserlist.imageUrl}' onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';"></td>
+                     
+                     <td><button type='button' onclick="removeFromList(${loop.count})" class='btn' ><i class='fa fa-trash' aria-hidden='true'></i></button><button type='button' onclick="editFromList(${loop.count})" class='btn'><i class='fa fa-pencil' aria-hidden='true'></i></button></td></tr>
+                     <tr><td><label>Name</label><span>:</span><input type='text' class='form-control' readonly value='${sponserlist.sponsorName}' id='member${loop.count}'></td>
+                     <td class="bd-txt-holder" rowspan="3"><label>Summary</label><textarea type='text' class='form-control' id='comment${loop.count}' readonly>${sponserlist.comments}</textarea></td></tr>
+                                          
+                     <tr><td colspan="2"><label style="width: 100%;">Social Media</label>
+                     
+                     <div class="bd-soc-holder"><img src="${pageContext.request.contextPath}/images/facebook.png"><span  ><a href="${sponserlist.facebookUrl}" id='Directorfacebook${loop.count}' target="_blank">${sponserlist.facebookUrl}</a></span></div>
+                     <div class="bd-soc-holder"><img src="${pageContext.request.contextPath}/images/twitter.png"><span ><a href="${sponserlist.twitterUrl}" id='Directortwitter${loop.count}' target="_blank">${sponserlist.twitterUrl}</a></span></div>
+                     <div class="bd-soc-holder"><img src="${pageContext.request.contextPath}/images/linkedin.png"><span ><a href="${sponserlist.linkedinUrl}" id='Directorlinkedin${loop.count}' target="_blank">${sponserlist.linkedinUrl}</a></span></div>
+                     <div class="bd-soc-holder"><img src="${pageContext.request.contextPath}/images/web.png"><span ><a href="${sponserlist.websiteUrl}" id='Directorwebsite${loop.count}' target="_blank">${sponserlist.websiteUrl}</a></span></div>
+                     <input type="hidden" value="${sponserlist.sponserId}" id="Userid${loop.count}">
+                     </td></tr>
+                     </table>
                                   
-                                 <table class='bd-table' id='memberListDIV${loop.count}'><tr>
+                                 <%-- <table class='bd-table' id='memberListDIV${loop.count}'><tr>
 	    	        <td><span class='palyerCount bd-player-count' id='sequenc${loop.count}'>${loop.count}</span></td> 
 	    	        <td><label>Name</label><input type='text' class='form-control' style='width:98%;' readonly value='${sponserlist.sponsorName}' placeholder='' id='member${loop.count}'></td>
-	    	        <td><label>Image</label><img style='width: 36px; height: 36px; margin-left: 1%;' id='image${loop.count}' src='${sponserlist.imageUrl}' onerror=errorImages(this)><label style='' class='btn btn-wide tb-browse'>Browse<input type='file' style='display: none;'></label></td>
+	    	        <td><label>Image</label><img style='width: 36px; height: 36px; margin-left: 1%;' id='image${loop.count}' src='${sponserlist.imageUrl}' onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';"><label style='' class='btn btn-wide tb-browse'><!-- Browse<input type='file' style='display: none;'> --></label></td>
 	    	        <td><label>Comments</label><textarea class="form-control" placeholder="" style="height: 35px; overflow: auto;" id="comment${loop.count}">${sponserlist.comments}</textarea>
-	    	        <%-- <input type='text' class='form-control' style='width:98%;' readonly value='${sponserlist.comments}' placeholder='' id='comment${loop.count}'> --%></td>
+	    	        <input type='text' class='form-control' style='width:98%;' readonly value='${sponserlist.comments}' placeholder='' id='comment${loop.count}'></td>
 	    	        <td style='width: 100px'><button type='button' class='btn' onclick='removeFromList(${loop.count})'><i class='fa fa-trash' aria-hidden='true'></i></button><button type='button' class='btn' onclick='editFromList(${loop.count})'><i class='fa fa-pencil' aria-hidden='true'></i></button></td>
-	    	        </tr></table>
+	    	        </tr></table> --%>
                                   
                                   
                                   </c:forEach> 
-             					</div>                            
-                                <div class="col-md-12 cs-bd-holder">
+             					</div> 	</div> 	</div>   
+             					
+             					 <div class="col-md-10 whiteBox pull-right cs-org-holder">
+            					<div class="form-group col-md-12 noPadding profileForm cs-bd-holder">	
+            					
+            					
+            					
+            					 <table class='bd-table spons-main' id='' style="box-shadow: none;">
+			                    <tr><td>
+			                     <div class="cs-pro-img-holder">
+                                  <img id='uploadfilesrc1' src="${pageContext.request.contextPath}/images/profileIcon.png">
+                                 <!--  <span ><i class="fa fa-pencil" aria-hidden="true" id="upload_link"> -->
+                                 
+                                   <label class="btn btn-wide">
+                                   <i class="fa fa-pencil" aria-hidden="true" id=""></i>
+                                  <input type="file" id='uploadfile' style="display: none;" onchange="readurl1(this)">
+		                			<img  style="display: none;" id='uploadfilesrc'  src="empty">
+                                  Change Picture</label>
+                                  
+                                 <!--  </i>Change Picture</span> -->
+                                  </div>
+                                  </td></tr>
+			                     <tr><td><label>Name<span class="req-star">*</span></label><span>:</span><input type='text' class='form-control' id="addMemberName" onkeyup="getBuddiesAutoComplete(this,'addMemberautoCompleteDIV','addMemberIDDIV')"></td>
+			                     
+			                     <div class="autoComplete" id="addMemberautoCompleteDIV" style="display:none;">
+													<ul>
+			                                        	<li>Vikki</li>
+			                                        </ul>                                  	
+			                                  </div>
+			                     
+			                     
+			                     <td class="bd-txt-holder" rowspan="2"><label>Summary</label><textarea type='text' class='form-control' id="addMemberComment"></textarea></td></tr>
+			                     
+			                     
+			                     <tr><td><label style="width: 100%;">Social Media</label>
+			                     <div class="bd-soc-holder"><img src="${pageContext.request.contextPath}/images/facebook.png"><input type="text" id='addMemberfaceboof'></div>
+			                     <div class="bd-soc-holder"><img src="${pageContext.request.contextPath}/images/twitter.png"><input type="text" id='addMembertwitter'></div>
+			                     <div class="bd-soc-holder"><img src="${pageContext.request.contextPath}/images/linkedin.png"><input type="text" id='addMemberlinkedin'></div>
+			                     <div class="bd-soc-holder"><img src="${pageContext.request.contextPath}/images/web.png"><input type="text" id='addMemberwebsite'></div>
+			                     </td></tr>
+			                    <tr><td colspan="2" style="text-align: center;"><button type='button' onclick="addmemberToRoster()" class='btn btn-default dBtn btn-wide' style="margin-top: 15px;">Add</button></td></tr>
+			                     </table>
+                     
+             					
+             					                         
+                                <!-- <div class="col-md-12 cs-bd-holder">
                                 <div class="col-md-4">
                                 <label for="">Name</label>  
                                 <span class="req-star">*</span>
                                   <input type="text" style="width:80%;" class="form-control" value="" style="" placeholder="" id="addMemberName">
-                                  </div><!-- col end-->
+                                  </div>col end
                                   <div class="col-md-2">
                                   <label for="" style="width:99%;">Image</label>
                                   <img style="width: 36px; height: 36px; margin-left: 1%;" id='uploadfilesrc1' src="http://1.bp.blogspot.com/-ST362NQRqVA/VPR0au8_8FI/AAAAAAAAAVg/nXmSyevawNw/s1600/writing1.png">
@@ -127,12 +243,12 @@ var deletedarray=[];
 		                			Browse <input type="file" id='uploadfile' style="display: none;" onchange="readurl1(this)">
 		                			<img  style="display: none;" id='uploadfilesrc'  src="">
 		            				</label>
-                                  </div><!-- col end-->
+                                  </div>col end
                                   <div class="col-md-4">
                                   <label for="" style="width:99%;" style="width:99%;">Comments</label>
                                   <textarea class="form-control" placeholder="" style="height: 35px; overflow: auto;" id="addMemberComment"></textarea>
-                                  </div><!-- col end-->
-                                 <button type="button" class="btn btn-default dBtn btn-wide" style="" onclick="addmemberToRoster()">Add</button>
+                                  </div>col end
+                                 <button type="button" class="btn btn-default dBtn btn-wide" style="" onclick="addmemberToRoster()">Add</button> -->
                                   
                                  <!-- <div class="autoComplete" id="addMemberautoCompleteDIV" style="display:none;margin-top: 37px;"> -->
                                  	
@@ -140,12 +256,13 @@ var deletedarray=[];
                                   
                                	   <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIV" name="">
                                	   <div id="addMemberError" style="color: red;"></div>
-                                </div>
+                                
      
+     <span style="text-align:center; margin:0 auto; padding-bottom: 14px; display:block">( or ) Just upload document below</span>
             
      <div class="form-group col-md-12 noPadding cs-align-center file-drop">
             	       <div class="col-lg-12 col-sm-12 col-12">
-		            <label for="email" style="width:100%; color: #9CA9B9">We having file upload option also</label>  
+		            <!-- <label for="email" style="width:100%; color: #9CA9B9">We having file upload option also</label>   -->
 		            <label class="btn btn-primary btn-wide">
 		                Browse <input type="file" style="display: none;" id="uploadfilesponser" onchange="selectpdf(this)">
 		            </label>
@@ -160,7 +277,7 @@ var deletedarray=[];
 		            <div id="uploadname">
 		            
 		               <c:forEach items="${spoResponse.uploadFileAttachementsList}" var="filelist" varStatus="loop">
-		            <span class='greenText' id='uploadednamesponser${loop.count}'>${filelist.fileName}<span onclick="deletename('uploadednamesponser${loop.count}','uploadedsrcsponser${loop.count}')" style="margin-left:10px"><img src='${pageContext.request.contextPath}/images/cross.png'></span></span>
+		            <span class='greenText' id='uploadednamesponser${loop.count}'><span class="upload-file-name">${filelist.fileName}</span><span onclick="deletename('uploadednamesponser${loop.count}','uploadedsrcsponser${loop.count}')" style="margin-left: 4px; padding: 10px 1px 1px 1px; float: left;"><img src='${pageContext.request.contextPath}/images/cross.png'></span></span>
 		            </c:forEach>
 		            
 		            </div>
@@ -172,7 +289,7 @@ var deletedarray=[];
 		        		<input type="button" class="btn btn-default dBtn btn-wide" onclick="save()" value="Save"></button>
 		        		<input type="button" class="btn btn-default dBtn btn-wide" onclick="Cancel()" value="Cancel"></button>
 		        		</div>
-            </div><!-- col-md-10 whitebox -->
+    
       </form>
                         
      </div>
@@ -194,20 +311,192 @@ var deletedarray=[];
         <script type="text/javascript">
         
         
+        function getBuddiesAutoComplete(elem,divId,hiddenId){
+        	var key=$(elem).val();
+        	var textBoxId=$(elem).attr('id');
+        	console.log('value : '+key);
+        	console.log('textBoxId : '+textBoxId);
+        	if(key.length>2) {
+        			    $.ajax({
+        						type : "POST",
+        						url : ctx+"/rosterBuddySearch",
+        						dataType: "json",
+        			        contentType: "application/json; charset=utf-8",
+        			        data : key,					            
+        						success : function(res) {
+        							console.log(res);	
+        							var html="";
+        							
+        							if(res != null){
+        								var users=res.userList;
+        								console.log(JSON.stringify(users));
+        								html+="<ul style='width: 24%;     margin-top: 149px; margin-left: 74px;'>";
+        								
+        								if(users!= null && users.length >0){
+        									for(var i in users){
+        										var name=users[i].firstName;
+        										if(users[i].lastName!=null){
+        											name=name+" "+users[i].lastName;
+        										}
+        										 html+="<li class='selection-item' onclick=setValueToTextBox('"+name.replace(/ /g,"-")+"','"+textBoxId+"','"+divId+"','"+users[i].userId+"','"+hiddenId+"')><div class='media'><div class='media-left'><a><img alt='' src="+users[i].userImageUrl+" onerror=errorImages(this) class='nav-avatar' ></a></div><div class='media-body'><a class='auto-blue'><h4 class='media-heading'> "+name+"<br></a>";
+        										 html+="<input type='text'  id='roasterpopup"+users[i].userId+"' value='"+users[i].userImageUrl+"' style='display: none;' >";
+        										 // html+="<li class='selection-item' onclick=setValueToTextBox('"+name.replace(/ /g,"-")+"','"+textBoxId+"','"+divId+"','"+users[i].userId+"','"+hiddenId+"')><div class='media'><div class='media-left'><a><img alt='' src='"+users[i].userImageUrl+"' class='nav-avatar' ></a></div><div class='media-body'><a class='auto-blue'><h4 class='media-heading'> "+name+"<br></a>";
+    										if(users[i].city=="UNKNOWN"&&users[i].state=="UNKNOWN"||users[i].city==""&&users[i].state==""||users[i].city=="null"&&users[i].state=="null"||users[i].city==null&&users[i].state==null){
+    									        html += '<span class="auto-black">'+users[i].city+'</span>';
+    									}else{
+    										html += '<span class="auto-black">'+users[i].city+','+users[i].state+'</span>'; 
+    									}
+    									html +="</h4><div class='headRight' id=''></div></div></div></li>"; 
+            								}
+        								}else{
+        									html+="<li>No results found...</li>";
+        								}
+        								//console.log("in if"+html);
+    									html+="</ul>";
+            							$('#'+divId).html(html);
+            							$('#'+divId).show();
+            						
+        							}else{
+       									html+="<ul>";
+       									html+="<li>No results found...</li>";
+    										html+="</ul>";
+            							$('#'+divId).html(html);
+            							$('#'+divId).show();
+        							}	  
+        						},
+        						
+        						error:function(response){
+        							$('#'+divId).hide();
+        						console.log("Error message"+JSON.stringify(response));
+        						},
+        					
+        						
+        					}); 
+        				
+        	   }else{
+        		   $('#'+divId).hide();
+        	   }
+          
+        } 
+        
+        
+        function getBuddiesAutoComplete1(elem,divId,hiddenId){
+        	var key=$(elem).val();
+        	$("#EditUserid").val("");
+        	var textBoxId=$(elem).attr('id');
+        	console.log('value : '+key);
+        	console.log('textBoxId : '+textBoxId);
+        	if(key.length>2) {
+        			    $.ajax({
+        						type : "POST",
+        						url : ctx+"/rosterBuddySearch",
+        						dataType: "json",
+        			        contentType: "application/json; charset=utf-8",
+        			        data : key,					            
+        						success : function(res) {
+        							console.log(res);	
+        							var html="";
+        							
+        							if(res != null){
+        								var users=res.userList;
+        								console.log(JSON.stringify(users));
+        								html+="<ul style='width: 24%;     margin-top: 149px; margin-left: 74px;'>";
+        								
+        								if(users!= null && users.length >0){
+        									for(var i in users){
+        										var name=users[i].firstName;
+        										if(users[i].lastName!=null){
+        											name=name+" "+users[i].lastName;
+        										}
+        										 html+="<li class='selection-item' onclick=setValueToTextBox1('"+name.replace(/ /g,"-")+"','"+textBoxId+"','"+divId+"','"+users[i].userId+"','"+hiddenId+"')><div class='media'><div class='media-left'><a><img alt='' src="+users[i].userImageUrl+" onerror=errorImages(this) class='nav-avatar' ></a></div><div class='media-body'><a class='auto-blue'><h4 class='media-heading'> "+name+"<br></a>";
+        										 html+="<input type='text'  id='roasterpopup"+users[i].userId+"' value='"+users[i].userImageUrl+"' style='display: none;' >";
+        										 // html+="<li class='selection-item' onclick=setValueToTextBox('"+name.replace(/ /g,"-")+"','"+textBoxId+"','"+divId+"','"+users[i].userId+"','"+hiddenId+"')><div class='media'><div class='media-left'><a><img alt='' src='"+users[i].userImageUrl+"' class='nav-avatar' ></a></div><div class='media-body'><a class='auto-blue'><h4 class='media-heading'> "+name+"<br></a>";
+    										if(users[i].city=="UNKNOWN"&&users[i].state=="UNKNOWN"||users[i].city==""&&users[i].state==""||users[i].city=="null"&&users[i].state=="null"||users[i].city==null&&users[i].state==null){
+    									        html += '<span class="auto-black">'+users[i].city+'</span>';
+    									}else{
+    										html += '<span class="auto-black">'+users[i].city+','+users[i].state+'</span>'; 
+    									}
+    									html +="</h4><div class='headRight' id=''></div></div></div></li>"; 
+            								}
+        								}else{
+        									html+="<li>No results found...</li>";
+        								}
+        								//console.log("in if"+html);
+    									html+="</ul>";
+            							$('#'+divId).html(html);
+            							$('#'+divId).show();
+            						
+        							}else{
+       									html+="<ul>";
+       									html+="<li>No results found...</li>";
+    										html+="</ul>";
+            							$('#'+divId).html(html);
+            							$('#'+divId).show();
+        							}	  
+        						},
+        						
+        						error:function(response){
+        							$('#'+divId).hide();
+        						console.log("Error message"+JSON.stringify(response));
+        						},
+        					
+        						
+        					}); 
+        				
+        	   }else{
+        		   $('#'+divId).hide();
+        	   }
+          
+        }
+        
+        function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
+        	var name=elem.replace(/-/g," ");
+        	var imgurl=$("#roasterpopup"+userId).val();
+        	if(imgurl != "")
+        		{
+        	$("#uploadfilesrc1").attr('src',imgurl);	
+        	$("#uploadfilesrc").attr('src',imgurl);
+        		}
+       		$('#'+textBox).val(name);
+       		$('#'+divId).hide();	
+       		$('#'+hiddenId).val(userId);	
+       		
+        }
+        
+        function setValueToTextBox1(elem,textBox,divId,userId,hiddenId){
+        	var name=elem.replace(/-/g," ");
+        	var imgurl=$("#roasterpopup"+userId).val();
+        	if(imgurl != "")
+        		{
+    			$("#Editfile").attr('src',imgurl);
+    			$("#Editfilesrc1").attr('src',imgurl);
+        		}
+       		$('#'+textBox).val(name);
+       		$('#'+divId).hide();	
+       		/* $('#'+hiddenId).val(userId); */
+       		$("#EditUserid").val(userId);
+       		
+        }
+    
+        
+        
+        
+        
+        
         function selectpdf(finput)
         {
-        	var format=["pdf","docx","doc","txt"];
+        	var format=["pdf","docx","doc"];
         	
         	var imageUrl=$('#uploadfilesponser')[0].files[0];
         	if(typeof imageUrl === "undefined" || imageUrl==null){
         		ext1 = null;
         	}else{
-        	var iamgeExtension=imageUrl.name;
+        	var iamgeExtension=imageUrl.name.replace(/ /g,"~");
         	 ext1 = iamgeExtension.substr(iamgeExtension.lastIndexOf('.') + 1);
         	 var pos=format.indexOf(ext1);
         	 if(pos==-1)
         		 {
-        		 alert("file should be in pdf,docx,doc,txt format")
+        		 alert("file should be in pdf,docx,doc format")
         		 $("#uploadfilesponser").val('');
         		 return false;
         		 }
@@ -222,8 +511,7 @@ var deletedarray=[];
                  	htmlco+="<input type='hidden' id='iamgeExtensionname"+j+"' value="+iamgeExtension+">";
                  	 $("#uploadedpdfs").append(htmlco);
                  	 i=j;
-                 	 
-                 	 var htmlco1="<span class='greenText' id='uploadednamesponser"+j+"'>"+iamgeExtension+"<span onclick=deletename('uploadednamesponser"+j+"','uploadedsrcsponser"+j+"') style='margin-left:10px'><img src='${pageContext.request.contextPath}/images/cross.png'></span></span>";
+                 	 var htmlco1="<span class='greenText' id='uploadednamesponser"+j+"'><span class='upload-file-name'>"+iamgeExtension.replace(/~/g," ")+"</span><span onclick=deletename('uploadednamesponser"+j+"','uploadedsrcsponser"+j+"') style='margin-left: 4px; padding: 10px 1px 1px 1px; float: left;'><img src='${pageContext.request.contextPath}/images/cross.png'></span></span>";
                  	$("#uploadname").append(htmlco1);
                  	 /* var htmlco1="";
                  	// htmlco1= */
@@ -299,6 +587,13 @@ var deletedarray=[];
     {
     	 var name=$("#addMemberName").val();
     	 var comment=$("#addMemberComment").val();
+    	 
+    	 var facebook=$("#addMemberfaceboof").val();
+         var twitter=$("#addMembertwitter").val();
+         var linkedin=$("#addMemberlinkedin").val();
+         var website=$("#addMemberwebsite").val();
+         var selectedid=$("#addMemberIDDIV").val();
+    	 
     	 if(name.length == 0 )
     		 {
     	 displaynotification('Please fill the mandatory field ',2000);
@@ -306,22 +601,112 @@ var deletedarray=[];
     		 }
     	 var imagestring=document.getElementById("uploadfilesrc").src;
     	 console.log(imagestring);
+    	 var pos=imagestring.indexOf("empty");
+    	 console.log(pos);
       
 	    		 	sequencNumber=parseInt(sequencNumber)+parseInt(1);
 	    		 	sequencNumber2.push(sequencNumber);
 	    	        var htm="";
-	    	        htm +="<table class='bd-table' id=memberListDIV"+sequencNumber+"><tr>";
+	    	        
+	    	        
+	    	        
+	    	        htm +="<table class='bd-table spons' id=memberListDIV"+sequencNumber+">";
+	    	        if(pos == -1)
+	    	        	{
+	    	        htm+=" <tr><td class='usr-img'><img id='image"+sequencNumber+"' src='"+imagestring+"'></td>";}
+	    	        else
+	    	        	{
+	    	        	htm+=" <tr><td class='usr-img'><img id='image"+sequencNumber+"' src='${pageContext.request.contextPath}/images/profileIcon.png'></td>";
+	    	        	}
+	    	        htm +="<td><button type='button' onclick=removeFromList("+sequencNumber+") class='btn' ><i class='fa fa-trash' aria-hidden='true'></i></button><button type='button' onclick=editFromList("+sequencNumber+") class='btn'><i class='fa fa-pencil' aria-hidden='true'></i></button></td></tr>";
+	    	       	htm +="<tr><td><label>Name</label><span>:</span><input type='text' class='form-control' readonly value='"+name+"' id='member"+sequencNumber+"'></td>";
+	    	    	htm +="<td class='bd-txt-holder' rowspan='3'><label>Summary</label><textarea type='text' class='form-control' id='comment"+sequencNumber+"' readonly>"+comment+"</textarea></td></tr>";
+	    	        htm +="<tr><td colspan='2'><label style='width: 100%;'>Social Media</label>";
+                    
+	    	        
+	    	        
+	    	        if(facebook != "")
+	    	    	{
+	    	    	if(facebook.substring(0,2) != "//" )
+	    	    		{
+	    	    		if(facebook.substring(0,4) != "http")
+	    	    			{
+	    	    			facebook = "//"+facebook;
+	    	    			}
+	    	    		}
+	    	    	
+	    	    	}
+	    	        if(twitter != "")
+	    	    	{
+	    	    	if(twitter.substring(0,2) != "//" )
+	    	    		{
+	    	    		if(twitter.substring(0,4) != "http")
+	    	    			{
+	    	    			twitter = "//"+twitter;
+	    	    			}
+	    	    		}
+	    	    	
+	    	    	}
+	    	        if(linkedin != "")
+	    	    	{
+	    	    	if(linkedin.substring(0,2) != "//" )
+	    	    		{
+	    	    		if(linkedin.substring(0,4) != "http")
+	    	    			{
+	    	    			linkedin = "//"+linkedin;
+	    	    			}
+	    	    		}
+	    	    	
+	    	    	}
+	    	        if(website != "")
+	    	    	{
+	    	    	if(website.substring(0,2) != "//" )
+	    	    		{
+	    	    		if(website.substring(0,4) != "http")
+	    	    			{
+	    	    			website = "//"+website;
+	    	    			}
+	    	    		}
+	    	    	
+	    	    	}
+	    	        
+	    	        
+	    	        
+	    	        
+	    	        htm +="<div class='bd-soc-holder'><img src='${pageContext.request.contextPath}/images/facebook.png'><span ><a target='_blank' id='Directorfacebook"+sequencNumber+"' href="+facebook+" >"+facebook+"</a></span></div>";
+	    	        htm +="<div class='bd-soc-holder'><img src='${pageContext.request.contextPath}/images/twitter.png'><span ><a target='_blank' id='Directortwitter"+sequencNumber+"' href="+twitter+" >"+twitter+"</a></span></div>";
+	    	        htm +="<div class='bd-soc-holder'><img src='${pageContext.request.contextPath}/images/linkedin.png'><span ><a target='_blank' id='Directorlinkedin"+sequencNumber+"' href="+linkedin+" >"+linkedin+"</a></span></div>";
+	    	        htm +="<div class='bd-soc-holder'><img src='${pageContext.request.contextPath}/images/web.png'><span ><a target='_blank'  id='Directorwebsite"+sequencNumber+"' href="+website+" >"+website+"</a></span></div>";
+	    			htm+="<input type='hidden' id='Userid"+sequencNumber+"' value="+selectedid+">";
+	    	        htm +="</td></tr></table>";
+                    
+	    	        
+	    	        
+	    	        
+	    	        
+	    	      
+	    			  /*   <table class='bd-table' id=memberListDIV"+sequencNumber+"><tr>";
 	    	        htm +="<td><span class='palyerCount bd-player-count' id='sequenc"+sequencNumber+"'>"+sequencNumber2.length+"</span></td>"; 
 	    	        htm +="<td><label>Name</label><input type='text' class='form-control' style='width:98%;' readonly value='"+name+"' placeholder='' id='member"+sequencNumber+"'></td>";
-	    	        htm +="<td><label>Image</label><img style='width: 36px; height: 36px; margin-left: 1%;' id='image"+sequencNumber+"' src='"+imagestring+"' onerror=errorImages(this)><label style='' class='btn btn-wide tb-browse'>Browse<input type='file' style='display: none;'></label></td>";
+	    	        htm +="<td><label>Image</label><img style='width: 36px; height: 36px; margin-left: 1%;' id='image"+sequencNumber+"' src='"+imagestring+"' onerror=errorImages(this)><label style='' class='btn btn-wide tb-browse'></label></td>";
 	    	        htm +="<td><label>Comments</label><textarea class='form-control' style='width:98%; height: 35px; overflow: auto;' readonly placeholder='' id='comment"+sequencNumber+"'>"+comment+"</textarea></td>";
 	    	        htm +="<td style='width: 100px'><button type='button' class='btn' onclick=removeFromList("+sequencNumber+")><i class='fa fa-trash' aria-hidden='true'></i></button><button type='button' class='btn' onclick=editFromList("+sequencNumber+")><i class='fa fa-pencil' aria-hidden='true'></i></button></td>";
-	    	        htm +="</tr></table>";
+	    	        htm +="</tr></table>"; */
+	    	        
+	    	        
+	    	        
 	    	        $('#memberMainDIV').append(htm);
 	    	        $("#addMemberName").val("");
 	    	        $("#addMemberComment").val("");
-	    	        $('#uploadfilesrc1').attr('src', "http://1.bp.blogspot.com/-ST362NQRqVA/VPR0au8_8FI/AAAAAAAAAVg/nXmSyevawNw/s1600/writing1.png");
-	                 $('#uploadfilesrc').attr('src', "");
+	    	        
+	    	        $("#addMemberfaceboof").val("");
+	    	        $("#addMembertwitter").val("");
+	    	        $("#addMemberlinkedin").val("");
+	    	        $("#addMemberwebsite").val("");
+	    	        $("#addMemberIDDIV").val("");
+	    	        
+	    	        $('#uploadfilesrc1').attr('src', "${pageContext.request.contextPath}/images/profileIcon.png");
+	                 $('#uploadfilesrc').attr('src', "empty");
        
     }
 
@@ -388,7 +773,7 @@ var deletedarray=[];
     	 if(pos==-1)
     		 {
     		// alert("file should be in pdf,docx,doc,txt format")
-    		displaynotification('Please choose pdf or doc file',2000);
+    		displaynotification('Please choose jpg or png file',2000);
     		 $("#uploadfile").val('');
     		 return false;
     		 }
@@ -421,7 +806,7 @@ var deletedarray=[];
     	 var pos=format.indexOf(ext1);
     	 if(pos==-1)
     		 {
-    		 alert("file should be in pdf,docx,doc,txt format")
+    		 alert("file should be in jpg or png format")
     		 $("#uploadfile").val('');
     		 return false;
     		 }
@@ -447,10 +832,23 @@ var deletedarray=[];
     	var name=$("#member"+id).val();
 		var comment=$("#comment"+id).val();
 		var base64=document.getElementById("image"+id).src;
+		
+		var facebook=$("#Directorfacebook"+id).text();
+		var twitter =$("#Directortwitter"+id).text();
+		var linkedin =$("#Directorlinkedin"+id).text();
+		var website =$("#Directorwebsite"+id).text();
+		 var selectedid=$("#Userid"+id).val();
+			
 		/* alert(name);
 		alert(comment); */
+		$("#EditUserid").val(selectedid);
 		$("#Editname").val(name);
 		$("#EditComment").val(comment);
+        $("#editMemberfaceboof").val(facebook);
+        $("#editMembertwitter").val(twitter);
+        $("#editMemberlinkedin").val(linkedin);
+        $("#editMemberwebsite").val(website);
+        
 		$('#Editfilesrc1').attr('src', base64);
 		$("#Editmemberid").val(id);
 		
@@ -462,10 +860,80 @@ var deletedarray=[];
     	var name=$("#Editname").val();
 		var comment=$("#EditComment").val();
 		var base64=document.getElementById("Editfilesrc1").src;
+		var facebook=$("#editMemberfaceboof").val();
+        var twitter=$("#editMembertwitter").val();
+        var linlkedin=$("#editMemberlinkedin").val();
+        var website=$("#editMemberwebsite").val();
+        var selectedid=$("#EditUserid").val();
+        
+        if(name.length == 0)
+        	{
+        	displaynotification('Please fill the mandatory field ',2000);
+        	
+        	return false;
+        	
+        	}
+        
+        if(facebook != "")
+    	{
+    	if(facebook.substring(0,2) != "//" )
+    		{
+    		if(facebook.substring(0,4) != "http")
+    			{
+    			facebook = "//"+facebook;
+    			}
+    		}
+    	
+    	}
+        if(twitter != "")
+    	{
+    	if(twitter.substring(0,2) != "//" )
+    		{
+    		if(twitter.substring(0,4) != "http")
+    			{
+    			twitter = "//"+twitter;
+    			}
+    		}
+    	
+    	}
+        if(linlkedin != "")
+    	{
+    	if(linlkedin.substring(0,2) != "//" )
+    		{
+    		if(linlkedin.substring(0,4) != "http")
+    			{
+    			linlkedin = "//"+linlkedin;
+    			}
+    		}
+    	
+    	}
+        if(website != "")
+    	{
+    	if(website.substring(0,2) != "//" )
+    		{
+    		if(website.substring(0,4) != "http")
+    			{
+    			website = "//"+website;
+    			}
+    		}
+    	
+    	}
+        
 		
+        $("#Userid"+id).val(selectedid)
 		$("#member"+id).val(name);
 		$("#comment"+id).val(comment);
 		$('#image'+id).attr('src', base64);
+		
+		 $("#Directorfacebook"+id).attr("href", facebook);
+		 $("#Directortwitter"+id).attr("href", twitter);
+		 $("#Directorlinkedin"+id).attr("href", linlkedin);
+		 $("#Directorwebsite"+id).attr("href", website);
+ 	   
+		$("#Directorfacebook"+id).text(facebook);
+		$("#Directortwitter"+id).text(twitter);
+		$("#Directorlinkedin"+id).text(linlkedin);
+		$("#Directorwebsite"+id).text(website);
 		$("#EditPopup").hide();
     }
     
@@ -479,6 +947,68 @@ var deletedarray=[];
     		var name=$("#member"+sequencNumber2[i]).val();
     		var comment=$("#comment"+sequencNumber2[i]).val();
     		var base64=document.getElementById("image"+sequencNumber2[i]).src;
+    		
+    		var facebook=$("#Directorfacebook"+sequencNumber2[i]).text();
+    		var twitter=$("#Directortwitter"+sequencNumber2[i]).text();
+    		var linkedin=$("#Directorlinkedin"+sequencNumber2[i]).text();
+    		var website=$("#Directorwebsite"+sequencNumber2[i]).text();	
+    		
+    		
+    		if(facebook != "")
+        	{
+        	if(facebook.substring(0,2) != "//" )
+        		{
+        		if(facebook.substring(0,4) != "http")
+        			{
+        			facebook = "//"+facebook;
+        			}
+        		}
+        	
+        	}
+    		if(twitter != "")
+        	{
+        	if(twitter.substring(0,2) != "//" )
+        		{
+        		if(twitter.substring(0,4) != "http")
+        			{
+        			twitter = "//"+twitter;
+        			}
+        		}
+        	
+        	}
+    		if(linkedin != "")
+        	{
+        	if(linkedin.substring(0,2) != "//" )
+        		{
+        		if(linkedin.substring(0,4) != "http")
+        			{
+        			linkedin = "//"+linkedin;
+        			}
+        		}
+        	
+        	}
+    		if(website != "")
+        	{
+        	if(website.substring(0,2) != "//" )
+        		{
+        		if(website.substring(0,4) != "http")
+        			{
+        			website = "//"+website;
+        			}
+        		}
+        	
+        	}
+    		
+    		
+    		
+    		
+    		
+    		var userid=$("#Userid"+sequencNumber2[i]).val();
+    		
+    		if(userid == "")
+    			{
+    			userid=null;
+    			}
 
 			var base64trimedsplit=base64.split(',');
 			if(base64trimedsplit.length ==1)
@@ -505,6 +1035,11 @@ var deletedarray=[];
     				comments : comment,
     				imageData : base64trimed,
     				imageUrl :	fileurl,
+    				twitterUrl : twitter,
+    	    		facebookUrl : facebook,
+    	    		linkedinUrl : linkedin,
+    	    		websiteUrl : website,
+    	    		sponserId : userid,
     		}
     		
     		boardlistarray.push(obj);
@@ -517,7 +1052,8 @@ var deletedarray=[];
 			{
 			
 			//var Filename=uploadextension[i];
-			var Filename=$("#"+uploadextension[i]).val();
+			var Filename2=$("#"+uploadextension[i]).val();
+			var Filename=Filename2.replace(/~/g," ");
 			var base64=$("#"+uploadedarr[i]).val();
 			var base64trimedsplit=base64.split(',');
 			if(base64trimedsplit.length ==1)
@@ -549,6 +1085,7 @@ var deletedarray=[];
     			boardSponsorsList : boardlistarray,
     			 uploadFileAttachementsList : filedetailarray,
     			deletedFileAttchementsList : deletedarray,
+    			
     	}
     	$('#loading').show();
     	console.log(JSON.stringify(request));
@@ -606,6 +1143,11 @@ var deletedarray=[];
     {
     	$("#EditPopup").hide();
     }
+    
+    $("body").click(function(){
+		$("#addMemberautoCompleteDIV").fadeOut();
+		$("#addMemberautoCompleteDIV1").fadeOut();
+		});
     
     </script>
 </body>

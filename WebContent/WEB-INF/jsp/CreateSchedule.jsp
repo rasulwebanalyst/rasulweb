@@ -1,6 +1,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/circketsocial/validationfunction.js"></script>
+	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/token-input.css"
 	type="text/css" />
@@ -9,7 +10,9 @@
 	type="text/css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap-clockpicker.min.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/wickedpicker.css">
- <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+ 
+ <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
  <title>Cricket Social</title>
  
 	<%@ include file="CSCommon.jsp" %>

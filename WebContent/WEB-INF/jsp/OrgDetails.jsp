@@ -54,11 +54,11 @@ var deletedarray=[];
             	       </c:if>
             	       
             	       <c:if test="${boardInfoType eq 'Rules&Regulations'}">
-            	         <h4 id="Headervalue">Rules&Regulations</h4>   
+            	         <h4 id="Headervalue">Rules & Regulations</h4>   
             	       </c:if>
             	       
             	       <c:if test="${boardInfoType eq 'Awards&Honors'}">
-            	         <h4 id="Headervalue">Awards&Honors</h4>   
+            	         <h4 id="Headervalue">Awards & Honors</h4>   
             	       </c:if>
             	       
             	       <c:if test="${boardInfoType eq 'FAQ'}">
@@ -76,7 +76,7 @@ var deletedarray=[];
 		            
 		            <div class="form-group col-md-12 noPadding cs-align-center file-drop" style="margin-top:2%">
             	       <div class="col-lg-12 col-sm-12 col-12">
-		            <label for="email" style="width:100%; color: #9CA9B9">We having file upload option also</label>  
+		            <!-- <label for="email" style="width:100%; color: #9CA9B9">We having file upload option also</label>  --> 
 		            <label class="btn btn-primary btn-wide">
 		                Browse <input type="file" style="display: none;" id="uploadfile" onchange="selectpdf(this)">
 		            </label>
@@ -92,7 +92,7 @@ var deletedarray=[];
 		            <div id="uploadedpdfs">
 		             <c:forEach items="${OrgResponse.fileDetails}" var="filedetail" varStatus="loop">
 		             <input type='hidden' id='uploadedsrc${loop.index}' value="${filedetail.fileUrl}">
-		                 	<input type='hidden' id='uploadedsrcext${loop.index}' value="${filedetail.fileName}">
+		                 	<input type='hidden' id='uploadedsrcext${loop.index}' value='${filedetail.fileName}'>
 		            
 		            </c:forEach> 
 		            
@@ -136,19 +136,19 @@ var deletedarray=[];
 
 function selectpdf(finput)
 {
-	var format=["pdf","doc"];
+	var format=["pdf","doc","docx"];
 	
 	var imageUrl=$('#uploadfile')[0].files[0];
 	if(typeof imageUrl === "undefined" || imageUrl==null){
 		ext1 = null;
 	}else{
-	var iamgeExtension=imageUrl.name;
+	var iamgeExtension=imageUrl.name.replace(/ /g,"~");
 	 ext1 = iamgeExtension.substr(iamgeExtension.lastIndexOf('.') + 1);
 	 var pos=format.indexOf(ext1);
 	 if(pos==-1)
 		 {
 		// alert("file should be in pdf,docx,doc,txt format")
-		displaynotification('Please choose pdf or doc file',2000);
+		displaynotification('Please choose pdf or doc or docx file',2000);
 		 $("#uploadfile").val('');
 		 return false;
 		 }
@@ -165,7 +165,7 @@ function selectpdf(finput)
          	 $("#uploadedpdfs").append(htmlco);
          	 i=j;
          	 
-         	 var htmlco1="<span class='greenText' id='uploadedname"+j+"'><span class='upload-file-name'>"+iamgeExtension+"</span><span onclick=deletename('uploadedname"+j+"','uploadedsrc"+j+"')><img style='margin-left: 4px; padding: 10px 1px 1px 1px; float: left;' src='${pageContext.request.contextPath}/images/cross.png'></span></span>";
+         	 var htmlco1="<span class='greenText' id='uploadedname"+j+"'><span class='upload-file-name'>"+iamgeExtension.replace(/~/g," ")+"</span><span onclick=deletename('uploadedname"+j+"','uploadedsrc"+j+"')><img style='margin-left: 4px; padding: 10px 1px 1px 1px; float: left;' src='${pageContext.request.contextPath}/images/cross.png'></span></span>";
          	$("#uploadname").append(htmlco1);
          	 /* var htmlco1="";
          	// htmlco1= */
@@ -213,7 +213,8 @@ function selectpdf(finput)
 		for(var i=0;i<uploadedarr.length;i++)
 			{
 			
-			var Filename=$("#"+uploadextension[i]).val();
+			var Filename2=$("#"+uploadextension[i]).val();
+			var Filename=Filename2.replace(/~/g," ");
 			var base64=$("#"+uploadedarr[i]).val();
 			/* alert(base64) */
 			/* var base64trimed=base64.split(',')[1]; */

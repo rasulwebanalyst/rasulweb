@@ -27,21 +27,21 @@ public class CricketSocialRestTemplateServiceImpl  implements CricketSocialRestT
    //private static String domain="http://52.4.189.30:8068/cricketsocialwebservices/";//public machine
  
      //private static String domain="http://172.16.19.30:8068/cricketsocialwebservices/"; // kalpana dev system ip
-    // private static String domain="http://52.73.86.69:8068/cricketsocialwebservices/";//QA
+     //private static String domain="http://52.73.86.69:8068/cricketsocialwebservices/";//QA
 	//private static String domain="http://52.73.236.168:8068/cricketsocialwebservices/";// PROD
-                         private static String domain=Util.webServiceDomainName("Web_Service_URL");
+             private static String domain=Util.webServiceDomainName("Web_Service_URL");
      //private static String domain="http://192.168.0.52:8068/cricketsocialwebservices/"; // Hyderali(temp)
      //private static String domain="http://172.16.19.30:8068/cricketsocialwebservices/"; // kalpana   
      // private static String domain="http://172.16.19.27:8068/cricketsocialwebservices/";
 	//private static String domain=Util.webServiceDomainName("Web_Service_URL1");
-      //private static String domain="http://172.16.19.50:8068/cricketsocialwebservices/"; //priyanga
+    //  private static String domain="http://172.16.19.50:8068/cricketsocialwebservices/"; //priyanga
 
    //private static String domain2="http://52.4.189.30:8040/ScoringFrontEndServices/"; //public machine mobile
    //private static String domain2="http://localhost:8040/ScoringFrontEndServices/";
-	// private static String domain2="http://services.scoring.cricketsocial.com/ScoringBackEndService/"; //pROD
+	 //private static String domain2="http://services.scoring.cricketsocial.com/ScoringBackEndService/"; //pROD
                         private static String domain2=Util.webServiceDomainName("ScroingApp_URL");
    // private static String domain2="http://172.16.19.30:8040/ScoringFrontEndServices/";
-   // private static String domain2="http://52.73.86.69:8040/ScoringFrontEndServices/";
+    //private static String domain2="http://52.73.86.69:8040/ScoringFrontEndServices/";
 	//private static String domain2=Util.webServiceDomainName("ScroingApp_URL1");
     
   

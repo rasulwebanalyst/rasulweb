@@ -22,6 +22,8 @@
 
 	<!--Font-Awesome Icons-->
     <link href="${pageContext.request.contextPath}/icons/css/font-awesome.min.css" rel="stylesheet">
+    <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 
 <!--Google Fonts-->    
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>

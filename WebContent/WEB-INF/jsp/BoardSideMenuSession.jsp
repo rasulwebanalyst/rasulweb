@@ -50,16 +50,16 @@
                                <c:choose>
                         	  	<c:when test="${BoradInfo.statusId==19}">	
                         	  	 	
-                        	  		<li ><a href="javascript:"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li>
+                        	  		<%-- <li ><a href="javascript:"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
                         	  	</c:when>
                         	  	<c:otherwise>
                      				<%-- ${BoradInfo.scheduleFlag} --%>
                      				<c:choose>
                               <c:when test="${BoradInfo.scheduleFlag}">
-                             			<li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li>
+                             			<%-- <li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
                               </c:when>
                               <c:otherwise>
-                                  <li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li>
+                                  <%-- <li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
                               </c:otherwise>
                               </c:choose>
                      			</c:otherwise>
@@ -72,16 +72,16 @@
                             	 <c:choose>
                         	  	<c:when test="${BoradInfo.statusId==19}">	
                         	  	 	
-                        	  		<li ><a href="javascript:"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li>
+                        	  		<%-- <li ><a href="javascript:"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
                         	  	</c:when>
                         	  	<c:otherwise>
                      				<%-- ${BoradInfo.scheduleFlag} --%>
                      				<c:choose>
                               <c:when test="${BoradInfo.scheduleFlag}">
-                             			<li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li>
+                             			<%-- <li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
                               </c:when>
                               <c:otherwise>
-                                  <li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li>
+                                  <%-- <li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
                               </c:otherwise>
                               </c:choose>
                      			</c:otherwise>

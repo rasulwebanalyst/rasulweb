@@ -39,10 +39,12 @@
         
         	 <%@ include file="publicLeaugeManagementSideMenu.jsp" %>
 	<%@ include file="BoardFanMenu.jsp" %>  
-    <form action="${pageContext.request.contextPath}/profile/leaguecenturieslist" id="centuriesSearchForm" name="centuriesSearchForm" method="post" onsubmit="return searchValiation()">  
-      <div class="col-md-10">
+	
+	
+      
+       <div class="col-md-10">
       		<div class="col-md-12 whiteBox">
-		          <h1 class="pageHead noBorder">Centuries
+		          <div class="col-md-10"><h1 class="pageHead noBorder">Centuries
                   
                  <!--  <div class="h1Sbox">
                                 <div class="selectdiv pull-right">
@@ -55,10 +57,44 @@
                                 </div>
                       </div> -->
                   
-                  </h1>
+                  </h1></div>
+                  				<div class="col-md-2" style="display: inline-block;">
+								    <label style="text-align: center;">Filter</label>
+								    <div class="selectdiv" style="height: 25px !important;">
+								        <c:choose>
+								            <c:when test="${yearListSize eq 0 }">
+								                <select class="selectboxdiv" id="centuryYears" style="color: black; font-size: 12px !important; height: 25px !important;">
+									            	<option style="color: black; font-size: 12px !important; height: 25px !important;"></option>
+									            </select>
+								                <div class="out" style="font-size: 12px; height: 25px !important; margin: -6px -6px"></div>
+								            </c:when>
+								            <c:otherwise>
+								                <select name="yearDropDown" class="selectboxdiv" id="centuryYears" onchange="yearWiseCenturies(this.value)" style="color: black; font-size: 12px !improtant; height: 25px !important;">
+			                                        <!-- <option>Years</option> -->
+			                                       <c:choose>
+			                                        		<c:when test="${defaultload == 'yes'}">
+			                                        			 <c:forEach var = "yearsCentury" items="${yearsList}">
+			                                        			<option value="${yearsCentury}" style="font-size: 12px; height: 25px !important;">${yearsCentury}</option>	
+			                                        			 </c:forEach>
+			                                        		</c:when>
+			                                        		<c:otherwise>
+			                                        			<option value="Years" style="font-size: 12px; height: 25px !important;">Years</option>
+			                                        			 <c:forEach var = "yearsCentury" items="${yearsList}">
+			                                        				<option value="${yearsCentury}" style="font-size: 12px; height: 25px !important;">${yearsCentury}</option>
+			                                        			</c:forEach>
+			                                        		</c:otherwise>
+			                                        	</c:choose>
+								                                       
+								                </select>
+								                <div class="out" style="font-size: 12px; height: 25px !important; margin: -6px -6px"></div> 
+								            </c:otherwise>
+								        </c:choose>
+								    </div>
+								</div>
+								<div id="centuryYearId" style="display: none;"></div>
                   
                   </div></div>
-                  
+                  <form action="${pageContext.request.contextPath}/profile/leaguecenturieslist" id="centuriesSearchForm" name="centuriesSearchForm" method="post" onsubmit="return searchValiation()">
                   <div class="col-md-10">
       		<div class="col-md-12 whiteBox">
                   
@@ -110,16 +146,16 @@
                  </div> 
                    </form>
             <div class="col-md-10 pull-right">
-    <!-- <div class="col-md-12 whiteBox font13px"> -->
+    		 <div class="col-md-12 whiteBox font13px">
 
-
+<div id="centTable" >
     <c:forEach items="${centueryList}" var="century">
         <c:choose>
             <c:when test="${century.size eq 0}">
             </c:when>
             <c:otherwise>
 
-                <div class="col-md-12 whiteBox font13px">
+                <div class="col-md-12 whiteBox font13px"  id="centTable1">
                     <span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament Name : ${century.tournamentName}</span>
                     <table class="css-serial">
                         <thead>
@@ -141,13 +177,13 @@
                                     <tr>
                                     <td></td>
                                         <%-- <td >${index.count}</td> --%>
-                                            <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}"><span class="text-danger">${player.userName}</span> </a></td>
+                                            <td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}"><img alt="" src="${player.userImageUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';" ><b>${player.userName}</b><div class="clearfix"></div> </a></td>
                                             <td>${player.totalruns}</td>
-                                            <td class="tdAlignLeft">
-                                                <a href="${pageContext.request.contextPath}/${player.homeTeamName}/board/${player.homeTeamId}"><img src="${player.homeTeamImgUrl}" style="width:30px;"> ${player.homeTeamName}</a>
+                                            <td class="tdAlignLeft TB_table">
+                                                <a href="${pageContext.request.contextPath}/${player.homeTeamName}/board/${player.homeTeamId}"><img src="${player.homeTeamImgUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" ><b> ${player.homeTeamName}</b><div class="clearfix"></div></a>
                                             </td>
-                                            <td class="tdAlignLeft">
-                                                <a href="${pageContext.request.contextPath}/${player.awayTeamName}/board/${player.awayTeamId}"><img src="${player.awayTeamImgUrl}" style="width:30px;"> ${player.awayTeamName}</a>
+                                            <td class="tdAlignLeft TB_table">
+                                                <a href="${pageContext.request.contextPath}/${player.awayTeamName}/board/${player.awayTeamId}"><img src="${player.awayTeamImgUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';"><b> ${player.awayTeamName}</b><div class="clearfix"></div></a>
                                             </td>
                                             <td class="tdAlignLeft">${matches.groundName}</td>
                                             <td>
@@ -163,13 +199,14 @@
             </c:otherwise>
         </c:choose>
     </c:forEach>
+    </div>
     <c:choose>
         <c:when test="${empty centueryList}">
             <div style="color: red; margin-top: 16px;">No Tournament available</div>
         </c:when>
     </c:choose>
 
-    <!--  </div> -->
+      </div>
 </div>
 
                     
@@ -202,7 +239,6 @@
     if(url.indexOf('leaguecenturieslist') != -1){
     	//alert("inside contains");
     }else{
-    	//alert('inside not contains');
     	$(window).bind("pageshow", function() {
     	 $("#tournmentInField").val("");
    	  $("#teamBoardInField").val("");
@@ -213,7 +249,129 @@
     	});
 
     }
- 
+    var i=0;
+    function yearWiseCenturies(val) {
+    	if(i==0)
+    	 {
+    	 i=1;
+    	 return false;
+    	 }
+    	if(val != "Years"){
+    		document.getElementById("centuryYearId").innerHTML = val;
+        	var year = {
+        			boardId : "${publicboardId}",
+        			filterByYear : val,
+        		
+        	}
+        	$('#loading').show();
+        	$.ajax({
+
+        		type : "Post",
+        		url : "${pageContext.request.contextPath}/yearWiseCenturies",
+        		data : JSON.stringify(year),
+        		contentType : "application/json",
+        		success : function(res) {
+        			$('#centTable').hide();
+        			
+        			
+        			if (res.length != 0) {
+        				var html = '';
+        				for (var i = 0; i < res.length; i++) {
+        					if(res[i].size != 0){
+        						
+        						html += '<div class="whiteBox">';
+        						html += '<span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament Name : '+res[i].tournamentName+'</span>'
+        						html += '<table class="css-serial" id="centTable"><thead><tr>';
+        						html += '<th>S.No</th>';
+        						html += '<th>Player Name</th>';
+        						html += '<th>Score</th>';
+        						html += '<th>Team Name</th>';
+        						html += '<th>Team Against</th>';
+        						html += '<th>Ground</th>';
+        						html += '<th>Match Date</th>';
+        						html += '<th>SCORE CARD</th>';
+        						html += '</tr></thead><tbody align="center">';
+        					
+        						html += '<tr>';
+        						var mat = res[i].matchsheduledtolist;
+        						
+        						for (var j=0;j<mat.length;j++){
+        							var date  = new Date(mat[j].gameDate);
+        							var dateChange = date.toLocaleDateString();
+        							console.log(dateChange);
+        							var dateNewObject = getDateInObject(mat[j].gameDate);
+        							console.log(dateNewObject);
+        							var plist = mat[j].playerlist;
+        							if(plist != null){
+        								for(var k=0;k<plist.length;k++){
+        									 html +='<td></td>';
+        									html += '<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/buddy/'+ plist[k].userName+ '/' +plist[k].userId+ '"><img alt="" src="'+plist[k].userImageUrl+'" onError="this.onerror=null;this.src=${pageContext.request.contextPath}/images/profileIcon.png;" ><b>' +plist[k].userName+ '</b> <div class="clearfix"></div></a></td>';
+        									html += '<td class="tdAlignLeft">' + plist[k].totalruns + '</td>';
+        									              
+        									html += '<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/' + plist[k].homeTeamName + '/board/' + plist[k].homeTeamId + '"><img src="'+plist[k].homeTeamImgUrl+ '"><b>' + plist[k].homeTeamName + '</b><div class="clearfix"></div></a></td>';
+        								    html += '<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/' + plist[k].awayTeamName + '/board/' + plist[k].awayTeamId + '"><img src="'+plist[k].awayTeamImgUrl+ '"><b>' + plist[k].awayTeamName + '</b><div class="clearfix"></div></a></td>';
+        								    html += '<td class="tdAlignLeft">' +mat[j].groundName+ '</td>';
+        									html += '<td class="tdAlignLeft">'+dateNewObject+'</td>';
+        									 
+        							        html += '<td align="center"><a href="${pageContext.request.contextPath}/showScoreCard/boardId/' +boardId+ '/matchId/'+mat[j].sheduledId+'"><i class="fa fa-newspaper-o"></i></a></td>';
+        							        html += '</tr>'; 
+        								}
+        							}
+        							
+        						}
+        					
+        						html += '</tbody>';
+        						html += '</table>';
+        						html += '</div>';
+        						
+        						
+        						
+        					}
+        				}
+        				$("#centTable").html(html).trigger('create');
+    					$('#centTable').show();
+    					$('#centTable1').hide();
+    					$('#tournmentInField').val("");
+    					$('#teamBoardInField').val("");
+    					$('#againestteamBoardInField').val("");
+    					$('#selectTeamBoardId').val("");
+    					$('#selectAgainestTeamBoardId').val("");
+    					$('#SelectTournMent').val("");
+    					$('#loading').hide();
+        			} else {
+        		}
+        	},
+        	error : function(err) {
+        		console.log(err);
+        	}
+        	})
+        console.log(" Matches years :" + val);
+    	}
+    	
+    }
+     
+    var formatAMPMTime = function(date) {
+    	  var hours = date.getHours();
+    	  console.log(hours);
+    	  var minutes = date.getMinutes();
+    	  var ampm = hours >= 12 ? 'PM' : 'AM';
+    	  hours = hours % 12;
+    	  hours = hours ? hours : 12; // the hour '0' should be '12'
+    	  minutes = minutes < 10 ? '0'+minutes : minutes;
+    	  hours = hours < 10 ? '0'+hours : hours ;
+    	  var strTime = (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear();
+    	  return strTime;
+    	}
+    function getDateInObject(timestamp)
+    {
+    	
+    	var date = new Date(timestamp);
+    	var dateNew = new Date(date.getTime() + date.getTimezoneOffset()*60000);
+    	var offset = new Date().getTimezoneOffset() * 60 * 1000;
+    	var gettingFromServer= new Date(dateNew);
+    	gettingFromServer = new Date(gettingFromServer.valueOf() - offset);
+    	return formatAMPMTime(gettingFromServer); 
+    }
     
     </script>
 </body>

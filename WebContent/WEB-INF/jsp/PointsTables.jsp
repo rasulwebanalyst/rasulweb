@@ -5,6 +5,8 @@
 <html lang="en">
 <head>
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+ <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -106,7 +108,7 @@
         <div class="col-md-12 whiteBox">
 
             <span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament
-												Name : ${tournament.tournamentName}</span> <br>
+			<!-- <div class="form-group"> -->									Name : ${tournament.tournamentName}</span> <br>
             <table>
                 <thead>
                     <tr>
@@ -168,6 +170,7 @@
 
                 </tbody>
             </table>
+           <!--  </div> --><!-- form group end -->
         </div>
         </c:if>
     </c:forEach>
