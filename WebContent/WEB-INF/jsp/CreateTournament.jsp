@@ -95,7 +95,7 @@ var sequencNumber=0;
                              
                                 
 	                                 
-	                                 	 <label for="email" id="memberMainDIV" style="width:100%;">&nbsp;&nbsp;Team Board</label>  <br>
+	                                 	 <label for="email" id="memberMainDIV" style="width:100%;"><span>*</span>Team Board</label>  <br>
 								                                
 		                                
 			                                 <div class="col-md-6" style="padding-left: 0; margin-right: 10px; margin-bottom: 0;"> <input type="text" class="form-control" value=""placeholder="" id="addMemberNameDIV" onkeyup="getBuddiesAutoComplete(this,'addMemberautoCompleteDIV','addMemberIDDIV')">

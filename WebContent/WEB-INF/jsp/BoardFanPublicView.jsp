@@ -78,18 +78,18 @@
                             
 								<c:choose>
 										<c:when test="${empty UserProfileList} and ${empty BoardProfileList}">
-											<div>
+											<div style="color: red">
 												No fans are there
 											</div>
 										</c:when>
 										<c:otherwise>
-											<c:forEach var="user" items="${UserProfileList}">
+											<c:forEach var="user" items="${UserProfileList}" varStatus="userCount">
 											<div class="media  col-md-6" id="boardfanuser${user.userId}">
 				                                <div class="media-left buddyImg">
 				                                    <img src="${user.userImageUrl}">
 				                                </div>
 				                    				  <div class="media-body">		
-				                                        <h4 class="media-heading">${user.firstName}</h4>
+				                                        <h4 class="media-heading">${user.fullName}</h4>
 				                                        <span class="date">${user.city}</span>
 				                                         <c:choose>
 				                                         		<c:when test="${f:contains(user.userId,CoOwnerList)}">
@@ -105,7 +105,7 @@
                             					</div>
 											
 											</c:forEach>
-											<c:forEach var="user" items="${BoardProfileList}">
+											<c:forEach var="user" items="${BoardProfileList}" varStatus="boardCount">
 											<div class="media  col-md-6" id="boardfanboard${user.boardId}">
 				                                <div class="media-left buddyImg">
 				                                    <img src="${user.boardImageURL}">
@@ -128,6 +128,25 @@
                            <div class="clear"></div>
                            
                            
+                           <div id="BoardAllFansDiv"><a class="btn btn-default dBtn pull-right lodbtn" href="javascript:getallFanlistPagination1('All',10,'AllBoardAllFansList2','BoardAllFansDiv')">Load more</a></div>
+									
+									
+									
+										<script>
+										var userCount = "${userCount}";
+										var boardCount = "${boardCount}";
+										//alert(showLoadMoreBtn.length +"=fkjdklsfjdlsf" +showLoadMoreBtn1.length);
+										if(userCount > 10 || boardCount > 10)
+										$("#BoardAllFansDiv").show();
+										else{
+											var htm='';
+											$("#BoardAllFansDiv").html(htm);
+										}
+										
+										
+										</script>
+							
+                           
                         </div>
                         
                          <div class="clear"></div>
@@ -140,6 +159,7 @@
                             </div>
                               
                            <div class="clear"></div> 
+                           <dir id="BoardBoardFansDiv"></dir>
                         </div>
                         
                         
@@ -149,6 +169,8 @@
                                 
                               
                             </div>  
+                            
+                            <dir id="BoardUserFansDiv"></dir> 
                             
                             </div>
                            <div class="clear"></div>

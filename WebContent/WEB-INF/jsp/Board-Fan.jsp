@@ -95,7 +95,7 @@
                             
 								<c:choose>
 										<c:when test="${empty UserProfileList} and ${empty BoardProfileList}">
-											<div>
+											<div style="color: red">
 												No fans are there
 											</div>
 										</c:when>
@@ -111,7 +111,7 @@
 				                                    </a>
 				                                </div>
 				                    				  <div class="media-body">		
-				                                        <h4 class="media-heading"><a href="${pageContext.request.contextPath}/buddy/${user.firstName}/${user.userId}">${user.firstName}</a></h4>
+				                                        <h4 class="media-heading"><a href="${pageContext.request.contextPath}/buddy/${user.firstName}/${user.userId}">${user.firstName} ${user.lastName}</a></h4>
 				                                        <span class="date">${user.city}</span>
 				                                         <c:choose>
 				                                         		<c:when test="${f:contains(user.userId,CoOwnerList)}">

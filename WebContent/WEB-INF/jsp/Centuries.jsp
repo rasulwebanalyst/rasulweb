@@ -186,7 +186,14 @@
                                             <td class="tdAlignLeft TB_table">
                                                 <a href="${pageContext.request.contextPath}/${player.awayTeamName}/board/${player.awayTeamId}"><img src="${player.awayTeamImgUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" ><b> ${player.awayTeamName}</b><div class="clearfix"></div></a>
                                             </td>
+                                            <c:choose>
+                                            <c:when test="${matches.groundName ne null}">
                                             <td class="tdAlignLeft">${matches.groundName}</td>
+                                            </c:when>
+                                            <c:otherwise>
+                                            <td class="tdAlignLeft">-</td>
+                                            </c:otherwise>
+                                            </c:choose>
                                             <td>
                                                 <fmt:formatDate pattern="MM/dd/YYYY" value="${matches.gameDate}" />
                                             </td>
@@ -328,7 +335,10 @@ function yearWiseCenturies(val) {
 										              
 										html += '<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/' + plist[k].homeTeamName + '/board/' + plist[k].homeTeamId + '"><img src="'+plist[k].homeTeamImgUrl+ '"><b>' + plist[k].homeTeamName + '</b><div class="clearfix"></div></a></td>';
 									    html += '<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/' + plist[k].awayTeamName + '/board/' + plist[k].awayTeamId + '"><img src="'+plist[k].awayTeamImgUrl+ '"><b>' + plist[k].awayTeamName + '</b><div class="clearfix"></div></a></td>';
-									    html += '<td class="tdAlignLeft">' +mat[j].groundName+ '</td>';
+									   
+									    if(mat[j].groundName != null){
+									    html += '<td class="tdAlignLeft">' +mat[j].groundName+ '</td>';}
+									    else{html += '<td class="tdAlignLeft">-</td>';}
 										html += '<td class="tdAlignLeft">'+dateNewObject+'</td>';
 										 
 								        html += '<td align="center"><a href="${pageContext.request.contextPath}/showScoreCard/boardId/' +boardId+ '/matchId/'+mat[j].sheduledId+'"><i class="fa fa-newspaper-o"></i></a></td>';

@@ -493,7 +493,7 @@
 	 										}
 	 								
 	 								
-	 								html +="<li onclick=setValueToTextBox(this,'"+textBoxId+"','"+divId+"','"+users[i].id+"','"+hiddenId+"')><div class='media'><div class='media-left'>";
+	 								html +="<li class='selection-item' onclick=setValueToTextBox('"+name.replace(/ /g,"-")+"','"+textBoxId+"','"+divId+"','"+users[i].id+"','"+hiddenId+"')><div class='media'><div class='media-left'><a>";
 			                            
 			                          
 			                      	if(users[i].userImageUrl != null && users[i].userImageUrl != ""){
@@ -502,11 +502,20 @@
 		                          	}else{
 		                          		html +='<img src="'+ctx+'/images/profileIcon.png" class="nav-avatar">';
 		                          	}
+			                      	html += "</a></div><div class='media-body'><a class='auto-blue'><h4 class='media-heading'> ";
 			                      	html += " ";
-			                      	html+=""+name+"";
-			                          html+='</div>'
+			                      	html+=""+name+"<br></a>";
+			                      	
+			                      	if(users[i].city=="UNKNOWN"&&users[i].state=="UNKNOWN"||users[i].city==""&&users[i].state==""||users[i].city=="null"&&users[i].state=="null"||users[i].city==null&&users[i].state==null){
+		                        		html += '<span class="auto-black">'+users[i].city+'</span>';
+		                        	}else{
+		                        		html += '<span class="auto-black">'+users[i].city+','+users[i].state+'</span>'; 
+		                        	}
+			                          html+='</h4><div class="headRight" ></div></div>'
 			                       	 +'</div>'
 			              			+'</li>';
+			              			
+			              			
 	 									}
 	 								}
 	 								
@@ -557,7 +566,9 @@
  
  function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 
-		$('#'+textBox).val($(elem).text());
+		/* $('#'+textBox).val($(elem).text()); */
+		var name=elem.replace(/-/g," ");
+   		$('#'+textBox).val(name);
 		$('#'+divId).hide();	
 		checkUmpireValidation(userId,hiddenId,textBox,divId);	
 		$('#error').html('');

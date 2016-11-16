@@ -26,7 +26,7 @@
         </div>
     </div>
 </div>
-	<%@ include file="BoardHeader.jsp" %>
+	<%@ include file="BuddyHeader.jsp" %>
 <section class="middleContentBlock">
     <div class="container">
 
@@ -498,6 +498,7 @@ $(document).ready(function(){
 			},"Fist letter captal");
 });
 function validateBoardForm(e){
+	console.log("Form submit");
 	 e.preventDefault();
 	 if($('#boardFormId').validate({
 		 errorPlacement: function(error, element) {
@@ -699,6 +700,13 @@ function validateBoardForm(e){
 
  }
 
+
+$("#boardFormId").submit(function() {
+    $(this).submit(function() {
+        return false;
+    });
+    return true;
+});
 	 
 	
  

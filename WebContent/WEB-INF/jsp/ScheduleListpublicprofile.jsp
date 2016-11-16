@@ -612,7 +612,7 @@ function loadPrev(text){
 					html += '<div >';
 					
 					var umpireList = res[i].umpireNamesList;
-					
+					if(umpireList != null){
 					for(var j=0; j<umpireList.length; j++){
 						html += '<span>'+'<a href="${pageContext.request.contextPath}/buddy/'+umpireList[j].umpireName+'/'+umpireList[j].umpireId+'">'+umpireList[j].umpireName+'</a>';
 						
@@ -622,7 +622,7 @@ function loadPrev(text){
 					            html += ',</span>';
 					        } 
 	
-					}
+					}}
 
 	        
 					html += '</div></td>';
@@ -630,7 +630,7 @@ function loadPrev(text){
 					html += '<div>';
 					
 					var scorerList = res[i].scorerNamesList;
-					
+					if(scorerList != null){
 					for(var k=0; k<scorerList.length; k++){
 						html += '<span>'+'<a href="${pageContext.request.contextPath}/buddy/'+scorerList[k].scorerName+'/'+scorerList[k].scorerId+'">'+scorerList[k].scorerName+'</a>';
 						
@@ -643,7 +643,7 @@ function loadPrev(text){
 
 						
 	
-					}
+					}}
 					
 					html += '</div></td>';
 					/* if(res[i].status == 'Completed'){

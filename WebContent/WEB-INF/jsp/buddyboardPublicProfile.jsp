@@ -109,7 +109,7 @@ return result;
                            	 <input id="upload0" type="file" style="visibility: hidden;" name="file" onchange="readURL(this)" />
                             </div>
                             
-                            <a href="#" class="pull-right" id="upload_link"><i class="fa fa-picture-o"></i> Add Photo</a>
+                            <a href="#" class="pull-right" id="upload_link"><i class="fa fa-picture-o"></i> Add Photos</a>
                             <!-- <a href="#" class="pull-right" id="upload_videofile"><i class="fa fa-picture-o"></i> Add Video</a> --> 
                             <div class="postBlock">
                             	<img src="${USRIMG}" class="nav-avatar" onError="userErrorDefaultImg(this)"  >

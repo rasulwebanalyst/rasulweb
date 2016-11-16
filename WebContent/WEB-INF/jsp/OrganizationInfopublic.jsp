@@ -22,6 +22,34 @@ overflow-y: auto !important;
 }
 
 </style>
+<style type="text/css">
+
+textarea#note {
+	width:100%;
+	display:block;
+	max-width:100%;
+	line-height:1.5;
+	border-radius:3px;
+	border: none;
+	font-size: 12px;
+	box-shadow:0 none;
+	overflow:hidden;
+	padding: 10px;
+	outlne: 0;
+}
+textarea#note[disabled] {
+	background: #fff;
+}
+html{
+    height:100%;
+}
+body{
+    
+height:100%;
+}
+
+</style>
+
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -405,7 +433,12 @@ else
 	
 if(res.text != null && res.text != "")
 	{
-	htmlco+="<textarea readonly style='min-height: 300px; border:1px solid #ccc; width: 100%;-'>"+res.text+"</textarea>";
+	/* htmlco+="<textarea readonly style='min-height: 300px; border:1px solid #ccc; width: 100%;-'>"+res.text+"</textarea>"; */
+	
+	htmlco+="<textarea disabled readonly id='ShortText' style='min-height: 300px; border: none; padding: 10px; font-size: 12px; width: 100%; overflow:hidden; background: #fff;'>"+res.text+"</textarea>";
+	htmlco+="<input class='rdmore' type='button' value='See More...' style='float: right;' id='moreinfobutton' onclick='scrollheight()'>";
+	htmlco+="<div id='note1'><textarea readonly id='note' disabled>"+res.text+"</textarea></div>";
+	
 	}
 	var filedetails=res.fileDetails;
 	if(filedetails !=null)
@@ -445,6 +478,14 @@ if(res.text != null && res.text != "")
 	htmlco+="<span style='color: red'>No details available</span>"
 	}
 	$("#BoardInfoDetails").html(htmlco).trigger("create");
+	
+	var s_height = document.getElementById('note').scrollHeight;
+	document.getElementById('note').setAttribute('style','height:'+s_height+'px');
+	document.getElementById('note1').setAttribute('style','Display:none');
+	
+	if(s_height <331){
+		$("#moreinfobutton").hide();
+	}
 
 			}
 			
@@ -457,7 +498,16 @@ if(res.text != null && res.text != "")
 	
 	
 	}
+
+function scrollheight()
+{
+	/* var s_height = document.getElementById('note').scrollHeight;
+	document.getElementById('note').setAttribute('style','height:'+s_height+'px'); */
 	
+	$("#ShortText").hide();
+	$("#moreinfobutton").hide();
+	$("#note1").show();
+}
 	
 	function SponserInfo()
 	{

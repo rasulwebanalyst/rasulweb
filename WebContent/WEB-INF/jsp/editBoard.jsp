@@ -823,7 +823,7 @@ function validateBoardForm(e){
 	         	
 			 boardName: {
                      required: true,
-                     minlength : 5,
+                     minlength : 2,
          			 maxlength : 60
                  }, 
                 /*  shortDescription: {

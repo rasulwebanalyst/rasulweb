@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html lang="en">
 <head>
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
@@ -237,9 +238,20 @@ overflow-y: auto !important;
 																						                     
 																				                     </c:forEach>
 																				                     </div>
-																				                     <div id="myEventPageBtn">
+																				                    <%--  <div id="myEventPageBtn">
 																				                         <button class="btn dBtn pull-right btnalian1" type="button" onclick="my_Event_Page(10,'MyEventListDIV','myEventPageBtn','${USRID}')">Load More</button>
-																				                         </div>   
+																				                         </div>    --%>
+																				                         <c:choose>
+					            										<c:when test="${empty MyEvents.upcomingCreatedEventList}">
+					            										
+					            										</c:when>
+					            										<c:otherwise>
+					            										<c:if test="${fn:length(MyEvents.upcomingCreatedEventList) > 8}">
+					            											      <button class="btn dBtn pull-right btnalian1" type="button" onclick="my_Event_Page(10,'MyEventListDIV','myEventPageBtn','${USRID}')">Load More</button>
+					            										</c:if>
+					            										                
+					            										</c:otherwise>
+					            										</c:choose>
 					            										</c:otherwise>
 					            									
 					            									</c:choose>    							

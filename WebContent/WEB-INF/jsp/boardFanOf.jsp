@@ -73,7 +73,7 @@
                             <div class="col-md-12 noPadding" id="AllBoardAllFansList2">
 								<c:choose>
 										<c:when test="${empty UserProfileList} and ${empty BoardProfileList}">
-											<div>
+											<div style="color: red;">
 												No fans are there
 											</div>
 										</c:when>
@@ -86,7 +86,7 @@
 				                                </div>
 				                                </a>
 				                    				  <div class="media-body">
-				                                       <a> <h4 class="media-heading">${user.firstName}</h4></a>
+				                                       <a> <h4 class="media-heading">${user.fullName}</h4></a>
 				                                        <span class="date">${user.city}</span>
 				                                         <a class="btn   btn-default btn-sm  btn-sm  blockBtn "  id="becomeFan${user.userId}" onclick="FanAction('${BoradInfo.boardId}','${user.userId}','boardUnFanToBuddy','boardfanuser')">Un Fan</a>
 				                                         <a class="btn   btn-default btn-sm  btn-sm  blockBtn " style="display: none;" id="fan${user.userId}" >Un Fan success</a>                                

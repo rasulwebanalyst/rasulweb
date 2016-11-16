@@ -32,7 +32,16 @@ var formatAMPMTime = function(date) {
 	
 	}
 	
-	
+	function getDateInObject(timestamp)
+	{
+		
+		var date = new Date(timestamp);
+		var dateNew = new Date(date.getTime() + date.getTimezoneOffset()*60000);
+		var offset = new Date().getTimezoneOffset() * 60 * 1000;
+		var gettingFromServer= new Date(dateNew);
+		gettingFromServer = new Date(gettingFromServer.valueOf() - offset);
+		return formatAMPMTime(gettingFromServer); 
+	};
 	 
 </script>
         
@@ -75,7 +84,7 @@ var formatAMPMTime = function(date) {
 
                        </c:when>
                        <c:otherwise>
-						<table>
+						<table id="disputemanagement">
                        <thead> 
                         <tr>
                            <th style="width:110px;">Date (MM/DD/YYYY)</th>
@@ -159,7 +168,7 @@ var formatAMPMTime = function(date) {
                                        	
                                   
                             </div>
-            
+            <button class="btn btn-default dBtn pull-right lodbtn" onclick="loadMoreDetails()">LOAD MORE</button>
           	<input type="hidden" value="" id="hiddenId">
           </div>    
       </div>
@@ -175,6 +184,107 @@ var formatAMPMTime = function(date) {
    <!--Gallery-->
    
    <script src="${pageContext.request.contextPath }/js/jquery.colorbox.js"></script>
+   
+   <script>
+   var EndNode=0;
+   var loopNode=10;
+   function loadMoreDetails()
+   {
+  	 var boardid="${boardId}";
+  	 var endnode = EndNode + 10;
+  	 EndNode = EndNode + 10;
+  	 
+  	 var request={
+  			 boardId : boardid,
+  			 endNode : endnode
+  	 }
+  	 console.log(request);
+  	  $.ajax({
+  		 type : "post",
+  		 url:"${pageContext.request.contextPath}/loadMoreDisputeManagement",
+  		 data:JSON.stringify(request),
+  		 contentType:"application/json",
+  		 success:function(res)
+  		 {
+  			if(res.length != 0)
+  				{
+  				var htm='';
+  				for(var i in res)
+  					{
+  					
+  					var count= ++loopNode;
+  					
+  					
+  				htm+="<tr>";
+  				var dateNewObject = getDateInObject(res[i].gameDate);
+  				htm+="<td>"+dateNewObject+"</td>";	
+  				htm+="<td><a href='${pageContext.request.contextPath}/"+res[i].homeTeamName+"/board/"+res[i].homeTeamId+"'>"+res[i].homeTeamName+"</a></td>";
+  				htm+="<td><a href='${pageContext.request.contextPath}/"+res[i].awayTeamName+"/board/"+res[i].awayTeamId+"'>"+res[i].awayTeamName+"</a></td>";
+  				htm+="<td>"+res[i].groundName+"</td>";
+  				htm+="<td>"+res[i].tournamentName+"</td>";	
+  				
+  				
+  				//    Umpire
+  				
+  				htm+="<td> <div>";
+  				var umpire=res[i].umpireNamesList;
+  				if(umpire !=null){
+  					for(var j in umpire)
+  				{
+  					htm+="<span><a href='${pageContext.request.contextPath}/buddy/"+umpire[j].umpireName+"/"+umpire[j].umpireId+"'>"+umpire[j].umpireName+"</a>";
+  					if(j == umpire.length-1){}else{
+  						htm+=",";
+  					}
+  				htm+="</span>";
+  				}	
+  				}
+  				
+  				htm+="</div></td>";
+  				
+  				//    Scorer
+  				htm+="<td><div>";
+  				var scorer=res[i].scorerNamesList;
+  				if(scorer != null){
+  				for(var k in scorer)
+  					{
+  					htm+="<span><a href='${pageContext.request.contextPath}/buddy/"+scorer[k].scorerName+"/"+scorer[k].scorerId+"'>"+scorer[k].scorerName+"</a>";
+  				if(k == scorer.length-1){}else{htm+=",";}
+  				htm+="</span>";
+  					}}
+  				htm+="</div></td>";
+  				
+  				// tie win check
+  				
+  				
+                  if(res[i].statusOfMatch == "tie")
+                  	{
+                      htm+="<td align='center'><span class='text-danger'>Match Tied</span><br>";
+                  	}else{
+                  	htm+="<td align='center'><span class='text-danger'>"+res[i].winTeamName+" won</span><br>";	
+                  	}
+                      htm+="<a href='${pageContext.request.contextPath}/"+res[i].winTeamName+"/board/"+res[i].winTeamId+"'>"+res[i].winTeamName+"</a> : "+res[i].winTeamRuns+"/"+res[i].winTeamWickets+" in "+res[i].winTeamOvers+"<br>";
+  				    htm+="<a href='${pageContext.request.contextPath}/"+res[i].loseTeamName+"/board/"+res[i].loseTeamId+"'>"+res[i].loseTeamName+"</a> : "+res[i].loseTeamRuns+"/"+res[i].loseTeamWickets+" in "+res[i].loseTeamOvers+"</td>";
+  					
+  					
+  					htm+="<td align='center'><a href='#' onclick=showScoreCard('"+res[i].tournamentSchedulerId+"')><i class='fa fa-newspaper-o editIcon'></i></a></td>";
+  					htm+="<td align='center' id='winTeamId_"+count+"'>"+res[i].homeTeamPoints+"</td>";
+  					htm+="<td align='center' id='loseTeamId_"+count+"'>"+res[i].awayTeamPoints+"</td>";
+  					htm+="<td align='center' id='editButton_"+count+"'><a href='javascript:void(0)' onclick=editScoreCard('"+res[i].tournamentSchedulerId+"','"+count+"')><i class='fa fa-pencil editIcon'></i></a></td>";
+  					htm+="</tr>";
+  					}
+  				$("#disputemanagement").append(htm);
+  				
+  				}else{
+  					displaynotification("No More Data",1000);
+  				}
+  		 }
+  		 
+  	 }) 
+  	 
+  	 
+   }
+   
+   </script>
 		<script>
 			$(document).ready(function(){
 				//Examples of how to assign the Colorbox event to elements

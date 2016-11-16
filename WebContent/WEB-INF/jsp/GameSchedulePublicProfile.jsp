@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html lang="en">
 
 <head>
@@ -51,7 +52,7 @@ var formatAMPMTime = function(date) {
 	  hours = hours ? hours : 12; // the hour '0' should be '12'
 	  minutes = minutes < 10 ? '0'+minutes : minutes;
 	  hours = hours < 10 ? '0'+hours : hours ;
-	  var strTime = (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear();
+	  var strTime = (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear()+" "+ hours + ':' + minutes + ' ' + ampm;
 	  return strTime;
 	}
 	function test(id){
@@ -387,12 +388,28 @@ var formatAMPMTime = function(date) {
                           <%-- <td>${upcoming.gameDate}</td> --%>
                         <td><a href="${pageContext.request.contextPath}/${upcoming.homeTeamName}/board/${upcoming.homeTeamId}">${upcoming.homeTeamName}</a></td>
                           <td><a href="${pageContext.request.contextPath}/${upcoming.awayTeamName}/board/${upcoming.awayTeamId}">${upcoming.awayTeamName}</a></td>
-                          <td>${upcoming.groundName}</td>
+                          
+                          
+                          <c:choose>
+                          <c:when test="${upcoming.groundName ne null}">
+                          <td class="tdAlignLeft">${upcoming.groundName}</td>
+                          </c:when>
+                          <c:otherwise><td>-</td></c:otherwise>
+                          </c:choose>
+                          
+                          <%-- <td>${upcoming.groundName}</td> --%>
                           <td> <div >
+                           <c:choose>
+                          <c:when test="${fn:length(upcoming.umpireNamesList) gt 0}">
 														<c:forEach var="umpire"
 										items="${upcoming.umpireNamesList }" varStatus="loop">
 												<span><a href="${pageContext.request.contextPath}/buddy/${umpire.umpireName}/${umpire.umpireId}">${umpire.umpireName}</a><c:if test="${!loop.last}">,</c:if></span>		
 											</c:forEach>
+											</c:when>
+											<c:otherwise>
+											<span>-</span>
+											</c:otherwise>
+											</c:choose>
 														</div>
 											
 												</td> 
@@ -472,12 +489,28 @@ var formatAMPMTime = function(date) {
                           <%-- <td>${upcoming.gameDate}</td> --%>
                           <td><a href="${pageContext.request.contextPath}/${incomplete.homeTeamName}/board/${incomplete.homeTeamId}">${incomplete.homeTeamName}</a></td>
                           <td><a href="${pageContext.request.contextPath}/${incomplete.awayTeamName}/board/${incomplete.awayTeamId}">${incomplete.awayTeamName}</a></td>
-                          <td>${incomplete.groundName}</td>
+                          
+                          <c:choose>
+                          <c:when test="${incomplete.groundName ne null}">
+                          <td class="tdAlignLeft">${incomplete.groundName}</td>
+                          </c:when>
+                          <c:otherwise><td>-</td></c:otherwise>
+                          </c:choose>
+                          
+                          <%-- <td>${incomplete.groundName}</td> --%>
                           <td> <div >
+                           <c:choose>
+                          <c:when test="${fn:length(incomplete.umpireNamesList) gt 0}">
 														<c:forEach var="umpire"
 										items="${incomplete.umpireNamesList }" varStatus="loop">
 												<span><a href="${pageContext.request.contextPath}/buddy/${umpire.umpireName}/${umpire.umpireId}">${umpire.umpireName}</a><c:if test="${!loop.last}">,</c:if></span>		
 											</c:forEach>
+											</c:when>
+											<c:otherwise>
+											<span>-</span>
+											</c:otherwise>
+											
+											</c:choose>
 														</div>
 											
 												</td> 
@@ -555,23 +588,48 @@ var formatAMPMTime = function(date) {
                          <%-- <td>${completed.gameDate}</td> --%>
                         <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${inprogress.homeTeamName}/board/${inprogress.homeTeamId}">${inprogress.homeTeamName}</a></td>
                           <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${inprogress.awayTeamName}/board/${inprogress.awayTeamId}">${inprogress.awayTeamName}</a></td>
+                         
+                         <c:choose>
+                          <c:when test="${inprogress.groundName ne null}">
                           <td class="tdAlignLeft">${inprogress.groundName}</td>
+                          </c:when>
+                          <c:otherwise><td>-</td></c:otherwise>
+                          </c:choose>
+                         
+                         <%--  <td class="tdAlignLeft">${inprogress.groundName}</td> --%>
                           
                           <td class="tdAlignLeft">${inprogress.tournamentName}</td>
                           
                           <td class="tdAlignLeft"> <div >
+                          
+                           <c:choose>
+                          <c:when test="${fn:length(inprogress.umpireNamesList) gt 0}">
 									<c:forEach var="umpire"
 										items="${inprogress.umpireNamesList }" varStatus="loop">
 												<span><a href="${pageContext.request.contextPath}/buddy/${umpire.umpireName}/${umpire.umpireId}">${umpire.umpireName}</a><c:if test="${!loop.last}">,</c:if></span>		
-											</c:forEach></div>
+											</c:forEach>
+											</c:when>
+											<c:otherwise>
+											<span>-</span>
+											</c:otherwise>
+											</c:choose>
+											</div>
 												</td> 
 						
 						
 						<td class="tdAlignLeft"> <div>
+						
+						 <c:choose>
+                          <c:when test="${fn:length(inprogress.scorerNamesList) gt 0}">
                              <c:forEach var ="scorer" items="${inprogress.scorerNamesList}" varStatus="loop">
                                    <span><a href="${pageContext.request.contextPath}/buddy/${scorer.scorerName}/${scorer.scorerId}">
                                         ${scorer.scorerName}</a><c:if test="${!loop.last}">,</c:if></span>
                                         </c:forEach>
+                                        </c:when>
+                                        <c:otherwise>
+                                        <span>-</span>
+                                        </c:otherwise>
+                                        </c:choose>
                                         </div></td>			
 						
                           
@@ -645,23 +703,47 @@ var formatAMPMTime = function(date) {
                          <%-- <td>${completed.gameDate}</td> --%>
                      <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${completed.homeTeamName}/board/${completed.homeTeamId}">${completed.homeTeamName}</a></td>
                           <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${completed.awayTeamName}/board/${completed.awayTeamId}">${completed.awayTeamName}</a></td>
+                          
+                          <c:choose>
+                          <c:when test="${completed.groundName ne null}">
                           <td class="tdAlignLeft">${completed.groundName}</td>
+                          </c:when>
+                          <c:otherwise><td>-</td></c:otherwise>
+                          </c:choose>
+                          <%-- <td class="tdAlignLeft">${completed.groundName}</td> --%>
                           
                           <td class="tdAlignLeft">${completed.tournamentName}</td>
                           
                           <td class="tdAlignLeft"> <div >
+                          
+                          <c:choose>
+                          <c:when test="${fn:length(completed.umpireNamesList) gt 0}">
 									<c:forEach var="umpire"
 										items="${completed.umpireNamesList }" varStatus="loop">
 												<span><a href="${pageContext.request.contextPath}/buddy/${umpire.umpireName}/${umpire.umpireId}">${umpire.umpireName}</a><c:if test="${!loop.last}">,</c:if></span>		
-											</c:forEach></div>
+											</c:forEach>
+											</c:when>
+											<c:otherwise>
+											<span>-</span>
+											</c:otherwise>
+											</c:choose>
+											</div>
 												</td> 
 						
 						
 						<td class="tdAlignLeft"> <div>
+						<c:choose>
+                          <c:when test="${fn:length(completed.scorerNamesList) gt 0}">
+                          
                              <c:forEach var ="scorer" items="${completed.scorerNamesList}" varStatus="loop">
                                    <span><a href="${pageContext.request.contextPath}/buddy/${scorer.scorerName}/${scorer.scorerId}">
                                         ${scorer.scorerName}</a><c:if test="${!loop.last}">,</c:if></span>
                                         </c:forEach>
+                                        </c:when>
+                                        <c:otherwise>
+                                        <span>-</span>
+                                        </c:otherwise>
+                                        </c:choose>
                                         </div></td>			
 						
                           
@@ -1074,10 +1156,16 @@ var dateString = null;
    				htmlco+="<td>"+dateNewObject+"</td>";
    				htmlco+="<td><a href='${pageContext.request.contextPath}/"+upcomminglist[i].homeTeamName+"/board/"+upcomminglist[i].homeTeamId+"'>"+upcomminglist[i].homeTeamName+"</a></td>";
    				htmlco+="<td><a href='${pageContext.request.contextPath}/"+upcomminglist[i].awayTeamName+"/board/"+upcomminglist[i].awayTeamId+"'>"+upcomminglist[i].awayTeamName+"</a></td>";
-   				htmlco+="<td>"+upcomminglist[i].groundName+"</td>";
+   				
+   				if(upcomminglist[i].groundName == "" || upcomminglist[i].groundName == null)
+   				{
+   					htmlco+="<td>-</td>";
+   				}else{
+   				htmlco+="<td>"+upcomminglist[i].groundName+"</td>";}
    				htmlco+="<td> <div >";
    				
    				var upcommingumpire=upcomminglist[i].umpireNamesList;
+   				if(upcommingumpire.length > 0){
    				for(var j=0; j < upcommingumpire.length;j++)
    				{
    				htmlco+="<span><a href='${pageContext.request.contextPath}/buddy/"+upcommingumpire[j].umpireName+"/"+upcommingumpire[j].umpireId+"'>"+upcommingumpire[j].umpireName+"</a>";
@@ -1087,7 +1175,10 @@ var dateString = null;
    				} else {
 			        	htmlco += ',</span>';
 			        } 
-   				}
+   				}}else
+   					{
+   					htmlco+="<span>-</span>";
+   					}
    				htmlco+="</div></td>";
    				htmlco+="<td>"+upcomminglist[i].tournamentName+"</td>";
    				htmlco+="<td><span class='text-success'>Active</span></td>";
@@ -1121,16 +1212,22 @@ var dateString = null;
    					htmlco1+="<td>"+dateNewObject+"</td>";
    					htmlco1+="<td><a href='${pageContext.request.contextPath}/"+incomepltelist[i].homeTeamName+"/board/"+incomepltelist[i].homeTeamId+"'>"+incomepltelist[i].homeTeamName+"</a></td>";
    					htmlco1+="<td><a href='${pageContext.request.contextPath}/"+incomepltelist[i].awayTeamName+"'/board/"+incomepltelist[i].awayTeamId+"'>"+incomepltelist[i].awayTeamName+"</a></td>";
-   				    htmlco1+="<td>"+incomepltelist[i].groundName+"</td>";
+   				    
+   					if(incomepltelist[i].groundName == "" || incomepltelist[i].groundName == null)
+   	   				{
+   						htmlco1+="<td>-</td>";
+   	   				}else{
+   					htmlco1+="<td>"+incomepltelist[i].groundName+"</td>";}
    				    htmlco1+="<td> <div>";
    				    var incompleteumpire=incomepltelist[i].umpireNamesList;
+   				 if(incompleteumpire.length > 0){
    				    for(var j=0;j<incompleteumpire.length;j++){
    				    htmlco1+="<span><a href='${pageContext.request.contextPath}/buddy/"+incompleteumpire[j].umpireName+"/"+incompleteumpire[j].umpireId+"'>"+incompleteumpire[j].umpireName+"</a>";
    				 if(j === incompleteumpire.length-1) {  
   			        } else {
   			        	htmlco1 += ',</span>';
   			        } 
-   				    }
+   				    }}else{ htmlco1+="<span>-</span>";}
    				    htmlco1+="</div></td> ";
    				     htmlco1+="<td>"+incomepltelist[i].tournamentName+"</td>";
    				    htmlco1+="<td><span class='text-success'>Active</span></td>";
@@ -1165,27 +1262,36 @@ var dateString = null;
 					htmlco2+="<td>"+dateNewObject+"</td>";
 					htmlco2+="<td class='tdAlignLeft'><a href='${pageContext.request.contextPath}/"+inprogresslist[i].homeTeamName+"/board/"+inprogresslist[i].homeTeamId+"'>"+inprogresslist[i].homeTeamName+"</a></td>";
 					htmlco2+="<td class='tdAlignLeft'><a href='${pageContext.request.contextPath}/"+inprogresslist[i].awayTeamName+"'/board/"+inprogresslist[i].awayTeamId+"'>"+inprogresslist[i].awayTeamName+"</a></td>";
-				    htmlco2+="<td class='tdAlignLeft'>"+inprogresslist[i].groundName+"</td>";
+				    
+					if(inprogresslist[i].groundName == "" || inprogresslist[i].groundName == null)
+   	   				{
+						htmlco2+="<td>-</td>";
+   	   				}else{
+					htmlco2+="<td class='tdAlignLeft'>"+inprogresslist[i].groundName+"</td>";}
 				    htmlco2+="<td class='tdAlignLeft'>"+inprogresslist[i].tournamentName+"</td>";
 				    htmlco2+="<td class='tdAlignLeft'> <div>";
 				    var inprogressumpire=inprogresslist[i].umpireNamesList;
+				    if(inprogressumpire.length > 0){
 				    for(var j=0;j<inprogressumpire.length;j++){
 				    htmlco2+="<span><a href='${pageContext.request.contextPath}/buddy/"+inprogressumpire[j].umpireName+"/"+inprogressumpire[j].umpireId+"'>"+inprogressumpire[j].umpireName+"</a>";
 				 if(j === inprogressumpire.length-1) {  
 			        } else {
 			        	htmlco2 += ',</span>';
 			        } 
+				    }}else{
+				    	htmlco2+="<span>-</span>";
 				    }
 				    htmlco2+="</div></td> ";
 				    htmlco2+="<td class='tdAlignLeft'> <div>";
 				    var inprogressscorer=inprogresslist[i].scorerNamesList;
+				    if(inprogressscorer.length > 0){
 				    for(var j=0;j<inprogressscorer.length;j++){
 				    htmlco2+="<span><a href='${pageContext.request.contextPath}/buddy/"+inprogressscorer[j].scorerName+"/"+inprogressscorer[j].scorerId+"'>"+inprogressscorer[j].scorerName+"</a>";
 				 if(j === inprogressscorer.length-1) {  
 			        } else {
 			        	htmlco2 += ',</span>';
 			        } 
-				    }
+				    }}else{htmlco2+="<span>-</span>";}
 				    htmlco2+="</div></td> ";
 				    htmlco2+="<td><span class='text-success'>Active</span></td>";
 				    htmlco2+="<td align='center'><input type='button' value='Enter Scorecard' onclick=DeleteScoreCard('"+boardid+"','"+inprogresslist[i].tournamentId+"','"+inprogresslist[i].tournamentSchedulerId+"','"+inprogresslist[i].homeTeamId+"','"+inprogresslist[i].awayTeamId+"','"+inprogresslist[i].dateString+"','"+inprogresslist[i].leagueCreatedBy+"')></td>";
@@ -1218,27 +1324,38 @@ var dateString = null;
 					htmlco3+="<td>"+dateNewObject+"</td>";
 					htmlco3+="<td class='tdAlignLeft'><a href='${pageContext.request.contextPath}/"+completedlist[i].homeTeamName+"/board/"+completedlist[i].homeTeamId+"'>"+completedlist[i].homeTeamName+"</a></td>";
 					htmlco3+="<td class='tdAlignLeft'><a href='${pageContext.request.contextPath}/"+completedlist[i].awayTeamName+"'/board/"+completedlist[i].awayTeamId+"'>"+completedlist[i].awayTeamName+"</a></td>";
-				    htmlco3+="<td class='tdAlignLeft'>"+completedlist[i].groundName+"</td>";
+				   
+					if(completedlist[i].groundName == "" || completedlist[i].groundName == null)
+   	   				{
+						htmlco3+="<td>-</td>";
+   	   				}else{
+					htmlco3+="<td class='tdAlignLeft'>"+completedlist[i].groundName+"</td>";}
 				    htmlco3+="<td class='tdAlignLeft'>"+completedlist[i].tournamentName+"</td>";
 				    htmlco3+="<td class='tdAlignLeft'> <div>";
 				    var completeumpire=completedlist[i].umpireNamesList;
+				    if(completeumpire.length > 0){
 				    for(var j=0;j<completeumpire.length;j++){
 				    htmlco3+="<span><a href='${pageContext.request.contextPath}/buddy/"+completeumpire[j].umpireName+"/"+completeumpire[j].umpireId+"'>"+completeumpire[j].umpireName+"</a>";
 				 if(j === completeumpire.length-1) {  
 			        } else {
 			        	htmlco3 += ',</span>';
 			        } 
-				    }
+				    }}else{htmlco3+="<span>-</span>";}
 				    htmlco3+="</div></td> ";
 				    htmlco3+="<td class='tdAlignLeft'> <div>";
 				    var completescorer=completedlist[i].scorerNamesList;
+				    if(completescorer != null)
+			    	{
 				    for(var j=0;j<completescorer.length;j++){
 				    htmlco3+="<span><a href='${pageContext.request.contextPath}/buddy/"+completescorer[j].scorerName+"/"+completescorer[j].scorerId+"'>"+completescorer[j].scorerName+"</a>";
-				 if(j === inprogressscorer.length-1) {  
+				 if(j === completescorer.length-1) {  
 			        } else {
 			        	htmlco3+= ',</span>';
 			        } 
-				    }
+				    }}else
+		    		{
+			    		htmlco3+="<span>-</span>";
+			    		}
 				    htmlco3+="</div></td> ";
 				   // htmlco3+="<td><span class='text-success'>Active</span></td>";
 				  //  htmlco3+="<td align='center'><span class='text-danger'>"+completedlist[i].winTeamName+" won</span><br>";

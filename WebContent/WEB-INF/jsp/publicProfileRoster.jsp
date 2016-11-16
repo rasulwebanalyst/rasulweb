@@ -503,7 +503,7 @@
                      	<div class="col-md-12 statusUpdateBox whiteBox">
                             <b>Status update</b>
                             <!-- <a href="#" id="upload_link" class="pull-right"><i class="fa fa-picture-o"></i> Add Video/ Photos</a> -->
-                            <a href="#" class="pull-right" id="upload_link" title="Please upload below 2 MB file"><i class="fa fa-picture-o" ></i> Add photo</a>
+                            <a href="#" class="pull-right" id="upload_link" title="Please upload below 2 MB file"><i class="fa fa-picture-o" ></i> Add photos</a>
                         	
                         	<div id="fileDiv">
                            	 <input id="upload0" type="file" style="visibility: hidden;" name="file" onchange="readURL(this)" />

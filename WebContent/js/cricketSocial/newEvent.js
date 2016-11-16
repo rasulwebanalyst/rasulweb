@@ -38,7 +38,7 @@ function eventfun(){
 
 function my_Event_Page(startNode,display,pageCall,userID){
 	
-	alert("c");
+	/*alert("c");*/
 	var eventLogUserId=$('#eventLogUserId').val();
 	var eventLogUserImg=$('#eventLogUserImg').val();
 	var eventLogUserName=$('#eventLogUserName').val();

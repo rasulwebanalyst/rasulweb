@@ -361,7 +361,7 @@ function getAddress1(e,addr)
                                   </div>
                                  
                                   <div class="col-md-4">
-                                  	<label for="email">Address Line 2</label> <input type="text" class="form-control" placeholder="" id="address2" name="address2">
+                                  	<label for="email">Address Line 1</label> <input type="text" class="form-control" placeholder="" id="address2" name="address2">
                                   </div>
                                   </div>
                                   
@@ -423,7 +423,7 @@ function getAddress1(e,addr)
                              <div id="map_canvas" style="width:800px;height:380px;"></div> 
                             
                               <div class="col-md-12 centerbtns">
-                              <input type="button" class="btn btn-default dBtn" onclick="submitFunction()" value="Submit">
+                              <input id="Submitfunction1" type="button" class="btn btn-default dBtn" onclick="submitFunction()" value="Submit">
                               </div>
                     </div>
                 </div>
@@ -587,6 +587,9 @@ function submitFunction(){
 			}
 		},
 	}).form()){
+		
+		$("#Submitfunction1").prop('disabled', true);
+		
 		var groundName = $("#groundName").val();
 		var address1 = $("#autocomplete").val();
 		var address2 = $("#address2").val();

@@ -66,6 +66,17 @@ public class TournamentScheduler {
 	
 	private int tournamentSelectOption;
 	
+	
+	private String matchStatus;
+	
+	
+	
+	public String getMatchStatus() {
+		return matchStatus;
+	}
+	public void setMatchStatus(String matchStatus) {
+		this.matchStatus = matchStatus;
+	}
 	public String getTournamentSchedulerId() {
 		return tournamentSchedulerId;
 	}

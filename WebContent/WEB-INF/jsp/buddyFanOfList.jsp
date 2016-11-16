@@ -98,7 +98,7 @@ return result;
           
           
           			<%-- <input type="hidden" value="${BoradInfo.boardId}" id="boardId" name="boardId"> --%>
-		          <h1 class="">Fans</h1>
+		          <h1 class="">Fan Of</h1>
           	
                         
                     <div role="tabpanel" class="tabpanel">

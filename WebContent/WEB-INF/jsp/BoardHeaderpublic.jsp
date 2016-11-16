@@ -288,8 +288,9 @@
     									}
     										if(buddyID!=users[i].userId){
     											
-    											htm +='<li tabindex="'+sequence+'" class="selection-item">'
-    					                            +'<div class="media">'
+    											htm +='<li tabindex="'+sequence+'" class="selection-item">';
+    											htm +='<input type="hidden" value="'+ctx+'/buddy/'+users[i].firstName.trim()+'/'+users[i].userId.trim()+'" name="url" id="url'+sequence+'">';
+    											htm    +='<div class="media">'
     					                            +'<div class="media-left">'
     					                            +'<a href="'+ctx+'/buddy/'+users[i].firstName.trim()+'/'+users[i].userId.trim()+'">';
     					                          
@@ -325,8 +326,9 @@
     										for(var j in boards){
     											sequence=parseInt(sequence)+parseInt(1);
     												//if(boardId!=boards[j].boardId){
-    													htm +='<li tabindex="'+sequence+'" class="selection-item">'
-    							                            +'<div class="media">'
+    													htm +='<li tabindex="'+sequence+'" class="selection-item">';
+    													htm +='<input type="hidden" value="'+ctx+'/'+boards[j].boardName+'/board/'+boards[j].boardId+'" name="url" id="url'+sequence+'">';
+    													htm +='<div class="media">'
     							                            +'<div class="media-left">'
     							                            +'<a href="'+ctx+'/'+boards[j].boardName+'/board/'+boards[j].boardId+'">';  							                          
 		  							                          if(boards[j].boardImageURL != null && boards[j].boardImageURL!=""){

@@ -39,7 +39,16 @@
       <div class="col-md-10">
       		<div class="col-md-12 whiteBox">
 		          <!-- <h1 class="">Umpire List  <button type="submit" class="btn btn-default dBtn pull-right" onclick="createUmpireFunction()">Create Umpire</button></h1> -->
+                  <h1 class="">Umpire List  
                   
+                  <c:forEach items="${BoradInfo.boardCoordinatorList}" var="coordinator">
+                  <c:if test="${coordinator.coOrdinatorId eq USRID}">
+                  <c:if test="${coordinator.coOrdinatorTypeId eq 15}">
+                  <a href="${pageContext.request.contextPath}/Create-Umpire/boardId/${boardId}" class="btn btn-default dBtn pull-right">Create Umpire</a>
+                 </c:if>
+                  </c:if>
+                  </c:forEach>
+                  </h1>
                   
                   <div class="form-group col-md-12 noPadding">
                   <c:choose>
@@ -79,6 +88,17 @@
                                             <th>Work Phone</th>
                                             <th>Cell Phone</th>
                                             <th>E-mail</th>
+                                            
+                                            <c:forEach items="${BoradInfo.boardCoordinatorList}" var="coordinator">
+                  <c:if test="${coordinator.coOrdinatorId eq USRID}">
+                  <c:if test="${coordinator.coOrdinatorTypeId eq 15}">
+                  
+                  <th class="tdBtns">Action</th>
+                  
+                 </c:if>
+                  </c:if>
+                  </c:forEach>
+                                            
                                             <!-- <th class="tdBtns">Action</th> -->
                                             
                                             </tr>
@@ -87,7 +107,7 @@
                                            <tbody>
                                           <c:forEach var="brdUmpire" items="${BoardUmpireList}" varStatus="index">
                                            <tr>
-                                           <td style="text-align: center !important;">{index.count}</td>
+                                           <td style="text-align: center !important;">${index.count}</td>
                                           	<td><a href="${pageContext.request.contextPath}/buddy/${brdUmpire.umpireName}/${brdUmpire.umpireId}">${brdUmpire.umpireName}</a></td>
                                             <td>
                                                 <div class="tdStars">
@@ -110,6 +130,24 @@
                                                 
                                                 
                                             </td> --%>
+                                            
+                                             <td class="alignCenter">
+                                             
+                                              <c:forEach items="${BoradInfo.boardCoordinatorList}" var="coordinator">
+							                  <c:if test="${coordinator.coOrdinatorId eq USRID}">
+							                  <c:if test="${coordinator.coOrdinatorTypeId eq 15}">
+							                  
+							                   <a href="#" title="Edit" ><i onclick="editUmpireList('${brdUmpire.umpireId}','${brdUmpire.boardId}')" class="fa fa-pencil editIcon"></i></a> 
+							                  <a href="#" title="Delete" ><i onclick="deleteUmpireList('${brdUmpire.umpireId}','${brdUmpire.boardId}')" class="fa fa-trash-o deleteIcon"></i></a>
+							                  
+							                 </c:if>
+							                  </c:if>
+							                  </c:forEach>
+                                             
+                                             
+                                             </td>
+                                            
+                                            
                                             </tr>
                                             
                                             </c:forEach>
@@ -200,7 +238,7 @@
    <script>
    function editUmpireList(id,boardId){
 	   //alert(id);
-	   window.location.href = "${pageContext.request.contextPath}/EditUmpirePage/umpireId/"+id+"/boardId/"+boardId;
+	   window.location.href = "${pageContext.request.contextPath}/CoordinatorEditUmpirePage/umpireId/"+id+"/boardId/"+boardId;
    }
    
    function deleteUmpireList(id,boardId){
@@ -215,7 +253,7 @@
 		 contentType:"application/json",
 		 success:function(res){
 			 //alert(res);
-			 window.location.href = "${pageContext.request.contextPath}/UmpireList/boardId/"+boardId;
+			 window.location.href = "${pageContext.request.contextPath}/umpire-list/"+boardId;
 			 
 			/*  if(res.length != 0 ){
 			var	htmlContent = '';

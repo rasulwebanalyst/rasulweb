@@ -70,7 +70,7 @@ function boardFansList()
 								nextindicate=parseInt(nextindicate)+parseInt(1);
 						 
 						}else{
-							htm +='Records not found';
+							htm +='No fans';
 						}
 					
 					if(nextindicate!=0){
@@ -81,7 +81,7 @@ function boardFansList()
 					
 				}else{
 					//alert('records not found');
-					htm +='Records not found';
+					htm +='No fans';
 				}
 			
 					$('#BoardFansListDIV2').html(htm);
@@ -168,11 +168,11 @@ function userFansList()
 						
 
 						}else{
-							htm +='Records not found';
+							htm +='No fans';
 						}
 				}else{
 					//alert('records not found');
-					htm +='Records not found';
+					htm +='No fans';
 				}
 			
 					$('#BoardUserFanListDIv2').html(htm);
@@ -239,11 +239,11 @@ function buddyPublicProfileboardFansList()
 								}
 						 
 						}else{
-							htm +='Records not found';
+							htm +='No fans';
 						}
 				}else{
 					//alert('records not found');
-					htm +='Records not found';
+					htm +='No fans';
 				}
 			
 					$('#BoardFansListDIV2').html(htm);
@@ -309,11 +309,11 @@ function userFansList2()
 							}
 
 						}else{
-							htm +='Records not found';
+							htm +='No fans';
 						}
 				}else{
 					//alert('records not found');
-					htm +='Records not found';
+					htm +='No fans';
 				}
 			
 					$('#BoardUserFanListDIv2').html(htm);
@@ -412,7 +412,7 @@ function getallFanlist()
                               htm += '<h4 class="media-heading">'+res.boardProfileList[i].boardName+'</h4>';
                                htm += '<span class="date">'+res.boardProfileList[i].city+'</span>';                                        
                              //  htm +=  '<a class="btn   btn-default btn-sm  btn-sm  blockBtn " onclick=FanAction("'+userId+'","'+res.boardProfileList[i].boardId+'","buddyUnFanBoard","boardfanboard") >Un Fan</a>';                                    
-                               if(res.userProfileList[i].createdBy!=userId){
+                               if(res.boardProfileList[i].createdBy!=userId){
                                htm +=  '<a class="btn   btn-default btn-sm  btn-sm  blockBtn " onclick=FanAction("'+userId+'","'+res.boardProfileList[i].boardId+'",'+buddyUnFanToBoard+','+buddyUnFanToBoard+') >Un Fan</a>';
                                }
                                htm += '</div>';
@@ -434,12 +434,12 @@ function getallFanlist()
 					
 						
 						}else{
-							htm +='Records not found';
+							htm +='No fans';
 							 htm2 +='';
 						}
 				}else{
 					//alert('records not found');
-					htm +='Records not found';
+					htm +='No fans';
 					 htm2 +='';
 				}
 			
@@ -516,11 +516,11 @@ function getallFanlist2()
 						
 						
 						}else{
-							htm +='Records not found';
+							htm +='No fans';
 						}
 				}else{
 					//alert('records not found');
-					htm +='Records not found';
+					htm +='No fans';
 				}
 			
 					$('#AllBoardAllFansList2').html(htm);
@@ -539,10 +539,12 @@ function getallFanlist2()
 function getallFanlistbypage(category,startNode,display,pageCall)
 {
 	
+	var endnode=10+startNode;
+	
 	var board={
 			fanType : category,
 			startNode : startNode,
-			endNode : 10 
+			endNode : 10
 			
 			
 	};
@@ -631,6 +633,8 @@ function getallFanlistbypage(category,startNode,display,pageCall)
 							   htm2 ='<a class="btn btn-default dBtn pull-right lodbtn" href="javascript:getallFanlistbypage('+category2+','+page+','+display2+','+pageCall2+')">more records</a>';
 						   }else{
 							   htm2 +='';
+							   displaynotification('No more records',1000);
+							   
 						   }
 							   
 						
@@ -729,6 +733,7 @@ function getboardFanlistbypage(category,startNode,display,pageCall)
 							   htm2 ='<a class="btn btn-default dBtn pull-right lodbtn" href="javascript:getboardFanlistbypage('+category2+','+page+','+display2+','+pageCall2+')">more records</a>';
 						   }else{
 							   htm2 +='';
+							   displaynotification('No more records',1000);
 						   }
 							   
 						
@@ -826,6 +831,7 @@ function getUserFanlistbypage(category,startNode,display,pageCall)
 							   htm2 ='<a class="btn btn-default dBtn pull-right lodbtn" href="javascript:getUserFanlistbypage('+category2+','+page+','+display2+','+pageCall2+')">more records</a>';
 						   }else{
 							   htm2 +='';
+							   displaynotification('No more records',1000);
 						   }
 							   
 						

@@ -132,6 +132,16 @@ return result;
 	                                  <div class="media-body">
 	                                    <h4 class="media-heading">${feed.postedByName}</h4>
 		                                    <div class="headRight">
+		                                    
+		                                     <c:choose>
+		                                    		<c:when test="${feed.postedBy eq USRID}">
+		                                    			<span class="trash-holder" onclick="feedDelete('${feed.feedId}')" title="Delete"><i class="fa fa-trash trash"></i> </span>
+		                                    		</c:when>
+		                                    		<c:otherwise>
+		                                    			<span class="trash-holder" onclick="feedSpam('${feed.feedId}')" title="Report spam"><i class="fa fa-ban"></i> </span>
+		                                    		</c:otherwise>
+		                                    	</c:choose>
+		                                    
 		                                    	<span id="HitCountDIv${feed.feedId}"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" >${feed.feedHitCount}</span><span id="commentCount${feed.feedId}" onclick="getAllComments('${feed.feedId}')"><i class="fa fa-commenting-o"></i>${feed.feedCommentCount}</span>
 		                                    </div>
 	                                    

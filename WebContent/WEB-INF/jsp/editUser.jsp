@@ -196,7 +196,7 @@ var imageValidate=1;
                              
                              
                               <%-- <input type="text" class="form-control tcol1 number" placeholder="" id="countryCode" name="countryCode" value="${UserProfileOBJ.countryCode}"> --%>
-                                        <input type="text" class="form-control tcol3 number" style="width:54%" placeholder="" id="phoneNumber" name="phoneNumber" value="${UserProfileOBJ.phoneNumber eq '0' ? '':UserProfileOBJ.phoneNumber}">
+                                        <input type="text" class="form-control tcol3 number" style="width:54%" placeholder="" id="phoneNumber" name="phoneNumber" value="${UserProfileOBJ.phoneNumber eq '0' ? '':UserProfileOBJ.phoneNumber}" onkeypress="return maxNumber(event)">
                              
                               
                               <div style="color: red;" id="errorcountryCode">
@@ -230,7 +230,7 @@ var imageValidate=1;
                               
                               </div> --%>
                               
-                            <div class="col-md-4"><label for="email"><span></span>Place Of Birth</label> 
+                            <div class="col-md-4"><label for="email"><span></span>Place of Birth</label> 
 					
 					    <div id="locationField">
    							 <input class="form-control" id="placeOfBirth" name="placeOfBirth" placeholder="" onFocus="geolocate()" type="text" value="${UserProfileOBJ.placeOfBirth}"></input>
@@ -243,7 +243,7 @@ var imageValidate=1;
                             <div class="col-md-12 noPadding">
                              <%--  <div class="col-md-4"><label for="email">Languages known</label> <input type="text" class="form-control" placeholder="" id="userLanguageMapString" name="userLanguageMapString" value="${strLanguage}"></div> --%>
                               <!-- <div class="col-md-4"><label for="email">Places Lived</label> <input type="text" class="form-control" placeholder="" onfocus="geolocate()" id="placesMapString" name="placesMapString"></div> -->
-                              <div class="col-md-4"><label for="email"><span>*</span>Place Living</label> 
+                              <div class="col-md-4"><label for="email"><span>*</span>Place of Living</label> 
 							                          
                               
                               <!-- <input type="text" class="form-control" placeholder="" id=""> -->
@@ -251,7 +251,7 @@ var imageValidate=1;
                               <div id="locationField">
      							 <input class="form-control" id="autocomplete" name="autocomplete" placeholder="" onFocus="geolocate()" type="text" value="${UserProfileOBJ.city}"></input>
    							 </div>
-    						<input type="hidden" id="latlang" name="latLang" value="">
+    						<!-- <input type="hidden" id="latlang" name="latLang" value=""> -->
                               
                  </div>
                  <div class="col-md-4"><label for="email">Address 1</label> <input type="text" class="form-control" placeholder="" id="address1" name="address1" value="${UserProfileOBJ.address1}"></div>
@@ -654,6 +654,22 @@ var imageValidate=1;
     
     
    <script>
+   
+   
+   
+   function maxNumber(evt) {
+	    
+	   var number=$("#phoneNumber").val();
+	   if(number.length >= 15)
+		   {
+		   return false;
+		   }
+	   
+	    return true;
+	}
+   
+   
+   
 	function userprofile(e){
 		
 		//alert("inside the function login validation----");

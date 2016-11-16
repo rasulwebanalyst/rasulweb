@@ -173,7 +173,8 @@ function matchStart(homeTeamId,awayTeamId){
 			htmlContent +='<option value="0">Select Player</option>';
 			htmlContent1 +='<option value="0">Select Player</option>';
 			for(var i =0;i<firstTeamPlayersId.length;i++ ){
-				//console.log("asa"+firstTeamPlayersId[i]);
+				console.log("asa"+firstTeamPlayersId[i]);
+				console.log("asa"+JSON.stringify(firstTeamPlayersId[i]));
 				htmlContent += '<option value="'+firstTeamPlayersId[i].userId+'">'+firstTeamPlayersId[i].userProfile.fullName+'</option>';
 			}
 			

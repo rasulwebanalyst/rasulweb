@@ -520,7 +520,7 @@
 										<td><a href="${pageContext.request.contextPath}/${bowling.awayTeamName}/board/${bowling.awayTeamId}">${bowling.awayTeamName}</a></td>
                                     	<td>${bowling.tournamentName}</td>
                                         
-                                        <td>${bowling.leagueBoardName}</td>
+                                        <td><a href="${pageContext.request.contextPath}/${bowling.leagueBoardName}/board/${bowling.leagueBoardId}">${bowling.leagueBoardName}</a></td>
                                        
                                         <td>${bowling.bowlerovers}</td>
                                         <td>${bowling.maidenOvers}</td>

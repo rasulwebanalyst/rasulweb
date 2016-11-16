@@ -249,7 +249,7 @@ overflow-y: auto !important;
 					            										
 					            										</c:when>
 					            										<c:otherwise>
-					            										<c:if test="${fn:length(MyEvents.upcomingCreatedEventList) >8}">
+					            										<c:if test="${fn:length(MyEvents.upcomingCreatedEventList) > 8}">
 					            											      <button class="btn dBtn pull-right btnalian1" type="button" onclick="my_Event_Page(10,'MyEventListDIV','myEventPageBtn','${USRID}')">Load More</button>
 					            										</c:if>
 					            										                

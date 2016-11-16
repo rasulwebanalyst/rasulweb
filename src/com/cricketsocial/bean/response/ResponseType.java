@@ -284,9 +284,19 @@ public class ResponseType {
 	 
 	 private PlayerRestriction playesrRestriction;
 	 
+	 private String createScheduleResponse;
+	 
 	 
 	 
 	
+	public String getCreateScheduleResponse() {
+		return createScheduleResponse;
+	}
+
+	public void setCreateScheduleResponse(String createScheduleResponse) {
+		this.createScheduleResponse = createScheduleResponse;
+	}
+
 	public String getStatusMsg() {
 		return statusMsg;
 	}

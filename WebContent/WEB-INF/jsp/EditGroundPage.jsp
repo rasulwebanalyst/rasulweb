@@ -428,7 +428,7 @@ function GetLocation() {
                                   </div>
                                  
                                   <div class="col-md-4">
-                                 	 <label for="email"><span>*</span>Address Line 1</label> 
+                                 	 <label for="email"><span>*</span>Place of Ground</label> 
                                  	 
                                  	 <div id="locationField">
      							 <input class="form-control" id="autocomplete" name="autocomplete" value="${groundDetails.address1}" placeholder="" onFocus="geolocate()" type="text" onkeyup="checkValidation()" onblur="checkValidation()" ></input>
@@ -438,7 +438,7 @@ function GetLocation() {
                                   </div>
                                  
                                   <div class="col-md-4">
-                                  	<label for="email">Address Line 2</label> 
+                                  	<label for="email">Address Line 1</label> 
                                   	
                                   	
                                   	

@@ -155,7 +155,7 @@ return result;
                      
                      	<div class="col-md-12 statusUpdateBox whiteBox">
                      	<div id="fileDiv">
-                           	 <input id="upload0" type="file" style="visibility: hidden;" name="file" onchange="readURL(this)" />
+                           	 <input id="upload0" type="file" style="visibility: hidden;" name="file" onchange="readURL(this); this.value=null;return false;" />
                             </div>
                             <b>Status update</b>
                             <a href="#" class="pull-right" id="upload_link"><i class="fa fa-picture-o"></i> Add photos</a>
@@ -495,7 +495,7 @@ function readURL(input) {
     	        	
     	        	
     	        	$('.uploadedFiles').append(html);
-    	        	 var filehtml="<input id='upload"+fileTextBoxLength+"' type='file' style='display:none;' name='file' onchange='readURL(this)' />";
+    	        	 var filehtml="<input id='upload"+fileTextBoxLength+"' type='file' style='display:none;' name='file' onchange='readURL(this); this.value=null;return false;' />";
     	             $('#fileDiv').append(filehtml);
     				
     				
@@ -514,7 +514,7 @@ function readURL(input) {
 }
 
 function removeFeedImage(elem,fileLength){
-	alert("removing current one");
+	/* alert("removing current one"); */
 	$(elem).parent().remove();
 	$('#upload'+fileLength).remove();
 	if(feedImagesArray != null){

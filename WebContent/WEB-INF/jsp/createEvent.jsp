@@ -208,6 +208,7 @@ $(document).ready(function (){
                     <div class="form-group multiSelect" id="roasterListDiv" style="display: none;">
                               <label class="fomlabel" for="r1">Roster</label>
                             <input type="text" placeholder="search buddies" class="form-control tbox fomtexbox" id="roastersearchfield" name="roastersearchfield">
+                          	<label  id="Roastervalidation" class="error" style="display: none">Please select the Roaster.</label>
                           	<input type="hidden" name="arrayRoasterIds" id="arrayRoasterIds">
                                 <div>                                	
                                 </div>
@@ -345,7 +346,10 @@ $(function(){
 	    			}else{
 	    				displaynotification('Already exist',2000);
 	    			}
-	    		
+	    		if(arrroaster.length!=0)
+                {
+	    		$("#Roastervalidation").hide();
+                }
 	    		
 	    	},
 	    	preventDuplicates: true,
@@ -483,6 +487,21 @@ function submiitingForm(){
 			}else
 				{
 				$("#buddyvalidation").hide();
+				}
+		
+		
+		}
+		
+		/* Roaster */
+		if(document.getElementById('Roaster').checked)
+		{
+		if(arrroaster.length==0)
+             {
+			 $("#Roastervalidation").show(); 
+			return;
+			}else
+				{
+				$("#Roastervalidation").hide();
 				}
 		
 		

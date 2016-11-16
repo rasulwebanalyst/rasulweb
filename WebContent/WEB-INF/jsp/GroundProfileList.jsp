@@ -60,6 +60,16 @@
       <div class="col-md-10">
       		<div class="col-md-12 whiteBox">
 		          <%-- <h1 class="">Ground List <a href="${pageContext.request.contextPath}/CreateGround/boardId/${boardId}" class="btn btn-default dBtn pull-right">Create Ground</a></h1> --%>
+                       <h1 class="">Ground List 
+                       <c:forEach items="${BoradInfo.boardCoordinatorList}" var="coordinator">
+                       <c:if test="${coordinator.coOrdinatorId eq USRID}">
+                       <c:if test="${coordinator.coOrdinatorTypeId eq 28}">
+                       <a href="${pageContext.request.contextPath}/create-ground/${boardId}" class="btn btn-default dBtn pull-right">Create Ground</a>
+                       </c:if>
+                       </c:if>
+                       </c:forEach>
+                       
+                       </h1>
                   <c:choose>
                   <c:when test="${groundListSize == 0 }">
                   <table id="tableId">
@@ -89,6 +99,18 @@
                         <th>Address</th>
                         <th>City</th>
                        <!--  <th class="alignCenter">Action</th> -->
+                       
+                       
+                       <c:forEach items="${BoradInfo.boardCoordinatorList}" var="coordinator">
+                       <c:if test="${coordinator.coOrdinatorId eq USRID}">
+                       <c:if test="${coordinator.coOrdinatorTypeId eq 28}">
+                       <th class="alignCenter">Action</th>
+                       </c:if>
+                       </c:if>
+                       </c:forEach>
+                       
+                       
+                       
                     </tr>
                   </thead>
                   
@@ -103,6 +125,19 @@
                         	<a href="#" title="Edit"><i onclick="editGround('${grndList.groundId}')" class="fa fa-pencil editIcon"></i></a>
                         	<a href="#" title="Delete"><i onclick="deleteGround('${grndList.groundId}')" class="fa fa-trash-o deleteIcon"></i></a>
                         </td> --%>
+                        
+                        
+                        <c:forEach items="${BoradInfo.boardCoordinatorList}" var="coordinator">
+                       <c:if test="${coordinator.coOrdinatorId eq USRID}">
+                       <c:if test="${coordinator.coOrdinatorTypeId eq 28}">
+                       <td class="alignCenter">
+                       <a href="#" title="Edit"><i onclick="editGround('${grndList.groundId}')" class="fa fa-pencil editIcon"></i></a>
+                       <a href="#" title="Delete"><i onclick="deleteGround('${grndList.groundId}')" class="fa fa-trash-o deleteIcon"></i></a>
+                       </td>
+                       </c:if>
+                       </c:if>
+                       </c:forEach>
+                        
                         
                     </tr>
                     </c:forEach>
@@ -186,7 +221,7 @@
 function editGround(id){
 //	alert(id);
 	var boardId = "${boardId}";
-	window.location.href = "${pageContext.request.contextPath}/EditGround/groundId/"+id+"/boardId/"+boardId;
+	window.location.href = "${pageContext.request.contextPath}/CoordinatorEditGround/groundId/"+id+"/boardId/"+boardId;
 }
 
 function deleteGround(id){
@@ -201,7 +236,7 @@ function deleteGround(id){
 			 contentType:"application/json",
 			 success:function(res){
 				// alert(res);
-				 window.location.href = "${pageContext.request.contextPath}/GroundList/boardId/"+boardId;
+				 window.location.href = "${pageContext.request.contextPath}/ground-list/"+boardId;
 
 			 },
 			 error:function(err){
