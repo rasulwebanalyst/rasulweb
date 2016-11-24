@@ -31,7 +31,24 @@ public class Scheduler {
 	private String gameTime;
 	
 	private String timeZone;
+	private String scheduleCreatedDate;
+	private String gameDateforMail;
 	
+	
+	
+	
+	public String getGameDateforMail() {
+		return gameDateforMail;
+	}
+	public void setGameDateforMail(String gameDateforMail) {
+		this.gameDateforMail = gameDateforMail;
+	}
+	public String getScheduleCreatedDate() {
+		return scheduleCreatedDate;
+	}
+	public void setScheduleCreatedDate(String scheduleCreatedDate) {
+		this.scheduleCreatedDate = scheduleCreatedDate;
+	}
 	public String getTournamentId() {
 		return tournamentId;
 	}

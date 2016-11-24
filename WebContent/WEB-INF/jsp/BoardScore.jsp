@@ -244,7 +244,7 @@
                                 	
                                 	
                                 	<c:forEach var="matchesPlayed" items="${boardAchieveMents.matchesPlayedList}">
-                                    <div class="teamLogos" >
+                                    <div class="teamLogos" style="height: 137px;">
                                     <c:choose>
                                     <c:when test="${matchesPlayed.winTeamId == matchesPlayed.homeTeamId }">
                                     
@@ -252,7 +252,6 @@
                                     <span class="winteam">
                                     <c:if test="${matchesPlayed.matchStatus eq 'win'}"><span class="starIcon1" >Winner<!--  <i class="fa fa-star staricon"></i> --></span></c:if>
                                     <c:if test="${matchesPlayed.matchStatus eq 'tie'}"><span class="starIcon1" >Tie<!--  <i class="fa fa-star staricon"></i> --></span></c:if>
-                                      
                                    <a href="${pageContext.request.contextPath}/${matchesPlayed.homeTeamName}/board/${matchesPlayed.homeTeamId}"> <img src="${matchesPlayed.homeTeamImageUrl}" class="teamLogo"></a> </span> <b>VS</b> <span class="winteam"><span class="starIcon1"> </span> <a href="${pageContext.request.contextPath}/${matchesPlayed.awayTeamName}/board/${matchesPlayed.awayTeamId}"><img src="${matchesPlayed.awayTeamImageUrl}" class="teamLogo"></a></span>
                                   
                                     
@@ -269,7 +268,6 @@
                                    
                                    <c:if test="${matchesPlayed.matchStatus eq 'win'}"><span class="winteam"><span class="starIcon1" >Winner<!--  <i class="fa fa-star staricon"></i> --></span></c:if>
                                     <c:if test="${matchesPlayed.matchStatus eq 'tie'}"><span class="winteam"><span class="starIcon1" >Tie<!--  <i class="fa fa-star staricon"></i> --></span></c:if>  
-                                    
                                     <a href="${pageContext.request.contextPath}/${matchesPlayed.awayTeamName}/board/${matchesPlayed.awayTeamId}"><img src="${matchesPlayed.awayTeamImageUrl}" class="teamLogo"></a>
                                     </span>
                                     

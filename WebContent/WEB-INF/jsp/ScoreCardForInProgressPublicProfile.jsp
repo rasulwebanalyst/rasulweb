@@ -568,9 +568,9 @@ var formatAMPMTime = function(date) {
                                     	<td><p> Extras</p></td>
                                         <td  colspan="6" style="text-align: right;">
                                         			
-                                        			${getFirstInnings.totalNumExtras}<c:if test="${!empty getFirstInnings.totalExtras}">
+                                        			${getSecondInnings.totalNumExtras}<c:if test="${!empty getSecondInnings.totalExtras}">
                                         	(
-                                        		<c:forEach items="${getFirstInnings.totalExtras}" var="ex" varStatus="status">
+                                        		<c:forEach items="${getSecondInnings.totalExtras}" var="ex" varStatus="status">
                                         				${ex}<c:if test="${not status.last}">,</c:if>
                                         		</c:forEach>
                                         	)

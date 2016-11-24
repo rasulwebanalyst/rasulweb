@@ -88,7 +88,14 @@ var formatAMPMTime = function(date) {
 	
 	 
 </script>
+<style type="text/css">
 
+.txt-flow:hover{
+    overflow: visible; 
+    white-space: normal; 
+}
+
+</style>
 </head>
 
 <body class="cs-dboard">
@@ -141,7 +148,10 @@ var formatAMPMTime = function(date) {
                         	 <div class="star-rating">*</div></c:if>
                         	 <span style="margin-left: -6px;">(${Batsman.battingBalls})</span></span></div> 
                         	<p class="cs-list-team">
-                        	 <a href="${pageContext.request.contextPath}/${Batsman.teamBoardInfo.boardName}/board/${Batsman.teamBoardInfo.boardId}">${Batsman.teamBoardInfo.boardName}</a> 
+                        	<%--  <a href="${pageContext.request.contextPath}/${Batsman.teamBoardInfo.boardName}/board/${Batsman.teamBoardInfo.boardId}">${Batsman.teamBoardInfo.boardName}</a> --%>
+                        	
+                        	<a style="float: left;text-overflow: ellipsis; overflow: hidden;  width: 104px;  white-space: nowrap;" href="${pageContext.request.contextPath}/${Batsman.teamBoardInfo.boardName}/board/${Batsman.teamBoardInfo.boardId}">${Batsman.teamBoardInfo.boardName}</a> 
+                        	 <a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${Batsman.tournamentSchedulerId}','${BoradInfo.boardId}')">View Score</a> 
                         	 </p> 
                         	 
                         	</div></li>
@@ -202,7 +212,9 @@ var formatAMPMTime = function(date) {
                         	<a href="${pageContext.request.contextPath}/buddy/${Bowler.userName}/${Bowler.userId}">${Bowler.userName}</a></span><span style="float: right;"> ${Bowler.wickets}/${Bowler.runs} (${Bowler.overs})</span>
                         	</div>
                         	<p class="cs-list-team">
-                        	<a href="${pageContext.request.contextPath}/${Bowler.teamBoardInfo.boardName}/board/${Bowler.teamBoardInfo.boardId}"> ${Bowler.teamBoardInfo.boardName}</a> 
+                        	<%-- <a href="${pageContext.request.contextPath}/${Bowler.teamBoardInfo.boardName}/board/${Bowler.teamBoardInfo.boardId}"> ${Bowler.teamBoardInfo.boardName}</a> --%>
+                        	<a style="float: left;text-overflow: ellipsis; overflow: hidden;  width: 104px;  white-space: nowrap;" href="${pageContext.request.contextPath}/${Bowler.teamBoardInfo.boardName}/board/${Bowler.teamBoardInfo.boardId}"> ${Bowler.teamBoardInfo.boardName}</a> 
+                        	 <a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${Bowler.tournamentSchedulerId}','${BoradInfo.boardId}')">View Score</a> 
                         	 </p> 
                         	</div>
                         	</li>
@@ -265,7 +277,7 @@ var formatAMPMTime = function(date) {
                         	<c:forEach items="${completedMatchesList}" var ="completed">
                         	<c:choose>
                         	<c:when test="${completed.matchWonBy eq completed.homeTeamId}">
-                        	<li><span> <%--  <a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName} </a> ${completed.statusOfMatch} --%>
+                        	<li><span class="txt-flow"> <%--  <a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName} </a> ${completed.statusOfMatch} --%>
                         	<c:choose>
                         	<c:when test="${!empty completed.resultMessage}">
                         	 <span >${completed.resultMessage}</span></c:when><c:otherwise> 
@@ -287,10 +299,10 @@ var formatAMPMTime = function(date) {
                            
                         	 
                         	 </c:otherwise> 
-                        	 </c:choose> (<a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName}</a>:${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}, <a href="${pageContext.request.contextPath}/${completed.loseTeamName}/board/${completed.awayTeamId}">${completed.loseTeamName}</a>:${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers})  </span></li>
+                        	 </c:choose> (<a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName}</a>:${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}, <a href="${pageContext.request.contextPath}/${completed.loseTeamName}/board/${completed.awayTeamId}">${completed.loseTeamName}</a>:${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers})  </span><a class="vw-score" href="javascript:void(0);" onclick="showScoreCard('${completed.tournamentSchedulerId}','${completed.leagueCreatedBy}')">View Score</a></li>
                         	</c:when>
                         	<c:otherwise>
-                        	<li><span> <%--  <a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName} </a> ${completed.statusOfMatch} --%>
+                        	<li><span class="txt-flow"> <%--  <a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName} </a> ${completed.statusOfMatch} --%>
                         	<c:choose>
                         	<c:when test="${!empty completed.resultMessage}">
                         	 <span >${completed.resultMessage}</span> </c:when><c:otherwise> 
@@ -311,7 +323,7 @@ var formatAMPMTime = function(date) {
                            </c:choose>
                         	 </c:otherwise>
                         	 </c:choose>
-                        	 (<a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName}</a>:${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}, <a href="${pageContext.request.contextPath}/${completed.loseTeamName}/board/${completed.homeTeamId}">${completed.loseTeamName}</a>:${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers})   </span></li>
+                        	 (<a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName}</a>:${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}, <a href="${pageContext.request.contextPath}/${completed.loseTeamName}/board/${completed.homeTeamId}">${completed.loseTeamName}</a>:${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers})   </span><a class="vw-score" href="javascript:void(0);" onclick="showScoreCard('${completed.tournamentSchedulerId}','${completed.leagueCreatedBy}')">View Score</a></li>
                         	</c:otherwise>
                         	</c:choose>
                         	
@@ -346,7 +358,22 @@ var formatAMPMTime = function(date) {
                         	<c:otherwise>
                         	<c:forEach items="${upcomingMatchesList}" var ="upcomming">
                         	
-                        	<li><span>${upcomming.tournamentName} : <a href="${pageContext.request.contextPath}/${upcomming.homeTeamName}/board/${upcomming.homeTeamId}">${upcomming.homeTeamName}</a> vs <a href="${pageContext.request.contextPath}/${upcomming.awayTeamName}/board/${upcomming.awayTeamId}">${upcomming.awayTeamName}</a> - <p id="formatDate_${upcomming.tournamentSchedulerId}" style="display:none"><fmt:formatDate pattern="M/d/YYYY hh:mm a" value="${upcomming.gameDate}" /></p><script>document.writeln(test("${upcomming.tournamentSchedulerId}","${upcomming.gameDate}"));</script>  </span></li>
+                        	<li><span class="txt-flow">${upcomming.tournamentName} : <a href="${pageContext.request.contextPath}/${upcomming.homeTeamName}/board/${upcomming.homeTeamId}">${upcomming.homeTeamName}</a> vs <a href="${pageContext.request.contextPath}/${upcomming.awayTeamName}/board/${upcomming.awayTeamId}">${upcomming.awayTeamName}</a> - <p id="formatDate_${upcomming.tournamentSchedulerId}" style="display:none"><fmt:formatDate pattern="M/d/YYYY hh:mm a" value="${upcomming.gameDate}" /></p><script>document.writeln(test("${upcomming.tournamentSchedulerId}","${upcomming.gameDate}"));</script>  </span>
+                        	
+                        	
+                        	<c:if test="${upcomming.status eq 'InProgress'}">
+                        	<a class="vw-score" href="javascript:void(0);" onclick="showScoreCardInProgress('${upcomming.tournamentSchedulerId}','${upcomming.leagueCreatedBy}')">Live Score</a>
+                        	
+                        	</c:if>
+                        	<c:if test="${upcomming.status eq 'Upcoming'}">
+                        	
+                        	<a class="vw-score" href="javascript:void(0);" onclick="showScoreCardInProgress('${upcomming.tournamentSchedulerId}','no')">View Score</a>
+                        	</c:if>
+                        	
+                        	
+                        	
+                        	
+                        	</li>
                         	</c:forEach>
                         	
                         	</c:otherwise>
@@ -1015,7 +1042,9 @@ function showScoreCardInProgress(id,bid){
 		}
 
 
-
+function showScoreCard(id,boardId){
+	 window.location.href = "${pageContext.request.contextPath}/showScoreCardPublicProfile/boardId/"+boardId+"/matchId/"+id;
+}
 
 
 

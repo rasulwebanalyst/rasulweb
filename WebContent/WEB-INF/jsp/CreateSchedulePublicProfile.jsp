@@ -526,7 +526,8 @@ function addFunction(){
 		awayteamValidation();
 		teamValidation();
 		if(awayteamValidation()==true && teamValidation()==true){
-			afterValidation();
+		//	afterValidation();
+		addFunction1();
 			return true;
 		}else{
 			return false;
@@ -540,6 +541,64 @@ function addFunction(){
 	}
 	
 }
+
+
+function addFunction1(){
+	var latlong=$("#BoardLatLong").val();
+	  var timestamp=Math.round(+new Date()/1000);
+	
+	var SystemDate = new Date(timestamp * 1000);
+	console.log(SystemDate );
+	
+	 var url = "https://maps.googleapis.com/maps/api/timezone/json?location="+latlong+"&timestamp=" + timestamp + "&sensor=false";
+	    $.ajax({
+	      url: url,
+	      async: false,
+	    }).done(function(response) {
+	      console.log(JSON.stringify(response));
+	      
+	      
+	      var splitedDate=SystemDate.toString().split("GMT")[0];
+	      
+	      
+	      
+	       var newYork    = moment.tz(SystemDate, response.timeZoneId).format('z');
+	       
+	       var date1=$("#date").val();
+	       var time1=$("#time").val();
+	      var selecteddate=date1+" "+time1;
+	      console.log(selecteddate+" "+newYork); 
+	    
+           var currenttimezone=$("#timeZone").val();      
+
+           var dateprev=moment(selecteddate,'MM/DD/YYYY h:mm A')
+           console.log(moment(dateprev).format('YYYY-MM-DD HH:mm'));
+           
+        var currenttimeformat= moment.tz(moment(dateprev).format('YYYY-MM-DD HH:mm'), response.timeZoneId);
+        
+        console.log("Input :"+currenttimeformat.format());
+        
+        
+        
+        console.log(currenttimeformat.tz(currenttimezone));
+           var currentdatezonechangeddate=currenttimeformat.clone().tz(currenttimezone);
+           console.log(currentdatezonechangeddate.format());
+           
+           var returndate=new Date(currentdatezonechangeddate.format());
+           
+           var dateString=returndate.getFullYear()+"-"+formattime(returndate.getMonth()+1)+"-"+formattime(returndate.getDate())+" "+formattime(returndate.getHours())+":"+formattime(returndate.getMinutes())+":"+formattime(returndate.getSeconds());
+           $("#scheduleCreatedDate").val(dateString);
+           console.log(dateString);
+           
+           afterValidation();
+           
+	    });
+	    
+}
+function formattime(n)
+{
+	return n < 10 ? '0'+n : n;
+	}
 
 function afterValidation(){
 	$("#loading").show();

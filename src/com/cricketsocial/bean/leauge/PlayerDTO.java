@@ -1,5 +1,6 @@
 package com.cricketsocial.bean.leauge;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,11 +39,48 @@ public class PlayerDTO {
 	private String strikeRate;
 	private String notOutFlag;
 	private int battingBalls;
+	private UUID tournamentSchedulerId;
+	private UUID createdBy;
+	
+	private UUID sheduledId;
+	private String groundName;
+	private Date gameDate;
 	
 	
 	
 	
 	
+	
+	public UUID getSheduledId() {
+		return sheduledId;
+	}
+	public void setSheduledId(UUID sheduledId) {
+		this.sheduledId = sheduledId;
+	}
+	public String getGroundName() {
+		return groundName;
+	}
+	public void setGroundName(String groundName) {
+		this.groundName = groundName;
+	}
+	public Date getGameDate() {
+		return gameDate;
+	}
+	public void setGameDate(Date gameDate) {
+		this.gameDate = gameDate;
+	}
+	public UUID getTournamentSchedulerId() {
+		return tournamentSchedulerId;
+	}
+	public void setTournamentSchedulerId(UUID tournamentSchedulerId) {
+		this.tournamentSchedulerId = tournamentSchedulerId;
+	}
+	public UUID getCreatedBy() {
+		return createdBy;
+	}
+	public void setCreatedBy(UUID createdBy) {
+		this.createdBy = createdBy;
+	}
 	public int getBattingBalls() {
 		return battingBalls;
 	}

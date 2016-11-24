@@ -1267,6 +1267,17 @@ input[type="radio"]:checked + label span {
 /* /Custom Scroll*/
 
 
+.txt-flow {
+	text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 81%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 20px;
+}
+
+
 .rypDiv {
 	text-align: left;
 }

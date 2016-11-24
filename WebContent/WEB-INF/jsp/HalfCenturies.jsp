@@ -198,7 +198,7 @@ var pageNum=50;
                                             <td>
                                                 <fmt:formatDate pattern="MM/dd/YYYY" value="${matches.gameDate}" />
                                             </td>
-                                            <td align="center"><a href="${pageContext.request.contextPath}/showScoreCardPublicProfile/boardId/${BoradInfo.boardId}/matchId/${matches.sheduledId}"><i
+                                            <td align="center"><a href="${pageContext.request.contextPath}/showScoreCard/boardId/${BoradInfo.boardId}/matchId/${matches.sheduledId}"><i
 																	class="fa fa-newspaper-o"></i></a></td>
                                     </tr>
 

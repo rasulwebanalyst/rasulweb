@@ -145,6 +145,8 @@
                               <option value="PM">PM</option>
                               </select>
                               <input type="hidden" id="time" name ="gameTime" />
+                              <input type="hidden" id="BoardLatLong" value="${BoradInfo.latlang}">
+                              <input type="hidden" id="scheduleCreatedDate" name="scheduleCreatedDate">
                               </div>
                                 <div id="timeError" class="createschedulError"></div>
                                 <input type="hidden" id="timeZone" name="timeZone" value="">
@@ -283,7 +285,7 @@
 										<div id="error1" class="createschedulError"></div>
 	
 									</div>
-										
+										<input type="hidden" id="gameDateforMail" name="gameDateforMail">
 										<input type="hidden" name="createdBy" value="${boardId}">
 										<%-- <input type="hidden"  name="tournamentId" value="${tournamentId}"> --%>
 
@@ -321,6 +323,8 @@
 	</section>
 	<%@ include file ="Footer.jsp" %>
 	 <script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>
+	 <script src="https://momentjs.com/downloads/moment.js"></script>
+	 <script src="https://momentjs.com/downloads/moment-timezone-with-data.js"></script>
 	
 	<script>
         $(document).ready(function () {
@@ -530,7 +534,9 @@ function addFunction(){
 		awayteamValidation();
 		teamValidation();
 		if(awayteamValidation()==true && teamValidation()==true){
-			afterValidation();
+		
+		addFunction1();
+		//afterValidation();
 			return true;
 		}else{
 			return false;
@@ -545,9 +551,74 @@ function addFunction(){
 	
 }
 
+function addFunction1(){
+	var latlong=$("#BoardLatLong").val();
+	  var timestamp=Math.round(+new Date()/1000);
+	
+	var SystemDate = new Date(timestamp * 1000);
+	console.log(SystemDate );
+	
+	 var url = "https://maps.googleapis.com/maps/api/timezone/json?location="+latlong+"&timestamp=" + timestamp + "&sensor=false";
+	    $.ajax({
+	      url: url,
+	      async: false,
+	    }).done(function(response) {
+	      console.log(JSON.stringify(response));
+	      
+	      
+	      var splitedDate=SystemDate.toString().split("GMT")[0];
+	      
+	      
+	      
+	       var newYork    = moment.tz(SystemDate, response.timeZoneId).format('z');
+	       
+	       var date1=$("#date").val();
+	       var time1=$("#time").val();
+	      var selecteddate=date1+" "+time1;
+	      console.log(selecteddate+" "+newYork); 
+	    
+           var currenttimezone=$("#timeZone").val();      
+
+           var dateprev=moment(selecteddate,'MM/DD/YYYY h:mm A')
+           console.log(moment(dateprev).format('YYYY-MM-DD HH:mm'));
+           
+        var currenttimeformat= moment.tz(moment(dateprev).format('YYYY-MM-DD HH:mm'), response.timeZoneId);
+        
+        console.log("Input :"+currenttimeformat.format());
+        
+        
+        
+        console.log(currenttimeformat.tz(currenttimezone));
+           var currentdatezonechangeddate=currenttimeformat.clone().tz(currenttimezone);
+           console.log(currentdatezonechangeddate.format());
+           
+           var returndate=new Date(currentdatezonechangeddate.format());
+           
+           var dateString=returndate.getFullYear()+"-"+formattime(returndate.getMonth()+1)+"-"+formattime(returndate.getDate())+" "+formattime(returndate.getHours())+":"+formattime(returndate.getMinutes())+":"+formattime(returndate.getSeconds());
+           $("#scheduleCreatedDate").val(dateString);
+           console.log(dateString);
+           
+           /* To set time With Zone */
+           
+            var selectedtime=$("#time").val();
+            $("#time").val(selectedtime+" ("+newYork+")");
+            var dateformail=new Date(selecteddate);
+            
+            var dateString1=dateformail.getFullYear()+"-"+formattime(dateformail.getMonth()+1)+"-"+formattime(dateformail.getDate())+" "+formattime(dateformail.getHours())+":"+formattime(dateformail.getMinutes())+":"+formattime(dateformail.getSeconds());
+            console.log("Jithin doubt :"+dateformail);
+            $("#gameDateforMail").val(dateString1);
+            
+          afterValidation();
+           
+	    });
+	    
+}
+function formattime(n)
+{
+	return n < 10 ? '0'+n : n;
+	}
 
 function afterValidation(){
-   
 	$("#loading").show();
 	$("#createScheduleForm").submit();
 	

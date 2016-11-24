@@ -243,7 +243,7 @@
                                 	
                                 	
                                 	<c:forEach var="matchesPlayed" items="${boardAchieveMents.matchesPlayedList}">
-                                    <div class="teamLogos" >
+                                    <div class="teamLogos" style="height: 137px;" >
                                     <c:choose>
                                     <c:when test="${matchesPlayed.winTeamId == matchesPlayed.homeTeamId }">
                                     

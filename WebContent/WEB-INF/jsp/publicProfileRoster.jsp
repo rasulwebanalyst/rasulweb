@@ -360,7 +360,8 @@
                                            			<td>${bowler.matchCount}</td>
                                            			<td>${bowler.runs}</td>
                                            			<td>${bowler.wickets}</td>
-                                           			<td>${bowler.bestBowlinginInnings}/${bowler.bowlingRuns}</td>
+                                           			<%-- <td>${bowler.bestBowlinginInnings}/${bowler.bowlingRuns}</td> --%>
+                                           			<td>${bowler.bbi}</td>
                                            			<td>${bowler.fiveWicketsCount}</td>
                                            			<td>${bowler.tenWicketsCount}</td>
                                            			<td><fmt:formatNumber type="number"  pattern="##########.##"  value="${bowler.average}" /></td>

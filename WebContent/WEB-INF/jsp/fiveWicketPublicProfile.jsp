@@ -169,17 +169,17 @@
                         </tr>
                     </thead>
                 </table>
-                <span style="color:red">No Details Available</span>
+                <div style="color: red; margin-top: 16px; text-align: center;">No Details Available</div>
 
 
             </c:when>
             <c:otherwise>
 
 
-                <c:choose>
+               <%--  <c:choose>
                     <c:when test="${fiveWicket.size eq 0}">
                     </c:when>
-                    <c:otherwise>
+                    <c:otherwise> --%>
 
 
                        <div class="col-md-12 whiteBox font13px" id="centTable1">
@@ -201,8 +201,8 @@
 
 
                                 <!--    <tr> -->
-                                <c:forEach items="${fiveWicket.matchsheduledtolist}" var="matches">
-                                    <c:forEach items="${matches.playerlist}" var="player" varStatus="index">
+                                <%-- <c:forEach items="${fiveWicket.matchsheduledtolist}" var="matches"> --%>
+                                    <c:forEach items="${fiveWicket.playerlist}" var="player" varStatus="index">
                                         <tbody>
 
 
@@ -221,28 +221,37 @@
 					                        				</c:otherwise>
 				                        				</c:choose> --%>
                                                         <td></td>
-                                                        <td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}"><img alt="" src="${player.userImageUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';" ><b >${player.userName}</b><div class="clearfix"></div></a></td>
+                                                        <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}"><span class="text-danger"><img alt="" src="${player.userImageUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';" width="30px" style="margin-right: 10px;"></span><b>${player.userName}</b> </a></td>
                                                         <td><span class="text-danger">${player.wickets}</span></td>
                                                        <%--  <td><a href="${pageContext.request.contextPath}/${player.homeTeamName}/board/${player.homeTeamId}">${player.homeTeamName}</a></td>
                                                         <td><a href="${pageContext.request.contextPath}/${player.awayTeamName}/board/${player.awayTeamId}">${player.awayTeamName}</a> </td>
                                                          --%>
-                                                         <td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/${player.homeTeamName}/board/${player.homeTeamId}"><img 	src="${player.homeTeamImgUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" ><b>${player.homeTeamName}</b><div class="clearfix"></div></a></td>
+                                                         <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${player.homeTeamName}/board/${player.homeTeamId}"><img 	src="${player.homeTeamImgUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" style="width: 30px;margin-right: 10px; ">${player.homeTeamName}</a></td>
 
-														<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/${player.awayTeamName}/board/${player.awayTeamId}"><img src="${player.awayTeamImgUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" ><b>${player.awayTeamName}</b><div class="clearfix"></div></a> </td>
+														<td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${player.awayTeamName}/board/${player.awayTeamId}"><img src="${player.awayTeamImgUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" style="width: 30px;margin-right: 10px; ">${player.awayTeamName}</a> </td>
                                                          
-                                                         <td>${matches.groundName}</td>
+                                                         <%-- <td>${player.groundName}</td> --%>
+                                                         
+                                                         <c:choose>
+                                            <c:when test="${player.groundName ne null && player.groundName ne '' }">
+                                            <td>${player.groundName}</td>
+                                            </c:when>
+                                            <c:otherwise>
+                                            <td style="text-align: center;">-</td>
+                                            </c:otherwise>
+                                            </c:choose>
                                                         <td>
-                                                            <fmt:formatDate pattern="MM/dd/YYYY" value="${matches.gameDate}" />
+                                                            <fmt:formatDate pattern="MM/dd/YYYY" value="${player.gameDate}" />
                                                         </td>
-                                                        <td align="center"><a href="${pageContext.request.contextPath}/showScoreCard/boardId/${BoradInfo.boardId}/matchId/${matches.sheduledId}"><i class="fa fa-newspaper-o"></i></a></td>
+                                                        <td align="center"><a href="${pageContext.request.contextPath}/showScoreCard/boardId/${BoradInfo.boardId}/matchId/${player.sheduledId}"><i class="fa fa-newspaper-o"></i></a></td>
                                                 </tr>
                                         </tbody>
                                     </c:forEach>
-                                </c:forEach>
+                               <%--  </c:forEach> --%>
                             </table>
                         </div>
-                    </c:otherwise>
-                </c:choose>
+                    <%-- </c:otherwise>
+                </c:choose> --%>
             </c:otherwise>
         </c:choose>
     </c:forEach>
@@ -337,7 +346,7 @@
         			if (res.length != 0) {
         				var html = '';
         				for (var i = 0; i < res.length; i++) {
-        					if(res[i].size != 0){
+        					/* if(res[i].size != 0){ */
         						
         						html += '<div class="whiteBox">';
         						html += '<span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament Name : '+res[i].tournamentName+'</span>'
@@ -354,32 +363,43 @@
         						html += '</tr></thead><tbody align="center">';
         					
         						html += '<tr>';
-        						var mat = res[i].matchsheduledtolist;
+        						/* var mat = res[i].matchsheduledtolist;
         						
-        						for (var j=0;j<mat.length;j++){
-        							var date  = new Date(mat[j].gameDate);
-        							var dateChange = date.toLocaleDateString();
-        							console.log(dateChange);
-        							var dateNewObject = getDateInObject(mat[j].gameDate);
-        							console.log(dateNewObject);
-        							var plist = mat[j].playerlist;
+        						for (var j=0;j<mat.length;j++){ */
+        							
+        							var plist = res[i].playerlist;
         							if(plist != null){
         								for(var k=0;k<plist.length;k++){
+        									var date  = new Date(plist[k].gameDate);
+                							var dateChange = date.toLocaleDateString();
+                							console.log(dateChange);
+                							var dateNewObject = getDateInObject(plist[k].gameDate);
+                							console.log(dateNewObject);
         									 html +='<td></td>';
-        									html += '<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/buddy/'+ plist[k].userName+ '/' +plist[k].userId+ '"><img alt="" src="'+plist[k].userImageUrl+'" onError="this.onerror=null;this.src=${pageContext.request.contextPath}/images/profileIcon.png;" ><b >' +plist[k].userName+ '</b><div class="clearfix"></div></a></td>';
+        									 if(plist[k].userImageUrl != null && plist[k].userImageUrl != ""){
+        									html += '<td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/'+ plist[k].userName+ '/' +plist[k].userId+ '"><span class="text-danger"><img alt="" src="'+plist[k].userImageUrl+'" onError="this.onerror=null;this.src=${pageContext.request.contextPath}/images/profileIcon.png;" width="30px" style="margin-right: 10px;"></span><b>' +plist[k].userName+ '</b> </a></td>';
+        									 }else
+        										 {
+        										 html += '<td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/'+ plist[k].userName+ '/' +plist[k].userId+ '"><span class="text-danger"><img alt="" src=${pageContext.request.contextPath}/images/profileIcon.png;" width="30px" style="margin-right: 10px;"></span><b>' +plist[k].userName+ '</b> </a></td>';
+        										 }
+        									
+        									
         									html += '<td class="tdAlignLeft">' + plist[k].wickets + '</td>';
         									              
-        									html += '<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/' + plist[k].homeTeamName + '/board/' + plist[k].homeTeamId + '"><img src="'+plist[k].homeTeamImgUrl+ '"><b>' + plist[k].homeTeamName + '</b><div class="clearfix"></div></a></td>';
-        								    html += '<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/' + plist[k].awayTeamName + '/board/' + plist[k].awayTeamId + '"><img src="'+plist[k].awayTeamImgUrl+ '"><b>' + plist[k].awayTeamName + '</b><div class="clearfix"></div></a></td>';
-        								    html += '<td class="tdAlignLeft">' +mat[j].groundName+ '</td>';
+        									html += '<td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/' + plist[k].homeTeamName + '/board/' + plist[k].homeTeamId + '"><img src="'+plist[k].homeTeamImgUrl+ '"style="margin-right: 10px; width:30px;">' + plist[k].homeTeamName + '</a></td>';
+        								    html += '<td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/' + plist[k].awayTeamName + '/board/' + plist[k].awayTeamId + '"><img src="'+plist[k].awayTeamImgUrl+ '"style="margin-right: 10px; width:30px;">' + plist[k].awayTeamName + '</a></td>';
+        								   
+        								    if(plist[k].groundName != null){
+        								    html += '<td class="tdAlignLeft">' +plist[k].groundName+ '</td>';}
+        								    else{html += '<td>-</td>';}
         									html += '<td class="tdAlignLeft">'+dateNewObject+'</td>';
         									 
-        							        html += '<td align="center"><a href="${pageContext.request.contextPath}/showScoreCard/boardId/' +boardId+ '/matchId/'+mat[j].sheduledId+'"><i class="fa fa-newspaper-o"></i></a></td>';
+        							        html += '<td align="center"><a href="${pageContext.request.contextPath}/showScoreCard/boardId/' +"${publicBoardId}"+ '/matchId/'+plist[k].sheduledId+'"><i class="fa fa-newspaper-o"></i></a></td>';
         							        html += '</tr>'; 
         								}
         							}
         							
-        						}
+        						/* } */
         					
         						html += '</tbody>';
         						html += '</table>';
@@ -387,7 +407,7 @@
         						
         						
         						
-        					}
+        				/* 	} */
         				}
         				$("#centTable").html(html).trigger('create');
     					$('#centTable').show();
