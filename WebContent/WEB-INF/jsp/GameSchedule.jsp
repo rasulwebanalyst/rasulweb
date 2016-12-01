@@ -423,7 +423,7 @@ date.add(java.util.Calendar.DATE, +6);
                 	<div id="incompletegamesdiv">
                 	<div class="col-md-10 pull-right">
       		<div class="col-md-12 whiteBox">
-                  <h2 class="noBorder noLeftPad">InComplete Matches</h2>
+                  <h2 class="noBorder noLeftPad">Incomplete Matches</h2>
                   <div class="form-group">
                   <c:choose>
                        <c:when test="${inCompletedMatchesListSize == 0 }">
@@ -445,7 +445,7 @@ date.add(java.util.Calendar.DATE, +6);
                      
                        
                       </table>
-                       <span class="noContentDivRed">No InComplete Matches</span>
+                       <span class="noContentDivRed">No Incomplete Matches</span>
 
                        </c:when>
                        <c:otherwise>
@@ -530,7 +530,7 @@ date.add(java.util.Calendar.DATE, +6);
                     <div id="inprogressmatchesdiv">
                     <div class="col-md-10 pull-right">
       		<div class="col-md-12 whiteBox">
-                  <h2 class="noBorder noLeftPad">Inprogress Matches</h2>
+                  <h2 class="noBorder noLeftPad">In progress Matches</h2>
                   <div class="form-group">
                    <c:choose>
                        <c:when test="${inprogressMatchesListSize == 0 }">
@@ -551,7 +551,7 @@ date.add(java.util.Calendar.DATE, +6);
 
               
                       </table>
-                       <span class="noContentDivRed">No Inprogress Matches</span>
+                       <span class="noContentDivRed">No In progress Matches</span>
 	
 
                        </c:when>
@@ -1199,7 +1199,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    			
    			// incomepltelist
    			   var htmlco1="";
-   			  htmlco1="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox'><h2 class='noBorder noLeftPad'>InComplete Matches</h2>";
+   			  htmlco1="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox'><h2 class='noBorder noLeftPad'>Incomplete Matches</h2>";
    			 htmlco1+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Umpire</th><th>Trophy</th><th>Match Status</th><th>Enter Scorecard</th><th style='width:60px;'>Action</th></tr></thead>";
    			if(incomepltelist.length!=0){
    				htmlco1+="<tbody>";
@@ -1252,7 +1252,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    		// inprogress
    		
 			   var htmlco2="";
-			  htmlco2="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox'><h2 class='noBorder noLeftPad'>Inprogress Matches</h2>";
+			  htmlco2="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox'><h2 class='noBorder noLeftPad'>In progress Matches</h2>";
 			 htmlco2+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Trophy</th><th>Umpire</th><th>Scorer</th><th>Match Status</th><th>Enter Scorecard</th><th>Scorecard</th></tr></thead>";
 			if(inprogresslist.length!=0){
 				htmlco2+="<tbody>";
@@ -1306,7 +1306,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 			}else{
 			
 			htmlco2+="</table>";
-				htmlco2+="<span class='noContentDivRed'>No Inprogress Matches</span>";
+				htmlco2+="<span class='noContentDivRed'>No In progress Matches</span>";
 			}
 			htmlco2+="</div></div>";
 			

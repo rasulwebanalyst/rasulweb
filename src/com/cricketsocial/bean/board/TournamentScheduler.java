@@ -69,8 +69,17 @@ public class TournamentScheduler {
 	
 	private String matchStatus;
 	
+	private String gameType;
 	
 	
+	
+	
+	public String getGameType() {
+		return gameType;
+	}
+	public void setGameType(String gameType) {
+		this.gameType = gameType;
+	}
 	public String getMatchStatus() {
 		return matchStatus;
 	}

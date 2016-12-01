@@ -58,9 +58,26 @@ public class CompletedMatches {
 	private String dateString;
 	private String leagueCreatedBy;
 	private String resultMessage;
+	private String reasonDispMng;
+	private String rsnDispMngmnt;
+	
+	
+	
 	
 	
 
+	public String getRsnDispMngmnt() {
+		return rsnDispMngmnt;
+	}
+	public void setRsnDispMngmnt(String rsnDispMngmnt) {
+		this.rsnDispMngmnt = rsnDispMngmnt;
+	}
+	public String getReasonDispMng() {
+		return reasonDispMng;
+	}
+	public void setReasonDispMng(String reasonDispMng) {
+		this.reasonDispMng = reasonDispMng;
+	}
 	public String getResultMessage() {
 		return resultMessage;
 	}

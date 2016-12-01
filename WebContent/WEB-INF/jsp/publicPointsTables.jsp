@@ -139,7 +139,18 @@
                             <td>${team.totalMatches}</td>
                             <td>${team.wonmatches}</td>
                             <td>${team.lostmatches}</td>
+                           <%--  <td>${team.adj}</td> --%>
+                            
+                            
+                           <%--  <c:choose>
+                            <c:when test="${team.adj eq 0}">
                             <td>${team.adj}</td>
+                            </c:when>
+                            <c:otherwise> --%>
+                            <td><a style="color: red;" href="${pageContext.request.contextPath}/DisputeManagementPublic/boardId/${BoradInfo.boardId}">${team.adj}</a></td>
+                            <%-- </c:otherwise>
+                            </c:choose> --%>
+                            
                             <td>${team.points}</td>
                             <td>
                                 <fmt:formatNumber type="number" pattern="##########.##" value="${team.netRunRate}" />

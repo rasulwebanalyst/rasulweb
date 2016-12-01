@@ -231,13 +231,19 @@ var formatAMPMTime = function(date) {
                                 <tbody>
                                
                                  <c:forEach var="list1" items="${firstInningsBattingPlayer}">
-                                	<tr><td style="width: 190px;"><a href="${pageContext.request.contextPath}/scorecard/buddy/${list1.playerFullName}/${list1.playerId}">${list1.playerFullName}</a></td>
+                                	<tr><td style="width: 190px;"><a style="color: #227fbc;" href="${pageContext.request.contextPath}/scorecard/buddy/${list1.playerFullName}/${list1.playerId}">${list1.playerFullName}</a></td>
                                     <c:choose>
-                                    	<c:when test="${list1.wicketBy == 'NotOut'}">
-                                    	<td style="width: 150px;" >Not Out</td>
+                                    	<c:when test="${list1.wicketBy == 'NotOut' || list1.wicketBy == 'Not Out'}">
+                                    	<td style="width: 150px; text-align: left;" >not out</td>
+                                    	</c:when>
+                                    	<c:when test="${list1.wicketBy == 'Retire Hurt'}">
+                                    	<td style="width: 150px; text-align: left;">retire hurt</td>
+                                    	</c:when>
+                                    	<c:when test="${list1.wicketBy == 'Retire Out'}">
+                                    	<td style="width: 150px; text-align: left;">retire out</td>
                                     	</c:when>
                                     	<c:otherwise>
-                                    	<td style="width: 150px;" >${list1.wicketBy }</td>
+                                    	<td style="width: 150px; text-align: left;" >${list1.wicketBy }</td>
                                     	</c:otherwise>
                                     	</c:choose>
                                         <td>${list1.runs }
@@ -429,7 +435,7 @@ var formatAMPMTime = function(date) {
                                
                                
                                  <c:forEach var="list" items="${firstInningsBowlingPlayer}">
-                                	<tr><td ><a href="${pageContext.request.contextPath}/scorecard/buddy/${list.playerName}/${list.playerId}">${list.playerFullName}</a></td>
+                                	<tr><td ><a style="color: #227fbc;" href="${pageContext.request.contextPath}/scorecard/buddy/${list.playerName}/${list.playerId}">${list.playerFullName}</a></td>
                                     	<td>${list.bowlingOvers}</td>
                                         <td>${list.meidan}</td>
                                         <td>${list.runs}
@@ -534,13 +540,19 @@ var formatAMPMTime = function(date) {
                                 </thead>
                                 <tbody>
                                  <c:forEach var="list1" items="${SecondInningsBattingPlayer}">
-                                	<tr><td style="width: 190px;"><a href="${pageContext.request.contextPath}/scorecard/buddy/${list1.playerName}/${list1.playerId}">${list1.playerFullName}</a></td>
+                                	<tr><td style="width: 190px;"><a style="color: #227fbc;" href="${pageContext.request.contextPath}/scorecard/buddy/${list1.playerName}/${list1.playerId}">${list1.playerFullName}</a></td>
                                     	<c:choose>
-                                    	<c:when test="${list1.wicketBy == 'NotOut'}">
-                                    	<td  style="width: 150px;">Not Out</td>
+                                    	<c:when test="${list1.wicketBy == 'NotOut' || list1.wicketBy == 'Not Out'}">
+                                    	<td  style="width: 150px; text-align: left;">not out</td>
+                                    	</c:when>
+                                    	<c:when test="${list1.wicketBy == 'Retire Hurt'}">
+                                    	<td style="width: 150px; text-align: left;">retire hurt</td>
+                                    	</c:when>
+                                    	<c:when test="${list1.wicketBy == 'Retire Out'}">
+                                    	<td style="width: 150px; text-align: left;">retire out</td>
                                     	</c:when>
                                     	<c:otherwise>
-                                    	<td  style="width: 150px;"> ${list1.wicketBy }</td>
+                                    	<td  style="width: 150px; text-align: left;"> ${list1.wicketBy }</td>
                                     	</c:otherwise>
                                     	</c:choose>
                                         <td>${list1.runs } 
@@ -745,7 +757,7 @@ var formatAMPMTime = function(date) {
                                
                                
                                  <c:forEach var="list" items="${SecondInningsBowlingPlayer}">
-                                	<tr><td><a href="${pageContext.request.contextPath}/scorecard/buddy/${list.playerFullName}/${list.playerId}">${list.playerFullName}</a></td>
+                                	<tr><td><a style="color: #227fbc;" href="${pageContext.request.contextPath}/scorecard/buddy/${list.playerFullName}/${list.playerId}">${list.playerFullName}</a></td>
                                     	<td>${list.bowlingOvers}</td>
                                         <td>${list.meidan}</td>
                                         <td>${list.runs}</td>

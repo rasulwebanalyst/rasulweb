@@ -843,8 +843,13 @@ function afterValidation(){
 	contentType:"application/json; charset=utf-8",
 	success: function(res){
 		if(res == 'success'){
+			
+			if("${FromLanding}" == "Yes")
+				{
+				window.location.href = "${pageContext.request.contextPath}/CreateScheduleLanding/boardId/"+boardId;
+				}else{
 			window.location.href = "${pageContext.request.contextPath}/SchedulerList/boardId/"+boardId;
-		}
+		}}
 	}, 
 	error:function(err){
 		alert(err);
@@ -896,8 +901,14 @@ function makeReadonly(){
 
 function Gobackfunction()
 {
+	var boardId = "${boardId}";
+	if("${FromLanding}" == "Yes")
+	{
+	window.location.href = "${pageContext.request.contextPath}/CreateScheduleLanding/boardId/"+boardId;
+	}else{
 	window.history.back();
 	}
+}
 </script>
    
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/cricketSocial/token-input.js"></script>

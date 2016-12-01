@@ -61,7 +61,7 @@ var formatAMPMTime = function(date) {
                        <c:when test="${completedMatchesListSize == 0 }">
                       <table>
                         <thead class="">
-                         <tr>
+                         <tr><th>S.No</th>
                           <th style="width:110px;">Date (MM/DD/YYYY)</th>
                                           <th>Home Team</th>
                                           <th>Away Team</th>
@@ -86,7 +86,7 @@ var formatAMPMTime = function(date) {
                        <c:otherwise>
 						<table id="disputemanagement">
                        <thead> 
-                        <tr>
+                        <tr><th>S.No</th>
                            <th style="width:110px;">Date (MM/DD/YYYY)</th>
                                           <th>Home Team</th>
                                           <th>Away Team</th>
@@ -106,7 +106,7 @@ var formatAMPMTime = function(date) {
                        <tbody>
                           <c:forEach var="completed" items="${completedMatchesList}" varStatus = "varloop">
                        <tr>
-                       
+                       <td>${varloop.count}</td>
                        <td><p id="formatDate_${completed.tournamentSchedulerId}" style="display:none"><fmt:formatDate pattern="M/d/YYYY hh:mm a" value="${completed.gameDate}" /></p><script>document.writeln(test("${completed.tournamentSchedulerId}"));</script></td>
                        
                        <%-- <td><fmt:formatDate value="${completed.gameDate}"
@@ -216,6 +216,7 @@ var formatAMPMTime = function(date) {
   					
   					
   				htm+="<tr>";
+  				htm+="<td>"+count+"</td>"
   				var dateNewObject = getDateInObject(res[i].gameDate);
   				htm+="<td>"+dateNewObject+"</td>";	
   				htm+="<td><a href='${pageContext.request.contextPath}/"+res[i].homeTeamName+"/board/"+res[i].homeTeamId+"'>"+res[i].homeTeamName+"</a></td>";

@@ -20,6 +20,9 @@
     <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
      <link href="${pageContext.request.contextPath}/css/jquery.realperson.css" rel="stylesheet">
 
+   <!-- Custom CSS -->
+    <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
+
 	<!--Font-Awesome Icons-->
     <link href="icons/css/font-awesome.min.css" rel="stylesheet">
 
@@ -164,9 +167,19 @@ var fbURL='110086556012641'; // QA
         <div class="row">
             <div class="col-md-6 pull-left loginLeft">
                <h1>Welcome to CricketSocial</h1>
-               <p>
-               The Cricket Connection
-               </p>
+               <p>The Cricket Connection</p>
+               <ul class="login-txt">
+               	<li>A Social  and Analytics platform with anchoring tools for Cricket.</li>
+               	<li>One stop solution for - Players, Fans, Umpires, Coaches, Merchants, League Boards, Team Boards, Academies, Cricket Administrative Bodies and Talent Acquisition.</li>
+               	<!-- <li>Players, Fans, Umpires, Coaches, Merchants, League Boards, Team Boards, Academies, Cricket Administrative Bodies and Talent Acquisition</li> -->
+               	<li>Manage Social and club Cricket professionally.</li>
+               	<li>Follow live scores anywhere.</li>
+               	<li>Capture all your  Cricketing Moments.</li>
+               	<li>Connect with Cricket Buddies, Get Noticed, Find opportunities.</li>
+               	<li>You may be good enough to represent a professional level not just club level.</li>
+               	<li>Give your cricket dream a chance Register on CricketSocial Now.</li>
+              
+               </ul>
                
             </div>
             <!-- /.col-md-8 -->

@@ -8,7 +8,7 @@ private String teamName;
 private int totalMatches;
 private int wonmatches;
 private int lostmatches;
-private int adj;
+/*private int adj;*/
 private int points;
 private double netRunRate;
 private String for1;
@@ -30,7 +30,7 @@ private String teamBoardId;
 
 private String tie;
 
-
+private String adj;
 
 /*
  
@@ -38,8 +38,17 @@ private String tie;
                         "teamgainst": 5.3, 
  * */
 
+
+
+
 public String getTeamName() {
 	return teamName;
+}
+public String getAdj() {
+	return adj;
+}
+public void setAdj(String adj) {
+	this.adj = adj;
 }
 public void setTeamName(String teamName) {
 	this.teamName = teamName;
@@ -62,12 +71,12 @@ public int getLostmatches() {
 public void setLostmatches(int lostmatches) {
 	this.lostmatches = lostmatches;
 }
-public int getAdj() {
+/*public int getAdj() {
 	return adj;
 }
 public void setAdj(int adj) {
 	this.adj = adj;
-}
+}*/
 public int getPoints() {
 	return points;
 }

@@ -354,7 +354,7 @@ var formatAMPMTime = function(date) {
                         	
                         	
                         	<div class="col-md-12 col-xs-12 whiteBox cs-gm-list">
-                        	<h4>Upcoming/Inprogress Matches</h4>
+                        	<h4>Upcoming/In progress Matches</h4>
                         	<div class="result-list-scroller">
                         	<ul class="result-list">
                         	<c:choose>

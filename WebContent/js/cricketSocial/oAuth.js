@@ -1,10 +1,10 @@
 
-var fbURL='1552238875041700'; // Dev
+//var fbURL='1552238875041700'; // Dev
 //110086556012641
 
 //var fbURL='1037086509684954'; // local
  //  var fbURL='480457342143824'; // Production
- //var fbURL='110086556012641'; // QA
+ var fbURL='110086556012641'; // QA
   window.fbAsyncInit = function() {
     FB.init({
       appId      :fbURL ,
@@ -112,7 +112,7 @@ function oAuthRegistration()
       var logininfo=JSON.stringify(Users);
        $.ajax({
 					type : "POST",
-					url : projectURL+"/oAuthRegistration.htm",
+					url : projectURL+"/oAuthRegistration",
 					dataType: "json",
 		            contentType: "application/json; charset=utf-8",
 		            data:logininfo,
@@ -167,7 +167,7 @@ function oAuthsubmit()
       var logininfo=JSON.stringify(Users);
       $.ajax({
 					type : "POST",
-					url : projectURL+"/oAuthloginValidate.htm",
+					url : projectURL+"/oAuthloginValidate",
 					dataType: "json",
 		            contentType: "application/json; charset=utf-8",
 		            data:logininfo,			            
@@ -196,7 +196,7 @@ function oAuthsubmit()
 
 //*********************************************            *******************************************************************
 
-function googleLogin()
+/*function googleLogin()
 {
 	  var myParams = {
 			  'clientid' : '199727375065-10dcv13ql2vkdijvfrl6q1ifnruld40n.apps.googleusercontent.com',
@@ -206,9 +206,9 @@ function googleLogin()
 			    'scope' : 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.google.com/m8/feeds/ https://www.googleapis.com/auth/contacts.readonly',
 			  };
 			  gapi.auth.signIn(myParams);
-} // Dev Environment
+} */// Dev Environment
 
-/*function googleLogin()
+function googleLogin()
 {
 	  var myParams = {
 			  'clientid' : '1077808914943-6qc5il3h9odjpnna5j1qsmh7i81pg4d6.apps.googleusercontent.com',
@@ -218,7 +218,7 @@ function googleLogin()
 			    'scope' : 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.google.com/m8/feeds/ https://www.googleapis.com/auth/contacts.readonly',
 			  };
 			  gapi.auth.signIn(myParams);
-} */ // QA Environment
+}  // QA Environment
 
 /*function googleLogin()
 {
@@ -302,8 +302,8 @@ function onLoadCallback()
 
 function getGmailContacts() {
     var config = {
-      'client_id': '199727375065-10dcv13ql2vkdijvfrl6q1ifnruld40n.apps.googleusercontent.com', // Dev 
-    	//	'client_id': '1077808914943-6qc5il3h9odjpnna5j1qsmh7i81pg4d6.apps.googleusercontent.com',  // QA
+      //'client_id': '199727375065-10dcv13ql2vkdijvfrl6q1ifnruld40n.apps.googleusercontent.com', // Dev 
+    		'client_id': '1077808914943-6qc5il3h9odjpnna5j1qsmh7i81pg4d6.apps.googleusercontent.com',  // QA
     	//	'client_id': '575004365806-sbdnc074cvqg3bqioomamtoirfnl2789.apps.googleusercontent.com',  // Prod
     		
       'scope': 'https://www.google.com/m8/feeds'

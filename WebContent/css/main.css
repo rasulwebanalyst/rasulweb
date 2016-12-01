@@ -83,6 +83,7 @@ a.vw-score {
 	margin: 0;
 	padding: 0;
 	border: 0;
+	clear: both;
 }
 .loginMiddleBlock .nav-tabs > li > a {
 	background: #d3d2dd;
@@ -138,6 +139,10 @@ a.vw-score {
 .black-bg {
 }
 /* new changes */
+ul.login-txt li {
+	color: #FFF;
+	font-size: 16px;
+}
 .rdmore {
 	border: none;
 	background: none;
@@ -368,7 +373,8 @@ ol.roa-ol li {
 	border-bottom: #224e6b solid 3px;
 }
 .loginMiddleBlock .loginLeft {
-	margin-top: 400px;
+	/* margin-top: 400px; */
+	margin-top: 350px;
 	color: #fff;
 }
 .loginMiddleBlock .loginRight {
@@ -2018,6 +2024,7 @@ ul.logMenus li:last-child {
 	margin-left: 0;
 }
 ul.logMenus:before {
+
 	position: absolute;
 	top: -7px;
 	right: 10px;

@@ -180,6 +180,7 @@
                               <option value="PM">PM</option>
                               </select>
                               <input type="hidden" id="time" name ="gameTime" />
+                              <input type="hidden" id="BoardLatLong" value="${BoradInfo.latlang}">
                               </div>
                                 <div id="timeError" class="createschedulError"></div>
                                 <input type="hidden" id="timeZone" name="timeZone" value="">
@@ -355,6 +356,8 @@
 	
 	<script
 		src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>
+		 <script src="https://momentjs.com/downloads/moment.js"></script>
+	 <script src="https://momentjs.com/downloads/moment-timezone-with-data.js"></script>
 	<!--Gallery-->
 	
 	

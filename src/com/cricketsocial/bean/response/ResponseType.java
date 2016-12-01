@@ -286,9 +286,19 @@ public class ResponseType {
 	 
 	 private String createScheduleResponse;
 	 
+	 private List<TournamentScheduler> recentScheduleList;
+	 
 	 
 	 
 	
+	public List<TournamentScheduler> getRecentScheduleList() {
+		return recentScheduleList;
+	}
+
+	public void setRecentScheduleList(List<TournamentScheduler> recentScheduleList) {
+		this.recentScheduleList = recentScheduleList;
+	}
+
 	public String getCreateScheduleResponse() {
 		return createScheduleResponse;
 	}

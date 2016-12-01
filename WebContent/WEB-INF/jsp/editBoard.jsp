@@ -876,7 +876,7 @@ function validateBoardForm(e){
                  }, 
                  zipcode: {
                      required: true,
-                     minlength : 5,
+                     minlength : 2,
                      maxlength : 10,
                     // number : true,
          			 
@@ -957,7 +957,7 @@ function validateBoardForm(e){
                        },
                        zipcode: {
                         	required: "Please enter the zip code",
-                        	 minlength: "Zip code should be at least 5 numbers ",
+                        	 minlength: "Zip code should be at least 2 numbers ",
                         	maxlength : "Zip code should be maximum of 10 numbers ",
                         	//number :"Please enter numbers only"
                           
