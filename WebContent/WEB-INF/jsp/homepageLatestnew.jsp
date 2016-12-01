@@ -6,8 +6,11 @@
 <html>
 <head>
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+<<<<<<< HEAD
  <!-- responsive css -->
  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cricket Social</title>
 <script>var ctx="${pageContext.request.contextPath}";</script>
@@ -118,15 +121,25 @@ return result;
                      <form action="postFeed.htm" name="postfrom" id="postfrom" method="post" enctype="multipart/form-data" onsubmit="return feedValidation()">
                      	<div class="col-md-12 statusUpdateBox whiteBox">
                            <div id="fileDiv">
+<<<<<<< HEAD
                            	 <input id="upload0" type="file" style="visibility: hidden;" name="file" onchange="readURL(this); this.value=null;return false;" />
                             </div>
                             <b>Status update</b>
                             <a href="javascript:" class="pull-right" id="upload_link"><i class="fa fa-picture-o"></i> Add photos</a>
+=======
+                           	 <input id="upload0" type="file" style="visibility: hidden;" name="file" onchange="readURL(this)" />
+                            </div>
+                            <b>Status update</b>
+                            <a href="javascript:" class="pull-right" id="upload_link"><i class="fa fa-picture-o"></i> Add photo</a>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                             <!-- <a href="#" class="pull-right" id="upload_videofile"><i class="fa fa-picture-o"></i> Add Video</a> --> 
                             <div class="postBlock" id="BowlOptionDiv">
                             	<img src="${USRIMG}" class="nav-avatar">
                                	<textarea class="form-control" id="content" placeholder="What is your Delivery?" name="content" onfocus="bowloption(this)"></textarea>
+<<<<<<< HEAD
 								 <div class="clearfix"></div>
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 								 <div class="uploadedFiles">
                                    
                                 </div>
@@ -633,7 +646,11 @@ function readURL3(input) {
             	
             	
             	$('.uploadedFiles').append(html);
+<<<<<<< HEAD
             	 var filehtml="<input id='upload"+fileTextBoxLength+"' type='file' style='display:none;' name='file' onchange='readURL(this); this.value=null;return false;' />";
+=======
+            	 var filehtml="<input id='upload"+fileTextBoxLength+"' type='file' style='display:none;' name='file' onchange='readURL(this)' />";
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
             	// var filehtml="<input id='upload"+feedImagesArray.length+"' type='file' style='display:none;' name='file' onchange='readURL(this)' />";
                  $('#fileDiv').append(filehtml);
         };
@@ -699,7 +716,11 @@ function readURL(input) {
                          	
                          	
                          	$('.uploadedFiles').append(html);
+<<<<<<< HEAD
                          	 var filehtml="<input id='upload"+fileTextBoxLength+"' type='file' style='display:none;' name='file' onchange='readURL(this); this.value=null;return false;' />";
+=======
+                         	 var filehtml="<input id='upload"+fileTextBoxLength+"' type='file' style='display:none;' name='file' onchange='readURL(this)' />";
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                          	// var filehtml="<input id='upload"+feedImagesArray.length+"' type='file' style='display:none;' name='file' onchange='readURL(this)' />";
                               $('#fileDiv').append(filehtml);
                         }else{
@@ -782,7 +803,11 @@ function imageSizeValidation(e,fileTextBoxLength)
             	
             	
             	$('.uploadedFiles').append(html);
+<<<<<<< HEAD
             	 var filehtml="<input id='upload"+fileTextBoxLength+"' type='file' style='display:none;' name='file' onchange='readURL(this); this.value=null;return false;' />";
+=======
+            	 var filehtml="<input id='upload"+fileTextBoxLength+"' type='file' style='display:none;' name='file' onchange='readURL(this)' />";
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
             	// var filehtml="<input id='upload"+feedImagesArray.length+"' type='file' style='display:none;' name='file' onchange='readURL(this)' />";
                  $('#fileDiv').append(filehtml);
 		return true;

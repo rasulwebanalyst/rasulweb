@@ -180,7 +180,10 @@
                               <option value="PM">PM</option>
                               </select>
                               <input type="hidden" id="time" name ="gameTime" />
+<<<<<<< HEAD
                               <input type="hidden" id="BoardLatLong" value="${BoradInfo.latlang}">
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                               </div>
                                 <div id="timeError" class="createschedulError"></div>
                                 <input type="hidden" id="timeZone" name="timeZone" value="">
@@ -356,8 +359,11 @@
 	
 	<script
 		src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>
+<<<<<<< HEAD
 		 <script src="https://momentjs.com/downloads/moment.js"></script>
 	 <script src="https://momentjs.com/downloads/moment-timezone-with-data.js"></script>
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	<!--Gallery-->
 	
 	
@@ -529,8 +535,12 @@ function addFunction(){
 		awayteamValidation();
 		teamValidation();
 		if(awayteamValidation()==true && teamValidation()==true){
+<<<<<<< HEAD
 		//	afterValidation();
 		addFunction1();
+=======
+			afterValidation();
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			return true;
 		}else{
 			return false;
@@ -545,6 +555,7 @@ function addFunction(){
 	
 }
 
+<<<<<<< HEAD
 
 function addFunction1(){
 	var latlong=$("#BoardLatLong").val();
@@ -603,6 +614,8 @@ function formattime(n)
 	return n < 10 ? '0'+n : n;
 	}
 
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 function afterValidation(){
 	$("#loading").show();
 	$("#createScheduleForm").submit();

@@ -196,7 +196,11 @@ var imageValidate=1;
                              
                              
                               <%-- <input type="text" class="form-control tcol1 number" placeholder="" id="countryCode" name="countryCode" value="${UserProfileOBJ.countryCode}"> --%>
+<<<<<<< HEAD
                                         <input type="text" class="form-control tcol3 number" style="width:54%" placeholder="" id="phoneNumber" name="phoneNumber" value="${UserProfileOBJ.phoneNumber eq '0' ? '':UserProfileOBJ.phoneNumber}" onkeypress="return maxNumber(event)">
+=======
+                                        <input type="text" class="form-control tcol3 number" style="width:54%" placeholder="" id="phoneNumber" name="phoneNumber" value="${UserProfileOBJ.phoneNumber eq '0' ? '':UserProfileOBJ.phoneNumber}">
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                              
                               
                               <div style="color: red;" id="errorcountryCode">
@@ -230,7 +234,11 @@ var imageValidate=1;
                               
                               </div> --%>
                               
+<<<<<<< HEAD
                             <div class="col-md-4"><label for="email"><span></span>Place of Birth</label> 
+=======
+                            <div class="col-md-4"><label for="email"><span></span>Place Of Birth</label> 
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 					
 					    <div id="locationField">
    							 <input class="form-control" id="placeOfBirth" name="placeOfBirth" placeholder="" onFocus="geolocate()" type="text" value="${UserProfileOBJ.placeOfBirth}"></input>
@@ -243,7 +251,11 @@ var imageValidate=1;
                             <div class="col-md-12 noPadding">
                              <%--  <div class="col-md-4"><label for="email">Languages known</label> <input type="text" class="form-control" placeholder="" id="userLanguageMapString" name="userLanguageMapString" value="${strLanguage}"></div> --%>
                               <!-- <div class="col-md-4"><label for="email">Places Lived</label> <input type="text" class="form-control" placeholder="" onfocus="geolocate()" id="placesMapString" name="placesMapString"></div> -->
+<<<<<<< HEAD
                               <div class="col-md-4"><label for="email"><span>*</span>Place of Living</label> 
+=======
+                              <div class="col-md-4"><label for="email"><span>*</span>Place Living</label> 
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 							                          
                               
                               <!-- <input type="text" class="form-control" placeholder="" id=""> -->
@@ -251,7 +263,11 @@ var imageValidate=1;
                               <div id="locationField">
      							 <input class="form-control" id="autocomplete" name="autocomplete" placeholder="" onFocus="geolocate()" type="text" value="${UserProfileOBJ.city}"></input>
    							 </div>
+<<<<<<< HEAD
     						<!-- <input type="hidden" id="latlang" name="latLang" value=""> -->
+=======
+    						<input type="hidden" id="latlang" name="latLang" value="">
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                               
                  </div>
                  <div class="col-md-4"><label for="email">Address 1</label> <input type="text" class="form-control" placeholder="" id="address1" name="address1" value="${UserProfileOBJ.address1}"></div>
@@ -308,8 +324,13 @@ var imageValidate=1;
 										</div>
 										<!-- <div class="col-md-4">
 											<label for="email" style="display: block;">Contact visibility to public</label> -->
+<<<<<<< HEAD
 											<div class="col-md-8">
 				                            <label for="email" style="display: block;">Contact Information&nbsp;(<span style="float:none;">*</span><span style="color:#bbb;font-size:10px;float:none;">Select if you would like your email and/or phone number to be visble to public</span>)</label>
+=======
+											<div class="col-md-6">
+				                            <label for="email" style="display: block;">Contact Visibility&nbsp;(<span style="float:none;">*</span><span style="color:#bbb;font-size:10px;float:none;">complete address should not be display to public</span>)</label>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 											<c:choose>
 												<c:when test="${UserProfileOBJ.enablePhoneNo eq 1 }">
 													<input type="checkbox" class="cboxBtn" id="Fan" name="rr"
@@ -654,6 +675,7 @@ var imageValidate=1;
     
     
    <script>
+<<<<<<< HEAD
    
    
    
@@ -670,6 +692,8 @@ var imageValidate=1;
    
    
    
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	function userprofile(e){
 		
 		//alert("inside the function login validation----");

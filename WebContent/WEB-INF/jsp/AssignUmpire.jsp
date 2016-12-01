@@ -146,8 +146,12 @@ var formatAMPMTime = function(date) {
 								</div>  
 		          
 		         <!--  </h1>
+<<<<<<< HEAD
 		           -->
 		           <div class="form-group">
+=======
+		           -->
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 		          <c:choose>
 		          <c:when test="${empty tournamentList}">
 		          
@@ -267,7 +271,11 @@ var formatAMPMTime = function(date) {
           	<input type="hidden" id="hiddenDate" value="${dateString}"> 
 		 	<input type="hidden" id="hiddenDateStart" value="${startDate}"> 
           
+<<<<<<< HEAD
       </div>    
+=======
+          
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
     </div>
   </div>
   <!--/Content Block-->

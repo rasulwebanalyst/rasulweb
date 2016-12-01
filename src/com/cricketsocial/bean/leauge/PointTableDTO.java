@@ -8,7 +8,11 @@ private String teamName;
 private int totalMatches;
 private int wonmatches;
 private int lostmatches;
+<<<<<<< HEAD
 /*private int adj;*/
+=======
+private int adj;
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 private int points;
 private double netRunRate;
 private String for1;
@@ -30,7 +34,11 @@ private String teamBoardId;
 
 private String tie;
 
+<<<<<<< HEAD
 private String adj;
+=======
+
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 
 /*
  
@@ -38,6 +46,7 @@ private String adj;
                         "teamgainst": 5.3, 
  * */
 
+<<<<<<< HEAD
 
 
 
@@ -50,6 +59,11 @@ public String getAdj() {
 public void setAdj(String adj) {
 	this.adj = adj;
 }
+=======
+public String getTeamName() {
+	return teamName;
+}
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 public void setTeamName(String teamName) {
 	this.teamName = teamName;
 }
@@ -71,12 +85,20 @@ public int getLostmatches() {
 public void setLostmatches(int lostmatches) {
 	this.lostmatches = lostmatches;
 }
+<<<<<<< HEAD
 /*public int getAdj() {
+=======
+public int getAdj() {
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	return adj;
 }
 public void setAdj(int adj) {
 	this.adj = adj;
+<<<<<<< HEAD
 }*/
+=======
+}
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 public int getPoints() {
 	return points;
 }

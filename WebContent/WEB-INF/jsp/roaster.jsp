@@ -3,8 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+<<<<<<< HEAD
  <!-- responsive css -->
  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -293,7 +296,10 @@ var pageNum=10;
                                          	 		<input type="hidden" id="leagueHiddenId" />
                                          	 		
                                         		 </span>
+<<<<<<< HEAD
                                         		<!--  <div class="clearfix"></div> -->
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                         		 <a  href="#" onclick="affiliateRoster('${RoasterResponseById.rosterDetails.rosterId}','leagueHiddenId')" id="affButtonId"> Affiliate </a>
                                         		 
                                          	</c:otherwise>
@@ -359,7 +365,11 @@ var pageNum=10;
                                 </div>
                                 <div id="collapseOne" class="panel-collapse collapse">
                                     <div class="panel-body">
+<<<<<<< HEAD
                                     <div class="form-group">
+=======
+                                    
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                     	<table>
                                     	<thead>
                                         	<tr>                                        
@@ -406,7 +416,10 @@ var pageNum=10;
                                             
                                            </tbody> 
                                     </table>
+<<<<<<< HEAD
                                     </div>
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                       	<c:choose>
                                       		<c:when test="${ not empty BattingPerformance}">
                                       					
@@ -454,8 +467,12 @@ var pageNum=10;
                                            			<td>${bowler.matchCount}</td>
                                            			<td>${bowler.runs}</td>
                                            			<td>${bowler.wickets}</td>
+<<<<<<< HEAD
                                            			<%-- <td>${bowler.bestBowlinginInnings}/${bowler.bowlingRuns}</td> --%>
                                            			<td>${bowler.bbi}</td>
+=======
+                                           			<td>${bowler.bestBowlinginInnings}/${bowler.bowlingRuns}</td>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                            			<td>${bowler.fiveWicketsCount}</td>
                                            			<td>${bowler.tenWicketsCount}</td>
                                            			<td><fmt:formatNumber type="number"  pattern="##########.##"  value="${bowler.average}" /></td>
@@ -591,7 +608,11 @@ var pageNum=10;
                      	<div class="col-md-12 statusUpdateBox whiteBox">
                             <b>Status update</b>
                             <!-- <a href="#" id="upload_link" class="pull-right"><i class="fa fa-picture-o"></i> Add Video/ Photos</a> -->
+<<<<<<< HEAD
                             <a href="#" class="pull-right" id="upload_link" title="Please upload below 2 MB file"><i class="fa fa-picture-o" ></i> Add photos</a>
+=======
+                            <a href="#" class="pull-right" id="upload_link" title="Please upload below 2 MB file"><i class="fa fa-picture-o" ></i> Add photo</a>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                         	
                         	<div id="fileDiv">
                            	 <input id="upload0" type="file" style="visibility: hidden;" name="file" onchange="readURL(this)" />
@@ -601,7 +622,11 @@ var pageNum=10;
                             <div class="postBlock">
                             	<img src="${USRIMG}?" class="nav-avatar" onerror="userErrorDefaultImg(this)" >
                                	<textarea class="form-control" id="content" placeholder="What is your Delivery?" name="content"></textarea>
+<<<<<<< HEAD
 								<div class="clearfix"></div>
+=======
+								
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 								<input type="hidden" value="${RoasterResponseById.rosterDetails.rosterId}" name="rosterId" id="rosterId">
 								<input type="hidden" value="${BoradInfo.boardId }" name="rosterBoardId" id="rosterBoardId" >
 								 <div class="uploadedFiles">

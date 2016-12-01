@@ -491,7 +491,11 @@ var deletedarray=[];
         	if(typeof imageUrl === "undefined" || imageUrl==null){
         		ext1 = null;
         	}else{
+<<<<<<< HEAD
         	var iamgeExtension=imageUrl.name.replace(/ /g,"~");
+=======
+        	var iamgeExtension=imageUrl.name;
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
         	 ext1 = iamgeExtension.substr(iamgeExtension.lastIndexOf('.') + 1);
         	 var pos=format.indexOf(ext1);
         	 if(pos==-1)
@@ -511,7 +515,11 @@ var deletedarray=[];
                  	htmlco+="<input type='hidden' id='iamgeExtensionname"+j+"' value="+iamgeExtension+">";
                  	 $("#uploadedpdfs").append(htmlco);
                  	 i=j;
+<<<<<<< HEAD
                  	 var htmlco1="<span class='greenText' id='uploadednamesponser"+j+"'><span class='upload-file-name'>"+iamgeExtension.replace(/~/g," ")+"</span><span onclick=deletename('uploadednamesponser"+j+"','uploadedsrcsponser"+j+"') style='margin-left: 4px; padding: 10px 1px 1px 1px; float: left;'><img src='${pageContext.request.contextPath}/images/cross.png'></span></span>";
+=======
+                 	 var htmlco1="<span class='greenText' id='uploadednamesponser"+j+"'><span class='upload-file-name'>"+iamgeExtension+"</span><span onclick=deletename('uploadednamesponser"+j+"','uploadedsrcsponser"+j+"') style='margin-left: 4px; padding: 10px 1px 1px 1px; float: left;'><img src='${pageContext.request.contextPath}/images/cross.png'></span></span>";
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                  	$("#uploadname").append(htmlco1);
                  	 /* var htmlco1="";
                  	// htmlco1= */
@@ -1052,8 +1060,12 @@ var deletedarray=[];
 			{
 			
 			//var Filename=uploadextension[i];
+<<<<<<< HEAD
 			var Filename2=$("#"+uploadextension[i]).val();
 			var Filename=Filename2.replace(/~/g," ");
+=======
+			var Filename=$("#"+uploadextension[i]).val();
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			var base64=$("#"+uploadedarr[i]).val();
 			var base64trimedsplit=base64.split(',');
 			if(base64trimedsplit.length ==1)

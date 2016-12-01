@@ -156,6 +156,7 @@
                                             <td class="tdAlignLeft">
                                                 <a href="${pageContext.request.contextPath}/${player.awayTeamName}/board/ ${player.awayTeamId}"><img src="${player.awayTeamImgUrl}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" style="width: 30px;"> ${player.awayTeamName}</a>
                                             </td>
+<<<<<<< HEAD
                                             <c:choose>
                                             <c:when test="${matches.groundName ne null}">
                                             <td class="tdAlignLeft">${matches.groundName}</td>
@@ -165,6 +166,9 @@
                                             </c:otherwise>
                                             </c:choose>
                                             
+=======
+                                            <td class="tdAlignLeft">${matches.groundName}</td>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                             <td>
                                                 <fmt:formatDate pattern="MM/dd/YYYY" value="${matches.gameDate}" />
                                             </td>

@@ -1,6 +1,9 @@
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+<<<<<<< HEAD
  <!-- responsive css -->
  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 <title>Cricket Social</title>
 <%@ include file="BoardHeader.jsp" %>
 
@@ -102,7 +105,11 @@ var formatAMPMTime = function(date) {
 								</div>  
 		          
 		         <!--  </h1> -->
+<<<<<<< HEAD
                  <div class="form-group"> 
+=======
+                  
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                  <c:choose>
 		          <c:when test="${empty tournamentList}">
 		          
@@ -229,7 +236,11 @@ var formatAMPMTime = function(date) {
 		 	<input type="hidden" id="hiddenDateStart" value="${startDate}"> 
           
     </div>
+<<<<<<< HEAD
   </div>  </div>
+=======
+  </div>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
   <!--/Content Block-->
 </div>
 </div>

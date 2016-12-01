@@ -92,7 +92,11 @@ var deletedarray=[];
 		            <div id="uploadedpdfs">
 		             <c:forEach items="${OrgResponse.fileDetails}" var="filedetail" varStatus="loop">
 		             <input type='hidden' id='uploadedsrc${loop.index}' value="${filedetail.fileUrl}">
+<<<<<<< HEAD
 		                 	<input type='hidden' id='uploadedsrcext${loop.index}' value='${filedetail.fileName}'>
+=======
+		                 	<input type='hidden' id='uploadedsrcext${loop.index}' value="${filedetail.fileName}">
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 		            
 		            </c:forEach> 
 		            
@@ -142,7 +146,11 @@ function selectpdf(finput)
 	if(typeof imageUrl === "undefined" || imageUrl==null){
 		ext1 = null;
 	}else{
+<<<<<<< HEAD
 	var iamgeExtension=imageUrl.name.replace(/ /g,"~");
+=======
+	var iamgeExtension=imageUrl.name;
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	 ext1 = iamgeExtension.substr(iamgeExtension.lastIndexOf('.') + 1);
 	 var pos=format.indexOf(ext1);
 	 if(pos==-1)
@@ -165,7 +173,11 @@ function selectpdf(finput)
          	 $("#uploadedpdfs").append(htmlco);
          	 i=j;
          	 
+<<<<<<< HEAD
          	 var htmlco1="<span class='greenText' id='uploadedname"+j+"'><span class='upload-file-name'>"+iamgeExtension.replace(/~/g," ")+"</span><span onclick=deletename('uploadedname"+j+"','uploadedsrc"+j+"')><img style='margin-left: 4px; padding: 10px 1px 1px 1px; float: left;' src='${pageContext.request.contextPath}/images/cross.png'></span></span>";
+=======
+         	 var htmlco1="<span class='greenText' id='uploadedname"+j+"'><span class='upload-file-name'>"+iamgeExtension+"</span><span onclick=deletename('uploadedname"+j+"','uploadedsrc"+j+"')><img style='margin-left: 4px; padding: 10px 1px 1px 1px; float: left;' src='${pageContext.request.contextPath}/images/cross.png'></span></span>";
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
          	$("#uploadname").append(htmlco1);
          	 /* var htmlco1="";
          	// htmlco1= */
@@ -213,8 +225,12 @@ function selectpdf(finput)
 		for(var i=0;i<uploadedarr.length;i++)
 			{
 			
+<<<<<<< HEAD
 			var Filename2=$("#"+uploadextension[i]).val();
 			var Filename=Filename2.replace(/~/g," ");
+=======
+			var Filename=$("#"+uploadextension[i]).val();
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			var base64=$("#"+uploadedarr[i]).val();
 			/* alert(base64) */
 			/* var base64trimed=base64.split(',')[1]; */

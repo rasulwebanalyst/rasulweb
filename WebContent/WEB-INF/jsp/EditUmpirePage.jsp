@@ -122,7 +122,11 @@
                         <form id="umpireForm" onsubmit="return cancelFormSubmit();">
                         		<div class="form-group col-md-12 noPadding">
                                   <div class="col-md-4">
+<<<<<<< HEAD
                                   	<label for="email"><span>*</span>Umpire Name</label> <input type="text" class="form-control" placeholder="" id="umpireName" name="umpireName"  value="${umpireDetails.umpireName}" readonly>
+=======
+                                  	<label for="email"><span>*</span>Enter Umpire Name</label> <input type="text" class="form-control" placeholder="" id="umpireName" name="umpireName"  value="${umpireDetails.umpireName}" readonly>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                    <div class="autoComplete" id="addMemberautoCompleteDIV" style="display:none;margin-top: 37px;">
 													<ul>
 			                                        	<li></li>
@@ -157,7 +161,11 @@
                                   
                                   <div class="form-group col-md-12 noPadding">
                                   <div class="col-md-4">
+<<<<<<< HEAD
                                   	<label for="email"><span>*</span>Zip Code</label> 
+=======
+                                  	<label for="email">Zip Code</label> 
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                   	<c:choose>
                                   	<c:when test="${umpireDetails.zipcode == 0 }">
                                   	<input type="text" class="form-control" placeholder="" id="zipcode" name="zipcode" value="">
@@ -188,7 +196,11 @@
                                  	 <label for="email"  style="width:100%;">Cell Phone</label> 
                                     <%--  <input type="text" class="form-control tcol1 number" placeholder="" id="areaCodeCell" name="areaCodeCell" value="${cellAreaCode}"> --%>
                                     <select  id="areaCodeCell" name="areaCodeCell" class="form-control tcol1 number" style="width: 46%; font-size: 10px; padding: 6px 5px;">                           
+<<<<<<< HEAD
                                         <option value="">Country Code</option>                                                     
+=======
+                                        <option value="0">Country Code</option>                                                     
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                         <c:forEach var="codes" items="${countryCodes}" varStatus="i">
                                          <option value="${codes.countryCode}">${codes.countryName} +${codes.countryCode}</option>
                                           </c:forEach>

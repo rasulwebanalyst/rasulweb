@@ -23,6 +23,7 @@ overflow-y: auto !important;
 }
 
 </style>
+<<<<<<< HEAD
 <style type="text/css">
 
 textarea#note {
@@ -50,6 +51,9 @@ height:100%;
 }
 
 </style>
+=======
+
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 
     
     <script type="text/javascript">
@@ -353,9 +357,13 @@ else
 	
 if(res.text != null && res.text != "")
 	{
+<<<<<<< HEAD
 	htmlco+="<textarea disabled readonly id='ShortText' style='min-height: 300px; border: none; padding: 10px; font-size: 12px; width: 100%; overflow:hidden; background: #fff;'>"+res.text+"</textarea>";
 	htmlco+="<input class='rdmore' type='button' value='See More...' style='float: right;' id='moreinfobutton' onclick='scrollheight()'>";
 	htmlco+="<div id='note1'><textarea readonly id='note' disabled>"+res.text+"</textarea></div>";
+=======
+	htmlco+="<textarea readonly style='min-height: 300px; border:1px solid #ccc; width: 100%;-'>"+res.text+"</textarea>";
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	}
 	var filedetails=res.fileDetails;
 	if(filedetails !=null)
@@ -395,6 +403,7 @@ if(res.text != null && res.text != "")
 	htmlco+="<span style='color: red'>No details available</span>"
 	}
 	$("#BoardInfoDetails").html(htmlco).trigger("create");
+<<<<<<< HEAD
 	var s_height = document.getElementById('note').scrollHeight;
 	document.getElementById('note').setAttribute('style','height:'+s_height+'px');
 	document.getElementById('note1').setAttribute('style','Display:none');
@@ -402,6 +411,8 @@ if(res.text != null && res.text != "")
 	if(s_height <331){
 		$("#moreinfobutton").hide();
 	}
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 
 			}
 			
@@ -409,6 +420,7 @@ if(res.text != null && res.text != "")
 			
 		})
 	
+<<<<<<< HEAD
 	}
 	
 	
@@ -422,6 +434,15 @@ if(res.text != null && res.text != "")
 		$("#note1").show();
 	}
 
+=======
+	
+	
+	
+	
+	}
+	
+	
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	function SponserInfo()
 	{
 		

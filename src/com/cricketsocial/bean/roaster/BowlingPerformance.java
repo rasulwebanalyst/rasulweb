@@ -30,6 +30,7 @@ public class BowlingPerformance {
 	private String economy;
 	private String fiveWicketsCount;
 	private String tenWicketsCount;
+<<<<<<< HEAD
 	private String bbi;
 	
 	
@@ -40,6 +41,9 @@ public class BowlingPerformance {
 	public void setBbi(String bbi) {
 		this.bbi = bbi;
 	}
+=======
+
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	public int bowlingRuns;
 	public int bbiWicketscount;
 	

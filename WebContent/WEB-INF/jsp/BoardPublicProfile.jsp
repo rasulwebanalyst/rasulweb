@@ -132,6 +132,7 @@ return result;
 	                                  <div class="media-body">
 	                                    <h4 class="media-heading">${feed.postedByName}</h4>
 		                                    <div class="headRight">
+<<<<<<< HEAD
 		                                    
 		                                     <c:choose>
 		                                    		<c:when test="${feed.postedBy eq USRID}">
@@ -142,6 +143,8 @@ return result;
 		                                    		</c:otherwise>
 		                                    	</c:choose>
 		                                    
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 		                                    	<span id="HitCountDIv${feed.feedId}"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" >${feed.feedHitCount}</span><span id="commentCount${feed.feedId}" onclick="getAllComments('${feed.feedId}')"><i class="fa fa-commenting-o"></i>${feed.feedCommentCount}</span>
 		                                    </div>
 	                                    

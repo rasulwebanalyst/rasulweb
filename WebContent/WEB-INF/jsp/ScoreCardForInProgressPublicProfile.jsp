@@ -231,6 +231,7 @@ var formatAMPMTime = function(date) {
                                 <tbody>
                                
                                  <c:forEach var="list1" items="${firstInningsBattingPlayer}">
+<<<<<<< HEAD
                                 	<tr><td style="width: 190px;"><a style="color: #227fbc;" href="${pageContext.request.contextPath}/scorecard/buddy/${list1.playerFullName}/${list1.playerId}">${list1.playerFullName}</a></td>
                                     <c:choose>
                                     	<c:when test="${list1.wicketBy == 'NotOut' || list1.wicketBy == 'Not Out'}">
@@ -244,6 +245,15 @@ var formatAMPMTime = function(date) {
                                     	</c:when>
                                     	<c:otherwise>
                                     	<td style="width: 150px; text-align: left;" >${list1.wicketBy }</td>
+=======
+                                	<tr><td style="width: 190px;"><a href="${pageContext.request.contextPath}/scorecard/buddy/${list1.playerFullName}/${list1.playerId}">${list1.playerFullName}</a></td>
+                                    <c:choose>
+                                    	<c:when test="${list1.wicketBy == 'NotOut'}">
+                                    	<td style="width: 150px;" >Not Out</td>
+                                    	</c:when>
+                                    	<c:otherwise>
+                                    	<td style="width: 150px;" >${list1.wicketBy }</td>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                     	</c:otherwise>
                                     	</c:choose>
                                         <td>${list1.runs }
@@ -435,7 +445,11 @@ var formatAMPMTime = function(date) {
                                
                                
                                  <c:forEach var="list" items="${firstInningsBowlingPlayer}">
+<<<<<<< HEAD
                                 	<tr><td ><a style="color: #227fbc;" href="${pageContext.request.contextPath}/scorecard/buddy/${list.playerName}/${list.playerId}">${list.playerFullName}</a></td>
+=======
+                                	<tr><td ><a href="${pageContext.request.contextPath}/scorecard/buddy/${list.playerName}/${list.playerId}">${list.playerFullName}</a></td>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                     	<td>${list.bowlingOvers}</td>
                                         <td>${list.meidan}</td>
                                         <td>${list.runs}
@@ -540,6 +554,7 @@ var formatAMPMTime = function(date) {
                                 </thead>
                                 <tbody>
                                  <c:forEach var="list1" items="${SecondInningsBattingPlayer}">
+<<<<<<< HEAD
                                 	<tr><td style="width: 190px;"><a style="color: #227fbc;" href="${pageContext.request.contextPath}/scorecard/buddy/${list1.playerName}/${list1.playerId}">${list1.playerFullName}</a></td>
                                     	<c:choose>
                                     	<c:when test="${list1.wicketBy == 'NotOut' || list1.wicketBy == 'Not Out'}">
@@ -553,6 +568,15 @@ var formatAMPMTime = function(date) {
                                     	</c:when>
                                     	<c:otherwise>
                                     	<td  style="width: 150px; text-align: left;"> ${list1.wicketBy }</td>
+=======
+                                	<tr><td style="width: 190px;"><a href="${pageContext.request.contextPath}/scorecard/buddy/${list1.playerName}/${list1.playerId}">${list1.playerFullName}</a></td>
+                                    	<c:choose>
+                                    	<c:when test="${list1.wicketBy == 'NotOut'}">
+                                    	<td  style="width: 150px;">Not Out</td>
+                                    	</c:when>
+                                    	<c:otherwise>
+                                    	<td  style="width: 150px;"> ${list1.wicketBy }</td>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                     	</c:otherwise>
                                     	</c:choose>
                                         <td>${list1.runs } 
@@ -580,9 +604,15 @@ var formatAMPMTime = function(date) {
                                     	<td><p> Extras</p></td>
                                         <td  colspan="6" style="text-align: right;">
                                         			
+<<<<<<< HEAD
                                         			${getSecondInnings.totalNumExtras}<c:if test="${!empty getSecondInnings.totalExtras}">
                                         	(
                                         		<c:forEach items="${getSecondInnings.totalExtras}" var="ex" varStatus="status">
+=======
+                                        			${getFirstInnings.totalNumExtras}<c:if test="${!empty getFirstInnings.totalExtras}">
+                                        	(
+                                        		<c:forEach items="${getFirstInnings.totalExtras}" var="ex" varStatus="status">
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                         				${ex}<c:if test="${not status.last}">,</c:if>
                                         		</c:forEach>
                                         	)
@@ -757,7 +787,11 @@ var formatAMPMTime = function(date) {
                                
                                
                                  <c:forEach var="list" items="${SecondInningsBowlingPlayer}">
+<<<<<<< HEAD
                                 	<tr><td><a style="color: #227fbc;" href="${pageContext.request.contextPath}/scorecard/buddy/${list.playerFullName}/${list.playerId}">${list.playerFullName}</a></td>
+=======
+                                	<tr><td><a href="${pageContext.request.contextPath}/scorecard/buddy/${list.playerFullName}/${list.playerId}">${list.playerFullName}</a></td>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                     	<td>${list.bowlingOvers}</td>
                                         <td>${list.meidan}</td>
                                         <td>${list.runs}</td>

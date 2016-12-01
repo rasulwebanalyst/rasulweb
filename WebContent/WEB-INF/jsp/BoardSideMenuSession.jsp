@@ -50,16 +50,27 @@
                                <c:choose>
                         	  	<c:when test="${BoradInfo.statusId==19}">	
                         	  	 	
+<<<<<<< HEAD
                         	  		<%-- <li ><a href="javascript:"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
+=======
+                        	  		<li ><a href="javascript:"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                         	  	</c:when>
                         	  	<c:otherwise>
                      				<%-- ${BoradInfo.scheduleFlag} --%>
                      				<c:choose>
                               <c:when test="${BoradInfo.scheduleFlag}">
+<<<<<<< HEAD
                              			<%-- <li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
                               </c:when>
                               <c:otherwise>
                                   <%-- <li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
+=======
+                             			<li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li>
+                              </c:when>
+                              <c:otherwise>
+                                  <li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                               </c:otherwise>
                               </c:choose>
                      			</c:otherwise>
@@ -72,16 +83,27 @@
                             	 <c:choose>
                         	  	<c:when test="${BoradInfo.statusId==19}">	
                         	  	 	
+<<<<<<< HEAD
                         	  		<%-- <li ><a href="javascript:"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
+=======
+                        	  		<li ><a href="javascript:"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                         	  	</c:when>
                         	  	<c:otherwise>
                      				<%-- ${BoradInfo.scheduleFlag} --%>
                      				<c:choose>
                               <c:when test="${BoradInfo.scheduleFlag}">
+<<<<<<< HEAD
                              			<%-- <li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
                               </c:when>
                               <c:otherwise>
                                   <%-- <li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
+=======
+                             			<li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li>
+                              </c:when>
+                              <c:otherwise>
+                                  <li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                               </c:otherwise>
                               </c:choose>
                      			</c:otherwise>

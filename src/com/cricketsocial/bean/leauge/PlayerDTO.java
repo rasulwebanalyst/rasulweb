@@ -1,6 +1,9 @@
 package com.cricketsocial.bean.leauge;
 
+<<<<<<< HEAD
 import java.util.Date;
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 import java.util.List;
 import java.util.UUID;
 
@@ -37,6 +40,7 @@ public class PlayerDTO {
 	private String sixsCount;
 	private String foursCount;
 	private String strikeRate;
+<<<<<<< HEAD
 	private String notOutFlag;
 	private int battingBalls;
 	private UUID tournamentSchedulerId;
@@ -93,6 +97,11 @@ public class PlayerDTO {
 	public void setNotOutFlag(String notOutFlag) {
 		this.notOutFlag = notOutFlag;
 	}
+=======
+	
+	
+	
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	public String getHighest() {
 		return highest;
 	}

@@ -24,9 +24,12 @@
 <link
 	href="${pageContext.request.contextPath}/css/jquery.realperson.css"
 	rel="stylesheet">
+<<<<<<< HEAD
 	
 	<!-- responsive css -->
  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 
 <!--Font-Awesome Icons-->
 <link
@@ -205,7 +208,11 @@ var formatAMPMTime = function(date) {
 								</div>  
 								
 								<!--  </h1> -->
+<<<<<<< HEAD
 								 <div class="form-group">
+=======
+								 
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 								 <c:choose>
 								 <c:when test="${empty tournamentList}">
 								 <table  id="scheduleTable">
@@ -289,7 +296,11 @@ var formatAMPMTime = function(date) {
 												<c:choose>
 												<c:when test="${tourDetails.status == 'InProgress'}">
 												
+<<<<<<< HEAD
 												 <td align="center" ><a href="${pageContext.request.contextPath}/showScoreCardForInProgress/boardId/${boardId}/matchId/${tourDetails.tournamentSchedulerId}">In progress</a></td>
+=======
+												 <td align="center" >Inprogress</td>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 												
 												</c:when>
 												<c:otherwise>
@@ -329,7 +340,11 @@ var formatAMPMTime = function(date) {
 		 	<input type="hidden" id="hiddenDate" value="${dateString}"> 
 		 	<input type="hidden" id="hiddenDateStart" value="${startDate}"> 
 
+<<<<<<< HEAD
 							</div> </div>
+=======
+							</div>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 						</div>
 
 
@@ -557,7 +572,11 @@ function loadPrev(text){
 					html += '<div >';
 					
 					var umpireList = res[i].umpireNamesList;
+<<<<<<< HEAD
 					if(umpireList != null){
+=======
+					
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 					for(var j=0; j<umpireList.length; j++){
 						html += '<span>'+'<a href="${pageContext.request.contextPath}/buddy/'+umpireList[j].umpireName+'/'+umpireList[j].umpireId+'">'+umpireList[j].umpireName+'</a>';
 						
@@ -567,7 +586,11 @@ function loadPrev(text){
 					            html += ',</span>';
 					        } 
 	
+<<<<<<< HEAD
 					}}
+=======
+					}
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 
 	        
 					html += '</div></td>';
@@ -575,7 +598,11 @@ function loadPrev(text){
 					html += '<div>';
 					
 					var scorerList = res[i].scorerNamesList;
+<<<<<<< HEAD
 					if(scorerList != null){
+=======
+					
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 					for(var k=0; k<scorerList.length; k++){
 						html += '<span>'+'<a href="${pageContext.request.contextPath}/buddy/'+scorerList[k].scorerName+'/'+scorerList[k].scorerId+'">'+scorerList[k].scorerName+'</a>';
 						
@@ -588,13 +615,21 @@ function loadPrev(text){
 
 						
 	
+<<<<<<< HEAD
 					}}
+=======
+					}
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 					
 					html += '</div></td>';
 					if(res[i].status == 'Completed'){
 						html += "<td align='center' ><a href='javascript:void(0)' onclick='showScoreCard(\""+res[i].tournamentSchedulerId+"\")'><i class='fa fa-newspaper-o editIcon'></i></a></td>";
 					}else if(res[i].status == 'InProgress'){
+<<<<<<< HEAD
 						html += '<td><a href="${pageContext.request.contextPath}/showScoreCardForInProgress/boardId/'+boardId+'/matchId/'+res[i].tournamentSchedulerId+'">In progress</a></td>';
+=======
+						html += '<td>Inprogress</td>';
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 					}else{
 						html += "<td class='alignCenter'><a href='#' onclick='editSchedule(\""+res[i].tournamentSchedulerId+"\",\""+res[i].tournamentId+"\")' title='Edit'><i class='fa fa-pencil editIcon'></i></a> <a href='#' onclick='deleteSchedule(\""+res[i].tournamentSchedulerId+"\")' title='Delete'><i class='fa fa-trash-o deleteIcon'></i></a> </td>";
 					}

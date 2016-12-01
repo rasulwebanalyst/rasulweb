@@ -823,7 +823,11 @@ function validateBoardForm(e){
 	         	
 			 boardName: {
                      required: true,
+<<<<<<< HEAD
                      minlength : 2,
+=======
+                     minlength : 5,
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
          			 maxlength : 60
                  }, 
                 /*  shortDescription: {
@@ -876,7 +880,11 @@ function validateBoardForm(e){
                  }, 
                  zipcode: {
                      required: true,
+<<<<<<< HEAD
                      minlength : 2,
+=======
+                     minlength : 5,
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                      maxlength : 10,
                     // number : true,
          			 
@@ -957,7 +965,11 @@ function validateBoardForm(e){
                        },
                        zipcode: {
                         	required: "Please enter the zip code",
+<<<<<<< HEAD
                         	 minlength: "Zip code should be at least 2 numbers ",
+=======
+                        	 minlength: "Zip code should be at least 5 numbers ",
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                         	maxlength : "Zip code should be maximum of 10 numbers ",
                         	//number :"Please enter numbers only"
                           

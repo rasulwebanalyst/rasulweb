@@ -208,7 +208,10 @@ $(document).ready(function (){
                     <div class="form-group multiSelect" id="roasterListDiv" style="display: none;">
                               <label class="fomlabel" for="r1">Roster</label>
                             <input type="text" placeholder="search buddies" class="form-control tbox fomtexbox" id="roastersearchfield" name="roastersearchfield">
+<<<<<<< HEAD
                           	<label  id="Roastervalidation" class="error" style="display: none">Please select the Roaster.</label>
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                           	<input type="hidden" name="arrayRoasterIds" id="arrayRoasterIds">
                                 <div>                                	
                                 </div>
@@ -346,10 +349,14 @@ $(function(){
 	    			}else{
 	    				displaynotification('Already exist',2000);
 	    			}
+<<<<<<< HEAD
 	    		if(arrroaster.length!=0)
                 {
 	    		$("#Roastervalidation").hide();
                 }
+=======
+	    		
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	    		
 	    	},
 	    	preventDuplicates: true,
@@ -492,6 +499,7 @@ function submiitingForm(){
 		
 		}
 		
+<<<<<<< HEAD
 		/* Roaster */
 		if(document.getElementById('Roaster').checked)
 		{
@@ -507,6 +515,8 @@ function submiitingForm(){
 		
 		}
 		
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 		
 		 var pushingEventInArray = function(){
 			 var twentyMinutesLater = new Date();

@@ -61,6 +61,7 @@ return result;
 
 </SCRIPT>
 
+<<<<<<< HEAD
 <script>
 var formatAMPMTime = function(date) {
 	  var hours = date.getHours();
@@ -96,6 +97,9 @@ var formatAMPMTime = function(date) {
 }
 
 </style>
+=======
+
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 </head>
 
 <body class="cs-dboard">
@@ -127,6 +131,7 @@ var formatAMPMTime = function(date) {
                        
                       
                         <div class="col-md-12 feedBlock whiteBox" id="feedMainDIV">
+<<<<<<< HEAD
                         <h4 class="cs-db-title">Stars of the Week</h4>
                         
                         	<div class="col-md-6 col-xs-6 noPadding cs-view-list">
@@ -168,6 +173,18 @@ var formatAMPMTime = function(date) {
                         	<p class="cs-list-team">AW League</p>
                         	</div></li>    
                         	                    	
+=======
+                        <h4 class="cs-db-title">Stars of This Week</h4>
+                        
+                        	<div class="col-md-6 col-xs-6 noPadding cs-view-list">
+                        	<h4>Star Batsmen of This Week</h4>
+                        	<ul>
+                        	<li><img src="http://s.ndtvimg.com/images/entities/300/lokesh-rahul-1688.png">
+                        	<div class="cs-list-holder">
+                        	<p>Raj Sundaram</p>
+                        	<p class="cs-list-team">AW League</p>
+                        	</div></li>                        	
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                         	<li><img src="http://s.ndtvimg.com/images/entities/300/lokesh-rahul-1688.png">
                         	<div class="cs-list-holder">
                         	<p>Dinesh Chandrasekaran</p>
@@ -177,11 +194,16 @@ var formatAMPMTime = function(date) {
                         	<div class="cs-list-holder">
                         	<p>Madhavan Ramalingam</p>
                         	<p class="cs-list-team">AW League</p>
+<<<<<<< HEAD
                         	</div></li> -->
+=======
+                        	</div></li>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                         	</ul>
                         	
                         	</div><!-- col md 6 -->
                         	<div class="col-md-6 col-xs-6 noPadding cs-view-list">
+<<<<<<< HEAD
                         	<h4>Star Bowlers of the Week</h4>
                         	<ul>
                         	
@@ -216,6 +238,15 @@ var formatAMPMTime = function(date) {
                         	<p>Raj Sundaram</p>
                         	<p class="cs-list-team">AW League</p>
                         	</div>cs-list-holder end
+=======
+                        	<h4>Star Bowlers of This Week</h4>
+                        	<ul>
+                        	<li><img src="http://s.ndtvimg.com/images/entities/300/lokesh-rahul-1688.png">
+                        	<div class="cs-list-holder">
+                        	<p>Raj Sundaram</p>
+                        	<p class="cs-list-team">AW League</p>
+                        	</div><!-- cs-list-holder end -->
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                         	</li>                        	
                         	<li>
                         	<img src="http://s.ndtvimg.com/images/entities/300/lokesh-rahul-1688.png">
@@ -227,11 +258,16 @@ var formatAMPMTime = function(date) {
                         	<div class="cs-list-holder">
                         	<p>Madhavan Ramalingam</p>
                         	<p class="cs-list-team">AW League</p>
+<<<<<<< HEAD
                         	</div></li> -->
+=======
+                        	</div></li>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                         	</ul>
                         	
                         	</div><!-- col md 6 -->
                         	
+<<<<<<< HEAD
                         	
                         	
                         	
@@ -350,10 +386,23 @@ var formatAMPMTime = function(date) {
                         	
                         	</ul>
                         	</div><!-- result view scroller end -->
+=======
+                        	<div class="col-md-12 col-xs-12 whiteBox cs-gm-list">
+                        	<h4>Recent Match Results</h4>
+                        	<ul class="result-list">
+                        		<li><span>Somerset Cavalier Won (hbcc:60/10 in 31.2, Somerset Cavalier:61/1 in 6.3)</span></li>
+                        		<li><span>Somerset Cavalier Won (hbcc:60/10 in 31.2, Somerset Cavalier:61/1 in 6.3)</span></li>
+                        		<li><span>Somerset Cavalier Won (hbcc:60/10 in 31.2, Somerset Cavalier:61/1 in 6.3)</span></li>
+                        		<li><span>Somerset Cavalier Won (hbcc:60/10 in 31.2, Somerset Cavalier:61/1 in 6.3)</span></li>
+                        		<li><span>Somerset Cavalier Won (hbcc:60/10 in 31.2, Somerset Cavalier:61/1 in 6.3)</span></li>
+                        	</ul>
+                        	
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                         	</div><!-- col 12 end -->
                         	
                         	
                         	<div class="col-md-12 col-xs-12 whiteBox cs-gm-list">
+<<<<<<< HEAD
                         	<h4>Upcoming/In progress Matches</h4>
                         	<div class="result-list-scroller">
                         	<ul class="result-list">
@@ -388,12 +437,25 @@ var formatAMPMTime = function(date) {
                         		<li><span>3rd ODI: Bangladesh v England at Chittagong - Oct 12, 2016 </span></li>
                         		<li><span>3rd ODI: Bangladesh v England at Chittagong - Oct 12, 2016 </span></li>
                         		<li><span>3rd ODI: Bangladesh v England at Chittagong - Oct 12, 2016 </span></li> -->
+=======
+                        	<h4>Upcoming Matches</h4>
+                        	<ul class="result-list">
+                        		<li><span>3rd ODI: Bangladesh v England at Chittagong - Oct 12, 2016 </span></li>
+                        		<li><span>3rd ODI: Bangladesh v England at Chittagong - Oct 12, 2016 </span></li>
+                        		<li><span>3rd ODI: Bangladesh v England at Chittagong - Oct 12, 2016 </span></li>
+                        		<li><span>3rd ODI: Bangladesh v England at Chittagong - Oct 12, 2016 </span></li>
+                        		<li><span>3rd ODI: Bangladesh v England at Chittagong - Oct 12, 2016 </span></li>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                         	</ul>
                         	
                         	</div><!-- col 12 end -->
                         	                                                                                
 						</div><!-- whitebox end -->
+<<<<<<< HEAD
                        </div>
+=======
+
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                       </div>
 
     
@@ -409,6 +471,7 @@ var formatAMPMTime = function(date) {
                               
                             
                              		<div class="sidebar-list">
+<<<<<<< HEAD
                              		
                              		
                              		
@@ -720,6 +783,10 @@ var formatAMPMTime = function(date) {
                              		
                              		<!-- <div class="EntryMenu">
                              		<h4>Entry Menu</h4>
+=======
+                             		<div class="EntryMenu">
+                             		<h4>Entry Menu</h4>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                              		    <a>consectetur</a>
                              			<a>consectetur</a>
                              			<div class="moreview" id="more">...More</div>
@@ -739,7 +806,11 @@ var formatAMPMTime = function(date) {
                              			<a>consectetur</a>
                              			</span>
                              			<div class="lessview" id="less1">...Less</div>
+<<<<<<< HEAD
                              		</div> -->
+=======
+                             		</div>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
     
 	               
                             </div>
@@ -755,7 +826,11 @@ var formatAMPMTime = function(date) {
                           
                           
                           <div class="sidebar-container widget-MAU">
+<<<<<<< HEAD
                             <div class="sidebar-content" style="overflow-y: scroll; height: 458px;">
+=======
+                            <div class="sidebar-content">
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                               <div class="sidebar-header"><a href="${pageContext.request.contextPath}/matchesAroundYou">Recent Posts</a></div>
                               
                               
@@ -1012,14 +1087,22 @@ function showScoreCardInProgress(id,bid){
 			{
 			displaynotification('Match not yet started',2000);
 			}else{
+<<<<<<< HEAD
 		 window.location.href = "${pageContext.request.contextPath}/showScoreCardForInProgress/boardId/"+bid+"/matchId/"+id;
+=======
+		 window.location.href = "${pageContext.request.contextPath}/showScoreCardForInProgressPublicProfile/boardId/"+bid+"/matchId/"+id;
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			}
 		}
 
 
+<<<<<<< HEAD
 function showScoreCard(id,boardId){
 	 window.location.href = "${pageContext.request.contextPath}/showScoreCard/boardId/"+boardId+"/matchId/"+id;
 }
+=======
+
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 
 
 

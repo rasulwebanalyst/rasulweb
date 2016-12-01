@@ -1,10 +1,16 @@
       <%@taglib uri="http://example.com/functions" prefix="f" %>
 <div class="col-md-2 profileLogo pLUpdated">
                     	<span class="pLUpdatedImg">
+<<<<<<< HEAD
                     		<%-- <a href="${pageContext.request.contextPath}/BoardInfoPublic/${BoradInfo.boardId}"> --%>
                     		<a href="${pageContext.request.contextPath}/${BoradInfo.boardName}/board/${BoradInfo.boardId}">
                     		<img src="${BoradInfo.boardImageURL}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';">
                         	</a>
+=======
+                    		
+                    		<img src="${BoradInfo.boardImageURL}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';">
+                        	
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                         	
                         	 <a href="${pageContext.request.contextPath}/${BoradInfo.boardName}/board/${BoradInfo.boardId}">
                         	 ${BoradInfo.boardName}

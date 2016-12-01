@@ -95,7 +95,11 @@ return result;
 								<c:choose>
 										<c:when test="${empty UserProfileList} && ${empty BoardProfileList}">
 											<div>
+<<<<<<< HEAD
 												No fans
+=======
+												No fans are there
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 											</div>
 										</c:when>
 										<c:otherwise>

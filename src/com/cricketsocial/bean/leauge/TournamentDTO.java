@@ -14,6 +14,7 @@ public class TournamentDTO {
 	private List<MatchSheduleDTO> matchsheduledtolist;
 	private List<TopPlayerList> topPlayersList;
 	private String size;
+<<<<<<< HEAD
 	private List<PlayerDTO> playerlist;
 	
 	
@@ -24,6 +25,11 @@ public class TournamentDTO {
 	public void setPlayerlist(List<PlayerDTO> playerlist) {
 		this.playerlist = playerlist;
 	}
+=======
+	
+	
+	
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	public UUID getTournamentId() {
 		return tournamentId;
 	}

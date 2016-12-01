@@ -1,7 +1,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/circketsocial/validationfunction.js"></script>
+<<<<<<< HEAD
 	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/token-input.css"
 	type="text/css" />
@@ -10,9 +13,13 @@
 	type="text/css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap-clockpicker.min.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/wickedpicker.css">
+<<<<<<< HEAD
  
  <!-- responsive css -->
  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
+=======
+ <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
  <title>Cricket Social</title>
  
 	<%@ include file="CSCommon.jsp" %>
@@ -145,8 +152,11 @@
                               <option value="PM">PM</option>
                               </select>
                               <input type="hidden" id="time" name ="gameTime" />
+<<<<<<< HEAD
                               <input type="hidden" id="BoardLatLong" value="${BoradInfo.latlang}">
                               <input type="hidden" id="scheduleCreatedDate" name="scheduleCreatedDate">
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                               </div>
                                 <div id="timeError" class="createschedulError"></div>
                                 <input type="hidden" id="timeZone" name="timeZone" value="">
@@ -285,7 +295,11 @@
 										<div id="error1" class="createschedulError"></div>
 	
 									</div>
+<<<<<<< HEAD
 										<input type="hidden" id="gameDateforMail" name="gameDateforMail">
+=======
+										
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 										<input type="hidden" name="createdBy" value="${boardId}">
 										<%-- <input type="hidden"  name="tournamentId" value="${tournamentId}"> --%>
 
@@ -323,8 +337,11 @@
 	</section>
 	<%@ include file ="Footer.jsp" %>
 	 <script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>
+<<<<<<< HEAD
 	 <script src="https://momentjs.com/downloads/moment.js"></script>
 	 <script src="https://momentjs.com/downloads/moment-timezone-with-data.js"></script>
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	
 	<script>
         $(document).ready(function () {
@@ -534,9 +551,13 @@ function addFunction(){
 		awayteamValidation();
 		teamValidation();
 		if(awayteamValidation()==true && teamValidation()==true){
+<<<<<<< HEAD
 		
 		addFunction1();
 		//afterValidation();
+=======
+			afterValidation();
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			return true;
 		}else{
 			return false;
@@ -551,6 +572,7 @@ function addFunction(){
 	
 }
 
+<<<<<<< HEAD
 function addFunction1(){
 	var latlong=$("#BoardLatLong").val();
 	  var timestamp=Math.round(+new Date()/1000);
@@ -619,6 +641,11 @@ function formattime(n)
 	}
 
 function afterValidation(){
+=======
+
+function afterValidation(){
+   
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	$("#loading").show();
 	$("#createScheduleForm").submit();
 	

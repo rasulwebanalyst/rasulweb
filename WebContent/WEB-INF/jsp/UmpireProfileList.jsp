@@ -39,6 +39,7 @@
       <div class="col-md-10">
       		<div class="col-md-12 whiteBox">
 		          <!-- <h1 class="">Umpire List  <button type="submit" class="btn btn-default dBtn pull-right" onclick="createUmpireFunction()">Create Umpire</button></h1> -->
+<<<<<<< HEAD
                   <h1 class="">Umpire List  
                   
                   <c:forEach items="${BoradInfo.boardCoordinatorList}" var="coordinator">
@@ -49,6 +50,9 @@
                   </c:if>
                   </c:forEach>
                   </h1>
+=======
+                  
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                   
                   <div class="form-group col-md-12 noPadding">
                   <c:choose>
@@ -88,6 +92,7 @@
                                             <th>Work Phone</th>
                                             <th>Cell Phone</th>
                                             <th>E-mail</th>
+<<<<<<< HEAD
                                             
                                             <c:forEach items="${BoradInfo.boardCoordinatorList}" var="coordinator">
                   <c:if test="${coordinator.coOrdinatorId eq USRID}">
@@ -99,6 +104,8 @@
                   </c:if>
                   </c:forEach>
                                             
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                             <!-- <th class="tdBtns">Action</th> -->
                                             
                                             </tr>
@@ -107,7 +114,11 @@
                                            <tbody>
                                           <c:forEach var="brdUmpire" items="${BoardUmpireList}" varStatus="index">
                                            <tr>
+<<<<<<< HEAD
                                            <td style="text-align: center !important;">${index.count}</td>
+=======
+                                           <td style="text-align: center !important;">{index.count}</td>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                           	<td><a href="${pageContext.request.contextPath}/buddy/${brdUmpire.umpireName}/${brdUmpire.umpireId}">${brdUmpire.umpireName}</a></td>
                                             <td>
                                                 <div class="tdStars">
@@ -130,6 +141,7 @@
                                                 
                                                 
                                             </td> --%>
+<<<<<<< HEAD
                                             
                                              <td class="alignCenter">
                                              
@@ -148,6 +160,8 @@
                                              </td>
                                             
                                             
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                             </tr>
                                             
                                             </c:forEach>
@@ -238,7 +252,11 @@
    <script>
    function editUmpireList(id,boardId){
 	   //alert(id);
+<<<<<<< HEAD
 	   window.location.href = "${pageContext.request.contextPath}/CoordinatorEditUmpirePage/umpireId/"+id+"/boardId/"+boardId;
+=======
+	   window.location.href = "${pageContext.request.contextPath}/EditUmpirePage/umpireId/"+id+"/boardId/"+boardId;
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
    }
    
    function deleteUmpireList(id,boardId){
@@ -253,7 +271,11 @@
 		 contentType:"application/json",
 		 success:function(res){
 			 //alert(res);
+<<<<<<< HEAD
 			 window.location.href = "${pageContext.request.contextPath}/umpire-list/"+boardId;
+=======
+			 window.location.href = "${pageContext.request.contextPath}/UmpireList/boardId/"+boardId;
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			 
 			/*  if(res.length != 0 ){
 			var	htmlContent = '';

@@ -493,7 +493,11 @@
 	 										}
 	 								
 	 								
+<<<<<<< HEAD
 	 								html +="<li class='selection-item' onclick=setValueToTextBox('"+name.replace(/ /g,"-")+"','"+textBoxId+"','"+divId+"','"+users[i].id+"','"+hiddenId+"')><div class='media'><div class='media-left'><a>";
+=======
+	 								html +="<li onclick=setValueToTextBox(this,'"+textBoxId+"','"+divId+"','"+users[i].id+"','"+hiddenId+"')><div class='media'><div class='media-left'>";
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			                            
 			                          
 			                      	if(users[i].userImageUrl != null && users[i].userImageUrl != ""){
@@ -502,6 +506,7 @@
 		                          	}else{
 		                          		html +='<img src="'+ctx+'/images/profileIcon.png" class="nav-avatar">';
 		                          	}
+<<<<<<< HEAD
 			                      	html += "</a></div><div class='media-body'><a class='auto-blue'><h4 class='media-heading'> ";
 			                      	html += " ";
 			                      	html+=""+name+"<br></a>";
@@ -516,6 +521,13 @@
 			              			+'</li>';
 			              			
 			              			
+=======
+			                      	html += " ";
+			                      	html+=""+name+"";
+			                          html+='</div>'
+			                       	 +'</div>'
+			              			+'</li>';
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	 									}
 	 								}
 	 								
@@ -566,9 +578,13 @@
  
  function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 
+<<<<<<< HEAD
 		/* $('#'+textBox).val($(elem).text()); */
 		var name=elem.replace(/-/g," ");
    		$('#'+textBox).val(name);
+=======
+		$('#'+textBox).val($(elem).text());
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 		$('#'+divId).hide();	
 		checkUmpireValidation(userId,hiddenId,textBox,divId);	
 		$('#error').html('');

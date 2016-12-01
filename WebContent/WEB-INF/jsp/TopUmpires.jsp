@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+<<<<<<< HEAD
  <!-- responsive css -->
  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">

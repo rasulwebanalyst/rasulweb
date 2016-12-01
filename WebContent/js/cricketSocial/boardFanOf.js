@@ -6,7 +6,11 @@ function getFanOfList(status)
 {
 	var regBoardId=document.getElementById('boardId').value;
 	//var projectURL=document.getElementById('projectURL').value;
+<<<<<<< HEAD
 	var coOwner=[];
+=======
+	
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	var board={
 			boardId : regBoardId,
 			fanType : status
@@ -37,7 +41,11 @@ function getFanOfList(status)
 	                                htm += '<img src="'+res.userProfileList[i].userImageUrl+'">';
 	                            htm += '</div>';
 	                				  htm += '<div class="media-body">';
+<<<<<<< HEAD
 	                                  htm += '<h4 class="media-heading">'+res.userProfileList[i].fullName+'</h4>';
+=======
+	                                  htm += '<h4 class="media-heading">'+res.userProfileList[i].firstName+'</h4>';
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	                                   htm += '<span class="date">'+res.userProfileList[i].city+'</span>';  
 	                                 //  if(findIndexOfArray(coOwner,res.userProfileList[i].userId)!=-1)
 	                                   if(coOwner.indexOf(res.userProfileList[i].userId))
@@ -69,11 +77,19 @@ function getFanOfList(status)
 						
 						
 						}else{
+<<<<<<< HEAD
 							htm +="<div style='color: red;'>Records not found</div>";
 						}
 				}else{
 					//alert('records not found');
 					htm +="<div style='color: red;'>Records not found</div>";
+=======
+							htm +='Records not found';
+						}
+				}else{
+					//alert('records not found');
+					htm +='Records not found';
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				}
 			
 			if(status=='All'){

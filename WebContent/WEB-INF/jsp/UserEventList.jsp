@@ -524,7 +524,11 @@ var formatAMPMTime = function(date) {
     							</div>
                               <div class="col-md-12 whiteBox">
             
+<<<<<<< HEAD
            						 <h1 class="noBorder">Past Events</h1>
+=======
+           						 <h1 class="noBorder">Past Event</h1>
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
             						
             						<div id="pastmatchInvitationListDiv">
             						

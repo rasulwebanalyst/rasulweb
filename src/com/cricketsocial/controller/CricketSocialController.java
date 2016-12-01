@@ -6,8 +6,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+<<<<<<< HEAD
 import java.util.Collections;
 import java.util.Comparator;
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -111,7 +114,10 @@ import com.cricketsocial.bean.ground.Ground;
 import com.cricketsocial.bean.leauge.AutoScheduleDTO;
 import com.cricketsocial.bean.leauge.CenturiesSerach;
 import com.cricketsocial.bean.leauge.MenuList;
+<<<<<<< HEAD
 import com.cricketsocial.bean.leauge.MenuURL;
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 import com.cricketsocial.bean.leauge.TournamentDTO;
 import com.cricketsocial.bean.leauge.UmpireRating;
 import com.cricketsocial.bean.notification.EventNotificationDTO;
@@ -478,10 +484,13 @@ public class CricketSocialController {
 							     
 							    		 if(userLatLongVal==null || userLatLongVal==""){
 							    			 userLatLongVal=profile2.getResults().getItemsFound()[0].getLatLang();
+<<<<<<< HEAD
 							    			 session.setAttribute("USRLocationAllowed", "No"); 
 							    		 }else
 							    		 {
 							    			 session.setAttribute("USRLocationAllowed", "Yes"); 
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 							    		 }
 							    		 
 							    		 
@@ -4714,8 +4723,11 @@ public ModelAndView boardFanpublicview(HttpServletRequest request,@PathVariable 
 			 {
 				 model.addObject("BoardProfileList", boardFanList.getResults().getFanDetails().getBoardProfileList());
 				 model.addObject("UserProfileList", boardFanList.getResults().getFanDetails().getUserProfileList());
+<<<<<<< HEAD
 				 model.addObject("userCount", boardFanList.getResults().getFanDetails().getUserProfileCount());
 				 model.addObject("boardCount", boardFanList.getResults().getFanDetails().getBoardCount());
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			 }
 		 }
 	
@@ -5613,6 +5625,7 @@ public ModelAndView getboard(@RequestParam String bid, HttpServletRequest reques
 		if(session!=null && session.getAttribute("USRID")!=null)
 		{
 			UUID userId=(UUID) session.getAttribute("USRID");
+<<<<<<< HEAD
 			List<Object> upcommingObject=new ArrayList<Object>();
 			
 			hubReq=new HubRequest();
@@ -5978,6 +5991,8 @@ public ModelAndView pitch(@RequestParam String bid, HttpServletRequest request) 
 		if(session!=null && session.getAttribute("USRID")!=null)
 		{
 			UUID userId=(UUID) session.getAttribute("USRID");
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			
 			hubReq=new HubRequest();
 			 hubReq.setMsgType(40);
@@ -5996,7 +6011,10 @@ public ModelAndView pitch(@RequestParam String bid, HttpServletRequest request) 
 					 //model= new ModelAndView("boards");
 					model= new ModelAndView("boardsnew");
 					 model.addObject("BoradInfo", hubResponse.getResults().getBoardStatusDetail().get(0));
+<<<<<<< HEAD
 					 model.addObject("LeaguManagement","No");
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 					 hubReq=new HubRequest();
 					 hubReq.setMsgType(42);
 					 ModelMap map2=new ModelMap();
@@ -8212,6 +8230,7 @@ public ModelAndView getBuddyFriends(HttpServletRequest request, @PathVariable St
 			 System.out.println("user : list :---------->" +merchandiseAroundYouResponse.getResults().getSearchResponse().getUserList().size());
 			 model.addObject("Merchants", merchandiseAroundYouResponse.getResults().getSearchResponse().getBoardProfileList());
 		 }
+<<<<<<< HEAD
 		 
 		 
 		 
@@ -8243,6 +8262,8 @@ public ModelAndView getBuddyFriends(HttpServletRequest request, @PathVariable St
 		 
 		 
 		 
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 		
 		
 	}else{
@@ -8836,6 +8857,7 @@ public ModelAndView buddyBoard(HttpServletRequest request, @PathVariable String 
 				 model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 			 }
 			 
+<<<<<<< HEAD
 			 
 			 
 			 
@@ -8872,6 +8894,8 @@ public ModelAndView buddyBoard(HttpServletRequest request, @PathVariable String 
 			 
 			 
 			 
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
@@ -9271,6 +9295,7 @@ public ModelAndView buddyfanOfList(HttpServletRequest request, @PathVariable Str
 		 }
 		
 		 
+<<<<<<< HEAD
 		 
 		 
 		 
@@ -9304,6 +9329,9 @@ public ModelAndView buddyfanOfList(HttpServletRequest request, @PathVariable Str
 		 
 		 
 		 
+=======
+		 //*****************************************************************************************************************
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 		 
 		
 	}else{
@@ -9318,8 +9346,13 @@ public ModelAndView boardPublicProfile(HttpServletRequest request, @PathVariable
 {
 	HttpSession session=request.getSession(true);
 	ModelAndView model=null;
+<<<<<<< HEAD
 	final String context = request.getContextPath();
 	List<Object> upcommingObject=new ArrayList<Object>();
+=======
+
+	
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	try{
 		if(session!=null && session.getAttribute("USRID")!=null)
 		{
@@ -9340,6 +9373,7 @@ public ModelAndView boardPublicProfile(HttpServletRequest request, @PathVariable
 				 HubResponse hubResponse= gson.fromJson(strBoarddetail, HubResponse.class);
 				if(hubResponse!=null && hubResponse.getResults().getBoardStatusDetail()!=null && hubResponse.getResults().getBoardStatusDetail().size()>0)
 				{
+<<<<<<< HEAD
 					
 					//model= new ModelAndView("BoardPublicProfile");
 					
@@ -9552,6 +9586,9 @@ public ModelAndView boardPublicProfile(HttpServletRequest request, @PathVariable
 					
 					
 					
+=======
+					 model= new ModelAndView("BoardPublicProfile");					
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 					 model.addObject("BoradPublicInfo", hubResponse.getResults().getBoardStatusDetail().get(0));
 					 
 					 hubReq=new HubRequest();
@@ -10664,6 +10701,7 @@ public ModelAndView updateUserDetail(@ModelAttribute UserProfileUpdate2 userProf
 			    		  System.out.println("user image===============12  "+session.getAttribute("USRIMG"));
 			    		 session.removeAttribute("USRFNA");
 			    		 session.setAttribute("USRFNA",profile.getResults().getItemsFound()[0].getFirstName());
+<<<<<<< HEAD
 			    		/* session.removeAttribute("USRLocation");
 			    		 session.setAttribute("USRLocation", profile.getResults().getItemsFound()[0].getLatLang());*/
 			    		 
@@ -10675,6 +10713,10 @@ public ModelAndView updateUserDetail(@ModelAttribute UserProfileUpdate2 userProf
 			    		 session.removeAttribute("USRLocation");
 			    		 session.setAttribute("USRLocation", profile.getResults().getItemsFound()[0].getLatLang());
 			    		 }
+=======
+			    		 session.removeAttribute("USRLocation");
+			    		 session.setAttribute("USRLocation", profile.getResults().getItemsFound()[0].getLatLang());
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			    		 //userprofileupdate
 			    	 
 			    		 String name2=profile.getResults().getItemsFound()[0].getFirstName();
@@ -11712,23 +11754,79 @@ public ModelAndView  editUmpirePage(@PathVariable String umpireId, @PathVariable
 }
 
 
+<<<<<<< HEAD
 @RequestMapping(value="/CoordinatorEditUmpirePage/umpireId/{umpireId}/boardId/{boardId}", method=RequestMethod.GET)
 public ModelAndView  coordinatoreditUmpirePage(@PathVariable String umpireId, @PathVariable String boardId,HttpServletRequest req){
+=======
+@RequestMapping(value="updateUmpireDetails",method=RequestMethod.POST)
+public @ResponseBody String updateUmpireDetails(@RequestBody BoardUmpire umpire,HttpServletRequest req){
+	String response = null;
+	try{
+		HttpSession session=req.getSession(true);
+		
+		if(session!=null && session.getAttribute("USRID")!=null)
+		{
+		hubReq = new HubRequest(83);
+		hubReq.setMsgType(83);
+		hubReq.setRequestParam(umpire);
+		
+		String returnResponse = cricketSocialRestTemplateService.userRegistration(hubReq);
+		GsonBuilder builder = new GsonBuilder();
+		Gson gson = builder.create();
+		if(returnResponse != null){
+			HubResponse hubRes = gson.fromJson(returnResponse, HubResponse.class);
+			if(hubRes != null && hubRes.getResults() != null && hubRes.getResults().getUmpireStatus() != ""){
+				String responseStatus = hubRes.getResults().getUmpireStatus();
+				if(responseStatus.equalsIgnoreCase("updated successfully")){
+					response = "success";
+				}else{
+					response = "failure";
+				}
+			}
+		}
+		}else{
+		ModelAndView mav=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
+
+		}
+		
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}
+	return response;
+}
+
+
+@RequestMapping(value="/EditGround/groundId/{groundId}/boardId/{boardId}", method=RequestMethod.GET)
+public ModelAndView  editGround( @PathVariable String groundId,@PathVariable String boardId,HttpServletRequest req){
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	ModelAndView mav = null;
 	try{
 		HttpSession session=req.getSession(true);
 		
 		if(session!=null && session.getAttribute("USRID")!=null)
 		{
+<<<<<<< HEAD
 		hubReq = new HubRequest(82);
 		hubReq.setMsgType(82);
 		ModelMap map = new ModelMap();
 		map.put("umpireId", umpireId);
 		map.put("boardId", boardId);
+=======
+		mav = new ModelAndView("EditGroundPage");
+		mav.addObject("groundId", groundId);
+		mav.addObject("boardId", boardId);
+	
+
+		hubReq = new HubRequest(90);
+		hubReq.setMsgType(90);
+		ModelMap map = new ModelMap();
+		map.put("groundId", groundId);
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 		hubReq.setRequestParam(map);
 		String response  = cricketSocialRestTemplateService.userRegistration(hubReq);
 		GsonBuilder builder = new GsonBuilder();
 		Gson gson = builder.create();
+<<<<<<< HEAD
 		
 		
 		
@@ -11839,6 +11937,15 @@ public ModelAndView  coordinatoreditUmpirePage(@PathVariable String umpireId, @P
 				
 			}else{
 				mav = new ModelAndView("EditUmpireCoordinatorpage");
+=======
+		if(response != null){
+			HubResponse  hubRes = gson.fromJson(response, HubResponse.class);
+			if(hubRes != null && hubRes.getRequestStatus() != null && hubRes.getResults().getGroundList().size() != 0){
+				mav = new ModelAndView("EditGroundPage");
+				mav.addObject("groundDetails", hubRes.getResults().getGroundList().get(0));
+				mav.addObject("groundId", groundId);
+				
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			}
 		}
 		
@@ -11851,7 +11958,11 @@ public ModelAndView  coordinatoreditUmpirePage(@PathVariable String umpireId, @P
 		 map1.put("startNode", 0);
 		 map1.put("endNode", 200);
 		  hubReq.setRequestParam(map1);
+<<<<<<< HEAD
 			 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
+=======
+			 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);	
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			 if(strBoardList!=null)
 			 {
 				 HubResponse hubResponse= gson.fromJson(strBoardList, HubResponse.class);
@@ -11860,7 +11971,10 @@ public ModelAndView  coordinatoreditUmpirePage(@PathVariable String umpireId, @P
 					 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
 				 }
 			 }
+<<<<<<< HEAD
 		 	
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			 
 			//*************************** Getting Board info  ***************************************
 			 HubRequest hubReq1=new HubRequest();
@@ -11883,6 +11997,7 @@ public ModelAndView  coordinatoreditUmpirePage(@PathVariable String umpireId, @P
 				}
 			 }	
 
+<<<<<<< HEAD
 			//*************************** Getting Country code  ***************************************
 			 HubRequest hubReq2=new HubRequest();
 			 hubReq2.setMsgType(249);
@@ -12164,6 +12279,9 @@ public ModelAndView  CoordinatoreditGround( @PathVariable String groundId,@PathV
 			 System.out.println("board : "+buddyFan);
 			 mav.addObject("BoardFanReq", buddyFan);
 	
+=======
+			 
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			 
 		 
 		}else{
@@ -12492,6 +12610,7 @@ public ModelAndView createSchedule(HttpServletRequest req,@PathVariable String b
 	return mav;
 }
 
+<<<<<<< HEAD
 @RequestMapping(value="/CreateScheduleLanding/boardId/{boardId}",method= RequestMethod.GET)
 public ModelAndView createScheduleLanding(HttpServletRequest req,@PathVariable String boardId){
 	ModelAndView mav = null;
@@ -12676,6 +12795,9 @@ public ModelAndView createScheduleLanding(HttpServletRequest req,@PathVariable S
 	}
 	return mav;
 }
+=======
+
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 @RequestMapping(value="/insertScheduleDetails",method=RequestMethod.POST)
 public ModelAndView insertScheduleDetails(HttpServletRequest req, @ModelAttribute Scheduler scheduler){
 	String response =  null;
@@ -12808,11 +12930,16 @@ public ModelAndView insertScheduleDetails(HttpServletRequest req, @ModelAttribut
 			
 			hubReq = new HubRequest();
 			hubReq.setMsgType(102);
+<<<<<<< HEAD
 			System.out.println("Schedule Created Date Converted to local date :"+scheduler.getScheduleCreatedDate());
+=======
+			
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
            
 			ModelMap map = new ModelMap();
 			map.put("awayTeamId", scheduler.getAwayTeamId());
 			map.put("homeTeamId", scheduler.getHomeTeamId());
+<<<<<<< HEAD
 			//map.put("gameDateStr",convertedDate);
 			
 			
@@ -12827,13 +12954,19 @@ public ModelAndView insertScheduleDetails(HttpServletRequest req, @ModelAttribut
 			
 			
 			map.put("gameDateStr",outDate);
+=======
+			map.put("gameDateStr",convertedDate);
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			map.put("groundId", scheduler.getGroundId());
 			map.put("tournamentId", scheduler.getTournamentId());
 			map.put("createdBy", scheduler.getCreatedBy());
 			map.put("modifiedBy", scheduler.getCreatedBy());
 			map.put("umpireList", myMap);
 			map.put("status", "Upcoming");
+<<<<<<< HEAD
 			map.put("gameDateforMail", scheduler.getGameDateforMail());
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			if(scorerIdList != null){
 			map.put("scorerNamesList", scorerIdList);
 			}
@@ -12863,7 +12996,11 @@ public ModelAndView insertScheduleDetails(HttpServletRequest req, @ModelAttribut
 							if(tournamentList !=  null){
 								HubResponse  hubResponse = gson.fromJson(tournamentList, HubResponse.class);
 								if(hubResponse !=  null && hubResponse.getResults() !=  null){
+<<<<<<< HEAD
 								/*	mav.addObject("tournamentList", hubResponse.getResults().getTournamentSchedulerList());
+=======
+									mav.addObject("tournamentList", hubResponse.getResults().getTournamentSchedulerList());
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 									//String scheduleId=hubResponse.getResults().getTournamentSchedulerList().get(0).getTournamentSchedulerId();
 									mav.addObject("dateString", hubResponse.getResults().getEndDateStr());
 									mav.addObject("startDate", hubResponse.getResults().getStartDateStr());
@@ -12892,12 +13029,19 @@ public ModelAndView insertScheduleDetails(HttpServletRequest req, @ModelAttribut
 									
 									 String endDateSet= dayInEditProfile2+'/'+yearInEditProfile2+'/'+monthInEditProfile2;
 									
+<<<<<<< HEAD
 									 mav.addObject("endDateSet", endDateSet);*/
 									
 									session.setAttribute("CreateScheduleLanding", "Created");
 									
 									 mav=new ModelAndView("redirect:/CreateScheduleLanding/boardId/"+boardId);
 									/*mav=new ModelAndView("redirect:/SchedulerList/boardId/"+boardId);*/
+=======
+									 mav.addObject("endDateSet", endDateSet);
+									
+								
+									mav=new ModelAndView("redirect:/SchedulerList/boardId/"+boardId);
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 								//	 mav=new ModelAndView("redirect:/SchedulerList/boardId/"+boardId+"/"+scheduleId);
 									 return mav;
 									 
@@ -13862,6 +14006,7 @@ public ModelAndView editScheduler(HttpServletRequest req, @PathVariable String b
 }
 
 
+<<<<<<< HEAD
 @RequestMapping(value="/editSchedulerLanding/boardId/{boardId}/tournamentSchedulerId/{tournamentSchedulerId}/tournamentId/{tournamentId}",method=RequestMethod.GET)
 public ModelAndView editSchedulerLanding(HttpServletRequest req, @PathVariable String boardId, @PathVariable String tournamentSchedulerId,@PathVariable String tournamentId){
 	ModelAndView mav = null;
@@ -14090,6 +14235,8 @@ public ModelAndView editSchedulerLanding(HttpServletRequest req, @PathVariable S
 }
 
 
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 @RequestMapping(value="/UmpireCreationNameSearch", method=RequestMethod.POST)
 @ResponseBody
 public SearchResponse umpireCreationNameSearch(HttpServletRequest request,@RequestBody String key) throws CSException{
@@ -14734,7 +14881,10 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 						 if(hubResponse!=null && hubResponse.getResults()!=null)
 						 {
 							 model.addObject("BoardList", hubResponse.getResults().getBoardsList());
+<<<<<<< HEAD
 							 
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 						 }else{
 							 model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 						 }
@@ -15050,7 +15200,11 @@ public ModelAndView rosterProfileDetails(@PathVariable String rid, @PathVariable
 						 HubResponse hubResponse2= GsonConverters.getGsonObject(). fromJson(strBoardList, HubResponse.class);
 						 if(hubResponse2!=null && hubResponse2.getResults()!=null)
 						 {
+<<<<<<< HEAD
 							 model.addObject("BoardList", hubResponse2.getResults().getBoardsList());
+=======
+							 model.addObject("BoardList", hubResponse.getResults().getBoardsList());
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 						 }else{
 							 model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 						 }
@@ -15460,7 +15614,11 @@ public ModelAndView leaguecenturies(@PathVariable String bid, HttpServletRequest
 				}
 				
 				
+<<<<<<< HEAD
 					/*HubRequest hubReq=new HubRequest();
+=======
+					HubRequest hubReq=new HubRequest();
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 					// hubReq.setMsgType(107);
 					 ModelMap map=new ModelMap();			
 					 hubReq.setMsgType(122);
@@ -15490,6 +15648,7 @@ public ModelAndView leaguecenturies(@PathVariable String bid, HttpServletRequest
 						model.addObject("centueryList", hubResponse1.getResults().getCentueryList());
 						model.addObject("centueryListSize", hubResponse1.getResults().getCentueryList().size());
 					}
+<<<<<<< HEAD
 				 }*/
 				
 				HubRequest hubReq=new HubRequest();
@@ -15526,6 +15685,9 @@ public ModelAndView leaguecenturies(@PathVariable String bid, HttpServletRequest
 					model.addObject("centueryListSize", hubResponse1.getResults().getCentueryList().size());
 				}
 			 }
+=======
+				 }
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				
 				//*************************** Getting Board info  ***************************************
 				 HubRequest hubReq1=new HubRequest();
@@ -15632,8 +15794,11 @@ public @ResponseBody List<TournamentDTO> yearWiseCenturies(@RequestBody Centurie
 			 map.put("filterByYear", search.getFilterByYear());
 			 map.put("homeTeamId", "");
 			 map.put("againstTeamId", "");
+<<<<<<< HEAD
 			 map.put("tournamentId", "");
 			 map.put("flag", "Century");
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			 
 			 hubReq.setRequestParam(map);
 			String centuriesResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -15674,9 +15839,14 @@ public @ResponseBody List<TournamentDTO> yearWiseHalfCenturies(@RequestBody Cent
 			HubRequest hubReq=new HubRequest();
 			// hubReq.setMsgType(107);
 			 ModelMap map=new ModelMap();			
+<<<<<<< HEAD
 			// hubReq.setMsgType(131);
 			//ModelMap map=new ModelMap();
 			 hubReq.setMsgType(122);
+=======
+			 hubReq.setMsgType(131);
+			//ModelMap map=new ModelMap();			
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			 map.put("userId", userId);			 
 			 map.put("boardId", search.getBoardId());
 			 map.put("startNode", 0);
@@ -15684,8 +15854,11 @@ public @ResponseBody List<TournamentDTO> yearWiseHalfCenturies(@RequestBody Cent
 			 map.put("filterByYear", search.getFilterByYear());
 			 map.put("homeTeamId", "");
 			 map.put("againstTeamId", "");
+<<<<<<< HEAD
 			 map.put("flag", "HalfCentury");
 			 map.put("tournamentId", "");
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			 
 			 hubReq.setRequestParam(map);
 			String centuriesResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -15693,9 +15866,15 @@ public @ResponseBody List<TournamentDTO> yearWiseHalfCenturies(@RequestBody Cent
 			if(centuriesResponse!=null)
 			{
 				HubResponse response= GsonConverters.getGsonObject().fromJson(centuriesResponse, HubResponse.class);
+<<<<<<< HEAD
 				if(response!=null && response.getResults().getCentueryList()!=null)
 				{
 					halfCenturiesList = response.getResults().getCentueryList();
+=======
+				if(response!=null && response.getResults().getHalfCenturyList()!=null)
+				{
+					halfCenturiesList = response.getResults().getHalfCenturyList();
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 					
 				}
 			}
@@ -15889,7 +16068,11 @@ public ModelAndView leaguehalfcenturies(@PathVariable String bid, HttpServletReq
 				
 				
 				
+<<<<<<< HEAD
 				/*HubRequest hubReq=new HubRequest();
+=======
+				HubRequest hubReq=new HubRequest();
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				// hubReq.setMsgType(108);
 				 hubReq.setMsgType(131);
 				 //dsfsdf sd
@@ -15908,7 +16091,11 @@ public ModelAndView leaguehalfcenturies(@PathVariable String bid, HttpServletReq
 				 map.put("boardId", bid);
 				 hubReq.setRequestParam(serach);
 				 String strCentury=cricketSocialRestTemplateService.userRegistration(hubReq);
+<<<<<<< HEAD
 				 
+=======
+				 /*
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			
 				 if(strCentury!=null)
 				 {
@@ -15919,7 +16106,11 @@ public ModelAndView leaguehalfcenturies(@PathVariable String bid, HttpServletReq
 						
 					}
 				 }
+<<<<<<< HEAD
 				
+=======
+				*/
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				 
 				 if(strCentury!=null)
 				 {
@@ -15929,6 +16120,7 @@ public ModelAndView leaguehalfcenturies(@PathVariable String bid, HttpServletReq
 						model.addObject("halfcentueryList", hubResponse1.getResults().getHalfCenturyList());
 						System.out.println("list size ------> "+hubResponse1.getResults().getHalfCenturyList());
 					}
+<<<<<<< HEAD
 				 }*/
 				
 
@@ -15963,6 +16155,8 @@ public ModelAndView leaguehalfcenturies(@PathVariable String bid, HttpServletReq
 						model.addObject("halfcentueryList", hubResponse1.getResults().getCentueryList());
 						System.out.println("list size ------> "+hubResponse1.getResults().getCentueryList().size());
 					}
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				 }
 				 
 				 
@@ -16075,6 +16269,7 @@ public ModelAndView leaguecenturiesProfile(@PathVariable String bid, HttpServlet
 				
 				
 				
+<<<<<<< HEAD
 				/* hubReq.setMsgType(122);
 				ModelMap map=new ModelMap();			
 				 map.put("userId", userId);			 
@@ -16103,20 +16298,29 @@ public ModelAndView leaguecenturiesProfile(@PathVariable String bid, HttpServlet
 				 }*/
 				
 				hubReq.setMsgType(122);
+=======
+				 hubReq.setMsgType(122);
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				ModelMap map=new ModelMap();			
 				 map.put("userId", userId);			 
 				 map.put("boardId", bid);
 				 map.put("startNode", 0);
 				 map.put("endNode", 500);
 				 CenturiesSerach search= new CenturiesSerach();
+<<<<<<< HEAD
 				 search.setTournamentId("");
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				 search.setAgainstTeamId("");
 				 search.setHomeTeamId("");
 				 search.setBoardId(bid);
 				 search.setStartNode(0);
 				 search.setEndNode(500);
 				 search.setFilterByYear(yearVal);
+<<<<<<< HEAD
 				 search.setFlag("Century");
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			 hubReq.setRequestParam(search);
 				 //hubReq.setRequestParam(map);
 				 String strCentury=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -16271,6 +16475,7 @@ public ModelAndView leaguecenturieslist(CenturiesSerach search , HttpServletRequ
 				}
 				
 				
+<<<<<<< HEAD
 				/*HubRequest hubReq=new HubRequest();
 				 hubReq.setMsgType(122);		
 				 search.setStartNode(0);
@@ -16289,11 +16494,16 @@ public ModelAndView leaguecenturieslist(CenturiesSerach search , HttpServletRequ
 					}
 				 }*/
 				
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				HubRequest hubReq=new HubRequest();
 				 hubReq.setMsgType(122);		
 				 search.setStartNode(0);
 				 search.setEndNode(500);
+<<<<<<< HEAD
 				 search.setFlag("Century");
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				 hubReq.setRequestParam(search);
 				 String strCentury=cricketSocialRestTemplateService.userRegistration(hubReq);
 			
@@ -16420,6 +16630,7 @@ public ModelAndView leaguecenturieslistprofile(CenturiesSerach search , HttpServ
 				
 				
 				
+<<<<<<< HEAD
 				/*
 				HubRequest hubReq=new HubRequest();
 				 hubReq.setMsgType(122);		
@@ -16437,12 +16648,17 @@ public ModelAndView leaguecenturieslistprofile(CenturiesSerach search , HttpServ
 						model.addObject("CenturySearch", search);
 					}
 				 }*/
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				
 				HubRequest hubReq=new HubRequest();
 				 hubReq.setMsgType(122);		
 				 search.setStartNode(0);
 				 search.setEndNode(500);
+<<<<<<< HEAD
 				 search.setFlag("Century");
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				 hubReq.setRequestParam(search);
 				 String strCentury=cricketSocialRestTemplateService.userRegistration(hubReq);
 			
@@ -16571,7 +16787,11 @@ public ModelAndView leaguehalfcenturieslist(CenturiesSerach search , HttpServlet
 					}
 				}
 				
+<<<<<<< HEAD
 				/*
+=======
+				
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				HubRequest hubReq=new HubRequest();
 				 hubReq.setMsgType(131);		
 				 search.setStartNode(0);
@@ -16587,6 +16807,7 @@ public ModelAndView leaguehalfcenturieslist(CenturiesSerach search , HttpServlet
 						model.addObject("halfcentueryList", hubResponse1.getResults().getHalfCenturyList());
 						model.addObject("HalfCentrrySearch", search);
 					}
+<<<<<<< HEAD
 				 }*/
 				HubRequest hubReq=new HubRequest();
 				 //hubReq.setMsgType(131);
@@ -16605,6 +16826,8 @@ public ModelAndView leaguehalfcenturieslist(CenturiesSerach search , HttpServlet
 						model.addObject("halfcentueryList", hubResponse1.getResults().getCentueryList());
 						model.addObject("HalfCentrrySearch", search);
 					}
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				 }
 				
 				//*************************** Getting Board info  ***************************************
@@ -16723,7 +16946,11 @@ public ModelAndView leaguehalfcenturieslistprofile(CenturiesSerach search , Http
 				}
 				
 				
+<<<<<<< HEAD
 				/*HubRequest hubReq=new HubRequest();
+=======
+				HubRequest hubReq=new HubRequest();
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				 hubReq.setMsgType(131);		
 				 search.setStartNode(0);
 				 search.setEndNode(500);
@@ -16738,6 +16965,7 @@ public ModelAndView leaguehalfcenturieslistprofile(CenturiesSerach search , Http
 						model.addObject("halfcentueryList", hubResponse1.getResults().getHalfCenturyList());
 						model.addObject("HalfCentrrySearch", search);
 					}
+<<<<<<< HEAD
 				 }*/
 				HubRequest hubReq=new HubRequest();
 				// hubReq.setMsgType(131);
@@ -16756,6 +16984,8 @@ public ModelAndView leaguehalfcenturieslistprofile(CenturiesSerach search , Http
 						model.addObject("halfcentueryList", hubResponse1.getResults().getCentueryList());
 						model.addObject("HalfCentrrySearch", search);
 					}
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				 }
 				
 				//*************************** Getting Board info  ***************************************
@@ -16891,7 +17121,11 @@ public ModelAndView leaguehalfcenturiesprofile(@PathVariable String bid, HttpSer
 				}
 				
 				
+<<<<<<< HEAD
 				/*HubRequest hubReq=new HubRequest();
+=======
+				HubRequest hubReq=new HubRequest();
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				 //hubReq.setMsgType(108);
 				hubReq.setMsgType(131);
 				// hubReq.setRequestParam(map);
@@ -16911,7 +17145,11 @@ public ModelAndView leaguehalfcenturiesprofile(@PathVariable String bid, HttpSer
 				 hubReq.setRequestParam(serach);
 				 String strCentury=cricketSocialRestTemplateService.userRegistration(hubReq);
 			
+<<<<<<< HEAD
 				 if(strCentury!=null)
+=======
+				/* if(strCentury!=null)
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				 {
 					 HubResponse hubResponse1= GsonConverters.getGsonObject().fromJson(strCentury, HubResponse.class);
 					if(hubResponse1!=null && hubResponse1.getResults().getHalfCenturyList()!=null)
@@ -16920,7 +17158,11 @@ public ModelAndView leaguehalfcenturiesprofile(@PathVariable String bid, HttpSer
 						
 					}
 				 }
+<<<<<<< HEAD
 				
+=======
+				*/
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				 
 				 if(strCentury!=null)
 				 {
@@ -16930,6 +17172,7 @@ public ModelAndView leaguehalfcenturiesprofile(@PathVariable String bid, HttpSer
 						model.addObject("halfcentueryList", hubResponse1.getResults().getHalfCenturyList());
 						System.out.println("list size ------> "+hubResponse1.getResults().getHalfCenturyList());
 					}
+<<<<<<< HEAD
 				 }*/
 				
 				HubRequest hubReq=new HubRequest();
@@ -16966,6 +17209,9 @@ public ModelAndView leaguehalfcenturiesprofile(@PathVariable String bid, HttpSer
 					}
 				 }
 				
+=======
+				 }
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				 
 				//*************************** Getting Board info  ***************************************
 				 HubRequest hubReq1=new HubRequest();
@@ -19202,6 +19448,7 @@ public @ResponseBody String updateSchedulerDetails(HttpServletRequest req, @Requ
 			
 			System.out.println("game Id :"+scheduler.getGameId());
            
+<<<<<<< HEAD
 			System.out.println("Schedule Created Date Converted to local date :"+scheduler.getScheduleCreatedDate());
 	      
 			
@@ -19224,6 +19471,12 @@ public @ResponseBody String updateSchedulerDetails(HttpServletRequest req, @Requ
 			map.put("homeTeamId", scheduler.getHomeTeamId());
 			map.put("gameDateStr",outDate);
 			//map.put("gameDateStr",convertedDate);
+=======
+			ModelMap map = new ModelMap();
+			map.put("awayTeamId", scheduler.getAwayTeamId());
+			map.put("homeTeamId", scheduler.getHomeTeamId());
+			map.put("gameDateStr",convertedDate);
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			map.put("groundId", scheduler.getGroundId());
 			map.put("tournamentId", scheduler.getTournamentId());
 			map.put("createdBy", scheduler.getCreatedBy());
@@ -19234,7 +19487,10 @@ public @ResponseBody String updateSchedulerDetails(HttpServletRequest req, @Requ
 			map.put("tournamentSchedulerId", scheduler.getTournamentSchedulerId());
 			map.put("scorerNamesList", scorerIdList);
 			map.put("gameId", scheduler.getGameId());
+<<<<<<< HEAD
 			map.put("gameDateforMail", scheduler.getGameDateforMail());
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			map.put("gameTime", strAmTime);
 			
 			hubReq.setRequestParam(map);
@@ -19258,7 +19514,11 @@ public @ResponseBody String updateSchedulerDetails(HttpServletRequest req, @Requ
 				}
 			}
 				
+<<<<<<< HEAD
 			session.setAttribute("UpdateScheduleLanding", "Created");
+=======
+			
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			
 		}else{
 			ModelAndView mav = new ModelAndView("redirect:/login.htm?loginvalidation = Your session has been expired");
@@ -19668,9 +19928,12 @@ public ModelAndView assignScorer(HttpServletRequest req, @PathVariable String bo
 				}
 			}
 			
+<<<<<<< HEAD
 			// Commented for code optimization
 			
 			/*
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			    hubReq = new HubRequest(125);
 				hubReq.setMsgType(125);
 				ModelMap m1 = new ModelMap();
@@ -19683,7 +19946,11 @@ public ModelAndView assignScorer(HttpServletRequest req, @PathVariable String bo
 						List<ScorerNameList> nameList = hubRes.getResults().getScorerList().get(0).getScorerNamesList();
 						System.out.println("scorerList size :"+nameList.size());
 					}
+<<<<<<< HEAD
 				}*/
+=======
+				}
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				 hubReq= new HubRequest();
 				 hubReq.setMsgType(41);
 				 ModelMap map2=new ModelMap();
@@ -21142,6 +21409,7 @@ public ModelAndView DisputeManagement(HttpServletRequest req, @PathVariable Stri
 		 if(strBoarddetail!=null){
 			 HubResponse hubResponse1= gson.fromJson(strBoarddetail, HubResponse.class);
 			if(hubResponse1!=null && hubResponse1.getResults().getBoardStatusDetail()!=null && hubResponse1.getResults().getBoardStatusDetail().size()>0){						 
+<<<<<<< HEAD
 				 mav.addObject("BoradInfo", hubResponse1.getResults().getBoardStatusDetail().get(0));	
 			}
 		 }
@@ -21232,6 +21500,9 @@ public ModelAndView DisputeManagementPublic(HttpServletRequest req, @PathVariabl
 				 final String context = req.getContextPath();
 				 MenuList menuList= Util.leaugeMenuList(hubResponse1.getResults().getBoardStatusDetail().get(0), session.getAttribute("USRID")+"", context);						
 				 mav.addObject("LeaugeMenuList", menuList);		
+=======
+				 mav.addObject("BoradInfo", hubResponse1.getResults().getBoardStatusDetail().get(0));						
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				
 			}
 		 }
@@ -21259,7 +21530,11 @@ public ModelAndView DisputeManagementPublic(HttpServletRequest req, @PathVariabl
 			 hubReq.setMsgType(146);
 			 ModelMap map3 = new ModelMap();
 			 map3.put("boardId", boardId);
+<<<<<<< HEAD
 			 map3.put("endNode", 0);
+=======
+			 map3.put("endNode", 10);
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			 hubReq.setRequestParam(map3);
 			 
 			 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -21282,6 +21557,7 @@ public ModelAndView DisputeManagementPublic(HttpServletRequest req, @PathVariabl
 				 
 			 }
 			
+<<<<<<< HEAD
 			//*********************************************************** Boad Fan check  ******************************************************
 			 hubReq= new HubRequest();
 			 hubReq.setMsgType(76);
@@ -21306,6 +21582,9 @@ public ModelAndView DisputeManagementPublic(HttpServletRequest req, @PathVariabl
 			// buddyFan=true;
 			 System.out.println("board : "+buddyFan);
 			 mav.addObject("BoardFanReq", buddyFan); 
+=======
+			 
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 		 
 		 
 		}
@@ -21318,7 +21597,10 @@ public ModelAndView DisputeManagementPublic(HttpServletRequest req, @PathVariabl
 	return mav;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 @RequestMapping(value="/showScoreCard/boardId/{boardId}/matchId/{matchId}", method = RequestMethod.GET)
 public ModelAndView showScoreCard(HttpServletRequest req, @PathVariable String boardId,@PathVariable String matchId) throws CSException{
 	ModelAndView mav = null;
@@ -21783,7 +22065,10 @@ public @ResponseBody String updateWinPoints(@RequestBody CompletedMatches comp){
 		map.put("tournamentSchedulerId", comp.getTournamentSchedulerId());
 		map.put("winTeamPoints", comp.getWinTeamPoints());
 		map.put("loseTeamPoints", comp.getLoseTeamPoints());
+<<<<<<< HEAD
 		map.put("reasonDispMng", comp.getReasonDispMng());
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 		hubReq.setRequestParam(map);
 		GsonBuilder builder = new GsonBuilder();
 		Gson gson = builder.create();
@@ -23521,10 +23806,13 @@ public ModelAndView assignScorerProfile(HttpServletRequest req, @PathVariable St
 				}
 			}
 			
+<<<<<<< HEAD
 			
 			// Commented for code optimization
 			
 			/*
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			    hubReq = new HubRequest(125);
 				hubReq.setMsgType(125);
 				ModelMap m1 = new ModelMap();
@@ -23537,7 +23825,11 @@ public ModelAndView assignScorerProfile(HttpServletRequest req, @PathVariable St
 						List<ScorerNameList> nameList = hubRes.getResults().getScorerList().get(0).getScorerNamesList();
 						System.out.println("scorerList size :"+nameList.size());
 					}
+<<<<<<< HEAD
 				}*/
+=======
+				}
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			
 				 hubReq= new HubRequest();
 				 hubReq.setMsgType(41);
@@ -23900,6 +24192,7 @@ public ModelAndView boardPublicProfileByboard(HttpServletRequest request, @PathV
 {
 	HttpSession session=request.getSession(true);
 	ModelAndView model=null;
+<<<<<<< HEAD
 	final String context = request.getContextPath();
 	List<Object> upcommingObject=new ArrayList<Object>();
 	
@@ -24427,6 +24720,8 @@ public ModelAndView boardPublicProfileByboardPitch(HttpServletRequest request, @
 {
 	HttpSession session=request.getSession(true);
 	ModelAndView model=null;
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 
 	
 	try{
@@ -24449,10 +24744,15 @@ public ModelAndView boardPublicProfileByboardPitch(HttpServletRequest request, @
 				 HubResponse hubResponse= gson.fromJson(strBoarddetail, HubResponse.class);
 				if(hubResponse!=null && hubResponse.getResults().getBoardStatusDetail()!=null && hubResponse.getResults().getBoardStatusDetail().size()>0)
 				{
+<<<<<<< HEAD
 					 model= new ModelAndView("BoardPublicProfilebyboard");		
 					 
 					 model.addObject("BoradPublicInfo", hubResponse.getResults().getBoardStatusDetail().get(0));
 					 model.addObject("LeaguManagement","No");
+=======
+					 model= new ModelAndView("BoardPublicProfilebyboard");					
+					 model.addObject("BoradPublicInfo", hubResponse.getResults().getBoardStatusDetail().get(0));
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 					 
 					 hubReq=new HubRequest();
 					 hubReq.setMsgType(40);
@@ -24747,6 +25047,7 @@ public ModelAndView boardPublicProfileByboardPitch(HttpServletRequest request, @
 	}
 	return model;
 }
+<<<<<<< HEAD
 @RequestMapping(value="/{boardName}/boardPitchfromuser/{boardID}/byBoard/{vid}", method=RequestMethod.GET)
 public ModelAndView boardPitchfromuser(HttpServletRequest request, @PathVariable String boardName, @PathVariable String boardID, @PathVariable String vid)
 {
@@ -25049,6 +25350,8 @@ public ModelAndView boardPitchfromuser(HttpServletRequest request, @PathVariable
 	
 	}
 
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 
 @RequestMapping(value="/userEvent/date/{date}", method=RequestMethod.GET)
 public ModelAndView userEventDate(HttpServletRequest request, @PathVariable String date)
@@ -27875,11 +28178,14 @@ public ModelAndView enterScoreSelectedMatch(HttpServletRequest req, @PathVariabl
 					 JSONArray arr1 = new JSONArray(umpireNameList);
 					 mav.addObject("umpireNameList", arr1);
 					 mav.addObject("winPoint",hubResponse.getResults().getUmpireAndScorerDetails().getWinPoints());
+<<<<<<< HEAD
 					 }else
 					 {
 						 JsonArray arr=new JsonArray();
 						 mav.addObject("umpireNameList",arr);
 						 mav.addObject("winPoint",hubResponse.getResults().getUmpireAndScorerDetails().getWinPoints());
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 					 }
 					 
 				 }
@@ -28252,6 +28558,7 @@ public @ResponseBody List<CompletedMatches> loadMoreBoardAchievementsData(@Reque
 }
 
 
+<<<<<<< HEAD
 @RequestMapping(value="/loadMoreDisputeManagement", method=RequestMethod.POST)
 public @ResponseBody List<CompletedMatches> loadMoreDisputeManagement(@RequestBody GameSchedule dispute)
 {
@@ -28284,6 +28591,8 @@ public @ResponseBody List<CompletedMatches> loadMoreDisputeManagement(@RequestBo
 }
 
 
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 @RequestMapping(value="/yearWiseMatches", method=RequestMethod.POST)
 public @ResponseBody List<CompletedMatches> yearWiseMatches(@RequestBody GameSchedule gameData){
 	List<CompletedMatches> completedMatches = null;
@@ -28742,6 +29051,7 @@ public ModelAndView CreateSchedulePublicProfile(HttpServletRequest req,@PathVari
 	}
 	return mav;
 }
+<<<<<<< HEAD
 @RequestMapping(value="/CreateSchedulePublicProfileLanding/boardId/{boardId}",method= RequestMethod.GET)
 public ModelAndView CreateSchedulePublicProfileLanding(HttpServletRequest req,@PathVariable String boardId){
 	ModelAndView mav = null;
@@ -28911,6 +29221,8 @@ public ModelAndView CreateSchedulePublicProfileLanding(HttpServletRequest req,@P
 	}
 	return mav;
 }
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 
 
 @RequestMapping(value="/AmendSchedulePublicProfile/boardId/{boardId}",method= RequestMethod.GET)
@@ -29361,7 +29673,11 @@ public ModelAndView DisputeManagementPublicProfile(HttpServletRequest req, @Path
 			 hubReq.setMsgType(146);
 			 ModelMap map3 = new ModelMap();
 			 map3.put("boardId", boardId);
+<<<<<<< HEAD
 			 map3.put("endNode", 0);
+=======
+			 map3.put("endNode", 10);
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			 hubReq.setRequestParam(map3);
 			 
 			 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -29599,9 +29915,13 @@ public ModelAndView insertScheduleDetailsPublicProfile(HttpServletRequest req, @
 									 mav.addObject("endDateSet", endDateSet);
 									
 									 
+<<<<<<< HEAD
 									 //mav=new ModelAndView("redirect:/ScheduleListPubProfWithEdit/boardId/"+boardId);
 									 mav=new ModelAndView("redirect:/CreateSchedulePublicProfileLanding/boardId/"+boardId);
 									 return mav;
+=======
+									 mav=new ModelAndView("redirect:/ScheduleListPubProfWithEdit/boardId/"+boardId);
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 									 
 					
 								}
@@ -32610,6 +32930,7 @@ public ModelAndView leagueTopFiveWicketsListPublicProfile(CenturiesSerach search
 			{
 				UUID  userId = (UUID) session.getAttribute("USRID");
 				model= new ModelAndView("fiveWicketPublicProfile");
+<<<<<<< HEAD
 				model.addObject("publicBoardId", search.getBoardId());
 				
 				
@@ -32642,6 +32963,9 @@ public ModelAndView leagueTopFiveWicketsListPublicProfile(CenturiesSerach search
 				
 				
 				
+=======
+				model.addObject("boardId", search.getBoardId());
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(184);
@@ -33915,7 +34239,11 @@ public ModelAndView showScoreCardOfPlayerPublicProfile(HttpServletRequest req,@P
 		 hubReq= new HubRequest();
 		 hubReq.setMsgType(41);
 		 ModelMap map2=new ModelMap();
+<<<<<<< HEAD
 		 map2.put("userId", userId);
+=======
+		 map2.put("userId", userUUID);
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 		 map2.put("startNode", 0);
 		 map2.put("endNode", 200);
 		  hubReq.setRequestParam(map2);
@@ -37926,10 +38254,15 @@ public ModelAndView filterForScheduleListAssignScorer(HttpServletRequest req, @M
 						 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
 					 }
 				 }
+<<<<<<< HEAD
 				 
 				// Commented for code optimization
 			 
 				/* hubReq = new HubRequest(125);
+=======
+			 
+				 hubReq = new HubRequest(125);
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 					hubReq.setMsgType(125);
 					ModelMap m1 = new ModelMap();
 					hubReq.setRequestParam(m1);
@@ -37941,7 +38274,11 @@ public ModelAndView filterForScheduleListAssignScorer(HttpServletRequest req, @M
 							List<ScorerNameList> nameList = hubRes.getResults().getScorerList().get(0).getScorerNamesList();
 							System.out.println("scorerList size :"+nameList.size());
 						}
+<<<<<<< HEAD
 					}*/
+=======
+					}
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 
 				 String fromDateString = null;
 				 String toDateString = null;
@@ -39171,7 +39508,10 @@ public @ResponseBody ResponseTypeSchedule gameSchedulePreNext(HttpServletRequest
 				       SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
 						String comingDateString = gamescheduler.getDateString();
 						 now.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(comingDateString));
+<<<<<<< HEAD
 						 System.out.println("Previous :"+sdf1.format(now.getTime()));
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 						 now.add(Calendar.DATE, -1);  // number of days to add
 						 String afterAddedOne = sdf1.format(now.getTime());
 						
@@ -39185,7 +39525,10 @@ public @ResponseBody ResponseTypeSchedule gameSchedulePreNext(HttpServletRequest
 				       SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
 						String comingDateString = gamescheduler.getDateString();
 						 now.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(comingDateString));
+<<<<<<< HEAD
 						 System.out.println("Next :"+sdf1.format(now.getTime()));
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 						now.add(Calendar.DATE, 1);  // number of days to add
 						String afterAddedOne = sdf1.format(now.getTime());
 						
@@ -40583,6 +40926,7 @@ public @ResponseBody String testurl(HttpServletRequest req){
 
 
 }
+<<<<<<< HEAD
 
 class UpcommingComprator implements Comparator<Object>
 {
@@ -40618,3 +40962,5 @@ class UpcommingComprator implements Comparator<Object>
 	}
 	
 }
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2

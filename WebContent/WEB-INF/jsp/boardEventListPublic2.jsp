@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<<<<<<< HEAD
      <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+=======
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 <html lang="en">
 <head>
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
@@ -238,6 +241,7 @@ overflow-y: auto !important;
 																						                     
 																				                     </c:forEach>
 																				                     </div>
+<<<<<<< HEAD
 																				                    <%--  <div id="myEventPageBtn">
 																				                         <button class="btn dBtn pull-right btnalian1" type="button" onclick="my_Event_Page(10,'MyEventListDIV','myEventPageBtn','${USRID}')">Load More</button>
 																				                         </div>    --%>
@@ -252,6 +256,11 @@ overflow-y: auto !important;
 					            										                
 					            										</c:otherwise>
 					            										</c:choose>
+=======
+																				                     <div id="myEventPageBtn">
+																				                         <button class="btn dBtn pull-right btnalian1" type="button" onclick="my_Event_Page(10,'MyEventListDIV','myEventPageBtn','${USRID}')">Load More</button>
+																				                         </div>   
+>>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 					            										</c:otherwise>
 					            									
 					            									</c:choose>    							
