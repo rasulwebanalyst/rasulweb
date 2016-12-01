@@ -128,17 +128,10 @@ return result;
                      <form action="postFeed.htm" name="postfrom" id="postfrom" method="post" enctype="multipart/form-data" onsubmit="return feedValidation()">
                      	<div class="col-md-12 statusUpdateBox whiteBox">
                            <div id="fileDiv">
-<<<<<<< HEAD
                            	 <input id="upload0" type="file" style="visibility: hidden;" name="file" onchange="readURL(this); this.value=null;return false;" />
                             </div>
                             <b>Status update</b>
                             <a href="#" class="pull-right" id="upload_link"><i class="fa fa-picture-o"></i> Add photos</a>
-=======
-                           	 <input id="upload0" type="file" style="visibility: hidden;" name="file" onchange="readURL(this)" />
-                            </div>
-                            <b>Status update</b>
-                            <a href="#" class="pull-right" id="upload_link"><i class="fa fa-picture-o"></i> Add Video</a>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                             <!-- <a href="#" class="pull-right" id="upload_videofile"><i class="fa fa-picture-o"></i> Add Video</a> --> 
                             <div class="postBlock">
                             	<img src="${USRIMG}" class="nav-avatar" onError="userErrorDefaultImg(ele)">
@@ -581,11 +574,7 @@ function readURL(input) {
     	        	
     	        	
     	        	$('.uploadedFiles').append(html);
-<<<<<<< HEAD
     	        	 var filehtml="<input id='upload"+fileTextBoxLength+"' type='file' style='display:none;' name='file' onchange='readURL(this); this.value=null;return false;' />";
-=======
-    	        	 var filehtml="<input id='upload"+fileTextBoxLength+"' type='file' style='display:none;' name='file' onchange='readURL(this)' />";
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
     	        	// var filehtml="<input id='upload"+feedImagesArray.length+"' type='file' style='display:none;' name='file' onchange='readURL(this)' />";
     	             $('#fileDiv').append(filehtml);
     				
@@ -602,11 +591,7 @@ function readURL(input) {
 }
 
 function removeFeedImage(elem,fileLength){
-<<<<<<< HEAD
 	/* alert("removing current one"); */
-=======
-	alert("removing current one");
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	$(elem).parent().remove();
 	$('#upload'+fileLength).remove();
 	if(feedImagesArray != null){

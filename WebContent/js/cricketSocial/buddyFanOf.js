@@ -70,11 +70,7 @@ function boardFansList()
 								nextindicate=parseInt(nextindicate)+parseInt(1);
 						 
 						}else{
-<<<<<<< HEAD
 							htm +='No fans';
-=======
-							htm +='Records not found';
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 						}
 					
 					if(nextindicate!=0){
@@ -85,11 +81,7 @@ function boardFansList()
 					
 				}else{
 					//alert('records not found');
-<<<<<<< HEAD
 					htm +='No fans';
-=======
-					htm +='Records not found';
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				}
 			
 					$('#BoardFansListDIV2').html(htm);
@@ -176,19 +168,11 @@ function userFansList()
 						
 
 						}else{
-<<<<<<< HEAD
 							htm +='No fans';
 						}
 				}else{
 					//alert('records not found');
 					htm +='No fans';
-=======
-							htm +='Records not found';
-						}
-				}else{
-					//alert('records not found');
-					htm +='Records not found';
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				}
 			
 					$('#BoardUserFanListDIv2').html(htm);
@@ -255,19 +239,11 @@ function buddyPublicProfileboardFansList()
 								}
 						 
 						}else{
-<<<<<<< HEAD
 							htm +='No fans';
 						}
 				}else{
 					//alert('records not found');
 					htm +='No fans';
-=======
-							htm +='Records not found';
-						}
-				}else{
-					//alert('records not found');
-					htm +='Records not found';
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				}
 			
 					$('#BoardFansListDIV2').html(htm);
@@ -333,19 +309,11 @@ function userFansList2()
 							}
 
 						}else{
-<<<<<<< HEAD
 							htm +='No fans';
 						}
 				}else{
 					//alert('records not found');
 					htm +='No fans';
-=======
-							htm +='Records not found';
-						}
-				}else{
-					//alert('records not found');
-					htm +='Records not found';
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				}
 			
 					$('#BoardUserFanListDIv2').html(htm);
@@ -444,11 +412,7 @@ function getallFanlist()
                               htm += '<h4 class="media-heading">'+res.boardProfileList[i].boardName+'</h4>';
                                htm += '<span class="date">'+res.boardProfileList[i].city+'</span>';                                        
                              //  htm +=  '<a class="btn   btn-default btn-sm  btn-sm  blockBtn " onclick=FanAction("'+userId+'","'+res.boardProfileList[i].boardId+'","buddyUnFanBoard","boardfanboard") >Un Fan</a>';                                    
-<<<<<<< HEAD
                                if(res.boardProfileList[i].createdBy!=userId){
-=======
-                               if(res.userProfileList[i].createdBy!=userId){
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                htm +=  '<a class="btn   btn-default btn-sm  btn-sm  blockBtn " onclick=FanAction("'+userId+'","'+res.boardProfileList[i].boardId+'",'+buddyUnFanToBoard+','+buddyUnFanToBoard+') >Un Fan</a>';
                                }
                                htm += '</div>';
@@ -470,20 +434,12 @@ function getallFanlist()
 					
 						
 						}else{
-<<<<<<< HEAD
 							htm +='No fans';
-=======
-							htm +='Records not found';
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 							 htm2 +='';
 						}
 				}else{
 					//alert('records not found');
-<<<<<<< HEAD
 					htm +='No fans';
-=======
-					htm +='Records not found';
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 					 htm2 +='';
 				}
 			
@@ -560,19 +516,11 @@ function getallFanlist2()
 						
 						
 						}else{
-<<<<<<< HEAD
 							htm +='No fans';
 						}
 				}else{
 					//alert('records not found');
 					htm +='No fans';
-=======
-							htm +='Records not found';
-						}
-				}else{
-					//alert('records not found');
-					htm +='Records not found';
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				}
 			
 					$('#AllBoardAllFansList2').html(htm);
@@ -591,19 +539,12 @@ function getallFanlist2()
 function getallFanlistbypage(category,startNode,display,pageCall)
 {
 	
-<<<<<<< HEAD
 	var endnode=10+startNode;
 	
 	var board={
 			fanType : category,
 			startNode : startNode,
 			endNode : 10
-=======
-	var board={
-			fanType : category,
-			startNode : startNode,
-			endNode : 10 
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			
 			
 	};
@@ -692,11 +633,8 @@ function getallFanlistbypage(category,startNode,display,pageCall)
 							   htm2 ='<a class="btn btn-default dBtn pull-right lodbtn" href="javascript:getallFanlistbypage('+category2+','+page+','+display2+','+pageCall2+')">more records</a>';
 						   }else{
 							   htm2 +='';
-<<<<<<< HEAD
 							   displaynotification('No more records',1000);
 							   
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 						   }
 							   
 						
@@ -795,10 +733,7 @@ function getboardFanlistbypage(category,startNode,display,pageCall)
 							   htm2 ='<a class="btn btn-default dBtn pull-right lodbtn" href="javascript:getboardFanlistbypage('+category2+','+page+','+display2+','+pageCall2+')">more records</a>';
 						   }else{
 							   htm2 +='';
-<<<<<<< HEAD
 							   displaynotification('No more records',1000);
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 						   }
 							   
 						
@@ -896,10 +831,7 @@ function getUserFanlistbypage(category,startNode,display,pageCall)
 							   htm2 ='<a class="btn btn-default dBtn pull-right lodbtn" href="javascript:getUserFanlistbypage('+category2+','+page+','+display2+','+pageCall2+')">more records</a>';
 						   }else{
 							   htm2 +='';
-<<<<<<< HEAD
 							   displaynotification('No more records',1000);
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 						   }
 							   
 						

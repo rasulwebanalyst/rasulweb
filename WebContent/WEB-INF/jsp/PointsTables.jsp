@@ -5,11 +5,8 @@
 <html lang="en">
 <head>
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
-<<<<<<< HEAD
  <!-- responsive css -->
  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -111,11 +108,7 @@
         <div class="col-md-12 whiteBox">
 
             <span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament
-<<<<<<< HEAD
 			<!-- <div class="form-group"> -->									Name : ${tournament.tournamentName}</span> <br>
-=======
-												Name : ${tournament.tournamentName}</span> <br>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
             <table>
                 <thead>
                     <tr>
@@ -143,7 +136,6 @@
                             <td>${team.totalMatches}</td>
                             <td>${team.wonmatches}</td>
                             <td>${team.lostmatches}</td>
-<<<<<<< HEAD
                             <%-- <c:choose>
                             <c:when test="${team.adj eq 0}">
                             <td>${team.adj}</td>
@@ -153,9 +145,6 @@
                            <%--  </c:otherwise>
                             </c:choose> --%>
                             
-=======
-                            <td>${team.adj}</td>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                             <td>${team.points}</td>
                             <td>
                                 <fmt:formatNumber type="number" pattern="##########.##" value="${team.netRunRate}" />
@@ -189,10 +178,7 @@
 
                 </tbody>
             </table>
-<<<<<<< HEAD
            <!--  </div> --><!-- form group end -->
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
         </div>
         </c:if>
     </c:forEach>

@@ -60,7 +60,6 @@
       <div class="col-md-10">
       		<div class="col-md-12 whiteBox">
 		          <%-- <h1 class="">Ground List <a href="${pageContext.request.contextPath}/CreateGround/boardId/${boardId}" class="btn btn-default dBtn pull-right">Create Ground</a></h1> --%>
-<<<<<<< HEAD
                        <h1 class="">Ground List 
                        <c:forEach items="${BoradInfo.boardCoordinatorList}" var="coordinator">
                        <c:if test="${coordinator.coOrdinatorId eq USRID}">
@@ -71,8 +70,6 @@
                        </c:forEach>
                        
                        </h1>
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                   <c:choose>
                   <c:when test="${groundListSize == 0 }">
                   <table id="tableId">
@@ -102,7 +99,6 @@
                         <th>Address</th>
                         <th>City</th>
                        <!--  <th class="alignCenter">Action</th> -->
-<<<<<<< HEAD
                        
                        
                        <c:forEach items="${BoradInfo.boardCoordinatorList}" var="coordinator">
@@ -115,8 +111,6 @@
                        
                        
                        
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                     </tr>
                   </thead>
                   
@@ -132,7 +126,6 @@
                         	<a href="#" title="Delete"><i onclick="deleteGround('${grndList.groundId}')" class="fa fa-trash-o deleteIcon"></i></a>
                         </td> --%>
                         
-<<<<<<< HEAD
                         
                         <c:forEach items="${BoradInfo.boardCoordinatorList}" var="coordinator">
                        <c:if test="${coordinator.coOrdinatorId eq USRID}">
@@ -146,8 +139,6 @@
                        </c:forEach>
                         
                         
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                     </tr>
                     </c:forEach>
                 </tbody>
@@ -230,11 +221,7 @@
 function editGround(id){
 //	alert(id);
 	var boardId = "${boardId}";
-<<<<<<< HEAD
 	window.location.href = "${pageContext.request.contextPath}/CoordinatorEditGround/groundId/"+id+"/boardId/"+boardId;
-=======
-	window.location.href = "${pageContext.request.contextPath}/EditGround/groundId/"+id+"/boardId/"+boardId;
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 }
 
 function deleteGround(id){
@@ -249,11 +236,7 @@ function deleteGround(id){
 			 contentType:"application/json",
 			 success:function(res){
 				// alert(res);
-<<<<<<< HEAD
 				 window.location.href = "${pageContext.request.contextPath}/ground-list/"+boardId;
-=======
-				 window.location.href = "${pageContext.request.contextPath}/GroundList/boardId/"+boardId;
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 
 			 },
 			 error:function(err){

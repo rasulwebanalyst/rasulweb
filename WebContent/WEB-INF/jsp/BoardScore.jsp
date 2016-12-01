@@ -244,24 +244,15 @@
                                 	
                                 	
                                 	<c:forEach var="matchesPlayed" items="${boardAchieveMents.matchesPlayedList}">
-<<<<<<< HEAD
                                     <div class="teamLogos" style="height: 137px;">
-=======
-                                    <div class="teamLogos" >
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                     <c:choose>
                                     <c:when test="${matchesPlayed.winTeamId == matchesPlayed.homeTeamId }">
                                     
                                     
                                     <span class="winteam">
-<<<<<<< HEAD
                                     <c:if test="${matchesPlayed.matchStatus eq 'win'}"><span class="starIcon1" >Winner<!--  <i class="fa fa-star staricon"></i> --></span></c:if>
                                     <c:if test="${matchesPlayed.matchStatus eq 'tie'}"><span class="starIcon1" >Tie<!--  <i class="fa fa-star staricon"></i> --></span></c:if>
                                    <a href="${pageContext.request.contextPath}/${matchesPlayed.homeTeamName}/board/${matchesPlayed.homeTeamId}"> <img src="${matchesPlayed.homeTeamImageUrl}" class="teamLogo"></a> </span> <b>VS</b> <span class="winteam"><span class="starIcon1"> </span> <a href="${pageContext.request.contextPath}/${matchesPlayed.awayTeamName}/board/${matchesPlayed.awayTeamId}"><img src="${matchesPlayed.awayTeamImageUrl}" class="teamLogo"></a></span>
-=======
-                                     <span class="starIcon1" >Winner<!--  <i class="fa fa-star staricon"></i> --></span> 
-                                    <img src="${matchesPlayed.homeTeamImageUrl}" class="teamLogo"> </span> <b>VS</b> <span class="winteam"><span class="starIcon1"> </span> <img src="${matchesPlayed.awayTeamImageUrl}" class="teamLogo"></span>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                   
                                     
                                     
@@ -270,7 +261,6 @@
                                     
                                      <span class="winteam">
                                      <span class="starIcon1"> </span> 
-<<<<<<< HEAD
                                     <a href="${pageContext.request.contextPath}/${matchesPlayed.homeTeamName}/board/${matchesPlayed.homeTeamId}"><img src="${matchesPlayed.homeTeamImageUrl}" class="teamLogo"></a></span> <b>VS</b> 
                                     
                                     
@@ -279,9 +269,6 @@
                                    <c:if test="${matchesPlayed.matchStatus eq 'win'}"><span class="winteam"><span class="starIcon1" >Winner<!--  <i class="fa fa-star staricon"></i> --></span></c:if>
                                     <c:if test="${matchesPlayed.matchStatus eq 'tie'}"><span class="winteam"><span class="starIcon1" >Tie<!--  <i class="fa fa-star staricon"></i> --></span></c:if>  
                                     <a href="${pageContext.request.contextPath}/${matchesPlayed.awayTeamName}/board/${matchesPlayed.awayTeamId}"><img src="${matchesPlayed.awayTeamImageUrl}" class="teamLogo"></a>
-=======
-                                    <img src="${matchesPlayed.homeTeamImageUrl}" class="teamLogo"></span> <b>VS</b> <span class="winteam"><span class="starIcon1">Winner <!-- <i class="fa fa-star staricon"></i> --></span>  <img src="${matchesPlayed.awayTeamImageUrl}" class="teamLogo">
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                     </span>
                                     
                                     </c:otherwise>
@@ -351,11 +338,7 @@
                                 	<c:when test="${!empty boardAchieveMents.matchesTieList}">
                                 	  <c:forEach var="matchesTie" items="${boardAchieveMents.matchesTieList}">
                                     <div class="teamLogos" >
-<<<<<<< HEAD
                                     <a href="${pageContext.request.contextPath}/${matchesTie.homeTeamName}/board/${matchesTie.homeTeamId}"><img src="${matchesTie.homeTeamImageUrl}" class="teamLogo"></a> <b>VS</b> <a href="${pageContext.request.contextPath}/${matchesTie.awayTeamName}/board/${matchesTie.awayTeamId}"><img src="${matchesTie.awayTeamImageUrl}" class="teamLogo"></a>
-=======
-                                    <img src="${matchesTie.homeTeamImageUrl}" class="teamLogo"> <b>VS</b> <img src="${matchesTie.awayTeamImageUrl}" class="teamLogo">
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                 	
                                 	</div>
                                     
@@ -554,11 +537,7 @@
 				
 			}else{
 				
-<<<<<<< HEAD
 				/* var html = '';
-=======
-				var html = '';
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				html += '<table id="dataTable"><thead><tr>';
 				html += '<th>Date (MM/DD/YYYY)</th>';
 				html += '<th>Trophy</th>';
@@ -570,13 +549,9 @@
 				html += '</tr></thead>';
 				html += '</table>';
 				html += '<span class="noContentDivRed">No More Data</span>';
-<<<<<<< HEAD
 					$("#dataTable").html(html).trigger('create'); */
 					
 				displaynotification("No More Data",1000);
-=======
-					$("#dataTable").html(html).trigger('create');
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			}
 			
 		},

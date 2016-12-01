@@ -2691,13 +2691,8 @@ function blurFunction()
 			//document.getElementById("tournament").selectedIndex = 0;
 			// document.getElementById('tournament').value= 0;
 			
-<<<<<<< HEAD
 			/* var htm="test";
 			$('#tournamentTextVal').html(htm); */
-=======
-			var htm="test";
-			$('#tournamentTextVal').html(htm);
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	});
    
    function tet(){

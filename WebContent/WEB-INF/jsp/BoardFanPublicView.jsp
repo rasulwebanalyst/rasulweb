@@ -78,30 +78,18 @@
                             
 								<c:choose>
 										<c:when test="${empty UserProfileList} and ${empty BoardProfileList}">
-<<<<<<< HEAD
 											<div style="color: red">
-=======
-											<div>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 												No fans are there
 											</div>
 										</c:when>
 										<c:otherwise>
-<<<<<<< HEAD
 											<c:forEach var="user" items="${UserProfileList}" varStatus="userCount">
-=======
-											<c:forEach var="user" items="${UserProfileList}">
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 											<div class="media  col-md-6" id="boardfanuser${user.userId}">
 				                                <div class="media-left buddyImg">
 				                                    <img src="${user.userImageUrl}">
 				                                </div>
 				                    				  <div class="media-body">		
-<<<<<<< HEAD
 				                                        <h4 class="media-heading">${user.fullName}</h4>
-=======
-				                                        <h4 class="media-heading">${user.firstName}</h4>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				                                        <span class="date">${user.city}</span>
 				                                         <c:choose>
 				                                         		<c:when test="${f:contains(user.userId,CoOwnerList)}">
@@ -117,11 +105,7 @@
                             					</div>
 											
 											</c:forEach>
-<<<<<<< HEAD
 											<c:forEach var="user" items="${BoardProfileList}" varStatus="boardCount">
-=======
-											<c:forEach var="user" items="${BoardProfileList}">
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 											<div class="media  col-md-6" id="boardfanboard${user.boardId}">
 				                                <div class="media-left buddyImg">
 				                                    <img src="${user.boardImageURL}">
@@ -144,7 +128,6 @@
                            <div class="clear"></div>
                            
                            
-<<<<<<< HEAD
                            <div id="BoardAllFansDiv"><a class="btn btn-default dBtn pull-right lodbtn" href="javascript:getallFanlistPagination1('All',10,'AllBoardAllFansList2','BoardAllFansDiv')">Load more</a></div>
 									
 									
@@ -164,8 +147,6 @@
 										</script>
 							
                            
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                         </div>
                         
                          <div class="clear"></div>
@@ -178,10 +159,7 @@
                             </div>
                               
                            <div class="clear"></div> 
-<<<<<<< HEAD
                            <dir id="BoardBoardFansDiv"></dir>
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                         </div>
                         
                         
@@ -192,11 +170,8 @@
                               
                             </div>  
                             
-<<<<<<< HEAD
                             <dir id="BoardUserFansDiv"></dir> 
                             
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                             </div>
                            <div class="clear"></div>
                            

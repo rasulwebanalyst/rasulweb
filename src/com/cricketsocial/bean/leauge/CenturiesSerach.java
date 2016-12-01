@@ -15,7 +15,6 @@ public class CenturiesSerach {
 	
 	private String searchKey;
 	private String filterByYear;
-<<<<<<< HEAD
 	private String flag;
 	
 	
@@ -28,11 +27,6 @@ public class CenturiesSerach {
 	public void setFlag(String flag) {
 		this.flag = flag;
 	}
-=======
-	
-	
-	
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	public String getFilterByYear() {
 		return filterByYear;
 	}

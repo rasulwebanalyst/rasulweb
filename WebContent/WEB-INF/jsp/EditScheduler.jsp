@@ -299,11 +299,8 @@
                               <option value="PM">PM</option>
                               </select>
                               <input type="hidden" id="time" name ="gameTime" />
-<<<<<<< HEAD
                                <input type="hidden" id="BoardLatLong" value="${BoradInfo.latlang}">
                                <input type="hidden" id="scheduleCreatedDate" name="scheduleCreatedDate">
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                               </div>
                                 <div id="timeError" class="createschedulError"></div>
                                 <input type="hidden" id="timeZone" name="timeZone" value="">
@@ -429,11 +426,7 @@
 									</div>
                              
  						<div class="Addbtn"> 
-<<<<<<< HEAD
                                <input type="hidden" id="gameDateforMail" name="gameDateforMail">
-=======
-                               
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 									
 									<input type="button" value="cancel" class="btn btn-default blueBtn pull-right" onclick="Gobackfunction()">
 									<button style="margin-right: 10px;" type="submit" class="btn btn-default blueBtn pull-right" onclick="addFunction()">Save</button>
@@ -476,11 +469,8 @@
 
    <!--Date picker-->
     <script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>
-<<<<<<< HEAD
     <script src="https://momentjs.com/downloads/moment.js"></script>
 	 <script src="https://momentjs.com/downloads/moment-timezone-with-data.js"></script>
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
    <!--Gallery-->
   
    
@@ -689,12 +679,8 @@ function addFunction(){
          var min = $("#minuteValue").val();
          var timeMode = $("#timeMode").val();
          $("#time").val(hour+":"+min+" "+timeMode);
-<<<<<<< HEAD
 		//afterValidation();
 		addFunction1();
-=======
-		afterValidation();
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	return true;
 	
 	}else{
@@ -704,7 +690,6 @@ function addFunction(){
 	}
 }
 
-<<<<<<< HEAD
 
 /* function addFunction1(){
 	var latlong=$("#BoardLatLong").val();
@@ -812,8 +797,6 @@ function addFunction(){
 
 
 
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 function afterValidation(){
 	var date  = $("#date").val();
 	var teamId1 = $("#teamSelectBoxDIv").val();
@@ -827,11 +810,8 @@ function afterValidation(){
     var gameId = $("#gameType").val();
     var gameTime = $("#time").val();
     var timeZone = $("#timeZone").val();
-<<<<<<< HEAD
     var Converteddate  = $("#scheduleCreatedDate").val();
     var gameDateforMail1=$("#gameDateforMail").val();
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
     console.log(gameId);
     
 	var bean = {
@@ -848,11 +828,8 @@ function afterValidation(){
 			gameId : gameId,
 			gameTime : gameTime,
 			timeZone : timeZone,
-<<<<<<< HEAD
 			scheduleCreatedDate :Converteddate,
 			gameDateforMail :gameDateforMail1,
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	}
 	//alert(JSON.stringify(bean));
 	//alert(JSON.stringfy(bean));
@@ -866,7 +843,6 @@ function afterValidation(){
 	contentType:"application/json; charset=utf-8",
 	success: function(res){
 		if(res == 'success'){
-<<<<<<< HEAD
 			
 			if("${FromLanding}" == "Yes")
 				{
@@ -874,10 +850,6 @@ function afterValidation(){
 				}else{
 			window.location.href = "${pageContext.request.contextPath}/SchedulerList/boardId/"+boardId;
 		}}
-=======
-			window.location.href = "${pageContext.request.contextPath}/SchedulerList/boardId/"+boardId;
-		}
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	}, 
 	error:function(err){
 		alert(err);
@@ -929,7 +901,6 @@ function makeReadonly(){
 
 function Gobackfunction()
 {
-<<<<<<< HEAD
 	var boardId = "${boardId}";
 	if("${FromLanding}" == "Yes")
 	{
@@ -938,10 +909,6 @@ function Gobackfunction()
 	window.history.back();
 	}
 }
-=======
-	window.history.back();
-	}
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 </script>
    
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/cricketSocial/token-input.js"></script>

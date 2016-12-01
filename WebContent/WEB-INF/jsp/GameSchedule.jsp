@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
-<<<<<<< HEAD
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 <html lang="en">
 
 <head>
@@ -29,14 +26,9 @@
 
 <!--Google Fonts-->    
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
-<<<<<<< HEAD
     <!-- responsive css -->
  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
     
-=======
-    
-
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
  <!-- jQuery -->
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
  
@@ -249,11 +241,6 @@ date.add(java.util.Calendar.DATE, +6);
             </div>
  
  	</div>
-<<<<<<< HEAD
-=======
- 	
- 	
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
       
       
       <div class="col-md-10">
@@ -330,10 +317,7 @@ date.add(java.util.Calendar.DATE, +6);
             <div class="col-md-10 pull-right">
       		<div class="col-md-12 whiteBox">
                   <h2 class="noBorder noLeftPad">Upcoming Matches</h2>
-<<<<<<< HEAD
                   <div class="form-group">
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                   <c:choose>
                        <c:when test="${upcomingMatchesListSize == 0 }">
                       <table>
@@ -354,10 +338,7 @@ date.add(java.util.Calendar.DATE, +6);
                      
                        
                       </table>
-<<<<<<< HEAD
                       
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                        <span class="noContentDivRed">No Upcoming Matches</span>
 
                        </c:when>
@@ -387,7 +368,6 @@ date.add(java.util.Calendar.DATE, +6);
                           <%-- <td>${upcoming.gameDate}</td> --%>
                           <td><a href="${pageContext.request.contextPath}/${upcoming.homeTeamName}/board/${upcoming.homeTeamId}">${upcoming.homeTeamName}</a></td>
                           <td><a href="${pageContext.request.contextPath}/${upcoming.awayTeamName}/board/${upcoming.awayTeamId}">${upcoming.awayTeamName}</a></td>
-<<<<<<< HEAD
                           
                           <c:choose>
                           <c:when test="${upcoming.groundName ne null}">
@@ -402,15 +382,10 @@ date.add(java.util.Calendar.DATE, +6);
                           
                            <c:choose>
                           <c:when test="${fn:length(upcoming.umpireNamesList) gt 0}">
-=======
-                          <td>${upcoming.groundName}</td>
-                          <td> <div >
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 														<c:forEach var="umpire"
 										items="${upcoming.umpireNamesList }" varStatus="loop">
 												<span><a href="${pageContext.request.contextPath}/buddy/${umpire.umpireName}/${umpire.umpireId}">${umpire.umpireName}</a><c:if test="${!loop.last}">,</c:if></span>		
 											</c:forEach>
-<<<<<<< HEAD
 											
 											
 											</c:when>
@@ -418,8 +393,6 @@ date.add(java.util.Calendar.DATE, +6);
 											<span>-</span>
 											</c:otherwise>
 											</c:choose>
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 														</div>
 											
 												</td> 
@@ -445,21 +418,13 @@ date.add(java.util.Calendar.DATE, +6);
                 	</div>
                 	
                 	</div>
-<<<<<<< HEAD
                 	</div><!-- form group end-->
-=======
-                	
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                 	
                 	<div id="incompletegamesdiv">
                 	<div class="col-md-10 pull-right">
       		<div class="col-md-12 whiteBox">
-<<<<<<< HEAD
                   <h2 class="noBorder noLeftPad">Incomplete Matches</h2>
                   <div class="form-group">
-=======
-                  <h2 class="noBorder noLeftPad">InComplete Matches</h2>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                   <c:choose>
                        <c:when test="${inCompletedMatchesListSize == 0 }">
                       <table>
@@ -480,11 +445,7 @@ date.add(java.util.Calendar.DATE, +6);
                      
                        
                       </table>
-<<<<<<< HEAD
                        <span class="noContentDivRed">No Incomplete Matches</span>
-=======
-                       <span class="noContentDivRed">No InComplete Matches</span>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 
                        </c:when>
                        <c:otherwise>
@@ -513,7 +474,6 @@ date.add(java.util.Calendar.DATE, +6);
                           <%-- <td>${upcoming.gameDate}</td> --%>
                           <td><a href="${pageContext.request.contextPath}/${incomplete.homeTeamName}/board/${incomplete.homeTeamId}">${incomplete.homeTeamName}</a></td>
                           <td><a href="${pageContext.request.contextPath}/${incomplete.awayTeamName}/board/${incomplete.awayTeamId}">${incomplete.awayTeamName}</a></td>
-<<<<<<< HEAD
                           
                           <c:choose>
                           <c:when test="${incomplete.groundName ne null}">
@@ -528,15 +488,10 @@ date.add(java.util.Calendar.DATE, +6);
                           <c:choose>
                           <c:when test="${fn:length(incomplete.umpireNamesList) gt 0}">
                           
-=======
-                          <td>${incomplete.groundName}</td>
-                          <td> <div >
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 														<c:forEach var="umpire"
 										items="${incomplete.umpireNamesList }" varStatus="loop">
 												<span><a href="${pageContext.request.contextPath}/buddy/${umpire.umpireName}/${umpire.umpireId}">${umpire.umpireName}</a><c:if test="${!loop.last}">,</c:if></span>		
 											</c:forEach>
-<<<<<<< HEAD
 											</c:when>
 											<c:otherwise>
 											<span>-</span>
@@ -546,8 +501,6 @@ date.add(java.util.Calendar.DATE, +6);
 											
 											
 											
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 														</div>
 											
 												</td> 
@@ -573,20 +526,12 @@ date.add(java.util.Calendar.DATE, +6);
                 	</div>
                 	
                 	</div>
-<<<<<<< HEAD
                 	</div><!-- form group end -->
                     <div id="inprogressmatchesdiv">
                     <div class="col-md-10 pull-right">
       		<div class="col-md-12 whiteBox">
                   <h2 class="noBorder noLeftPad">In progress Matches</h2>
                   <div class="form-group">
-=======
-                    <div id="inprogressmatchesdiv">
-                    <div class="col-md-10 pull-right">
-      		<div class="col-md-12 whiteBox">
-                  <h2 class="noBorder noLeftPad">Inprogress Matches</h2>
-                  
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                    <c:choose>
                        <c:when test="${inprogressMatchesListSize == 0 }">
                       <table>
@@ -606,11 +551,7 @@ date.add(java.util.Calendar.DATE, +6);
 
               
                       </table>
-<<<<<<< HEAD
                        <span class="noContentDivRed">No In progress Matches</span>
-=======
-                       <span class="noContentDivRed">No Inprogress Matches</span>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	
 
                        </c:when>
@@ -640,7 +581,6 @@ date.add(java.util.Calendar.DATE, +6);
                          <%-- <td>${completed.gameDate}</td> --%>
                           <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${inprogress.homeTeamName}/board/${inprogress.homeTeamId}">${inprogress.homeTeamName}</a></td>
                           <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${inprogress.awayTeamName}/board/${inprogress.awayTeamId}">${inprogress.awayTeamName}</a></td>
-<<<<<<< HEAD
                           
                            <c:choose>
                           <c:when test="${inprogress.groundName ne null}">
@@ -650,14 +590,10 @@ date.add(java.util.Calendar.DATE, +6);
                           </c:choose>
                           
                           <%-- <td class="tdAlignLeft">${inprogress.groundName}</td> --%>
-=======
-                          <td class="tdAlignLeft">${inprogress.groundName}</td>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                           
                           <td class="tdAlignLeft">${inprogress.tournamentName}</td>
                           
                           <td class="tdAlignLeft"> <div >
-<<<<<<< HEAD
                           
                           <c:choose>
                           <c:when test="${fn:length(inprogress.umpireNamesList) gt 0}">
@@ -673,29 +609,19 @@ date.add(java.util.Calendar.DATE, +6);
 											</c:choose>
 											
 											</div>
-=======
-									<c:forEach var="umpire"
-										items="${inprogress.umpireNamesList }" varStatus="loop">
-												<span><a href="${pageContext.request.contextPath}/buddy/${umpire.umpireName}/${umpire.umpireId}">${umpire.umpireName}</a><c:if test="${!loop.last}">,</c:if></span>		
-											</c:forEach></div>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 												</td> 
 						
 						
 						<td class="tdAlignLeft"> <div>
-<<<<<<< HEAD
 						
 						
 						 <c:choose>
                           <c:when test="${fn:length(inprogress.scorerNamesList) gt 0}">
 						
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                              <c:forEach var ="scorer" items="${inprogress.scorerNamesList}" varStatus="loop">
                                    <span><a href="${pageContext.request.contextPath}/buddy/${scorer.scorerName}/${scorer.scorerId}">
                                         ${scorer.scorerName}</a><c:if test="${!loop.last}">,</c:if></span>
                                         </c:forEach>
-<<<<<<< HEAD
                                         </c:when>
                                         <c:otherwise>
                                         <span>-</span>
@@ -703,8 +629,6 @@ date.add(java.util.Calendar.DATE, +6);
                                         </c:choose>
                                         
                                         
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                         </div></td>			
 						
                           
@@ -723,20 +647,13 @@ date.add(java.util.Calendar.DATE, +6);
                        </div>
                 	</div>
                     </div>
-<<<<<<< HEAD
                     </div><!-- form group end -->
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                     
                     <div id="completedmatchesdiv">
                     <div class="col-md-10 pull-right">
       		<div class="col-md-12 whiteBox">
                   <h2 class="noBorder noLeftPad">Completed Matches</h2>
-<<<<<<< HEAD
                   <div class="form-group">
-=======
-                  
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                    <c:choose>
                        <c:when test="${completedMatchesListSize == 0 }">
                       <table>
@@ -787,7 +704,6 @@ date.add(java.util.Calendar.DATE, +6);
                          <%-- <td>${completed.gameDate}</td> --%>
                           <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${completed.homeTeamName}/board/${completed.homeTeamId}">${completed.homeTeamName}</a></td>
                           <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${completed.awayTeamName}/board/${completed.awayTeamId}">${completed.awayTeamName}</a></td>
-<<<<<<< HEAD
                           
                           <c:choose>
                           <c:when test="${completed.groundName ne null}">
@@ -798,14 +714,10 @@ date.add(java.util.Calendar.DATE, +6);
                           
                           
                          <%--  <td class="tdAlignLeft">${completed.groundName}</td> --%>
-=======
-                          <td class="tdAlignLeft">${completed.groundName}</td>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                           
                           <td class="tdAlignLeft">${completed.tournamentName}</td>
                           
                           <td class="tdAlignLeft"> <div >
-<<<<<<< HEAD
                           
                           
                           <c:choose>
@@ -823,35 +735,23 @@ date.add(java.util.Calendar.DATE, +6);
 											
 											
 											</div>
-=======
-									<c:forEach var="umpire"
-										items="${completed.umpireNamesList }" varStatus="loop">
-												<span><a href="${pageContext.request.contextPath}/buddy/${umpire.umpireName}/${umpire.umpireId}">${umpire.umpireName}</a><c:if test="${!loop.last}">,</c:if></span>		
-											</c:forEach></div>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 												</td> 
 						
 						
 						<td class="tdAlignLeft"> <div>
-<<<<<<< HEAD
 						
 						<c:choose>
                           <c:when test="${fn:length(completed.scorerNamesList) gt 0}">
                           
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                              <c:forEach var ="scorer" items="${completed.scorerNamesList}" varStatus="loop">
                                    <span><a href="${pageContext.request.contextPath}/buddy/${scorer.scorerName}/${scorer.scorerId}">
                                         ${scorer.scorerName}</a><c:if test="${!loop.last}">,</c:if></span>
                                         </c:forEach>
-<<<<<<< HEAD
                                         </c:when>
                                         <c:otherwise>
                                         <span>-</span>
                                         </c:otherwise>
                                         </c:choose>
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                         </div></td>			
 						
                           
@@ -901,10 +801,7 @@ date.add(java.util.Calendar.DATE, +6);
           
     </div>
   </div>
-<<<<<<< HEAD
   </div><!-- form group -->
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
   <!--/Content Block-->
 
 </section>
@@ -1255,7 +1152,6 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    				htmlco+="<td>"+dateNewObject+"</td>";
    				htmlco+="<td><a href='${pageContext.request.contextPath}/"+upcomminglist[i].homeTeamName+"/board/"+upcomminglist[i].homeTeamId+"'>"+upcomminglist[i].homeTeamName+"</a></td>";
    				htmlco+="<td><a href='${pageContext.request.contextPath}/"+upcomminglist[i].awayTeamName+"/board/"+upcomminglist[i].awayTeamId+"'>"+upcomminglist[i].awayTeamName+"</a></td>";
-<<<<<<< HEAD
    				
    				if(upcomminglist[i].groundName == "" || upcomminglist[i].groundName == null)
    				{
@@ -1266,12 +1162,6 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    				
    				var upcommingumpire=upcomminglist[i].umpireNamesList;
    				if(upcommingumpire.length > 0){
-=======
-   				htmlco+="<td>"+upcomminglist[i].groundName+"</td>";
-   				htmlco+="<td> <div >";
-   				
-   				var upcommingumpire=upcomminglist[i].umpireNamesList;
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
    				for(var j=0; j < upcommingumpire.length;j++)
    				{
    				htmlco+="<span><a href='${pageContext.request.contextPath}/buddy/"+upcommingumpire[j].umpireName+"/"+upcommingumpire[j].umpireId+"'>"+upcommingumpire[j].umpireName+"</a>";
@@ -1282,14 +1172,10 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 			        	htmlco += ',</span>';
 			        } 
    				
-<<<<<<< HEAD
    				}}else
    					{
    					htmlco+="<span>-</span>";
    					}
-=======
-   				}
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
    				htmlco+="</div></td>";
    				htmlco+="<td>"+upcomminglist[i].tournamentName+"</td>";
    				htmlco+="<td><span class='text-success'>Active</span></td>";
@@ -1313,11 +1199,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    			
    			// incomepltelist
    			   var htmlco1="";
-<<<<<<< HEAD
    			  htmlco1="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox'><h2 class='noBorder noLeftPad'>Incomplete Matches</h2>";
-=======
-   			  htmlco1="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox'><h2 class='noBorder noLeftPad'>InComplete Matches</h2>";
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
    			 htmlco1+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Umpire</th><th>Trophy</th><th>Match Status</th><th>Enter Scorecard</th><th style='width:60px;'>Action</th></tr></thead>";
    			if(incomepltelist.length!=0){
    				htmlco1+="<tbody>";
@@ -1328,7 +1210,6 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    					htmlco1+="<td>"+dateNewObject+"</td>";
    					htmlco1+="<td><a href='${pageContext.request.contextPath}/"+incomepltelist[i].homeTeamName+"/board/"+incomepltelist[i].homeTeamId+"'>"+incomepltelist[i].homeTeamName+"</a></td>";
    					htmlco1+="<td><a href='${pageContext.request.contextPath}/"+incomepltelist[i].awayTeamName+"'/board/"+incomepltelist[i].awayTeamId+"'>"+incomepltelist[i].awayTeamName+"</a></td>";
-<<<<<<< HEAD
    				    
    					if(incomepltelist[i].groundName == "" || incomepltelist[i].groundName == null)
    	   				{
@@ -1340,22 +1221,13 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    				    var incompleteumpire=incomepltelist[i].umpireNamesList;
    				    
    				    if(incompleteumpire.length > 0){
-=======
-   				    htmlco1+="<td>"+incomepltelist[i].groundName+"</td>";
-   				    htmlco1+="<td> <div>";
-   				    var incompleteumpire=incomepltelist[i].umpireNamesList;
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
    				    for(var j=0;j<incompleteumpire.length;j++){
    				    htmlco1+="<span><a href='${pageContext.request.contextPath}/buddy/"+incompleteumpire[j].umpireName+"/"+incompleteumpire[j].umpireId+"'>"+incompleteumpire[j].umpireName+"</a>";
    				 if(j === incompleteumpire.length-1) {  
   			        } else {
   			        	htmlco1 += ',</span>';
   			        } 
-<<<<<<< HEAD
    				    }}else{ htmlco1+="<span>-</span>";}
-=======
-   				    }
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
    				    htmlco1+="</div></td> ";
    				     htmlco1+="<td>"+incomepltelist[i].tournamentName+"</td>";
    				    htmlco1+="<td><span class='text-success'>Active</span></td>";
@@ -1380,11 +1252,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    		// inprogress
    		
 			   var htmlco2="";
-<<<<<<< HEAD
 			  htmlco2="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox'><h2 class='noBorder noLeftPad'>In progress Matches</h2>";
-=======
-			  htmlco2="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox'><h2 class='noBorder noLeftPad'>Inprogress Matches</h2>";
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			 htmlco2+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Trophy</th><th>Umpire</th><th>Scorer</th><th>Match Status</th><th>Enter Scorecard</th><th>Scorecard</th></tr></thead>";
 			if(inprogresslist.length!=0){
 				htmlco2+="<tbody>";
@@ -1395,7 +1263,6 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 					htmlco2+="<td>"+dateNewObject+"</td>";
 					htmlco2+="<td class='tdAlignLeft'><a href='${pageContext.request.contextPath}/"+inprogresslist[i].homeTeamName+"/board/"+inprogresslist[i].homeTeamId+"'>"+inprogresslist[i].homeTeamName+"</a></td>";
 					htmlco2+="<td class='tdAlignLeft'><a href='${pageContext.request.contextPath}/"+inprogresslist[i].awayTeamName+"'/board/"+inprogresslist[i].awayTeamId+"'>"+inprogresslist[i].awayTeamName+"</a></td>";
-<<<<<<< HEAD
 				   
 					if(inprogresslist[i].groundName == "" || inprogresslist[i].groundName == null)
    	   				{
@@ -1408,42 +1275,26 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				    htmlco2+="<td class='tdAlignLeft'> <div>";
 				    var inprogressumpire=inprogresslist[i].umpireNamesList;
 				    if(inprogressumpire.length > 0){
-=======
-				    htmlco2+="<td class='tdAlignLeft'>"+inprogresslist[i].groundName+"</td>";
-				    htmlco2+="<td class='tdAlignLeft'>"+inprogresslist[i].tournamentName+"</td>";
-				    htmlco2+="<td class='tdAlignLeft'> <div>";
-				    var inprogressumpire=inprogresslist[i].umpireNamesList;
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				    for(var j=0;j<inprogressumpire.length;j++){
 				    htmlco2+="<span><a href='${pageContext.request.contextPath}/buddy/"+inprogressumpire[j].umpireName+"/"+inprogressumpire[j].umpireId+"'>"+inprogressumpire[j].umpireName+"</a>";
 				 if(j === inprogressumpire.length-1) {  
 			        } else {
 			        	htmlco2 += ',</span>';
 			        } 
-<<<<<<< HEAD
 				    }}else{
 				    	htmlco2+="<span>-</span>";
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				    }
 				    htmlco2+="</div></td> ";
 				    htmlco2+="<td class='tdAlignLeft'> <div>";
 				    var inprogressscorer=inprogresslist[i].scorerNamesList;
-<<<<<<< HEAD
 				    if(inprogressscorer.length > 0){
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				    for(var j=0;j<inprogressscorer.length;j++){
 				    htmlco2+="<span><a href='${pageContext.request.contextPath}/buddy/"+inprogressscorer[j].scorerName+"/"+inprogressscorer[j].scorerId+"'>"+inprogressscorer[j].scorerName+"</a>";
 				 if(j === inprogressscorer.length-1) {  
 			        } else {
 			        	htmlco2 += ',</span>';
 			        } 
-<<<<<<< HEAD
 				    }}else{htmlco2+="<span>-</span>";}
-=======
-				    }
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				    htmlco2+="</div></td> ";
 				    htmlco2+="<td><span class='text-success'>Active</span></td>";
 				    htmlco2+="<td align='center'><input type='button' value='Enter Scorecard' onclick=DeleteScoreCard('"+boardid+"','"+inprogresslist[i].tournamentId+"','"+inprogresslist[i].tournamentSchedulerId+"','"+inprogresslist[i].homeTeamId+"','"+inprogresslist[i].awayTeamId+"','"+inprogresslist[i].dateString+"','"+inprogresslist[i].leagueCreatedBy+"')></td>";
@@ -1455,11 +1306,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 			}else{
 			
 			htmlco2+="</table>";
-<<<<<<< HEAD
 				htmlco2+="<span class='noContentDivRed'>No In progress Matches</span>";
-=======
-				htmlco2+="<span class='noContentDivRed'>No Inprogress Matches</span>";
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 			}
 			htmlco2+="</div></div>";
 			
@@ -1482,7 +1329,6 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 					htmlco3+="<td>"+dateNewObject+"</td>";
 					htmlco3+="<td class='tdAlignLeft'><a href='${pageContext.request.contextPath}/"+completedlist[i].homeTeamName+"/board/"+completedlist[i].homeTeamId+"'>"+completedlist[i].homeTeamName+"</a></td>";
 					htmlco3+="<td class='tdAlignLeft'><a href='${pageContext.request.contextPath}/"+completedlist[i].awayTeamName+"'/board/"+completedlist[i].awayTeamId+"'>"+completedlist[i].awayTeamName+"</a></td>";
-<<<<<<< HEAD
 				   
 					if(completedlist[i].groundName == "" || completedlist[i].groundName == null)
    	   				{
@@ -1495,19 +1341,12 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				    htmlco3+="<td class='tdAlignLeft'> <div>";
 				    var completeumpire=completedlist[i].umpireNamesList;
 				    if(completeumpire.length > 0){
-=======
-				    htmlco3+="<td class='tdAlignLeft'>"+completedlist[i].groundName+"</td>";
-				    htmlco3+="<td class='tdAlignLeft'>"+completedlist[i].tournamentName+"</td>";
-				    htmlco3+="<td class='tdAlignLeft'> <div>";
-				    var completeumpire=completedlist[i].umpireNamesList;
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				    for(var j=0;j<completeumpire.length;j++){
 				    htmlco3+="<span><a href='${pageContext.request.contextPath}/buddy/"+completeumpire[j].umpireName+"/"+completeumpire[j].umpireId+"'>"+completeumpire[j].umpireName+"</a>";
 				 if(j === completeumpire.length-1) {  
 			        } else {
 			        	htmlco3 += ',</span>';
 			        } 
-<<<<<<< HEAD
 				    }}else{htmlco3+="<span>-</span>";}
 				    htmlco3+="</div></td> ";
 				    htmlco3+="<td class='tdAlignLeft'> <div>";
@@ -1515,12 +1354,6 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				    
 				    if(completescorer != null)
 				    	{
-=======
-				    }
-				    htmlco3+="</div></td> ";
-				    htmlco3+="<td class='tdAlignLeft'> <div>";
-				    var completescorer=completedlist[i].scorerNamesList;
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				    for(var j=0;j<completescorer.length;j++){
 				    htmlco3+="<span><a href='${pageContext.request.contextPath}/buddy/"+completescorer[j].scorerName+"/"+completescorer[j].scorerId+"'>"+completescorer[j].scorerName+"</a>";
 				 if(j === completescorer.length-1) {  
@@ -1528,13 +1361,10 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 			        	htmlco3+= ',</span>';
 			        } 
 				    }
-<<<<<<< HEAD
 				    	}else
 				    		{
 				    		htmlco3+="<span>-</span>";
 				    		}
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				    htmlco3+="</div></td> ";
 				   // htmlco3+="<td><span class='text-success'>Active</span></td>";
 				   if(completedlist[i].statusOfMatch == 'tie'){

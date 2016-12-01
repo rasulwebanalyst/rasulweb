@@ -226,13 +226,8 @@ var imageValidate=1;
                              
 <!--                               <div class="col-md-4"><label for="email" style="display:block;">Contact visibility to public</label> 
  -->                               
-<<<<<<< HEAD
                  <div class="col-md-8">
                  <label for="email" style="display: block;">Contact Information&nbsp;(<span style="float:none;">*</span><span style="color:#bbb;font-size:10px;float:none;">complete address should not be display to publ</span>)</label>
-=======
-                 <div class="col-md-6">
-                 <label for="email" style="display: block;">Contact Visibility&nbsp;(<span style="float:none;">*</span><span style="color:#bbb;font-size:10px;float:none;">complete address should not be display to public</span>)</label>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                 <input type="checkbox" class="cboxBtn" id="Fan" name="rr" value="phone">
                                 <label for="Fan"><span></span>Phone Number</label>
                    

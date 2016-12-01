@@ -3,13 +3,8 @@
 //110086556012641
 
 //var fbURL='1037086509684954'; // local
-<<<<<<< HEAD
  //  var fbURL='480457342143824'; // Production
  var fbURL='110086556012641'; // QA
-=======
-   var fbURL='480457342143824'; // Production
- //var fbURL='110086556012641'; // QA
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
   window.fbAsyncInit = function() {
     FB.init({
       appId      :fbURL ,
@@ -117,11 +112,7 @@ function oAuthRegistration()
       var logininfo=JSON.stringify(Users);
        $.ajax({
 					type : "POST",
-<<<<<<< HEAD
 					url : projectURL+"/oAuthRegistration",
-=======
-					url : projectURL+"/oAuthRegistration.htm",
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 					dataType: "json",
 		            contentType: "application/json; charset=utf-8",
 		            data:logininfo,
@@ -176,11 +167,7 @@ function oAuthsubmit()
       var logininfo=JSON.stringify(Users);
       $.ajax({
 					type : "POST",
-<<<<<<< HEAD
 					url : projectURL+"/oAuthloginValidate",
-=======
-					url : projectURL+"/oAuthloginValidate.htm",
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 					dataType: "json",
 		            contentType: "application/json; charset=utf-8",
 		            data:logininfo,			            
@@ -221,11 +208,7 @@ function oAuthsubmit()
 			  gapi.auth.signIn(myParams);
 } */// Dev Environment
 
-<<<<<<< HEAD
 function googleLogin()
-=======
-/*function googleLogin()
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 {
 	  var myParams = {
 			  'clientid' : '1077808914943-6qc5il3h9odjpnna5j1qsmh7i81pg4d6.apps.googleusercontent.com',
@@ -235,15 +218,9 @@ function googleLogin()
 			    'scope' : 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.google.com/m8/feeds/ https://www.googleapis.com/auth/contacts.readonly',
 			  };
 			  gapi.auth.signIn(myParams);
-<<<<<<< HEAD
 }  // QA Environment
 
 /*function googleLogin()
-=======
-} */  // QA Environment
-
-function googleLogin()
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 {
 	  var myParams = {
 			  'clientid' : '575004365806-75h30uhausuu6pamhqaf304r312kk6q6.apps.googleusercontent.com',
@@ -253,11 +230,7 @@ function googleLogin()
 			    'scope' : 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.google.com/m8/feeds/ https://www.googleapis.com/auth/contacts.readonly',
 			  };
 			  gapi.auth.signIn(myParams);
-<<<<<<< HEAD
 } */ // Production Environment
-=======
-}  // Production Environment
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	 
 function loginCallback(result)
 {
@@ -311,13 +284,8 @@ function loginCallback(result)
 function onLoadCallback()
 {
   // gapi.client.setApiKey("AIzaSyA0fVf7zr2HemJ5ItsizriAF2Vxvf9k-28");//FOR  QA AIzaSyBkJTuE1F2YOwLGOzHqNx5Q9beqbQdZW_8
-<<<<<<< HEAD
 	 gapi.client.setApiKey("AIzaSyA9laDOXif5a3Cd4Ha03JXC77vXnfFZu0g"); // For Dev 
 	//gapi.client.setApiKey("AIzaSyBzCBzUjAh3MCIMyL74VKzDvRxR91XCZHQ"); // Production Environment 
-=======
-	// gapi.client.setApiKey("AIzaSyA9laDOXif5a3Cd4Ha03JXC77vXnfFZu0g"); // For Dev 
-	gapi.client.setApiKey("AIzaSyBzCBzUjAh3MCIMyL74VKzDvRxR91XCZHQ"); // Production Environment 
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
   
 	
     gapi.client.load('plus', 'v1',function(){});
@@ -334,15 +302,9 @@ function onLoadCallback()
 
 function getGmailContacts() {
     var config = {
-<<<<<<< HEAD
       //'client_id': '199727375065-10dcv13ql2vkdijvfrl6q1ifnruld40n.apps.googleusercontent.com', // Dev 
     		'client_id': '1077808914943-6qc5il3h9odjpnna5j1qsmh7i81pg4d6.apps.googleusercontent.com',  // QA
     	//	'client_id': '575004365806-sbdnc074cvqg3bqioomamtoirfnl2789.apps.googleusercontent.com',  // Prod
-=======
-     // 'client_id': '199727375065-10dcv13ql2vkdijvfrl6q1ifnruld40n.apps.googleusercontent.com', // Dev 
-    	//	'client_id': '1077808914943-6qc5il3h9odjpnna5j1qsmh7i81pg4d6.apps.googleusercontent.com',  // QA
-    		'client_id': '575004365806-sbdnc074cvqg3bqioomamtoirfnl2789.apps.googleusercontent.com',  // Prod
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
     		
       'scope': 'https://www.google.com/m8/feeds'
     };

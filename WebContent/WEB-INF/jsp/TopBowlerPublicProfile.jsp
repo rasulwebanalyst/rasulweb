@@ -189,7 +189,6 @@ var pageNum=50;
 				                       <tbody id="topBowlerTableBody">
 				                        <tr>
 			                        		  <td></td>
-<<<<<<< HEAD
 			                        		  
 			                        		  
 	                       				  	  <td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}">
@@ -198,14 +197,6 @@ var pageNum=50;
 					                          
 					                          <%-- <td><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}">${player.teamBoardInfo.boardName}</a></td> --%>
 					                          <td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}"><img src="${player.teamBoardInfo.boardImageURL}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';"><b>  ${player.teamBoardInfo.boardName}</b><div class="clearfix"></div></a></td>
-=======
-	                       				  	  <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/${player.userName}/${player.userId}">
-	                       				  	  <span class="text-danger"> <img alt="" src="${player.userImageUrl}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';" width="30px" style="margin-right: 10px;"></span><b>${player.userName}</b></a></td>	                      					  
-					                          <%-- <td><a href="${pageContext.request.contextPath}/${matches.homeTeam}/board/${matches.hometeamId}">${matches.homeTeam}</a></td> --%>
-					                          
-					                          <%-- <td><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}">${player.teamBoardInfo.boardName}</a></td> --%>
-					                          <td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/${player.teamBoardInfo.boardName}/board/${player.teamBoardInfo.boardId}"><img src="${player.teamBoardInfo.boardImageURL}"onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" style="width: 30px;margin-right: 10px; ">  ${player.teamBoardInfo.boardName}</a></td>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 					                          
 					                          <td>${player.games}</td>                  
 					                          <td>${player.innings}</td>
@@ -339,7 +330,6 @@ var pageNum=50;
   		  	   								for(var k=0;k<plist.length;k++){
   		  										html += '<tr>';
   		  	   									html +='<td></td>';
-<<<<<<< HEAD
   		  	   									
   		  	   								if(plist[k].userImageUrl != null && plist[k].userImageUrl != ""){
   		  	   									html += '<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/buddy/'+ plist[k].userName+ '/' +plist[k].userId+ '"><img alt="" src="'+plist[k].userImageUrl+'"><b>' +plist[k].userName+ '</b><div class="clearfix"></div></a></td>';
@@ -350,10 +340,6 @@ var pageNum=50;
   		  	   									
   		  	   									
   		  	   									html += '<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/' + plist[k].teamBoardInfo.boardName + '/board/' + plist[k].teamBoardInfo.boardId + '"><img src="'+plist[k].teamBoardInfo.boardImageURL+ '"><b>' + plist[k].teamBoardInfo.boardName + '</b><div class="clearfix"></div></a></td>';
-=======
-  		  	   									html += '<td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/buddy/'+ plist[k].userName+ '/' +plist[k].userId+ '"><span class="text-danger"><img alt="" src="'+plist[k].userImageUrl+'" width="30px" style="margin-right: 10px;"></span><b>' +plist[k].userName+ '</b> </a></td>';
-  		  	   									html += '<td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/' + plist[k].teamBoardInfo.boardName + '/board/' + plist[k].teamBoardInfo.boardId + '"><img src="'+plist[k].teamBoardInfo.boardImageURL+ '"style="margin-right: 10px; width:30px;">' + plist[k].teamBoardInfo.boardName + '</a></td>';
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
   		  	   									html += '<td class="tdAlignLeft">' + plist[k].games + '</td>';
   		  	   									html += '<td class="tdAlignLeft">' + plist[k].innings + '</td>';
   		  	   									html += '<td class="tdAlignLeft">' + plist[k].bowlingOvers + '</td>';

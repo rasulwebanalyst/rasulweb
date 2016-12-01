@@ -52,7 +52,6 @@ public class CompletedMatchesSchedule {
 
 	private String winTeamId;
 	private String loseTeamId;
-<<<<<<< HEAD
 	private String dateString;
 	private String leagueCreatedBy;
 	
@@ -71,8 +70,6 @@ public class CompletedMatchesSchedule {
 	public void setLeagueCreatedBy(String leagueCreatedBy) {
 		this.leagueCreatedBy = leagueCreatedBy;
 	}
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	public String getAwayTeamId() {
 		return awayTeamId;
 	}

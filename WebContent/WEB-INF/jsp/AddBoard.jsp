@@ -10,12 +10,8 @@
 <title>CricketSocial</title>
    <link rel="stylesheet" href="css/token-input.css" type="text/css" />
     <link rel="stylesheet" href="css/token-input-facebook.css" type="text/css" />
-<<<<<<< HEAD
     <!-- responsive css -->
  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
-=======
-
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 <script>var ctx="${pageContext.request.contextPath}";</script>
 </head>
 <body>
@@ -30,11 +26,7 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
 	<%@ include file="BuddyHeader.jsp" %>
-=======
-	<%@ include file="BoardHeader.jsp" %>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 <section class="middleContentBlock">
     <div class="container">
 
@@ -506,10 +498,7 @@ $(document).ready(function(){
 			},"Fist letter captal");
 });
 function validateBoardForm(e){
-<<<<<<< HEAD
 	console.log("Form submit");
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	 e.preventDefault();
 	 if($('#boardFormId').validate({
 		 errorPlacement: function(error, element) {
@@ -575,11 +564,7 @@ function validateBoardForm(e){
                  }, 
                  zipcode: {
                      required: true,
-<<<<<<< HEAD
                      minlength : 2,
-=======
-                     minlength : 5,
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                      maxlength : 10,
                    //  number : true,
          			 
@@ -679,11 +664,7 @@ function validateBoardForm(e){
                        },
                        zipcode: {
                         	required: "Please enter the zip code",
-<<<<<<< HEAD
                         	 minlength: "Zip code should be atleast 2 numbers ",
-=======
-                        	 minlength: "Zip code should be atleast 5 numbers ",
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                         	maxlength : "Zip code should be maximum of 10 numbers ",
                         	//number : "Please enter numbers only",
                           
@@ -719,7 +700,6 @@ function validateBoardForm(e){
 
  }
 
-<<<<<<< HEAD
 
 $("#boardFormId").submit(function() {
     $(this).submit(function() {
@@ -727,8 +707,6 @@ $("#boardFormId").submit(function() {
     });
     return true;
 });
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	 
 	
  

@@ -32,7 +32,6 @@ var formatAMPMTime = function(date) {
 	
 	}
 	
-<<<<<<< HEAD
 	function getDateInObject(timestamp)
 	{
 		
@@ -43,9 +42,6 @@ var formatAMPMTime = function(date) {
 		gettingFromServer = new Date(gettingFromServer.valueOf() - offset);
 		return formatAMPMTime(gettingFromServer); 
 	};
-=======
-	
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	 
 </script>
         
@@ -65,11 +61,7 @@ var formatAMPMTime = function(date) {
                        <c:when test="${completedMatchesListSize == 0 }">
                       <table>
                         <thead class="">
-<<<<<<< HEAD
                          <tr><th>S.No</th>
-=======
-                         <tr>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                           <th style="width:110px;">Date (MM/DD/YYYY)</th>
                                           <th>Home Team</th>
                                           <th>Away Team</th>
@@ -92,15 +84,9 @@ var formatAMPMTime = function(date) {
 
                        </c:when>
                        <c:otherwise>
-<<<<<<< HEAD
 						<table id="disputemanagement">
                        <thead> 
                         <tr><th>S.No</th>
-=======
-						<table>
-                       <thead> 
-                        <tr>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                            <th style="width:110px;">Date (MM/DD/YYYY)</th>
                                           <th>Home Team</th>
                                           <th>Away Team</th>
@@ -120,11 +106,7 @@ var formatAMPMTime = function(date) {
                        <tbody>
                           <c:forEach var="completed" items="${completedMatchesList}" varStatus = "varloop">
                        <tr>
-<<<<<<< HEAD
                        <td>${varloop.count}</td>
-=======
-                       
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                        <td><p id="formatDate_${completed.tournamentSchedulerId}" style="display:none"><fmt:formatDate pattern="M/d/YYYY hh:mm a" value="${completed.gameDate}" /></p><script>document.writeln(test("${completed.tournamentSchedulerId}"));</script></td>
                        
                        <%-- <td><fmt:formatDate value="${completed.gameDate}"
@@ -186,11 +168,7 @@ var formatAMPMTime = function(date) {
                                        	
                                   
                             </div>
-<<<<<<< HEAD
             <button class="btn btn-default dBtn pull-right lodbtn" onclick="loadMoreDetails()">LOAD MORE</button>
-=======
-            
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
           	<input type="hidden" value="" id="hiddenId">
           </div>    
       </div>
@@ -206,7 +184,6 @@ var formatAMPMTime = function(date) {
    <!--Gallery-->
    
    <script src="${pageContext.request.contextPath }/js/jquery.colorbox.js"></script>
-<<<<<<< HEAD
    
    <script>
    var EndNode=0;
@@ -309,8 +286,6 @@ var formatAMPMTime = function(date) {
    }
    
    </script>
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 		<script>
 			$(document).ready(function(){
 				//Examples of how to assign the Colorbox event to elements

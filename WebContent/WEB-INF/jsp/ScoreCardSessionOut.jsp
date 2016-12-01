@@ -235,7 +235,6 @@ var formatAMPMTime = function(date) {
                                 <tbody>
                                
                                  <c:forEach var="list1" items="${firstInningsBattingPlayer}">
-<<<<<<< HEAD
                                 	<tr><td style="width: 190px;"><a style="color: #227fbc;" href="javascript:void(0);" onclick="PleaseLogin()">${list1.playerFullName}</a></td>
                                     	<c:choose>
                                     	<c:when test="${list1.wicketBy == 'NotOut' || list1.wicketBy == 'Not Out'}">
@@ -249,15 +248,6 @@ var formatAMPMTime = function(date) {
                                     	</c:when>
                                     	<c:otherwise>
                                     	<td style="width: 150px;text-align: left;">${list1.wicketBy}</td>
-=======
-                                	<tr><td style="width: 190px;"><a href="javascript:void(0);" onclick="PleaseLogin()">${list1.playerFullName}</a></td>
-                                    	<c:choose>
-                                    	<c:when test="${list1.wicketBy == 'NotOut'}">
-                                    	<td style="width: 150px;">Not Out</td>
-                                    	</c:when>
-                                    	<c:otherwise>
-                                    	<td style="width: 150px;">${list1.wicketBy}</td>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                     	</c:otherwise>
                                     	</c:choose>
                                     	
@@ -453,11 +443,7 @@ var formatAMPMTime = function(date) {
                                
                                
                                  <c:forEach var="list" items="${firstInningsBowlingPlayer}">
-<<<<<<< HEAD
                                 	<tr><td><a style="color: #227fbc;" href="javascript:void(0);" onclick="PleaseLogin()">${list.playerFullName }</a></td>
-=======
-                                	<tr><td><a href="javascript:void(0);" onclick="PleaseLogin()">${list.playerFullName }</a></td>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                     	<td>${list.bowlingOvers}</td>
                                         <td>${list.meidan}</td>
                                         <td>${list.runs}</td>
@@ -562,7 +548,6 @@ var formatAMPMTime = function(date) {
                                 </thead>
                                 <tbody>
                                  <c:forEach var="list1" items="${SecondInningsBattingPlayer}">
-<<<<<<< HEAD
                                 	<tr><td style="width: 190px;"><a style="color: #227fbc;" href="javascript:void(0);" onclick="PleaseLogin()">${list1.playerFullName}</a>	</td>
                                     	<c:choose>
                                     	<c:when test="${list1.wicketBy == 'NotOut' || list1.wicketBy == 'Not Out'}">
@@ -576,15 +561,6 @@ var formatAMPMTime = function(date) {
                                     	</c:when>
                                     	<c:otherwise>
                                     	<td style="width: 150px;text-align: left;"> ${list1.wicketBy }</td>
-=======
-                                	<tr><td style="width: 190px;"><a href="javascript:void(0);" onclick="PleaseLogin()">${list1.playerFullName}</a>	</td>
-                                    	<c:choose>
-                                    	<c:when test="${list1.wicketBy == 'NotOut'}">
-                                    	<td style="width: 150px;">Not Out</td>
-                                    	</c:when>
-                                    	<c:otherwise>
-                                    	<td style="width: 150px;"> ${list1.wicketBy }</td>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                     	</c:otherwise>
                                     	</c:choose>
                                         <td>${list1.runs } 
@@ -779,11 +755,7 @@ var formatAMPMTime = function(date) {
                                
                                
                                  <c:forEach var="list" items="${SecondInningsBowlingPlayer}">
-<<<<<<< HEAD
                                 	<tr><td><a style="color: #227fbc;" href="javascript:void(0);" onclick="PleaseLogin()">${list.playerFullName }</a></td>
-=======
-                                	<tr><td><a href="javascript:void(0);" onclick="PleaseLogin()">${list.playerFullName }</a></td>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                     	<td>${list.bowlingOvers}</td>
                                         <td>${list.meidan}</td>
                                         <td>${list.runs}</td>

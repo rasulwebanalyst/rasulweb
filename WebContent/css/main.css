@@ -139,7 +139,6 @@ a.vw-score {
 .black-bg {
 }
 /* new changes */
-<<<<<<< HEAD
 ul.login-txt li {
 	color: #FFF;
 	font-size: 16px;
@@ -190,8 +189,6 @@ ul.login-txt li {
     max-height: 230px;
 	overflow: auto;
 }
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 ul.nav.nav-tabs-details li {
 	width: auto;
 }
@@ -221,11 +218,7 @@ ul.nav.nav-tabs-details li a {
     padding: 6px;
     width: 100%;
     text-align: center;
-<<<<<<< HEAD
     color: #fff;
-=======
-    color: #fff;88%
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
     font-weight: 600;
     background: #00a5e7;
 }
@@ -308,7 +301,7 @@ table.directors td.usr-img img {
 	background: #224e6b;
 	color: #fff;
 } 
-.action button.cancel {88%
+.action button.cancel {
 	background: #bbb;
 	color: #fff;
 }
@@ -490,7 +483,6 @@ ol.roa-ol li {
 	line-height: 25px;
 }
 
-<<<<<<< HEAD
 /* Dashboard changes */
 body.cs-dboard .galleryBlock img {
 	max-width: 100%;
@@ -593,10 +585,6 @@ body.cs-dboard .sidebar-container {
     width: 100%;
     cursor: pointer;
 }
-=======
-/* NEW PAGE CHANGES */
-
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 
 .cs-org .panel-heading h4 {
 	margin: 0px;

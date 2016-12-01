@@ -139,7 +139,6 @@
                             <td>${team.totalMatches}</td>
                             <td>${team.wonmatches}</td>
                             <td>${team.lostmatches}</td>
-<<<<<<< HEAD
                            <%--  <td>${team.adj}</td> --%>
                             
                             
@@ -152,9 +151,6 @@
                             <%-- </c:otherwise>
                             </c:choose> --%>
                             
-=======
-                            <td>${team.adj}</td>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                             <td>${team.points}</td>
                             <td>
                                 <fmt:formatNumber type="number" pattern="##########.##" value="${team.netRunRate}" />

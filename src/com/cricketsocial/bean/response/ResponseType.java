@@ -36,10 +36,7 @@ import com.cricketsocial.bean.event.EventType;
 import com.cricketsocial.bean.event.SheduleAcceptEventResponse;
 import com.cricketsocial.bean.feed.FeedComment;
 import com.cricketsocial.bean.ground.Ground;
-<<<<<<< HEAD
 import com.cricketsocial.bean.leauge.PlayerDTO;
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 import com.cricketsocial.bean.leauge.TournamentDTO;
 import com.cricketsocial.bean.leauge.UmpireRating;
 import com.cricketsocial.bean.notification.EventNotificationDTO;
@@ -60,11 +57,7 @@ import com.cricketsocial.bean.user.MergeDTO;
 public class ResponseType {
 
 	private List<UserProfile> gettingUserSearchListDetails;
-<<<<<<< HEAD
 	
-=======
-
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
     private SearchResponse searchResponse;
 	
     private FeedResponse feedResponse;
@@ -280,13 +273,10 @@ public class ResponseType {
 	 
 	 private List<EventType> eventTypeList;
 	 
-<<<<<<< HEAD
 	 private List<PlayerDTO> starBatsmen;
 	 
 	 private List<PlayerDTO> starBowlers; 
 	 
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	 // Umpire And Scorer Details
 	 private UmpireAndScorerDetails umpireAndScorerDetails;
 	 
@@ -294,7 +284,6 @@ public class ResponseType {
 	 
 	 private PlayerRestriction playesrRestriction;
 	 
-<<<<<<< HEAD
 	 private String createScheduleResponse;
 	 
 	 private List<TournamentScheduler> recentScheduleList;
@@ -318,11 +307,6 @@ public class ResponseType {
 		this.createScheduleResponse = createScheduleResponse;
 	}
 
-=======
-	 
-	 
-	
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	public String getStatusMsg() {
 		return statusMsg;
 	}
@@ -1167,7 +1151,6 @@ public class ResponseType {
 		this.umpireAndScorerDetails = umpireAndScorerDetails;
 	}
 
-<<<<<<< HEAD
 	public List<PlayerDTO> getStarBatsmen() {
 		return starBatsmen;
 	}
@@ -1183,9 +1166,6 @@ public class ResponseType {
 	public void setStarBowlers(List<PlayerDTO> starBowlers) {
 		this.starBowlers = starBowlers;
 	}
-=======
-
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 
 
 }

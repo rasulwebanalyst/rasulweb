@@ -4,11 +4,8 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
-<<<<<<< HEAD
   <!-- responsive css -->
  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -151,11 +148,7 @@ return result;
                      
                      	<div class="col-md-12 statusUpdateBox whiteBox">
                      	<div id="fileDiv">
-<<<<<<< HEAD
                            	 <input id="upload0" type="file" style="visibility: hidden;" name="file" onchange="readURL(this); this.value=null;return false;" />
-=======
-                           	 <input id="upload0" type="file" style="visibility: hidden;" name="file" onchange="readURL(this)" />
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                             </div>
                             <b>Status update</b>
                             <a href="#" class="pull-right" id="upload_link"><i class="fa fa-picture-o"></i> Add photos</a>
@@ -163,11 +156,7 @@ return result;
                             <div class="postBlock" id="BowlOptionDiv">
                             	<img src="${USRIMG}" class="nav-avatar" onerror="userErrorDefaultImg(this)">
                                	<textarea class="form-control" id="content" placeholder="What is your Delivery?" name="content"></textarea>
-<<<<<<< HEAD
 								<div class="clearfix"></div>
-=======
-								
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 								<input type="hidden" value="${BoradInfo.boardId}" name="boardId" id="boardId">
 								<div class="uploadedFiles">
                                     
@@ -707,11 +696,7 @@ function readURL(input) {
         	        	
         	        	
         	        	$('.uploadedFiles').append(html);
-<<<<<<< HEAD
         	        	 var filehtml="<input id='upload"+fileTextBoxLength+"' type='file' style='display:none;' name='file' onchange='readURL(this); this.value=null;return false;' />";
-=======
-        	        	 var filehtml="<input id='upload"+fileTextBoxLength+"' type='file' style='display:none;' name='file' onchange='readURL(this)' />";
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
         	             $('#fileDiv').append(filehtml);
         			
     				 

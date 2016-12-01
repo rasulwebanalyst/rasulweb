@@ -16,11 +16,7 @@
 var pageNum=10;
 </script>
 <SCRIPT>
-<<<<<<< HEAD
 /* function feedDuration(feeddate)
-=======
-function feedDuration(feeddate)
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 {
 	//alert("feeddate"+feeddate );
 //var date2= new Date(feeddate).toISOString();
@@ -45,7 +41,6 @@ if(sec<60)
 }
 
 return result;
-<<<<<<< HEAD
 } */
 
 function feedDuration(feeddate)
@@ -91,10 +86,6 @@ return result;
 }
 
 
-=======
-}
-
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 </SCRIPT>
 
 
@@ -119,13 +110,8 @@ return result;
                     
            <%@ include file="BoardPublicProfileSideMenu.jsp" %>
                     
-<<<<<<< HEAD
                    <%@ include file="BoardFanMenu.jsp" %> 
                     <%-- <div class="userName col-md-10" id="likesDiv">  
-=======
-                    
-                    <div class="userName col-md-10" id="likesDiv">  
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
          
           <div class="hitBoard">
             
@@ -135,11 +121,7 @@ return result;
                    			<a href="javascript:" class=""> <span>Fan</span> <span>(${BoradInfo.boardfancount})</span></a>
                    		</c:when>
                    		<c:otherwise>
-<<<<<<< HEAD
                    			<a href="javascript:becomeFanCountFunction('${BoradInfo.boardId}')" id="boardFanReq${BoradInfo.boardId}" class=""> <span id="boardFanResp${BoradInfo.boardId}">Became a Fan</span> <span>(${BoradInfo.boardfancount})</span></a>
-=======
-                   			<%-- <a href="javascript:becomeFanCountFunction('${BoradInfo.boardId}')" id="boardFanReq${BoradInfo.boardId}" class=""> <span id="boardFanResp${BoradInfo.boardId}">Became a Fan</span> <span>(${BoradInfo.boardfancount})</span></a> --%>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                    			<a href="javascript:FanAction('${BoradInfo.boardId}','${ViewBoradInfo.boardId}','boardFanToBoard','boardfanboard')" class="" id="boardfanboard${ViewBoradInfo.boardId}"> <span>Become a Fan</span><span>(${BoradInfo.boardfancount})</span> </a>
                    			<a href="javascript:" class="" id="boardFan${ViewBoradInfo.boardId}" style="display: none"> <span>Fan</span> <span>(${BoradInfo.boardfancount+1})</span> </a>	
                    		
@@ -148,7 +130,6 @@ return result;
             
             </div>
           
-<<<<<<< HEAD
              <span class="owner"><strong><a href="${pageContext.request.contextPath}/buddy/${BoradInfo.user.firstName}/${BoradInfo.createdBy}" style="color: white;">${BoradInfo.user.firstName}</a></strong> (Owner)
              
                  <c:choose>
@@ -157,12 +138,6 @@ return result;
                    		<c:forEach var="coowner" items="${BoradInfo.boardCoOwnerList}">
                    		, <a href="${pageContext.request.contextPath}/buddy/${coowner.user.firstName}/${coowner.coOwnerId}" style="color: white;">${coowner.user.firstName}</a> (Co-Owner)
                    		</c:forEach>
-=======
-             <span class="owner"><strong>${BoradInfo.user.firstName}</strong> (Owner)
-             
-                 <c:choose>
-                   		<c:when test="${not empty BoradInfo.boardCoOwnerList[0].user.firstName}">
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                    			,${BoradInfo.boardCoOwnerList[0].user.firstName} (Co-Owner)
                    		</c:when>
                    		<c:otherwise>
@@ -170,11 +145,7 @@ return result;
                    		</c:otherwise>
                    </c:choose></span>
            
-<<<<<<< HEAD
         </div> --%>
-=======
-        </div>
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                     
                     
                     <div class="col-md-7 pageMiddleBlock">
@@ -184,11 +155,7 @@ return result;
                      
                      	<div class="col-md-12 statusUpdateBox whiteBox">
                      	<div id="fileDiv">
-<<<<<<< HEAD
                            	 <input id="upload0" type="file" style="visibility: hidden;" name="file" onchange="readURL(this); this.value=null;return false;" />
-=======
-                           	 <input id="upload0" type="file" style="visibility: hidden;" name="file" onchange="readURL(this)" />
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                             </div>
                             <b>Status update</b>
                             <a href="#" class="pull-right" id="upload_link"><i class="fa fa-picture-o"></i> Add photos</a>
@@ -240,7 +207,6 @@ return result;
 	                                  <div class="media-body">
 	                                    <h4 class="media-heading">${feed.postedByName}</h4>
 		                                    <div class="headRight">
-<<<<<<< HEAD
 		                                    
 		                                    <c:choose>
 		                                    		<c:when test="${feed.postedBy eq USRID}">
@@ -251,19 +217,13 @@ return result;
 		                                    		</c:otherwise>
 		                                    	</c:choose>
 		                                    
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 		                                    	<span id="HitCountDIv${feed.feedId}"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" >${feed.feedHitCount}</span><span id="commentCount${feed.feedId}" onclick="getAllComments('${feed.feedId}')"><i class="fa fa-commenting-o"></i>${feed.feedCommentCount}</span>
 		                                    </div>
 	                                    
 	                                    <span class="postTime"><script type="text/javascript">
                                     	
-<<<<<<< HEAD
                                     	/* document.write(feedDuration("<fmt:formatDate  type='both'  value='${feed.modifiedDate}'/>")); */
                                     	document.write(feedDisplayDate("<fmt:formatDate  type='both'  value='${feed.modifiedDate}'/>"));
-=======
-                                    	document.write(feedDuration("<fmt:formatDate  type='both'  value='${feed.modifiedDate}'/>"));
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                                     	</script></span>
 	                                    <div class="galleryBlock">
 	                                     <c:if test="${not empty feed.fileAttachement }">
@@ -535,11 +495,7 @@ function readURL(input) {
     	        	
     	        	
     	        	$('.uploadedFiles').append(html);
-<<<<<<< HEAD
     	        	 var filehtml="<input id='upload"+fileTextBoxLength+"' type='file' style='display:none;' name='file' onchange='readURL(this); this.value=null;return false;' />";
-=======
-    	        	 var filehtml="<input id='upload"+fileTextBoxLength+"' type='file' style='display:none;' name='file' onchange='readURL(this)' />";
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
     	             $('#fileDiv').append(filehtml);
     				
     				
@@ -558,11 +514,7 @@ function readURL(input) {
 }
 
 function removeFeedImage(elem,fileLength){
-<<<<<<< HEAD
 	/* alert("removing current one"); */
-=======
-	alert("removing current one");
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	$(elem).parent().remove();
 	$('#upload'+fileLength).remove();
 	if(feedImagesArray != null){

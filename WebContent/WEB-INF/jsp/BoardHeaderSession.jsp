@@ -49,11 +49,7 @@
 </div> -->
 
 
-<<<<<<< HEAD
 <script type="text/javascript">
-=======
-<<script type="text/javascript">
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 <!--
 
 //-->

@@ -62,19 +62,11 @@ function boardFansList()
 								   htm2 +='';
 							   }
 						}else{
-<<<<<<< HEAD
 							htm +='No fans';
 						}
 				}else{
 					//alert('records not found');
 					htm +='No fans';
-=======
-							htm +='No more fans available';
-						}
-				}else{
-					//alert('records not found');
-					htm +='No more fans available';
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				}
 			
 					$('#BoardFansListDIV2').html(htm);
@@ -160,19 +152,11 @@ function boardFansList2()
 								   htm2 +='';
 							   }
 						}else{
-<<<<<<< HEAD
 							htm +='No fans';
 						}
 				}else{
 					//alert('records not found');
 					htm +='No fans';
-=======
-							htm +='No more fans available';
-						}
-				}else{
-					//alert('records not found');
-					htm +='No more fans available';
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				}
 			
 					$('#BoardFansListDIV2').html(htm);
@@ -264,19 +248,11 @@ function userFansList()
 						   
 
 						}else{
-<<<<<<< HEAD
 							htm +='No fans';
 						}
 				}else{
 					//alert('No fans');
 					htm +='No fans';
-=======
-							htm +='No more fans available';
-						}
-				}else{
-					//alert('No fans');
-					htm +='No more fans available';
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				}
 			
 					$('#BoardUserFanListDIv2').html(htm);
@@ -375,19 +351,11 @@ function userFansList2()
 						   }
 						
 						}else{
-<<<<<<< HEAD
 							htm +='No fans';
 						}
 				}else{
 					//alert('No fans');
 					htm +='No fans';
-=======
-							htm +='No more fans available';
-						}
-				}else{
-					//alert('No fans');
-					htm +='No more fans available';
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				}
 			
 					$('#BoardUserFanListDIv2').html(htm);
@@ -512,10 +480,7 @@ function getallFanlist()
 							
 								//html2='<a class="btn btn-default dBtn pull-right lodbtn" href="javascript:getallFanlistPagination('+category2+','+page+','+display2+','+pageCall2+')" >Load more</a>';
 								html2='';
-<<<<<<< HEAD
 								displaynotification('No more records',1000);
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 							} 
 							
 						   }else{
@@ -524,19 +489,11 @@ function getallFanlist()
 						
 						
 						}else{
-<<<<<<< HEAD
 							htm +='No fans';
 						}
 				}else{
 					//alert('records not found');
 					htm +='No fans';
-=======
-							htm +='No more fans available';
-						}
-				}else{
-					//alert('records not found');
-					htm +='No more fans available';
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				}
 			
 					$('#AllBoardAllFansList2').html(htm);
@@ -639,19 +596,11 @@ function getallFanlist2()
 							   htm2 +='';
 						   }
 						}else{
-<<<<<<< HEAD
 							htm +='No fans';
 						}
 				}else{
 					//alert('records not found');
 					htm +='No fans';
-=======
-							htm +='No more fans available';
-						}
-				}else{
-					//alert('records not found');
-					htm +='No more fans available';
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 				}
 			
 					$('#AllBoardAllFansList2').html(htm);
@@ -773,10 +722,7 @@ function getallFanlistPagination(fanType,startNode,display,pageCall)
 								
 									//html2='<a class="btn btn-default dBtn pull-right lodbtn" href="javascript:getallFanlistPagination('+category2+','+page+','+display2+','+pageCall2+')" >Load more</a>';
 									html2='';
-<<<<<<< HEAD
 									displaynotification('No more records',1000);
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 								}
 						   }else{
 							   htm2 +='';
@@ -808,19 +754,12 @@ function getallFanlistPagination(fanType,startNode,display,pageCall)
 function getallFanlistbypage(category,startNode,display,pageCall)
 {
 	var uId=$('#BuddyID').val();
-<<<<<<< HEAD
 	var endnode=10+startNode;
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	var board={
 			fanType : category,
 			userId : uId,
 			startNode : startNode,
-<<<<<<< HEAD
 			endNode : "10"
-=======
-			endNode : '10'
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	};
 	var category2="'"+category+"'";
 	var startNode2 = "'"+startNode+",";
@@ -920,10 +859,7 @@ function getallFanlistbypage(category,startNode,display,pageCall)
 								htm2 ='<a class="btn btn-default dBtn pull-right lodbtn" href="javascript:getallFanlistbypage('+category2+','+page+','+display2+','+pageCall2+')">Load more</a>';
 							}else{
 								htm2='';
-<<<<<<< HEAD
 								displaynotification('No more records',1000);
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 							}
 							
 							

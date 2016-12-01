@@ -187,7 +187,6 @@ var pageNum=50;
                                             <td class="tdAlignLeft">
                                                 <a href="${pageContext.request.contextPath}/${player.awayTeamName}/board/ ${player.awayTeamId}"><img src="${player.awayTeamImgUrl}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" style="width: 30px;"> ${player.awayTeamName}</a>
                                             </td>
-<<<<<<< HEAD
                                             <c:choose>
                                             <c:when test="${matches.groundName ne null}">
                                             <td class="tdAlignLeft">${matches.groundName}</td>
@@ -200,13 +199,6 @@ var pageNum=50;
                                                 <fmt:formatDate pattern="MM/dd/YYYY" value="${matches.gameDate}" />
                                             </td>
                                             <td align="center"><a href="${pageContext.request.contextPath}/showScoreCard/boardId/${BoradInfo.boardId}/matchId/${matches.sheduledId}"><i
-=======
-                                            <td class="tdAlignLeft">${matches.groundName}</td>
-                                            <td>
-                                                <fmt:formatDate pattern="MM/dd/YYYY" value="${matches.gameDate}" />
-                                            </td>
-                                            <td align="center"><a href="${pageContext.request.contextPath}/showScoreCardPublicProfile/boardId/${BoradInfo.boardId}/matchId/${matches.sheduledId}"><i
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 																	class="fa fa-newspaper-o"></i></a></td>
                                     </tr>
 
@@ -298,16 +290,12 @@ var pageNum=50;
 										              
 										html += '<td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/' + plist[k].homeTeamName + '/board/' + plist[k].homeTeamId + '"><img src="'+plist[k].homeTeamImgUrl+ '"style="margin-right: 10px; width:30px;">' + plist[k].homeTeamName + '</a></td>';
 									    html += '<td class="tdAlignLeft"><a href="${pageContext.request.contextPath}/' + plist[k].awayTeamName + '/board/' + plist[k].awayTeamId + '"><img src="'+plist[k].awayTeamImgUrl+ '"style="margin-right: 10px; width:30px;">' + plist[k].awayTeamName + '</a></td>';
-<<<<<<< HEAD
 									    if(mat[j].groundName != null){
 									    html += '<td class="tdAlignLeft">' +mat[j].groundName+ '</td>';
 									    }else
 								    	{
 								    	html += '<td class="tdAlignLeft">-</td>';
 								    	}
-=======
-									    html += '<td class="tdAlignLeft">' +mat[j].groundName+ '</td>';
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 										html += '<td class="tdAlignLeft">'+dateNewObject+'</td>';
 										 
 								        html += '<td align="center"><a href="${pageContext.request.contextPath}/showScoreCard/boardId/' +boardId+ '/matchId/'+mat[j].sheduledId+'"><i class="fa fa-newspaper-o"></i></a></td>';

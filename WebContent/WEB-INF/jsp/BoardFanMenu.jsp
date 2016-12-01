@@ -26,7 +26,6 @@
             
             </div>
           
-<<<<<<< HEAD
              <span class="owner"><strong><a href="${pageContext.request.contextPath}/buddy/${BoradInfo.user.firstName}/${BoradInfo.createdBy}" style="color: white;">${BoradInfo.user.firstName}</a></strong> (Owner)
              
                  <c:choose>
@@ -36,12 +35,6 @@
                    		, <a href="${pageContext.request.contextPath}/buddy/${coowner.user.firstName}/${coowner.coOwnerId}" style="color: white;">${coowner.user.firstName}</a> (Co-Owner)
                    		</c:forEach>
                    		<%-- , ${BoradInfo.boardCoOwnerList[0].user.firstName} (Co-Owner) --%>
-=======
-             <span class="owner"><strong>${BoradInfo.user.firstName}</strong> (Owner)
-             
-                 <c:choose>
-                   		<c:when test="${not empty BoradInfo.boardCoOwnerList[0].user.firstName}">, ${BoradInfo.boardCoOwnerList[0].user.firstName} (Co-Owner)
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
                    		</c:when>
                    		<c:otherwise>
                    				

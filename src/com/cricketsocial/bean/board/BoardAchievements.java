@@ -19,10 +19,7 @@ public class BoardAchievements {
 	public List<TournamentScheduler> matchesWonList;
 	public List<TournamentScheduler> matchesLostList;
 	public List<TournamentScheduler> matchesTieList;
-<<<<<<< HEAD
 
-=======
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	public List<CompletedMatches> getCompletedMatchesList() {
 		return completedMatchesList;
 	}

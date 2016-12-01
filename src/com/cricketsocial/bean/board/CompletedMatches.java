@@ -57,7 +57,6 @@ public class CompletedMatches {
 	
 	private String dateString;
 	private String leagueCreatedBy;
-<<<<<<< HEAD
 	private String resultMessage;
 	private String reasonDispMng;
 	private String rsnDispMngmnt;
@@ -85,9 +84,6 @@ public class CompletedMatches {
 	public void setResultMessage(String resultMessage) {
 		this.resultMessage = resultMessage;
 	}
-=======
-
->>>>>>> 9c4a9b6dae78b87b70036fc211fbe261dc7e18f2
 	public String getManOfTheMatchName() {
 		return manOfTheMatchName;
 	}
