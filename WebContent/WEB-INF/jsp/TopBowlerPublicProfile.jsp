@@ -331,12 +331,18 @@ var pageNum=50;
   		  										html += '<tr>';
   		  	   									html +='<td></td>';
   		  	   									
+<<<<<<< HEAD
   		  	   								if(plist[k].userImageUrl != null && plist[k].userImageUrl != ""){
   		  	   									html += '<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/buddy/'+ plist[k].userName+ '/' +plist[k].userId+ '"><img alt="" src="'+plist[k].userImageUrl+'"><b>' +plist[k].userName+ '</b><div class="clearfix"></div></a></td>';
   		  	   								}else
   		  	   									{
   		  	   								html += '<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/buddy/'+ plist[k].userName+ '/' +plist[k].userId+ '"><img alt="" src=${pageContext.request.contextPath}/images/profileIcon.png;><b>' +plist[k].userName+ '</b><div class="clearfix"></div></a></td>';
   		  	   									}
+=======
+  		  	   									
+  		  	   									html += '<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/buddy/'+ plist[k].userName+ '/' +plist[k].userId+ '"><img alt="" src="'+plist[k].userImageUrl+'"><b>' +plist[k].userName+ '</b><div class="clearfix"></div></a></td>';
+  		  	   									
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
   		  	   									
   		  	   									
   		  	   									html += '<td class="tdAlignLeft TB_table"><a href="${pageContext.request.contextPath}/' + plist[k].teamBoardInfo.boardName + '/board/' + plist[k].teamBoardInfo.boardId + '"><img src="'+plist[k].teamBoardInfo.boardImageURL+ '"><b>' + plist[k].teamBoardInfo.boardName + '</b><div class="clearfix"></div></a></td>';

@@ -289,7 +289,11 @@ var formatAMPMTime = function(date) {
 												<c:choose>
 												<c:when test="${tourDetails.status == 'InProgress'}">
 												
+<<<<<<< HEAD
 												 <td align="center" ><a href="${pageContext.request.contextPath}/showScoreCardForInProgress/boardId/${boardId}/matchId/${tourDetails.tournamentSchedulerId}">In progress</a></td>
+=======
+												 <td align="center" ><a href="${pageContext.request.contextPath}/showScoreCardForInProgress/boardId/${boardId}/matchId/${tourDetails.tournamentSchedulerId}">Inprogress</a></td>
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
 												
 												</c:when>
 												<c:otherwise>
@@ -594,7 +598,11 @@ function loadPrev(text){
 					if(res[i].status == 'Completed'){
 						html += "<td align='center' ><a href='javascript:void(0)' onclick='showScoreCard(\""+res[i].tournamentSchedulerId+"\")'><i class='fa fa-newspaper-o editIcon'></i></a></td>";
 					}else if(res[i].status == 'InProgress'){
+<<<<<<< HEAD
 						html += '<td><a href="${pageContext.request.contextPath}/showScoreCardForInProgress/boardId/'+boardId+'/matchId/'+res[i].tournamentSchedulerId+'">In progress</a></td>';
+=======
+						html += '<td><a href="${pageContext.request.contextPath}/showScoreCardForInProgress/boardId/'+boardId+'/matchId/'+res[i].tournamentSchedulerId+'">Inprogress</a></td>';
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
 					}else{
 						html += "<td class='alignCenter'><a href='#' onclick='editSchedule(\""+res[i].tournamentSchedulerId+"\",\""+res[i].tournamentId+"\")' title='Edit'><i class='fa fa-pencil editIcon'></i></a> <a href='#' onclick='deleteSchedule(\""+res[i].tournamentSchedulerId+"\")' title='Delete'><i class='fa fa-trash-o deleteIcon'></i></a> </td>";
 					}

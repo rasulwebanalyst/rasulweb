@@ -139,6 +139,7 @@ a.vw-score {
 .black-bg {
 }
 /* new changes */
+<<<<<<< HEAD
 ul.login-txt li {
 	color: #FFF;
 	font-size: 16px;
@@ -155,6 +156,8 @@ ul.login-txt li {
 	color: #4c9fe1;
 	transition: all .3s ease;
 }
+=======
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
 .TB_table img {
 	width: 35px;
     float: left;
@@ -559,10 +562,17 @@ body.cs-dboard ul.result-list li span {
 }
 body.cs-dboard .sidebar-container {
 	min-height: 0;
+<<<<<<< HEAD
 
 	overflow: auto;
 }
 
+=======
+
+	overflow: auto;
+}
+
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
 /* NEW PAGE CHANGES */
 .EntryMenu a i, .ViewMenu a i {
 	display: none;

@@ -3,7 +3,11 @@
 //110086556012641
 
 //var fbURL='1037086509684954'; // local
+<<<<<<< HEAD
  //  var fbURL='480457342143824'; // Production
+=======
+  // var fbURL='480457342143824'; // Production
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
  var fbURL='110086556012641'; // QA
   window.fbAsyncInit = function() {
     FB.init({
@@ -206,7 +210,7 @@ function oAuthsubmit()
 			    'scope' : 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.google.com/m8/feeds/ https://www.googleapis.com/auth/contacts.readonly',
 			  };
 			  gapi.auth.signIn(myParams);
-} */// Dev Environment
+}*/ // Dev Environment
 
 function googleLogin()
 {
@@ -230,7 +234,11 @@ function googleLogin()
 			    'scope' : 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.google.com/m8/feeds/ https://www.googleapis.com/auth/contacts.readonly',
 			  };
 			  gapi.auth.signIn(myParams);
+<<<<<<< HEAD
 } */ // Production Environment
+=======
+}*/  // Production Environment
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
 	 
 function loginCallback(result)
 {

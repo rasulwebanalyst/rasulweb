@@ -138,7 +138,11 @@ return result;
                    		<c:forEach var="coowner" items="${BoradInfo.boardCoOwnerList}">
                    		, <a href="${pageContext.request.contextPath}/buddy/${coowner.user.firstName}/${coowner.coOwnerId}" style="color: white;">${coowner.user.firstName}</a> (Co-Owner)
                    		</c:forEach>
+<<<<<<< HEAD
                    			,${BoradInfo.boardCoOwnerList[0].user.firstName} (Co-Owner)
+=======
+                   			<%-- ,${BoradInfo.boardCoOwnerList[0].user.firstName} (Co-Owner) --%>
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
                    		</c:when>
                    		<c:otherwise>
                    				

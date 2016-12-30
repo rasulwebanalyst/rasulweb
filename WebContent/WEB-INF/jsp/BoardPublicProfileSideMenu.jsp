@@ -31,6 +31,7 @@
                         
                      		<ul class="leftMenu">
                      		<li><a href="${pageContext.request.contextPath}/BoardInfoPublic/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/board-icon.png"></i>Board Info</a></li>
+<<<<<<< HEAD
                      		<c:choose>
                      		<c:when test="${Fromuser eq 'Fromuser'}">
                      		
@@ -41,6 +42,9 @@
                      		</c:otherwise>
                      		</c:choose>
                      		<%-- <li><a href="${pageContext.request.contextPath}/${BoradInfo.boardName}/boardPitch/${BoradInfo.boardId}/byBoard/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/pitch-icon.png"></i>Pitch</a></li> --%>
+=======
+                     		<li><a href="${pageContext.request.contextPath}/${BoradInfo.boardName}/boardPitch/${BoradInfo.boardId}/byBoard/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/pitch-icon.png"></i>Pitch</a></li>
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
                             	<li><a href="${pageContext.request.contextPath}/BoardscorePublicProfile/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyScore.png"></i>Score</a></li>
                             	<li><a href="${pageContext.request.contextPath}/board/events/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyEvents.png"></i>Events</a></li>
                             	<li><a href="${pageContext.request.contextPath}/Board-Fan/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyFans.png"></i>Fans</a></li>

@@ -187,7 +187,11 @@ var formatAMPMTime = function(date) {
                        </c:when>
                        <c:otherwise>
                        <!-- <div class="form-group"> -->
+<<<<<<< HEAD
 						<table id="disputemanagement" style="width: 100% !important; font-size: 13px;">
+=======
+						<table>
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
                        <thead> 
                         <tr>
                         <th>S.No</th>

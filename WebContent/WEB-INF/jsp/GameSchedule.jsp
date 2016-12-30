@@ -423,7 +423,11 @@ date.add(java.util.Calendar.DATE, +6);
                 	<div id="incompletegamesdiv">
                 	<div class="col-md-10 pull-right">
       		<div class="col-md-12 whiteBox">
+<<<<<<< HEAD
                   <h2 class="noBorder noLeftPad">Incomplete Matches</h2>
+=======
+                  <h2 class="noBorder noLeftPad">InComplete Matches</h2>
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
                   <div class="form-group">
                   <c:choose>
                        <c:when test="${inCompletedMatchesListSize == 0 }">
@@ -530,7 +534,11 @@ date.add(java.util.Calendar.DATE, +6);
                     <div id="inprogressmatchesdiv">
                     <div class="col-md-10 pull-right">
       		<div class="col-md-12 whiteBox">
+<<<<<<< HEAD
                   <h2 class="noBorder noLeftPad">In progress Matches</h2>
+=======
+                  <h2 class="noBorder noLeftPad">Inprogress Matches</h2>
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
                   <div class="form-group">
                    <c:choose>
                        <c:when test="${inprogressMatchesListSize == 0 }">

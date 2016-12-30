@@ -88,6 +88,7 @@ var formatAMPMTime = function(date) {
 	
 	 
 </script>
+<<<<<<< HEAD
 <style type="text/css">
 
 .txt-flow:hover{
@@ -96,6 +97,9 @@ var formatAMPMTime = function(date) {
 }
 
 </style>
+=======
+
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
 </head>
 
 <body class="cs-dboard">
@@ -148,10 +152,14 @@ var formatAMPMTime = function(date) {
                         	 <div class="star-rating">*</div></c:if>
                         	 <span style="margin-left: -6px;">(${Batsman.battingBalls})</span></span></div> 
                         	<p class="cs-list-team">
+<<<<<<< HEAD
                         	<%--  <a href="${pageContext.request.contextPath}/${Batsman.teamBoardInfo.boardName}/board/${Batsman.teamBoardInfo.boardId}">${Batsman.teamBoardInfo.boardName}</a> --%>
                         	
                         	<a style="float: left;text-overflow: ellipsis; overflow: hidden;  width: 104px;  white-space: nowrap;" href="${pageContext.request.contextPath}/${Batsman.teamBoardInfo.boardName}/board/${Batsman.teamBoardInfo.boardId}">${Batsman.teamBoardInfo.boardName}</a> 
                         	 <a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${Batsman.tournamentSchedulerId}','${BoradInfo.boardId}')">View Score</a> 
+=======
+                        	 <a href="${pageContext.request.contextPath}/${Batsman.teamBoardInfo.boardName}/board/${Batsman.teamBoardInfo.boardId}">${Batsman.teamBoardInfo.boardName}</a> 
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
                         	 </p> 
                         	 
                         	</div></li>
@@ -212,9 +220,13 @@ var formatAMPMTime = function(date) {
                         	<a href="${pageContext.request.contextPath}/buddy/${Bowler.userName}/${Bowler.userId}">${Bowler.userName}</a></span><span style="float: right;"> ${Bowler.wickets}/${Bowler.runs} (${Bowler.overs})</span>
                         	</div>
                         	<p class="cs-list-team">
+<<<<<<< HEAD
                         	<%-- <a href="${pageContext.request.contextPath}/${Bowler.teamBoardInfo.boardName}/board/${Bowler.teamBoardInfo.boardId}"> ${Bowler.teamBoardInfo.boardName}</a> --%>
                         	<a style="float: left;text-overflow: ellipsis; overflow: hidden;  width: 104px;  white-space: nowrap;" href="${pageContext.request.contextPath}/${Bowler.teamBoardInfo.boardName}/board/${Bowler.teamBoardInfo.boardId}"> ${Bowler.teamBoardInfo.boardName}</a> 
                         	 <a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${Bowler.tournamentSchedulerId}','${BoradInfo.boardId}')">View Score</a> 
+=======
+                        	<a href="${pageContext.request.contextPath}/${Bowler.teamBoardInfo.boardName}/board/${Bowler.teamBoardInfo.boardId}"> ${Bowler.teamBoardInfo.boardName}</a> 
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
                         	 </p> 
                         	</div>
                         	</li>
@@ -277,7 +289,11 @@ var formatAMPMTime = function(date) {
                         	<c:forEach items="${completedMatchesList}" var ="completed">
                         	<c:choose>
                         	<c:when test="${completed.matchWonBy eq completed.homeTeamId}">
+<<<<<<< HEAD
                         	<li><span class="txt-flow"> <%--  <a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName} </a> ${completed.statusOfMatch} --%>
+=======
+                        	<li><span> <%--  <a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName} </a> ${completed.statusOfMatch} --%>
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
                         	<c:choose>
                         	<c:when test="${!empty completed.resultMessage}">
                         	 <span >${completed.resultMessage}</span></c:when><c:otherwise> 
@@ -299,10 +315,17 @@ var formatAMPMTime = function(date) {
                            
                         	 
                         	 </c:otherwise> 
+<<<<<<< HEAD
                         	 </c:choose> (<a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName}</a>:${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}, <a href="${pageContext.request.contextPath}/${completed.loseTeamName}/board/${completed.awayTeamId}">${completed.loseTeamName}</a>:${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers})  </span><a class="vw-score" href="javascript:void(0);" onclick="showScoreCard('${completed.tournamentSchedulerId}','${completed.leagueCreatedBy}')">View Score</a></li>
                         	</c:when>
                         	<c:otherwise>
                         	<li><span class="txt-flow"> <%--  <a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName} </a> ${completed.statusOfMatch} --%>
+=======
+                        	 </c:choose> (<a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName}</a>:${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}, <a href="${pageContext.request.contextPath}/${completed.loseTeamName}/board/${completed.awayTeamId}">${completed.loseTeamName}</a>:${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers})  </span></li>
+                        	</c:when>
+                        	<c:otherwise>
+                        	<li><span> <%--  <a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName} </a> ${completed.statusOfMatch} --%>
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
                         	<c:choose>
                         	<c:when test="${!empty completed.resultMessage}">
                         	 <span >${completed.resultMessage}</span> </c:when><c:otherwise> 
@@ -323,7 +346,11 @@ var formatAMPMTime = function(date) {
                            </c:choose>
                         	 </c:otherwise>
                         	 </c:choose>
+<<<<<<< HEAD
                         	 (<a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName}</a>:${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}, <a href="${pageContext.request.contextPath}/${completed.loseTeamName}/board/${completed.homeTeamId}">${completed.loseTeamName}</a>:${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers})   </span><a class="vw-score" href="javascript:void(0);" onclick="showScoreCard('${completed.tournamentSchedulerId}','${completed.leagueCreatedBy}')">View Score</a></li>
+=======
+                        	 (<a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName}</a>:${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}, <a href="${pageContext.request.contextPath}/${completed.loseTeamName}/board/${completed.homeTeamId}">${completed.loseTeamName}</a>:${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers})   </span></li>
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
                         	</c:otherwise>
                         	</c:choose>
                         	
@@ -346,7 +373,11 @@ var formatAMPMTime = function(date) {
                         	
                         	
                         	<div class="col-md-12 col-xs-12 whiteBox cs-gm-list">
+<<<<<<< HEAD
                         	<h4>Upcoming/In progress Matches</h4>
+=======
+                        	<h4>Upcoming Matches</h4>
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
                         	<div class="result-list-scroller">
                         	<ul class="result-list">
                         	
@@ -358,6 +389,7 @@ var formatAMPMTime = function(date) {
                         	<c:otherwise>
                         	<c:forEach items="${upcomingMatchesList}" var ="upcomming">
                         	
+<<<<<<< HEAD
                         	<li><span class="txt-flow">${upcomming.tournamentName} : <a href="${pageContext.request.contextPath}/${upcomming.homeTeamName}/board/${upcomming.homeTeamId}">${upcomming.homeTeamName}</a> vs <a href="${pageContext.request.contextPath}/${upcomming.awayTeamName}/board/${upcomming.awayTeamId}">${upcomming.awayTeamName}</a> - <p id="formatDate_${upcomming.tournamentSchedulerId}" style="display:none"><fmt:formatDate pattern="M/d/YYYY hh:mm a" value="${upcomming.gameDate}" /></p><script>document.writeln(test("${upcomming.tournamentSchedulerId}","${upcomming.gameDate}"));</script>  </span>
                         	
                         	
@@ -374,6 +406,9 @@ var formatAMPMTime = function(date) {
                         	
                         	
                         	</li>
+=======
+                        	<li><span>${upcomming.tournamentName} : <a href="${pageContext.request.contextPath}/${upcomming.homeTeamName}/board/${upcomming.homeTeamId}">${upcomming.homeTeamName}</a> vs <a href="${pageContext.request.contextPath}/${upcomming.awayTeamName}/board/${upcomming.homeTeamId}">${upcomming.awayTeamName}</a> - <p id="formatDate_${upcomming.tournamentSchedulerId}" style="display:none"><fmt:formatDate pattern="M/d/YYYY hh:mm a" value="${upcomming.gameDate}" /></p><script>document.writeln(test("${upcomming.tournamentSchedulerId}","${upcomming.gameDate}"));</script>  </span></li>
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
                         	</c:forEach>
                         	
                         	</c:otherwise>
@@ -430,6 +465,7 @@ var formatAMPMTime = function(date) {
                              		</div> -->
                              		<div class="ViewMenu">
                              		<h4>View Menu</h4>
+<<<<<<< HEAD
                              		 <a href="javascript:"><i class="fa fa-angle-right"></i> Points Table</a>
                                             <a href="javascript:"><i class="fa fa-angle-right"></i> Schedule List</a>
                                             <a href="javascript:"><i class="fa fa-angle-right"></i> Schedule & Scores</a>
@@ -441,6 +477,17 @@ var formatAMPMTime = function(date) {
                              			
                              			<a href="javascript:"><i class="fa fa-angle-right"></i> Team Details</a>                                         
                                            
+=======
+                             		<a href="javascript:"><i class="fa fa-angle-right"></i> Umpire List</a>                                         
+                                            <a href="javascript:"><i class="fa fa-angle-right"></i> Ground List</a>
+                                            <a href="javascript:"><i class="fa fa-angle-right"></i> Schedule List</a>
+                             	            
+                             			<div class="moreview" id="more1">...More</div>
+                             			<span class="showmore" id="showmore1"> 
+                             			<a href="javascript:"><i class="fa fa-angle-right"></i> Schedule & Scores</a>
+                             			<a href="javascript:"><i class="fa fa-angle-right"></i> Team Details</a>                                         
+                                            <a href="javascript:"><i class="fa fa-angle-right"></i> Points Table</a>
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
                                             <a href="javascript:"><i class="fa fa-angle-right"></i> Centuries</a>                            			
                              			    <a href="javascript:"><i class="fa fa-angle-right"></i> Half Centuries</a>
 											<a href="javascript:"><i class="fa fa-angle-right"></i> 5fer</a>
@@ -520,10 +567,16 @@ var formatAMPMTime = function(date) {
                              		<div class="ViewMenu">
                              		<h4>View Menu</h4>
                              		
+<<<<<<< HEAD
                              		<a href="${pageContext.request.contextPath}/LeaguePointsProfile/${BoradInfo.boardId}"> Points Table</a>
                              		
                              		<c:if test="${!empty Viewmenu}">
 										 <c:forEach var="ground1" items="${Viewmenu}" begin="2" end="3">
+=======
+                             		
+                             		<c:if test="${!empty Viewmenu}">
+										 <c:forEach var="ground1" items="${Viewmenu}" begin="0" end="2">
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
 											${ground1}  
 											</c:forEach> 
 											</c:if>
@@ -532,6 +585,7 @@ var formatAMPMTime = function(date) {
 
                              			<div class="moreview" id="more1">...More</div>
                              			<span class="showmore" id="showmore1">
+<<<<<<< HEAD
                              			<c:if test="${!empty Viewmenu}">
 										 <c:forEach var="ground1" items="${Viewmenu}" begin="0" end="1">
 											${ground1}  
@@ -541,6 +595,12 @@ var formatAMPMTime = function(date) {
                              			<c:if test="${!empty Viewmenu}">
                                     	      <c:if test="${fn:length(Viewmenu) gt 4}">
 										 <c:forEach var="ground1" items="${Viewmenu}" begin="4" >
+=======
+                             			
+                             			<c:if test="${!empty Viewmenu}">
+                                    	      <c:if test="${fn:length(Viewmenu) gt 3}">
+										 <c:forEach var="ground1" items="${Viewmenu}" begin="3" >
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
 											
 											${ground1}  
 											
@@ -549,6 +609,10 @@ var formatAMPMTime = function(date) {
 											</c:if>
                              			
                              			<a href="${pageContext.request.contextPath}/teamdetailsPublicProfile/${BoradInfo.boardId}"> Team Details</a>                                         
+<<<<<<< HEAD
+=======
+                                            <a href="${pageContext.request.contextPath}/LeaguePointsProfile/${BoradInfo.boardId}"> Points Table</a>
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
                                             <a href="${pageContext.request.contextPath}/leaguecenturiesprofile/${BoradInfo.boardId}"> Centuries</a>                             			
                              			 <a href="${pageContext.request.contextPath}/leaguehalfcenturiesprofile/${BoradInfo.boardId}"> Half Centuries</a>
 											<a href="${pageContext.request.contextPath}/fivewicketsPublicProfile/${BoradInfo.boardId}"> 5fer</a></li>
@@ -585,6 +649,7 @@ var formatAMPMTime = function(date) {
                              		</div> -->
                              		<div class="ViewMenu">
                              		<h4>View Menu</h4>
+<<<<<<< HEAD
                              	            <a href="javascript:"><i class="fa fa-angle-right"></i> Points Table</a>
                                             <a href="javascript:"><i class="fa fa-angle-right"></i> Schedule List</a>
                                             <a href="javascript:"><i class="fa fa-angle-right"></i> Schedule & Scores</a>
@@ -595,6 +660,16 @@ var formatAMPMTime = function(date) {
                              			
                              			    <a href="javascript:"><i class="fa fa-angle-right"></i> Team Details</a>                                         
                                            
+=======
+                             	            <a href="javascript:"><i class="fa fa-angle-right"></i> Umpire List</a>                                         
+                                            <a href="javascript:"><i class="fa fa-angle-right"></i> Ground List</a>
+                                            <a href="javascript:"><i class="fa fa-angle-right"></i> Schedule List</a>
+                             			<div class="moreview" id="more1">...More</div>
+                             			<span class="showmore" id="showmore1">    
+                             			<a href="javascript:"><i class="fa fa-angle-right"></i> Schedule & Scores</a>
+                             			    <a href="javascript:"><i class="fa fa-angle-right"></i> Team Details</a>                                         
+                                            <a href="javascript:"><i class="fa fa-angle-right"></i> Points Table</a>
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
                                             <a href="javascript:"><i class="fa fa-angle-right"></i> Centuries</a>                         			
                              			    <a href="javascript:"><i class="fa fa-angle-right"></i> Half Centuries</a>
 											<a href="javascript:"><i class="fa fa-angle-right"></i> 5fer</a>
@@ -677,23 +752,35 @@ var formatAMPMTime = function(date) {
                              		<h4>View Menu</h4>
                              		
                              		
+<<<<<<< HEAD
                              		<a href="${pageContext.request.contextPath}/LeaguePointsProfile/${BoradInfo.boardId}"> Points Table</a>
+=======
+                             		
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
                              		
                                     	      
                                     	      
                                     	      <c:if test="${!empty Viewmenu}">
+<<<<<<< HEAD
                                     	      <c:if test="${fn:length(Viewmenu) gt 2}">
 										 <c:forEach var="ground1" items="${Viewmenu}" begin="2" end="3">
 											${ground1}  
 											</c:forEach> 
 											</c:if>
 											</c:if>
+=======
+										 <c:forEach var="ground1" items="${Viewmenu}" begin="0" end="2">
+											${ground1}  
+											</c:forEach> 
+											</c:if>
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
                              	       
 
                              			<div class="moreview" id="more1">...More</div>
                              			<span class="showmore" id="showmore1">
                              			
                              			<c:if test="${!empty Viewmenu}">
+<<<<<<< HEAD
 										 <c:forEach var="ground1" items="${Viewmenu}" begin="0" end="1">
 											${ground1}  
 											</c:forEach> 
@@ -702,6 +789,10 @@ var formatAMPMTime = function(date) {
                              			<c:if test="${!empty Viewmenu}">
                                     	      <c:if test="${fn:length(Viewmenu) gt 4}">
 										 <c:forEach var="ground1" items="${Viewmenu}" begin="4">
+=======
+                                    	      <c:if test="${fn:length(Viewmenu) gt 3}">
+										 <c:forEach var="ground1" items="${Viewmenu}" begin="3">
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
 											
 											${ground1}  
 											
@@ -711,7 +802,11 @@ var formatAMPMTime = function(date) {
                              			
                              			 
                              			<a href="${pageContext.request.contextPath}/teamdetailsPublicProfile/${BoradInfo.boardId}"> Team Details</a>                                         
+<<<<<<< HEAD
                                             
+=======
+                                            <a href="${pageContext.request.contextPath}/LeaguePointsProfile/${BoradInfo.boardId}"> Points Table</a>
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
                                             <a href="${pageContext.request.contextPath}/leaguecenturiesprofile/${BoradInfo.boardId}"> Centuries</a>                            			
                              			 <a href="${pageContext.request.contextPath}/leaguehalfcenturiesprofile/${BoradInfo.boardId}"> Half Centuries</a>
 											<a href="${pageContext.request.contextPath}/fivewicketsPublicProfile/${BoradInfo.boardId}"> 5fer</a></li>
@@ -1042,9 +1137,13 @@ function showScoreCardInProgress(id,bid){
 		}
 
 
+<<<<<<< HEAD
 function showScoreCard(id,boardId){
 	 window.location.href = "${pageContext.request.contextPath}/showScoreCardPublicProfile/boardId/"+boardId+"/matchId/"+id;
 }
+=======
+
+>>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de
 
 
 
