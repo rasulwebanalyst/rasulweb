@@ -54,7 +54,6 @@ public class CompletedMatchesSchedule {
 	private String loseTeamId;
 	private String dateString;
 	private String leagueCreatedBy;
-<<<<<<< HEAD:src/main/java/com/cricketsocial/bean/board/CompletedMatchesSchedule.java
 	
 	
 private List<ScorerNameList> portalScorerList;
@@ -64,40 +63,6 @@ private List<ScorerNameList> portalScorerList;
 	
 	public List<ScorerNameList> getPortalScorerList() {
 		return portalScorerList;
-=======
-	private String resultMessage;
-	
-	
-
-	public String getResultMessage() {
-		return resultMessage;
-	}
-	public void setResultMessage(String resultMessage) {
-		this.resultMessage = resultMessage;
-	}
-	public String getManOfTheMatchName() {
-		return manOfTheMatchName;
-	}
-	public void setManOfTheMatchName(String manOfTheMatchName) {
-		this.manOfTheMatchName = manOfTheMatchName;
-	}
-	private String manOfTheMatchName;
-
-	public int getWinTeamPoints() {
-		return winTeamPoints;
-	}
-	public void setWinTeamPoints(int winTeamPoints) {
-		this.winTeamPoints = winTeamPoints;
-	}
-	public int getLoseTeamPoints() {
-		return loseTeamPoints;
-	}
-	public void setLoseTeamPoints(int loseTeamPoints) {
-		this.loseTeamPoints = loseTeamPoints;
-	}
-	public UUID getTournamentSchedulerId() {
-		return tournamentSchedulerId;
->>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de:src/com/cricketsocial/bean/board/CompletedMatches.java
 	}
 	public void setPortalScorerList(List<ScorerNameList> portalScorerList) {
 		this.portalScorerList = portalScorerList;

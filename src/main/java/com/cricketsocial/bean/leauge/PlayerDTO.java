@@ -39,12 +39,9 @@ public class PlayerDTO {
 	private String strikeRate;
 	private String notOutFlag;
 	private int battingBalls;
-<<<<<<< HEAD:src/main/java/com/cricketsocial/bean/leauge/PlayerDTO.java
 	private UUID sheduledId;
 	private String groundName;
 	private Date gameDate;
-=======
->>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de:src/com/cricketsocial/bean/leauge/PlayerDTO.java
 	
 	private UUID tournamentSchedulerId;
 	private UUID createdBy;
@@ -52,7 +49,6 @@ public class PlayerDTO {
 	
 	
 	
-<<<<<<< HEAD:src/main/java/com/cricketsocial/bean/leauge/PlayerDTO.java
 	
 	
 	public UUID getTournamentSchedulerId() {
@@ -85,8 +81,6 @@ public class PlayerDTO {
 	public void setGameDate(Date gameDate) {
 		this.gameDate = gameDate;
 	}
-=======
->>>>>>> 54bab19c58bde60aeb971a37e418c05bb2f4f3de:src/com/cricketsocial/bean/leauge/PlayerDTO.java
 	public int getBattingBalls() {
 		return battingBalls;
 	}
