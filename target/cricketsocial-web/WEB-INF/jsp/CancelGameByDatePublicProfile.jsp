@@ -139,7 +139,7 @@ var formatAMPMTime = function(date) {
                  </div>
                   
             <div class="col-md-10 pull-right">
-      		<div class="col-md-12 whiteBox">
+      		<div class="col-md-12 whiteBox" style="font-size: 12px;">
                   <h2 class="noBorder noLeftPad">Upcoming Matches</h2>
                   <c:choose>
                        <c:when test="${upcomingMatchesListSize == 0 }">

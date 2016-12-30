@@ -1014,7 +1014,7 @@
                    {title: "First Name", dataKey: "firstName"},
                    {title: "Last Name", dataKey: "lastName"},
                    {title: "Profile Created On", dataKey: "accountCreateddate"},
-                   {title: "Added to Roster On", dataKey: "addedrosterdate"}
+                   {title: "Profile Added to Roster On", dataKey: "addedrosterdate"}
                ];
  			   
  			   

@@ -32,11 +32,11 @@
                   
             <div class="col-md-10 pull-right">
       			<div class="col-md-12 whiteBox">
-                	<h1 class="">Team Details</h1>
+                	<h1 class="">Teams</h1>
                        </div>
                        <div class="form-group">
                        <c:forEach items="${TeamdetailsResponse}" var="team">
-                       <div class="col-md-12 whiteBox">
+                       <div class="col-md-12 whiteBox" style="font-size: 12px;">
                        <span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament Name : ${team.tournamentName}</span>
                       <table class="table table-striped table-bordered" cellspacing="0" width="100%" id="example">
                       <!-- <thead> 
@@ -49,7 +49,7 @@
                        </thead> -->
                        <thead> 
                         <tr>
-                        <th>S.No</th>
+                        <th style="text-align: center;">S.No</th>
                           <th>Team Name </th>
                           <th>Team Abbreviation </th>
                           <th>Home Ground </th>
@@ -59,10 +59,19 @@
                         <tbody>
                         <c:forEach items="${team.tournamentList}" var ="teamlist" varStatus="index">
                         	 <tr>
-                        	 <td>${index.count}</td>
+                        	 <td style="text-align: center;">${index.count}</td>
 		                          <td><img src="${teamlist.boardUrl}" style="width: 25px;" onerror="imgError(this)"  ><a href="${pageContext.request.contextPath}/${teamlist.teamBoardName}/board/${teamlist.teamBoardId}"> ${teamlist.teamBoardName}</a></td>
 		                          <td>${teamlist.boardAbbrivation}</td>
+		                          <c:choose>
+		                          <c:when test="${teamlist.homeGround eq null || teamlist.homeGround eq ''}">
+		                          <td>-</td>
+		                          </c:when>
+		                          <c:otherwise>
 		                          <td>${teamlist.homeGround}</td>
+		                          
+		                          </c:otherwise>
+		                          </c:choose>
+		                          
                         	</tr> 
                         	</c:forEach>                      
                         
@@ -98,14 +107,14 @@
 
 <!--Select Box-->
 <script type="text/javascript">
-$(document).ready(function() {
+/* $(document).ready(function() {
     $('#example').DataTable({
 		"paging":   false,
         "info":     false,
 		"searching": false
 				
 		});
-} );
+} ); */
 </script>
 
 <!-- jQuery -->

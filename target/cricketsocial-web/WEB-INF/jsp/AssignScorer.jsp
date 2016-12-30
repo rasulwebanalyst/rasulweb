@@ -106,7 +106,7 @@ var formatAMPMTime = function(date) {
                  <c:choose>
 		          <c:when test="${empty tournamentList}">
 		          
-		          <table id="myTableAssign">
+		          <table id="myTableAssign" style="font-size: 12px;">
                             	<thead>
                                 <tr>
                                 	<th>Trophy</th>
@@ -122,7 +122,7 @@ var formatAMPMTime = function(date) {
 		          <c:otherwise>
                   
                   
-                  <table id="myTableAssign">
+                  <table id="myTableAssign" style="font-size: 12px;">
                             	<thead>
                                 <tr>
                                 	<th>Trophy</th>

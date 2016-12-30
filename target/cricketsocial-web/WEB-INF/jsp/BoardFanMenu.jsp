@@ -5,6 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<style type="text/css">
+
+.txt-flow:hover{
+    overflow: visible; 
+    white-space: normal; 
+}
+
+</style>
 </head>
 <body>
 <div class="userName col-md-10" id="likesDiv">  
@@ -26,7 +34,7 @@
             
             </div>
           
-             <span class="owner"><strong><a href="${pageContext.request.contextPath}/buddy/${BoradInfo.user.firstName}/${BoradInfo.createdBy}" style="color: white;">${BoradInfo.user.firstName}</a></strong> (Owner)
+             <span class="owner txt-flow"><strong><a href="${pageContext.request.contextPath}/buddy/${BoradInfo.user.firstName}/${BoradInfo.createdBy}" style="color: white;">${BoradInfo.user.firstName}</a></strong> (Owner)
              
                  <c:choose>
                    		<c:when test="${not empty BoradInfo.boardCoOwnerList[0].user.firstName}">

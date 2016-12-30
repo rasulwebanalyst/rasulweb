@@ -72,6 +72,7 @@ var formatAMPMTime = function(date) {
 	 var tournamentBean = {
 				   tournamentId : tournmentId,
 				   createdBy : boardId,
+				   tournamentSchedulerId : tournmentShudulorId,
 		   }; 
 		   
 		  $.ajax({
@@ -353,7 +354,7 @@ var formatAMPMTime = function(date) {
                           <th>App Scorer</th>
                           <th>Portal Scorer</th>
                           <th>Trophy</th>
-                          <th>Match Status</th>
+                         <!--  <th>Match Status</th> -->
                           <th style="width:60px;">Action</th>
                         </tr>
                        </thead>
@@ -376,7 +377,7 @@ var formatAMPMTime = function(date) {
                           <th>App Scorer</th>
                           <th>Portal Scorer</th>
                           <th>Trophy</th>
-                          <th>Match Status</th>
+                          <!-- <th>Match Status</th> -->
                           <th>Enter Scorecard</th>
                         <!--   <th style="width:60px;">Action</th> -->
                         </tr>
@@ -456,7 +457,7 @@ var formatAMPMTime = function(date) {
 												</td> 
 												
                           <td>${upcoming.tournamentName}</td>
-                          <td><span class="text-success">Active</span></td>
+                          <!-- <td><span class="text-success">Active</span></td> -->
                         <%--   <td align="center">
 								<input type="button" value="cancel" onclick="cancelSchedule('${upcoming.tournamentSchedulerId}')">
                            	 <!--  <a href="#"><i class="fa fa-trash-o deleteIcon"></i></a> -->
@@ -495,8 +496,8 @@ var formatAMPMTime = function(date) {
                           <th>App Scorer</th>
                           <th>Portal Scorer</th>
                           <th>Trophy</th>
-                          <th>Match Status</th>
-                          <th style="width:60px;">Action</th>
+                         <!--  <th>Match Status</th> -->
+                          <!-- <th style="width:60px;">Action</th> -->
                         </tr>
                        </thead>
 
@@ -519,9 +520,9 @@ var formatAMPMTime = function(date) {
                           <th>App Scorer</th>
                           <th>Portal Scorer</th>
                           <th>Trophy</th>
-                          <th>Match Status</th>
+                         <!--  <th>Match Status</th> -->
                           <th>Enter Scorecard</th>
-                          <th style="width:60px;">Action</th>
+                         <!--  <th style="width:60px;">Action</th> -->
                         </tr>
                        </thead>
 
@@ -598,12 +599,12 @@ var formatAMPMTime = function(date) {
 												</td> 
 												
                           <td>${incomplete.tournamentName}</td>
-                          <td><span class="text-success">Active</span></td>
+                         <!--  <td><span class="text-success">Active</span></td> -->
                           <td align="center"><input type="button" value="Enter Scorecard" onclick="enterScoreCard('${boardId}','${incomplete.tournamentId}','${incomplete.tournamentSchedulerId }','${incomplete.homeTeamId}','${incomplete.awayTeamId }','${incomplete.dateString }','${incomplete.leagueCreatedBy}')"><%-- <a href="${pageContext.request.contextPath}/EnterScore/boardId/${boardId}"> Enter Score</a> --%></td>
-                          <td align="center">
+                          <%-- <td align="center">
 								<input type="button" value="cancel" onclick="cancelSchedule('${incomplete.tournamentSchedulerId}')">
                            	 <!--  <a href="#"><i class="fa fa-trash-o deleteIcon"></i></a> -->
-                           </td>
+                           </td> --%>
                         </tr>
                       </c:forEach>
                   
@@ -621,7 +622,7 @@ var formatAMPMTime = function(date) {
                     </div>
                     <div id="inprogressmatchesdiv">
                     <div class="col-md-10 pull-right">
-      		<div class="col-md-12 whiteBox">
+      		<div class="col-md-12 whiteBox" style="font-size: 12px">
                   <h2 class="noBorder noLeftPad">In progress Matches</h2>
                   
                    <c:choose>
@@ -637,9 +638,9 @@ var formatAMPMTime = function(date) {
                           <th>Umpire</th>
                           <th>App Scorer</th>
                           <th>Portal Scorer</th>
-                          <th>Scorer</th>
+                          <!-- <th>Scorer</th> -->
                           <th>Enter Scorecard</th>
-                          <th>Match Status</th>  
+                         <!--  <th>Match Status</th>   -->
                          </tr>
                         </thead>
 
@@ -659,7 +660,7 @@ var formatAMPMTime = function(date) {
                           <th>Umpire</th>
                           <th>App Scorer</th>
                           <th>Portal Scorer</th>
-                          <th>Match Status</th>
+                         <!--  <th>Match Status</th> -->
                           <th>Enter Scorecard</th>
                            <th>Scorecard</th>
                         </tr>
@@ -736,7 +737,7 @@ var formatAMPMTime = function(date) {
 											
 												</td> 
                           
-                            <td><span class="text-success">Active</span></td>
+                           <!--  <td><span class="text-success">Active</span></td> -->
                             <td align="center"><input type="button" value="Enter Scorecard" onclick="DeleteScoreCard('${boardId}','${inprogress.tournamentId}','${inprogress.tournamentSchedulerId }','${inprogress.homeTeamId}','${inprogress.awayTeamId }','${inprogress.dateString }','${inprogress.leagueCreatedBy}')">
                             <td align="center" ><a href="#" onclick="showScoreCardInProgress('${inprogress.tournamentSchedulerId}')"><i class="fa fa-newspaper-o editIcon"></i></a></td>
                         </tr>
@@ -754,7 +755,7 @@ var formatAMPMTime = function(date) {
                     
                     <div id="completedmatchesdiv">
                     <div class="col-md-10 pull-right">
-      		<div class="col-md-12 whiteBox">
+      		<div class="col-md-12 whiteBox" style="font-size: 12px">
                   <h2 class="noBorder noLeftPad">Completed Matches</h2>
                   
                    <c:choose>
@@ -1067,7 +1068,7 @@ function cancelSchedule(id){
 		data : JSON.stringify(scheduler),
 		contentType :"application/json",
 		success : function(res){
-			window.location.href = "${pageContext.request.contextPath}/GameSchedule/boardId/"+boardId;
+			window.location.href = "${pageContext.request.contextPath}/GameSchedulePublicProfile/boardId/"+boardId;
 		},
 		error:function(err){
 			console.log(err);
@@ -1268,7 +1269,7 @@ var dateString = null;
    			
    			 var htmlco="";
             htmlco+="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>Upcoming Matches</h2>";      
-   			htmlco+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Umpire</th><th>App Scorer</th><th>Portal Scorer</th><th>Trophy</th><th>Match Status</th><th>Enter Scorecard</th></tr></thead>";
+   			htmlco+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Umpire</th><th>App Scorer</th><th>Portal Scorer</th><th>Trophy</th><th>Enter Scorecard</th></tr></thead>";
    			if(upcomminglist.length !=0)
    				{
    				htmlco+="<tbody>";
@@ -1346,7 +1347,7 @@ var dateString = null;
    				htmlco+="</div></td>";
    				
    				htmlco+="<td>"+upcomminglist[i].tournamentName+"</td>";
-   				htmlco+="<td><span class='text-success'>Active</span></td>";
+   				/* htmlco+="<td><span class='text-success'>Active</span></td>"; */
    				htmlco+="<td align='center'><input type='button' value='Enter Scorecard' onclick=enterScoreCard('"+boardid+"','"+upcomminglist[i].tournamentId+"','"+upcomminglist[i].tournamentSchedulerId+"','"+upcomminglist[i].homeTeamId+"','"+upcomminglist[i].awayTeamId+"','"+upcomminglist[i].dateString+"','"+upcomminglist[i].leagueCreatedBy+"')></td>";
    				htmlco+="</tr>";
    				}
@@ -1367,7 +1368,7 @@ var dateString = null;
    			
    			   var htmlco1="";
    			  htmlco1="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>Incomplete Matches</h2>";
-   			 htmlco1+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Umpire</th><th>App Scorer</th><th>Portal Scorer</th><th>Trophy</th><th>Match Status</th><th>Enter Scorecard</th><th style='width:60px;'>Action</th></tr></thead>";
+   			 htmlco1+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Umpire</th><th>App Scorer</th><th>Portal Scorer</th><th>Trophy</th><th>Enter Scorecard</th></tr></thead>";
    			if(incomepltelist.length!=0){
    				htmlco1+="<tbody>";
    				for(var i=0;i<incomepltelist.length;i++){
@@ -1438,9 +1439,9 @@ var dateString = null;
    	   				htmlco1+="</div></td>";
    				    
    				     htmlco1+="<td>"+incomepltelist[i].tournamentName+"</td>";
-   				    htmlco1+="<td><span class='text-success'>Active</span></td>";
+   				    /* htmlco1+="<td><span class='text-success'>Active</span></td>"; */
    				    htmlco1+="<td align='center'><input type='button' value='Enter Scorecard' onclick=enterScoreCard('"+boardid+"','"+incomepltelist[i].tournamentId+"','"+incomepltelist[i].tournamentSchedulerId+"','"+incomepltelist[i].homeTeamId+"','"+incomepltelist[i].awayTeamId+"','"+incomepltelist[i].dateString+"','"+incomepltelist[i].leagueCreatedBy+"')></td>";
-   				    htmlco1+="<td align='center'><input type='button' value='cancel' onclick='cancelSchedule("+incomepltelist[i].tournamentSchedulerId+")'></td>"; 
+   				   /*  htmlco1+="<td align='center'><input type='button' value='cancel' onclick=cancelSchedule('"+incomepltelist[i].tournamentSchedulerId+"')></td>"; */ 
    				    htmlco1+="</tr>";
    				}
    				htmlco1+="</tbody></table>";
@@ -1460,7 +1461,7 @@ var dateString = null;
    		
 			   var htmlco2="";
 			  htmlco2="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>In progress Matches</h2>";
-			 htmlco2+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Trophy</th><th>Umpire</th><th>App Scorer</th><th>Portal Scorer</th><th>Match Status</th><th>Enter Scorecard</th><th>Scorecard</th></tr></thead>";
+			 htmlco2+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Trophy</th><th>Umpire</th><th>App Scorer</th><th>Portal Scorer</th><th>Enter Scorecard</th><th>Scorecard</th></tr></thead>";
 			if(inprogresslist.length!=0){
 				htmlco2+="<tbody>";
 				for(var i=0;i<inprogresslist.length;i++){
@@ -1523,7 +1524,7 @@ var dateString = null;
    	   				
    	   				htmlco2+="</div></td>";
 				    
-				    htmlco2+="<td><span class='text-success'>Active</span></td>";
+				   /*  htmlco2+="<td><span class='text-success'>Active</span></td>"; */
 				    htmlco2+="<td align='center'><input type='button' value='Enter Scorecard' onclick=DeleteScoreCard('"+boardid+"','"+inprogresslist[i].tournamentId+"','"+inprogresslist[i].tournamentSchedulerId+"','"+inprogresslist[i].homeTeamId+"','"+inprogresslist[i].awayTeamId+"','"+inprogresslist[i].dateString+"','"+inprogresslist[i].leagueCreatedBy+"')></td>";
 				    htmlco2+="<td align='center' ><a href=javascript:void(0); onclick=showScoreCardInProgress('"+inprogresslist[i].tournamentSchedulerId+"')><i class='fa fa-newspaper-o editIcon'></i></a></td>";
 				    htmlco2+="</tr>";
@@ -1694,6 +1695,7 @@ var dateString = null;
                		 var tournamentBean = {
                					   tournamentId : tournmentId,
                					   createdBy : id,
+               					tournamentSchedulerId : tournmentShudulorId,
                			   }; 
                			   
                			  $.ajax({
@@ -1784,6 +1786,7 @@ var dateString = null;
             	  var tournamentBean = {
                 					   tournamentId : tournmentId,
                 					   createdBy : id,
+                					   tournamentSchedulerId : tournmentShudulorId,
                 			   }; 
                 			   
                 			  $.ajax({
@@ -1852,7 +1855,8 @@ var dateString = null;
                  	 	
                  	if(response == 'Success')
                  		{
-                 		window.location.href = "${pageContext.request.contextPath}/EnterScoreSelectedMatch/boardId/"+boardid+"/"+tournametid+"/"+tournamentschedulerid+"/"+homeid+"/"+awayteamid+"/"+date+"/"+createdby;	
+                 		/* window.location.href = "${pageContext.request.contextPath}/EnterScoreSelectedMatch/boardId/"+boardid+"/"+tournametid+"/"+tournamentschedulerid+"/"+homeid+"/"+awayteamid+"/"+date+"/"+createdby; */	
+                 		window.location.href = "${pageContext.request.contextPath}/EnterScoreSelectedMatchPublicProfile/boardId/"+boardid+"/"+tournametid+"/"+tournamentschedulerid+"/"+homeid+"/"+awayteamid+"/"+date+"/"+createdby; 
                  		}else
                  			{
                  			showNotification("You are not a valid user to enter the score", 2000);

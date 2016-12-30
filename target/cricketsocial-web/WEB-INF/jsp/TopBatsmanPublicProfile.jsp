@@ -151,7 +151,7 @@ var pageNum=50;
             					</c:when>
            						<c:otherwise>
                         			<br>
-	                       			<div class="col-md-12 whiteBox font13px" id="centTable1">
+	                       			<div class="col-md-12 whiteBox font13px" id="centTable1" style="font-size: 12px;">
 	                       				<span class="text-danger" style="font-weight: bold; color: #3253a8 !important; ">Tournament Name : ${topplayer.tournamentName}</span>
 	                       					<br>
 				                       		<table>

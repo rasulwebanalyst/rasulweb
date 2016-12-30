@@ -149,7 +149,7 @@ var pageNum=510;
             <c:when test="${century.size eq 0}">
             </c:when>
             <c:otherwise> --%>
-                <div class="col-md-12 whiteBox font13px" id="centTable1">
+                <div class="col-md-12 whiteBox font13px" id="centTable1" style="font-size: 12px;">
                     <span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament
 											Name : ${century.tournamentName}</span>
                     <table class="css-serial">

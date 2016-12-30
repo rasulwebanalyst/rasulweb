@@ -29,7 +29,7 @@ public class CricketSocialRestTemplateServiceImpl  implements CricketSocialRestT
      //private static String domain="http://172.16.19.30:8068/cricketsocialwebservices/"; // kalpana dev system ip
      //private static String domain="http://52.73.86.69:8068/cricketsocialwebservices/";//QA
 	//private static String domain="http://52.73.236.168:8068/cricketsocialwebservices/";// PROD
-             private static String domain=Util.webServiceDomainName("Web_Service_URL");
+                   private static String domain=Util.webServiceDomainName("Web_Service_URL");
      //private static String domain="http://192.168.0.52:8068/cricketsocialwebservices/"; // Hyderali(temp)
      //private static String domain="http://172.16.19.30:8068/cricketsocialwebservices/"; // kalpana   
      // private static String domain="http://172.16.19.27:8068/cricketsocialwebservices/";
