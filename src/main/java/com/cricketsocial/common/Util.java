@@ -307,7 +307,7 @@ public class Util {
 			InputStream input = null;
 			File file= null;
 			//String propertyFilePath = "/home/vignesh/opt/cricket_social/Config_properties";	//AWS
-		    String propertyFilePath = "/opt/cricket_social/Config_properties";	//AWS
+		     String propertyFilePath = "/opt/cricket_social/Config_properties";	//AWS
 			String path=propertyFilePath;
 			file= new File(path);
 			if(!file.exists())
