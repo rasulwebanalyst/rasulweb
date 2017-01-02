@@ -760,10 +760,6 @@
 			$("#areaCodeCell").val(countryCode);
 				}
 				
-				
-				
-				
-				
 			}else{
 				$('#'+textBox).val(" ");
 				$('#'+divId).hide();	
