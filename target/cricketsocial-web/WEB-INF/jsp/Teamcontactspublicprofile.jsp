@@ -13,7 +13,14 @@
 <script src="js/jquery.js"></script>
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
-
+<script src="${pageContext.request.contextPath }/js/jspdf.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jspdf.plugin.autotable.js"></script>
+ <script type="text/javascript">
+ 
+ var teamrowObj=[];
+ var teamnameObj=[];
+ 
+ </script>
 
 </head>
 <body>
@@ -40,7 +47,8 @@
             <div class="col-md-10 pull-right">
       			<div class="col-md-12 whiteBox">
                 	<h1 class="">Team Contacts</h1>
-                      </div> 
+                	<a style="margin-top: -40px;" class="pull-right" href="javascript:getPDF()"><img style="width: 30px; height: 25px;" src='${pageContext.request.contextPath}/images/Pdfdownload.png'></a></div>
+                      <!-- </div>  -->
                        <!-- <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
 
                       <thead> 
@@ -111,7 +119,7 @@
                     </tbody>
                  </table> -->
                  <c:forEach items="${Teamcontactslist}" var="team">
-                       <div class="col-md-12 whiteBox">
+                       <div class="col-md-12 whiteBox" style="font-size: 12px;">
                        <span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Team Name : ${team.boardName}</span>
                        
                       <table class="table" cellspacing="0" width="100%" id="example">
@@ -135,9 +143,9 @@
                         <th>S.No</th>
                           <th>Name </th>
                           <th>Designation </th>
-                          <th>Address </th>
+                         <!--  <th>Address </th> -->
                           <th>Phone Number </th>
-                          <th>Email </th>
+                          <th>E-mail </th>
                         </tr>
                         
                        </thead>
@@ -169,7 +177,7 @@
 		                          </td>
 		                         
 		                         
-		                          <td style="text-align: left;">
+		                         <%--  <td style="text-align: left;">
 		                          <c:if test="${teamlist.city ne ''}">
 		                          ${teamlist.city}
 		                          
@@ -185,7 +193,7 @@
 		                          </c:if>
 		                          ${teamlist.country}
 		                          
-		                          </td>
+		                          </td> --%>
 		                         
 		                         
 		                         
@@ -218,6 +226,57 @@
                  
             </div>
             </c:forEach>
+            
+            
+             <c:forEach items="${Teamcontactslist}" var="teamprint">
+                                    
+                         <script type="text/javascript">
+                       
+	                       teamnameObj.push("${teamprint.boardName}");
+	                       
+	                       var teamrowsingleObj=[];
+                       </script>
+                        <c:forEach items="${teamprint.ownerList}" var ="teamlist" varStatus="loop">
+                        	
+                        	<script type="text/javascript">
+                        	
+                        	var sno=parseInt("${loop.index}")+1;
+                        	
+                        	var phno="${teamlist.phoneNumber}";
+                        	console.log(phno);
+                        	if(phno == 0)
+                        		{
+                        		phno="-";
+                        		}
+                        	
+                        	teamrowsingleObj.push({
+                        		
+                        		serialno : sno,
+                        		fullName : "${teamlist.fullName}",
+                        		designation : "${teamlist.designation}",
+                        		phoneNumber : phno,
+                        		email : "${teamlist.emailAddress}"
+                        		
+                        	})
+                        	
+                        	</script>
+                        	
+                        	</c:forEach>  
+                        	                    
+                           <script type="text/javascript">
+                           teamrowObj.push(teamrowsingleObj);
+                        	</script>                        
+                        
+                    </tbody>
+                 </table>
+                 
+             </div> 
+             </c:forEach> 
+            
+            
+            
+            
+            
             </div>
                     
                     
@@ -303,6 +362,132 @@
 			
 		</script>
 
+    <script type="text/javascript">
+   
+   function getPDF(){
+	  /*  alert("Print") */
+	  
+	  console.log(teamrowObj);
+	  console.log(JSON.stringify(teamrowObj));
+	  var teamObj=teamrowObj;
+	  
+	 
+	  var dateformat="${PrintDate}";
+	  var doc = new jsPDF('p', 'pt','a4');
+	    doc.setProperties({
+	    	title: 'Cricket Socio',
+	    	subject: 'Buddy Score Card',
+	    	author: 'Vignesh Ranganathan',
+	    	keywords: 'Team Details',
+	    	creator: 'Cricket Social'
+	    	
+	    });
+	    
+	    
+	 // for date
+	    doc.setFontSize(10);
+	    doc.setFontType("normal");
+	    doc.setTextColor(0,0,0);
+	    doc.text(485,10,"Printed On ");
+	    doc.text(535,10,": "+dateformat);
+	    
+	    
+	    //Header
+	    
+	    doc.setFontSize(20);
+    doc.setFont("helvetica");
+    doc.setFontType("bold");
+    doc.setTextColor(50,83,168);
+    doc.text(220,30,"Team Contacts");
+    
+    
+var leaguename="${BoradInfo.boardName}"
+        
+        doc.setFontSize(12);
+        doc.setFont("helvetica");
+        doc.setFontType("normal");
+        doc.setTextColor(0,0,0);
+        doc.text(10,70,"League Name");
+        doc.text(85,70,": "+leaguename);
+    
+    
+    var yHeight=100;
+	    for(var i in teamObj)
+		  {
+		  var teamsingleObj=teamObj[i];
+		  var teamname=teamnameObj[i];
+			  
+			  
+		   doc.setFontSize(12);
+		    doc.setFont("helvetica");
+		    doc.setFontType("bold");
+		    doc.setTextColor(50,83,168);
+		    doc.text(10,yHeight,"Team Name");
+		   /*  doc.setTextColor(0,0,0);  */
+		    doc.text(80,yHeight,": "+teamname);
+		    
+		    
+		    
+		    var columns = [
+		                   {title: "S.No", dataKey: "serialno"},
+		                   {title: "Name", dataKey: "fullName"},
+		                   {title: "Designation", dataKey: "designation"},
+		                   {title: "Phone Number", dataKey: "phoneNumber"},
+		                   {title: "E-mail", dataKey: "email"}
+		               ];
+		  
+		    
+		    
+	 			if(teamsingleObj.length>0)
+	 				{
+	 					
+	 					  doc.autoTable(columns,teamsingleObj, {
+	 		 			        theme: 'grid',
+	 		 			        startY: parseInt(yHeight)+parseInt(10),
+	 		 			        margin: {horizontal: 10},
+	 		 			        styles: {overflow: 'linebreak'},
+	 		 			        bodyStyles: {valign: 'top'},
+	 		 			        alternateRowStyles: {fillColor: [233, 234, 237]},
+	 		 			        columnStyles: {email: {columnWidth: 'wrap'}},
+	 		 			        headerStyles: {fillColor: [99, 184, 255]}
+	 		 			    });
+	 					
+	 					 
+	 					  
+	 					
+	 					/* var theight=parseInt(teamsingleObj.length)*20+yHeight+parseInt(32); */
+	 					
+	 					/* doc.text(10,theight,"EndTable :"+i); */
+	 					/* console.log(parseInt(yHeight)+parseInt(10)); */
+	 					/* doc.text(10,parseInt(yHeight)+parseInt(32)+parseInt(20),"EndTable :"+i); */
+	 					
+	 					 /*  if(teamsingleObj.length<3)
+	 						  {
+								    yHeight=parseInt(teamsingleObj.length)*40+yHeight;
+	 						  }else if(teamsingleObj.length>=3)
+	 							  {
+	 							 	yHeight=parseInt(teamsingleObj.length)*40+yHeight;
+	 							  } */
+	 							  
+	 							  
+	 					 var yHeight=parseInt(teamsingleObj.length)*20+yHeight+parseInt(82);
+	 					  
+	 					  
+	 					
+	 					
+	 					  
+	 					
+	 				}
+		    
+		    
+		  }
+    
+    
+    
+    doc.save('Team contacts.pdf');
+   }
+   
+   </script>
    
    
    

@@ -9,7 +9,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cricket Social</title>
-
+ <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 </head>
 <body>
 
@@ -216,7 +217,7 @@
                         	 	
                         	 	
                         	 	
-                        	 	<div class="col-md-5 drop pull-right" style="margin-right:-15px; width: 120px !important;">
+                        	 	<div class="col-md-5 col-sm-12 col-xs-12 drop pull-right" style="margin-right:-15px; width: 120px !important;">
 								    <div class="selectdiv" style="height: 25px !important;">
 								        <c:choose>
 								            <c:when test="${yearListSize eq 0 }">
@@ -249,7 +250,8 @@
                        </script>
                          
                          <div class="col-md-12 noPadding MyScor-table">
-                       <c:choose>  <c:when test="${battingPerformanceListSize eq 0 }">
+                         <div class="form-group">
+                         <c:choose>  <c:when test="${battingPerformanceListSize eq 0 }">
                        <table id="battingTable">
                             	<thead>
                                 	<tr>
@@ -269,6 +271,7 @@
                                     </tr>
                                 </thead>
                                </table>
+                             
                                 	<div id="battingNoData" class="noContentDivRed">No Details Available</div>
                                   <button class="btn btn-default dBtn pull-right lodbtn" id="loadmoreBatings" onclick="loadMoreBattings()" style="display: none;">LOAD MORE</button> 
                               
@@ -367,6 +370,7 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
+                            </div>
                             <div id="battingNoData" class="noContentDivRed" style="display: none;">No Details Available</div>
                          	<button class="btn btn-default dBtn pull-right lodbtn" id="loadmoreBatings" onclick="loadMoreBattings()">LOAD MORE</button>
                        </c:otherwise>
@@ -381,11 +385,11 @@
                         <!-- <div class="col-md-4 noPadding"> -->
                         <!-- <h5>Bowling Performance</h5> -->
                         
-                        <div class="col-md-12 statusUpdateBox noPadding">
+                        <div class="col-md-12 statusUpdateBox noPadding" style="clear: both;">
                         <div class="buluback" style="font-weight:100;">Bowling Performances
                         	
                         	
-                        	<div class="col-md-5 drop pull-right" style="margin-right:-15px; width: 120px !important;">
+                        	<div class="col-md-5 col-sm-12 col-xs-12 drop pull-right" style="margin-right:-15px; width: 120px !important;">
 								    <div class="selectdiv" style="height: 25px !important;">
 								        <c:choose>
 								            <c:when test="${yearListSize eq 0 }">
@@ -414,7 +418,7 @@
                          
                          
                          <div class="col-md-12 noPadding MyScor-table">
-                         	
+                         	<div class="form-group">
                          	<c:choose>  
                          	<c:when test="${bowlingPerformanceListSize eq 0 }">
                          	<table id="bowlingTable">
@@ -490,18 +494,20 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
+                            </div>
                             <div class="noContentDivRed" id="noBowlingData" style="display: none;">No Details Available</div>
                          	<button class="btn btn-default dBtn pull-right lodbtn" id="loadmoreBowl" onclick="loadMoreBowlings()">LOAD MORE</button>
                        </c:otherwise>
                          
                          </c:choose>    
                             
+                         </div>  
                          </div>
                          
-                        <div class="col-md-12 statusUpdateBox noPadding">
+                        <div class="form-group col-md-12 statusUpdateBox noPadding">
                         <div class="buluback" style="font-weight:100;">Achievements
                         
-                        	<div class="col-md-5 drop pull-right" style="margin-right:-15px; width: 120px !important;">
+                        	<div class="col-md-5 col-sm-12 col-xs-12 drop pull-right" style="margin-right:-15px; width: 120px !important;">
 								    <div class="selectdiv" style="height: 25px !important;">
 								        <c:choose>
 								            <c:when test="${yearListSize eq 0 }">
@@ -530,6 +536,7 @@
                         
                             	<div class="col-md-12 noPadding AchHead">
                                 	<!-- <h4>ODI Series Match Record</h4> -->
+                                	<div class="form-group">
 
 										<c:choose>
 											<c:when test="${achievementsListSize eq 0 }">
@@ -615,6 +622,7 @@
 
 										</c:choose>
 
+									</div>
 									</div>
                             </div>
                         </div>

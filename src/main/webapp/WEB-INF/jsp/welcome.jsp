@@ -12,7 +12,9 @@
     <meta name="author" content="">
 
     <title>CricketSocial</title>
-
+ 	<!-- responsive css -->
+ 	<link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
+ 
     <!-- Bootstrap Core CSS -->
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 
@@ -75,6 +77,76 @@ $(function(){
 		//alert(position.coords.latitude+","+position.coords.longitude);
 		$('#latLang').val(position.coords.latitude+","+position.coords.longitude);
 		$('#fblatLang').val(position.coords.latitude+","+position.coords.longitude);
+		
+		if(lat != '' && lang != ''){
+			
+			 var request= position.coords.latitude+","+position.coords.longitude;
+			
+			 $.ajax({
+				 
+				type : "POST",
+				url : "${pageContext.request.contextPath}/leagueMatchesaaroundyou", 
+				data : JSON.stringify(request),
+				contentType : "application/json; charset=utf-8",
+				success : function(res)
+				{
+					/* alert(res); */
+				}
+				
+			 })
+			 
+		 }
+		
+		
+		
+		
+		<%--  <!-- Start of mau -->
+         
+         <div class="sidebar-container widget-MAU">
+                     <div class="sidebar-content">
+                       <div class="sidebar-header"><a href="${pageContext.request.contextPath}/matchesAroundYou">Matches Around You</a></div>
+                       
+                            <c:choose>
+                          	<c:when test="${empty MatchesArroundYou}">
+                          		<div class="sidebar-list noContentDiv">
+                          			No Matches around you.
+                          		</div>
+                          	</c:when>
+                          	<c:otherwise>
+	                              <c:forEach items="${MatchesArroundYou}" var="match" begin="0" end="5">
+	                              <c:set var="board" value="${match.homeTeamInfo}"></c:set>
+	                               <c:set var="board1" value="${match.awayTeamInfo}"></c:set>
+	                               
+	                               <div class="sidebar-list">
+                           			<a href="${pageContext.request.contextPath}/${board.boardName }/board/${board.boardId}">${board.boardName}asdasdas</a> vs <a href="${pageContext.request.contextPath}/${board1.boardName }/board/${board1.boardId}">${board1.boardName}asdasdas</a><br> <strong>${match.gameDateStr}</strong>
+                           			
+                           			<c:choose>
+                           			<c:when  test="${match.status eq 'InProgress'}">
+                           			<a class="vw-score" href="javascript:void(0);" onclick="showScoreCardInProgress('${match.tournamentSchedulerId}','${match.createdBy}')">Live Score</a>
+                           			</c:when>
+                           			<c:otherwise>
+                           			<a class="vw-score" href="javascript:void(0);" onclick="showScoreCardInProgress('${match.tournamentSchedulerId}','no')">View Score</a>
+                           			</c:otherwise>
+                           			</c:choose>
+                                		 <span class="teamLogos">
+                             			<a href="${pageContext.request.contextPath}/${board.boardName }/board/${board.boardId}"><img src="${board.boardImageURL}?" class="teamLogo" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" ></a> <b>VS</b> <a href="${pageContext.request.contextPath}/${board1.boardName }/board/${board1.boardId}"><img src="${board1.boardImageURL}?" class="teamLogo"></a>
+                             		</span>
+                          		 </div>
+	                              		
+	                              </c:forEach>
+                          	</c:otherwise>
+                          </c:choose> 
+                      
+                     </div>
+                   </div>
+                   
+                   
+                   
+                   
+                 <!-- End of mau -->   --%>
+		
+		
+		
 		
 		
 	 }
@@ -167,6 +239,7 @@ var fbURL='110086556012641'; // QA
         <div class="row">
             <div class="col-md-6 pull-left loginLeft">
                <h1>Welcome to CricketSocial</h1>
+               <div id="homeContent">
                <p>The Cricket Connection</p>
                <ul class="login-txt">
                	<li>A Social  and Analytics platform with anchoring tools for Cricket.</li>
@@ -180,7 +253,7 @@ var fbURL='110086556012641'; // QA
                	<li>Give your cricket dream a chance Register on CricketSocial Now.</li>
               
                </ul>
-               
+               </div>
             </div>
             <!-- /.col-md-8 -->
             <div class="col-md-6 pull-right loginRight">
@@ -256,12 +329,12 @@ var fbURL='110086556012641'; // QA
           
 	         
 	       </div><!-- col end -->
-	       <div class="col-md-4">
+	       <div class="col-md-4 no-padding-res">
 	       <label class="log-dt-lab" for=""> <span style="color:red"></span></label>
             <input class="log-dt-holder" type="text" style="margin-top: 4px;" value="" placeholder="date" id="dobDate" onfocus="numberCheckDobDate(this)" onblur="numberCheckDobDate(this)" onkeyup="dateOfBirthValidation1()">
 	             
 	       </div>
-	       <div class="col-md-4 padding-right">
+	       <div class="col-md-4 padding-right no-padding-res">
 	       <label class="log-dt-lab" for=""><span style="color:red"></span></label>
             <input class="log-dt-holder" style="margin-top: 4px;" type="text" value="" placeholder="year" id="dobYear" onfocus="numberCheckDobYear(this)" onblur="numberCheckDobYear(this)" onkeyup="dateOfBirthValidation1()">	            
 	       </div>

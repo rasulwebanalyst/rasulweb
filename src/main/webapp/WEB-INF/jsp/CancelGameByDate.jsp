@@ -141,7 +141,7 @@ var formatAMPMTime = function(date) {
                  </div>
                  </div>
                   
-            <div class="col-md-10 pull-right">
+            <div class="col-md-10 pull-right rightnone">
       		<div class="col-md-12 whiteBox" style="font-size: 12px;">
                   <h2 class="noBorder noLeftPad">Upcoming Matches</h2>
                   <div class="form-group">
@@ -218,12 +218,13 @@ var formatAMPMTime = function(date) {
                        <c:when test="${upcomingMatchesListSize == 0 }"> 
                        </c:when>
                        <c:otherwise>
+                       </div>
                         <button type="button" class="btn btn-danger pull-right" style="margin-top:20px;" onclick="cancelGame()">Cancel Game</button>
                        </c:otherwise>
                        </c:choose>  
                   
                   
-                       </div>
+                       <!-- </div> -->
                 	</div>
                     
                     

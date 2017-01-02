@@ -86,7 +86,7 @@
                        
                        <h1 class="">Cancel Tournament</h1>
                        
-                      <div class="col-md-12 noPadding">
+                      <div class="col-md-12 noPadding" style="font-size: 12px;">
                       <c:choose>
                       <c:when test="${empty tournamentOfTheBoard}">
                       <div id="tournamentList" class="Cantourname">

@@ -618,6 +618,7 @@ function memberCoachCaptainValue(keyVal)
 				   			    document.getElementById("captainSelectDiv").selectedIndex = "0";
 				   				return false;
 				   			}else{
+				   				$("#captainSelectDivERR").text("");
 				   				return true;
 				   			}
 				   }else{

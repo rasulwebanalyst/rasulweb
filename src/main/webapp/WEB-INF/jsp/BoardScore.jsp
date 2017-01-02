@@ -1,9 +1,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
 <title>Cricket Social</title>
 	
 		<%@ include file="BoardHeader.jsp" %>
-
+ <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
  <section class="middleContentBlock">
 <div class="profileBanner"> <img src="${pageContext.request.contextPath}/images/innerBanner.png"> </div>
 <div class="container">
@@ -89,6 +96,8 @@
                             </div>
                          
                          <div class="col-md-12 noPadding MyScor-table ">
+                         
+                         <div class="form-group">
                          	
                          	<c:choose>
                          	<c:when test="${completedMatchesListSize eq 0 }">
@@ -166,6 +175,7 @@
                                     
                                 </tbody>
                             </table>
+                               	</div>
                          	 	<button class="btn btn-default dBtn pull-right lodbtn" onclick="loadMoreDetails()">LOAD MORE</button>
                          	</c:otherwise>
                          	
@@ -175,8 +185,9 @@
                          
                          
                          
-                         <div class="col-md-12 noPadding ">
+                         <div class="col-md-12 noPadding" style="clear: both;">
                                  <h1>Board Achievements</h1>
+                                 <div class="form-group">
                                 <table id="myTableTour" class="boardAchievements">
                                 	<thead>
                                     	<tr class="text-center">
@@ -198,6 +209,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                </div>
                                 
                                 <div class="col-md-12 teem" id="tournamentsDiv">
                                 	

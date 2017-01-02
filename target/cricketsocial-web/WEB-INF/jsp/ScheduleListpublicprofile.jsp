@@ -185,7 +185,7 @@ var formatAMPMTime = function(date) {
 								<!--  </h1> -->
 								<c:choose>
 								 <c:when test="${empty tournamentList}">
-								 <table  id="scheduleTable">
+								 <table  id="scheduleTable" style="font-size: 12px;">
 									<thead>
 										<tr>
 											<th>S.No</th>
@@ -207,7 +207,7 @@ var formatAMPMTime = function(date) {
 								 
 								 <c:otherwise>
 								 
-								 <table id="scheduleTable">
+								 <table id="scheduleTable" style="font-size: 12px;">
 									<thead>
 										<tr>
 											<th>S.No</th>
@@ -234,26 +234,75 @@ var formatAMPMTime = function(date) {
 												<td><a href="${pageContext.request.contextPath}/${tourDetails.homeTeamName}/board/${tourDetails.homeTeamId}">${tourDetails.homeTeamName}</a></td>
 												<td><a href="${pageContext.request.contextPath}/${tourDetails.awayTeamName}/board/${tourDetails.awayTeamId}">${tourDetails.awayTeamName}</a></td>
 												 <td>${tourDetails.gameName}</td>
-												<td>${tourDetails.groundName}</td>
+												<%-- <td>${tourDetails.groundName}</td> --%>
+												
+												
+												<c:choose>
+                                            <c:when test="${tourDetails.groundName eq null || tourDetails.groundName eq ''}">
+                                            <td>-</td>
+                                            </c:when>
+                                            <c:otherwise>
+                                           <td>${tourDetails.groundName}</td>
+                                            </c:otherwise>
+                                            </c:choose>
+												
+												
 												<td>
 													<div >
-														<c:forEach var="umpire"
+														<%-- <c:forEach var="umpire"
+															items="${tourDetails.umpireNamesList }" varStatus="loop">
+																<span><a href="${pageContext.request.contextPath}/buddy/${umpire.umpireName}/${umpire.umpireId}">${umpire.umpireName}</a><c:if test="${!loop.last}">,</c:if></span>
+																
+														</c:forEach> --%>
+														
+														
+														<c:choose>
+                                            <c:when test="${tourDetails.umpireNamesList eq null || tourDetails.umpireNamesList eq ''}">
+                                           -
+                                            </c:when>
+                                            <c:otherwise>
+                                          <c:forEach var="umpire"
 															items="${tourDetails.umpireNamesList }" varStatus="loop">
 																<span><a href="${pageContext.request.contextPath}/buddy/${umpire.umpireName}/${umpire.umpireId}">${umpire.umpireName}</a><c:if test="${!loop.last}">,</c:if></span>
 																
 														</c:forEach>
+                                          
+                                            </c:otherwise>
+                                            </c:choose>
+														
+														
+														
 														</div>
 												<!-- 	 <a href="#" class="pull-right" title="">Assign</a> -->
 												</td>
 												
 												<td> 
-												<div>
+										<%-- 		<div>
                                         <c:forEach var ="scorer" items="${tourDetails.scorerNamesList}" varStatus="loop">
                                         <span><a href="${pageContext.request.contextPath}/buddy/${scorer.scorerName}/${scorer.scorerId}">
                                         ${scorer.scorerName}</a><c:if test="${!loop.last}">,</c:if></span>
                                         													
-                                       <%--  <span style="background-color: grey; border-radius: 3px;">${scorer.scorerName}<br></span> --%>
+                                        </c:forEach> --%>
+                                        
+                                        
+                                         <c:choose>
+                                            <c:when test="${tourDetails.scorerNamesList eq null || tourDetails.scorerNamesList eq ''}">
+                                           -
+                                            </c:when>
+                                            <c:otherwise>
+                                            
+                                             		<div>
+                                        <c:forEach var ="scorer" items="${tourDetails.scorerNamesList}" varStatus="loop">
+                                        <span><a href="${pageContext.request.contextPath}/buddy/${scorer.scorerName}/${scorer.scorerId}">
+                                        ${scorer.scorerName}</a><c:if test="${!loop.last}">,</c:if></span>
+                                        													
                                         </c:forEach>
+                                          
+                                            </c:otherwise>
+                                            </c:choose>
+                                        
+                                        
+                                        
                                         </div></td>
 												<!-- <a href="#"class="pull-right" title="">Assign</a></td> -->
 												
@@ -607,7 +656,13 @@ function loadPrev(text){
 					html += '<td><a href="${pageContext.request.contextPath}/'+res[i].homeTeamName+'/board/'+res[i].homeTeamId+'">'+res[i].homeTeamName+'</a></td>';
 					html += '<td><a href="${pageContext.request.contextPath}/'+res[i].awayTeamName+'/board/'+res[i].awayTeamId+'">'+res[i].awayTeamName+'</a></td>';
 					html += '<td>'+res[i].gameName+'</td>';
-					html += '<td>'+res[i].groundName+'</td>';
+					/* html += '<td>'+res[i].groundName+'</td>'; */
+					
+					if(res[i].groundName !=null && res[i].groundName != "")
+						{
+						html += '<td>'+res[i].groundName+'</td>';
+						}else{html += '<td>-</td>';}
+					
 					html += '<td>';
 					html += '<div >';
 					
@@ -622,7 +677,7 @@ function loadPrev(text){
 					            html += ',</span>';
 					        } 
 	
-					}}
+					}}else{html += '-';}
 
 	        
 					html += '</div></td>';
@@ -643,7 +698,7 @@ function loadPrev(text){
 
 						
 	
-					}}
+					}}else{html += '-';}
 					
 					html += '</div></td>';
 					/* if(res[i].status == 'Completed'){

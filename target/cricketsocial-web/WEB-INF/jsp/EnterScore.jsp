@@ -916,9 +916,13 @@ $(document).ready(function(){
 	   if(val != 0){
 		   id = val;
 		   
+		   /* var schedulerid=$("#schedulerId").val(); */
+		    var schedulerid="${tournamentSchedulerid}";
+		   
 		   var tournamentBean = {
 				   tournamentId : id,
 				   createdBy : boardId,
+				   tournamentSchedulerId : schedulerid,
 		   } 
 		   
 		  $.ajax({

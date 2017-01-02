@@ -4,17 +4,15 @@
   <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html lang="en">
 <head>
- <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
- <!-- responsive css -->
- <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cricket Social</title>
-
-
+ <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+ <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
 </head>
 <body>
 
@@ -97,7 +95,7 @@
                  </div>
                  </div> 
               </form>
-            <div class="col-md-10 pull-right">
+            <div class="col-md-10 pull-right rightnone">
       		<!-- <div class="col-md-12 whiteBox"> -->
                   
                   <c:choose>
@@ -107,9 +105,10 @@
     <c:if test="${not empty tournament.tournamentId}">
         <div class="col-md-12 whiteBox" style="font-size: 12px;">
 
-            <span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament
-			<!-- <div class="form-group"> -->									Name : ${tournament.tournamentName}</span> <br>
-            <table>
+            <span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">
+									Tournament Name : ${tournament.tournamentName}</span> <br>
+									<div class="form-group">	
+	            <table>
                 <thead>
                     <tr>
                         <th>S.No</th>
@@ -178,7 +177,7 @@
 
                 </tbody>
             </table>
-           <!--  </div> --><!-- form group end -->
+            </div><!-- form group end -->
         </div>
         </c:if>
     </c:forEach>

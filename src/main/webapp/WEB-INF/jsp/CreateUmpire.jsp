@@ -600,7 +600,19 @@
 	 				                        		html += '<span class="auto-black">'+users[i].city+','+users[i].state+'</span>'; 
 	 				                        	}
 
-	 				              			html+='</h4><div class="headRight" ></div></div></div></li>';
+	 				              			html+='</h4><div class="headRight" ></div></div></div>';
+	 				              			
+	 				              			html+='<input type="hidden" id="'+users[i].id+'email" value="'+users[i].emailAddress+'">';
+	 				              			html+='<input type="hidden" id="'+users[i].id+'address1" value="'+users[i].address1+'">';
+	 				              			html+='<input type="hidden" id="'+users[i].id+'address2" value="'+users[i].address2+'">';
+	 				              			html+='<input type="hidden" id="'+users[i].id+'city" value="'+users[i].city+'">';
+	 				              			html+='<input type="hidden" id="'+users[i].id+'state" value="'+users[i].state+'">';
+	 				              			html+='<input type="hidden" id="'+users[i].id+'country" value="'+users[i].country+'">';
+	 				              			html+='<input type="hidden" id="'+users[i].id+'zipcode" value="'+users[i].zipcode+'">';
+	 				              			html+='<input type="hidden" id="'+users[i].id+'countryCode" value="'+users[i].countryCode+'">';
+	 				              			html+='<input type="hidden" id="'+users[i].id+'phoneNumber" value="'+users[i].phoneNumber+'">';
+	 				              				
+	 				              			html+='</li>';
 	 									}
 	 								}
 	 								
@@ -654,8 +666,23 @@
 		var name=elem.replace(/-/g," ");
    		$('#'+textBox).val(name);
 		$('#'+divId).hide();	
+		
+		
+		$("#emailId").val("");
+	$("#address1").val("");
+	$("#address2").val("");
+	$("#city").val("");
+	$("#state").val("");
+	$("#country").val("");
+	$("#zipcode").val("");
+	$("#cellPhone").val("");
+	$("#areaCodeCell").val("");
+		
+		
 		checkUmpireValidation(userId,hiddenId,textBox,divId);
 		//$('#'+hiddenId).val(userId);	
+		
+		
 		
  }
  function cancelFormSubmit(){
@@ -678,10 +705,81 @@
 				$("#"+hiddenId).val(userId);
 				//$('#'+divId).hide();	
 				//$('#'+textBox).val($(elem).text());
+				
+				
+
+				var email=$("#"+userId+"email").val();
+				var address1=$("#"+userId+"address1").val();
+				var address2=$("#"+userId+"address2").val();
+				var city=$("#"+userId+"city").val();
+				var state=$("#"+userId+"state").val();
+				var country=$("#"+userId+"country").val();
+				var zipcode=$("#"+userId+"zipcode").val();
+				var countryCode=$("#"+userId+"countryCode").val();
+				var phoneNumber=$("#"+userId+"phoneNumber").val();
+				
+				
+				if(email !=null && email != "")
+					{
+				$("#emailId").val(email);
+					}
+				
+				if(address1 !=null && address1 != "")
+				{
+			$("#address1").val(address1);
+				}
+				if(address2 !=null && address2 != "")
+				{
+			$("#address2").val(address2);
+				}
+				if(city !=null && city != "")
+				{
+			$("#city").val(city);
+				}
+				if(state !=null && state != "")
+				{
+			$("#state").val(state);
+				}
+				if(country !=null && country != "")
+				{
+			$("#country").val(country);
+				}
+				
+				if(zipcode !=null && zipcode != "")
+				{
+			$("#zipcode").val(zipcode);
+				}
+				if(phoneNumber !=null && phoneNumber != "")
+				{
+			$("#cellPhone").val(phoneNumber);
+				}
+				
+				
+				if(countryCode !=null && countryCode != "")
+				{
+			$("#areaCodeCell").val(countryCode);
+				}
+				
+				
+				
+				
+				
 			}else{
 				$('#'+textBox).val(" ");
 				$('#'+divId).hide();	
 				displaynotification("This user is already created as umpire to this board",2000);
+				
+				
+			$("#emailId").val("");
+		$("#address1").val("");
+		$("#address2").val("");
+		$("#city").val("");
+		$("#state").val("");
+		$("#country").val("");
+		$("#zipcode").val("");
+		$("#cellPhone").val("");
+		$("#areaCodeCell").val("");
+				
 			}
 			
 		},

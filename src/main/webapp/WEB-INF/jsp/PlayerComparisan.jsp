@@ -10,7 +10,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cricket Social</title>
-
+     <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 </head>
 <body>
 
@@ -87,11 +88,11 @@
             
             
             
-            <div class="col-md-10 pull-right playerCompareBlock">
+            <div class="col-md-10 pull-right playerCompareBlock rightnone">
              	<div class="col-md-12 whiteBox">
                 <h1>SELECT PLAYERS TO COMPARE</h1>
                 
-                
+                <div class="form-group">
                 <table class="playerComp">
                         <thead>
                         <tr>
@@ -223,7 +224,7 @@
                           </tr>
                      </tbody>
                  </table>
-                
+                </div>
                 <div ></div>
                 <form action="playerComparing" method="post" id="playerCompareForm" name="playerCompareForm" onsubmit="return playerValidation()">
                 
@@ -238,9 +239,9 @@
                  
                  </form>
                  <div style="color: red; text-align: center;" id="compareerror"></div>
-                 <div class="col-md-12">
+                 <div class="col-md-12 noPadding">
                      	<h1 class="pageHead noBorder GSpagehed">Compared Status</h1>
-                         <div class="col-md-12">
+                         <div class="col-md-12 form-group noPadding">
                     <table>
                        <thead> 
                         <tr>
@@ -273,11 +274,12 @@
                        
                     </tbody>
                  </table>
+                 
                  </div>
                  </div>
 
                  
-                 <div class="col-md-12" style="margin-top:20px;">
+                 <div class="col-md-12 noPadding" style="margin-top:20px;">
                      	
             <div class="col-md-8">
                 <h1 class="pageHead noBorder">Batting Status</h1>
@@ -314,7 +316,7 @@
                     </div>
                   </div>
                   
-                  <div class="col-md-12">
+                  <div class="col-md-12 form-group noPadding">
                      	
                     <table>
                        <thead> 
@@ -423,7 +425,7 @@
                   
             </div>
             
-             <div class="col-md-12" style="margin-top:20px;">
+             <div class="col-md-12 noPadding" style="margin-top:20px;">
                      	
             <div class="col-md-8">
                 <h1 class="pageHead noBorder">Bowling Status</h1>
@@ -441,7 +443,7 @@
                     </div>
                   </div> -->
                   
-                  <div class="col-md-12">
+                  <div class="col-md-12 form-group noPadding">
                      	
                     <table>
                        <thead> 

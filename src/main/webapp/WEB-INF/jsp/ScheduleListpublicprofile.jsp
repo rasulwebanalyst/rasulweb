@@ -13,7 +13,8 @@
 <meta name="author" content="">
 
 <title>Cricket Social</title>
-
+        <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
  <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
  
 <!-- Bootstrap Core CSS -->
@@ -183,6 +184,7 @@ var formatAMPMTime = function(date) {
 								</div>  
 								
 								<!--  </h1> -->
+								<div class="form-group">
 								<c:choose>
 								 <c:when test="${empty tournamentList}">
 								 <table  id="scheduleTable" style="font-size: 12px;">
@@ -201,12 +203,13 @@ var formatAMPMTime = function(date) {
 										</tr>
 									</thead>
 									</table>
+									</div>
 									<span id="errorSpan"  class="noContentDivRed">No schedules available for this week</span>
 									
 								 </c:when>
 								 
 								 <c:otherwise>
-								 
+								 <div class="form-group">
 								 <table id="scheduleTable" style="font-size: 12px;">
 									<thead>
 										<tr>
@@ -329,6 +332,7 @@ var formatAMPMTime = function(date) {
 										</c:forEach>
 									</tbody>
 								</table>
+								</div>
 								 	<span id="errorSpan" style="color:red"></span>
 								 </c:otherwise>
 								 </c:choose>

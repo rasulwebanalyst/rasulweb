@@ -12,7 +12,8 @@
     <meta name="author" content="">
 
     <title>Cricket Social</title>
-
+        <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
     <!-- Bootstrap Core JavaScript -->
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/circketsocial/validationfunction.js"></script>
@@ -50,7 +51,8 @@
                   </c:forEach>
                   </h1>
                   
-                  <div class="form-group col-md-12 noPadding">
+                  <div class="col-md-12 noPadding">
+                  <div class="form-group">
                   <c:choose>
                   <c:when test="${BoardUmpireListSize == 0 }">
                   <table id="tableId" >
@@ -73,10 +75,11 @@
                                          
                                            </tbody>
                                            </table>
+                                           </div>
                                              <span class="noContentDivRed">No Umpires Available Now</span>
                   </c:when>
                   <c:otherwise>
-                  
+                  <div class="form-group">
                   <table id="tableId" >
                                     	<thead>
                                         	<tr>
@@ -176,6 +179,7 @@
                                            </tbody> 
                                           
                                     </table>
+                                    </div>
                   
                   
                   </c:otherwise>

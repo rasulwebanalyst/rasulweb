@@ -30,14 +30,15 @@
 
       
                   
-            <div class="col-md-10 pull-right">
+            <div class="col-md-10 pull-right rightnone">
       			<div class="col-md-12 whiteBox">
                 	<h1 class="">Teams</h1>
                        </div>
-                       <div class="form-group">
+
                        <c:forEach items="${TeamdetailsResponse}" var="team">
                        <div class="col-md-12 whiteBox" style="font-size: 12px;">
                        <span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament Name : ${team.tournamentName}</span>
+                       <div class="form-group">
                       <table class="table table-striped table-bordered" cellspacing="0" width="100%" id="example">
                       <!-- <thead> 
                         <tr>

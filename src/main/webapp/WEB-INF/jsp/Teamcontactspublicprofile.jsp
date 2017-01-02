@@ -412,6 +412,7 @@ var leaguename="${BoradInfo.boardName}"
     
     
     var yHeight=100;
+    var Gapdiff=0;
 	    for(var i in teamObj)
 		  {
 		  var teamsingleObj=teamObj[i];
@@ -454,25 +455,36 @@ var leaguename="${BoradInfo.boardName}"
 	 					
 	 					 
 	 					  
-	 					
-	 					/* var theight=parseInt(teamsingleObj.length)*20+yHeight+parseInt(32); */
-	 					
-	 					/* doc.text(10,theight,"EndTable :"+i); */
-	 					/* console.log(parseInt(yHeight)+parseInt(10)); */
-	 					/* doc.text(10,parseInt(yHeight)+parseInt(32)+parseInt(20),"EndTable :"+i); */
-	 					
-	 					 /*  if(teamsingleObj.length<3)
-	 						  {
-								    yHeight=parseInt(teamsingleObj.length)*40+yHeight;
-	 						  }else if(teamsingleObj.length>=3)
-	 							  {
-	 							 	yHeight=parseInt(teamsingleObj.length)*40+yHeight;
-	 							  } */
 	 							  
+	 					 /* var yHeight=parseInt(teamsingleObj.length)*20+yHeight+parseInt(82); */
+	 					  
+	 					 if(parseInt(teamsingleObj.length)*20+yHeight+parseInt(42)>=730)
+	 								  {
+	 								 Gapdiff=50;
+	 								  }else{
+	 									 Gapdiff=0;
+	 								  }
 	 							  
-	 					 var yHeight=parseInt(teamsingleObj.length)*20+yHeight+parseInt(82);
+	 							  yHeight=parseInt(teamsingleObj.length)*20+yHeight+parseInt(82);
+	 							  
 	 					  
 	 					  
+	 					var pageHeight= parseInt(doc.internal.pageSize.height);
+	 					
+	 					if (yHeight>=pageHeight)
+	 					{
+	 						var diff=yHeight-pageHeight;
+	 						yHeight=diff+parseInt(42)+Gapdiff;
+	 						/* console.log("yHeight :"+yHeight);
+	 						console.log("pageHeight :"+pageHeight);
+	 						console.log("diff :"+diff);
+	 						
+	 						console.log("After Resize :"+yHeight) */
+	 						if(diff <10)
+ 							{
+ 							doc.addPage();
+ 							}
+	 					}  
 	 					
 	 					
 	 					  

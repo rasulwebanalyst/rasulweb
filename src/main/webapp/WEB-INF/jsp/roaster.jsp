@@ -2,9 +2,7 @@
 <html lang="en">
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
- <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
- <!-- responsive css -->
- <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +10,9 @@
     <meta name="author" content="">
 
     <title>Cricket Social</title>
-    
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+ <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath }/js/jspdf.min.js"></script>
     <script src="${pageContext.request.contextPath }/js/jspdf.plugin.autotable.js"></script>
 
@@ -218,13 +218,13 @@ var rosterrowObj=[];
                 <c:choose>
                 <c:when test="${empty RoasterResponseById }">
                 	
-                <div class="col-md-10 pull-right rosterBlock">
+                <div class="col-md-10 pull-right rosterBlock rightnone">
                  <div class="col-md-12 whiteBox">
                  	No Rosters are available.
                  </div>
                  </div>
                  
-                 	  <div class="col-md-10 pull-right rosterBlock">
+                 	  <div class="col-md-10 pull-right rosterBlock rightnone">
                  <div class="col-md-12 whiteBox">
           			
           			
@@ -241,7 +241,7 @@ var rosterrowObj=[];
                      
                 </c:when>
                 <c:otherwise>
-                	<div class="col-md-10 pull-right rosterBlock">
+                	<div class="col-md-10 pull-right rosterBlock rightnone">
                  <div class="col-md-12 whiteBox">
           			
           			
@@ -266,7 +266,7 @@ var rosterrowObj=[];
                   </div>
                   
                   
-                  <div class="col-md-10 pull-right rosterBlock">
+                  <div class="col-md-10 pull-right rosterBlock rightnone">
                   <div class="col-md-12 whiteBox rosterDetail">
                         	<div class="media">
                                <c:choose>
@@ -1370,7 +1370,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
                    {title: "First Name", dataKey: "firstName"},
                    {title: "Last Name", dataKey: "lastName"},
                    {title: "Profile Created On", dataKey: "accountCreateddate"},
-                   {title: "Added to Roster On", dataKey: "addedrosterdate"}
+                   {title: "Profile Added to Roster On", dataKey: "addedrosterdate"}
                ];
  			   
  			   

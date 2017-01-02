@@ -1351,7 +1351,8 @@ function getTeamAroundYou(pageNum, numberOFRecords){
 	    doc.text(110,100,": "+Rostername);
 	    doc.text(10,130,"Roster Affiliated to  ");
 	   doc.text(110,130,": "+Affliatedto);
-	    doc.text(10,160,"Roster Created Date  ");
+	    /* doc.text(10,160,"Roster Created Date  "); */
+	    doc.text(10,160,"Roster Creation Date  ");
 	    doc.text(110,160,": "+RosterCreateddate);
 	   
 	   
@@ -1368,8 +1369,8 @@ function getTeamAroundYou(pageNum, numberOFRecords){
                    {title: "S.No", dataKey: "serialno"},
                    {title: "First Name", dataKey: "firstName"},
                    {title: "Last Name", dataKey: "lastName"},
-                   {title: "Profile Created Date", dataKey: "accountCreateddate"},
-                   {title: "Added to Roster Date", dataKey: "addedrosterdate"}
+                   {title: "Profile Created On", dataKey: "accountCreateddate"},
+                   {title: "Profile Added to Roster On", dataKey: "addedrosterdate"}
                ];
  			   
  			   

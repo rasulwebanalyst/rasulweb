@@ -105,7 +105,7 @@
 
     <c:forEach var="tournament" items="${TournamentPointTableList}">
     <c:if test="${not empty tournament.tournamentId}">
-        <div class="col-md-12 whiteBox">
+        <div class="col-md-12 whiteBox" style="font-size: 12px;">
 
             <span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament
 			<!-- <div class="form-group"> -->									Name : ${tournament.tournamentName}</span> <br>

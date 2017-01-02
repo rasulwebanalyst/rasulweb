@@ -4,7 +4,15 @@
 <html lang="en">
 
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
- <title>Cricket Social</title>
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Cricket Social</title>
+        <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
   <style>
 
 table{
@@ -193,6 +201,7 @@ var formatAMPMTime = function(date) {
                         	</div> 
                             <div class="col-md-12 noPadding MyScor-table" style="clear: both;">
                            <h5>First Innings</h5>
+                           <div class="form-group">
                             <c:choose>
                                 <c:when test="${firstInningsBattingPlayerSize == 0 }">
                                 <table>
@@ -302,7 +311,7 @@ var formatAMPMTime = function(date) {
                                 </tbody>
                             </table>
                                 
-                                
+                                </div>
                                 </c:otherwise>
                                 </c:choose>
 	
@@ -394,7 +403,7 @@ var formatAMPMTime = function(date) {
                          	                        </c:choose>
                          
                             <div class="col-md-12 noPadding MyScor-table">
-                            
+                            <div class="form-group">
                              <c:choose>
                                 <c:when test="${firstInningsBowlingPlayerSize == 0 }">
                                 <table>
@@ -468,6 +477,7 @@ var formatAMPMTime = function(date) {
                                 </tbody>
                                 
                             </table>
+                            </div>
                              </c:otherwise>
                                 </c:choose>
                                 
@@ -501,6 +511,7 @@ var formatAMPMTime = function(date) {
                                 
                               <div class="col-md-12 noPadding MyScor-table">
                               <h5>Second Innings</h5>
+                              <div class="form-group">
                               <c:choose>
                              
                                 <c:when test="${SecondInningsBattingPlayerSize == 0 }">
@@ -607,7 +618,7 @@ var formatAMPMTime = function(date) {
                                     
                                 </tbody>
                             </table>
-                                
+                                </div>
                                 
                                 </c:otherwise>
                                 </c:choose>
@@ -714,6 +725,7 @@ var formatAMPMTime = function(date) {
                          	                        </c:choose>
                          
                          <div class="col-md-12 noPadding MyScor-table">
+                         <div class="form-group">
                             
                              <c:choose>
                                 <c:when test="${SecondInningsBowlingPlayerSize == 0 }">
@@ -791,7 +803,7 @@ var formatAMPMTime = function(date) {
                             
                             </c:otherwise>
                             </c:choose>
-                            
+                             </div>
                             	
                             
                             

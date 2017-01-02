@@ -123,6 +123,7 @@ import com.cricketsocial.bean.response.ForgotPasswordResults;
 import com.cricketsocial.bean.response.HubResponse;
 import com.cricketsocial.bean.response.LoginResponse;
 import com.cricketsocial.bean.response.MailInvitaionResponse;
+import com.cricketsocial.bean.response.MatchesAroundYouResponse;
 import com.cricketsocial.bean.response.ResponseType;
 import com.cricketsocial.bean.response.ResponseTypeSchedule;
 import com.cricketsocial.bean.response.RoasterResponseById;
@@ -41195,6 +41196,44 @@ public ModelAndView BoardInfoPublic(@PathVariable String bid, HttpServletRequest
 		e.printStackTrace();
 	}
 	return model;
+}
+
+@RequestMapping(value="/leagueMatchesaaroundyou",method=RequestMethod.POST)
+public @ResponseBody List<MatchesAroundYouResponse> matchesaround(HttpServletRequest req,@RequestBody String latlang)
+{
+	String matches="Success";
+	System.out.println("Inside league matches around you");
+	System.out.println("The latlang of users :"+latlang);
+	List<MatchesAroundYouResponse> matcheslist=new ArrayList<MatchesAroundYouResponse>();
+	try{
+		
+		Gson gson=new Gson();
+		
+		hubReq=new HubRequest();
+		hubReq.setMsgType(77);
+		ModelMap map=new ModelMap();
+		map.put("latlang", latlang);
+		map.put("startNode", "0");
+		map.put("endNode", "20");
+		map.put("category", "Matches");
+		
+		hubReq.setRequestParam(map);
+		
+		String res=cricketSocialRestTemplateService.userRegistration(hubReq);
+		if(res !=null)
+		{
+			HubResponse response=gson.fromJson(res, HubResponse.class);
+			if(response.getResults().getSearchResponse().getTournamentScheduler() != null)
+			{
+				matcheslist=response.getResults().getSearchResponse().getTournamentScheduler();
+			}
+		}
+		System.out.println("Response : :"+res);
+	}catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return matcheslist;
 }
 
 

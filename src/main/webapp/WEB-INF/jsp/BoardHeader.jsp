@@ -6,6 +6,9 @@
     <!-- Custom CSS -->
     <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
 
+         <!-- Responsive CSS -->
+    <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
+    
 	<!--Date picker-->
     <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
 

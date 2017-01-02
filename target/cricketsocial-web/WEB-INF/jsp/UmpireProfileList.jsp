@@ -37,7 +37,7 @@
 
       
       <div class="col-md-10">
-      		<div class="col-md-12 whiteBox">
+      		<div class="col-md-12 whiteBox" style="font-size: 12px;">
 		          <!-- <h1 class="">Umpire List  <button type="submit" class="btn btn-default dBtn pull-right" onclick="createUmpireFunction()">Create Umpire</button></h1> -->
                   <h1 class="">Umpire List  
                   
@@ -119,8 +119,29 @@
                                                 </div>
                                             </td>
                                            <td>${brdUmpire.addressLine1} ${brdUmpire.addressLine2} ${brdUmpire.city} ${brdUmpire.state} ${brdUmpie.country}</td>
+                                            <%-- <td>${brdUmpire.homePhone}</td> --%>
+                                            <c:choose>
+                                            <c:when test="${brdUmpire.homePhone eq null || brdUmpire.homePhone eq ''}">
+                                            <td>-</td>
+                                            </c:when>
+                                            <c:otherwise>
                                             <td>${brdUmpire.homePhone}</td>
-                                            <td>${brdUmpire.workPhone}</td>
+                                            </c:otherwise>
+                                            </c:choose>
+                                            
+                                            
+                                            <%-- <td>${brdUmpire.workPhone}</td> --%>
+                                            
+                                             <c:choose>
+                                            <c:when test="${brdUmpire.workPhone eq null || brdUmpire.workPhone eq ''}">
+                                            <td>-</td>
+                                            </c:when>
+                                            <c:otherwise>
+                                           <td>${brdUmpire.workPhone}</td>
+                                            </c:otherwise>
+                                            </c:choose>
+                                            
+                                            
                                             <td>${brdUmpire.cellPhone}</td>
                                             <td>${brdUmpire.emailId}</td>
                                             <%-- <td class="alignCenter">
