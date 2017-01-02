@@ -11,7 +11,225 @@ nav.navbar-inverse {
 
 
 /* responsive css */
+@media only screen and (min-width: 300px) and (max-width: 500px) {
+.no-padding-res {
+	padding: 0 !important;
+}
+.padding-left-res {
+	padding-left: 10px !important;
+}
+.padding-right-res {
+	padding-right: 10px !important;
+}
+.padding-res {
+	padding-left: 10px !important;
+	padding-right: 10px !important;
+}
+input.cboxBtnLeft + label {
+	padding: 0 10px !important;
+}
+ul.noOfTour li {
+	width: 100% !important;
+}
+.friendRequestsPop:after {
+	right: 73px !important;
+}
+.autoSearchBlcok.friendRequestsPop ul li {
+	width: 100%;
+}
+.friendRequestsPop.notiPopup:after {
+	right: 45px !important;
+}
+.leag-Acc .nav-tabs>li,.mybuddyBlock .nav-tabs>li {
+	width: 100% !important;
+}
+.nav-tabs>li>a {
+	border-radius: 0;
+	margin-bottom: 2px;
+}
+.leag-Acc .N-btn,.leag-Acc .Leag-Img,.leag-Acc .stared,.leag-Acc .col-md-11 {
+	width: 100% !important;
+}
+.leag-Acc .tab-pane {
+	padding: 0 !important;
+} 
+.leag-Acc .tab-content.tab-content-details {
+	float: none !important;
+	padding: 0 !important;
+	display: block;
+}
+.tab-content.tab-content-details div {
+	padding: 0 !important;
+	width: 100%;
+}
+.threebtn p {
+	width: 27% !important;
+} 
+.N-btn p {
+    background: #fff;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto !important;
+    margin-top: 8px !important;
+}
+.rosterDetail .media-body .btn {
+	width: 100% !important;
+}
+.player-entry {
+	width: 54% !important;
+}
+.statusUpdateBox .buluback .drop {
+	float: none !important;
+    margin-right: 0 !important;
+    padding: 0;
+}
+.clockpicker {
+    width: 100% !important;
+}
+ul.logMenus li:last-child {
+	 padding-top: auto !important; 
+     margin-left: auto !important;
+}
+.Affi_tbox .affTbox {
+	width: auto !important;
+}
+.tab-pane .whiteBox {
+	display: block;
+}
+.matchBlock .ScoreBtns {
+	float: right;
+}
+.matchBlock h2 .lastUpdate {
+	float: none !important;
+	display: block;
+}
+.laeguesBlock.buddysBlock {
+	background: #ebebeb;
+}
+.laeguesBlock.buddysBlock .media a {
+	display: table-cell;
+	vertical-align: middle;
+	
+}
+.statusUpdateBox p {
+	width: 100% !important;
+}
+.cube {
+	width: 32% !important;
+	margin: 0 !important;
+}
+.leag-Acc {
+	padding: 0 !important;
+}
+.userName {
+	margin-top: -53px !important;
+}
+}
 @media only screen and (min-width: 300px) and (max-width: 768px) {
+.tc, .tc a {
+	color: #111;
+	position: unset;
+}
+.popupDiv .box {
+	width: 93% !important;
+}
+.userName {
+	width: 100%;
+}
+.owner {
+	font-size: 11px;
+	float: none !important;
+}
+.abil,.adjHei {
+	width: 100% !important;
+}
+.adjHei {
+	clear: both;
+}
+.abil .width1 {
+	width: 100% !important;
+}
+.PG-Visi {
+	clear: both;
+}
+ul.nav li.myBoard {
+	position: unset;
+}
+ul.nav li.myBoard ul.dropdown-menu {
+	width: 90%;
+}
+ul.nav li.myBoard ul.dropdown-menu li a {
+    width: 90%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.selectdiv {
+	z-index: 99 !important;
+}
+body.cs-dboard .cs-view-list {
+	width: 100% !important;
+}
+.txt-flow {
+	width: 64% !important;
+	margin-right: 10px !important;
+} 
+ul.leftMenu li {
+    background: #fff none repeat scroll 0 0;
+    padding: 10px 6px !important;
+    width: 70% !important;
+    margin: 0 auto !important;
+    margin-bottom: 1px !important;
+    float: none !important;
+    height: 40px;
+}
+.sidebar-container {
+	margin: 10px !important;
+}
+.feedBlock .media {
+	position: relative;
+}
+.feedBlock.whiteBox .media-left {
+	display: block !important;
+}
+.feedBlock .headRight {
+	position: absolute;
+    right: 0;
+    top: 0;	
+}
+.fb_iframe_widget iframe {
+	width: 100% !important;
+} 
+.fb_iframe_widget_fluid {
+	display: none !important;
+}
+.loginMiddleBlock .loginRight {
+	width: 90%;
+	float: none !important;
+	margin: 0 auto;
+	clear: both;
+}
+.loginMiddleBlock h1 {
+	font-size: 20px;
+}
+.loginMiddleBlock h2 {
+ 	font-size: 14px;
+}
+.loginMiddleBlock .loginRight .nav>li>a {
+    padding: 6px 16px;
+    margin-right: 5px;
+    font-size: 13px;
+}
+.loginMiddleBlock {
+	margin-top: 15px;
+}
+.loginMiddleBlock {
+	margin-bottom: 20px;
+}
+.pluginSkinLight table.uiGrid._51mz {
+	width: 100% !important;
+}
 .form-group {
 	overflow: auto;
 }
@@ -23,14 +241,28 @@ nav.navbar-inverse {
     top: 7px;
     z-index: 9999;  
 }
+.cs-list-team a:last-child {
+	width: 75px !important;
+	text-align: right;
+}
+.form-group table tr td img {
+    display: block;
+    margin: 0 auto !important;
+    width: 45px !important;
+    float: none;
+}
+.whiteBox .selectdiv {
+	height: 35px !important;
+}
+
 }
 @media only screen and (min-width: 300px) and (max-width: 330px) {
 .navbar-header .topSearch {
     width: 100% !important;
-    margin: 10px;
+    margin: 7px;
 }
 .navbar-header .topSearch input {
-    width: 87% !important;
+    width: 85% !important;
 }
 }
 @media only screen and (min-width: 300px) and (max-width: 380px) {
@@ -44,7 +276,7 @@ ul.leftMenu {
 	width: 76%;
 }	
 ul.leftMenu li {
-	padding: 12px 0 12px 12px !important;
+	padding: 12px !important;
 	height: auto !important;
 }
 .leftMenu2 {
@@ -61,7 +293,7 @@ ul.logMenus {
 	left: 0 !important;
 }
 ul.logMenus li {
-	padding: 10px 0;
+	padding: 2px 0;
 }
 ul.dropdown-menu.logMenus li a:hover {
 	color: #0e2b3e !important;	
@@ -72,7 +304,75 @@ ul.dropdown-menu.logMenus li a:hover {
 
 }
 
-@media only screen and (min-width: 300px) and (max-width: 500px) {
+@media only screen and (min-width: 300px) and (max-width: 768px) {
+.pull-right.rightnone {
+	float: none !important;
+}
+.MyScor-table {
+	border-bottom: none;
+}
+#umpireTableId {
+	padding: 0;
+}
+.whiteBox {
+	width: 100% !important;
+}
+.pLUpdatedImg input {
+	display: inline;
+}
+.selectdiv div {
+    line-height: 2 !important;
+    padding: 0 !important;
+    height: 23px !important;
+    margin: 0 !important;
+}
+
+.friendRequestsPop.autoSearchBlcok {
+	top: 47px !important;
+	margin-left: 0 !important;
+}
+.createschedulError {
+	margin-left: 0;
+}
+.radioBox label span {
+	float: left;
+	margin: 0 5px 0 0 !important;
+}
+
+.middleContBlock .pageRightBlock {
+    position: fixed !important;
+    z-index: 9999 !important;
+    padding-top: 130px !important;
+    height: 100% !important;
+    top: 0px !important;
+    background: rgba(0,0,0,0.7);
+    width: 100%;
+    left: 0;
+    overflow: auto;
+}
+.collapse.mainMenu.navbar-collapse {
+	position: relative;
+    width: 100%;
+}
+.mainMenu .more {
+	color: #fff;
+    cursor: pointer;
+    font-size: 40px;
+    line-height: 9px;
+    right: 35px;
+    z-index: 9999999;
+    top: 0px;
+    position: absolute;
+    margin-top: 0;
+    padding: 0;
+}
+.mainMenu ul.topNav {
+	margin: 2px 30px 2px -20px !important;
+	position: relative;
+}
+.loginMiddleBlock .loginLeft {
+	display: none;
+}
 .whiteBox.rosterDetail .media-body {
     display: block;
     overflow: visible;
@@ -99,7 +399,7 @@ ul.dropdown-menu.logMenus li a:hover {
 	width: 80% !important;
 }
 #upload_link {
-    float: right !important;
+    float: none;
 }
 .whiteBox .h1Sbox {
     display: block;
@@ -140,26 +440,38 @@ ul.dropdown-menu.logMenus li a:hover {
 .sidebar-container.widget-MAU {
 	margin: 10px;
 }
+.autoComplete.umpireautocomplete ul {
+	position: fixed !important;
+	width: 85% !important;
+    bottom: 64px !important;
+    top: auto !important;
+}
 .autoComplete ul {
-	position: unset !important;
+	width: 90% !important;
+	top: 76px;
 }
 #memberMainDIV button {
     background-color: #00a5e7;
     border-color: #00a5e7;
     color: #fff;
-    margin: 10px 0;
     width: auto !important;
 }
 #memberMainDIV {
-	text-align: center;
+	text-align: left;
 }
-
+.profileForm div {
+    margin: 10px 0;
+}
+/* 
 .pageRightBlock {
 	right: 0 !important;
 	width: 100% !important;
 	margin-right: 0 !important;
-	background: #00a5e7 !important;
-}
+	background: rgba(0,0,0,0.5) !important;
+    height: 380px;
+    overflow: auto !important;
+    margin-bottom: 10px;
+} */
 .sideMenu ul#mainMenu.leftMenu li {
 	padding: 10px;
 	margin: 0;
@@ -176,9 +488,6 @@ ul.dropdown-menu.logMenus li a:hover {
 }	
 .sideMenu ul#mainMenu.leftMenu li {
 	margin-bottom: 1px;
-}
-.mainMenu ul.topNav {
-	margin: 0px !important;
 }
 .navbar-fixed-bottom, .navbar-fixed-top {
 	position: unset !important;
@@ -225,10 +534,10 @@ ul.topNav li i {
     font-size: 13px !important;
 }
 .topSearch {
-    width: 66% !important;
+    width: 100% !important;
 }
 .topSearch input {
-    width: 70% !important;
+    width: 88% !important;
 }
 li.myBoard ul.logMenus {
 	left: 0 !important;
@@ -240,36 +549,44 @@ ul.logMenus {
 } 
 ul.leftMenu {
     background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
-    height: 80%;
+    height: 100%;
     left: 0;
     margin-left: 0 !important;
     overflow: auto;
     position: fixed;
-    top: 105px;
+    top: 0;
+    padding-top: 66px !important;
     width: 100% !important;
-    z-index: 999999;
+    z-index: 999;
 }
 ul.leftMenu .leftMenu2 li {
 	height: 35px;
+	width: 100% !important;
+    padding: 6px !important;
+}
+ul.leftMenu .leftMenu2 ul {
+	margin: 0 !important;
 }
 ul.leftMenu .leftMenu2 {
 	width: 100%;
 }
-.pLUpdatedImg img {
-    display: block;
-    margin: 0 auto 10px !important;	
-    width: 30% !important;	
-}
 .pLUpdatedImg {
+	font-size: 12px;
+	font-weight: 600;
     width: 100% !important;	
+    margin-bottom: 0 !important;
+}
+.pLUpdatedImg img {
+    margin: 0 auto 10px !important;	
+    width: 13% !important;
+    height: 35px !important;	
+}
+.pLUpdatedImg i {
+	font-size: 15px !important;
+	margin-left: -5px !important;
 }
 .profileLogo {
     width: 100% !important;	
-}
-
-.Drobox {
-  
-    width: 99% !important;	
 }
 .Drobox .tBox {
 	width: 100% !important;	
@@ -294,8 +611,17 @@ ul.leftMenu .leftMenu2 {
     margin-left: 0px !important;
     margin-top: 0px !important;
 }
+
 }
 @media only screen and (min-width: 300px) and (max-width: 1000px) {
+
+.Drobox {
+	margin: 0;  
+    width: 99% !important;	
+}
+.dateandtime-holder input[type="text"] {
+	width: 38%;
+}
 a:hover {
 	text-decoration: none !important;
 }
@@ -329,24 +655,18 @@ a:hover {
 .topUmpPage .Leag-Img img {
 	margin-top: 0 !important;
 }
-.leag-Acc .N-btn {
-	width: 20% !important;
-}
-.leag-Acc .Leag-Img {
-	width: 50% !important;
-}
-.leag-Acc .stared {
-	width: 30% !important;
-}
+
 .progress-bar {
     background-color: #00a5e7 !important;
 }
 .pLUpdatedImg a {
 	color: #1f3d57;
 	font-weight: 600;
+	margin-left: 12px;
 }
 .form-group table tr td {
-	min-width: 100px;
+	min-width: 111px;
+    text-align: center;
 }
 	.whiteBox span.text-danger {
 	color: #1f3d57 !important;
@@ -387,12 +707,7 @@ a:hover {
 .leftMenu2 ul {
 	margin-left: 15px;
 }
-ul.leftMenu li {
-    background: #fff none repeat scroll 0 0;
-     margin: 0 0 1px !important;
-    padding: 10px !important;
-    width: 100% !important;
-}
+
 .leftMenu2 ul {
 	margin: 30px !important;
 }
@@ -403,18 +718,15 @@ ul.leftMenu li a {
 	width: 100% !important;
 }
 .form-group {
-	overflow: scroll;
+	overflow-x: scroll;
+	clear: both;
 }
 .middleContBlock .whiteBox {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    margin: 4px 0 0 0 !important;
     width: 100% !important;
 }
 .topSearch {
     display: block !important;
-}
-.middleContBlock .pull-right {
-	float: none !important;
 }
 .pLUpdatedImg {
 	display: inline-block !important;	
@@ -426,10 +738,10 @@ ul.leftMenu li a {
 	position: relative;
 }
 .autoSearchBlcok {
-    bottom: -259px;
-    margin-left: 111px !important;
-    margin-top: 0 !important;
-    width: 54% !important;
+    top: 87px;
+    margin-left: 10px !important;
+    margin-top: 5px !important;
+    width: 95% !important;
     z-index: 9;
 }
 .topNav li.mobSearchIcon {
@@ -476,5 +788,14 @@ ul.leftMenu {
     top: -43px;
     width: 100% !important;
     z-index: 9;
+}
+.leag-Acc .N-btn {
+	width: 20% !important;
+}
+.leag-Acc .Leag-Img {
+	width: 50% !important;
+}
+.leag-Acc .stared {
+	width: 30% !important;
 }
 }

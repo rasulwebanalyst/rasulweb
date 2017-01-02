@@ -719,43 +719,43 @@
 				var phoneNumber=$("#"+userId+"phoneNumber").val();
 				
 				
-				if(email !=null && email != "")
+				if(email !=null && email != "" && email != "undefined")
 					{
 				$("#emailId").val(email);
 					}
 				
-				if(address1 !=null && address1 != "")
+				if(address1 !=null && address1 != "" && address1 != "undefined")
 				{
 			$("#address1").val(address1);
 				}
-				if(address2 !=null && address2 != "")
+				if(address2 !=null && address2 != "" && address2 != "undefined")
 				{
 			$("#address2").val(address2);
 				}
-				if(city !=null && city != "")
+				if(city !=null && city != "" && city != "undefined")
 				{
 			$("#city").val(city);
 				}
-				if(state !=null && state != "")
+				if(state !=null && state != "" && state != "undefined")
 				{
 			$("#state").val(state);
 				}
-				if(country !=null && country != "")
+				if(country !=null && country != "" && country != "undefined")
 				{
 			$("#country").val(country);
 				}
 				
-				if(zipcode !=null && zipcode != "")
+				if(zipcode !=null && zipcode != "" && zipcode != "undefined" && zipcode !="null")
 				{
 			$("#zipcode").val(zipcode);
 				}
-				if(phoneNumber !=null && phoneNumber != "")
+				if(phoneNumber !=null && phoneNumber != "" && phoneNumber != "undefined")
 				{
 			$("#cellPhone").val(phoneNumber);
 				}
 				
 				
-				if(countryCode !=null && countryCode != "")
+				if(countryCode !=null && countryCode != "" && countryCode != "undefined")
 				{
 			$("#areaCodeCell").val(countryCode);
 				}

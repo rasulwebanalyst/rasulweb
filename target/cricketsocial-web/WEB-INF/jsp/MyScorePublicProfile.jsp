@@ -9,7 +9,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cricket Social</title>
-
+      <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 </head>
 <body>
 
@@ -65,7 +66,7 @@
 
       
                   
-            <div class="col-md-10 pull-right">
+            <div class="col-md-10 pull-right rightnone">
       			<div class="col-md-12 whiteBox">
                 
                 
@@ -241,6 +242,7 @@
                                 </div>
                          </div> --%>
                          <div class="col-md-12 noPadding MyScor-table">
+                         <div class="form-group">
                        <c:choose>  <c:when test="${battingPerformanceListSize eq 0 }">
                        <table id="battingTable">
                             	<thead>
@@ -261,6 +263,7 @@
                                     </tr>
                                 </thead>
                                </table>
+                               </div>
                                 <div id="battingNoData" class="noContentDivRed">No Details Available</div>
                                 <button class="btn btn-default dBtn pull-right lodbtn" id="loadmoreBatings" onclick="loadMoreBattings()" style="display: none;">LOAD MORE</button>   
                               
@@ -269,6 +272,7 @@
                        </c:when>
                        
                        <c:otherwise>
+                        <div class="form-group">
                        <table id="battingTable">
                             	<thead>
                                 	<tr>
@@ -345,13 +349,14 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
+                            </div>
                             <div id="battingNoData" class="noContentDivRed" style="display: none;">No Details Available</div>
                          	<button class="btn btn-default dBtn pull-right lodbtn" id="loadmoreBatings" onclick="loadMoreBattings()">LOAD MORE</button>
                        </c:otherwise>
                          
                          </c:choose>
                          	
-                         
+                         </div>
                          </div>
                          
                           
@@ -403,7 +408,8 @@
                                     <div class="out">Years</div>    
                                 </div>
                          </div> --%>
-                         <div class="col-md-12 noPadding MyScor-table">
+                         <div class="col-md-12 noPadding MyScor-table" style="clear: both;">
+                         <div class="form-group">
                          	
                          	<c:choose>  <c:when test="${bowlingPerformanceListSize eq 0 }">
                          	<table id="bowlingTable">
@@ -474,6 +480,7 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
+                           </div>
                             <div class="noContentDivRed" id="noBowlingData" style="display: none;">No Details Available</div>
                          	<button class="btn btn-default dBtn pull-right lodbtn" id="loadmoreBowl" onclick="loadMoreBowlings()">LOAD MORE</button>
                        </c:otherwise>
@@ -517,7 +524,7 @@
                         
                             	<div class="col-md-12 noPadding AchHead">
                                 	<!-- <h4>ODI Series Match Record</h4> -->
-                                	
+                                	<div class="form-group">
                                 	<c:choose>  <c:when test="${achievementsListSize eq 0 }">
                          	<table id="achievementsTable">
   <thead>
@@ -580,6 +587,7 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
+                            </div>
                             <div id="noAcheivementData" class="noContentDivRed" style="display: none;">No Details Available</div>
                          	<button class="btn btn-default dBtn pull-right lodbtn" id="loadmoreAchiev" onclick="loadMoreAchievements()">LOAD MORE</button>
                        </c:otherwise>

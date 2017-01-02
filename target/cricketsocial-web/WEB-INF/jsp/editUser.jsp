@@ -98,7 +98,7 @@ var imageValidate=1;
                               <input type="hidden" id="oldLname" name="oldLname" value="${UserProfileOBJ.lastName}">
                               
 							       <div class="col-md-6 no-padding">
-							       <div class="col-md-4 padding-left">
+							       <div class="col-md-4 padding-left padding-left-res">
 							       <label class="log-dt-lab" for=""><span style="color:red">*</span>DOB</label>
 							       <select class="log-dt-holder" id="dobMonth" name="dobMonth">
 							       <option value="01">Jan</option>
@@ -121,8 +121,8 @@ var imageValidate=1;
 	       <label class="log-dt-lab" for=""> <span style="color:red"></span></label>
             <input class="log-dt-holder" type="text" style="margin-top: 4px;" placeholder="Date(dd)" id="dobDate" name="dobDate" onfocus="numberCheckDobDate(this)" onblur="numberCheckDobDate(this)"  value="${date }">
 	             
-	       </div>
-	       <div class="col-md-4 padding-right">
+	       </div> 
+	       <div class="col-md-4 padding-right padding-right-res">
 	       <label class="log-dt-lab" for=""><span style="color:red"></span></label>
             <input class="log-dt-holder" style="margin-top: 4px;" type="text" placeholder="Year(yyyy)" id="dobYear" name="dobYear" onfocus="numberCheckDobYear(this)" onblur="numberCheckDobYear(this)" value='${year}'>	            
 	       </div>

@@ -9,6 +9,8 @@
 <meta name="author" content="">
 <title>Cricket Social</title>
 <link href="${pageContext.request.contextPath}/css/dataTables.bootstrap.min.css" rel="stylesheet">
+     <!-- Responsive CSS -->
+    <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 <!-- jQuery -->
 <script src="js/jquery.js"></script>
 <!-- Bootstrap Core JavaScript -->
@@ -37,7 +39,7 @@
 	<%@ include file="BoardFanMenu.jsp" %>		
       
                   
-            <div class="col-md-10 pull-right">
+            <div class="col-md-10 pull-right rightnone">
       			<div class="col-md-12 whiteBox">
                 	<h1 class="">Teams</h1>
                       </div> 
@@ -113,6 +115,7 @@
                  <c:forEach items="${TeamdetailsResponse}" var="team">
                        <div class="col-md-12 whiteBox" style="font-size: 12px;">
                        <span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament Name : ${team.tournamentName}</span>
+                       <div class="form-group">
                        
                       <table class="table table-striped table-bordered" cellspacing="0" width="100%" id="example">
                      <!--  <thead> 
@@ -155,7 +158,7 @@
                         
                     </tbody>
                  </table>
-                 
+                 </div>
             </div>
             </c:forEach>
             </div>

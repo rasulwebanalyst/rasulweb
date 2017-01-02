@@ -10,7 +10,8 @@
     <meta name="author" content="">
 
     <title>Cricket Social</title>
-
+       <!-- responsive css -->
+	 <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -146,13 +147,13 @@
                 	<%@ include file="BoardPublicProfileSideMenu.jsp" %>
                      
                      <%@ include file="BoardFanMenu.jsp" %> 
-                <div class="col-md-10 pull-right rosterBlock">
+                <div class="col-md-10 pull-right rosterBlock rightnone">
                  <div class="col-md-12 whiteBox">
                  	No Rosters are available.
                  </div>
                  </div>
                  
-                 	  <div class="col-md-10 pull-right rosterBlock">
+                 	  <div class="col-md-10 pull-right rosterBlock rightnone">
                  <div class="col-md-12 whiteBox">
           			
           			
@@ -168,7 +169,7 @@
                 <c:otherwise>
                    <%@ include file="BoardPublicProfileSideMenu.jsp" %>
                 <%@ include file="BoardFanMenu.jsp" %> 
-                	<div class="col-md-10 pull-right rosterBlock">
+                	<div class="col-md-10 pull-right rosterBlock rightnone">
                  <div class="col-md-12 whiteBox">
           			
           			
@@ -192,7 +193,7 @@
                   </div>
                   
                   
-                  <div class="col-md-10 pull-right rosterBlock">
+                  <div class="col-md-10 pull-right rosterBlock rightnone">
                   <div class="col-md-12 whiteBox rosterDetail">
                         	<div class="media">
                                  <c:choose>
@@ -306,6 +307,7 @@
                                 </div>
                                 <div id="collapseOne" class="panel-collapse collapse">
                                     <div class="panel-body">
+                                    <div class="form-group">
                                     
                                     	<table>
                                     	<thead>
@@ -358,7 +360,7 @@
                                       			<div>No Records are there</div>
                                       		</c:otherwise>
                                       	</c:choose>
-                                      	
+                                      	</div>
                                     </div>
                                 </div>
                             </div>
@@ -369,7 +371,7 @@
                                 </div>
                                 <div id="collapseTwo" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                       	
+                                       	<div class="form-group">
                                         <table>
                                     	<thead>
                                         	<tr>
@@ -413,6 +415,7 @@
                                            
                                           
                                     </table>
+                                    </div>
 										<c:choose>
                                       		<c:when test="${ not empty BowlingPerformance}">
                                       					
