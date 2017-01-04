@@ -745,7 +745,7 @@
 			$("#country").val(country);
 				}
 				
-				if(zipcode !=null && zipcode != "" && zipcode != "undefined" && zipcode !="null")
+				if(zipcode !=null && zipcode != "" && zipcode != "undefined")
 				{
 			$("#zipcode").val(zipcode);
 				}
@@ -759,6 +759,10 @@
 				{
 			$("#areaCodeCell").val(countryCode);
 				}
+				
+				
+				
+				
 				
 			}else{
 				$('#'+textBox).val(" ");

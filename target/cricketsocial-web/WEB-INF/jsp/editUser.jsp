@@ -14,6 +14,8 @@
     <title>Cricket Social</title>
   
  <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
+ <link rel="stylesheet" href="css/token-input.css" type="text/css" />
+    <link rel="stylesheet" href="css/token-input-facebook.css" type="text/css" />
  <style type="text/css">
  
  </style>
@@ -588,16 +590,67 @@ var imageValidate=1;
                         
                          <div class="col-md-10 whiteBox pull-right">
                         <div class="form-group col-md-12 noPadding profileForm">
-                              <div class="col-md-12">
+                             <%--  <div class="col-md-12">
                                <label for="email">Cricket Teams Associated</label>
                               
                                <input type="text" class="form-control" placeholder="Cricket Teams Board" name="teamBoard" id="teamAutoCompleteTextBoxId" onkeyup="boardAutocomplete(this,'Team','ctAutoComplateDiv')" value="${UserProfileOBJ.teamboardlist[0].boardName}" />
+                               
+                               <input type="text" class="form-control" placeholder="" id="teamboardId" name="scheduler" value="">
+                               
+                               
+                              <div class="autoComplete" id="ctAutoComplateDiv" style="display:none;">
+								
+                              </div>
+                            <input type="hidden" id="teamBoardId" name="teamBoardId" value="${UserProfileOBJ.teamboardlist[0].boardId}">	       		                       	
+                          
+                                </div> --%>
+                                
+                                
+                                 <div class="col-md-12"> 
+                               
+                               <label for="email">Cricket Teams Associated</label>
+                              
+                               <%-- <input type="text" class="form-control" placeholder="Cricket Teams Board" name="teamBoard" id="teamAutoCompleteTextBoxId" onkeyup="boardAutocomplete(this,'Team','ctAutoComplateDiv')" value="${UserProfileOBJ.teamboardlist[0].boardName}" /> --%>
+                               
+                               <input type="text" class="form-control" placeholder="" id="teamboardId" name="scheduler" value="">
+                               
+                               
                               <div class="autoComplete" id="ctAutoComplateDiv" style="display:none;">
 								
                               </div>
                             <input type="hidden" id="teamBoardId" name="teamBoardId" value="${UserProfileOBJ.teamboardlist[0].boardId}">	       		                       	
                           
                                 </div>
+                                
+                               
+                                
+                                
+                                
+                                
+                                
+                                <!-- <div class="col-md-12 pageVisi1 adjust">
+              	<div class="col-md-12 noPadding abil">
+                	<div class=" col-md-3 PG-Visi wid2">
+                    <h6>Schedule Co-Ordinator</h6>
+                  </div>
+                  <div class="col-md-9 own">
+                  	<input type="text" class="form-control" placeholder="" id="schedulerId" name="scheduler" value="Thamaramurthy">
+                  </div>
+                   
+                  
+                </div>
+              </div> -->
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
                               <div class="col-md-12">
                                <label for="email">Cricket Leagues Associated</label>
                               
@@ -659,6 +712,30 @@ var imageValidate=1;
     
    <script>
    
+   
+   $(document).ready(function(){
+	   
+	   $("#teamboardId").tokenInput(ctx+"/boardSearchInUsereditteam?category=Team",{
+	    	theme: "facebook",   
+	    	onAdd: function (item) {
+	    		console.log(item.boardName)
+	    		/* schedulerArray.push(item.id);
+	    		$('#scheduerHiddenId').val(schedulerArray); */
+	    	},
+	    	onDelete: function (item) {
+	        	/* var index = schedulerArray.indexOf(item.id);
+				if (index >= 0) {
+					schedulerArray.splice( index, 1 );
+				}
+				$('#scheduerHiddenId').val(schedulerArray); */
+	    },
+	    resultsFormatter: function(item){ 
+	    	console.log(JSON.stringify(item));
+	    	return "<li>" + "<img src='" + item.boardImageURL + "' title='" + item.boardName +"' height='50px' width='50px' onerror=errorImageset(this)/>" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name'>" + item.boardName + "</div></div></li>"}
+	    /* prePopulate: arrayBoardScheduleCoordinatorList */
+	   });
+	   
+   })
    
    
    function maxNumber(evt) {
@@ -1796,6 +1873,8 @@ $(document).ready(function(){
 
    
     </script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.tokeninput.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initAutocomplete"
         async defer></script>
         <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->

@@ -210,8 +210,8 @@
            <%--  </c:otherwise>
         </c:choose> --%>
     </c:forEach>
-    </div>
-    <c:choose>
+    
+     <c:choose>
         <c:when test="${empty centueryList}">
         	<table class="css-serial" >
                         <thead>
@@ -229,6 +229,9 @@
             <div style="color: red; margin-top: 16px; text-align: center;">No Details Available</div>
         </c:when>
     </c:choose>
+    
+    </div>
+   
 
      </div> 
 </div>
@@ -392,6 +395,28 @@ function yearWiseCenturies(val) {
 					$('#SelectTournMent').val("");
 					$('#loading').hide();
 				} else {
+					
+					
+					html += '<div class="whiteBox">';
+					html += '<table class="css-serial" id="centTable"><thead><tr>';
+					html += '<th>S.No</th>';
+					html += '<th>Player Name</th>';
+					html += '<th>Score</th>';
+					html += '<th>Team Name</th>';
+					html += '<th>Team Against</th>';
+					html += '<th>Ground</th>';
+					html += '<th>Match Date</th>';
+					html += '<th>SCORE CARD</th>';
+					html += '</tr></thead>';
+					html += '</table>';
+					html +='<div style="color: red; margin-top: 16px; text-align: center;">No Details Available</div>';				
+					html += '</div>';
+					
+					$("#centTable").html(html).trigger('create');
+					$('#centTable').show();
+					$('#centTable1').hide();
+					
+					$('#loading').hide();
 			}
 		},
 		error : function(err) {

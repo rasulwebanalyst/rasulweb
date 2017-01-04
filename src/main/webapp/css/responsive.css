@@ -12,6 +12,35 @@ nav.navbar-inverse {
 
 /* responsive css */
 @media only screen and (min-width: 300px) and (max-width: 500px) {
+.feedcube .cube-holder {
+	width: 32% !important;
+}
+.form-group table {
+	width: 100%;
+}
+.form-group table tr td,.form-group table tr th {
+	font-size: 4px;
+	min-width: 0 !important;
+	width: 0;
+	padding: 0;
+}
+.form-group table tr th.botmhed p {
+	width: auto !important;
+}
+.form-group table tr th.botmhed button {
+	float: right;
+}
+.form-group table tr td a i,.form-group table tr td i {
+	font-size: 5px;
+	display: table-cell;
+}
+.form-group table tr td img {
+	width: 10px !important;
+	margin-right: 1px !important;
+}
+.form-group table tr td b {
+	font-size: 5px;
+}
 .no-padding-res {
 	padding: 0 !important;
 }
@@ -115,8 +144,8 @@ ul.logMenus li:last-child {
 .statusUpdateBox p {
 	width: 100% !important;
 }
-.cube {
-	width: 32% !important;
+.cube-holder .cube {
+	width: 100% !important;
 	margin: 0 !important;
 }
 .leag-Acc {
@@ -230,9 +259,6 @@ ul.leftMenu li {
 .pluginSkinLight table.uiGrid._51mz {
 	width: 100% !important;
 }
-.form-group {
-	overflow: auto;
-}
 .navbar-inverse .navbar-toggle {
     border-color: #00a5e7;
     background-color: #00a5e7;
@@ -245,12 +271,7 @@ ul.leftMenu li {
 	width: 75px !important;
 	text-align: right;
 }
-.form-group table tr td img {
-    display: block;
-    margin: 0 auto !important;
-    width: 45px !important;
-    float: none;
-}
+
 .whiteBox .selectdiv {
 	height: 35px !important;
 }
@@ -625,10 +646,7 @@ ul.leftMenu .leftMenu2 {
 a:hover {
 	text-decoration: none !important;
 }
-.form-group table.dispute-mgmt tr td a,.form-group table.dispute-mgmt tr td,.form-group table.dispute-mgmt tr td span,
-.form-group table.dispute-mgmt tr th {
-	font-size: 14px;	
-}
+
 .whiteBox h2 {
 	padding-left: 0px !important;
 }
@@ -664,10 +682,7 @@ a:hover {
 	font-weight: 600;
 	margin-left: 12px;
 }
-.form-group table tr td {
-	min-width: 111px;
-    text-align: center;
-}
+
 	.whiteBox span.text-danger {
 	color: #1f3d57 !important;
 }
@@ -717,10 +732,7 @@ ul.leftMenu li a {
 .leftMenu2 {
 	width: 100% !important;
 }
-.form-group {
-	overflow-x: scroll;
-	clear: both;
-}
+
 .middleContBlock .whiteBox {
     margin: 4px 0 0 0 !important;
     width: 100% !important;

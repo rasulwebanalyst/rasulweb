@@ -392,6 +392,34 @@ ol.roa-ol li {
 	font-size: 13px;
 }
 /* Tab Content */
+.sidebar-container.home-scroller {
+	width: 400px;
+	background: none;
+}
+.sidebar-container.home-scroller  .sidebar-header {
+    padding: 10px;
+    margin: 0;
+    border-bottom: none;
+}
+.sidebar-container.home-scroller  .sidebar-header a {
+}
+.sidebar-container.home-scroller .teamLogos b {
+	color: #111;
+}
+.sidebar-container.home-scroller .sidebar-list {
+	color: #111;
+	background: rgba(255,255,255,0.9);
+	margin-bottom: 3px;
+}
+#marqueecontainer{
+	position: relative;
+	min-height: 270px; /*marquee height */
+	height: 0px;
+	overflow: hidden;
+	padding: 2px;
+	border-radius: 0 0 10px 10px;
+}
+
 .loginMiddleBlock .tab-pane {
 	background: rgba(255,255,255, 0.9);
 	box-shadow: 0 0 4px rgba(0,0,0,.4);
@@ -418,7 +446,8 @@ ol.roa-ol li {
 	margin-bottom: 15px;
 }
 .loginMiddleBlock h1 {
-	color: #fff;
+	color: #111;
+    text-align: center;
 }
 .loginRight .form-group {
 	width: 48%;
@@ -4185,10 +4214,39 @@ ul.topNav li .badge {
 	color:#FFF;
 	margin-bottom:20px;
 }
-
+.feedcube .cube-holder {
+	margin-left: 1%;
+	width: 20%;
+    text-align: center;
+}
+.feedcube .cube-holder .color1 {
+	background-color: #3A7AF6;
+	border-color: #3A7AF6;
+}
+.feedcube .cube-holder .color2 {
+	background-color: #E6557C;
+	border-color: #E6557C;
+}
+.feedcube .cube-holder .color3 {
+	background-color: #00BA8B;
+	border-color: #00BA8B;
+}
+.feedcube .cube-holder .color4 {
+	background-color: #FF4344;
+	border-color: #FF4344;
+}
+.feedcube .cube-holder .color5 {
+	background-color: #627FA7;
+	border-color: #627FA7;
+}
+.feedcube .cube-holder .color6 {
+	background-color: #0C5DAF;
+	border-color: #0C5DAF;
+}
 .feedcube .cube{
-	margin:19px;
-	font-size:20px;
+	margin: 0;
+	font-size: 20px;
+	width: 100%;
 }
 .myscor{
 	

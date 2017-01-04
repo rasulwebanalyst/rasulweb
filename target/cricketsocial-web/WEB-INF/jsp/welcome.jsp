@@ -81,6 +81,7 @@ $(function(){
 		if(lat != '' && lang != ''){
 			
 			 var request= position.coords.latitude+","+position.coords.longitude;
+			 $('#loading').show();
 			
 			 $.ajax({
 				 
@@ -90,64 +91,61 @@ $(function(){
 				contentType : "application/json; charset=utf-8",
 				success : function(res)
 				{
-					/* alert(res); */
+					 /* alert(res);  */
+					var htmlco="";
+					if(res !=null)
+						{
+						
+						if(res.length !=0)
+							{
+						for(var i in res)
+							{
+							
+							var hometeam=res[i].homeTeamInfo;
+							var awayteam=res[i].awayTeamInfo;
+							
+							htmlco+="<div class='sidebar-list'>";
+							htmlco+="<a href='javascript:void(0);'>"+hometeam.boardName+"</a> vs <a href='javascript:void(0);'>"+awayteam.boardName+"</a><br> <strong>"+res[i].gameDateStr+"</strong>";
+							
+							if(res[i].status == 'InProgress')
+								{
+								htmlco+="<a class='vw-score' href='javascript:void(0);' onclick=showScoreCardInProgress('"+res[i].tournamentSchedulerId+"','"+res[i].createdBy+"')>Live Score</a>";
+								}else
+									{
+									htmlco+="<a class='vw-score' href='javascript:void(0);' onclick=showScoreCardInProgress('"+res[i].tournamentSchedulerId+"','no')>View Score</a>";	
+									}
+							
+							htmlco+="<span class='teamLogos'>";
+							htmlco+="<a href='javascript:void(0);'><img src="+hometeam.boardImageURL+"? class='teamLogo' onError='this.onerror=null;this.src=${pageContext.request.contextPath}/images/boardIcon.png;' ></a> <b>VS</b> <a href='javascript:void(0);'><img src="+awayteam.boardImageURL+"? class='teamLogo'></a>";
+							htmlco+="</span></div>"
+							}
+							}else
+								{
+								htmlco+="<div class='sidebar-list noContentDiv'>No Matches around you.</div>";		
+								}
+						}else
+							{
+						htmlco+="<div class='sidebar-list noContentDiv'>No Matches around you.</div>";	
+							}
+					
+					$("#mau").html(htmlco).trigger('create');
+					console.log(htmlco);
+					
+					
+					if(res.length !=0)
+						{
+						$("#Yesmatches").show();
+						$("#Nomatches").hide();
+						}
+					
+					
+					$('#loading').hide();
+					
 				}
 				
 			 })
 			 
 		 }
-		
-		
-		
-		
-		<%--  <!-- Start of mau -->
-         
-         <div class="sidebar-container widget-MAU">
-                     <div class="sidebar-content">
-                       <div class="sidebar-header"><a href="${pageContext.request.contextPath}/matchesAroundYou">Matches Around You</a></div>
-                       
-                            <c:choose>
-                          	<c:when test="${empty MatchesArroundYou}">
-                          		<div class="sidebar-list noContentDiv">
-                          			No Matches around you.
-                          		</div>
-                          	</c:when>
-                          	<c:otherwise>
-	                              <c:forEach items="${MatchesArroundYou}" var="match" begin="0" end="5">
-	                              <c:set var="board" value="${match.homeTeamInfo}"></c:set>
-	                               <c:set var="board1" value="${match.awayTeamInfo}"></c:set>
-	                               
-	                               <div class="sidebar-list">
-                           			<a href="${pageContext.request.contextPath}/${board.boardName }/board/${board.boardId}">${board.boardName}asdasdas</a> vs <a href="${pageContext.request.contextPath}/${board1.boardName }/board/${board1.boardId}">${board1.boardName}asdasdas</a><br> <strong>${match.gameDateStr}</strong>
-                           			
-                           			<c:choose>
-                           			<c:when  test="${match.status eq 'InProgress'}">
-                           			<a class="vw-score" href="javascript:void(0);" onclick="showScoreCardInProgress('${match.tournamentSchedulerId}','${match.createdBy}')">Live Score</a>
-                           			</c:when>
-                           			<c:otherwise>
-                           			<a class="vw-score" href="javascript:void(0);" onclick="showScoreCardInProgress('${match.tournamentSchedulerId}','no')">View Score</a>
-                           			</c:otherwise>
-                           			</c:choose>
-                                		 <span class="teamLogos">
-                             			<a href="${pageContext.request.contextPath}/${board.boardName }/board/${board.boardId}"><img src="${board.boardImageURL}?" class="teamLogo" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" ></a> <b>VS</b> <a href="${pageContext.request.contextPath}/${board1.boardName }/board/${board1.boardId}"><img src="${board1.boardImageURL}?" class="teamLogo"></a>
-                             		</span>
-                          		 </div>
-	                              		
-	                              </c:forEach>
-                          	</c:otherwise>
-                          </c:choose> 
-                      
-                     </div>
-                   </div>
-                   
-                   
-                   
-                   
-                 <!-- End of mau -->   --%>
-		
-		
-		
-		
 		
 	 }
 	 
@@ -237,6 +235,7 @@ var fbURL='110086556012641'; // QA
 
         <!-- Heading Row -->
         <div class="row">
+        <div id="Nomatches">
             <div class="col-md-6 pull-left loginLeft">
                <h1>Welcome to CricketSocial</h1>
                <div id="homeContent">
@@ -244,7 +243,7 @@ var fbURL='110086556012641'; // QA
                <ul class="login-txt">
                	<li>A Social  and Analytics platform with anchoring tools for Cricket.</li>
                	<li>One stop solution for - Players, Fans, Umpires, Coaches, Merchants, League Boards, Team Boards, Academies, Cricket Administrative Bodies and Talent Acquisition.</li>
-               	<!-- <li>Players, Fans, Umpires, Coaches, Merchants, League Boards, Team Boards, Academies, Cricket Administrative Bodies and Talent Acquisition</li> -->
+               	<li>Players, Fans, Umpires, Coaches, Merchants, League Boards, Team Boards, Academies, Cricket Administrative Bodies and Talent Acquisition</li>
                	<li>Manage Social and club Cricket professionally.</li>
                	<li>Follow live scores anywhere.</li>
                	<li>Capture all your  Cricketing Moments.</li>
@@ -253,8 +252,43 @@ var fbURL='110086556012641'; // QA
                	<li>Give your cricket dream a chance Register on CricketSocial Now.</li>
               
                </ul>
+               </div> 
+               
+               
+               
+               
+              <%--  <div class="sidebar-container widget-MAU">
+                     <div class="sidebar-content">
+                       <div class="sidebar-header"><a href="${pageContext.request.contextPath}/matchesAroundYou">Matches Around You</a></div>
+                       <div id="mau"></div>
+                           
+                      
+                     </div>
+                   </div> --%>
+        </div>
+        </div>
+                <div id="Yesmatches" style="display: none;">
+                <h1>Welcome to CricketSocial</h1>
+               <div class="col-md-6 pull-left loginLeft" style="margin-top: 96px;'">
+               <div class="sidebar-container widget-MAU home-scroller">
+                     <div class="sidebar-content">
+                       <div class="sidebar-header"><a href="${pageContext.request.contextPath}/matchesAroundYou">Matches Around You</a></div>
+                       <div id="marqueecontainer" onMouseover="copyspeed=pausespeed" onMouseout="copyspeed=marqueespeed">
+						<div id="vmarquee" style="position: absolute; width: 98%;">
+                       <div id="mau"></div>
+                           
+                      </div>
+                      </div>
+                     </div>
+                   </div>
+               
+               
+               
                </div>
+               
             </div>
+            
+            
             <!-- /.col-md-8 -->
             <div class="col-md-6 pull-right loginRight">
                
@@ -1002,8 +1036,67 @@ $(document).ready(function()
 		
 		
 		
-		
-		
 </script>
+
+<script type="text/javascript">
+
+function showScoreCardInProgress(id,bid){
+		//alert("hello");
+		if(bid == 'no')
+			{
+			displaynotification('Match not yet started',2000);
+			}else{
+		 window.location.href = "${pageContext.request.contextPath}/showScoreCardForInProgressPublicProfile/boardId/"+bid+"/matchId/"+id;
+			}
+		}
+
+</script>
+
+<script type="text/javascript">
+
+
+var delayb4scroll=2000 //Specify initial delay before marquee starts to scroll on page (2000=2 seconds)
+var marqueespeed=1 //Specify marquee scroll speed (larger is faster 1-10)
+var pauseit=1 //Pause marquee onMousever (0=no. 1=yes)?
+
+////NO NEED TO EDIT BELOW THIS LINE////////////
+
+var copyspeed=marqueespeed
+var pausespeed=(pauseit==0)? copyspeed: 0
+var actualheight=''
+
+function scrollmarquee(){
+if (parseInt(cross_marquee.style.top)>(actualheight*(-1)+(-1000))) //if scroller hasn't reached the end of its height
+cross_marquee.style.top=parseInt(cross_marquee.style.top)-copyspeed+"px" //move scroller upwards
+else //else, reset to original position
+cross_marquee.style.top=parseInt(marqueeheight)+(-500)+"px"
+}
+
+function initializemarquee(){
+cross_marquee=document.getElementById("vmarquee")
+cross_marquee.style.top=-500
+marqueeheight=document.getElementById("marqueecontainer").offsetHeight
+actualheight=cross_marquee.offsetHeight //height of marquee content (much of which is hidden from view)
+if (window.opera || navigator.userAgent.indexOf("Netscape/7")!=-1){ //if Opera or Netscape 7x, add scrollbars to scroll and exit
+cross_marquee.style.height=marqueeheight+"px"
+cross_marquee.style.overflow="scroll"
+return
+}
+setTimeout('lefttime=setInterval("scrollmarquee()",30)', delayb4scroll)
+}
+
+if (window.addEventListener)
+window.addEventListener("load", initializemarquee, false)
+else if (window.attachEvent)
+window.attachEvent("onload", initializemarquee)
+else if (document.getElementById)
+window.onload=initializemarquee
+
+
+</script>
+<style type="text/css">
+
+
+</style> 
  
 </html>

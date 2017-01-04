@@ -32,7 +32,61 @@ public class SearchResponse {
 	 private int userCount;
 	 
 	 private String serverTime;
+	 
+	 
+	 private String dob;
+	 private int manofMatchCount;
+	 private int centuryCount;
+	 private int halfCenturiesCount;
+	 private int fiveFerCount;
+	 
+	 
+	 
+	 
+	 
+	 
+	 
     
+	public String getDob() {
+		return dob;
+	}
+
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
+
+	public int getManofMatchCount() {
+		return manofMatchCount;
+	}
+
+	public void setManofMatchCount(int manofMatchCount) {
+		this.manofMatchCount = manofMatchCount;
+	}
+
+	public int getCenturyCount() {
+		return centuryCount;
+	}
+
+	public void setCenturyCount(int centuryCount) {
+		this.centuryCount = centuryCount;
+	}
+
+	public int getHalfCenturiesCount() {
+		return halfCenturiesCount;
+	}
+
+	public void setHalfCenturiesCount(int halfCenturiesCount) {
+		this.halfCenturiesCount = halfCenturiesCount;
+	}
+
+	public int getFiveFerCount() {
+		return fiveFerCount;
+	}
+
+	public void setFiveFerCount(int fiveFerCount) {
+		this.fiveFerCount = fiveFerCount;
+	}
+
 	public List<BoardProfile> getBoardProfileList() {
 		return boardProfileList;
 	}

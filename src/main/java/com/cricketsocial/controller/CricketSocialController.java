@@ -1788,6 +1788,46 @@ public ModelAndView userprofile(HttpServletRequest request)
 	}
 	
 	
+	@RequestMapping(value="/boardSearchInUsereditteam", method=RequestMethod.GET)
+
+	public @ResponseBody Object boardSearchInUsereditteam(HttpServletRequest request, @RequestParam String category, @RequestParam String q) throws CSException
+	{
+		System.out.println("request board search");
+		SearchResponse response=null;
+		HttpSession session=request.getSession();
+		Object ob=null;
+		 UUID userid=(UUID) session.getAttribute("USRID");
+		 if(userid !=null){
+			 hubReq=new HubRequest(24);
+			 hubReq.setMsgType(24);
+			
+			 ModelMap model=new ModelMap();
+			 model.put("searchQuery", q);
+			 model.put("userId", userid);
+			 model.put("boardType", category);
+			hubReq.setRequestParam(model);
+			
+			System.out.println("request hubReq"+hubReq);
+
+			 String result=cricketSocialRestTemplateService.userRegistration(hubReq);
+			 GsonBuilder builder = new GsonBuilder();
+			    Gson gson = builder.create();
+			   HubResponse hubres =gson.fromJson(result, HubResponse.class);
+			   if(hubres.getResults()!=null) {
+				   /*response=hubres.getResults().getSearchResponse();*/
+				   ob=hubres.getResults().getSearchResponse().getBoardProfileList();
+			   }else
+			   {
+				   ob=new ArrayList<SearchResponse>();
+			   }
+
+		 }
+		
+		
+		return ob;
+	}
+	
+	
 	@RequestMapping(value="/profileUpdate", method=RequestMethod.POST)
 	public ModelAndView profileUpdate(@ModelAttribute UserProfileUpdate2 userProfile, BindingResult result, ModelMap modelMap,HttpServletRequest request, Date bodDate )throws IOException
 	{
@@ -41238,35 +41278,8 @@ public @ResponseBody List<MatchesAroundYouResponse> matchesaround(HttpServletReq
 
 
 
-/*@RequestMapping(value="/testurl",method=RequestMethod.GET)
-public @ResponseBody String testurl(HttpServletRequest req){
-	try {
-		hubReq= new HubRequest();
-		hubReq.setMsgType(11);
-		ModelMap test = new ModelMap();
-		test.put("overNumber", "0");
-		test.put("bowlingRosterId", "5f41fd53-4043-4a4f-a3eb-ddc8c3bf7d5f");
-		test.put("innings", "1");
-		test.put("battingRosterId", "2f7eab3a-fd8d-4fa0-adc8-17033570cc05");
-		test.put("tournamentSchedulerId", "2ee8e04f-32c1-46c6-aba2-3cba398eed97");
-		test.put("scorerId", "462cf8c3-941a-491e-8907-f90a119c4d18");
-		hubReq.setRequestParam(test);
-		ModelMap test1 = new ModelMap();
-		test1.put("scorerId", "f61760a0-f9b4-4172-9430-137a5380c8a8");
-		test1.put("matchId", "2ee8e04f-32c1-46c6-aba2-3cba398eed97");
-		hubReq.setScorerInfo(test1);
-	
-		String res = cricketSocialRestTemplateService.userRegistration1(hubReq);
-		System.out.println("response========>"+res);
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	
-	
-	return "Sucess";
-	
-}*/
+
+
 
 
 }
