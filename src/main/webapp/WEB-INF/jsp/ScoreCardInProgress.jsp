@@ -189,6 +189,12 @@ var formatAMPMTime = function(date) {
                                 	<p class="summary" style="width: 100%;font-size: 16px;">${scoreCardList.tournamentName}</p>
                                 	<a style="width: 100%;font-size: 14px; color: #3253a8" href="${pageContext.request.contextPath}/${scoreCardList.homeTeamName }/board/${scoreCardList.homeTeamId}">${scoreCardList.homeTeamName}</a> vs <a style="width: 100%;font-size: 14px; color: #3253a8" href="${pageContext.request.contextPath}/${scoreCardList.awayTeamName }/board/${scoreCardList.awayTeamId}">${scoreCardList.awayTeamName}</a><br><br>
                                 	<b style="width: 100%;font-size: 12px;margin-top: 50px;color:red">${scoreCardList.message}</b>
+                                	
+                                	
+                                	<c:if test="${SecondInningsBattingPlayerSize == 0 && getFirstInnings.isInningsCompleted eq 'Yes'}">
+                                	<b style="width: 100%;font-size: 12px;margin-top: 50px;color:red">Innings break</b>
+                                </c:if>
+                                	
                                 	</div>
                                 	<div style="float: right; width: 50%; text-align:right;color: black;">
                                 	<span style="width: 100%;font-size: 14px; ">Match type : ${scoreCardList.gameType}</span>

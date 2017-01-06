@@ -124,8 +124,6 @@
                             <p><span>Bats </span> <strong>${SelectedPlayersInfo.player1.battingInfo}</strong></p> 
                             <p><span>Bowls  </span> <strong>${SelectedPlayersInfo.player1.bowlingInfo}</strong></p>
                             <p><span>Country  </span> <strong>${UserInfo.country}</strong></p>
-                             <p><span>Age  </span> <strong><script> document.writeln(calculateage("${UserMatchInfo.dob}"))</script></strong></p>
-                             <p><span>MOM  </span> <strong><script> ${UserMatchInfo.manofMatchCount}"</script></strong></p>
                             
                             
                             
@@ -143,6 +141,9 @@
  							</c:otherwise>
  							</c:choose>
                             </c:if>
+                            
+                            <p><span>Age  </span> <strong><script> document.writeln(calculateage("${UserMatchInfo.dob}"))</script></strong></p>
+                             <p><span>MOM  </span> <strong><script> ${UserMatchInfo.manofMatchCount}"</script></strong></p>
                             
                     	</div> 
                         

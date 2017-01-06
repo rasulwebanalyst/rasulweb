@@ -102,7 +102,21 @@
                        <c:forEach var="tournaments" items="${tournamentOfTheBoard}">
                       <div id="tournamentList" class="Cantourname">
                           	<p>${tournaments.tournamentName}</p>
+                          	
                              <button type="submit" class="btn btn-danger pull-right" onclick="cancelGameFunction('${tournaments.tournamentId}')">Cancel</button>
+                             
+                             <c:choose>
+                             <c:when test="${tournaments.gametypeinTour eq 'KnockOut'}">
+                             
+                             <button type="submit" class="btn btn-danger pull-right" style="margin-right: 12px;" onclick="EditGameFunction('${tournaments.tournamentId}','no')">Edit</button>
+                             
+                             </c:when>
+                             <c:otherwise>
+                             
+                             <button type="submit" class="btn btn-danger pull-right" style="margin-right: 12px;" onclick="EditGameFunction('${tournaments.tournamentId}','yes')">Edit</button>
+                             </c:otherwise>
+                             </c:choose>
+                             
                           </div>
                       
                       </c:forEach>
@@ -172,6 +186,23 @@
 
    
    <script>
+   
+   function EditGameFunction(id,type)
+		   {
+	   
+	   var boardId = "${boardId}";
+	   if(type == 'no')
+		   {
+		   displaynotification("Already in KnockOut match",2000);   
+		   }else
+			   {
+			  window.location.href="${pageContext.request.contextPath}/editTrophy/boardId/"+boardId+"/tournamentId/"+id; 
+			   }
+	   
+		   }
+   
+   
+   
    function cancelGameFunction(id){
 	   document.getElementById("hiddenTournamentId").value = id;
 	   $("#cancelReasonPopup").show();

@@ -84,7 +84,7 @@ var formatAMPMTime = function(date) {
                  
                  <div class="col-md-7 pageMiddleBlock">
      
-                     	<div class="col-md-12 statusUpdateBox whiteBox ">
+                     	<!-- <div class="col-md-12 statusUpdateBox whiteBox "> -->
 
                         	<!-- <h1 class="noBorder">Match Summary</h1>   -->
                             
