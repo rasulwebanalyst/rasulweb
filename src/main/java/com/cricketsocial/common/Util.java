@@ -152,7 +152,7 @@ public class Util {
 							 menu.put(8, "<a href='"+domain+"/AssignScorer/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Assign Scorer to Schedule</a>");
 							 menu.put(9, "<a href='"+domain+"/ScheduleListPubProfWithEdit/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Schedule List</a>");
 							 menu.put(10, "<a href='"+domain+"/CancelGameByDatePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Cancel Game by date</a>");
-							 menu.put(11, "<a href='"+domain+"/CancelTournamentPublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Cancel Tournment</a>");
+							 menu.put(11, "<a href='"+domain+"/CancelTournamentPublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Cancel & Edit Tournment</a>");
 							 
 							 menu.put(3, "<a href='"+domain+"/create-ground/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Create Ground</a></li>");
 							 menu.put(4, "<a href='"+domain+"/ground-list/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Ground List</a></li>");
@@ -184,7 +184,7 @@ public class Util {
 						 menu.put(8, "<a href='"+domain+"/AssignScorer/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Assign Scorer to Schedule</a>");
 						 menu.put(9, "<a href='"+domain+"/ScheduleListPubProfWithEdit/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Schedule List</a>");
 						 menu.put(10, "<a href='"+domain+"/CancelGameByDatePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Cancel Game by date</a>");
-						 menu.put(11, "<a href='"+domain+"/CancelTournamentPublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Cancel Tournment</a>");
+						 menu.put(11, "<a href='"+domain+"/CancelTournamentPublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Cancel & Edit Tournment</a>");
 						 menu.put(12, "<a href='"+domain+"/DisputeManagementPublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Dispute Management</a>");
 					 
 						 menu.put(14, "<a href='"+domain+"/teamcontactspublic/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Team Contacts</a>");
@@ -205,7 +205,7 @@ public class Util {
 				 menu.put(8, "<a href='"+domain+"/AssignScorer/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Assign Scorer to Schedule</a>");
 				 menu.put(9, "<a href='"+domain+"/ScheduleListPubProfWithEdit/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Schedule List</a>");
 				 menu.put(10, "<a href='"+domain+"/CancelGameByDatePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Cancel Game by date</a>");
-				 menu.put(11, "<a href='"+domain+"/CancelTournamentPublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Cancel Tournment</a>");
+				 menu.put(11, "<a href='"+domain+"/CancelTournamentPublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Cancel & Edit Tournment</a>");
 				 menu.put(12, "<a href='"+domain+"/DisputeManagementPublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Dispute Management</a>");
 			 
 				 menu.put(14, "<a href='"+domain+"/teamcontactspublic/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Team Contacts</a>");

@@ -89,7 +89,7 @@ var sequencNumber=0;
       
       <div class="col-md-10">
       		<div class="col-md-12 whiteBox">
-		          <h1 class="">Create Tournament / Trophy</h1>
+		          <h1 class="">Edit Tournament / Trophy</h1>
                   
                   <div class="form-group col-md-12 noPadding profileForm"><br>
                   <form id="tournamentForm"  action="${pageContext.request.contextPath}/EditTournamentDetails.htm" method="POST">
@@ -148,7 +148,7 @@ var sequencNumber=0;
                                  </div>
                                  
                                  <div class="col-md-12 Create">
-                                    <input type="button" class="btn btn-default dBtn" onclick="submitFunction()" value="Edit Schedule">
+                                    <input type="button" class="btn btn-default dBtn" onclick="submitFunction()" value="Update Schedule">
                                     <input type="button" class="btn btn-default blueBtn" onclick="cancelFunction();" value="Cancel">
                           	     </div>
                           	     </form>
@@ -331,7 +331,10 @@ var sequencNumber=0;
 				   success : function(response)
                	{
 					   $("#loading").hide();
-               	alert(response);
+					   displaynotification('Tournament updated successfully',2000);
+					   var bId = "${boardId}";
+					   window.location.href = "${pageContext.request.contextPath}/CancelTournament/boardId/"+bId;
+               
                	}
 				  
 			  })  

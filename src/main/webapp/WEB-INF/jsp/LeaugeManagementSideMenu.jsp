@@ -33,7 +33,7 @@
                                             <li><a href="${pageContext.request.contextPath}/SchedulerList/boardId/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Schedule List</a></li>
                                             <li><a href="${pageContext.request.contextPath}/GameSchedule/boardId/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Schedule & Scores</a></li>
                                             <li><a href="${pageContext.request.contextPath}/CancelGameByDate/boardId/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Cancel Game by date</a></li>
-                                            <li><a href="${pageContext.request.contextPath}/CancelTournament/boardId/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Cancel Tournament</a></li>
+                                            <li><a href="${pageContext.request.contextPath}/CancelTournament/boardId/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Cancel & Edit Tournament</a></li>
                                                                             
                                             
                                             <li class=""><a href="${pageContext.request.contextPath}/teamdetails/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Teams</a></li>
