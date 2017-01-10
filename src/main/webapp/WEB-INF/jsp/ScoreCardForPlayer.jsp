@@ -35,6 +35,29 @@ var formatAMPMTime = function(date) {
 	
 	}
 	
+	function calculateage(dob)
+	{
+		
+		var birthdate=new Date(dob); 
+		var birthda=birthdate.getDate();
+		var birthmonth=birthdate.getMonth();
+		var birthyear=birthdate.getFullYear()
+		
+		var date=new Date();
+		var nowdate=date.getDate();
+		var nowmonth=date.getMonth();
+		var nowyear=date.getFullYear();
+		
+		var age=nowyear-birthyear;
+		var agemonth=nowmonth-birthmonth;
+		var agedate=nowdate-birthda;
+		
+		 if(agemonth < 0 || (agemonth == 0 && agedate < 0))
+			 {
+			 age=parseInt(age)-1;
+			 }
+		return age;
+	}
 	
 	 
 </script>
@@ -74,6 +97,9 @@ var formatAMPMTime = function(date) {
                             <p><span>Bats </span> <strong>${SelectedPlayersInfo.player1.battingInfo}</strong></p> 
                             <p><span>Bowls </span> <strong>${SelectedPlayersInfo.player1.bowlingInfo}</strong></p>
                             <p><span>Country </span> <strong>${UserInfo.country}</strong></p>
+                            
+                            <p><span>Age  </span> <strong><script> document.writeln(calculateage("${UserMatchInfo.dob}"))</script></strong></p>
+                             <p><span>MOM  </span> <strong> ${UserMatchInfo.manofMatchCount}</strong></p>
                     	</div> 
                      
                      	<%-- <div class="col-md-2 statusUpdateBox ">
@@ -113,10 +139,37 @@ var formatAMPMTime = function(date) {
                         </div> --%> 
                         
                         
-                        <div class="col-md-7 feedcube">
-                            <div class="cube bulucolor">${UserMatchInfo.playedMatches}<br><p>Matches</p></div>
+                        <div class="col-md-6 feedcube">
+                           <%--  <div class="cube bulucolor">${UserMatchInfo.playedMatches}<br><p>Matches</p></div>
                             <div class="cube greencolor">${UserMatchInfo.totalMadeRuns}<br> <p>Runs</p></div>
-                            <div class="cube redcolor">${UserMatchInfo.totalWicketTaken}<br> <p>Wickets<p></div>
+                            <div class="cube redcolor">${UserMatchInfo.totalWicketTaken}<br> <p>Wickets<p></div> --%>
+                            
+                            
+                            <div class="pull-left cube-holder">
+                            <div class="cube color1">${UserMatchInfo.playedMatches}</div>
+                            <p>Matches</p>
+                           	</div>
+                           	<div class="pull-left cube-holder">
+                            <div class="cube color2">${UserMatchInfo.totalMadeRuns}</div>
+                            <p>Runs</p>
+                            </div>
+                           	<div class="pull-left cube-holder">
+                            <div class="cube color3">${UserMatchInfo.totalWicketTaken}</div> 
+                            <p>Wickets<p>
+                            </div>
+                            <div class="clearfix"></div>
+                           	<div class="pull-left cube-holder">
+                            <div class="cube color4">${UserMatchInfo.centuryCount}</div>
+                            <p>Centuries</p>
+                            </div>
+                           	<div class="pull-left cube-holder">
+                            <div class="cube color5">${UserMatchInfo.halfCenturiesCount}</div>
+                            <p>HalfCenturies</p>
+                            </div>
+                           	<div class="pull-left cube-holder">
+                            <div class="cube color6">${UserMatchInfo.fiveFerCount}</div>
+                            <p>5fer<p>
+                            </div>
                             
                             
                                                     </div>

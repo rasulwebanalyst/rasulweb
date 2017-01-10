@@ -143,7 +143,7 @@
                             </c:if>
                             
                             <p><span>Age  </span> <strong><script> document.writeln(calculateage("${UserMatchInfo.dob}"))</script></strong></p>
-                             <p><span>MOM  </span> <strong><script> ${UserMatchInfo.manofMatchCount}"</script></strong></p>
+                             <p><span>MOM  </span> <strong> ${UserMatchInfo.manofMatchCount}</strong></p>
                             
                     	</div> 
                         

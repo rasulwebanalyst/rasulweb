@@ -94,7 +94,7 @@ var sequencNumber=0;
                   <div class="form-group col-md-12 noPadding profileForm"><br>
                   <form id="tournamentForm"  action="${pageContext.request.contextPath}/EditTournamentDetails.htm" method="POST">
                                   <div class="col-md-6">
-                                  	<label for="email"><span>*</span> Create Tournament / Trophy</label> <input type="text" class="form-control" placeholder="" id="tournamentName" name="tournamentName" onblur="tournamentNameValidation()" value="${tournamentName}">
+                                  	<label for="email"><span>*</span> Create Tournament / Trophy</label> <input type="text" class="form-control" placeholder="" id="tournamentName" name="tournamentName" onblur="tournamentNameValidation()" value="${tournamentName}" readonly="readonly">
                                   </div>
                                  
                                   <div class="col-md-6" style="display: none;">
@@ -663,7 +663,7 @@ var sequencNumber=0;
 		        htm +="<button type='button' class='btn btn-default ' style='width:80px; float:left;margin-left: 17px;' onclick=removeFromList('"+userid+"')>Remove</button>";
 		        }else{
 		        	
-		        	htm +="<button type='button' class='btn btn-default ' style='width:80px; float:left;margin-left: 17px;'>Remove</button>";
+		        	htm +="<button type='button' class='btn btn-default ' style='width:80px; float:left;margin-left: 17px;' onclick=removeFrompopup('"+name.replace(/ /g,"-")+"')>Remove</button>";
 		        }
 		        
 		        htm +="<input type='hidden' class='form-control' placeholder='' id='memberHiddeb"+userid+"' name='teamUserId' value='"+userid+"'>";
@@ -677,6 +677,14 @@ var sequencNumber=0;
 	   $("input[name=rr][value=" + umpire + "]").attr('checked', 'checked');
 	   
    })
+   
+   
+   
+   function removeFrompopup(name)
+   {
+	   var show=name.replace(/-/g," ");
+	   displaynotification(show+' already played match in this tournaments',2000);
+   }
    
    </script>
    

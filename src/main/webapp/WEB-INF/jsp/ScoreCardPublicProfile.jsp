@@ -393,6 +393,7 @@ var formatAMPMTime = function(date) {
                          	                        </c:choose>
                             
                             <div class="form-group col-md-12 noPadding MyScor-table">
+                            <div class="form-group">
                             
                              <c:choose>
                                 <c:when test="${firstInningsBowlingPlayerSize == 0 }">
@@ -469,6 +470,7 @@ var formatAMPMTime = function(date) {
                                 </tbody>
                                 
                             </table>
+                            </div>
                              </c:otherwise>
                                 </c:choose>
                                 

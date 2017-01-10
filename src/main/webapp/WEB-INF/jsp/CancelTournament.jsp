@@ -193,7 +193,7 @@
 	   var boardId = "${boardId}";
 	   if(type == 'no')
 		   {
-		   displaynotification("Already in KnockOut match",2000);   
+		   displaynotification("Sorry ! Tournament already in knockout stage",2000);   
 		   }else
 			   {
 			  window.location.href="${pageContext.request.contextPath}/editTrophy/boardId/"+boardId+"/tournamentId/"+id; 

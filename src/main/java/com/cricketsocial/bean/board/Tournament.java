@@ -26,11 +26,20 @@ public class Tournament {
 	
 	private String gametypeinTour;
 	private String modifiedBy;
+	private String rosterId;
 	
 	
 	
 	
 	
+	
+	
+	public String getRosterId() {
+		return rosterId;
+	}
+	public void setRosterId(String rosterId) {
+		this.rosterId = rosterId;
+	}
 	public String getGametypeinTour() {
 		return gametypeinTour;
 	}

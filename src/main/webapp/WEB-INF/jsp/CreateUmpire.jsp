@@ -123,13 +123,13 @@
                         <form id="umpireForm" onsubmit="return cancelFormSubmit();">
                         		<div class="form-group col-md-12 noPadding">
                                   <div class="col-md-4">
-                                  	<label for="email"><span>*</span>Umpire Name</label> <input type="text" class="form-control" placeholder="" id="umpireName" name="umpireName" onkeyup="getBuddiesAutoComplete(this,'addMemberautoCompleteDIV','addMemberIDDIV')">
+                                  	<label for="email"><span>*</span>Umpire Name</label> <input type="text" class="form-control" placeholder="Search Umpire" id="umpireName" name="umpireName" onkeyup="getBuddiesAutoComplete(this,'addMemberautoCompleteDIV','addMemberIDDIV')">
                                    <div class="autoComplete" id="addMemberautoCompleteDIV" style="display:none;">
 													<ul>
 			                                        	<li></li>
 			                                        </ul>                                  	
 			                                  </div> 
-                                  <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIV" name="">
+                                  <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIV" name="addMemberIDDIV">
                                   </div>
                                  
                                   <div class="col-md-4">
@@ -233,7 +233,7 @@
 			 error.insertAfter(element);
 		 },
 		 rules:{
-			umpireName : {
+			 addMemberIDDIV : {
 				required : true,
 			},
 			address1 :{
@@ -287,8 +287,8 @@
 			}
 		 },
 		 messages :{
-			 umpireName : {
-				 required : "Please enter the umpire name",
+			 addMemberIDDIV : {
+				 required : "Please choose the umpire name from search results",
 			 },
 			 address1 : {
 					 required : "Please enter the address line1",
@@ -749,7 +749,7 @@
 				{
 			$("#zipcode").val(zipcode);
 				}
-				if(phoneNumber !=null && phoneNumber != "" && phoneNumber != "undefined")
+				if(phoneNumber !=null && phoneNumber != "" && phoneNumber != "undefined" && phoneNumber != 0)
 				{
 			$("#cellPhone").val(phoneNumber);
 				}

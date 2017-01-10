@@ -135,6 +135,8 @@ import com.cricketsocial.bean.response.UserActivationResponse;
 import com.cricketsocial.bean.response.UserFeedHitResponse;
 import com.cricketsocial.bean.response.UserFeedResponse;
 import com.cricketsocial.bean.response.UserResponse;
+import com.cricketsocial.bean.roaster.BattingPerformance;
+import com.cricketsocial.bean.roaster.BowlingPerformance;
 import com.cricketsocial.bean.roaster.RoasterEventSearch;
 import com.cricketsocial.bean.roaster.RoasterMedia;
 import com.cricketsocial.bean.roaster.RosterProfile;
@@ -6989,6 +6991,7 @@ public @ResponseBody ModelAndView getRosterDetails(HttpServletRequest request,@R
 							 ModelMap modelMap5=new ModelMap();
 							 //modelMap5.put("rosterId", "44885d97-f349-4c93-8c96-3924035d267f");		
 							 modelMap5.put("rosterId", roasters.get(0).getRosterId());
+							 modelMap5.put("tournamentId", "");
 							 hubReq.setRequestParam(modelMap5);
 							 String bowler=cricketSocialRestTemplateService.userRegistration(hubReq);
 							 HubResponse bowlingPerformance= GsonConverters.getGsonObject().fromJson(bowler, HubResponse.class);
@@ -7003,6 +7006,7 @@ public @ResponseBody ModelAndView getRosterDetails(HttpServletRequest request,@R
 							 ModelMap modelMap6=new ModelMap();
 							 //modelMap6.put("rosterId", "44885d97-f349-4c93-8c96-3924035d267f");
 							 modelMap6.put("rosterId", roasters.get(0).getRosterId());
+							 modelMap6.put("tournamentId", "");
 							 hubReq.setRequestParam(modelMap6);
 							 String batting=cricketSocialRestTemplateService.userRegistration(hubReq);
 							 HubResponse battingPerformance= GsonConverters.getGsonObject().fromJson(batting, HubResponse.class);
@@ -7056,9 +7060,27 @@ public @ResponseBody ModelAndView getRosterDetails(HttpServletRequest request,@R
 						 }
 					 }
 					 
+
+					 //    Tournament List        //
 					 
+					 hubReq=new HubRequest();
+					 hubReq.setMsgType(270);
+					 ModelMap touranamentmap=new ModelMap();
+					 touranamentmap.put("rosterId", roasters.get(0).getRosterId());
+				     touranamentmap.put("createdBy", "");
 					 
+					 hubReq.setRequestParam(touranamentmap);
 					 
+					String tournamentlistresponse=cricketSocialRestTemplateService.userRegistration(hubReq);
+					
+					if(tournamentlistresponse !=null)
+					{
+						HubResponse listresponse=GsonConverters.getGsonObject().fromJson(tournamentlistresponse, HubResponse.class);
+						if(listresponse.getResults().getTournamentList() !=null)
+						{
+							model.addObject("tournamentlist", listresponse.getResults().getTournamentList());
+						}
+					}
 					
 					 
 					   
@@ -7152,7 +7174,7 @@ public @ResponseBody ModelAndView getRosterDetails(HttpServletRequest request,@R
 					 }
 				 
 				 
-				 
+					 
 				 
 				 
 				 
@@ -7588,6 +7610,34 @@ public @ResponseBody ModelAndView rosterDetails(HttpServletRequest request,@Requ
 				 }
 				 
 				 
+				 
+				 
+				 //    Tournament List        //
+				 
+				 hubReq=new HubRequest();
+				 hubReq.setMsgType(270);
+				 ModelMap touranamentmap=new ModelMap();
+				 touranamentmap.put("rosterId", rosterId);
+			     touranamentmap.put("createdBy", "");
+				 
+				 hubReq.setRequestParam(touranamentmap);
+				 
+				String tournamentlistresponse=cricketSocialRestTemplateService.userRegistration(hubReq);
+				
+				System.out.println("The 270 :"+tournamentlistresponse);
+				 
+				if(tournamentlistresponse !=null)
+				{
+					HubResponse listresponse=GsonConverters.getGsonObject().fromJson(tournamentlistresponse, HubResponse.class);
+					if(listresponse.getResults().getTournamentList() !=null)
+					{
+						model.addObject("tournamentlist", listresponse.getResults().getTournamentList());
+					}
+				}
+				
+				
+				 
+				 
 				 hubReq=new HubRequest();
 				 hubReq.setMsgType(40);
 				 ModelMap map=new ModelMap();			
@@ -7635,6 +7685,7 @@ public @ResponseBody ModelAndView rosterDetails(HttpServletRequest request,@Requ
 				 ModelMap modelMap5=new ModelMap();
 				 //modelMap5.put("rosterId", "44885d97-f349-4c93-8c96-3924035d267f");		
 				 modelMap5.put("rosterId", rosterId);
+				 modelMap5.put("tournamentId", "");
 				 hubReq.setRequestParam(modelMap5);
 				 String bowler=cricketSocialRestTemplateService.userRegistration(hubReq);
 				 HubResponse bowlingPerformance= GsonConverters.getGsonObject().fromJson(bowler, HubResponse.class);
@@ -7648,6 +7699,7 @@ public @ResponseBody ModelAndView rosterDetails(HttpServletRequest request,@Requ
 				 ModelMap modelMap6=new ModelMap();
 				 //modelMap6.put("rosterId", "44885d97-f349-4c93-8c96-3924035d267f");
 				 modelMap6.put("rosterId", rosterId);
+				 modelMap6.put("tournamentId", "");
 				 hubReq.setRequestParam(modelMap6);
 				 String batting=cricketSocialRestTemplateService.userRegistration(hubReq);
 				 HubResponse battingPerformance= GsonConverters.getGsonObject().fromJson(batting, HubResponse.class);
@@ -7802,6 +7854,72 @@ public @ResponseBody ModelAndView rosterDetails(HttpServletRequest request,@Requ
 }
 
 
+@RequestMapping(value="/roasterbattingdetails",method=RequestMethod.POST)
+@ResponseBody
+public List<BattingPerformance> roasterbattingdetails(HttpServletRequest req, @RequestBody Tournament tournamentdetail)
+{
+	
+	List<BattingPerformance> battinglist=new ArrayList<BattingPerformance>();
+	
+	try{
+		hubReq=new HubRequest(98);
+		ModelMap map=new ModelMap();
+		map.put("rosterId", tournamentdetail.getRosterId());
+		map.put("tournamentId", tournamentdetail.getTournamentId());
+		hubReq.setRequestParam(map);
+		
+		String response=cricketSocialRestTemplateService.userRegistration(hubReq);
+		
+		if(response != null)
+		{
+			HubResponse battingperformance=GsonConverters.getGsonObject().fromJson(response, HubResponse.class);
+			if(battingperformance !=null && battingperformance.getResults() !=null)
+			{
+				battinglist=battingperformance.getResults().getBattingPerformance();
+			}
+			
+		}
+	}catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return battinglist;
+	
+}
+
+
+@RequestMapping(value="/roasterbowlingdetails",method=RequestMethod.POST)
+@ResponseBody
+public List<BowlingPerformance> roasterbowlingdetails(HttpServletRequest req, @RequestBody Tournament tournamentdetail)
+{
+	
+	List<BowlingPerformance> bowlinglist=new ArrayList<BowlingPerformance>();
+	
+	try{
+		hubReq=new HubRequest(99);
+		ModelMap map=new ModelMap();
+		map.put("rosterId", tournamentdetail.getRosterId());
+		map.put("tournamentId", tournamentdetail.getTournamentId());
+		hubReq.setRequestParam(map);
+		
+		String response=cricketSocialRestTemplateService.userRegistration(hubReq);
+		
+		if(response != null)
+		{
+			HubResponse bowlingperformance=GsonConverters.getGsonObject().fromJson(response, HubResponse.class);
+			if(bowlingperformance !=null && bowlingperformance.getResults() !=null)
+			{
+				bowlinglist=bowlingperformance.getResults().getBowlingPerformance();
+			}
+			
+		}
+	}catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return bowlinglist;
+	
+}
 
 
 
@@ -15017,6 +15135,7 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 					 ModelMap modelMap5=new ModelMap();
 					 //modelMap5.put("rosterId", "44885d97-f349-4c93-8c96-3924035d267f");		
 					 modelMap5.put("rosterId", roasters.get(0).getRosterId());
+					 modelMap5.put("tournamentId", "");
 					 hubReq.setRequestParam(modelMap5);
 					 String bowler=cricketSocialRestTemplateService.userRegistration(hubReq);
 					 HubResponse bowlingPerformance= GsonConverters.getGsonObject().fromJson(bowler, HubResponse.class);
@@ -15030,6 +15149,7 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 					 ModelMap modelMap6=new ModelMap();
 					 //modelMap6.put("rosterId", "44885d97-f349-4c93-8c96-3924035d267f");
 					 modelMap6.put("rosterId", roasters.get(0).getRosterId());
+					 modelMap6.put("tournamentId", "");
 					 hubReq.setRequestParam(modelMap6);
 					 String batting=cricketSocialRestTemplateService.userRegistration(hubReq);
 					 HubResponse battingPerformance= GsonConverters.getGsonObject().fromJson(batting, HubResponse.class);
@@ -15076,6 +15196,33 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 									
 								}
 							 }	
+							 
+							 
+							 
+							 
+							 //    Tournament List        //
+							 
+							 hubReq=new HubRequest();
+							 hubReq.setMsgType(270);
+							 ModelMap touranamentmap=new ModelMap();
+							 touranamentmap.put("rosterId", roasters.get(0).getRosterId());
+						     touranamentmap.put("createdBy", "");
+							 
+							 hubReq.setRequestParam(touranamentmap);
+							 
+							String tournamentlistresponse=cricketSocialRestTemplateService.userRegistration(hubReq);
+							
+							if(tournamentlistresponse !=null)
+							{
+								HubResponse listresponse=GsonConverters.getGsonObject().fromJson(tournamentlistresponse, HubResponse.class);
+								if(listresponse.getResults().getTournamentList() !=null)
+								{
+									model.addObject("tournamentlist", listresponse.getResults().getTournamentList());
+								}
+							}
+							 
+							 
+							 
 							 
 					 
 					 
@@ -15373,6 +15520,7 @@ public ModelAndView rosterProfileDetails(@PathVariable String rid, @PathVariable
 				 ModelMap modelMap5=new ModelMap();
 				 //modelMap5.put("rosterId", "44885d97-f349-4c93-8c96-3924035d267f");		
 				 modelMap5.put("rosterId", rosterId);
+				 modelMap5.put("tournamentId", "");
 				 hubReq.setRequestParam(modelMap5);
 				 String bowler=cricketSocialRestTemplateService.userRegistration(hubReq);
 				 HubResponse bowlingPerformance= GsonConverters.getGsonObject().fromJson(bowler, HubResponse.class);
@@ -15386,6 +15534,7 @@ public ModelAndView rosterProfileDetails(@PathVariable String rid, @PathVariable
 				 ModelMap modelMap6=new ModelMap();
 				 //modelMap6.put("rosterId", "44885d97-f349-4c93-8c96-3924035d267f");
 				 modelMap6.put("rosterId", rosterId);
+				 modelMap6.put("tournamentId", "");
 				 hubReq.setRequestParam(modelMap6);
 				 String batting=cricketSocialRestTemplateService.userRegistration(hubReq);
 				 HubResponse battingPerformance= GsonConverters.getGsonObject().fromJson(batting, HubResponse.class);
@@ -23866,6 +24015,7 @@ public @ResponseBody ModelAndView rosterInfo(HttpServletRequest request,@Request
 				 ModelMap modelMap5=new ModelMap();
 				 //modelMap5.put("rosterId", "44885d97-f349-4c93-8c96-3924035d267f");		
 				 modelMap5.put("rosterId", rosterId);
+				 modelMap5.put("tournamentId", "");
 				 hubReq.setRequestParam(modelMap5);
 				 String bowler=cricketSocialRestTemplateService.userRegistration(hubReq);
 				 HubResponse bowlingPerformance= GsonConverters.getGsonObject().fromJson(bowler, HubResponse.class);
@@ -23879,6 +24029,7 @@ public @ResponseBody ModelAndView rosterInfo(HttpServletRequest request,@Request
 				 ModelMap modelMap6=new ModelMap();
 				 //modelMap6.put("rosterId", "44885d97-f349-4c93-8c96-3924035d267f");
 				 modelMap6.put("rosterId", rosterId);
+				 modelMap6.put("tournamentId", "");
 				 hubReq.setRequestParam(modelMap6);
 				 String batting=cricketSocialRestTemplateService.userRegistration(hubReq);
 				 HubResponse battingPerformance= GsonConverters.getGsonObject().fromJson(batting, HubResponse.class);
@@ -26023,6 +26174,7 @@ public @ResponseBody ModelAndView rosterInfomation(HttpServletRequest request,@R
 				 ModelMap modelMap5=new ModelMap();
 				 //modelMap5.put("rosterId", "44885d97-f349-4c93-8c96-3924035d267f");		
 				 modelMap5.put("rosterId", rosterId);
+				 modelMap5.put("tournamentId", "");
 				 hubReq.setRequestParam(modelMap5);
 				 String bowler=cricketSocialRestTemplateService.userRegistration(hubReq);
 				 HubResponse bowlingPerformance= GsonConverters.getGsonObject().fromJson(bowler, HubResponse.class);
@@ -26036,6 +26188,7 @@ public @ResponseBody ModelAndView rosterInfomation(HttpServletRequest request,@R
 				 ModelMap modelMap6=new ModelMap();
 				 //modelMap6.put("rosterId", "44885d97-f349-4c93-8c96-3924035d267f");
 				 modelMap6.put("rosterId", rosterId);
+				 modelMap6.put("tournamentId", "");
 				 hubReq.setRequestParam(modelMap6);
 				 String batting=cricketSocialRestTemplateService.userRegistration(hubReq);
 				 HubResponse battingPerformance= GsonConverters.getGsonObject().fromJson(batting, HubResponse.class);
