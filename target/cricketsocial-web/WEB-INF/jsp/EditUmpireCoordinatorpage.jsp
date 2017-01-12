@@ -123,7 +123,7 @@
                         <form id="umpireForm" onsubmit="return cancelFormSubmit();">
                         		<div class="form-group col-md-12 noPadding">
                                   <div class="col-md-4">
-                                  	<label for="email"><span>*</span>Umpire Name</label> <input type="text" class="form-control" placeholder="" id="umpireName" name="umpireName"  value="${umpireDetails.umpireName}" readonly>
+                                  	<label for="email"><span></span>Umpire Name</label> <input type="text" class="form-control" placeholder="" id="umpireName" name="umpireName"  value="${umpireDetails.umpireName}" readonly>
                                    <div class="autoComplete" id="addMemberautoCompleteDIV" style="display:none;margin-top: 37px;">
 													<ul>
 			                                        	<li></li>
@@ -169,25 +169,46 @@
                                   	</c:choose>
                                   </div>
                                   
-                                  <div class="col-md-4 HomePhone">
+                                  <div class="col-md-4 HomePhone" style="display: none;">
                                   	<label for="email" style="width:100%;">Home Phone</label>
                                     	<input type="text" class="form-control tcol1 number" placeholder="" id="countryCodeHome" name="countryCodeHome" value="${homeCountryCode}">
                                         <input type="text" class="form-control tcol2 number" placeholder="" id="areaCodeHome" name="areaCodeHome" value="${homeACode}">
                                         <input type="text" class="form-control tcol3 number" placeholder="" id="homePhone" name="homePhone" value="${homePhone}">
                                   </div>
                                   
-                                  <div class="col-md-4 HomePhone">
+                                  <div class="col-md-4 HomePhone" style="display: none;">
                                  	 <label for="email"  style="width:100%;">Work Phone</label> 
                                      <input type="text" class="form-control tcol1 number" placeholder="" id="countryCodeWork" name="countryCodeWork" value="${workCountryCode}">
                                         <input type="text" class="form-control tcol2 number" placeholder="" id="areaCodeWork" name="areaCodeWork" value="${workAreaCode}">
                                         <input type="text" class="form-control tcol3 number" placeholder="" id="workPhone" name="workPhone" value="${workPhone}">
                                   </div>
+                                  
+                                  <div class="col-md-4 HomePhone">
+                                 	 <label for="email"  style="width:100%;">Contact No</label> 
+                                    <%--  <input type="text" class="form-control tcol1 number" placeholder="" id="areaCodeCell" name="areaCodeCell" value="${cellAreaCode}"> --%>
+                                    <select  id="areaCodeCell" name="areaCodeCell" class="form-control tcol1 number" style="width: 46%; font-size: 10px; padding: 6px 5px;">                           
+                                        <option value="">Country Code</option>                                                     
+                                        <c:forEach var="codes" items="${countryCodes}" varStatus="i">
+                                         <option value="${codes.countryCode}">${codes.countryName} +${codes.countryCode}</option>
+                                          </c:forEach>
+                                   </select>
+                                        <input type="text" class="form-control tcol3 number" style="width:54%" placeholder="" id="cellPhone" name="cellPhone" value="${cellPhone}">
+                                     <span id="error" style="color:red"></span>
+                                     <span id="error1" style="color:red" ></span>
+                                     <label for="cellPhone" generated="true" class="error" id="cellPhoneError"></label>
+                                  </div>
+                                  
+                                  <div class="col-md-4">
+                                	  <label for="email"><span>*</span>Email ID</label> <input type="text" class="form-control" placeholder="" id="emailId" name="emailId" value="${umpireDetails.emailId}">
+                                  </div>
+                                  
+                                  
                                   </div>
                                   
                                   <div class="form-group col-md-12 noPadding">
-                                  <div class="col-md-4 HomePhone">
+                                  <%-- <div class="col-md-4 HomePhone">
                                  	 <label for="email"  style="width:100%;">Cell Phone</label> 
-                                    <%--  <input type="text" class="form-control tcol1 number" placeholder="" id="areaCodeCell" name="areaCodeCell" value="${cellAreaCode}"> --%>
+                                     <input type="text" class="form-control tcol1 number" placeholder="" id="areaCodeCell" name="areaCodeCell" value="${cellAreaCode}">
                                     <select  id="areaCodeCell" name="areaCodeCell" class="form-control tcol1 number" style="width: 46%; font-size: 10px; padding: 6px 5px;">                           
                                         <option value="">Country Code</option>                                                     
                                         <c:forEach var="codes" items="${countryCodes}" varStatus="i">
@@ -202,7 +223,7 @@
                                   
                                   <div class="col-md-8">
                                 	  <label for="email"><span>*</span>Email ID</label> <input type="text" class="form-control" placeholder="" id="emailId" name="emailId" value="${umpireDetails.emailId}">
-                                  </div>
+                                  </div> --%>
                                   </div>
                                   
                                    <div class="form-group col-md-12 centerbtns">
@@ -256,9 +277,9 @@
 			umpireName : {
 				required : true,
 			},
-			address1 :{
+			/* address1 :{
 				required : true,
-			},
+			}, */
 			city :  {
 				required : true,
 			},
@@ -311,9 +332,9 @@
 			 umpireName : {
 				 required : "Please enter umpire name",
 			 },
-			 address1 : {
+			 /* address1 : {
 					 required : "Please enter address line1",
-				 },
+				 }, */
 		     city:{
 		    	 required : "Please enter city name",
 		     },

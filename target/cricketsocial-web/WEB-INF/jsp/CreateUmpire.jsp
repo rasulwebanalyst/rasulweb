@@ -123,17 +123,17 @@
                         <form id="umpireForm" onsubmit="return cancelFormSubmit();">
                         		<div class="form-group col-md-12 noPadding">
                                   <div class="col-md-4">
-                                  	<label for="email"><span>*</span>Umpire Name</label> <input type="text" class="form-control" placeholder="" id="umpireName" name="umpireName" onkeyup="getBuddiesAutoComplete(this,'addMemberautoCompleteDIV','addMemberIDDIV')">
+                                  	<label for="email"><span>*</span>Umpire Name</label> <input type="text" class="form-control" placeholder="Search Umpire" id="umpireName" name="umpireName" onkeyup="getBuddiesAutoComplete(this,'addMemberautoCompleteDIV','addMemberIDDIV')">
                                    <div class="autoComplete" id="addMemberautoCompleteDIV" style="display:none;">
 													<ul>
 			                                        	<li></li>
 			                                        </ul>                                  	
 			                                  </div> 
-                                  <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIV" name="">
+                                  <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIV" name="addMemberIDDIV">
                                   </div>
                                  
                                   <div class="col-md-4">
-                                 	 <label for="email"><span>*</span>Address Line 1</label> <input type="text" class="form-control" placeholder="" id="address1" name="address1">
+                                 	 <label for="email"><span></span>Address Line 1</label> <input type="text" class="form-control" placeholder="" id="address1" name="address1">
                                   </div>
                                  
                                   <div class="col-md-4">
@@ -161,23 +161,47 @@
                                   	<label for="email"><span>*</span>Zip Code</label> <input type="text" class="form-control" placeholder="" id="zipcode" name="zipcode">
                                   </div>
                                   
-                                  <div class="col-md-4 HomePhone">
+                                  <div class="col-md-4 HomePhone" style="display: none;">
                                   	<label for="email" style="width:100%;">Home Phone</label>
                                     	<input type="text" class="form-control tcol1 number" placeholder="" id="countryCodeHome" name="countryCodeHome">
                                         <input type="text" class="form-control tcol2 number" placeholder="" id="areaCodeHome" name="areaCodeHome">
                                         <input type="text" class="form-control tcol3 number" placeholder="" id="homePhone" name="homePhone">
                                   </div>
                                   
-                                  <div class="col-md-4 HomePhone">
+                                  <div class="col-md-4 HomePhone" style="display: none;">
                                  	 <label for="email"  style="width:100%;">Work Phone</label> 
                                      <input type="text" class="form-control tcol1 number" placeholder="" id="countryCodeWork" name="countryCodeWork">
                                         <input type="text" class="form-control tcol2 number" placeholder="" id="areaCodeWork" name="areaCodeWork">
                                         <input type="text" class="form-control tcol3 number" placeholder="" id="workPhone" name="workPhone">
                                   </div>
+                                  
+                                  
+                                  
+                                  
+                                    <div class="col-md-4 HomePhone" >
+                                 	 <label for="email"  style="width:100%;">Contact No</label> 
+                                   <!--   <input type="text" class="form-control tcol1 number" placeholder="" id="areaCodeCell" name="areaCodeCell"> -->
+                                   <select  id="areaCodeCell" name="areaCodeCell" class="form-control tcol1 number" style="width: 46%; font-size: 10px; padding: 6px 5px;">                           
+                                        <option value="">Country Code</option>                                                     
+                                        <c:forEach var="codes" items="${countryCodes}" varStatus="i">
+                                         <option value="${codes.countryCode}">${codes.countryName} +${codes.countryCode}</option>
+                                          </c:forEach>
+                                   </select>
+                                        <input type="text" class="form-control tcol3 number" style="width:54%" placeholder="" id="cellPhone" name="cellPhone">
+                                     <span id="error" style="color:red" id="fadeId"></span>
+                                      <span id="error1" style="color:red" ></span>
+                                      <label for="cellPhone" generated="true" class="error" id="cellPhoneError"></label>
+                                  </div> 
+                                  
+                                  
+                                  <div class="col-md-4">
+                                	  <label for="email"><span>*</span>E-mail ID</label> <input type="text" class="form-control" placeholder="" id="emailId" name="emailId">
+                                  </div>
+                                  
                                   </div>
                                   
                                   <div class="form-group col-md-12 noPadding">
-                                  <div class="col-md-4 HomePhone" >
+                                 <%--  <div class="col-md-4 HomePhone" >
                                  	 <label for="email"  style="width:100%;">Cell Phone</label> 
                                    <!--   <input type="text" class="form-control tcol1 number" placeholder="" id="areaCodeCell" name="areaCodeCell"> -->
                                    <select  id="areaCodeCell" name="areaCodeCell" class="form-control tcol1 number" style="width: 46%; font-size: 10px; padding: 6px 5px;">                           
@@ -190,11 +214,11 @@
                                      <span id="error" style="color:red" id="fadeId"></span>
                                       <span id="error1" style="color:red" ></span>
                                       <label for="cellPhone" generated="true" class="error" id="cellPhoneError"></label>
-                                  </div>
+                                  </div> --%>
                                   
-                                  <div class="col-md-8">
+                                  <!-- <div class="col-md-8">
                                 	  <label for="email"><span>*</span>E-mail ID</label> <input type="text" class="form-control" placeholder="" id="emailId" name="emailId">
-                                  </div>
+                                  </div> -->
                                   </div>
                                   
                                   <div class="form-group col-md-12 centerbtns">
@@ -233,12 +257,12 @@
 			 error.insertAfter(element);
 		 },
 		 rules:{
-			umpireName : {
+			 addMemberIDDIV : {
 				required : true,
 			},
-			address1 :{
+			/* address1 :{
 				required : true,
-			},
+			}, */
 			city :  {
 				required : true,
 			},
@@ -287,12 +311,12 @@
 			}
 		 },
 		 messages :{
-			 umpireName : {
-				 required : "Please enter the umpire name",
+			 addMemberIDDIV : {
+				 required : "Please choose the umpire name from search results",
 			 },
-			 address1 : {
+			/*  address1 : {
 					 required : "Please enter the address line1",
-				 },
+				 }, */
 		     city:{
 		    	 required : "Please enter the city name",
 		     },
@@ -749,7 +773,7 @@
 				{
 			$("#zipcode").val(zipcode);
 				}
-				if(phoneNumber !=null && phoneNumber != "" && phoneNumber != "undefined")
+				if(phoneNumber !=null && phoneNumber != "" && phoneNumber != "undefined" && phoneNumber != 0)
 				{
 			$("#cellPhone").val(phoneNumber);
 				}

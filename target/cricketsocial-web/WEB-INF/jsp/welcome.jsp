@@ -24,9 +24,11 @@
 
    <!-- Custom CSS -->
     <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
+   <%--  <link href="${pageContext.request.contextPath}/css/jquery.bxslider.css" rel="stylesheet"> --%>
 
 	<!--Font-Awesome Icons-->
     <link href="icons/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
 
 <!--Google Fonts-->    
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
@@ -42,6 +44,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/circketsocial/validationfunction.js"></script>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/cricketSocial/oAuth.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.newsTicker.js"></script>
 
 
 <script src="${pageContext.request.contextPath}/js/jquery.plugin.js"></script>
@@ -57,23 +60,40 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
-    
-    
-    <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    <!--  <script type="text/javascript">
+        jQuery(document).ready(function ($) {
 
-  ga('create', 'UA-89821789-1', 'auto');
-  ga('send', 'pageview');
+            var jssor_1_options = {
+              $AutoPlay: true,
+              $DragOrientation: 2,
+              $PlayOrientation: 2,
+              $ArrowNavigatorOptions: {
+                $Class: $JssorArrowNavigator$
+              }
+            };
 
-</script>
-    
-    
-    
-    
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+            /*responsive code begin*/
+            /*you can remove responsive code if you don't want the slider scales while window resizing*/
+            function ScaleSlider() {
+                var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
+                if (refSize) {
+                    refSize = Math.min(refSize, 600);
+                    jssor_1_slider.$ScaleWidth(refSize);
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+            }
+            ScaleSlider();
+            $(window).bind("load", ScaleSlider);
+            $(window).bind("resize", ScaleSlider);
+            $(window).bind("orientationchange", ScaleSlider);
+            /*responsive code end*/
+        });
+    </script> -->
+ 
 <script>
 
 
@@ -121,7 +141,13 @@ $(function(){
 							var hometeam=res[i].homeTeamInfo;
 							var awayteam=res[i].awayTeamInfo;
 							
-							htmlco+="<div class='sidebar-list'>";
+							
+							/* if(i % 2 == 0)
+							{
+								htmlco+="<li class='slide'>";
+							} */
+							
+							htmlco+="<li><div class='sidebar-list'>";
 							htmlco+="<a href='javascript:void(0);'>"+hometeam.boardName+"</a> vs <a href='javascript:void(0);'>"+awayteam.boardName+"</a><br> <strong>"+res[i].gameDateStr+"</strong>";
 							
 							if(res[i].status == 'InProgress')
@@ -134,7 +160,14 @@ $(function(){
 							
 							htmlco+="<span class='teamLogos'>";
 							htmlco+="<a href='javascript:void(0);'><img src="+hometeam.boardImageURL+"? class='teamLogo' onError='this.onerror=null;this.src=${pageContext.request.contextPath}/images/boardIcon.png;' ></a> <b>VS</b> <a href='javascript:void(0);'><img src="+awayteam.boardImageURL+"? class='teamLogo'></a>";
-							htmlco+="</span></div>"
+							htmlco+="</span></div></li>";
+							
+							var k=parseInt(i)+1;
+							/* if(k % 2 == 0)
+							{
+								htmlco+="</li>";
+							} */
+							
 							}
 							}else
 								{
@@ -145,18 +178,11 @@ $(function(){
 						htmlco+="<div class='sidebar-list noContentDiv'>No Matches around you.</div>";	
 							}
 					
-					$("#mau").html(htmlco).trigger('create');
+					$("#nt-example1").html(htmlco).trigger('create');
 					console.log(htmlco);
-					
-					
-					if(res.length !=0)
-						{
-						$("#Yesmatches").show();
-						$("#Nomatches").hide();
-						}
-					
-					
 					$('#loading').hide();
+					
+					ready();
 					
 				}
 				
@@ -168,7 +194,12 @@ $(function(){
 	 
 });
 
-
+function ready()
+{
+	$('.slider8').reloadSlider();
+	
+	}
+	
 
 $(function() {
   	$('#defaultReal').realperson({chars: $.realperson.alphanumeric});
@@ -216,6 +247,17 @@ var fbURL='110086556012641'; // QA
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 </script> -->
+<script>
+/* $(document).ready(function(){
+	  $('.slider8').bxSlider({
+	    mode: 'vertical',
+	    slideWidth: '100%',
+	    minSlides: 2,
+	    slideMargin: 10
+	  });
+	}); */
+	
+</script>
 
 </head>
 
@@ -230,7 +272,8 @@ var fbURL='110086556012641'; // QA
   data-width="450"
   data-show-faces="true">
 </div>
-
+<!-- <div class="login-bg">
+</div> -->
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -248,66 +291,16 @@ var fbURL='110086556012641'; // QA
     </nav>
 
     <!-- Page Content -->
-    <div class="container loginMiddleBlock">
+    <div class="container-fluid loginMiddleBlock">
 
         <!-- Heading Row -->
         <div class="row">
-        <div id="Nomatches">
-            <div class="col-md-6 pull-left loginLeft">
-               <h1>Welcome to CricketSocial</h1>
-               <div id="homeContent">
-               <p>The Cricket Connection</p>
-               <ul class="login-txt">
-               	<li>A Social  and Analytics platform with anchoring tools for Cricket.</li>
-               	<li>One stop solution for - Players, Fans, Umpires, Coaches, Merchants, League Boards, Team Boards, Academies, Cricket Administrative Bodies and Talent Acquisition.</li>
-               	<li>Players, Fans, Umpires, Coaches, Merchants, League Boards, Team Boards, Academies, Cricket Administrative Bodies and Talent Acquisition</li>
-               	<li>Manage Social and club Cricket professionally.</li>
-               	<li>Follow live scores anywhere.</li>
-               	<li>Capture all your  Cricketing Moments.</li>
-               	<li>Connect with Cricket Buddies, Get Noticed, Find opportunities.</li>
-               	<li>You may be good enough to represent a professional level not just club level.</li>
-               	<li>Give your cricket dream a chance Register on CricketSocial Now.</li>
-              
-               </ul>
-               </div> 
-               
-               
-               
-               
-              <%--  <div class="sidebar-container widget-MAU">
-                     <div class="sidebar-content">
-                       <div class="sidebar-header"><a href="${pageContext.request.contextPath}/matchesAroundYou">Matches Around You</a></div>
-                       <div id="mau"></div>
-                           
-                      
-                     </div>
-                   </div> --%>
-        </div>
-        </div>
-                <div id="Yesmatches" style="display: none;">
-                <h1>Welcome to CricketSocial</h1>
-               <div class="col-md-6 pull-left loginLeft" style="margin-top: 96px;'">
-               <div class="sidebar-container widget-MAU home-scroller">
-                     <div class="sidebar-content">
-                       <div class="sidebar-header"><a href="${pageContext.request.contextPath}/matchesAroundYou">Matches Around You</a></div>
-                       <div id="marqueecontainer" onMouseover="copyspeed=pausespeed" onMouseout="copyspeed=marqueespeed">
-						<div id="vmarquee" style="position: absolute; width: 98%;">
-                       <div id="mau"></div>
-                           
-                      </div>
-                      </div>
-                     </div>
-                   </div>
-               
-               
-               
-               </div>
-               
-            </div>
+      <%--    <img class="login-thump" src="${pageContext.request.contextPath}/images/login-thump.png"> --%>
+        <h1>Welcome to <span style="">CricketSocial</span></h1>
             
+            <div class="col-md-6" style="padding-top: 4%;">
             
-            <!-- /.col-md-8 -->
-            <div class="col-md-6 pull-right loginRight">
+            <div class="loginRight">
                
                <ul class="nav nav-tabs" role="tablist">
       <li  id="sunupLI">
@@ -448,8 +441,12 @@ var fbURL='110086556012641'; // QA
 
           <div class="row">
           <div class="col-md-12 loginSocial">
-              <a href="#" class="btn btn-default fbbtn" onclick="fbAccount()"><i class="fa fa-facebook-f"></i> Facebook</a>
-              <a href="#" class="btn btn-default googlebtn" onclick="googleLogin()"><i class="fa fa-google-plus"></i> Google+</a>
+          <div class="col-md-3">
+              <a href="#" class="btn btn-default fbbtn" onclick="fbAccount()"> <i class="fa fa-facebook-f"></i>Facebook</a>
+          </div>
+          <div class="col-md-3">
+              <a href="#" class="btn btn-default googlebtn" onclick="googleLogin()"> <i class="fa fa-google-plus"></i>Google+</a>
+          </div>
           </div>
           </div>
         </form>
@@ -484,7 +481,7 @@ var fbURL='110086556012641'; // QA
 
          <input type="hidden" name="latLang" id="latLang">
          
-          	<div class="form-group" style="width: 100%;">
+          	<div class="form-group login-btn" style="width: 100%;">
           	<button type="Submit" class="btn btn-default dBtn" onclick="loginValidate1_2(event)">Login</button> (or) Login using the below option
           	</div>
          
@@ -492,8 +489,12 @@ var fbURL='110086556012641'; // QA
 <div class="clearfix"></div>
           <div class="row">
           <div class="col-md-12 loginSocial">
+          <div class="col-md-3">
               <a href="#" class="btn btn-default fbbtn" onclick="fbAccount()"> <i class="fa fa-facebook-f"></i>Facebook</a>
+          </div>
+          <div class="col-md-3">
               <a href="#" class="btn btn-default googlebtn" onclick="googleLogin()"> <i class="fa fa-google-plus"></i>Google+</a>
+          </div>
           </div>
           </div>
           
@@ -520,9 +521,85 @@ var fbURL='110086556012641'; // QA
       </div>
       
     </div>
-               
+             </div>  
             </div>
             <!-- /.col-md-4 -->
+            
+            <div class="col-md-6 pull-left loginLeft" style="margin-top: 0px;'">
+    
+                 
+               
+               
+               <div class="sidebar-container widget-MAU home-scroller">
+                     <div class="sidebar-content">
+                        <div class="sidebar-header"><a href="${pageContext.request.contextPath}/matchesAroundYou">Matches Around You</a></div>
+                       
+
+    <div id="nt-example1-container" class="scroll-slider">
+						<i class="fa fa-chevron-up" id="nt-example1-prev"></i>
+		                <ul id="nt-example1">
+		                    <li style="visibility: hidden;">Etiam imperdiet volutpat libero eu tristique. Aenean, rutrum felis in. <a href="#">Read more...</a></li>
+		                    <li style="visibility: hidden;">Curabitur porttitor ante eget hendrerit adipiscing. Maecenas at magna. <a href="#">Read more...</a></li>
+		                    <li style="visibility: hidden;">Praesent ornare nisl lorem, ut condimentum lectus gravida ut. <a href="#">Read more...</a></li>
+		                    <li style="visibility: hidden;">Nunc ultrices tortor eu massa placerat posuere. Vivamus viverra sagittis. <a href="#">Read more...</a></li>
+		                </ul>
+		                <i class="fa fa-chevron-down" id="nt-example1-next"></i>
+		            </div>
+    
+<!--      <div id="myCarousel" class="carousel slide vertical">
+            Carousel items
+            <div class="carousel-inner">
+                <div class="active item">
+                    <img src="http://newsfirst.lk/english/wp-content/uploads/2014/03/AFTER-WINNING-THE-FINALS.jpg">
+                </div>
+                <div class="item">
+                    <img src="http://newsfirst.lk/english/wp-content/uploads/2014/03/AFTER-WINNING-THE-FINALS.jpg">
+                </div>
+                <div class="item">
+                    <img src="http://newsfirst.lk/english/wp-content/uploads/2014/03/AFTER-WINNING-THE-FINALS.jpg">
+                </div>
+            </div> -->
+            <!-- Carousel nav -->
+<!--             <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
+            <a class="carousel-control right" href="#myCarousel" data-slide="next">›</a>
+        </div> -->
+        
+        
+        
+        <!--div id="scrollingNewsContainer"-->
+
+
+
+ <!--                      <div class="slider8" id="mau">
+						 <div ></div>
+						  <div class="slide"><img src="http://placehold.it/300x100&text=FooBar2"></div>
+						  <div class="slide"><img src="http://placehold.it/300x100&text=FooBar3"></div>
+						  <div class="slide"><img src="http://placehold.it/300x100&text=FooBar4"></div>
+						  <div class="slide"><img src="http://placehold.it/300x100&text=FooBar5"></div>
+				 		  <div class="slide"><img src="http://placehold.it/300x100&text=FooBar6"></div>
+						  <div class="slide"><img src="http://placehold.it/300x100&text=FooBar7"></div>
+					</div>
+							<p><a href="" id="reload-slider">Click to add a slide, then reload the slider</a></p> -->
+ <!--                       <div id="marqueecontainer" onMouseover="copyspeed=pausespeed" onMouseout="copyspeed=marqueespeed">
+						<div id="vmarquee" style="position: absolute; width: 100%;">
+                       <div id="mau"></div>
+                           
+                     </div>
+                      </div> -->
+                      
+                      
+                      
+                      
+                      
+                      
+                     </div>
+                   </div>
+           
+            </div>
+            
+            <!-- /.col-md-8 -->
+            
+            
         </div>
         <!-- /.row -->
 
@@ -533,7 +610,13 @@ var fbURL='110086556012641'; // QA
     <script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>
 </body>
 <script>
-
+var nt_example1 = $('#nt-example1').newsTicker({
+    row_height: 80,
+    max_rows: 3,
+    duration: 4000,
+    prevButton: $('#nt-example1-prev'),
+    nextButton: $('#nt-example1-next')
+});
 function dateOfBirthValidation(){
   
       var dobMonth = $("#dobMonth").val();
@@ -1068,10 +1151,9 @@ function showScoreCardInProgress(id,bid){
 		}
 
 </script>
-
 <script type="text/javascript">
 
-
+/* 
 var delayb4scroll=2000 //Specify initial delay before marquee starts to scroll on page (2000=2 seconds)
 var marqueespeed=1 //Specify marquee scroll speed (larger is faster 1-10)
 var pauseit=1 //Pause marquee onMousever (0=no. 1=yes)?
@@ -1107,7 +1189,7 @@ window.addEventListener("load", initializemarquee, false)
 else if (window.attachEvent)
 window.attachEvent("onload", initializemarquee)
 else if (document.getElementById)
-window.onload=initializemarquee
+window.onload=initializemarquee */
 
 
 </script>
@@ -1115,5 +1197,11 @@ window.onload=initializemarquee
 
 
 </style> 
- 
+
+<script type="text/javascript">
+
+
+
+
+</script>
 </html>

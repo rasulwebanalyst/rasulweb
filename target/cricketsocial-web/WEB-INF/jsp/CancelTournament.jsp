@@ -88,7 +88,7 @@
             <div class="col-md-10 pull-right rightnone">
       			<div class="col-md-12 whiteBox">
                        
-                       <h1 class="">Cancel Tournament</h1>
+                       <h1 class="">Edit/Cancel Tournament</h1>
                        
                       <div class="col-md-12 noPadding" style="font-size: 12px;">
                       <c:choose>
@@ -193,7 +193,7 @@
 	   var boardId = "${boardId}";
 	   if(type == 'no')
 		   {
-		   displaynotification("Already in KnockOut match",2000);   
+		   displaynotification("Sorry ! Tournament already in knockout stage",2000);   
 		   }else
 			   {
 			  window.location.href="${pageContext.request.contextPath}/editTrophy/boardId/"+boardId+"/tournamentId/"+id; 

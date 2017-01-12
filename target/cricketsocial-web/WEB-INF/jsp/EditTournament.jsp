@@ -89,12 +89,12 @@ var sequencNumber=0;
       
       <div class="col-md-10">
       		<div class="col-md-12 whiteBox">
-		          <h1 class="">Create Tournament / Trophy</h1>
+		          <h1 class="">Edit Tournament / Trophy</h1>
                   
                   <div class="form-group col-md-12 noPadding profileForm"><br>
                   <form id="tournamentForm"  action="${pageContext.request.contextPath}/EditTournamentDetails.htm" method="POST">
                                   <div class="col-md-6">
-                                  	<label for="email"><span>*</span> Create Tournament / Trophy</label> <input type="text" class="form-control" placeholder="" id="tournamentName" name="tournamentName" onblur="tournamentNameValidation()" value="${tournamentName}">
+                                  	<label for="email"><span>*</span> Create Tournament / Trophy</label> <input type="text" class="form-control" placeholder="" id="tournamentName" name="tournamentName" onblur="tournamentNameValidation()" value="${tournamentName}" readonly="readonly">
                                   </div>
                                  
                                   <div class="col-md-6" style="display: none;">
@@ -148,7 +148,7 @@ var sequencNumber=0;
                                  </div>
                                  
                                  <div class="col-md-12 Create">
-                                    <input type="button" class="btn btn-default dBtn" onclick="submitFunction()" value="Edit Schedule">
+                                    <input type="button" class="btn btn-default dBtn" onclick="submitFunction()" value="Update Tournament">
                                     <input type="button" class="btn btn-default blueBtn" onclick="cancelFunction();" value="Cancel">
                           	     </div>
                           	     </form>
@@ -331,7 +331,10 @@ var sequencNumber=0;
 				   success : function(response)
                	{
 					   $("#loading").hide();
-               	alert(response);
+					   displaynotification('Tournament updated successfully',2000);
+					   var bId = "${boardId}";
+					   window.location.href = "${pageContext.request.contextPath}/CancelTournament/boardId/"+bId;
+               
                	}
 				  
 			  })  
@@ -660,7 +663,7 @@ var sequencNumber=0;
 		        htm +="<button type='button' class='btn btn-default ' style='width:80px; float:left;margin-left: 17px;' onclick=removeFromList('"+userid+"')>Remove</button>";
 		        }else{
 		        	
-		        	htm +="<button type='button' class='btn btn-default ' style='width:80px; float:left;margin-left: 17px;'>Remove</button>";
+		        	htm +="<button type='button' class='btn btn-default ' style='width:80px; float:left;margin-left: 17px;' onclick=removeFrompopup('"+name.replace(/ /g,"-")+"')>Remove</button>";
 		        }
 		        
 		        htm +="<input type='hidden' class='form-control' placeholder='' id='memberHiddeb"+userid+"' name='teamUserId' value='"+userid+"'>";
@@ -674,6 +677,12 @@ var sequencNumber=0;
 	   $("input[name=rr][value=" + umpire + "]").attr('checked', 'checked');
 	   
    })
+   
+   function removeFrompopup(name)
+   {
+	   var show=name.replace(/-/g," ");
+	   displaynotification(show+' already played match in this tournament',2000);
+   }
    
    </script>
    

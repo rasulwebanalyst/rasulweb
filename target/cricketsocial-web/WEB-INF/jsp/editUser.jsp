@@ -17,16 +17,52 @@
  <link rel="stylesheet" href="css/token-input.css" type="text/css" />
     <link rel="stylesheet" href="css/token-input-facebook.css" type="text/css" />
  <style type="text/css">
- 
+ .token-input-delete-token-facebook{
+ float : right !important;
+ }
+ .token-input-input-token-facebook{
+ display: none;
+ }
  </style>
 </head>
 
 <body>
 <script type="text/javascript">
 var imageValidate=1;
+var leaguearray=[];
+var teamarray=[];
+var leaguearrayId=[];
+var teamarrayId=[];
+var leaguedeletearray=[];
+var teamdeletearray=[];
 </script>
  <%@ include file="CSCommon.jsp" %>
  <%@ include file="BuddyHeader.jsp" %>
+ 
+ <c:forEach items="${LeagueListforUser}" var="league">
+ <script type="text/javascript">
+ 
+ leaguearrayId.push("${league.boardId}");
+ 
+ leaguearray.push({
+	 id : "${league.boardId}",
+	 name : "${league.boardName}"
+ });
+ 
+ </script>
+ </c:forEach>
+ 
+ <c:forEach items="${teamListforUser}" var="team">
+ <script type="text/javascript">
+ teamarrayId.push("${team.boardId}");
+ 
+ teamarray.push({
+	 id : "${team.boardId}",
+	 name : "${team.boardName}"
+ });
+ 
+ </script>
+ </c:forEach>
    
    
     <section class="middleContentBlock">
@@ -612,7 +648,7 @@ var imageValidate=1;
                               
                                <%-- <input type="text" class="form-control" placeholder="Cricket Teams Board" name="teamBoard" id="teamAutoCompleteTextBoxId" onkeyup="boardAutocomplete(this,'Team','ctAutoComplateDiv')" value="${UserProfileOBJ.teamboardlist[0].boardName}" /> --%>
                                
-                               <input type="text" class="form-control" placeholder="" id="teamboardId" name="scheduler" value="">
+                               <input type="text" class="form-control" placeholder="" id="teamboardId" name="scheduler" value="" readonly="readonly" >
                                
                                
                               <div class="autoComplete" id="ctAutoComplateDiv" style="display:none;">
@@ -620,47 +656,36 @@ var imageValidate=1;
                               </div>
                             <input type="hidden" id="teamBoardId" name="teamBoardId" value="${UserProfileOBJ.teamboardlist[0].boardId}">	       		                       	
                           
+                          <input type="hidden" id="associatedTeams" name="associatedTeams" value="">
+                          <input type="hidden" id="hiddenTeams" name="hiddenTeams" value="">
+                          
                                 </div>
                                 
                                
                                 
                                 
                                 
-                                
-                                
-                                <!-- <div class="col-md-12 pageVisi1 adjust">
-              	<div class="col-md-12 noPadding abil">
-                	<div class=" col-md-3 PG-Visi wid2">
-                    <h6>Schedule Co-Ordinator</h6>
-                  </div>
-                  <div class="col-md-9 own">
-                  	<input type="text" class="form-control" placeholder="" id="schedulerId" name="scheduler" value="Thamaramurthy">
-                  </div>
-                   
-                  
-                </div>
-              </div> -->
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
                               <div class="col-md-12">
                                <label for="email">Cricket Leagues Associated</label>
                               
-                               <input type="text" class="form-control" placeholder="Cricket League Board" name="leagueBoard" id="leagueAutoCompleteTextBoxId" onkeypress="boardAutocomplete(this,'League','clAutoComplateDiv')" value="${UserProfileOBJ.leagueboardlist[0].boardName}"/>
+                               <%-- <input type="text" class="form-control" placeholder="Cricket League Board" name="leagueBoard" id="leagueAutoCompleteTextBoxId" onkeypress="boardAutocomplete(this,'League','clAutoComplateDiv')" value="${UserProfileOBJ.leagueboardlist[0].boardName}"/> --%>
+                               <input type="text" class="form-control" placeholder="" name="leagueBoard" id="leagueBoardId" value=""/>
                               <div class="autoComplete" id="clAutoComplateDiv" style="display:none;">
 										  		                    	
                               </div>
                             <input type="hidden" id="leagueBoardId" name="leagueBoardId" value="${UserProfileOBJ.leagueboardlist[0].boardId}">	      
                           
+                          <input type="hidden" id="associatedLeagues" name="associatedLeagues" value="">
+                          <input type="hidden" id="hiddenLeagues" name="hiddenLeagues" value="">
+                          
                                 </div>
+                                
+                                
+                                
+                                
+                                
+                                
+                                
                               <div class="col-md-12">
                                <label for="email">Interests</label>
                               
@@ -718,22 +743,56 @@ var imageValidate=1;
 	   $("#teamboardId").tokenInput(ctx+"/boardSearchInUsereditteam?category=Team",{
 	    	theme: "facebook",   
 	    	onAdd: function (item) {
+	    		/* console.log(item.boardName)
+	    		 teamarrayId.push(item.id);
+	    		$('#associatedTeams').val(teamarrayId);  */
+	    	},
+	    	onDelete: function (item) {
+	        	 var index = teamarrayId.indexOf(item.id);
+				if (index >= 0) {
+					teamarrayId.splice( index, 1 );
+					teamdeletearray.push(item.id);
+				}
+				
+				   $('#associatedTeams').val(teamarrayId); 
+				   $('#hiddenTeams').val(teamdeletearray); 
+				
+	    },
+	    resultsFormatter: function(item){ 
+	    	console.log(JSON.stringify(item));
+	    	return "<li>" + "<img src='" + item.boardImageURL + "' title='" + item.boardName +"' height='50px' width='50px' onerror=errorImageset(this)/>" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name'>" + item.boardName + "</div></div></li>"},
+	     prePopulate: teamarray 
+	   });
+	   
+	
+	   
+	   $("#leagueBoardId").tokenInput(ctx+"/boardSearchInUsereditteam?category=league",{
+	    	theme: "facebook",   
+	    	onAdd: function (item) {
 	    		console.log(item.boardName)
 	    		/* schedulerArray.push(item.id);
 	    		$('#scheduerHiddenId').val(schedulerArray); */
 	    	},
 	    	onDelete: function (item) {
-	        	/* var index = schedulerArray.indexOf(item.id);
+	        	var index = leaguearrayId.indexOf(item.id);
 				if (index >= 0) {
-					schedulerArray.splice( index, 1 );
+					leaguearrayId.splice( index, 1 );
+					leaguedeletearray.push(item.id);
 				}
-				$('#scheduerHiddenId').val(schedulerArray); */
+				$('#associatedLeagues').val(leaguearrayId); 
+				$('#hiddenLeagues').val(leaguedeletearray);
 	    },
 	    resultsFormatter: function(item){ 
 	    	console.log(JSON.stringify(item));
-	    	return "<li>" + "<img src='" + item.boardImageURL + "' title='" + item.boardName +"' height='50px' width='50px' onerror=errorImageset(this)/>" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name'>" + item.boardName + "</div></div></li>"}
-	    /* prePopulate: arrayBoardScheduleCoordinatorList */
+	    	return "<li>" + "<img src='" + item.boardImageURL + "' title='" + item.boardName +"' height='50px' width='50px' onerror=errorImageset(this)/>" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name'>" + item.boardName + "</div></div></li>"},
+	     prePopulate: leaguearray 
 	   });
+	   
+	   
+	   $('#associatedLeagues').val(leaguearrayId); 
+	   $('#associatedTeams').val(teamarrayId); 
+	   $('#hiddenLeagues').val(leaguedeletearray); 
+	   $('#hiddenTeams').val(teamdeletearray);  
 	   
    })
    
