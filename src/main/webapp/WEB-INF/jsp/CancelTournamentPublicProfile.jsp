@@ -84,7 +84,7 @@
             <div class="col-md-10 pull-right">
       			<div class="col-md-12 whiteBox">
                        
-                       <h1 class="">Cancel & Edit Tournament</h1>
+                       <h1 class="">Edit/Cancel Tournament</h1>
                        
                       <div class="col-md-12 noPadding" style="font-size: 12px;">
                       <c:choose>

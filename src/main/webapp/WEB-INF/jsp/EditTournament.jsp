@@ -148,7 +148,7 @@ var sequencNumber=0;
                                  </div>
                                  
                                  <div class="col-md-12 Create">
-                                    <input type="button" class="btn btn-default dBtn" onclick="submitFunction()" value="Update Schedule">
+                                    <input type="button" class="btn btn-default dBtn" onclick="submitFunction()" value="Update Tournament">
                                     <input type="button" class="btn btn-default blueBtn" onclick="cancelFunction();" value="Cancel">
                           	     </div>
                           	     </form>
@@ -681,7 +681,7 @@ var sequencNumber=0;
    function removeFrompopup(name)
    {
 	   var show=name.replace(/-/g," ");
-	   displaynotification(show+' already played match in this tournaments',2000);
+	   displaynotification(show+' already played match in this tournament',2000);
    }
    
    </script>

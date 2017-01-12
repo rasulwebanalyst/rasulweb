@@ -41,12 +41,31 @@ public class SearchResponse {
 	 private int fiveFerCount;
 	 
 	 
+	 private List<BoardProfile> leagueBoardList;
+	 private List<BoardProfile> teamBoardList;
+	 
 	 
 	 
 	 
 	 
 	 
     
+	public List<BoardProfile> getLeagueBoardList() {
+		return leagueBoardList;
+	}
+
+	public void setLeagueBoardList(List<BoardProfile> leagueBoardList) {
+		this.leagueBoardList = leagueBoardList;
+	}
+
+	public List<BoardProfile> getTeamBoardList() {
+		return teamBoardList;
+	}
+
+	public void setTeamBoardList(List<BoardProfile> teamBoardList) {
+		this.teamBoardList = teamBoardList;
+	}
+
 	public String getDob() {
 		return dob;
 	}

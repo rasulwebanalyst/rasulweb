@@ -304,21 +304,21 @@
                                     <h4 class="panel-title" >
                                         Batting and Fielding Performances 
                                         
-                                        
-                                        <div class="h1Sbox">
-                                         <div class="selectdiv pull-right" style="width: 200px;height: 30px; display: none;" id="Firstselect" >
+                                        <i class="fa fa-chevron-down" data-toggle="collapse" href="#collapseOne"></i>
+                                        <div class="h1Sbox BFP_field">
+                                         <div class="selectdiv pull-right" style="width: 180px;height: 30px; margin-top: 3px; display: none;" id="Firstselect" >
                                     <select class="selectboxdiv" onchange="battingDetails(this.value)">
                                     <option value="All">Select Roster</option>
                                         <c:forEach var="tournamnetlist" items="${tournamentlist}" >
                                     		<option value="${tournamnetlist.tournamentId}">${tournamnetlist.tournamentName}</option>
                                    		 </c:forEach>
                                     </select>
-                                    <div class="out">Select Tournament</div>    
+                                    <div style="line-height: 27px;" class="out">Select Tournament</div>    
                                 </div>
                                 </div>
                                         
                                         
-                                        <i class="fa fa-chevron-down" data-toggle="collapse" href="#collapseOne"></i>
+                                        
                                     </h4>
                                 </div>
                                 <div id="collapseOne" class="panel-collapse collapse">
@@ -386,9 +386,9 @@
                                     <h4 class="panel-title" >
                                        Bowling Performances 
                                        
-                                       
-                                       <div class="h1Sbox">
-                                        <div class="selectdiv pull-right" style="width: 200px;height: 30px; display: none;" id="Secondselect" >
+                                       <i class="fa fa-chevron-down" data-toggle="collapse" href="#collapseTwo"></i>
+                                       <div class="h1Sbox BFP_field">
+                                        <div class="selectdiv pull-right" style="width: 180px;height: 30px; margin-top: 3px; display: none;"  id="Secondselect" >
                                     <select class="selectboxdiv" onchange="Bowlingperformance(this.value)">
                                     <option value="All">Select Roster</option>
                                          <c:forEach var="tournamnetlist" items="${tournamentlist}" >
@@ -396,14 +396,14 @@
                                    		 </c:forEach>
                                         
                                     </select>
-                                    <div class="out">Select Tournament</div>    
+                                    <div style="line-height: 27px;" class="out">Select Tournament</div>    
                                 </div>
                                   </div>     
                                        
                                        
                                        
                                        
-                                       <i class="fa fa-chevron-down" data-toggle="collapse" href="#collapseTwo"></i> </h4>
+                                        </h4>
                                 </div>
                                 <div id="collapseTwo" class="panel-collapse collapse">
                                     <div class="panel-body">

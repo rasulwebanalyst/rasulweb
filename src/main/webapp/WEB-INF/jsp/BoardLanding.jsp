@@ -446,7 +446,7 @@ var formatAMPMTime = function(date) {
                              			<a href="javascript:"> Assign Umpire to Schedule </a>
                              			<a href="javascript:"> Assign Scorer to Schedule</a>
                              			<a href="javascript:"> Cancel Game by date</a>
-                             			<a href="javascript:"> Cancel & Edit Tournament</a>
+                             			<a href="javascript:"> Edit/Cancel Tournament</a>
                              			</span>
                              			<div class="lessview" id="less">...Less</div>
                              		</div>
@@ -499,7 +499,7 @@ var formatAMPMTime = function(date) {
                              			<a href="${pageContext.request.contextPath}/AssignUmpire/boardId/${BoradInfo.boardId}"> Assign Umpire to Schedule </a>
                              			<a href="${pageContext.request.contextPath}/AssignScorer/boardId/${BoradInfo.boardId}"> Assign Scorer to Schedule</a>
                              			<a href="${pageContext.request.contextPath}/CancelGameByDate/boardId/${BoradInfo.boardId}"> Cancel Game by date</a>
-                             			<a href="${pageContext.request.contextPath}/CancelTournament/boardId/${BoradInfo.boardId}"> Cancel & Edit Tournament</a>
+                             			<a href="${pageContext.request.contextPath}/CancelTournament/boardId/${BoradInfo.boardId}"> Edit/Cancel Tournament</a>
                              			</span>
                              			<div class="lessview" id="less">...Less</div>
                              		</div>
@@ -548,7 +548,7 @@ var formatAMPMTime = function(date) {
                              			<a href="${pageContext.request.contextPath}/AssignUmpire/boardId/${BoradInfo.boardId}"> Assign Umpire to Schedule </a>
                              			<a href="${pageContext.request.contextPath}/AssignScorer/boardId/${BoradInfo.boardId}"> Assign Scorer to Schedule</a>
                              			<a href="${pageContext.request.contextPath}/CancelGameByDate/boardId/${BoradInfo.boardId}"> Cancel Game by date</a>
-                             			<a href="${pageContext.request.contextPath}/CancelTournament/boardId/${BoradInfo.boardId}"> Cancel & Edit Tournament</a>
+                             			<a href="${pageContext.request.contextPath}/CancelTournament/boardId/${BoradInfo.boardId}"> Edit/Cancel Tournament</a>
                              			</span>
                              			<div class="lessview" id="less">...Less</div>
                              		</div>
@@ -601,7 +601,7 @@ var formatAMPMTime = function(date) {
                              			<a href="javascript:"> Assign Umpire to Schedule </a>
                              			<a href="javascript:"> Assign Scorer to Schedule</a>
                              			<a href="javascript:"> Cancel Game by date</a>
-                             			<a href="javascript:"> Cancel & Edit Tournament</a>
+                             			<a href="javascript:"> Edit/Cancel Tournament</a>
                              			</span>
                              			<div class="lessview" id="less">...Less</div>
                              		</div>
@@ -651,7 +651,7 @@ var formatAMPMTime = function(date) {
                              			<a href="${pageContext.request.contextPath}/AssignUmpire/boardId/${BoradInfo.boardId}"> Assign Umpire to Schedule </a>
                              			<a href="${pageContext.request.contextPath}/AssignScorer/boardId/${BoradInfo.boardId}"> Assign Scorer to Schedule</a>
                              			<a href="${pageContext.request.contextPath}/CancelGameByDate/boardId/${BoradInfo.boardId}"> Cancel Game by date</a>
-                             			<a href="${pageContext.request.contextPath}/CancelTournament/boardId/${BoradInfo.boardId}"> Cancel & Edit Tournament</a>
+                             			<a href="${pageContext.request.contextPath}/CancelTournament/boardId/${BoradInfo.boardId}"> Edit/Cancel Tournament</a>
                              			</span>
                              			<div class="lessview" id="less">...Less</div>
                              		</div>
@@ -697,7 +697,7 @@ var formatAMPMTime = function(date) {
                              			<a href="${pageContext.request.contextPath}/AssignUmpire/boardId/${BoradInfo.boardId}"> Assign Umpire to Schedule </a>
                              			<a href="${pageContext.request.contextPath}/AssignScorer/boardId/${BoradInfo.boardId}"> Assign Scorer to Schedule</a>
                              			<a href="${pageContext.request.contextPath}/CancelGameByDate/boardId/${BoradInfo.boardId}"> Cancel Game by date</a>
-                             			<a href="${pageContext.request.contextPath}/CancelTournament/boardId/${BoradInfo.boardId}"> Cancel & Edit Tournament</a>
+                             			<a href="${pageContext.request.contextPath}/CancelTournament/boardId/${BoradInfo.boardId}"> Edit/Cancel Tournament</a>
                              			</span>
                              			<div class="lessview" id="less">...Less</div>
                              		</div>
