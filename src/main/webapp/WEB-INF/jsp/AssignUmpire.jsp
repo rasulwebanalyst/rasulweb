@@ -1,9 +1,16 @@
+    <!DOCTYPE html>
+<html lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
  <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
 <!-- responsive css -->
  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/cricketSocial/umpireSearch.js">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/cricketSocial/umpireSearch.js"></script>
 
 <script type="text/javascript">
 <!--
@@ -161,11 +168,12 @@ var formatAMPMTime = function(date) {
                                     </tr>
                                     </thead>
                                     </table>
+                                    </div>
                                     <span class="noContentDivRed" id="errorSpan">No schedules available for this week</span>
 		          
 		          </c:when>
 		          <c:otherwise>
-		          
+		          <div class="form-group">
 		          <table id="myTableAssign" style="font-size: 12px;">
                             	<thead>
                                 <tr>
@@ -193,6 +201,7 @@ var formatAMPMTime = function(date) {
                   </c:forEach>
                               </tbody>
                             </table>
+                            </div>
 		          <span id="errorSpan" style="color:red"></span>
 		          </c:otherwise>
 		          
@@ -379,9 +388,9 @@ var formatAMPMTime = function(date) {
 		//getUmpireList
 			
 		if(response[0].tournamentSelectOption==1){
-			htmlContent += '<td><div><input type="text" id="scorerSelectBox" name="scorerSelectBox" onkeyup="getUmpireList(this,\'addMemberautoCompleteDIV\',\'addMemberIDDIV\')" ><div class="autoComplete" id="addMemberautoCompleteDIV" style="display:none;"> <ul><li></li></ul>';	
+			htmlContent += '<td><div><input type="text" id="scorerSelectBox" name="scorerSelectBox" onkeyup="getUmpireList(this,\'addMemberautoCompleteDIV\',\'addMemberIDDIV\')" ><div class="autoComplete umpireautocomplete" id="addMemberautoCompleteDIV" style="display:none;"> <ul><li></li></ul>';	
 		}else{
-			htmlContent += '<td><div><input type="text" id="scorerSelectBox" name="scorerSelectBox" onkeyup="getBuddiesAutoComplete(this,\'addMemberautoCompleteDIV\',\'addMemberIDDIV\')" ><div class="autoComplete" id="addMemberautoCompleteDIV" style="display:none;"> <ul><li></li></ul>';
+			htmlContent += '<td><div><input type="text" id="scorerSelectBox" name="scorerSelectBox" onkeyup="getBuddiesAutoComplete(this,\'addMemberautoCompleteDIV\',\'addMemberIDDIV\')" ><div class="autoComplete umpireautocomplete" id="addMemberautoCompleteDIV" style="display:none;"> <ul><li></li></ul>';
 		}		
 		
 		
@@ -473,9 +482,9 @@ var formatAMPMTime = function(date) {
 				//htmlContent += '<option value="${umpires.umpireId }">${umpires.umpireName}</option></c:forEach> </select><div id = "umpireDiv1" class="out"></div> </div>  <span id="error" style="color:red"></span></td> ' ; 
 				//htmlContent += '<td><div><input type="text" id="scorerSelectBox" name="scorerSelectBox" onkeyup="getBuddiesAutoComplete(this,\'addMemberautoCompleteDIV\',\'addMemberIDDIV\')" ><div class="autoComplete" id="addMemberautoCompleteDIV" style="display:none;"> <ul><li></li></ul>'; 
 				if(response[0].tournamentSelectOption==1){
-					htmlContent += '<td><div><input type="text" id="scorerSelectBox" name="scorerSelectBox" onkeyup="getUmpireList(this,\'addMemberautoCompleteDIV\',\'addMemberIDDIV\')" ><div class="autoComplete" id="addMemberautoCompleteDIV" style="display:none;"> <ul><li></li></ul>';	
+					htmlContent += '<td><div><input type="text" id="scorerSelectBox" name="scorerSelectBox" onkeyup="getUmpireList(this,\'addMemberautoCompleteDIV\',\'addMemberIDDIV\')" ><div class="autoComplete umpireautocomplete" id="addMemberautoCompleteDIV" style="display:none;"> <ul><li></li></ul>';	
 				}else{
-					htmlContent += '<td><div><input type="text" id="scorerSelectBox" name="scorerSelectBox" onkeyup="getBuddiesAutoComplete(this,\'addMemberautoCompleteDIV\',\'addMemberIDDIV\')" ><div class="autoComplete" id="addMemberautoCompleteDIV" style="display:none;"> <ul><li></li></ul>';
+					htmlContent += '<td><div><input type="text" id="scorerSelectBox" name="scorerSelectBox" onkeyup="getBuddiesAutoComplete(this,\'addMemberautoCompleteDIV\',\'addMemberIDDIV\')" ><div class="autoComplete umpireautocomplete" id="addMemberautoCompleteDIV" style="display:none;"> <ul><li></li></ul>';
 				}	
 				
 				htmlContent += " </div><input type='hidden' class='form-control' placeholder='' id='addMemberIDDIV'></div><span id='error' style='color:red'></span>	";

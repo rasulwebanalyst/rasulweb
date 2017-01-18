@@ -145,21 +145,21 @@ function getNoficationList()
 			 		 				
 			 		 				htm +='<img src="'+res[i].userImageUrl+'" style="width: 50px;    height: 50px;" onError="userErrorDefaultImg(this)">';
 			 		 				htm +='<h4 style="font-size: 12px;"><a href="'+ctx+'/buddy/'+res[i].firstName+'/'+res[i].userId+'">'+res[i].firstName+' '+res[i].lastName+'</a> updated his/her profile</h4>'
-			 		 				htm +='<p style="font-size: 12px;"> '+res[i].oldFname+' '+res[i].oldLname+' updated his/her <br>';
+			 		 				htm +='<p style="font-size: 12px; padding-left: 60px;"> '+res[i].oldFname+' '+res[i].oldLname+' updated his/her <br>';
 			 		 				var namechanges=0;
 			 		 				if(res[i].firstName != res[i].oldFname || res[i].lastName != res[i].oldLname)
 	 		        	  			{
 			 		 					namechanges=1;
-			 		 					htm +='name to <a href="'+ctx+'/buddy/'+res[i].firstName+'/'+res[i].userId+'">'+res[i].firstName+' '+res[i].lastName+'</a>';
+			 		 					htm +='name as <a href="'+ctx+'/buddy/'+res[i].firstName+'/'+res[i].userId+'">'+res[i].firstName+' '+res[i].lastName+'</a>';
 	 		        	  			}
 			 		 				if(res[i].newDob != res[i].oldDob )
 	 		        	  			{
 			 		 					if(namechanges == 1){
-			 		 						htm +=',';
+			 		 						htm +='<span style="margin-left: -5px;">,</span>';
 			 		 					}
-			 		 					htm +='dob to '+res[i].newDob+'';
+			 		 					htm +=' DOB from '+res[i].oldDob+' to '+res[i].newDob+'';
 	 		        	  			}
-			 		 				
+			 		 				htm +='.';
 			 		 				htm +='</p>';
 				 		            
 				 		            htm +='</div>';

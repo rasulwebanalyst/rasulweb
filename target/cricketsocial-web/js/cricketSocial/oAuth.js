@@ -3,7 +3,7 @@ var fbURL='1552238875041700'; // Dev
 //110086556012641
 
 //var fbURL='1037086509684954'; // local
- //  var fbURL='480457342143824'; // Production
+   //var fbURL='480457342143824'; // Production
 // var fbURL='110086556012641'; // QA
   window.fbAsyncInit = function() {
     FB.init({
@@ -230,7 +230,7 @@ function googleLogin()
 			    'scope' : 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.google.com/m8/feeds/ https://www.googleapis.com/auth/contacts.readonly',
 			  };
 			  gapi.auth.signIn(myParams);
-} */ // Production Environment
+}*/  // Production Environment
 	 
 function loginCallback(result)
 {
@@ -284,7 +284,7 @@ function loginCallback(result)
 function onLoadCallback()
 {
   // gapi.client.setApiKey("AIzaSyA0fVf7zr2HemJ5ItsizriAF2Vxvf9k-28");//FOR  QA AIzaSyBkJTuE1F2YOwLGOzHqNx5Q9beqbQdZW_8
-	 gapi.client.setApiKey("AIzaSyA9laDOXif5a3Cd4Ha03JXC77vXnfFZu0g"); // For Dev 
+	 gapi.client.setApiKey("AIzaSyA9laDOXif5a3Cd4Ha03JXC77vXnfFZu0g"); // For Dev Qa
 	//gapi.client.setApiKey("AIzaSyBzCBzUjAh3MCIMyL74VKzDvRxR91XCZHQ"); // Production Environment 
   
 	

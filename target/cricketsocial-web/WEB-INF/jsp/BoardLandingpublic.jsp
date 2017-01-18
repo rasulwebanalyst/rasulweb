@@ -12,6 +12,8 @@
     <meta name="author" content="">
 
     <title>Cricket Social</title>
+          <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 <script>var ctx="${pageContext.request.contextPath}";</script>
 
 <script type="text/javascript">
@@ -292,6 +294,9 @@ var formatAMPMTime = function(date) {
                             <c:when test="${completed.statusOfMatch eq 'forfeit'}">
                            		<span >${completed.winTeamName} won the match by forfeit</span>
                            </c:when>
+                           <c:when test="${completed.statusOfMatch eq 'walkover'}">
+                           		<span >${completed.winTeamName} won the match by walkover</span>
+                           </c:when>
                            <c:otherwise>
                            <span >${completed.winTeamName} won the match</span>
                            </c:otherwise>
@@ -316,6 +321,9 @@ var formatAMPMTime = function(date) {
                            </c:when>
                             <c:when test="${completed.statusOfMatch eq 'forfeit'}">
                            		<span >${completed.winTeamName} won the match by forfeit</span>
+                           </c:when>
+                           <c:when test="${completed.statusOfMatch eq 'walkover'}">
+                           		<span >${completed.winTeamName} won the match by walkover</span>
                            </c:when>
                            <c:otherwise>
                            <span >${completed.winTeamName} won the match</span>

@@ -12,7 +12,8 @@
     <meta name="author" content="">
 
     <title>Cricket Social</title>
-
+        <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
     <!-- Bootstrap Core CSS -->
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 
@@ -58,7 +59,7 @@
 
         <%@ include file="BoardFanMenu.jsp" %>
       <div class="col-md-10">
-      		<div class="col-md-12 whiteBox">
+      		<div class="col-md-12 whiteBox" style="font-size: 12px;">
 		          <%-- <h1 class="">Ground List <a href="${pageContext.request.contextPath}/CreateGround/boardId/${boardId}" class="btn btn-default dBtn pull-right">Create Ground</a></h1> --%>
                        <h1 class="">Ground List 
                        <c:forEach items="${BoradInfo.boardCoordinatorList}" var="coordinator">
@@ -70,6 +71,7 @@
                        </c:forEach>
                        
                        </h1>
+                       <div class="form-group">
                   <c:choose>
                   <c:when test="${groundListSize == 0 }">
                   <table id="tableId">
@@ -119,7 +121,18 @@
                     <tr>
                         <td style="text-align: center !important;">${index.count}</td>
                     	<td class="alignCenter">${grndList.groundName}</td>
-                        <td>${grndList.address1}</td>
+                    	
+                    	<c:choose>
+                                            <c:when test="${grndList.address1 eq null || grndList.address1 eq ''}">
+                                            <td>-</td>
+                                            </c:when>
+                                            <c:otherwise>
+                                           <td>${grndList.address1}</td>
+                                            </c:otherwise>
+                                            </c:choose>
+                    	
+                    	
+                        <%-- <td>${grndList.address1}</td> --%>
                         <td>${grndList.city}</td>
                        <%--  <td class="alignCenter">
                         	<a href="#" title="Edit"><i onclick="editGround('${grndList.groundId}')" class="fa fa-pencil editIcon"></i></a>
@@ -144,6 +157,7 @@
                 </tbody>
                 
             </table>
+            </div>
             </c:otherwise> 
                  </c:choose> 
                   

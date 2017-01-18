@@ -14,6 +14,8 @@
     <title>Cricket Social</title>
   
  <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
+     <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
  <style type="text/css">
 /*  #ctAutoComplateDiv ul{
  width: 98%

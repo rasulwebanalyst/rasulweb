@@ -10,7 +10,8 @@
     <meta name="author" content="">
 
     <title>Cricket Social</title>
-
+       <!-- responsive css -->
+	 <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -146,13 +147,13 @@
                 	<%@ include file="BoardPublicProfileSideMenu.jsp" %>
                      
                      <%@ include file="BoardFanMenu.jsp" %> 
-                <div class="col-md-10 pull-right rosterBlock">
+                <div class="col-md-10 pull-right rosterBlock rightnone">
                  <div class="col-md-12 whiteBox">
                  	No Rosters are available.
                  </div>
                  </div>
                  
-                 	  <div class="col-md-10 pull-right rosterBlock">
+                 	  <div class="col-md-10 pull-right rosterBlock rightnone">
                  <div class="col-md-12 whiteBox">
           			
           			
@@ -168,7 +169,7 @@
                 <c:otherwise>
                    <%@ include file="BoardPublicProfileSideMenu.jsp" %>
                 <%@ include file="BoardFanMenu.jsp" %> 
-                	<div class="col-md-10 pull-right rosterBlock">
+                	<div class="col-md-10 pull-right rosterBlock rightnone">
                  <div class="col-md-12 whiteBox">
           			
           			
@@ -192,7 +193,7 @@
                   </div>
                   
                   
-                  <div class="col-md-10 pull-right rosterBlock">
+                  <div class="col-md-10 pull-right rosterBlock rightnone">
                   <div class="col-md-12 whiteBox rosterDetail">
                         	<div class="media">
                                  <c:choose>
@@ -299,14 +300,31 @@
                         
                         <div class="panel-group rosterAccordion" id="accordion">
                             <div class="panel panel-default">
-                                <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                <div class="panel-heading"  data-parent="#accordion" >
                                     <h4 class="panel-title" >
-                                        Batting and Fielding Performances <i class="fa fa-chevron-down"></i>
+                                        Batting and Fielding Performances 
+                                        
+                                        <i class="fa fa-chevron-down" data-toggle="collapse" href="#collapseOne"></i>
+                                        <div class="h1Sbox BFP_field">
+                                         <div class="selectdiv pull-right" style="width: 180px;height: 30px; margin-top: 3px; display: none;" id="Firstselect" >
+                                    <select class="selectboxdiv" onchange="battingDetails(this.value)">
+                                    <option value="All">Select Roster</option>
+                                        <c:forEach var="tournamnetlist" items="${tournamentlist}" >
+                                    		<option value="${tournamnetlist.tournamentId}">${tournamnetlist.tournamentName}</option>
+                                   		 </c:forEach>
+                                    </select>
+                                    <div style="line-height: 27px;" class="out">Select Tournament</div>    
+                                </div>
+                                </div>
+                                        
+                                        
+                                        
                                     </h4>
                                 </div>
                                 <div id="collapseOne" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                    
+                                    <div class="form-group">
+                                    <div id="Battingperformancediv">
                                     	<table>
                                     	<thead>
                                         	<tr>                                        
@@ -350,6 +368,7 @@
                                             
                                            </tbody> 
                                     </table>
+                                    </div>
                                       	<c:choose>
                                       		<c:when test="${ not empty BattingPerformance}">
                                       					
@@ -358,18 +377,38 @@
                                       			<div>No Records are there</div>
                                       		</c:otherwise>
                                       	</c:choose>
-                                      	
+                                      	</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="panel panel-default">
-                                <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                <div class="panel-heading"  data-parent="#accordion" >
                                     <h4 class="panel-title" >
-                                       Bowling Performances <i class="fa fa-chevron-down"></i> </h4>
+                                       Bowling Performances 
+                                       
+                                       <i class="fa fa-chevron-down" data-toggle="collapse" href="#collapseTwo"></i>
+                                       <div class="h1Sbox BFP_field">
+                                        <div class="selectdiv pull-right" style="width: 180px;height: 30px; margin-top: 3px; display: none;"  id="Secondselect" >
+                                    <select class="selectboxdiv" onchange="Bowlingperformance(this.value)">
+                                    <option value="All">Select Roster</option>
+                                         <c:forEach var="tournamnetlist" items="${tournamentlist}" >
+                                    		<option value="${tournamnetlist.tournamentId}">${tournamnetlist.tournamentName}</option>
+                                   		 </c:forEach>
+                                        
+                                    </select>
+                                    <div style="line-height: 27px;" class="out">Select Tournament</div>    
+                                </div>
+                                  </div>     
+                                       
+                                       
+                                       
+                                       
+                                        </h4>
                                 </div>
                                 <div id="collapseTwo" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                       	
+                                       	<div class="form-group">
+                                       		<div id="Bowlingperformancediv">
                                         <table>
                                     	<thead>
                                         	<tr>
@@ -413,6 +452,8 @@
                                            
                                           
                                     </table>
+                                    </div>
+                                    </div>
 										<c:choose>
                                       		<c:when test="${ not empty BowlingPerformance}">
                                       					
@@ -716,6 +757,160 @@
 	
 	
 	
+	function battingDetails(tid)
+	{
+		var roasterid="${RoasterResponseById.rosterDetails.rosterId}";
+		
+		if(tid == "All")
+			{
+			tid="";
+			}
+		
+		var request={
+				rosterId : roasterid,
+				tournamentId : tid
+		}
+		
+		$.ajax({
+			type : "POST",
+			url : "${pageContext.request.contextPath}/roasterbattingdetails",
+			data : JSON.stringify(request),
+			contentType : "application/json",
+			success : function(res)
+			{
+				/* console.log(JSON.stringify(res)); */
+				var htm="";
+				if(res !=null)
+					{
+					if(res.length > 0)
+						{
+						
+						
+						/* <div id="Battingperformancediv">
+               			</div> */
+               			
+               			
+               			
+               			 htm+="<table><thead><tr><th>Player</th><th>M</th><th>I</th><th>NO</th><th>R</th><th>HS</th>";
+               			htm+="<th>Avg</th><th>SR</th><th>100</th><th>50</th><th>CT</th><th>ST</th></tr> </thead> <tbody>";
+               			
+               			
+               			
+               			
+               			for(var i in res)
+               				{
+               				htm+="<tr><td> "+res[i].firstName+" "+res[i].lastName+" </td>";
+               				htm+="<td>"+res[i].matchCount+"</td>";
+               				htm+="<td>"+res[i].inningsCount+"</td>";
+               				htm+="<td>"+res[i].notOut+"</td>";
+               				htm+="<td>"+res[i].runs+"</td>";
+               				htm+="<td>"+res[i].highScore+"</td>";
+               				htm+="<td>"+res[i].average+"</td>";
+               				htm+="<td>"+res[i].strikeRate+"</td>";
+               				htm+="<td>"+res[i].centuryCount+"</td>";
+               				htm+="<td>"+res[i].halfCentury+"</td>";
+               				htm+="<td>"+res[i].catchesCount+"</td>";
+               				htm+="<td>"+res[i].stumpingCount+"</td></tr>";
+               				
+               				}
+               			
+               			
+            
+            htm+="<tr></tr></tbody></table>";
+               			
+               			
+               			
+						
+						
+						
+						
+						
+						
+						}else{htm+="<div>No Records are there</div>";}
+					}else{htm+="<div>No Records are there</div>";}
+				
+				$("#Battingperformancediv").html(htm).trigger('create');
+       			$("#Battingperformancediv").show();
+				
+			}
+		})
+		
+	}
+	
+	
+	
+	function Bowlingperformance(tid)
+	{
+		
+		if(tid == "All")
+		{
+		tid="";
+		}
+	
+		
+var roasterid="${RoasterResponseById.rosterDetails.rosterId}";
+		
+		var request={
+				rosterId : roasterid,
+				tournamentId : tid
+		}
+		
+		$.ajax({
+			type : "POST",
+			url : "${pageContext.request.contextPath}/roasterbowlingdetails",
+			data : JSON.stringify(request),
+			contentType : "application/json",
+			success : function(res)
+			{
+		
+				
+				var htm="";
+
+				if(res !=null)
+					{
+					if(res.length > 0)
+						{
+						
+						
+               			
+               			 htm+="<table><thead><tr><th>Player</th><th>Overs</th><th>M</th><th>R</th><th>W</th><th>BBI</th>";
+               			htm+="<th>5W</th><th>10W</th><th>Avg</th><th>SR</th><th>ECO</th></tr> </thead> <tbody>";
+				
+				
+				for(var i in res)
+					{
+					
+					
+					htm+="<tr><td> "+res[i].firstName+" "+res[i].lastName+" </td>";
+       				htm+="<td>"+res[i].bowlingOvers+"</td>";
+       				htm+="<td>"+res[i].matchCount+"</td>";
+       				htm+="<td>"+res[i].runs+"</td>";
+       				htm+="<td>"+res[i].wickets+"</td>";
+       				htm+="<td>"+res[i].bbi+"</td>";
+       				htm+="<td>"+res[i].fiveWicketsCount+"</td>";
+       				htm+="<td>"+res[i].tenWicketsCount+"</td>";
+       				htm+="<td>"+res[i].average+"</td>";
+       				htm+="<td>"+res[i].strikeRate+"</td>";
+       				htm+="<td>"+res[i].economy+"</td></tr>";
+					
+					}
+				
+                   htm+="</tbody></table>";
+                  
+				
+						}else{htm+="<div>No Records are there</div>";}
+					}else{htm+="<div>No Records are there</div>";}
+				
+				$("#Bowlingperformancediv").html(htm).trigger('create');
+       			$("#Bowlingperformancediv").show();
+			}
+			})
+	}
+	
+	
+	
+	
+	
     </script>
 
 	<!--File Upload-->
@@ -747,8 +942,32 @@
         $(document).ready(function () {
 			$('.collapse').on('shown.bs.collapse', function(){
 			$(this).parent().find(".fa-chevron-down").removeClass("fa-chevron-down").addClass("fa-chevron-up");
+			
+			
+			 var name=$(this).get(0).id;
+			 console.log("First :"+name)
+             if(name == "collapseOne")
+            	 {
+            	 $("#Firstselect").show();
+            	 }else
+            		 {
+            		 $("#Secondselect").show();
+            		 }
+			
 			}).on('hidden.bs.collapse', function(){
 			$(this).parent().find(".fa-chevron-up").removeClass("fa-chevron-up").addClass("fa-chevron-down");
+			
+			
+			 var name=$(this).get(0).id;
+			 console.log("Second :"+name)
+			 if(name == "collapseOne")
+        	 {
+        	 $("#Firstselect").hide();
+        	 }else
+        		 {
+        		 $("#Secondselect").hide();
+        		 } 	
+			
 			});
 		});
         
@@ -995,7 +1214,8 @@
 	    doc.text(110,100,": "+Rostername);
 	    doc.text(10,130,"Roster Affiliated to  ");
 	   doc.text(110,130,": "+Affliatedto);
-	    doc.text(10,160,"Roster Created Date  ");
+	    /* doc.text(10,160,"Roster Created Date  "); */
+	    doc.text(10,160,"Roster Creation Date  ");
 	    doc.text(110,160,": "+RosterCreateddate);
 	   
 	   
@@ -1012,8 +1232,8 @@
                    {title: "S.No", dataKey: "serialno"},
                    {title: "First Name", dataKey: "firstName"},
                    {title: "Last Name", dataKey: "lastName"},
-                   {title: "Profile Created Date", dataKey: "accountCreateddate"},
-                   {title: "Added to Roster Date", dataKey: "addedrosterdate"}
+                   {title: "Profile Created On", dataKey: "accountCreateddate"},
+                   {title: "Profile Added to Roster On", dataKey: "addedrosterdate"}
                ];
  			   
  			   

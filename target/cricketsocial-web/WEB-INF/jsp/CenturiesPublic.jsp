@@ -12,6 +12,9 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cricket Social</title>
+        <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
+ 
 <style type="text/css">
 .css-serial {
   counter-reset: serial-number;  /* Set the serial number counter to 0 */
@@ -58,7 +61,7 @@
                       </div> -->
                   
                   </h1></div>
-                  				<div class="col-md-2" style="display: inline-block;">
+                  				<div class="col-md-2 col-sm-12 col-xs-12" style="display: inline-block;">
 								    <label style="text-align: center;">Filter</label>
 								    <div class="selectdiv" style="height: 25px !important;">
 								        <c:choose>
@@ -145,7 +148,7 @@
                  </div>
                  </div> 
                    </form>
-            <div class="col-md-10 pull-right">
+            <div class="col-md-10 pull-right rightnone">
     		 <div class="col-md-12 whiteBox font13px">
 
 <div id="centTable" >
@@ -155,8 +158,9 @@
             </c:when>
             <c:otherwise> --%>
 
-                <div class="col-md-12 whiteBox font13px"  id="centTable1">
+                <div class="col-md-12 whiteBox font13px"  id="centTable1" style="font-size: 12px;">
                     <span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament Name : ${century.tournamentName}</span>
+                    <div class="form-group">
                     <table class="css-serial">
                         <thead>
                             <tr>
@@ -195,12 +199,13 @@
                             </c:forEach>
                        <%--  </c:forEach> --%>
                     </table>
+                    </div>
                 </div>
             <%-- </c:otherwise>
         </c:choose> --%>
     </c:forEach>
-    </div>
-    <c:choose>
+    
+     <c:choose>
         <c:when test="${empty centueryList}">
             <table class="css-serial" >
                         <thead>
@@ -218,7 +223,10 @@
             <div style="color: red; margin-top: 16px; text-align: center;">No Details Available</div>
         </c:when>
     </c:choose>
-
+    
+    
+    </div>
+</div>
       </div>
 </div>
 
@@ -293,7 +301,8 @@
         					/* if(res[i].size != 0){ */
         						
         						html += '<div class="whiteBox">';
-        						html += '<span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament Name : '+res[i].tournamentName+'</span>'
+        						html += '<span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament Name : '+res[i].tournamentName+'</span>';
+        						html += '<div class="form-group">';
         						html += '<table class="css-serial" id="centTable"><thead><tr>';
         						html += '<th>S.No</th>';
         						html += '<th>Player Name</th>';
@@ -352,7 +361,7 @@
         					
         						html += '</tbody>';
         						html += '</table>';
-        						html += '</div>';
+        						html += '</div></div>';
         						
         						
         						
@@ -369,6 +378,29 @@
     					$('#SelectTournMent').val("");
     					$('#loading').hide();
         			} else {
+        				
+        				html += '<div class="whiteBox">';
+    					html += '<table class="css-serial" id="centTable"><thead><tr>';
+    					html += '<th>S.No</th>';
+    					html += '<th>Player Name</th>';
+    					html += '<th>Score</th>';
+    					html += '<th>Team Name</th>';
+    					html += '<th>Team Against</th>';
+    					html += '<th>Ground</th>';
+    					html += '<th>Match Date</th>';
+    					html += '<th>SCORE CARD</th>';
+    					html += '</tr></thead>';
+    					html += '</table>';
+    					html +='<div style="color: red; margin-top: 16px; text-align: center;">No Details Available</div>';				
+    					html += '</div>';
+    					
+    					$("#centTable").html(html).trigger('create');
+    					$('#centTable').show();
+    					$('#centTable1').hide();
+        				
+        				
+        				
+        				$('#loading').hide();
         		}
         	},
         	error : function(err) {

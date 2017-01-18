@@ -13,7 +13,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cricket Social</title>
-
+        <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">  
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/cricketSocial/topList.js"></script>
 
 <script type="text/javascript">
@@ -55,7 +56,7 @@ var pageNum=50;
                               </div> -->
                   
                   </h1></div>
-                  <div class="col-md-2" style="display: inline-block;">
+                  <div class="col-md-2 col-sm-12 col-xs-12" style="display: inline-block;">
 								    <label style="text-align: center;">Filter</label>
 								    <div class="selectdiv" style="height: 25px !important;">
 								        <c:choose>
@@ -139,7 +140,7 @@ var pageNum=50;
                  </div> 
                   </form>
                   
-            <div class="col-md-10 pull-right">
+            <div class="col-md-10 pull-right rightnone">
       		 <div class="col-md-12 whiteBox font13px"> 
      <div id="centTable" >
                   
@@ -151,9 +152,9 @@ var pageNum=50;
             					</c:when>
            						<c:otherwise>
                         			<br>
-	                       			<div class="col-md-12 whiteBox font13px" id="centTable1">
+	                       			<div class="col-md-12 whiteBox font13px" id="centTable1" style="font-size: 12px;">
 	                       				<span class="text-danger" style="font-weight: bold; color: #3253a8 !important; ">Tournament Name : ${topplayer.tournamentName}</span>
-	                       					<br>
+	                       					<div class="form-group">
 				                       		<table>
 						                        <thead>
 						                        <tr>
@@ -226,6 +227,7 @@ var pageNum=50;
 						                     </c:forEach>
                      </c:forEach>  
                  </table> 
+                 </div>
                  </div>
 				</c:otherwise>		                     
 					</c:choose>	                     
@@ -314,9 +316,9 @@ var pageNum=50;
 	  				for (var i = 0; i < res.length; i++) {
 	  					if(res[i].size != 0){
 	  						html += '<div class="whiteBox">';
-	  							html += '<span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament Name : '+res[i].tournamentName+'</span>'
-	  	   						html += '<table id="centTable"><thead><tr>';
-	  	   						
+	  							html += '<span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament Name : '+res[i].tournamentName+'</span>';
+	  							html += '<div class="form-group">';
+	  	   						html += '<table id="centTable"><thead><tr>';    						
 	  	   						html += '<th>S.No</th>';
 	  	   						html += '<th>Player Name</th>';
 	  	   						html += '<th>Team</th>';
@@ -378,7 +380,7 @@ var pageNum=50;
 	  	   						}
 	  							html += '</tbody>';
 		    						html += '</table>';
-		    						html += '</div>';
+		    						html += '</div></div>';
 	  						}
 	  					}
 	  						

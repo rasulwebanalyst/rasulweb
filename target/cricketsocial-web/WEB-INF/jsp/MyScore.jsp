@@ -1,5 +1,6 @@
 <!DOCTYPE html>
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+ <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html lang="en">
 <head>
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
@@ -10,7 +11,61 @@
 <meta name="author" content="">
 <title>Cricket Social</title>
 
+<!-- Bootstrap Core CSS -->
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
+	rel="stylesheet">
+	
+	<!-- Bootstrap Core JavaScript -->
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+
+ <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 </head>
+
+<style>
+
+.dropbtn {
+    color: blue;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 9;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+
+
+</style>
+
 <body>
 
 <script src="${pageContext.request.contextPath }/js/jspdf.min.js"></script>
@@ -61,6 +116,30 @@
 		gettingFromServer = new Date(gettingFromServer.valueOf() - offset);
 		return formatAMPMTime(gettingFromServer); 
 	};
+	
+	function calculateage(dob)
+	{
+		
+		var birthdate=new Date(dob); 
+		var birthda=birthdate.getDate();
+		var birthmonth=birthdate.getMonth();
+		var birthyear=birthdate.getFullYear()
+		
+		var date=new Date();
+		var nowdate=date.getDate();
+		var nowmonth=date.getMonth();
+		var nowyear=date.getFullYear();
+		
+		var age=nowyear-birthyear;
+		var agemonth=nowmonth-birthmonth;
+		var agedate=nowdate-birthda;
+		
+		 if(agemonth < 0 || (agemonth == 0 && agedate < 0))
+			 {
+			 age=parseInt(age)-1;
+			 }
+		return age;
+	}
 	 
 </script>
         
@@ -80,7 +159,10 @@
                      	<script type="text/javascript">
                      	var roleinfotopdf="";
                      	</script>
-                            <p style="width: 410px;"><span>Role  </span><strong>
+                     	
+                     	<p><span><strong>Age</strong>  </span> <script> document.writeln(calculateage("${UserMatchInfo.dob}"))</script></p>
+                     	
+                            <p style="width: 410px;"><span><strong>Playing role </strong> </span>
                          
                           <c:forEach var = "roleDetails" items="${UserInfo.userRoleMap}" varStatus = "loop">                      
                            <!-- <span> -->
@@ -95,32 +177,138 @@
                             		</c:if> 
                             		 <!-- </span>   -->                                     
                         </c:forEach>
-                       </strong></p> 
-                            <p><span>Bats </span> <strong>${SelectedPlayersInfo.player1.battingInfo}</strong></p> 
-                            <p><span>Bowls  </span> <strong>${SelectedPlayersInfo.player1.bowlingInfo}</strong></p>
-                            <p><span>Country  </span> <strong>${UserInfo.country}</strong></p>
+                       </p> 
+                            <p><span><strong>Batting </strong></span> ${SelectedPlayersInfo.player1.battingInfo}</p> 
+                            <p><span><strong>Bowling  </strong></span> ${SelectedPlayersInfo.player1.bowlingInfo}</p>
+                            <p><span><strong>Country  </strong></span> ${UserInfo.country}</p>
+                            
+                            
                             
                             <c:if test="${UserInfo.enableEmailAddress eq 1}">
-                            <p><span>E-mail</span> <strong>${UserInfo.emailAddress}</strong></p>
+                            <p><span><strong>E-mail</strong></span> ${UserInfo.emailAddress}</p>
                            </c:if>
                            
                             <c:if test="${UserInfo.enablePhoneNo eq 1}">
                             <c:choose>
                             <c:when test="${UserInfo.phoneNumber eq 0}">
- 							<p><span>Phone Number  </span> <strong></strong></p>
+ 							<p><span><strong>Phone Number </strong> </span> </p>
  							</c:when>
  							<c:otherwise>
- 							<p><span>Phone Number  </span> <strong>${UserInfo.phoneNumber}</strong></p>
+ 							<p><span><strong>Phone Number</strong>  </span> ${UserInfo.phoneNumber}</p>
  							</c:otherwise>
  							</c:choose>
                             </c:if>
                             
+                            
+                             <p><span><strong>MOM </strong> </span>  ${UserMatchInfo.manofMatchCount}</p>
+                             
+                             
+                             <!-- Team Associate -->
+                             
+                             <div><span style="float:left; width: 114px; margin-right: 5px;"><strong>Team associate</strong> </span>  
+                              <c:choose>
+                             <c:when test="${fn:length(UserMatchInfo.teamBoardList) gt 2}">
+                             
+                             <c:forEach items="${UserMatchInfo.teamBoardList}" var="teams" varStatus="loop" begin="0" end="1">
+                             <div style="float:left;">${teams.boardName}<c:if test="${!loop.last}">,&nbsp;</c:if></div>
+                             </c:forEach>
+                             
+				   <div style="float:left;" class="dropdown">
+				  <a style="font-size: 12px; color: #4c9fe1;" href="#" class="dropbtn">more</a>
+				  <div class="dropdown-content">
+				  <c:forEach items="${UserMatchInfo.teamBoardList}" var="teams">
+				    <a href="#">${teams.boardName}</a> 
+				   
+				     </c:forEach>
+				    
+				  </div>
+				</div>
+                             </c:when>
+                             <c:otherwise>
+                             
+                             <c:forEach items="${UserMatchInfo.teamBoardList}" var="teams" varStatus="loop">
+                             ${teams.boardName}<c:if test="${!loop.last}">,</c:if>
+                             </c:forEach>
+                             
+                             </c:otherwise>
+                             
+                             </c:choose> 
+                             
+                             </div>
+                             
+                             
+                             <!-- Leage Associate -->
+                             
+                             <div><span style="float:left; width: 114px; margin-right: 5px;"><strong>League associate</strong> </span>  
+                              <c:choose>
+                             <c:when test="${fn:length(UserMatchInfo.leagueBoardList) gt 2}">
+                             
+                             <c:forEach items="${UserMatchInfo.leagueBoardList}" var="leagues" varStatus="loop" begin="0" end="1">
+                             <div style="float:left;">${leagues.boardName}<c:if test="${!loop.last}">,&nbsp;</c:if></div>
+                             </c:forEach>
+                             
+				   <div style="float:left;" class="dropdown">
+				  <a style="font-size: 12px; color: #4c9fe1;" href="#" class="dropbtn">more</a>
+				  <div class="dropdown-content">
+				  <c:forEach items="${UserMatchInfo.leagueBoardList}" var="leagues">
+				    <a href="#">${leagues.boardName}</a> 
+				   
+				     </c:forEach>
+				    
+				  </div>
+				</div>
+                             </c:when>
+                             <c:otherwise>
+                             
+                             <c:forEach items="${UserMatchInfo.leagueBoardList}" var="leagues" varStatus="loop">
+                             ${leagues.boardName}<c:if test="${!loop.last}">,</c:if>
+                             </c:forEach>
+                             
+                             </c:otherwise>
+                             
+                             </c:choose> 
+                             
+                             </div>
+                             
+                             
+                             <!-- League associate end -->
+                             
+                             <%-- <p><span><strong>League associate </strong> </span>  ${UserMatchInfo.manofMatchCount}</p> --%>
+                            
                     	</div> 
                         
                         <div class="col-md-6 feedcube ">
-                            <div class="cube bulucolor">${UserMatchInfo.playedMatches}<br><p>Matches</p></div>
+                            <%-- <div class="cube bulucolor">${UserMatchInfo.playedMatches}<br><p>Matches</p></div>
                             <div class="cube greencolor">${UserMatchInfo.totalMadeRuns}<br> <p>Runs</p></div>
-                            <div class="cube redcolor">${UserMatchInfo.totalWicketTaken}<br> <p>Wickets<p></div>
+                            <div class="cube redcolor">${UserMatchInfo.totalWicketTaken}<br> <p>Wickets<p></div> --%>
+                            
+                            
+                            <div class="pull-left cube-holder">
+                            <div class="cube color5">${UserMatchInfo.playedMatches}</div>
+                            <p style="font-size: 12px;">Matches</p>
+                           	</div>
+                           	<div class="pull-left cube-holder">
+                            <div class="cube color5">${UserMatchInfo.totalMadeRuns}</div>
+                            <p style="font-size: 12px;">Runs</p>
+                            </div>
+                           	<div class="pull-left cube-holder">
+                            <div class="cube color5">${UserMatchInfo.totalWicketTaken}</div> 
+                            <p style="font-size: 12px;">Wickets<p>
+                            </div>
+                            <div class="clearfix"></div>
+                           	<div class="pull-left cube-holder">
+                            <div class="cube color5">${UserMatchInfo.centuryCount}</div>
+                            <p style="font-size: 12px;">Centuries</p>
+                            </div>
+                           	<div class="pull-left cube-holder">
+                            <div class="cube color5">${UserMatchInfo.halfCenturiesCount}</div>
+                            <p style="font-size: 12px;">Half Centuries</p>
+                            </div>
+                           	<div class="pull-left cube-holder">
+                            <div class="cube color5">${UserMatchInfo.fiveFerCount}</div>
+                            <p style="font-size: 12px;">5fer<p>
+                            </div>
+                           
                             
                             
                         </div>
@@ -216,7 +404,7 @@
                         	 	
                         	 	
                         	 	
-                        	 	<div class="col-md-5 drop pull-right" style="margin-right:-15px; width: 120px !important;">
+                        	 	<div class="col-md-5 col-sm-12 col-xs-12 drop pull-right" style="margin-right:-15px; width: 120px !important;">
 								    <div class="selectdiv" style="height: 25px !important;">
 								        <c:choose>
 								            <c:when test="${yearListSize eq 0 }">
@@ -249,7 +437,8 @@
                        </script>
                          
                          <div class="col-md-12 noPadding MyScor-table">
-                       <c:choose>  <c:when test="${battingPerformanceListSize eq 0 }">
+                         <div class="form-group">
+                         <c:choose>  <c:when test="${battingPerformanceListSize eq 0 }">
                        <table id="battingTable">
                             	<thead>
                                 	<tr>
@@ -269,6 +458,7 @@
                                     </tr>
                                 </thead>
                                </table>
+                             
                                 	<div id="battingNoData" class="noContentDivRed">No Details Available</div>
                                   <button class="btn btn-default dBtn pull-right lodbtn" id="loadmoreBatings" onclick="loadMoreBattings()" style="display: none;">LOAD MORE</button> 
                               
@@ -367,6 +557,7 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
+                            </div>
                             <div id="battingNoData" class="noContentDivRed" style="display: none;">No Details Available</div>
                          	<button class="btn btn-default dBtn pull-right lodbtn" id="loadmoreBatings" onclick="loadMoreBattings()">LOAD MORE</button>
                        </c:otherwise>
@@ -381,11 +572,11 @@
                         <!-- <div class="col-md-4 noPadding"> -->
                         <!-- <h5>Bowling Performance</h5> -->
                         
-                        <div class="col-md-12 statusUpdateBox noPadding">
+                        <div class="col-md-12 statusUpdateBox noPadding" style="clear: both;">
                         <div class="buluback" style="font-weight:100;">Bowling Performances
                         	
                         	
-                        	<div class="col-md-5 drop pull-right" style="margin-right:-15px; width: 120px !important;">
+                        	<div class="col-md-5 col-sm-12 col-xs-12 drop pull-right" style="margin-right:-15px; width: 120px !important;">
 								    <div class="selectdiv" style="height: 25px !important;">
 								        <c:choose>
 								            <c:when test="${yearListSize eq 0 }">
@@ -414,7 +605,7 @@
                          
                          
                          <div class="col-md-12 noPadding MyScor-table">
-                         	
+                         	<div class="form-group">
                          	<c:choose>  
                          	<c:when test="${bowlingPerformanceListSize eq 0 }">
                          	<table id="bowlingTable">
@@ -490,18 +681,20 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
+                            </div>
                             <div class="noContentDivRed" id="noBowlingData" style="display: none;">No Details Available</div>
                          	<button class="btn btn-default dBtn pull-right lodbtn" id="loadmoreBowl" onclick="loadMoreBowlings()">LOAD MORE</button>
                        </c:otherwise>
                          
                          </c:choose>    
                             
+                         </div>  
                          </div>
                          
-                        <div class="col-md-12 statusUpdateBox noPadding">
+                        <div class="form-group col-md-12 statusUpdateBox noPadding">
                         <div class="buluback" style="font-weight:100;">Achievements
                         
-                        	<div class="col-md-5 drop pull-right" style="margin-right:-15px; width: 120px !important;">
+                        	<div class="col-md-5 col-sm-12 col-xs-12 drop pull-right" style="margin-right:-15px; width: 120px !important;">
 								    <div class="selectdiv" style="height: 25px !important;">
 								        <c:choose>
 								            <c:when test="${yearListSize eq 0 }">
@@ -530,6 +723,7 @@
                         
                             	<div class="col-md-12 noPadding AchHead">
                                 	<!-- <h4>ODI Series Match Record</h4> -->
+                                	<div class="form-group">
 
 										<c:choose>
 											<c:when test="${achievementsListSize eq 0 }">
@@ -615,6 +809,7 @@
 
 										</c:choose>
 
+									</div>
 									</div>
                             </div>
                         </div>

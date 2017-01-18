@@ -164,7 +164,7 @@ var formatAMPMTime = function(date) {
 		          </c:when>
 		          <c:otherwise>
                  
-                  <table id="myTableAssign">
+                  <table id="myTableAssign" style="font-size: 12px;">
                             	<thead>
                                 <tr>
                                 	<th>Trophy</th>

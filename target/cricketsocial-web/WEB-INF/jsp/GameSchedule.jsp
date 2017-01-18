@@ -314,7 +314,7 @@ date.add(java.util.Calendar.DATE, +6);
             								 
                   <div id="replaceId">
                   <div id="upcommingmatchesdiv">
-            <div class="col-md-10 pull-right">
+            <div class="col-md-10 pull-right rightnone">
       		<div class="col-md-12 whiteBox">
                   <h2 class="noBorder noLeftPad">Upcoming Matches</h2>
                   <div class="form-group" style="font-size: 12px;">
@@ -331,7 +331,7 @@ date.add(java.util.Calendar.DATE, +6);
                           <th>App Scorer</th>
                           <th>Portal Scorer</th>
                           <th>Trophy</th>
-                          <th>Match Status</th>
+                          <!-- <th>Match Status</th> -->
                           <th style="width:60px;">Action</th>
                         </tr>
                        </thead>
@@ -356,7 +356,7 @@ date.add(java.util.Calendar.DATE, +6);
                           <th>App Scorer</th>
                           <th>Portal Scorer</th>
                           <th>Trophy</th>
-                          <th>Match Status</th>
+                         <!--  <th>Match Status</th> -->
                           <th>Enter Scorecard</th>
                           <th style="width:60px;">Action</th>
                         </tr>
@@ -437,7 +437,7 @@ date.add(java.util.Calendar.DATE, +6);
 											
 												</td> 
                           <td>${upcoming.tournamentName}</td>
-                          <td><span class="text-success">Active</span></td>
+                          <!-- <td><span class="text-success">Active</span></td> -->
                           <td align="center"><input type="button" value="Enter Scorecard" onclick="enterScoreCard('${boardId}','${upcoming.tournamentId}','${upcoming.tournamentSchedulerId }','${upcoming.homeTeamId}','${upcoming.awayTeamId }','${upcoming.dateString }','${upcoming.leagueCreatedBy}')"><%-- <a href="${pageContext.request.contextPath}/EnterScore/boardId/${boardId}"> Enter Score</a> --%></td>
                           <td align="center">
 								<input type="button" value="cancel" onclick="cancelSchedule('${upcoming.tournamentSchedulerId}')">
@@ -461,7 +461,7 @@ date.add(java.util.Calendar.DATE, +6);
                 	</div><!-- form group end-->
                 	
                 	<div id="incompletegamesdiv">
-                	<div class="col-md-10 pull-right">
+                	<div class="col-md-10 pull-right rightnone">
       		<div class="col-md-12 whiteBox">
                   <h2 class="noBorder noLeftPad">Incomplete Matches</h2>
                   <div class="form-group" style="font-size: 12px;">
@@ -478,7 +478,7 @@ date.add(java.util.Calendar.DATE, +6);
                           <th>App Scorer</th>
                           <th>Portal Scorer</th>
                           <th>Trophy</th>
-                          <th>Match Status</th>
+                          <!-- <th>Match Status</th> -->
                           <th style="width:60px;">Action</th>
                         </tr>
                        </thead>
@@ -502,7 +502,7 @@ date.add(java.util.Calendar.DATE, +6);
                           <th>App Scorer</th>
                           <th>Portal Scorer</th>
                           <th>Trophy</th>
-                          <th>Match Status</th>
+                          <!-- <th>Match Status</th> -->
                           <th>Enter Scorecard</th>
                           <th style="width:60px;">Action</th>
                         </tr>
@@ -588,7 +588,7 @@ date.add(java.util.Calendar.DATE, +6);
 												
 												
                           <td>${incomplete.tournamentName}</td>
-                          <td><span class="text-success">Active</span></td>
+                         <!--  <td><span class="text-success">Active</span></td> -->
                           <td align="center"><input type="button" value="Enter Scorecard" onclick="enterScoreCard('${boardId}','${incomplete.tournamentId}','${incomplete.tournamentSchedulerId }','${incomplete.homeTeamId}','${incomplete.awayTeamId }','${incomplete.dateString }','${incomplete.leagueCreatedBy}')"><%-- <a href="${pageContext.request.contextPath}/EnterScore/boardId/${boardId}"> Enter Score</a> --%></td>
                           <td align="center">
 								<input type="button" value="cancel" onclick="cancelSchedule('${incomplete.tournamentSchedulerId}')">
@@ -611,7 +611,7 @@ date.add(java.util.Calendar.DATE, +6);
                 	</div>
                 	</div><!-- form group end -->
                     <div id="inprogressmatchesdiv">
-                    <div class="col-md-10 pull-right">
+                    <div class="col-md-10 pull-right rightnone">
       		<div class="col-md-12 whiteBox">
                   <h2 class="noBorder noLeftPad">In progress Matches</h2>
                   <div class="form-group" style="font-size: 12px;">
@@ -629,7 +629,7 @@ date.add(java.util.Calendar.DATE, +6);
                           <th>App Scorer</th>
                           <th>Portal Scorer</th>
                           <th>Enter Scorecard</th>
-                          <th>Match Status</th>  
+                          <!-- <th>Match Status</th>   -->
                          </tr>
                         </thead>
 
@@ -651,7 +651,7 @@ date.add(java.util.Calendar.DATE, +6);
                           <th>Umpire</th>
                           <th>App Scorer</th>
                           <th>Portal Scorer</th>
-                          <th>Match Status</th>
+                          <!-- <th>Match Status</th> -->
                           <th>Enter Scorecard</th>
                            <th>Scorecard</th>
                         </tr>
@@ -736,7 +736,7 @@ date.add(java.util.Calendar.DATE, +6);
 												</td> 
 						
                           
-                            <td><span class="text-success">Active</span></td>
+                            <!-- <td><span class="text-success">Active</span></td> -->
                             <td align="center"><input type="button" value="Enter Scorecard" onclick="DeleteScoreCard('${boardId}','${inprogress.tournamentId}','${inprogress.tournamentSchedulerId }','${inprogress.homeTeamId}','${inprogress.awayTeamId }','${inprogress.dateString }','${inprogress.leagueCreatedBy}')">
                             <td align="center" ><a href="#" onclick="showScoreCardInProgress('${inprogress.tournamentSchedulerId}')"><i class="fa fa-newspaper-o editIcon"></i></a></td>
                         </tr>
@@ -754,7 +754,7 @@ date.add(java.util.Calendar.DATE, +6);
                     </div><!-- form group end -->
                     
                     <div id="completedmatchesdiv">
-                    <div class="col-md-10 pull-right">
+                    <div class="col-md-10 pull-right rightnone">
       		<div class="col-md-12 whiteBox">
                   <h2 class="noBorder noLeftPad">Completed Matches</h2>
                   <div class="form-group" style="font-size: 12px;">
@@ -1263,8 +1263,8 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    			
    			
    			 var htmlco="";
-            htmlco+="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>Upcoming Matches</h2>";      
-   			htmlco+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Umpire</th><th>App Scorer</th><th>Portal Scorer</th><th>Trophy</th><th>Match Status</th><th>Enter Scorecard</th><th style='width:60px;'>Action</th></tr></thead>";
+            htmlco+="<div class='col-md-10 pull-right rightnone'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>Upcoming Matches</h2><div class='form-group'>";      
+   			htmlco+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Umpire</th><th>App Scorer</th><th>Portal Scorer</th><th>Trophy</th><th>Enter Scorecard</th><th style='width:60px;'>Action</th></tr></thead>";
    			if(upcomminglist.length !=0)
    				{
    				htmlco+="<tbody>";
@@ -1344,7 +1344,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    				
    				htmlco+="</div></td>";
    				htmlco+="<td>"+upcomminglist[i].tournamentName+"</td>";
-   				htmlco+="<td><span class='text-success'>Active</span></td>";
+   				/* htmlco+="<td><span class='text-success'>Active</span></td>"; */
    				htmlco+="<td align='center'><input type='button' value='Enter Scorecard' onclick=enterScoreCard('"+boardid+"','"+upcomminglist[i].tournamentId+"','"+upcomminglist[i].tournamentSchedulerId+"','"+upcomminglist[i].homeTeamId+"','"+upcomminglist[i].awayTeamId+"','"+upcomminglist[i].dateString+"','"+upcomminglist[i].leagueCreatedBy+"')></td>";
    				htmlco+="<td align='center'>";
    				htmlco+="<input type='button' value='cancel' onclick=cancelSchedule('"+upcomminglist[i].tournamentSchedulerId+"')>";
@@ -1359,14 +1359,14 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    				htmlco+="<span class='noContentDivRed'>No Upcoming Matches</span>";
    			}
    			
-   			htmlco+="</div></div>"; 
+   			htmlco+="</div></div></div>"; 
    			$("#upcommingmatchesdiv").html(htmlco).trigger('create');
    			
    			
    			// incomepltelist
    			   var htmlco1="";
-   			  htmlco1="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>Incomplete Matches</h2>";
-   			 htmlco1+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Umpire</th><th>App Scorer</th><th>Portal Scorer</th><th>Trophy</th><th>Match Status</th><th>Enter Scorecard</th><th style='width:60px;'>Action</th></tr></thead>";
+   			  htmlco1="<div class='col-md-10 pull-right rightnone'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>Incomplete Matches</h2><div class='form-group'>";
+   			 htmlco1+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Umpire</th><th>App Scorer</th><th>Portal Scorer</th><th>Trophy</th><th>Enter Scorecard</th><th style='width:60px;'>Action</th></tr></thead>";
    			if(incomepltelist.length!=0){
    				htmlco1+="<tbody>";
    				for(var i=0;i<incomepltelist.length;i++){
@@ -1438,9 +1438,9 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    	   				htmlco1+="</div></td>";
    				    
    				     htmlco1+="<td>"+incomepltelist[i].tournamentName+"</td>";
-   				    htmlco1+="<td><span class='text-success'>Active</span></td>";
+   				   /*  htmlco1+="<td><span class='text-success'>Active</span></td>"; */
    				    htmlco1+="<td align='center'><input type='button' value='Enter Scorecard' onclick=enterScoreCard('"+boardid+"','"+incomepltelist[i].tournamentId+"','"+incomepltelist[i].tournamentSchedulerId+"','"+incomepltelist[i].homeTeamId+"','"+incomepltelist[i].awayTeamId+"','"+incomepltelist[i].dateString+"','"+incomepltelist[i].leagueCreatedBy+"')></td>";
-   				    htmlco1+="<td align='center'><input type='button' value='cancel' onclick='cancelSchedule("+incomepltelist[i].tournamentSchedulerId+")'></td>"; 
+   				    htmlco1+="<td align='center'><input type='button' value='cancel' onclick=cancelSchedule('"+incomepltelist[i].tournamentSchedulerId+"')></td>"; 
    				    htmlco1+="</tr>";
    				}
    				htmlco1+="</tbody></table>";
@@ -1450,7 +1450,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    			htmlco1+="</table>";
    				htmlco1+="<span class='noContentDivRed'>No Incomplete Matches</span>";
    			}
-   			htmlco1+="</div></div>";
+   			htmlco1+="</div></div></div>";
    			
    			$("#incompletegamesdiv").html(htmlco1).trigger('create'); 
    			
@@ -1460,8 +1460,8 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    		// inprogress
    		
 			   var htmlco2="";
-			  htmlco2="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>In progress Matches</h2>";
-			 htmlco2+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Trophy</th><th>Umpire</th><th>App Scorer</th><th>Portal Scorer</th><th>Match Status</th><th>Enter Scorecard</th><th>Scorecard</th></tr></thead>";
+			  htmlco2="<div class='col-md-10 pull-right rightnone'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>In progress Matches</h2> <div class='form-group'>";
+			 htmlco2+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Trophy</th><th>Umpire</th><th>App Scorer</th><th>Portal Scorer</th><th>Enter Scorecard</th><th>Scorecard</th></tr></thead>";
 			if(inprogresslist.length!=0){
 				htmlco2+="<tbody>";
 				for(var i=0;i<inprogresslist.length;i++){
@@ -1528,7 +1528,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				    
 				    
 				    
-				    htmlco2+="<td><span class='text-success'>Active</span></td>";
+				   /*  htmlco2+="<td><span class='text-success'>Active</span></td>"; */
 				    htmlco2+="<td align='center'><input type='button' value='Enter Scorecard' onclick=DeleteScoreCard('"+boardid+"','"+inprogresslist[i].tournamentId+"','"+inprogresslist[i].tournamentSchedulerId+"','"+inprogresslist[i].homeTeamId+"','"+inprogresslist[i].awayTeamId+"','"+inprogresslist[i].dateString+"','"+inprogresslist[i].leagueCreatedBy+"')></td>";
 				    htmlco2+="<td align='center' ><a href=javascript:void(0); onclick=showScoreCardInProgress('"+inprogresslist[i].tournamentSchedulerId+"')><i class='fa fa-newspaper-o editIcon'></i></a></td>";
 				    htmlco2+="</tr>";
@@ -1540,7 +1540,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 			htmlco2+="</table>";
 				htmlco2+="<span class='noContentDivRed'>No In progress Matches</span>";
 			}
-			htmlco2+="</div></div>";
+			htmlco2+="</div></div></div>";
 			
 			$("#inprogressmatchesdiv").html(htmlco2).trigger('create'); 
 			
@@ -1550,8 +1550,8 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 			
 	   		
 			   var htmlco3="";
-			  htmlco3="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>Completed Matches</h2>";
-			 htmlco3+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Trophy</th><th>Umpire</th><th>App Scorer</th><th>Portal Scorer</th><th>Match Status</th><th>Edit Scorecard</th><th>Scorecard</th></tr></thead>";
+			  htmlco3="<div class='col-md-10 pull-right rightnone'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>Completed Matches</h2><div class='form-group'>";
+			 htmlco3+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Trophy</th><th>Umpire</th><th>App Scorer</th><th>Portal Scorer</th><th>Result</th><th>Edit Scorecard</th><th>Scorecard</th></tr></thead>";
 			if(completedlist.length!=0){
 				htmlco3+="<tbody>";
 				for(var i=0;i<completedlist.length;i++){
@@ -1643,7 +1643,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 			htmlco3+="</table>";
 				htmlco3+="<span class='noContentDivRed'>No Completed Matches</span>";
 			}
-			htmlco3+="</div></div>";
+			htmlco3+="</div></div></div>";
 			
 			$("#completedmatchesdiv").html(htmlco3).trigger('create'); 
    			 
@@ -1700,6 +1700,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
                 		 var tournamentBean = {
                 					   tournamentId : tournmentId,
                 					   createdBy : id,
+                					   tournamentSchedulerId : tournmentShudulorId,
                 			   }; 
                 			   
                 			  $.ajax({
@@ -1794,6 +1795,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
             	  var tournamentBean = {
                 					   tournamentId : tournmentId,
                 					   createdBy : id,
+                					   tournamentSchedulerId : tournmentShudulorId,
                 			   }; 
                 			   
                 			  $.ajax({

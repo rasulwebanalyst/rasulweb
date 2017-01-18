@@ -13,7 +13,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cricket Social</title>
-
+        <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">  
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/cricketSocial/topList.js"></script>
 <style type="text/css">
 .css-serial {
@@ -58,7 +59,7 @@
                      </div> -->
                   
                   </h1></div>
-                  <div class="col-md-2" style="display: inline-block;">
+                  <div class="col-md-2 col-sm-12 col-xs-12" style="display: inline-block;">
 								    <label style="text-align: center;">Filter</label>
 								    <div class="selectdiv" style="height: 25px !important;">
 								        <c:choose>
@@ -147,14 +148,14 @@
                   
                   </form>
                   
-            <div class="col-md-10 pull-right">
+            <div class="col-md-10 pull-right rightnone">
      <div class="col-md-12 whiteBox font13px"> 
      <div id="centTable" >
 
     <c:forEach items="${fiveWicketResponse}" var="fiveWicket">
         <c:choose>
             <c:when test="${empty fiveWicketResponse}">
-
+             <div class="form-group">
                 <table class="css-serial">
                     <thead>
                         <tr>
@@ -170,7 +171,7 @@
                     </thead>
                 </table>
                 <div style="color: red; margin-top: 16px; text-align: center;">No Details Available</div>
-
+</div>
 
             </c:when>
             <c:otherwise>
@@ -182,9 +183,9 @@
                     <c:otherwise> --%>
 
 
-                       <div class="col-md-12 whiteBox font13px" id="centTable1">
+                       <div class="col-md-12 whiteBox font13px" id="centTable1" style="font-size: 12px;">
                             <span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament Name : ${fiveWicket.tournamentName}</span>
-
+							<div class="form-group">
                             <table class="css-serial">
                                 <thead>
                                     <tr>
@@ -249,6 +250,7 @@
                                     </c:forEach>
                                <%--  </c:forEach> --%>
                             </table>
+                            </div>
                         </div>
                     <%-- </c:otherwise>
                 </c:choose> --%>
@@ -349,7 +351,8 @@
         					/* if(res[i].size != 0){ */
         						
         						html += '<div class="whiteBox">';
-        						html += '<span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament Name : '+res[i].tournamentName+'</span>'
+        						html += '<span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament Name : '+res[i].tournamentName+'</span>';
+        						html += '<div class="form-group">';
         						html += '<table class="css-serial" id="centTable"><thead><tr>';
         						
         						html += '<th>S.No</th>';
@@ -403,7 +406,7 @@
         					
         						html += '</tbody>';
         						html += '</table>';
-        						html += '</div>';
+        						html += '</div></div>';
         						
         						
         						

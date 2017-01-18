@@ -243,6 +243,7 @@
 	                   <div class=" col-md-8  noPadding PG-radio2">
                     		<input type="radio" class="cboxBtnLeft" id="n${loop.index }" name="notification" value="${Notification.codeId }">
                     		<label for="n${loop.index }"><span></span>${Notification.codeDesc }</label>
+                    		<div class="clearfix"></div>
                   	</div>
                    </c:forEach>
               </div>

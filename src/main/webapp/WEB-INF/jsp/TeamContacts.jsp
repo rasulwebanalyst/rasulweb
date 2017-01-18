@@ -38,7 +38,7 @@
 
       
                   
-            <div class="col-md-10 pull-right">
+            <div class="col-md-10 pull-right rightnone">
       			<div class="col-md-12 whiteBox">
                 	<h1 class="">Team Contacts</h1>
                        <a style="margin-top: -40px;" class="pull-right" href="javascript:getPDF()"><img style="width: 30px; height: 25px;" src='${pageContext.request.contextPath}/images/Pdfdownload.png'></a></div>
@@ -315,6 +315,7 @@
         doc.text(85,70,": "+leaguename);
     
     var yHeight=100;
+    var Gapdiff=0;
 	    for(var i in teamObj)
 		  {
 		  var teamsingleObj=teamObj[i];
@@ -362,7 +363,7 @@
 	 					
 	 					/* doc.text(10,theight,"EndTable :"+i); */
 	 					/* console.log(parseInt(yHeight)+parseInt(10)); */
-	 					/* doc.text(10,parseInt(yHeight)+parseInt(32)+parseInt(20),"EndTable :"+i); */
+	 					/*   doc.text(10,parseInt(yHeight)+parseInt(32)+parseInt(20),"EndTable :"+i);   */
 	 					
 	 					 /*  if(teamsingleObj.length<3)
 	 						  {
@@ -372,12 +373,36 @@
 	 							 	yHeight=parseInt(teamsingleObj.length)*40+yHeight;
 	 							  } */
 	 							  
+	 							 /*  doc.text(10,parseInt(teamsingleObj.length)*20+yHeight+parseInt(42),"EndTable :"+i);  */ 
+	 							   /* console.log(parseInt(teamsingleObj.length)*20+yHeight+parseInt(42) +"    "+i)  */
+	 					
+	 							  if(parseInt(teamsingleObj.length)*20+yHeight+parseInt(42)>=730)
+	 								  {
+	 								 Gapdiff=50;
+	 								  }else{
+	 									 Gapdiff=0;
+	 								  }
 	 							  
-	 					 var yHeight=parseInt(teamsingleObj.length)*20+yHeight+parseInt(82);
+	 							   yHeight=parseInt(teamsingleObj.length)*20+yHeight+parseInt(82);
+	 							  console.log(yHeight);
 	 					  
 	 					  
+	 					var pageHeight= parseInt(doc.internal.pageSize.height);
 	 					
-	 					
+	 					if (yHeight>=pageHeight)
+	 					{
+	 						var diff=yHeight-pageHeight;
+	 						yHeight=diff+parseInt(42)+Gapdiff;
+	 						/* console.log("yHeight :"+yHeight);
+	 						console.log("pageHeight :"+pageHeight);
+	 						console.log("diff :"+diff);
+	 						
+	 						console.log("After Resize :"+yHeight) */
+	 						if(diff <10)
+	 							{
+	 							doc.addPage();
+	 							}
+	 					}
 	 					  
 	 					
 	 				}

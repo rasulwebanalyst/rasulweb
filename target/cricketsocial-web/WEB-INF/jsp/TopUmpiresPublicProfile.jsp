@@ -8,7 +8,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cricket Social</title>
-
+        <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">  
 
 </head>
 <body>
@@ -30,7 +31,7 @@
 <%@ include file="BoardFanMenu.jsp" %>	
       
                   
-            <div class="col-md-10 pull-right">
+            <div class="col-md-10 pull-right rightnone">
       			<div class="col-md-12 whiteBox">
                 	
                     <h1 class="">Top Umpires</h1>

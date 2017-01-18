@@ -1,4 +1,24 @@
-      <%@taglib uri="http://example.com/functions" prefix="f" %>
+
+
+   <%@taglib uri="http://example.com/functions" prefix="f" %>
+
+
+<style>
+ul.side_menu_main li a {
+	display: table;
+}
+ul.side_menu_main li a i {
+	display: table-cell;
+}
+ul.side_menu_main li span {
+	display: table-cell;
+	padding-left: 5px;
+}
+</style>      
+      
+      
+      
+   
 <div class="col-md-2 profileLogo pLUpdated">
                     	<span class="pLUpdatedImg">
                     		<%-- <a href="${pageContext.request.contextPath}/BoardInfoPublic/${BoradInfo.boardId}"> --%>
@@ -55,14 +75,14 @@
                                            
                                            
                                                                                   
-                                            <li><a href="${pageContext.request.contextPath}/LeaguePointsProfile/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Points Table</a></li>
-                                            <li><a href="${pageContext.request.contextPath}/leaguecenturiesprofile/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Centuries</a></li>
-                                            <li><a href="${pageContext.request.contextPath}/leaguehalfcenturiesprofile/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Half Centuries</a></li>
+                                            <li><a href="${pageContext.request.contextPath}/LeaguePointsProfile/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i><span> Points Table</span></a></li>
+                                            <li><a href="${pageContext.request.contextPath}/leaguecenturiesprofile/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i><span> Centuries</span></a></li>
+                                            <li><a href="${pageContext.request.contextPath}/leaguehalfcenturiesprofile/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i><span> Half Centuries</span></a></li>
                                            <%--  <li><a href="${pageContext.request.contextPath}/BoardAchievementsPublicProfile/boardId/${BoradInfo.boardId}">Board Achievements</a></li> --%>
-											<li><a href="${pageContext.request.contextPath}/fivewicketsPublicProfile/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> 5fer</a></li>
-                                            <li><a href="${pageContext.request.contextPath}/topbatsmanPublicProfile/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Top Batsmen</a></li>
-                                            <li><a href="${pageContext.request.contextPath}/topbowlerPublicProfile/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Top Bowlers</a></li>
-                                            <li><a href="${pageContext.request.contextPath}/topUmpirePublicProfile/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Top Umpires</a></li>  
+											<li><a href="${pageContext.request.contextPath}/fivewicketsPublicProfile/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i><span> 5fer</span></a></li>
+                                            <li><a href="${pageContext.request.contextPath}/topbatsmanPublicProfile/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i><span> Top Batsmen</span></a></li>
+                                            <li><a href="${pageContext.request.contextPath}/topbowlerPublicProfile/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i><span> Top Bowlers</span></a></li>
+                                            <li><a href="${pageContext.request.contextPath}/topUmpirePublicProfile/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i><span> Top Umpires</span></a></li>  
                                             <%--  <li><a href="${pageContext.request.contextPath}/EnterScorePublicProfile/boardId/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Enter Score</a></li> --%>
                                              
                                              <c:if test="${!empty LeaugeMenuList}">

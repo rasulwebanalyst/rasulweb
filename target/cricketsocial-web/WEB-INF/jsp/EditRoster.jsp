@@ -11,6 +11,8 @@
     <meta name="author" content="">
 
     <title>Cricket Social</title>
+     <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 <script>var ctx="${pageContext.request.contextPath}";</script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/circketsocial/rosterValidation.js"></script>
 <script type="text/javascript">
@@ -121,7 +123,7 @@ var sequencNumber=0;
 	                                <%-- <c:if test="${rosterMember.rosterRole eq 'Member'}"> --%>
 		                               <div class="col-md-12 noPadding" id="memberListDIV${rosterMember.userId}">
 		                               <span class='palyerCount' id='sequenc${rosterMember.userId}'>${i.count}</span>
-		                                  <input type="text" class="form-control" readonly style="width:73%; float:left;" value="${rosterMember.userProfile.firstName} ${rosterMember.userProfile.lastName}" placeholder="" id="member${rosterMember.userId}" onkeyup="getBuddiesAutoComplete(this,'memberautoCompleteDIV${i.count}','memberHiddeb${i.count}')">
+		                                  <input type="text" class="form-control player-entry" readonly style="width:73%; float:left;" value="${rosterMember.userProfile.firstName} ${rosterMember.userProfile.lastName}" placeholder="" id="member${rosterMember.userId}" onkeyup="getBuddiesAutoComplete(this,'memberautoCompleteDIV${i.count}','memberHiddeb${i.count}')">
 			                                 <div class="autoComplete" id="memberautoCompleteDIV${i.count}" style="display:none;margin-top: 37px;">
 													<ul>
 			                                        	<li>Vikki</li>
@@ -395,7 +397,7 @@ var sequencNumber=0;
 	    	        var htm="";
 	    	    	htm +="<div class='col-md-12 noPadding' id='memberListDIV"+userid+"'>";	    
 	    	    	 htm +="<span class='palyerCount' id='sequenc"+userid+"'>"+sequencNumber2.length+"</span>";
-	    	        htm +="<input type='text' class='form-control' style='width:73%; float:left;' readonly value='"+name+"' placeholder='' id='member"+userid+"'>";
+	    	        htm +="<input type='text' class='form-control player-entry' style='width:73%; float:left;' readonly value='"+name+"' placeholder='' id='member"+userid+"'>";
 	    	        htm +="<button type='button' class='btn btn-default ' style='width:18%; float:right;' onclick=removeFromList('"+userid+"')>Remove</button>";
 	    	        htm +="<input type='hidden' class='form-control' placeholder='' id='memberHiddeb"+userid+"' name='teamUserId' value='"+userid+"'>";
 	    	        htm +="</div>";
@@ -618,6 +620,7 @@ function memberCoachCaptainValue(keyVal)
 				   			    document.getElementById("captainSelectDiv").selectedIndex = "0";
 				   				return false;
 				   			}else{
+				   				$("#captainSelectDivERR").text("");
 				   				return true;
 				   			}
 				   }else{

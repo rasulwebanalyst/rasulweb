@@ -5,6 +5,14 @@
        <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
        <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Cricket Social</title>
+        <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">  
 <style type="text/css">
 .css-serial {
   counter-reset: serial-number;  /* Set the serial number counter to 0 */
@@ -17,12 +25,6 @@
 </style>
 <head>
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
-<title>Cricket Social</title>
 <script type="text/javascript">
 var pageNum=50;
 </script>
@@ -63,7 +65,7 @@ var pageNum=50;
                               </div> -->
                   
                   </h1></div>
-                  <div class="col-md-2" style="display: inline-block;">
+                  <div class="col-md-2 col-sm-12 col-xs-12" style="display: inline-block;">
 								    <label style="text-align: center;">Filter</label>
 								    <div class="selectdiv" style="height: 25px !important;">
 								        <c:choose>
@@ -150,7 +152,7 @@ var pageNum=50;
                  </div>
                  </div> 
                   </form>
-            <div class="col-md-10 pull-right">
+            <div class="col-md-10 pull-right rightnone">
       		
               <div class="col-md-12 whiteBox font13px"> 
      <div id="centTable" >    
@@ -163,7 +165,7 @@ var pageNum=50;
 	                       		<br>
 	                       		<div class="col-md-12 whiteBox font13px" id="centTable1" style="font-size: 12px;">
 	                       			<span class="text-danger" style="font-weight: bold; color: #3253a8 !important; ">Tournament Name : ${topplayer.tournamentName}</span>
-	                       			<br>
+	                       			<div class="form-group">
 	                       			<table class="css-serial">
 				                        <thead>
 				                        <tr>
@@ -216,6 +218,7 @@ var pageNum=50;
 						        </c:forEach>  
                      
                  		</table>
+                  </div>
                   </div>
 	             </c:otherwise>	
 	           </c:choose>
@@ -303,9 +306,9 @@ var pageNum=50;
   	  					if(res[i].size != 0){
   	  						
   	  						html += '<div class="whiteBox">';
-  								html += '<span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament Name : '+res[i].tournamentName+'</span>'
-  		   						html += '<table id="centTable" class="css-serial"><thead><tr>';
-  		   					
+  								html += '<span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament Name : '+res[i].tournamentName+'</span>';
+  								html += '<div class="form-group">'
+  		   						html += '<table id="centTable" class="css-serial"><thead><tr>';  		   					
   		   						html += '<th>S.No</th>';
   		   						html += '<th>Player Name</th>';
   		   						html += '<th>Team</th>';
@@ -361,7 +364,7 @@ var pageNum=50;
   	  						
   	  							html += '</tbody>';
   		    						html += '</table>';
-  		    						html += '</div>';
+  		    						html += '</div></div>';
   		    						
   		    						
   	  						}

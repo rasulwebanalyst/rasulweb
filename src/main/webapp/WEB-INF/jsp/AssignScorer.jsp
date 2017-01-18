@@ -1,4 +1,11 @@
- <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+   <!DOCTYPE html>
+<html lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+     <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
  <!-- responsive css -->
  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 <title>Cricket Social</title>
@@ -116,12 +123,13 @@ var formatAMPMTime = function(date) {
                                     </tr>
                                     </thead>
                                     </table>
+                   </div>
                                     <span class="noContentDivRed" id="errorSpan">No schedules available for this week</span>
 		          
 		          </c:when>
 		          <c:otherwise>
                   
-                  
+                  <div class="form-group"> 
                   <table id="myTableAssign" style="font-size: 12px;">
                             	<thead>
                                 <tr>
@@ -152,12 +160,14 @@ var formatAMPMTime = function(date) {
                   </c:forEach>
                               </tbody>
                             </table>
+                            </div>
                             <span id="errorSpan" style="color:red"></span>
                             </c:otherwise>
                             </c:choose>
                             
                             
                              <div class="col-md-6 smallTable" id="scorerTableId" style = "display:none">
+                               <div class="form-group"> 
                             <table>
                             	<thead>
                                 <tr>
@@ -214,6 +224,7 @@ var formatAMPMTime = function(date) {
                                        
                               </tbody>
                             </table>
+                            </div>
                             
                             </div>
                   
@@ -314,7 +325,7 @@ var formatAMPMTime = function(date) {
 				htmlContent += ' </td>' ;
 				htmlContent += ' </tr>' ;
 				}
-				htmlContent += '<td><div><input type="text" id="scorerSelectBox" name="scorerSelectBox" onkeyup="getBuddiesAutoComplete(this,\'addMemberautoCompleteDIV\',\'addMemberIDDIV\')" ><div class="autoComplete" id="addMemberautoCompleteDIV" style="display:none;"> <ul><li></li></ul>'; 
+				htmlContent += '<td><div><input type="text" id="scorerSelectBox" name="scorerSelectBox" onkeyup="getBuddiesAutoComplete(this,\'addMemberautoCompleteDIV\',\'addMemberIDDIV\')" ><div class="autoComplete umpireautocomplete" id="addMemberautoCompleteDIV" style="display:none;"> <ul><li></li></ul>'; 
 				htmlContent += " </div><input type='hidden' class='form-control' placeholder='' id='addMemberIDDIV'></div><span id='error' style='color:red'></span>";
 				htmlContent += '<td class="alignCenter"><input type="button" class="btn btn-default blueBtn btn-sm" value="Add" onclick= "addScorer()">' ;
 				htmlContent += ' </td> </tr>' ;
@@ -392,7 +403,7 @@ var formatAMPMTime = function(date) {
 					htmlContent += ' </td>' ;
 					htmlContent += ' </tr>' ;
 					}
-					htmlContent += '<td><div><input type="text" id="scorerSelectBox" name="scorerSelectBox" onkeyup="getBuddiesAutoComplete(this,\'addMemberautoCompleteDIV\',\'addMemberIDDIV\')" ><div class="autoComplete" id="addMemberautoCompleteDIV" style="display:none;"> <ul><li></li></ul>'; 
+					htmlContent += '<td><div><input type="text" id="scorerSelectBox" name="scorerSelectBox" onkeyup="getBuddiesAutoComplete(this,\'addMemberautoCompleteDIV\',\'addMemberIDDIV\')" ><div class="autoComplete umpireautocomplete" id="addMemberautoCompleteDIV" style="display:none;"> <ul><li></li></ul>'; 
 					htmlContent += " </div><input type='hidden' class='form-control' placeholder='' id='addMemberIDDIV'></div><span id='error' style='color:red'></span>	";
 					htmlContent += '<td class="alignCenter"><input type="button" class="btn btn-default blueBtn btn-sm" value="Add" onclick= "addScorer()">' ;
 					htmlContent += ' </td> </tr>' ;
@@ -463,7 +474,7 @@ var formatAMPMTime = function(date) {
 					htmlContent += ' </td>' ;
 					htmlContent += ' </tr>' ;
 					}
-					htmlContent += '<td><div><input type="text" id="scorerSelectBox" name="scorerSelectBox" onkeyup="getBuddiesAutoComplete(this,\'addMemberautoCompleteDIV\',\'addMemberIDDIV\')" ><div class="autoComplete" id="addMemberautoCompleteDIV" style="display:none;"> <ul><li></li></ul>'; 
+					htmlContent += '<td><div><input type="text" id="scorerSelectBox" name="scorerSelectBox" onkeyup="getBuddiesAutoComplete(this,\'addMemberautoCompleteDIV\',\'addMemberIDDIV\')" ><div class="autoComplete umpireautocomplete" id="addMemberautoCompleteDIV" style="display:none;"> <ul><li></li></ul>'; 
 					htmlContent += " </div><input type='hidden' class='form-control' placeholder='' id='addMemberIDDIV'> </div><span id='error' style='color:red'></span>	";
 					htmlContent += '<td class="alignCenter"><input type="button" class="btn btn-default blueBtn btn-sm" value="Add" onclick= "addScorer()">' ;
 					htmlContent += ' </td> </tr>' ;

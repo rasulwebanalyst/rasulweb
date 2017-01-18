@@ -314,7 +314,7 @@ date.add(java.util.Calendar.DATE, +6);
             								 
                   <div id="replaceId">
                   <div id="upcommingmatchesdiv">
-            <div class="col-md-10 pull-right">
+            <div class="col-md-10 pull-right rightnone">
       		<div class="col-md-12 whiteBox">
                   <h2 class="noBorder noLeftPad">Upcoming Matches</h2>
                   <div class="form-group" style="font-size: 12px;">
@@ -461,7 +461,7 @@ date.add(java.util.Calendar.DATE, +6);
                 	</div><!-- form group end-->
                 	
                 	<div id="incompletegamesdiv">
-                	<div class="col-md-10 pull-right">
+                	<div class="col-md-10 pull-right rightnone">
       		<div class="col-md-12 whiteBox">
                   <h2 class="noBorder noLeftPad">Incomplete Matches</h2>
                   <div class="form-group" style="font-size: 12px;">
@@ -611,7 +611,7 @@ date.add(java.util.Calendar.DATE, +6);
                 	</div>
                 	</div><!-- form group end -->
                     <div id="inprogressmatchesdiv">
-                    <div class="col-md-10 pull-right">
+                    <div class="col-md-10 pull-right rightnone">
       		<div class="col-md-12 whiteBox">
                   <h2 class="noBorder noLeftPad">In progress Matches</h2>
                   <div class="form-group" style="font-size: 12px;">
@@ -754,7 +754,7 @@ date.add(java.util.Calendar.DATE, +6);
                     </div><!-- form group end -->
                     
                     <div id="completedmatchesdiv">
-                    <div class="col-md-10 pull-right">
+                    <div class="col-md-10 pull-right rightnone">
       		<div class="col-md-12 whiteBox">
                   <h2 class="noBorder noLeftPad">Completed Matches</h2>
                   <div class="form-group" style="font-size: 12px;">
@@ -1263,7 +1263,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    			
    			
    			 var htmlco="";
-            htmlco+="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>Upcoming Matches</h2>";      
+            htmlco+="<div class='col-md-10 pull-right rightnone'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>Upcoming Matches</h2><div class='form-group'>";      
    			htmlco+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Umpire</th><th>App Scorer</th><th>Portal Scorer</th><th>Trophy</th><th>Enter Scorecard</th><th style='width:60px;'>Action</th></tr></thead>";
    			if(upcomminglist.length !=0)
    				{
@@ -1359,13 +1359,13 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    				htmlco+="<span class='noContentDivRed'>No Upcoming Matches</span>";
    			}
    			
-   			htmlco+="</div></div>"; 
+   			htmlco+="</div></div></div>"; 
    			$("#upcommingmatchesdiv").html(htmlco).trigger('create');
    			
    			
    			// incomepltelist
    			   var htmlco1="";
-   			  htmlco1="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>Incomplete Matches</h2>";
+   			  htmlco1="<div class='col-md-10 pull-right rightnone'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>Incomplete Matches</h2><div class='form-group'>";
    			 htmlco1+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Umpire</th><th>App Scorer</th><th>Portal Scorer</th><th>Trophy</th><th>Enter Scorecard</th><th style='width:60px;'>Action</th></tr></thead>";
    			if(incomepltelist.length!=0){
    				htmlco1+="<tbody>";
@@ -1450,7 +1450,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    			htmlco1+="</table>";
    				htmlco1+="<span class='noContentDivRed'>No Incomplete Matches</span>";
    			}
-   			htmlco1+="</div></div>";
+   			htmlco1+="</div></div></div>";
    			
    			$("#incompletegamesdiv").html(htmlco1).trigger('create'); 
    			
@@ -1460,7 +1460,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    		// inprogress
    		
 			   var htmlco2="";
-			  htmlco2="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>In progress Matches</h2>";
+			  htmlco2="<div class='col-md-10 pull-right rightnone'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>In progress Matches</h2> <div class='form-group'>";
 			 htmlco2+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Trophy</th><th>Umpire</th><th>App Scorer</th><th>Portal Scorer</th><th>Enter Scorecard</th><th>Scorecard</th></tr></thead>";
 			if(inprogresslist.length!=0){
 				htmlco2+="<tbody>";
@@ -1540,7 +1540,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 			htmlco2+="</table>";
 				htmlco2+="<span class='noContentDivRed'>No In progress Matches</span>";
 			}
-			htmlco2+="</div></div>";
+			htmlco2+="</div></div></div>";
 			
 			$("#inprogressmatchesdiv").html(htmlco2).trigger('create'); 
 			
@@ -1550,7 +1550,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 			
 	   		
 			   var htmlco3="";
-			  htmlco3="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>Completed Matches</h2>";
+			  htmlco3="<div class='col-md-10 pull-right rightnone'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>Completed Matches</h2><div class='form-group'>";
 			 htmlco3+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Trophy</th><th>Umpire</th><th>App Scorer</th><th>Portal Scorer</th><th>Result</th><th>Edit Scorecard</th><th>Scorecard</th></tr></thead>";
 			if(completedlist.length!=0){
 				htmlco3+="<tbody>";
@@ -1643,7 +1643,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 			htmlco3+="</table>";
 				htmlco3+="<span class='noContentDivRed'>No Completed Matches</span>";
 			}
-			htmlco3+="</div></div>";
+			htmlco3+="</div></div></div>";
 			
 			$("#completedmatchesdiv").html(htmlco3).trigger('create'); 
    			 

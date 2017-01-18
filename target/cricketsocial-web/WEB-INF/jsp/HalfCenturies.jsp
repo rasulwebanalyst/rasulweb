@@ -12,7 +12,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cricket Social</title>
-
+ <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
 <script type="text/javascript">
 var pageNum=50;
 </script>
@@ -57,7 +58,7 @@ var pageNum=50;
                       </div> -->
                   
                   </h1></div>
-                  				<div class="col-md-2" style="display: inline-block;">
+                  				<div class="col-md-2 col-sm-12 col-xs-12" style="display: inline-block;">
 								    <label style="text-align: center;">Filter</label>
 								    <div class="selectdiv" style="height: 25px !important;">
 								        <c:choose>
@@ -136,7 +137,7 @@ var pageNum=50;
                  </div>
                  </div> 
              </form> 
-            <div class="col-md-10 pull-right">
+            <div class="col-md-10 pull-right rightnone">
     <!-- <div class="col-md-12 whiteBox font13px"> -->
     <c:forEach items="${halfcentueryList}" var="century" varStatus="trcount">
         <c:choose>

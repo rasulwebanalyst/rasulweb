@@ -38,13 +38,13 @@
 
       
                   
-            <div class="col-md-10 pull-right">
+            <div class="col-md-10 pull-right rightnone">
       			<div class="col-md-12 whiteBox">
                 	<h1 class="">Team Contacts</h1>
                        <a style="margin-top: -40px;" class="pull-right" href="javascript:getPDF()"><img style="width: 30px; height: 25px;" src='${pageContext.request.contextPath}/images/Pdfdownload.png'></a></div>
                        <div class="form-group">
                        <c:forEach items="${Teamcontactslist}" var="team">
-                       <div class="col-md-12 whiteBox">
+                       <div class="col-md-12 whiteBox" style="font-size: 12px;">
                        <span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Team Name : ${team.boardName}</span>
                       <table class="table" cellspacing="0" width="100%" id="example">
                        <thead> 
@@ -54,7 +54,7 @@
                           <th>Designation </th>
                           <!-- <th>Address </th> -->
                           <th>Phone Number </th>
-                          <th>Email </th>
+                          <th>E-mail </th>
                         </tr>
                        </thead>
 
@@ -97,7 +97,7 @@
 		                         
 		                          <td>
 		                          
-		                          <c:if test="${teamlist.phoneNumber eq ''}">
+		                          <c:if test="${teamlist.phoneNumber eq '' || teamlist.phoneNumber eq null}">
 		                          -
 		                          </c:if>
 		                          <c:if test="${teamlist.phoneNumber ne ''}">
@@ -105,16 +105,24 @@
 		                          </c:if>
 		                          
 		                          </td>
-		                          <td style="text-align: left;">
-		                          <c:if test="${teamlist.emailAddress eq ''}">
+		                          
+		                          
+		                        <!--   <td style="text-align: left;"> -->
+		                          <c:if test="${teamlist.emailAddress eq '' || teamlist.emailAddress eq null}">
+		                          <td >
 		                          -
+		                          </td>
 		                          </c:if>
 		                          <c:if test="${teamlist.emailAddress ne ''}">
+		                          <td style="text-align: left;">
 		                          ${teamlist.emailAddress}
-		                          </c:if>
-		                          
-		                          
 		                          </td>
+		                          </c:if>
+		                         <!--  
+		                          </td> -->
+		                          
+		                          
+		                          
                         	</tr> 
                         	</c:forEach>                      
                         
@@ -139,13 +147,28 @@
                         	<script type="text/javascript">
                         	
                         	var sno=parseInt("${loop.index}")+1;
+                        	var phno="${teamlist.phoneNumber}";
+                        	console.log(phno);
+                        	var email="${teamlist.emailAddress}";
+                        	console.log(email);
+                        	if(email == null || email == "")
+                        		{
+                        		email="-";
+                        		}
+                        	
+                        	
+                        	
+                        	if(phno == 0)
+                        		{
+                        		phno="-";
+                        		}
                         	teamrowsingleObj.push({
                         		
                         		serialno : sno,
                         		fullName : "${teamlist.fullName}",
                         		designation : "${teamlist.designation}",
-                        		phoneNumber : "${teamlist.phoneNumber}",
-                        		email : "${teamlist.emailAddress}"
+                        		phoneNumber : phno,
+                        		email : email
                         		
                         	})
                         	
@@ -279,9 +302,20 @@
     doc.setFont("helvetica");
     doc.setFontType("bold");
     doc.setTextColor(50,83,168);
-    doc.text(220,30,"Team Details");
+    doc.text(220,30,"Team Contacts");
     
-    var yHeight=80;
+    
+    var leaguename="${BoradInfo.boardName}"
+        
+        doc.setFontSize(12);
+        doc.setFont("normal");
+        doc.setFontType("normal");
+        doc.setTextColor(0,0,0);
+        doc.text(10,70,"League Name");
+        doc.text(85,70,": "+leaguename);
+    
+    var yHeight=100;
+    var Gapdiff=0;
 	    for(var i in teamObj)
 		  {
 		  var teamsingleObj=teamObj[i];
@@ -303,7 +337,7 @@
 		                   {title: "Name", dataKey: "fullName"},
 		                   {title: "Designation", dataKey: "designation"},
 		                   {title: "Phone Number", dataKey: "phoneNumber"},
-		                   {title: "Email", dataKey: "email"}
+		                   {title: "E-mail", dataKey: "email"}
 		               ];
 		  
 		    
@@ -329,7 +363,7 @@
 	 					
 	 					/* doc.text(10,theight,"EndTable :"+i); */
 	 					/* console.log(parseInt(yHeight)+parseInt(10)); */
-	 					/* doc.text(10,parseInt(yHeight)+parseInt(32)+parseInt(20),"EndTable :"+i); */
+	 					/*   doc.text(10,parseInt(yHeight)+parseInt(32)+parseInt(20),"EndTable :"+i);   */
 	 					
 	 					 /*  if(teamsingleObj.length<3)
 	 						  {
@@ -339,12 +373,36 @@
 	 							 	yHeight=parseInt(teamsingleObj.length)*40+yHeight;
 	 							  } */
 	 							  
+	 							 /*  doc.text(10,parseInt(teamsingleObj.length)*20+yHeight+parseInt(42),"EndTable :"+i);  */ 
+	 							   /* console.log(parseInt(teamsingleObj.length)*20+yHeight+parseInt(42) +"    "+i)  */
+	 					
+	 							  if(parseInt(teamsingleObj.length)*20+yHeight+parseInt(42)>=730)
+	 								  {
+	 								 Gapdiff=50;
+	 								  }else{
+	 									 Gapdiff=0;
+	 								  }
 	 							  
-	 					 var yHeight=parseInt(teamsingleObj.length)*20+yHeight+parseInt(82);
+	 							   yHeight=parseInt(teamsingleObj.length)*20+yHeight+parseInt(82);
+	 							  console.log(yHeight);
 	 					  
 	 					  
+	 					var pageHeight= parseInt(doc.internal.pageSize.height);
 	 					
-	 					
+	 					if (yHeight>=pageHeight)
+	 					{
+	 						var diff=yHeight-pageHeight;
+	 						yHeight=diff+parseInt(42)+Gapdiff;
+	 						/* console.log("yHeight :"+yHeight);
+	 						console.log("pageHeight :"+pageHeight);
+	 						console.log("diff :"+diff);
+	 						
+	 						console.log("After Resize :"+yHeight) */
+	 						if(diff <10)
+	 							{
+	 							doc.addPage();
+	 							}
+	 					}
 	 					  
 	 					
 	 				}
@@ -354,7 +412,7 @@
     
     
     
-    doc.save('Teamdetails.pdf');
+    doc.save('Team contacts.pdf');
    }
    
    </script>

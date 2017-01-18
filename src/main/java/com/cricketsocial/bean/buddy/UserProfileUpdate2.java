@@ -89,9 +89,39 @@ public class UserProfileUpdate2 {
 	private String oldLname;
 	private String oldDob;
 	
+	private List<String> associatedLeagues;
+	private List<String> associatedTeams;
+	private List<String> hiddenLeagues;
+	private List<String> hiddenTeams;
+	
+	
 	
 	
 
+	public List<String> getAssociatedLeagues() {
+		return associatedLeagues;
+	}
+	public void setAssociatedLeagues(List<String> associatedLeagues) {
+		this.associatedLeagues = associatedLeagues;
+	}
+	public List<String> getAssociatedTeams() {
+		return associatedTeams;
+	}
+	public void setAssociatedTeams(List<String> associatedTeams) {
+		this.associatedTeams = associatedTeams;
+	}
+	public List<String> getHiddenLeagues() {
+		return hiddenLeagues;
+	}
+	public void setHiddenLeagues(List<String> hiddenLeagues) {
+		this.hiddenLeagues = hiddenLeagues;
+	}
+	public List<String> getHiddenTeams() {
+		return hiddenTeams;
+	}
+	public void setHiddenTeams(List<String> hiddenTeams) {
+		this.hiddenTeams = hiddenTeams;
+	}
 	public String getOldFname() {
 		return oldFname;
 	}

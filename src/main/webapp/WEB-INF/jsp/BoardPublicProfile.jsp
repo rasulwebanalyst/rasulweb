@@ -3,7 +3,7 @@
   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
-<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,6 +11,10 @@
     <meta name="author" content="">
 
     <title>Cricket Social</title>
+   <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+      <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
+ 
 <script>var ctx="${pageContext.request.contextPath}";</script>
 <script type="text/javascript">
 var pageNum=10;

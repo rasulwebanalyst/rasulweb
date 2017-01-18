@@ -100,7 +100,20 @@ table sup{
                            <div class="h1Sbox inningSelectBox" >
                               
                                 
-                                <div class="selectdiv pull-right" >
+                                <!-- <div class="selectdiv pull-right" >
+                                    <select class="selectboxdiv" id="awayTeamName" onchange="checkInnings(this.value,this)">
+                                       
+                                        
+                                    </select>
+                                    <div class="out" id="awayTeamNameOUT" >Select first inning</div>  
+                                     <label class="error"></label>  
+                                </div> -->
+                                
+                                
+                                <div style="float: right;width: 45%; margin-right: 2%;">
+                                <label style="float: left;width: 52%;"><b> Second Innings</b></label> 
+                                <div class="selectdiv" style="float: left; width: 100%; margin-left: 0;" >
+                                 
                                     <select class="selectboxdiv" id="awayTeamName" onchange="checkInnings(this.value,this)">
                                        
                                         
@@ -108,17 +121,33 @@ table sup{
                                     <div class="out" id="awayTeamNameOUT" >Select first inning</div>  
                                      <label class="error"></label>  
                                 </div>
+                                </div><!-- div end -->
                                
-                                <div class="selectdiv pull-right">
+                                <!-- <div class="selectdiv pull-right">
+                                    <select class="selectboxdiv" id="homeTeamName" onchange="checkInnings(this.value,this)">
+                                      
+                                    </select>
+                                    <div class="out" id="homeTeamNameOUT">Select second inning</div>
+                                    <label class="error"></label>    
+                                </div> -->
+                                
+                                <div style="float: left; width: 45%;">
+                                <label style="float: left;width: 52%;"><b>First Innings</b></label> 
+                                
+                                <div class="selectdiv" style="float: left; width: 100%; margin-left: 0;">
+                                 
                                     <select class="selectboxdiv" id="homeTeamName" onchange="checkInnings(this.value,this)">
                                       
                                     </select>
                                     <div class="out" id="homeTeamNameOUT">Select second inning</div>
                                     <label class="error"></label>    
                                 </div>
+                                </div><!-- div end -->
+                                
+                                
                                 	
                               </div>
-                              <div style="margin-top: 10px;">
+                              <div style="margin-top: 33px;">
                               	<input type="text" value="" id="matchDate" style="height: 36px;" readonly>
                               	<button onclick="matchStart('${homeTeamId}','${awayTeamId}')" class="btn btn-default dBtn" style="margin-left: 6px;" id="enterscoreStartbtn" >Enter score</button> <a href="#" style="margin-left: 6px;width: 98px;" class="btn btn-default dBtn" onclick="cancelValues()">Cancel</a>
                               	
@@ -878,9 +907,14 @@ $(document).ready(function(){
 	   if(val != 0){
 		   id = val;
 		   
+		  /*  var schedulerid=$("#schedulerId").val(); */
+		  var schedulerid="${tournamentSchedulerid}";
+		  console.log("schedulerid :"+schedulerid);
+		   
 		   var tournamentBean = {
 				   tournamentId : id,
 				   createdBy : boardId,
+				   tournamentSchedulerId : schedulerid,
 		   } 
 		   
 		  $.ajax({
@@ -1876,6 +1910,7 @@ var prePopulateUmpire = ${umpireNameList};
 	for(var i=0; i< prePopulateUmpire.length; i++){
 		umpireArray.push(prePopulateUmpire[i].id);
 	};
+	$('#hiddenUmpireId').val(umpireArray);
 	}
 $("#umpireId").tokenInput(ctx+"/umpireSearchForCreateScheduler/",{
 resultsFormatter: function(item){ return "<li>" + "<img src='" + item.userImageUrl + "' title='" + item.fullName + "' height='25px' width='25px' />" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name'>" + item.fullName + "</div></div></li>" },
@@ -2482,7 +2517,13 @@ function checkFunction(){
 }
 function cancelFunction(){
 	var boardId  = "${boardId}";
-	 window.location.href = "${pageContext.request.contextPath}/GameSchedule/boardId/"+boardId;
+	/*  window.location.href = "${pageContext.request.contextPath}/GameSchedule/boardId/"+boardId; */
+	  window.location.href = "${pageContext.request.contextPath}/GameSchedulePublicProfile/boardId/"+boardId; 
+}
+
+function cancelValues(){
+	//window.location.reload();
+	window.location.href="${pageContext.request.contextPath}/GameSchedulePublicProfile/boardId/${boardId}";
 }
 
 function numberCheck(elem){

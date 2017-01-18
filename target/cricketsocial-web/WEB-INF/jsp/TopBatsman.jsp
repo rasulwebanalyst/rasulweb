@@ -57,7 +57,7 @@ var pageNum=500;
                               </div> -->
                   
                   </h1></div>
-                  <div class="col-md-2" style="display: inline-block;">
+                  <div class="col-md-12 col-sm-12 col-xs-12" style="display: inline-block;">
 								    <label style="text-align: center;">Filter</label>
 								    <div class="selectdiv" style="height: 25px !important;">
 								        <c:choose>
@@ -141,7 +141,7 @@ var pageNum=500;
                  </div> 
                   </form>
                   
-            <div class="col-md-10 pull-right">
+            <div class="col-md-10 pull-right rightnone">
       		 <div class="col-md-12 whiteBox font13px"> 
      <div id="centTable" >
                   
@@ -152,7 +152,7 @@ var pageNum=500;
             					</c:when>
            						<c:otherwise>
                         			<br>
-	                       			<div class="col-md-12 whiteBox font13px" id="centTable1">
+	                       			<div class="col-md-12 whiteBox font13px" id="centTable1" style="font-size: 12px;">
 	                       				<span class="text-danger" style="font-weight: bold; color: #3253a8 !important; ">Tournament Name : ${topplayer.tournamentName}</span>
 	                       					<br>
 	                       					<div class="form-group">
