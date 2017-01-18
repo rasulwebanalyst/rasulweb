@@ -205,7 +205,7 @@
                              
                              <!-- Team Associate -->
                              
-                             <div style="margin-bottom: 40px;"><p><span style="float:left; width: 132px; margin-right: 5px; clear:both"><strong>Teams Associated</strong> </span>  
+                             <div style="margin-bottom: 40px;"><p><span style="float:left; width: 134px; margin-right: 5px; clear:both"><strong>Teams Associated</strong> </span>  
                               <c:choose>
                              <c:when test="${fn:length(UserMatchInfo.teamBoardList) gt 2}">
                              
@@ -239,7 +239,7 @@
                              
                              <!-- Leage Associate -->
                              
-                             <div><p><span style="float:left; width: 132px; margin-right: 5px; clear:both"><strong>Leagues Associated</strong> </span>  
+                             <div><p><span style="float:left; width: 134px; margin-right: 5px; clear:both"><strong>Leagues Associated</strong> </span>  
                               <c:choose>
                              <c:when test="${fn:length(UserMatchInfo.leagueBoardList) gt 2}">
                              

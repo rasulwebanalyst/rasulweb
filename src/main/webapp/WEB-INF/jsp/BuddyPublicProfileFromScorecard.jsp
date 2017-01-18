@@ -219,10 +219,10 @@
                      	<div class="col-md-8 statusUpdateBox colon">
                      	<p><span><strong>Age </strong> </span> <script> document.writeln(calculateage("${UserMatchInfo.dob}"))</script></p>
                             <p><span><strong>Playing role </strong></span>
-                            <span>
+                            
                             <c:forEach var = "roleDetails" items="${UserInfo.userRoleMap}" varStatus = "loop">                      
                             ${roleDetails.role}<c:if test="${!loop.last}">,</c:if>                                          
-                        </c:forEach></span> </p> 
+                        </c:forEach> </p> 
                             <p><span><strong>Batting </strong></span> ${SelectedPlayersInfo.player1.battingInfo}</p> 
                             <p><span><strong>Bowling </strong></span> ${SelectedPlayersInfo.player1.bowlingInfo}</p>
                             <p><span><strong>Country </strong></span> ${UserInfo.country}</p>
@@ -250,7 +250,7 @@
                              
                                        <!-- Team Associate -->
                              
-                             <div style="margin-bottom: 40px;"><p><span style="float:left; width: 132px; margin-right: 5px; clear:both"><strong>Teams Associated</strong> </span>  
+                             <div style="margin-bottom: 40px;"><p><span style="float:left; width: 134px; margin-right: 5px; clear:both"><strong>Teams Associated</strong> </span>  
                               <c:choose>
                              <c:when test="${fn:length(UserMatchInfo.teamBoardList) gt 2}">
                              
@@ -284,7 +284,7 @@
                              
                              <!-- Leage Associate -->
                              
-                             <div><p><span style="float:left; width: 132px; margin-right: 5px; clear:both"><strong>Leagues Associated</strong> </span>  
+                             <div><p><span style="float:left; width: 134px; margin-right: 5px; clear:both"><strong>Leagues Associated</strong> </span>  
                               <c:choose>
                              <c:when test="${fn:length(UserMatchInfo.leagueBoardList) gt 2}">
                              

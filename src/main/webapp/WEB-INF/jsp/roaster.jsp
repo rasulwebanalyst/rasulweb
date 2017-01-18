@@ -24,6 +24,25 @@ var rosterrowObj=[];
 </head>
 
 <body>
+
+
+<script type="text/javascript">
+
+function checkbbi(bbi)
+{
+	var show;
+	
+	if(bbi == 0 || bbi == null || bbi == "0/0"){
+		show="-";	
+		}else{
+		show=bbi;
+		}
+	
+	return show;
+	}
+</script>
+
+
 <div id="RoasterPopup" class="modal" role="dialog" style="display: none;">
   <div class="modal-dialog">
 
@@ -548,7 +567,8 @@ var rosterrowObj=[];
                                            			<td>${bowler.runs}</td>
                                            			<td>${bowler.wickets}</td>
                                            			<%-- <td>${bowler.bestBowlinginInnings}/${bowler.bowlingRuns}</td> --%>
-                                           			 <td>${bowler.bbi}</td> 
+                                           			 <%-- <td>${bowler.bbi}</td> --%>
+                                           			 <td><script>document.writeln(checkbbi("${bowler.bbi}"))</script> </td> 
                                            			
                                            			 <%-- <c:choose>
                                            							<c:when test="${bowler.bbi eq 0 || bowler.bbi eq null}">
@@ -1009,7 +1029,7 @@ var roasterid="${RoasterResponseById.rosterDetails.rosterId}";
        				htm+="<td>"+res[i].matchCount+"</td>";
        				htm+="<td>"+res[i].runs+"</td>";
        				htm+="<td>"+res[i].wickets+"</td>";
-       				if(res[i].bbi == 0 || res[i].bbi == null){
+       				if(res[i].bbi == 0 || res[i].bbi == null || res[i].bbi == "0/0"){
        					htm+="<td>-</td>";	
        				}else{
        				htm+="<td>"+res[i].bbi+"</td>";}
