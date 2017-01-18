@@ -647,7 +647,7 @@ var teamdeletearray=[];
                                <label for="email">Cricket Teams Associated</label>
                               
                                <%-- <input type="text" class="form-control" placeholder="Cricket Teams Board" name="teamBoard" id="teamAutoCompleteTextBoxId" onkeyup="boardAutocomplete(this,'Team','ctAutoComplateDiv')" value="${UserProfileOBJ.teamboardlist[0].boardName}" /> --%>
-                               
+                               <div id="teamif">
                                <input type="text" class="form-control" placeholder="" id="teamboardId" name="scheduler" value="" readonly="readonly" >
                                
                                
@@ -658,7 +658,8 @@ var teamdeletearray=[];
                           
                           <input type="hidden" id="associatedTeams" name="associatedTeams" value="">
                           <input type="hidden" id="hiddenTeams" name="hiddenTeams" value="">
-                          
+                          </div>
+                          <input type="text" class="form-control" placeholder="" id="teamelse" name="scheduler" value="" readonly="readonly" style="display: none;" >
                                 </div>
                                 
                                
@@ -667,7 +668,7 @@ var teamdeletearray=[];
                                 
                               <div class="col-md-12">
                                <label for="email">Cricket Leagues Associated</label>
-                              
+                              <div id="leagueif">
                                <%-- <input type="text" class="form-control" placeholder="Cricket League Board" name="leagueBoard" id="leagueAutoCompleteTextBoxId" onkeypress="boardAutocomplete(this,'League','clAutoComplateDiv')" value="${UserProfileOBJ.leagueboardlist[0].boardName}"/> --%>
                                <input type="text" class="form-control" placeholder="" name="leagueBoard" id="leagueBoardId" value=""/>
                               <div class="autoComplete" id="clAutoComplateDiv" style="display:none;">
@@ -677,7 +678,8 @@ var teamdeletearray=[];
                           
                           <input type="hidden" id="associatedLeagues" name="associatedLeagues" value="">
                           <input type="hidden" id="hiddenLeagues" name="hiddenLeagues" value="">
-                          
+                          </div>
+                          <input type="text" class="form-control" placeholder="" name="leagueBoard" id="leagueelse" value="" readonly="readonly" style="display: none;"/>
                                 </div>
                                 
                                 
@@ -739,6 +741,7 @@ var teamdeletearray=[];
    
    
    $(document).ready(function(){
+	   if(teamarray.length > 0){
 	   
 	   $("#teamboardId").tokenInput(ctx+"/boardSearchInUsereditteam?category=Team",{
 	    	theme: "facebook",   
@@ -756,6 +759,11 @@ var teamdeletearray=[];
 				
 				   $('#associatedTeams').val(teamarrayId); 
 				   $('#hiddenTeams').val(teamdeletearray); 
+				   if(teamarrayId.length <= 0)
+					   {
+					   $("#teamif").hide();
+					   $("#teamelse").show();
+					   }
 				
 	    },
 	    resultsFormatter: function(item){ 
@@ -763,8 +771,9 @@ var teamdeletearray=[];
 	    	return "<li>" + "<img src='" + item.boardImageURL + "' title='" + item.boardName +"' height='50px' width='50px' onerror=errorImageset(this)/>" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name'>" + item.boardName + "</div></div></li>"},
 	     prePopulate: teamarray 
 	   });
-	   
+	   }
 	
+	   if(leaguearray.length > 0){
 	   
 	   $("#leagueBoardId").tokenInput(ctx+"/boardSearchInUsereditteam?category=league",{
 	    	theme: "facebook",   
@@ -781,6 +790,11 @@ var teamdeletearray=[];
 				}
 				$('#associatedLeagues').val(leaguearrayId); 
 				$('#hiddenLeagues').val(leaguedeletearray);
+				if(leaguearrayId.length <= 0)
+					{
+					$("#leagueif").hide();
+					$("#leagueelse").show();
+					}
 	    },
 	    resultsFormatter: function(item){ 
 	    	console.log(JSON.stringify(item));
@@ -788,7 +802,7 @@ var teamdeletearray=[];
 	     prePopulate: leaguearray 
 	   });
 	   
-	   
+	   }
 	   $('#associatedLeagues').val(leaguearrayId); 
 	   $('#associatedTeams').val(teamarrayId); 
 	   $('#hiddenLeagues').val(leaguedeletearray); 

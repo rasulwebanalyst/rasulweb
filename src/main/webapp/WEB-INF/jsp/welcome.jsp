@@ -100,14 +100,15 @@
 $(function(){
 	 if (navigator.geolocation) {
 		 console.log( "Geolocation supported by this browser.");
-	        navigator.geolocation.getCurrentPosition(showPosition);
+	        navigator.geolocation.getCurrentPosition(showPosition,showError);
 	    	         
 	      } else { 
 	    	  console.log( "Geolocation is not supported by this browser.");
+	    	  $("#Matchesaroundyoudiv").hide();
+	    	  $("#contentdiv").show();
 	      }
-	 
 	 function showPosition(position){
-		// alert( "Geolocation is not supported by this browser.");
+		/*  alert( "Geolocation is not supported by this browser."); */
 		var lat =position.coords.latitude;
 		var lang=position.coords.longitude;
 		
@@ -179,26 +180,44 @@ $(function(){
 							}
 					
 					$("#nt-example1").html(htmlco).trigger('create');
+					$("#contentdiv").hide();
+					$("#Matchesaroundyoudiv").show();
 					console.log(htmlco);
 					$('#loading').hide();
 					
-					ready();
 					
 				}
 				
 			 })
 			 
-		 }
+		 }else
+			 {
+			 console.log("Position not shown");
+			 }
 		
 	 }
 	 
+	 
+	 
+	 function showError(error) {
+		    switch(error.code) {
+		        case error.PERMISSION_DENIED:
+		            console.log("User denied the request for Geolocation.");
+		            $("#Matchesaroundyoudiv").hide();
+			    	  $("#contentdiv").show();
+		            break;
+		        case error.POSITION_UNAVAILABLE:
+		            	console.log("Location information is unavailable.");
+		            $("#Matchesaroundyoudiv").hide();
+			    	  $("#contentdiv").show();
+		            break;
+		    }
+		}
+	 
+	 
+	 
 });
 
-function ready()
-{
-	$('.slider8').reloadSlider();
-	
-	}
 	
 
 $(function() {
@@ -298,7 +317,7 @@ var fbURL='110086556012641'; // QA
       <%--    <img class="login-thump" src="${pageContext.request.contextPath}/images/login-thump.png"> --%>
         <h1>Welcome to <span style="">CricketSocial</span></h1>
             
-            <div class="col-md-6" style="padding-top: 4%;">
+            <div class="col-md-6" >
             
             <div class="loginRight">
                
@@ -373,7 +392,7 @@ var fbURL='110086556012641'; // QA
           
 	         
 	       </div><!-- col end -->
-	       <div class="col-md-4 no-padding-res">
+	       <div class="col-md-4 no-padding-res no-padding">
 	       <label class="log-dt-lab" for=""> <span style="color:red"></span></label>
             <input class="log-dt-holder" type="text" style="margin-top: 4px;" value="" placeholder="date" id="dobDate" onfocus="numberCheckDobDate(this)" onblur="numberCheckDobDate(this)" onkeyup="dateOfBirthValidation1()">
 	             
@@ -441,11 +460,11 @@ var fbURL='110086556012641'; // QA
 
           <div class="row">
           <div class="col-md-12 loginSocial">
-          <div class="col-md-3">
-              <a href="#" class="btn btn-default fbbtn" onclick="fbAccount()"> <i class="fa fa-facebook-f"></i>Facebook</a>
+          <div class="col-md-6">
+              <a href="#" class="btn btn-default fbbtn" onclick="fbAccount()"> <i class="fa fa-facebook-f" style="margin-right:15px"></i>Facebook</a>
           </div>
-          <div class="col-md-3">
-              <a href="#" class="btn btn-default googlebtn" onclick="googleLogin()"> <i class="fa fa-google-plus"></i>Google+</a>
+          <div class="col-md-6">
+              <a href="#" class="btn btn-default googlebtn" onclick="googleLogin()"> <i class="fa fa-google-plus" style="margin-right:10px"></i>Google+</a>
           </div>
           </div>
           </div>
@@ -489,11 +508,11 @@ var fbURL='110086556012641'; // QA
 <div class="clearfix"></div>
           <div class="row">
           <div class="col-md-12 loginSocial">
-          <div class="col-md-3">
-              <a href="#" class="btn btn-default fbbtn" onclick="fbAccount()"> <i class="fa fa-facebook-f"></i>Facebook</a>
+          <div class="col-md-6">
+              <a href="#" class="btn btn-default fbbtn" onclick="fbAccount()"> <i class="fa fa-facebook-f" style="margin-right:15px"></i>Facebook</a>
           </div>
-          <div class="col-md-3">
-              <a href="#" class="btn btn-default googlebtn" onclick="googleLogin()"> <i class="fa fa-google-plus"></i>Google+</a>
+          <div class="col-md-6">
+              <a href="#" class="btn btn-default googlebtn" onclick="googleLogin()"> <i class="fa fa-google-plus" style="margin-right:10px"></i>Google+</a>
           </div>
           </div>
           </div>
@@ -531,8 +550,35 @@ var fbURL='110086556012641'; // QA
                
                
                <div class="sidebar-container widget-MAU home-scroller">
+               
                      <div class="sidebar-content">
-                        <div class="sidebar-header"><a href="${pageContext.request.contextPath}/matchesAroundYou">Matches Around You</a></div>
+                     
+                     
+                     
+               <div id="contentdiv" style="display: none;">      
+                     
+               <h1>Welcome to CricketSocial</h1>
+               <div id="homeContent">
+               <p>The Cricket Connection</p>
+               <ul class="login-txt">
+               	<li>A Social  and Analytics platform with anchoring tools for Cricket.</li>
+               	<li>One stop solution for - Players, Fans, Umpires, Coaches, Merchants, League Boards, Team Boards, Academies, Cricket Administrative Bodies and Talent Acquisition.</li>
+               	<li>Players, Fans, Umpires, Coaches, Merchants, League Boards, Team Boards, Academies, Cricket Administrative Bodies and Talent Acquisition</li>
+               	<li>Manage Social and club Cricket professionally.</li>
+               	<li>Follow live scores anywhere.</li>
+               	<li>Capture all your  Cricketing Moments.</li>
+               	<li>Connect with Cricket Buddies, Get Noticed, Find opportunities.</li>
+               	<li>You may be good enough to represent a professional level not just club level.</li>
+               	<li>Give your cricket dream a chance Register on CricketSocial Now.</li>
+              
+               </ul>
+               </div> 
+                    </div> 
+                     
+                     
+                     <div id="Matchesaroundyoudiv" style="display: none;">
+                     
+                         <div class="sidebar-header"><a href="${pageContext.request.contextPath}/matchesAroundYou">Matches Around You</a></div>
                        
 
     <div id="nt-example1-container" class="scroll-slider">
@@ -544,56 +590,13 @@ var fbURL='110086556012641'; // QA
 		                    <li style="visibility: hidden;">Nunc ultrices tortor eu massa placerat posuere. Vivamus viverra sagittis. <a href="#">Read more...</a></li>
 		                </ul>
 		                <i class="fa fa-chevron-down" id="nt-example1-next"></i>
-		            </div>
-    
-<!--      <div id="myCarousel" class="carousel slide vertical">
-            Carousel items
-            <div class="carousel-inner">
-                <div class="active item">
-                    <img src="http://newsfirst.lk/english/wp-content/uploads/2014/03/AFTER-WINNING-THE-FINALS.jpg">
-                </div>
-                <div class="item">
-                    <img src="http://newsfirst.lk/english/wp-content/uploads/2014/03/AFTER-WINNING-THE-FINALS.jpg">
-                </div>
-                <div class="item">
-                    <img src="http://newsfirst.lk/english/wp-content/uploads/2014/03/AFTER-WINNING-THE-FINALS.jpg">
-                </div>
-            </div> -->
-            <!-- Carousel nav -->
-<!--             <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
-            <a class="carousel-control right" href="#myCarousel" data-slide="next">›</a>
-        </div> -->
-        
-        
-        
-        <!--div id="scrollingNewsContainer"-->
-
-
-
- <!--                      <div class="slider8" id="mau">
-						 <div ></div>
-						  <div class="slide"><img src="http://placehold.it/300x100&text=FooBar2"></div>
-						  <div class="slide"><img src="http://placehold.it/300x100&text=FooBar3"></div>
-						  <div class="slide"><img src="http://placehold.it/300x100&text=FooBar4"></div>
-						  <div class="slide"><img src="http://placehold.it/300x100&text=FooBar5"></div>
-				 		  <div class="slide"><img src="http://placehold.it/300x100&text=FooBar6"></div>
-						  <div class="slide"><img src="http://placehold.it/300x100&text=FooBar7"></div>
-					</div>
-							<p><a href="" id="reload-slider">Click to add a slide, then reload the slider</a></p> -->
- <!--                       <div id="marqueecontainer" onMouseover="copyspeed=pausespeed" onMouseout="copyspeed=marqueespeed">
-						<div id="vmarquee" style="position: absolute; width: 100%;">
-                       <div id="mau"></div>
-                           
+		            </div> 
+                      </div>
                      </div>
-                      </div> -->
-                      
-                      
-                      
-                      
-                      
-                      
-                     </div>
+                     
                    </div>
+                   
+                   
            
             </div>
             

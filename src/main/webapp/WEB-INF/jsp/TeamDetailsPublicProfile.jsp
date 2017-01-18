@@ -12,9 +12,9 @@
      <!-- Responsive CSS -->
     <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 <!-- jQuery -->
-<script src="js/jquery.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+<!-- <script src="js/jquery.js"></script>
+Bootstrap Core JavaScript
+<script src="js/bootstrap.min.js"></script> -->
 
 
 </head>
@@ -228,8 +228,8 @@
                         <c:forEach items="${team.tournamentList}" var ="teamlist" varStatus="index">
                         	 <tr>
                         	      <td style="text-align: center;">${index.count}</td>
-		                          <td><a href="${pageContext.request.contextPath}/${teamlist.teamBoardName}/board/${teamlist.teamBoardId}"><img src="${teamlist.boardUrl}" style="width: 25px;" onerror="imgError(this)"  > ${teamlist.teamBoardName}</a></td>
-		                          <td>${teamlist.boardAbbrivation}</td>
+		                          <td style="text-align: left;"><a href="${pageContext.request.contextPath}/${teamlist.teamBoardName}/board/${teamlist.teamBoardId}"><img src="${teamlist.boardUrl}" style="width: 25px;" onerror="imgError(this)"  > ${teamlist.teamBoardName}</a></td>
+		                          <td style="text-align: left;">${teamlist.boardAbbrivation}</td>
 		                         <%--  <td>${teamlist.homeGround}</td> --%>
 		                         
 		                         <c:choose>
@@ -237,7 +237,7 @@
 		                          <td>-</td>
 		                          </c:when>
 		                          <c:otherwise>
-		                          <td>${teamlist.homeGround}</td>
+		                          <td style="text-align: left;">${teamlist.homeGround}</td>
 		                          
 		                          </c:otherwise>
 		                          </c:choose>
@@ -270,9 +270,9 @@
 </div>
 </section>
   <!--Data Table-->   
-<script src="${pageContext.request.contextPath}/js/jquery.dataTables.min.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/js/jquery.dataTables.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/dataTables.bootstrap.min.js"></script>
-
+ --%>
 <!--Select Box-->
 <script type="text/javascript">
 /* $(document).ready(function() {
@@ -315,7 +315,7 @@
    </script>
    
          <!--Date picker-->
-    <script src="js/bootstrap-datepicker.js"></script>
+    <!-- <script src="js/bootstrap-datepicker.js"></script> -->
    
    <!--Gallery-->
    
@@ -323,7 +323,7 @@
  
    
    
-   <script src="js/jquery.colorbox.js"></script>
+  <!--  <script src="js/jquery.colorbox.js"></script> -->
 		<script>
 			$(document).ready(function(){
 				//Examples of how to assign the Colorbox event to elements
@@ -404,6 +404,8 @@ function yearWiseteams(val) {
 					
 					
 					$("#Showteamdetails").html(htm).trigger("create");
+					$("#SelectTournMent").val("");
+					$("#tournmentInField").val("");
 							
 			},
 			error : function(err) {
@@ -494,9 +496,9 @@ function yearWiseteams(val) {
    }
    
    
-   $(document).ready(function(){
+  /*  $(document).ready(function(){
 	   $('#loading').hide();
-   })
+   }) */
    
    </script>
    

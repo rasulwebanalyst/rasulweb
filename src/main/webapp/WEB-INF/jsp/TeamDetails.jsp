@@ -75,18 +75,18 @@
                        
                        
                        
-                       <form action="${pageContext.request.contextPath}/teamslist" id="teamsSearchForm" name="teamsSearchForm" method="post" onsubmit="return searchValiation()">
+                       <%-- <form action="${pageContext.request.contextPath}/teamslist" id="teamsSearchForm" name="teamsSearchForm" method="post" onsubmit="return searchValiation()"> --%>
                   <div class="col-md-12">
       		<div class="col-md-12 whiteBox">
                   
                   <div class="col-md-12 noPadding">
                      	
                                               
-                        	<input type="hidden" class="form-control" placeholder="" id="SelectTournMent" name="tournamentId" value="${teamSearch.tournamentId}"> 
+                        	<input type="hidden" class="form-control" placeholder="" id="SelectTournMent" name="tournamentId" value="${Selectedtid}"> 
                             <input type="hidden" name="boardId"  id="searchboardId" value="${boardId}"> 
                       
                         <div class="col-md-3 noLeftPad">
-                        <label for="">Tournament</label> <input type="text" class="form-control" placeholder="" name="tournmentName" id="tournmentInField" onkeyup="tournmentSearch(this)" value="${teamSearch.tournmentName}"> 
+                        <label for="">Tournament</label> <input type="text" class="form-control" placeholder="" name="tournmentName" id="tournmentInField" onkeyup="tournmentSearch(this)" value="${Selectedtname}"> 
                         	                      	
                         	<div class="autoComplete" style="display: none;" id="tournmentSearchDIV">
 		                		<ul id="tournmentSearchResultDIV" style="width: 95%;">                    	
@@ -108,14 +108,14 @@
                         
                         
                         <div class="col-md-2">
-                        <button type="submit" class="btn btn-default dBtn GSfbtn pull-right">Submit</button>
+                        <button type="submit" class="btn btn-default dBtn GSfbtn pull-right" onclick="searchValiation()">Submit</button>
                      	</div>
                        
                      </div>
                  
                  </div>
                  </div> 
-                   </form>
+                  <!--  </form> -->
                        
                        
                        
@@ -185,8 +185,8 @@
 <%@ include file="Footer.jsp" %>
 
 <!--Data Table-->   
-<script src="${pageContext.request.contextPath}/js/jquery.dataTables.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/dataTables.bootstrap.min.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/dataTables.bootstrap.min.js"></script>
 
 <!--Select Box-->
 <script type="text/javascript">
@@ -257,16 +257,18 @@
 		if(i==0)
 		 {
 		 i=1;
+		 console.log(i);
 		 return false;
 		 }
-		
-			
+		if(val != "Years")
+			{
 			var year = {
 					boardId : "${boardId}",
 					filterByYear : val,
 					tournamentId : "",
 				
 			}
+			
 			
 			console.log(year);
 			 $.ajax({
@@ -319,12 +321,15 @@
 					
 					
 					$("#Showteamdetails").html(htm).trigger("create");
+					$("#SelectTournMent").val("");
+					$("#tournmentInField").val("");
 							
 			},
 			error : function(err) {
 				console.log(err);
 			}
 			}) 
+			}
 		console.log(" Matches years :" + val);
 		}
 		
@@ -400,18 +405,14 @@
   	 var tournment= $('#SelectTournMent').val();
   	 if(tournment!='')
   		 {
-  		 		return true;
+  		 		/* return true; */
+  		 		window.location.href="${pageContext.request.contextPath}/teamslist/"+tournment+"/${boardId}";
   		 }else{
   			 displaynotification('Select Tournament',3000);
   			 return false;
   		 }
   	 
    }
-   
-   
-   $(document).ready(function(){
-	   $('#loading').hide();
-   })
    
    </script>
    

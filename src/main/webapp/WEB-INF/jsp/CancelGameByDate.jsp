@@ -143,7 +143,7 @@ var formatAMPMTime = function(date) {
                   
             <div class="col-md-10 pull-right rightnone">
       		<div class="col-md-12 whiteBox" style="font-size: 12px;">
-                  <h2 class="noBorder noLeftPad">Upcoming Matches</h2>
+                  <h2 class="noBorder noLeftPad">Upcoming/Incomplete Matches</h2>
                   <div class="form-group">
                   <c:choose>
                        <c:when test="${upcomingMatchesListSize == 0 }">
@@ -162,7 +162,7 @@ var formatAMPMTime = function(date) {
                        </thead>
 						</table>
                        
-                      <div class="noContentDivRed">No Upcoming Matches</div>
+                      <div class="noContentDivRed">No Upcoming/Incomplete Matches</div>
                        
 
                        </c:when>
@@ -207,6 +207,36 @@ var formatAMPMTime = function(date) {
 				            <label for="r4_${upcoming.tournamentSchedulerId}"><span></span></label></td>
                         </tr>
                       </c:forEach>
+                      
+                      
+                      
+                      <c:forEach var="incomplete" items="${IncompleteMatchesList}" varStatus = "loop1">
+                       <tr>
+                       
+                       <td><p id="formatDate_${incomplete.tournamentSchedulerId}" style="display:none"><fmt:formatDate pattern="M/d/YYYY hh:mm a" value="${incomplete.gameDate}" /></p><script>document.writeln(test("${incomplete.tournamentSchedulerId}"));</script></td>
+                       
+                           <%-- <td><fmt:formatDate value="${upcoming.gameDate}"
+														pattern="MM/dd/yyyy" /></td> --%>
+                     <td><a href="${pageContext.request.contextPath}/${incomplete.homeTeamName}/board/${incomplete.homeTeamId}">${incomplete.homeTeamName}</a></td>
+                          <td><a href="${pageContext.request.contextPath}/${incomplete.awayTeamName}/board/${incomplete.awayTeamId}">${incomplete.awayTeamName}</a></td>
+                          <td>${incomplete.groundName}</td>
+                          <td> <div >
+														<c:forEach var="umpire"
+										items="${incomplete.umpireNamesList }" varStatus="loop">
+												<span><a href="${pageContext.request.contextPath}/buddy/${umpire.umpireName}/${umpire.umpireId}">${umpire.umpireName}</a><c:if test="${!loop.last}">,</c:if></span>		
+											</c:forEach>
+														</div>
+											
+												</td> 
+                          <td>${incomplete.tournamentName}</td>
+                          <td><span class="text-success">Active</span></td>
+                          <td><input type="checkbox"id="r4_${incomplete.tournamentSchedulerId}" name="rr" value="${incomplete.tournamentSchedulerId}"/>
+				            <label for="r4_${incomplete.tournamentSchedulerId}"><span></span></label></td>
+                        </tr>
+                      </c:forEach>
+                      
+                      
+                      
                   
                         
 					</tbody>
@@ -264,13 +294,29 @@ var formatAMPMTime = function(date) {
 		// fromDateValidateFunction();
 		// toDateValidateFunction();
 		 //tournamentErrorFunction();
-		  $("#filterForm").submit();
-		/*  if(fromDateValidateFunction() == true && toDateValidateFunction() == true){
+		  /* $("#filterForm").submit(); */
+		  /* if(fromDateValidateFunction() == true && toDateValidateFunction() == true){
 			 $("#filterForm").submit();
 			 return true;
 		 }else{
 			 return false;
-		 } */
+		 }  */
+	  var fromDate = $("#fromDate").val();
+	  var toDate = $("#toDate").val();
+	  var tid=$("#addMemberIDDIV").val();
+	  if(tid == "" || tid == null)
+		  {
+		  if(fromDate == "" || toDate == "")
+			  {
+			  displaynotification("Please select date or tournamnet to filter",2000);
+			  }else
+				  {
+				  $("#filterForm").submit();
+				  }
+		  }else
+			  {
+			  $("#filterForm").submit();
+			  }
 	 }
 	 
 	 
