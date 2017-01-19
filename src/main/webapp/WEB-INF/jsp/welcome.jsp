@@ -130,6 +130,7 @@ $(function(){
 				success : function(res)
 				{
 					 /* alert(res);  */
+					 var empty=0;
 					var htmlco="";
 					if(res !=null)
 						{
@@ -163,19 +164,21 @@ $(function(){
 							htmlco+="<a href='javascript:void(0);'><img src="+hometeam.boardImageURL+"? class='teamLogo' onError='this.onerror=null;this.src=${pageContext.request.contextPath}/images/boardIcon.png;' ></a> <b>VS</b> <a href='javascript:void(0);'><img src="+awayteam.boardImageURL+"? class='teamLogo'></a>";
 							htmlco+="</span></div></li>";
 							
-							var k=parseInt(i)+1;
-							/* if(k % 2 == 0)
+							/* var k=parseInt(i)+1;
+							if(k % 2 == 0)
 							{
 								htmlco+="</li>";
-							} */
+							} */ 
 							
 							}
 							}else
 								{
+								empty = 1;
 								htmlco+="<div class='sidebar-list noContentDiv'>No Matches around you.</div>";		
 								}
 						}else
 							{
+							empty =1;
 						htmlco+="<div class='sidebar-list noContentDiv'>No Matches around you.</div>";	
 							}
 					
@@ -183,6 +186,13 @@ $(function(){
 					$("#contentdiv").hide();
 					$("#Matchesaroundyoudiv").show();
 					console.log(htmlco);
+					
+					if(empty == 1)
+						{
+						$("#Matchesaroundyoudiv").hide();
+				    	  $("#contentdiv").show();
+						}
+					
 					$('#loading').hide();
 					
 					
