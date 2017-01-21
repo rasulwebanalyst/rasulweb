@@ -201,6 +201,16 @@ Bootstrap Core JavaScript
                  
                  
                  <div id="Showteamdetails">
+                 
+                 <c:choose>
+                    <c:when test="${empty TeamdetailsResponse}">
+                    
+                    <span id="errorSpan" class="noContentDivRed" style="margin-left: 10px;">No Results</span>
+                    </c:when>
+                    <c:otherwise>
+                 
+                 
+                 
                  <c:forEach items="${TeamdetailsResponse}" var="team">
                        <div class="col-md-12 whiteBox" style="font-size: 12px;">
                        <span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament Name : ${team.tournamentName}</span>
@@ -250,6 +260,12 @@ Bootstrap Core JavaScript
                  </div>
             </div>
             </c:forEach>
+            
+            </c:otherwise>
+                    
+                    
+                    
+                    </c:choose>
             </div>
             </div>
                     
@@ -399,8 +415,14 @@ function yearWiseteams(val) {
 	                        		}
 								htm+="</tbody></table></div>";
 								}
+							}else
+								{
+								htm+="<span id='errorSpan' class='noContentDivRed' style='margin-left: 10px;'>No Results</span>";
+								}
+						}else
+							{
+							htm+="<span id='errorSpan' class='noContentDivRed' style='margin-left: 10px;'>No Results</span>";
 							}
-						}
 					
 					
 					$("#Showteamdetails").html(htm).trigger("create");

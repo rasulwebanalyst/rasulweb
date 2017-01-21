@@ -210,14 +210,20 @@
                              <c:when test="${fn:length(UserMatchInfo.teamBoardList) gt 2}">
                              
                              <c:forEach items="${UserMatchInfo.teamBoardList}" var="teams" varStatus="loop" begin="0" end="1">
-                             <div style="float:left;">${teams.boardName}<c:if test="${!loop.last}">,&nbsp;</c:if></div>
+                             <div style="float:left;">
+                             
+                             
+                             <a href="${pageContext.request.contextPath}/${teams.boardName}/board/${teams.boardId}">${teams.boardName}</a>
+                             
+                             
+                             <c:if test="${!loop.last}">,&nbsp;</c:if></div>
                              </c:forEach>
                              
 				   <div style="float:left;" class="dropdown">
 				  <a style="font-size: 12px; color: #4c9fe1;" href="#" class="dropbtn">more</a>
 				  <div class="dropdown-content">
 				  <c:forEach items="${UserMatchInfo.teamBoardList}" var="teams" begin="2">
-				    <a href="#">${teams.boardName}</a> 
+				    <a href="${pageContext.request.contextPath}/${teams.boardName}/board/${teams.boardId}">${teams.boardName}</a> 
 				   
 				     </c:forEach>
 				    
@@ -227,7 +233,11 @@
                              <c:otherwise>
                              
                              <c:forEach items="${UserMatchInfo.teamBoardList}" var="teams" varStatus="loop">
-                             <div style="float:left;">${teams.boardName}<c:if test="${!loop.last}">,</c:if></div>
+                             <div style="float:left;">
+                             
+                             <a href="${pageContext.request.contextPath}/${teams.boardName}/board/${teams.boardId}">${teams.boardName}</a>
+                             
+                             <c:if test="${!loop.last}">,</c:if></div>
                              </c:forEach>
                              
                              </c:otherwise>
@@ -244,14 +254,18 @@
                              <c:when test="${fn:length(UserMatchInfo.leagueBoardList) gt 2}">
                              
                              <c:forEach items="${UserMatchInfo.leagueBoardList}" var="leagues" varStatus="loop" begin="0" end="1">
-                             <div style="float:left;">${leagues.boardName}<c:if test="${!loop.last}">,&nbsp;</c:if></div>
+                             <div style="float:left;">
+                             
+                             <a href="${pageContext.request.contextPath}/${leagues.boardName}/board/${leagues.boardId}">${leagues.boardName}</a>
+                             
+                             <c:if test="${!loop.last}">,&nbsp;</c:if></div>
                              </c:forEach>
                              
 				   <div style="float:left;" class="dropdown">
 				  <a style="font-size: 12px; color: #4c9fe1;" href="#" class="dropbtn">more</a>
 				  <div class="dropdown-content">
 				  <c:forEach items="${UserMatchInfo.leagueBoardList}" var="leagues" begin="2">
-				    <a href="#">${leagues.boardName}</a> 
+				    <a href="${pageContext.request.contextPath}/${leagues.boardName}/board/${leagues.boardId}">${leagues.boardName}</a> 
 				   
 				     </c:forEach>
 				    
@@ -261,7 +275,10 @@
                              <c:otherwise>
                              
                              <c:forEach items="${UserMatchInfo.leagueBoardList}" var="leagues" varStatus="loop">
-                             <div style="float:left;">${leagues.boardName}<c:if test="${!loop.last}">,</c:if></div>
+                             <div style="float:left;">
+                             <a href="${pageContext.request.contextPath}/${leagues.boardName}/board/${leagues.boardId}">${leagues.boardName}</a>
+                             
+                             <c:if test="${!loop.last}">,</c:if></div>
                              </c:forEach>
                              
                              </c:otherwise>

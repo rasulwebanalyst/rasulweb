@@ -317,10 +317,10 @@ var formatAMPMTime = function(date) {
                                 </tbody>
                             </table>
                                 
-                                </div>
+                                
                                 </c:otherwise>
                                 </c:choose>
-	
+	</div>
 	
 	
                          	
@@ -483,11 +483,11 @@ var formatAMPMTime = function(date) {
                                 </tbody>
                                 
                             </table>
-                            </div>
+                            
                              </c:otherwise>
                                 </c:choose>
                                 
-                            	
+                            	</div>
                             
                             
                             </div>

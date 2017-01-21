@@ -15,12 +15,9 @@ a{
     background: -moz-linear-gradient(0deg, #989d9c, #d8c0af, #fedfb5); 
     background: linear-gradient(0deg, #989d9c, #d8c0af, #fedfb5);  */
     position: relative;
- 	background: #e4e4e5 url(../images/login-img.png) ;
- 	background-size:initial;
- 	background-repeat:no-repeat; 
+ 	background: #e4e4e5 url(../images/bg.png) no-repeat center 40px;
 	width: 100%;
-	height: 100%;
-	font-family: 'Bree Serif', serif;
+/* 	font-family: 'Bree Serif', serif; */
 }
 .loginBody h1,.loginBody h2,.loginBody h3,.loginBody h4,.loginBody .sidebar-header {
 	font-family: 'Bree Serif', serif;
@@ -62,7 +59,6 @@ a{
 }
 .loginBody .loginMiddleBlock .loginRight .nav>li>a {
     padding: 12px 20px;
-    border-radius: 0px;
     text-align: center;
 }
 .loginBody .loginMiddleBlock .loginRight .nav>li:nth-child(1) a{
@@ -74,20 +70,21 @@ a{
 }
 .scroll-slider ul li {
 	list-style: none;
-	clear: both;
-	
+	clear: both;	
 }
 .scroll-slider {
     padding: 8% 0;
     position: relative;
+    min-height: 100px;
+    max-height: 700px;
 }
 .scroll-slider ul li .sidebar-list a {
 	color: #fff;
     font-size: 12px;
 }
 .scroll-slider ul li .sidebar-list {
-    width: 72%;
-    float: right;
+/*     width: 72%;
+    float: right; */
 }
 .scroll-slider ul li .sidebar-list strong  {
 	font-weight: 600 !important;
@@ -110,6 +107,10 @@ a{
 .scroll-slider ul li .sidebar-list .teamLogos .teamLogo {
 	height: 35px;
 	margin: 0 4px;
+}
+.sidebar-list span.vs {
+    color: #fff;
+    margin: 0 5%;
 }
 #nt-example1-prev {
     position: absolute;
@@ -501,11 +502,14 @@ ol.roa-ol li {
 /* Tab Content */
 .sidebar-container.home-scroller {
 	background: none;
-    float: right;
-    width: 90%; /*width: 58%;*/
-    margin-top: 100px;
+    float: left;
+    width: 50%; /*width: 58%;*/
+    margin-top: 88px;
     margin-right: 2%;
     box-shadow: none;
+}
+#nt-example1 {
+	height: 495px !important;
 }
 .sidebar-container.home-scroller  .sidebar-header {
     padding: 10px;
@@ -515,14 +519,15 @@ ol.roa-ol li {
 }
 .sidebar-container.home-scroller  .sidebar-header a {
 	color: #fff;
-    font-size: 18px;
+    font-size: 22px;
+    text-shadow: 2px 2px 1px rgba(0,0,0,0.2);
 }
 .sidebar-container.home-scroller .teamLogos b {
 	color: #111;
 }
 .sidebar-container.home-scroller .sidebar-list {
 	color: #111;
-	background: transparent;
+/* 	background: rgba(0,0,0,0.2); */
 	margin-bottom: 3px;
 	
 }
@@ -539,7 +544,7 @@ ol.roa-ol li {
 	width: 100px;
 }
 .loginMiddleBlock .tab-pane {
-	background: rgba(255,255,255, 1);
+	background: rgba(255,255,255, 0.9);
 	box-shadow: 0 0 4px rgba(0,0,0,.4);
 	border-radius: 0;
 	text-align: left;
@@ -553,9 +558,8 @@ ol.roa-ol li {
 	color: #fff;
 }
 .loginMiddleBlock .loginRight {
-	margin-top: 35px !important;
-	width: 70%;
-	margin: 0 auto;
+    margin-top: 100px !important;
+    width: 70%;
 }
 .loginMiddleBlock .loginRight .nav>li>a {
 	padding: 10px 20px;
@@ -622,56 +626,38 @@ font-family: "Roboto_Bold";
 	padding: 10px;
 } */
 .fbbtn {
-	background: #039BE5;
-	border: #039BE5 solid 1px;
-    padding: 6px 10px;
-    width: 50px;
+    background: #43689f;
+    border: #43689f solid 1px;
+    padding: 0;
+    padding-right: 10px;
+    width: 49%;
     line-height: 34px;
     text-align: center;
-    color: #111;
-    font-size: 16px;
-    height: 50px;
-    border-radius: 50% !important;
-    transition: all 1s linear;
-	-webkit-transition: all 1s linear;
+    color: #fff;
 }
 .fbbtn i {
 	padding: 10px;
 	color: #fff;
 }
 .fbbtn:hover, .fbbtn:focus {
-	background: #039BE5;
-	border: #039BE5 solid 1px;
-	color: #111;
-}
-.fbbtn:hover i, .fbbtn:focus i {
-	margin-right: 18px;
-	transition: all 1s linear;
-	-webkit-transition: all 1s linear;
+    background: #3c599b;
+    border: #3c599b solid 1px;
+    color: #fff;
 }
 .googlebtn {
-	background: #d14330;
-	border: #d14330 solid 1px;
-	padding: 6px 10px;
-    width: 50px;
+    padding: 0;
+    padding-right: 10px;
+    width: 49%;
     line-height: 34px;
     text-align: center;
-    color: #111;
-    font-size: 16px;
-    height: 50px;
-    border-radius: 50% !important;
-    transition: all 1s linear;
-	-webkit-transition: all 1s linear;
+    background: #c64433;
+    border: #c64433 solid 1px;
+    color: #fff;
 }
 .googlebtn:hover, .googlebtn:focus {
-	background: #d14330;
-	border: #d14330 solid 1px;
-	color: #111;
-}
-.googlebtn:hover i, .googlebtn:focus i {
-	margin-right: 18px;
-	transition: all 1s linear;
-	-webkit-transition: all 1s linear;
+    background: #d14330;
+    border: #d14330 solid 1px;
+    color: #fff;
 }
 .googlebtn i {
 	padding: 10px;
@@ -2115,7 +2101,7 @@ textarea {
 .widget-MAU .teamLogo {
 	width: 35px;
 	/*border-radius:50%;*/
-	border: #fff solid 1px;/*box-shadow:0px 1px 1px #CCC;*/
+	border: #fff solid 2px;/*box-shadow:0px 1px 1px #CCC;*/
 }
 .widget-MAU .sidebar-list {
 	display: table;

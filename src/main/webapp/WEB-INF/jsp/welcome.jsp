@@ -130,6 +130,7 @@ $(function(){
 				success : function(res)
 				{
 					 /* alert(res);  */
+					 var empty=0;
 					var htmlco="";
 					if(res !=null)
 						{
@@ -149,7 +150,7 @@ $(function(){
 							} */
 							
 							htmlco+="<li><div class='sidebar-list'>";
-							htmlco+="<a href='javascript:void(0);'>"+hometeam.boardName+"</a> vs <a href='javascript:void(0);'>"+awayteam.boardName+"</a><br> <strong>"+res[i].gameDateStr+"</strong>";
+							htmlco+="<a href='javascript:void(0);'>"+hometeam.boardName+"</a> <span class='vs'>vs</span> <a href='javascript:void(0);'>"+awayteam.boardName+"</a><br> <strong>"+res[i].gameDateStr+"</strong>";
 							
 							if(res[i].status == 'InProgress')
 								{
@@ -163,19 +164,21 @@ $(function(){
 							htmlco+="<a href='javascript:void(0);'><img src="+hometeam.boardImageURL+"? class='teamLogo' onError='this.onerror=null;this.src=${pageContext.request.contextPath}/images/boardIcon.png;' ></a> <b>VS</b> <a href='javascript:void(0);'><img src="+awayteam.boardImageURL+"? class='teamLogo'></a>";
 							htmlco+="</span></div></li>";
 							
-							var k=parseInt(i)+1;
-							/* if(k % 2 == 0)
+							/* var k=parseInt(i)+1;
+							if(k % 2 == 0)
 							{
 								htmlco+="</li>";
-							} */
+							} */ 
 							
 							}
 							}else
 								{
+								empty = 1;
 								htmlco+="<div class='sidebar-list noContentDiv'>No Matches around you.</div>";		
 								}
 						}else
 							{
+							empty =1;
 						htmlco+="<div class='sidebar-list noContentDiv'>No Matches around you.</div>";	
 							}
 					
@@ -183,6 +186,13 @@ $(function(){
 					$("#contentdiv").hide();
 					$("#Matchesaroundyoudiv").show();
 					console.log(htmlco);
+					
+					if(empty == 1)
+						{
+						$("#Matchesaroundyoudiv").hide();
+				    	  $("#contentdiv").show();
+						}
+					
 					$('#loading').hide();
 					
 					
@@ -315,10 +325,69 @@ var fbURL='110086556012641'; // QA
         <!-- Heading Row -->
         <div class="row">
       <%--    <img class="login-thump" src="${pageContext.request.contextPath}/images/login-thump.png"> --%>
-        <h1>Welcome to <span style="">CricketSocial</span></h1>
+
+        
+             <div class="col-md-6 pull-left loginLeft" style="margin-top: 0px;'">
+    
+                 
+               
+               
+               <div class="sidebar-container widget-MAU home-scroller">
+               
+                     <div class="sidebar-content">
+                     
+                     
+                     
+               <div id="contentdiv" style="display: none;">      
+                     
+            <h1>Welcome to CricketSocial</h1>
+               <div id="homeContent">
+               <p>The Cricket Connection</p>
+               <ul class="login-txt">
+               	<li>A Social  and Analytics platform with anchoring tools for Cricket.</li>
+               	<li>One stop solution for - Players, Fans, Umpires, Coaches, Merchants, League Boards, Team Boards, Academies, Cricket Administrative Bodies and Talent Acquisition.</li>
+               	<li>Players, Fans, Umpires, Coaches, Merchants, League Boards, Team Boards, Academies, Cricket Administrative Bodies and Talent Acquisition</li>
+               	<li>Manage Social and club Cricket professionally.</li>
+               	<li>Follow live scores anywhere.</li>
+               	<li>Capture all your  Cricketing Moments.</li>
+               	<li>Connect with Cricket Buddies, Get Noticed, Find opportunities.</li>
+               	<li>You may be good enough to represent a professional level not just club level.</li>
+               	<li>Give your cricket dream a chance Register on CricketSocial Now.</li>
+              
+               </ul>
+               </div> 
+                    </div> 
+                     
+                     
+                     <div id="Matchesaroundyoudiv" style="display: none;">
+                     
+                         <div class="sidebar-header"><a href="${pageContext.request.contextPath}/matchesAroundYou">Matches Around You</a></div>
+                       
+
+    <div id="nt-example1-container" class="scroll-slider">
+						<i class="fa fa-chevron-up" id="nt-example1-prev"></i>
+		                <ul id="nt-example1">
+		                    <li style="visibility: hidden;">Etiam imperdiet volutpat libero eu tristique. Aenean, rutrum felis in. <a href="#">Read more...</a></li>
+		                    <li style="visibility: hidden;">Curabitur porttitor ante eget hendrerit adipiscing. Maecenas at magna. <a href="#">Read more...</a></li>
+		                    <li style="visibility: hidden;">Praesent ornare nisl lorem, ut condimentum lectus gravida ut. <a href="#">Read more...</a></li>
+		                    <li style="visibility: hidden;">Nunc ultrices tortor eu massa placerat posuere. Vivamus viverra sagittis. <a href="#">Read more...</a></li>
+		                </ul>
+		                <i class="fa fa-chevron-down" id="nt-example1-next"></i>
+		            </div> 
+                      </div>
+                     </div>
+                     
+                   </div>
+                   
+                   
+           
+            </div>
+            
+            <!-- /.col-md-8 -->   
+        
             
             <div class="col-md-6" >
-            
+           <!--          <h1>Welcome to <span style="">CricketSocial</span></h1> -->
             <div class="loginRight">
                
                <ul class="nav nav-tabs" role="tablist">
@@ -340,7 +409,7 @@ var fbURL='110086556012641'; // QA
       <div class="tab-pane fade" id="signUp">
       
           <h2><!-- Start Match It's free and always will be --></h2>
-          
+   
           
           	<p style="color:red;">${validation}</p>
          
@@ -460,12 +529,10 @@ var fbURL='110086556012641'; // QA
 
           <div class="row">
           <div class="col-md-12 loginSocial">
-          <div class="col-md-6">
-              <a href="#" class="btn btn-default fbbtn" onclick="fbAccount()"> <i class="fa fa-facebook-f" style="margin-right:15px"></i>Facebook</a>
-          </div>
-          <div class="col-md-6">
-              <a href="#" class="btn btn-default googlebtn" onclick="googleLogin()"> <i class="fa fa-google-plus" style="margin-right:10px"></i>Google+</a>
-          </div>
+               <a href="#" class="btn btn-default fbbtn" onclick="fbAccount()"> <i class="fa fa-facebook-f" style=""></i>Facebook</a>
+
+              <a href="#" class="btn btn-default googlebtn" onclick="googleLogin()"> <i class="fa fa-google-plus" style=""></i>Google+</a>
+
           </div>
           </div>
         </form>
@@ -478,7 +545,7 @@ var fbURL='110086556012641'; // QA
       
       
       <div class="tab-pane fade active in" id="login">
-          <h2>Login using CricketSocial Account</h2>
+                <h2>Login using CricketSocial Account</h2>
           <p style="color: red;">${loginvalidation}</p>
           <form  action="loginValidate.htm" id="login_auth" name="login_auth" method="post">
           
@@ -508,12 +575,10 @@ var fbURL='110086556012641'; // QA
 <div class="clearfix"></div>
           <div class="row">
           <div class="col-md-12 loginSocial">
-          <div class="col-md-6">
-              <a href="#" class="btn btn-default fbbtn" onclick="fbAccount()"> <i class="fa fa-facebook-f" style="margin-right:15px"></i>Facebook</a>
-          </div>
-          <div class="col-md-6">
-              <a href="#" class="btn btn-default googlebtn" onclick="googleLogin()"> <i class="fa fa-google-plus" style="margin-right:10px"></i>Google+</a>
-          </div>
+               <a href="#" class="btn btn-default fbbtn" onclick="fbAccount()"> <i class="fa fa-facebook-f" style=""></i>Facebook</a>
+
+              <a href="#" class="btn btn-default googlebtn" onclick="googleLogin()"> <i class="fa fa-google-plus" style=""></i>Google+</a>
+
           </div>
           </div>
           
@@ -544,63 +609,7 @@ var fbURL='110086556012641'; // QA
             </div>
             <!-- /.col-md-4 -->
             
-            <div class="col-md-6 pull-left loginLeft" style="margin-top: 0px;'">
     
-                 
-               
-               
-               <div class="sidebar-container widget-MAU home-scroller">
-               
-                     <div class="sidebar-content">
-                     
-                     
-                     
-               <div id="contentdiv" style="display: none;">      
-                     
-               <h1>Welcome to CricketSocial</h1>
-               <div id="homeContent">
-               <p>The Cricket Connection</p>
-               <ul class="login-txt">
-               	<li>A Social  and Analytics platform with anchoring tools for Cricket.</li>
-               	<li>One stop solution for - Players, Fans, Umpires, Coaches, Merchants, League Boards, Team Boards, Academies, Cricket Administrative Bodies and Talent Acquisition.</li>
-               	<li>Players, Fans, Umpires, Coaches, Merchants, League Boards, Team Boards, Academies, Cricket Administrative Bodies and Talent Acquisition</li>
-               	<li>Manage Social and club Cricket professionally.</li>
-               	<li>Follow live scores anywhere.</li>
-               	<li>Capture all your  Cricketing Moments.</li>
-               	<li>Connect with Cricket Buddies, Get Noticed, Find opportunities.</li>
-               	<li>You may be good enough to represent a professional level not just club level.</li>
-               	<li>Give your cricket dream a chance Register on CricketSocial Now.</li>
-              
-               </ul>
-               </div> 
-                    </div> 
-                     
-                     
-                     <div id="Matchesaroundyoudiv" style="display: none;">
-                     
-                         <div class="sidebar-header"><a href="${pageContext.request.contextPath}/matchesAroundYou">Matches Around You</a></div>
-                       
-
-    <div id="nt-example1-container" class="scroll-slider">
-						<i class="fa fa-chevron-up" id="nt-example1-prev"></i>
-		                <ul id="nt-example1">
-		                    <li style="visibility: hidden;">Etiam imperdiet volutpat libero eu tristique. Aenean, rutrum felis in. <a href="#">Read more...</a></li>
-		                    <li style="visibility: hidden;">Curabitur porttitor ante eget hendrerit adipiscing. Maecenas at magna. <a href="#">Read more...</a></li>
-		                    <li style="visibility: hidden;">Praesent ornare nisl lorem, ut condimentum lectus gravida ut. <a href="#">Read more...</a></li>
-		                    <li style="visibility: hidden;">Nunc ultrices tortor eu massa placerat posuere. Vivamus viverra sagittis. <a href="#">Read more...</a></li>
-		                </ul>
-		                <i class="fa fa-chevron-down" id="nt-example1-next"></i>
-		            </div> 
-                      </div>
-                     </div>
-                     
-                   </div>
-                   
-                   
-           
-            </div>
-            
-            <!-- /.col-md-8 -->
             
             
         </div>
@@ -614,9 +623,9 @@ var fbURL='110086556012641'; // QA
 </body>
 <script>
 var nt_example1 = $('#nt-example1').newsTicker({
-    row_height: 80,
-    max_rows: 3,
-    duration: 4000,
+    row_height: 85,
+    max_rows: 5,
+    duration: 1000000,
     prevButton: $('#nt-example1-prev'),
     nextButton: $('#nt-example1-next')
 });
