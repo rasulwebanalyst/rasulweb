@@ -10,6 +10,15 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cricket Social</title>
+
+<!-- Bootstrap Core CSS -->
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
+	rel="stylesheet">
+	
+	<!-- Bootstrap Core JavaScript -->
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
       <!-- responsive css -->
  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 </head>
@@ -140,7 +149,7 @@
                      	<h1 class="noBorder">${UserInfo.firstName} ${UserInfo.lastName}</h1>
                      
                      
-                     	<div class="col-md-6 statusUpdateBox colon">
+                     	<div class="col-md-8 statusUpdateBox colon">
                      	
                      	
                      	<p><span><strong>Age  </strong></span> <script> document.writeln(calculateage("${UserMatchInfo.dob}"))</script></p>
@@ -164,10 +173,10 @@
                            <c:if test="${UserInfo.enablePhoneNo eq 1}">
                             <c:choose>
                             <c:when test="${UserInfo.phoneNumber eq 0}">
- 							<p><span><strong>Phone Number </strong> </span> </p>
+ 							<p><span style="width: 100px;"><strong>Phone Number </strong> </span> </p>
  							</c:when>
  							<c:otherwise>
- 							<p><span><strong>Phone Number  </strong></span> ${UserInfo.phoneNumber}</p>
+ 							<p><span style="width: 100px;"><strong>Phone Number  </strong></span> ${UserInfo.phoneNumber}</p>
  							</c:otherwise>
  							</c:choose>
                             </c:if>
@@ -178,19 +187,22 @@
                              
                                       <!-- Team Associate -->
                              
-                             <div><span style="float:left; width: 114px; margin-right: 5px;"><strong>Team associate</strong> </span>  
+                             <div style="margin-bottom: 40px;"><p><span style="float:left; width: 134px; margin-right: 5px; clear:both"><strong>Teams Associated</strong> </span>  
                               <c:choose>
                              <c:when test="${fn:length(UserMatchInfo.teamBoardList) gt 2}">
                              
                              <c:forEach items="${UserMatchInfo.teamBoardList}" var="teams" varStatus="loop" begin="0" end="1">
-                             <div style="float:left;">${teams.boardName}<c:if test="${!loop.last}">,&nbsp;</c:if></div>
+                             <div style="float:left;">
+                             <a href="${pageContext.request.contextPath}/${teams.boardName}/board/${teams.boardId}">${teams.boardName}</a>
+                             
+                             <c:if test="${!loop.last}">,&nbsp;</c:if></div>
                              </c:forEach>
                              
 				   <div style="float:left;" class="dropdown">
 				  <a style="font-size: 12px; color: #4c9fe1;" href="#" class="dropbtn">more</a>
 				  <div class="dropdown-content">
-				  <c:forEach items="${UserMatchInfo.teamBoardList}" var="teams">
-				    <a href="#">${teams.boardName}</a> 
+				  <c:forEach items="${UserMatchInfo.teamBoardList}" var="teams" begin="2">
+				    <a href="${pageContext.request.contextPath}/${teams.boardName}/board/${teams.boardId}">${teams.boardName}</a> 
 				   
 				     </c:forEach>
 				    
@@ -200,31 +212,36 @@
                              <c:otherwise>
                              
                              <c:forEach items="${UserMatchInfo.teamBoardList}" var="teams" varStatus="loop">
-                             ${teams.boardName}<c:if test="${!loop.last}">,</c:if>
+                           <div style="float:left;">  
+                           <a href="${pageContext.request.contextPath}/${teams.boardName}/board/${teams.boardId}">${teams.boardName}</a>
+                           <c:if test="${!loop.last}">,</c:if></div>
                              </c:forEach>
                              
                              </c:otherwise>
                              
                              </c:choose> 
-                             
+                             </p>
                              </div>
                              
                              
                              <!-- Leage Associate -->
                              
-                             <div><span style="float:left; width: 114px; margin-right: 5px;"><strong>League associate</strong> </span>  
+                             <div ><p><span style="float:left; width: 134px; margin-right: 5px; clear:both"><strong>Leagues Associated</strong> </span>  
                               <c:choose>
                              <c:when test="${fn:length(UserMatchInfo.leagueBoardList) gt 2}">
                              
                              <c:forEach items="${UserMatchInfo.leagueBoardList}" var="leagues" varStatus="loop" begin="0" end="1">
-                             <div style="float:left;">${leagues.boardName}<c:if test="${!loop.last}">,&nbsp;</c:if></div>
+                             <div style="float:left;">
+                             <a href="${pageContext.request.contextPath}/${leagues.boardName}/board/${leagues.boardId}">${leagues.boardName}</a>
+                             
+                             <c:if test="${!loop.last}">,&nbsp;</c:if></div>
                              </c:forEach>
                              
 				   <div style="float:left;" class="dropdown">
 				  <a style="font-size: 12px; color: #4c9fe1;" href="#" class="dropbtn">more</a>
 				  <div class="dropdown-content">
-				  <c:forEach items="${UserMatchInfo.leagueBoardList}" var="leagues">
-				    <a href="#">${leagues.boardName}</a> 
+				  <c:forEach items="${UserMatchInfo.leagueBoardList}" var="leagues" begin="2">
+				    <a href="${pageContext.request.contextPath}/${leagues.boardName}/board/${leagues.boardId}">${leagues.boardName}</a> 
 				   
 				     </c:forEach>
 				    
@@ -234,13 +251,17 @@
                              <c:otherwise>
                              
                              <c:forEach items="${UserMatchInfo.leagueBoardList}" var="leagues" varStatus="loop">
-                             ${leagues.boardName}<c:if test="${!loop.last}">,</c:if>
+                            <div style="float:left;"> 
+                            
+                            <a href="${pageContext.request.contextPath}/${leagues.boardName}/board/${leagues.boardId}">${leagues.boardName}</a>
+                            
+                            <c:if test="${!loop.last}">,</c:if></div>
                              </c:forEach>
                              
                              </c:otherwise>
                              
                              </c:choose> 
-                             
+                             </p>
                              </div>
                              
                              
@@ -249,7 +270,7 @@
                             
                     	</div> 
                         
-                        <div class="col-md-6 feedcube">
+                        <div class="col-md-4 feedcube">
                             <%-- <div class="cube bulucolor">${UserMatchInfo.playedMatches}<br><p>Matches</p></div>
                             <div class="cube greencolor">${UserMatchInfo.totalMadeRuns}<br> <p>Runs</p></div>
                             <div class="cube redcolor">${UserMatchInfo.totalWicketTaken}<br> <p>Wickets<p></div> --%>

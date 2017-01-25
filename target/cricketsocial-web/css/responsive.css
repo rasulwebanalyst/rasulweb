@@ -2,8 +2,8 @@
 .centerbtns .dBtn {
     background: #1f3d57;
 }
-nav.navbar-inverse {
-    background-color: #1f3d57;
+body.loginBody nav.navbar-inverse {
+    background-color: #112937;
 }
 .form-group table.dispute-mgmt tr td a,.form-group table.dispute-mgmt tr td,.form-group table.dispute-mgmt tr td span {
 	font-size: 14px;	
@@ -809,5 +809,50 @@ ul.leftMenu {
 }
 .leag-Acc .stared {
 	width: 30% !important;
+}
+}
+@media only screen and (min-width: 1100px) and (max-width: 1200px) {
+.loginMiddleBlock .loginRight {
+    width: 90%;
+}
+.sidebar-container.home-scroller {
+	width: 85%;
+}
+.loginMiddleBlock h1 {
+	text-align: left;
+	font-size: 32px;
+}
+ul.login-txt li {
+	font-size: 15px;
+}
+}
+@media only screen and (min-width: 1201px) and (max-width: 1380px) {
+.loginMiddleBlock .loginRight {
+    width: 84%;
+}
+.sidebar-container.home-scroller {
+	width: 77%;
+}
+.loginMiddleBlock h1 {
+	text-align: left;
+	font-size: 32px;
+}
+ul.login-txt li {
+	font-size: 15px;
+}
+}
+@media only screen and (min-width: 1381px) and (max-width: 1500px) {
+.loginMiddleBlock .loginRight {
+    width: 70%;
+}
+.sidebar-container.home-scroller {
+	width: 70%;
+}
+.loginMiddleBlock h1 {
+	text-align: left;
+	font-size: 32px;
+}
+ul.login-txt li {
+	font-size: 15px;
 }
 }

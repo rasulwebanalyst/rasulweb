@@ -383,7 +383,8 @@ var sequencNumber=0;
    }
    function cancelFunction(){
 	   var boardId = "${boardId}";
-	   window.location.href = "${pageContext.request.contextPath}/CancelTournament/boardId/"+boardId;
+	   /* window.location.href = "${pageContext.request.contextPath}/CancelTournament/boardId/"+boardId; */
+	   window.location.href = "${pageContext.request.contextPath}/CancelTournamentPublicProfile/boardId/"+boardId;
    }
    
    

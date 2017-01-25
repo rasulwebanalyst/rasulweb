@@ -3,11 +3,11 @@
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html lang="en">
 
-<meta charset="utf-8">
+ <!-- <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta name="description" content="">
-   <meta name="author" content="">
+   <meta name="author" content="">  -->
  
  <title>Cricket Social</title>
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
@@ -881,13 +881,14 @@ var formatAMPMTime = function(date) {
                         
 
 
-                      </div>
+                     <!--  </div> -->
 
                      <!--Right Block-->
                      	 <%@ include file="AroundYouMenu.jsp" %>
                      
                      <!--/Right Block End-->
                             
+                             </div>
                         
                      </div>
 

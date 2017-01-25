@@ -100,14 +100,15 @@
 $(function(){
 	 if (navigator.geolocation) {
 		 console.log( "Geolocation supported by this browser.");
-	        navigator.geolocation.getCurrentPosition(showPosition);
+	        navigator.geolocation.getCurrentPosition(showPosition,showError);
 	    	         
 	      } else { 
 	    	  console.log( "Geolocation is not supported by this browser.");
+	    	  $("#Matchesaroundyoudiv").hide();
+	    	  $("#contentdiv").show();
 	      }
-	 
 	 function showPosition(position){
-		// alert( "Geolocation is not supported by this browser.");
+		/*  alert( "Geolocation is not supported by this browser."); */
 		var lat =position.coords.latitude;
 		var lang=position.coords.longitude;
 		
@@ -129,6 +130,7 @@ $(function(){
 				success : function(res)
 				{
 					 /* alert(res);  */
+					 var empty=0;
 					var htmlco="";
 					if(res !=null)
 						{
@@ -148,57 +150,84 @@ $(function(){
 							} */
 							
 							htmlco+="<li><div class='sidebar-list'>";
-							htmlco+="<a href='javascript:void(0);'>"+hometeam.boardName+"</a> vs <a href='javascript:void(0);'>"+awayteam.boardName+"</a><br> <strong>"+res[i].gameDateStr+"</strong>";
+							htmlco+="<a href='javascript:void(0);'>"+hometeam.boardName+"</a> <span class='vs'>vs</span> <a href='javascript:void(0);'>"+awayteam.boardName+"</a><br> <strong>"+res[i].gameDateStr+"</strong>";
 							
 							if(res[i].status == 'InProgress')
 								{
-								htmlco+="<a class='vw-score' href='javascript:void(0);' onclick=showScoreCardInProgress('"+res[i].tournamentSchedulerId+"','"+res[i].createdBy+"')>Live Score</a>";
+								htmlco+="<a class='vw-score' href='${pageContext.request.contextPath}/showScoreCardForInProgressPublicProfile/boardId/"+res[i].createdBy+"/matchId/"+res[i].tournamentSchedulerId+"'>Live Score</a>";
 								}else
 									{
 									htmlco+="<a class='vw-score' href='javascript:void(0);' onclick=showScoreCardInProgress('"+res[i].tournamentSchedulerId+"','no')>View Score</a>";	
 									}
 							
 							htmlco+="<span class='teamLogos'>";
-							htmlco+="<a href='javascript:void(0);'><img src="+hometeam.boardImageURL+"? class='teamLogo' onError='this.onerror=null;this.src=${pageContext.request.contextPath}/images/boardIcon.png;' ></a> <b>VS</b> <a href='javascript:void(0);'><img src="+awayteam.boardImageURL+"? class='teamLogo'></a>";
+							htmlco+="<a href='javascript:void(0);'><img src="+hometeam.boardImageURL+"? class='teamLogo' onerror=errorImageset(this) ></a> <b>VS</b> <a href='javascript:void(0);'><img src="+awayteam.boardImageURL+"? class='teamLogo' onerror=errorImageset(this)></a>";
 							htmlco+="</span></div></li>";
 							
-							var k=parseInt(i)+1;
-							/* if(k % 2 == 0)
+							/* var k=parseInt(i)+1;
+							if(k % 2 == 0)
 							{
 								htmlco+="</li>";
-							} */
+							} */ 
 							
 							}
 							}else
 								{
+								empty = 1;
 								htmlco+="<div class='sidebar-list noContentDiv'>No Matches around you.</div>";		
 								}
 						}else
 							{
+							empty =1;
 						htmlco+="<div class='sidebar-list noContentDiv'>No Matches around you.</div>";	
 							}
 					
 					$("#nt-example1").html(htmlco).trigger('create');
+					$("#contentdiv").hide();
+					$("#Matchesaroundyoudiv").show();
 					console.log(htmlco);
+					
+					if(empty == 1)
+						{
+						$("#Matchesaroundyoudiv").hide();
+				    	  $("#contentdiv").show();
+						}
+					
 					$('#loading').hide();
 					
-					ready();
 					
 				}
 				
 			 })
 			 
-		 }
+		 }else
+			 {
+			 console.log("Position not shown");
+			 }
 		
 	 }
 	 
+	 
+	 
+	 function showError(error) {
+		    switch(error.code) {
+		        case error.PERMISSION_DENIED:
+		            console.log("User denied the request for Geolocation.");
+		            $("#Matchesaroundyoudiv").hide();
+			    	  $("#contentdiv").show();
+		            break;
+		        case error.POSITION_UNAVAILABLE:
+		            	console.log("Location information is unavailable.");
+		            $("#Matchesaroundyoudiv").hide();
+			    	  $("#contentdiv").show();
+		            break;
+		    }
+		}
+	 
+	 
+	 
 });
 
-function ready()
-{
-	$('.slider8').reloadSlider();
-	
-	}
 	
 
 $(function() {
@@ -296,10 +325,69 @@ var fbURL='110086556012641'; // QA
         <!-- Heading Row -->
         <div class="row">
       <%--    <img class="login-thump" src="${pageContext.request.contextPath}/images/login-thump.png"> --%>
-        <h1>Welcome to <span style="">CricketSocial</span></h1>
+
+        
+             <div class="col-md-6 pull-left loginLeft" style="margin-top: 0px;'">
+    
+                 
+               
+               
+               <div class="sidebar-container widget-MAU home-scroller">
+               
+                     <div class="sidebar-content">
+                     
+                     
+                     
+               <div id="contentdiv" style="display: none;">      
+                     
+            <h1>Welcome to CricketSocial</h1>
+               <div id="homeContent">
+               <p>The Cricket Connection</p>
+               <ul class="login-txt">
+               	<li>A Social  and Analytics platform with anchoring tools for Cricket.</li>
+               	<li>One stop solution for - Players, Fans, Umpires, Coaches, Merchants, League Boards, Team Boards, Academies, Cricket Administrative Bodies and Talent Acquisition.</li>
+               	<li>Players, Fans, Umpires, Coaches, Merchants, League Boards, Team Boards, Academies, Cricket Administrative Bodies and Talent Acquisition</li>
+               	<li>Manage Social and club Cricket professionally.</li>
+               	<li>Follow live scores anywhere.</li>
+               	<li>Capture all your  Cricketing Moments.</li>
+               	<li>Connect with Cricket Buddies, Get Noticed, Find opportunities.</li>
+               	<li>You may be good enough to represent a professional level not just club level.</li>
+               	<li>Give your cricket dream a chance Register on CricketSocial Now.</li>
+              
+               </ul>
+               </div> 
+                    </div> 
+                     
+                     
+                     <div id="Matchesaroundyoudiv" style="display: none;">
+                     
+                         <div class="sidebar-header"><a href="${pageContext.request.contextPath}/matchesAroundYou">Matches Around You</a></div>
+                       
+
+    <div id="nt-example1-container" class="scroll-slider">
+						<i class="fa fa-chevron-up" id="nt-example1-prev"></i>
+		                <ul id="nt-example1">
+		                    <li style="visibility: hidden;">Etiam imperdiet volutpat libero eu tristique. Aenean, rutrum felis in. <a href="#">Read more...</a></li>
+		                    <li style="visibility: hidden;">Curabitur porttitor ante eget hendrerit adipiscing. Maecenas at magna. <a href="#">Read more...</a></li>
+		                    <li style="visibility: hidden;">Praesent ornare nisl lorem, ut condimentum lectus gravida ut. <a href="#">Read more...</a></li>
+		                    <li style="visibility: hidden;">Nunc ultrices tortor eu massa placerat posuere. Vivamus viverra sagittis. <a href="#">Read more...</a></li>
+		                </ul>
+		                <i class="fa fa-chevron-down" id="nt-example1-next"></i>
+		            </div> 
+                      </div>
+                     </div>
+                     
+                   </div>
+                   
+                   
+           
+            </div>
             
-            <div class="col-md-6" style="padding-top: 4%;">
+            <!-- /.col-md-8 -->   
+        
             
+            <div class="col-md-6" >
+           <!--          <h1>Welcome to <span style="">CricketSocial</span></h1> -->
             <div class="loginRight">
                
                <ul class="nav nav-tabs" role="tablist">
@@ -321,7 +409,7 @@ var fbURL='110086556012641'; // QA
       <div class="tab-pane fade" id="signUp">
       
           <h2><!-- Start Match It's free and always will be --></h2>
-          
+   
           
           	<p style="color:red;">${validation}</p>
          
@@ -373,7 +461,7 @@ var fbURL='110086556012641'; // QA
           
 	         
 	       </div><!-- col end -->
-	       <div class="col-md-4 no-padding-res">
+	       <div class="col-md-4 no-padding-res no-padding">
 	       <label class="log-dt-lab" for=""> <span style="color:red"></span></label>
             <input class="log-dt-holder" type="text" style="margin-top: 4px;" value="" placeholder="date" id="dobDate" onfocus="numberCheckDobDate(this)" onblur="numberCheckDobDate(this)" onkeyup="dateOfBirthValidation1()">
 	             
@@ -441,12 +529,10 @@ var fbURL='110086556012641'; // QA
 
           <div class="row">
           <div class="col-md-12 loginSocial">
-          <div class="col-md-3">
-              <a href="#" class="btn btn-default fbbtn" onclick="fbAccount()"> <i class="fa fa-facebook-f"></i>Facebook</a>
-          </div>
-          <div class="col-md-3">
-              <a href="#" class="btn btn-default googlebtn" onclick="googleLogin()"> <i class="fa fa-google-plus"></i>Google+</a>
-          </div>
+               <a href="#" class="btn btn-default fbbtn" onclick="fbAccount()"> <i class="fa fa-facebook-f" style=""></i>Facebook</a>
+
+              <a href="#" class="btn btn-default googlebtn" onclick="googleLogin()"> <i class="fa fa-google-plus" style=""></i>Google+</a>
+
           </div>
           </div>
         </form>
@@ -459,7 +545,7 @@ var fbURL='110086556012641'; // QA
       
       
       <div class="tab-pane fade active in" id="login">
-          <h2>Login using CricketSocial Account</h2>
+                <h2>Login using CricketSocial Account</h2>
           <p style="color: red;">${loginvalidation}</p>
           <form  action="loginValidate.htm" id="login_auth" name="login_auth" method="post">
           
@@ -489,12 +575,10 @@ var fbURL='110086556012641'; // QA
 <div class="clearfix"></div>
           <div class="row">
           <div class="col-md-12 loginSocial">
-          <div class="col-md-3">
-              <a href="#" class="btn btn-default fbbtn" onclick="fbAccount()"> <i class="fa fa-facebook-f"></i>Facebook</a>
-          </div>
-          <div class="col-md-3">
-              <a href="#" class="btn btn-default googlebtn" onclick="googleLogin()"> <i class="fa fa-google-plus"></i>Google+</a>
-          </div>
+               <a href="#" class="btn btn-default fbbtn" onclick="fbAccount()"> <i class="fa fa-facebook-f" style=""></i>Facebook</a>
+
+              <a href="#" class="btn btn-default googlebtn" onclick="googleLogin()"> <i class="fa fa-google-plus" style=""></i>Google+</a>
+
           </div>
           </div>
           
@@ -525,79 +609,7 @@ var fbURL='110086556012641'; // QA
             </div>
             <!-- /.col-md-4 -->
             
-            <div class="col-md-6 pull-left loginLeft" style="margin-top: 0px;'">
     
-                 
-               
-               
-               <div class="sidebar-container widget-MAU home-scroller">
-                     <div class="sidebar-content">
-                        <div class="sidebar-header"><a href="${pageContext.request.contextPath}/matchesAroundYou">Matches Around You</a></div>
-                       
-
-    <div id="nt-example1-container" class="scroll-slider">
-						<i class="fa fa-chevron-up" id="nt-example1-prev"></i>
-		                <ul id="nt-example1">
-		                    <li style="visibility: hidden;">Etiam imperdiet volutpat libero eu tristique. Aenean, rutrum felis in. <a href="#">Read more...</a></li>
-		                    <li style="visibility: hidden;">Curabitur porttitor ante eget hendrerit adipiscing. Maecenas at magna. <a href="#">Read more...</a></li>
-		                    <li style="visibility: hidden;">Praesent ornare nisl lorem, ut condimentum lectus gravida ut. <a href="#">Read more...</a></li>
-		                    <li style="visibility: hidden;">Nunc ultrices tortor eu massa placerat posuere. Vivamus viverra sagittis. <a href="#">Read more...</a></li>
-		                </ul>
-		                <i class="fa fa-chevron-down" id="nt-example1-next"></i>
-		            </div>
-    
-<!--      <div id="myCarousel" class="carousel slide vertical">
-            Carousel items
-            <div class="carousel-inner">
-                <div class="active item">
-                    <img src="http://newsfirst.lk/english/wp-content/uploads/2014/03/AFTER-WINNING-THE-FINALS.jpg">
-                </div>
-                <div class="item">
-                    <img src="http://newsfirst.lk/english/wp-content/uploads/2014/03/AFTER-WINNING-THE-FINALS.jpg">
-                </div>
-                <div class="item">
-                    <img src="http://newsfirst.lk/english/wp-content/uploads/2014/03/AFTER-WINNING-THE-FINALS.jpg">
-                </div>
-            </div> -->
-            <!-- Carousel nav -->
-<!--             <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
-            <a class="carousel-control right" href="#myCarousel" data-slide="next">›</a>
-        </div> -->
-        
-        
-        
-        <!--div id="scrollingNewsContainer"-->
-
-
-
- <!--                      <div class="slider8" id="mau">
-						 <div ></div>
-						  <div class="slide"><img src="http://placehold.it/300x100&text=FooBar2"></div>
-						  <div class="slide"><img src="http://placehold.it/300x100&text=FooBar3"></div>
-						  <div class="slide"><img src="http://placehold.it/300x100&text=FooBar4"></div>
-						  <div class="slide"><img src="http://placehold.it/300x100&text=FooBar5"></div>
-				 		  <div class="slide"><img src="http://placehold.it/300x100&text=FooBar6"></div>
-						  <div class="slide"><img src="http://placehold.it/300x100&text=FooBar7"></div>
-					</div>
-							<p><a href="" id="reload-slider">Click to add a slide, then reload the slider</a></p> -->
- <!--                       <div id="marqueecontainer" onMouseover="copyspeed=pausespeed" onMouseout="copyspeed=marqueespeed">
-						<div id="vmarquee" style="position: absolute; width: 100%;">
-                       <div id="mau"></div>
-                           
-                     </div>
-                      </div> -->
-                      
-                      
-                      
-                      
-                      
-                      
-                     </div>
-                   </div>
-           
-            </div>
-            
-            <!-- /.col-md-8 -->
             
             
         </div>
@@ -611,9 +623,9 @@ var fbURL='110086556012641'; // QA
 </body>
 <script>
 var nt_example1 = $('#nt-example1').newsTicker({
-    row_height: 80,
-    max_rows: 3,
-    duration: 4000,
+    row_height: 85,
+    max_rows: 5,
+    duration: 1000000,
     prevButton: $('#nt-example1-prev'),
     nextButton: $('#nt-example1-next')
 });
@@ -1149,6 +1161,12 @@ function showScoreCardInProgress(id,bid){
 		 window.location.href = "${pageContext.request.contextPath}/showScoreCardForInProgressPublicProfile/boardId/"+bid+"/matchId/"+id;
 			}
 		}
+		
+function errorImageset(id)
+{
+	id.src="${pageContext.request.contextPath}/images/profileIcon.png";
+	
+}
 
 </script>
 <script type="text/javascript">

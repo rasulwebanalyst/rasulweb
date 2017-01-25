@@ -4,11 +4,20 @@
   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html lang="en">
  
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
-<meta name="author" content="">
+<meta name="author" content="">  -->
 <title>Cricket Social</title>
+
+<!-- Bootstrap Core CSS -->
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
+	rel="stylesheet">
+	
+	<!-- Bootstrap Core JavaScript -->
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
 <meta charset="utf-8">
        <!-- responsive css -->
@@ -130,15 +139,15 @@ var formatAMPMTime = function(date) {
                  <%@ include file="BuddyPublicSideMenu.jsp" %>
 
                  
-                 <div class="col-md-10">
+                 <div class="col-md-10 pull-right">
      
      
      				 
                         
-                          <div class="col-md-12 membersBlock whiteBox">
+                          <div class="col-md-12  whiteBox">
                      	<h1 class="noBorder">${UserInfo.firstName} ${UserInfo.lastName}</h1>
                      
-                     <div class="col-md-6 statusUpdateBox ">
+                     <div class="col-md-8 statusUpdateBox colon">
                      
                      <p><span><strong>Age </strong> </span> <script> document.writeln(calculateage("${UserMatchInfo.dob}"))</script></p>
                      
@@ -159,12 +168,12 @@ var formatAMPMTime = function(date) {
 									<c:choose>
 										<c:when test="${UserInfo.phoneNumber eq 0}">
 											<p>
-												<span><strong>Phone Number</strong> </span> 
+												<span style="width: 100px;"><strong>Phone Number</strong> </span> 
 											</p>
 										</c:when>
 										<c:otherwise>
 											<p>
-												<span><strong>Phone Number </strong></span> ${UserInfo.phoneNumber}
+												<span style="width: 100px;"><strong>Phone Number </strong></span> ${UserInfo.phoneNumber}
 											</p>
 										</c:otherwise>
 									</c:choose>
@@ -176,7 +185,7 @@ var formatAMPMTime = function(date) {
                              
                              <!-- Team Associate -->
                              
-                             <div><span style="float:left; width: 114px; margin-right: 5px;"><strong>Team associate</strong> </span>  
+                             <div style="margin-bottom: 40px;"><p><span style="float:left; width: 134px; margin-right: 5px; clear:both"><strong>Teams Associated</strong> </span>  
                               <c:choose>
                              <c:when test="${fn:length(UserMatchInfo.teamBoardList) gt 2}">
                              
@@ -187,7 +196,7 @@ var formatAMPMTime = function(date) {
 				   <div style="float:left;" class="dropdown">
 				  <a style="font-size: 12px; color: #4c9fe1;" href="#" class="dropbtn">more</a>
 				  <div class="dropdown-content">
-				  <c:forEach items="${UserMatchInfo.teamBoardList}" var="teams">
+				  <c:forEach items="${UserMatchInfo.teamBoardList}" var="teams" begin="2">
 				    <a href="#">${teams.boardName}</a> 
 				   
 				     </c:forEach>
@@ -198,19 +207,19 @@ var formatAMPMTime = function(date) {
                              <c:otherwise>
                              
                              <c:forEach items="${UserMatchInfo.teamBoardList}" var="teams" varStatus="loop">
-                             ${teams.boardName}<c:if test="${!loop.last}">,</c:if>
+                          <div style="float:left;">   ${teams.boardName}<c:if test="${!loop.last}">,</c:if></div>
                              </c:forEach>
                              
                              </c:otherwise>
                              
                              </c:choose> 
-                             
+                             </p>
                              </div>
                              
                              
                              <!-- Leage Associate -->
                              
-                             <div><span style="float:left; width: 114px; margin-right: 5px;"><strong>League associate</strong> </span>  
+                             <div><p><span style="float:left; width: 134px; margin-right: 5px; clear:both"><strong>Leagues Associated</strong> </span>  
                               <c:choose>
                              <c:when test="${fn:length(UserMatchInfo.leagueBoardList) gt 2}">
                              
@@ -221,7 +230,7 @@ var formatAMPMTime = function(date) {
 				   <div style="float:left;" class="dropdown">
 				  <a style="font-size: 12px; color: #4c9fe1;" href="#" class="dropbtn">more</a>
 				  <div class="dropdown-content">
-				  <c:forEach items="${UserMatchInfo.leagueBoardList}" var="leagues">
+				  <c:forEach items="${UserMatchInfo.leagueBoardList}" var="leagues" begin="2">
 				    <a href="#">${leagues.boardName}</a> 
 				   
 				     </c:forEach>
@@ -232,13 +241,13 @@ var formatAMPMTime = function(date) {
                              <c:otherwise>
                              
                              <c:forEach items="${UserMatchInfo.leagueBoardList}" var="leagues" varStatus="loop">
-                             ${leagues.boardName}<c:if test="${!loop.last}">,</c:if>
+                            <div style="float:left;"> ${leagues.boardName}<c:if test="${!loop.last}">,</c:if></div>
                              </c:forEach>
                              
                              </c:otherwise>
                              
                              </c:choose> 
-                             
+                             </p>
                              </div>
 								
 								
@@ -246,7 +255,7 @@ var formatAMPMTime = function(date) {
                      
                      	
                         
-                        <div class="col-md-6 feedcube">
+                        <div class="col-md-4 feedcube">
                            <%--  <div class="cube bulucolor">${UserMatchInfo.playedMatches}<br><p>Matches</p></div>
                             <div class="cube greencolor">${UserMatchInfo.totalMadeRuns}<br> <p>Runs</p></div>
                             <div class="cube redcolor">${UserMatchInfo.totalWicketTaken}<br> <p>Wickets<p></div> --%>

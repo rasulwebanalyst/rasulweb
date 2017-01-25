@@ -24,6 +24,25 @@ var rosterrowObj=[];
 </head>
 
 <body>
+
+
+<script type="text/javascript">
+
+function checkbbi(bbi)
+{
+	var show;
+	
+	if(bbi == 0 || bbi == null || bbi == "0/0"){
+		show="-";	
+		}else{
+		show=bbi;
+		}
+	
+	return show;
+	}
+</script>
+
+
 <div id="RoasterPopup" class="modal" role="dialog" style="display: none;">
   <div class="modal-dialog">
 
@@ -449,7 +468,16 @@ var rosterrowObj=[];
                                            								</td>
                                            							<td>${batting.matchCount}</td>
                                            							<td>${batting.inningsCount}</td>
+                                           							<c:choose>
+                                           							<c:when test="${batting.notOut eq 0 || batting.notOut eq null}">
+                                           							<td>-</td>
+                                           							</c:when>
+                                           							<c:otherwise>
                                            							<td>${batting.notOut}</td>
+                                           							</c:otherwise>
+                                           							
+                                           							</c:choose>
+                                           							<%-- <td>${batting.notOut}</td> --%>
                                            							<td>${batting.runs}</td>
                                            							<td>${batting.highScore}</td>
                                            							<td><fmt:formatNumber type="number"  pattern="##########.##"  value="${batting.average}" /></td>
@@ -539,7 +567,20 @@ var rosterrowObj=[];
                                            			<td>${bowler.runs}</td>
                                            			<td>${bowler.wickets}</td>
                                            			<%-- <td>${bowler.bestBowlinginInnings}/${bowler.bowlingRuns}</td> --%>
-                                           			<td>${bowler.bbi}</td>
+                                           			 <%-- <td>${bowler.bbi}</td> --%>
+                                           			 <td><script>document.writeln(checkbbi("${bowler.bbi}"))</script> </td> 
+                                           			
+                                           			 <%-- <c:choose>
+                                           							<c:when test="${bowler.bbi eq 0 || bowler.bbi eq null}">
+                                           							<td>-</td>
+                                           							</c:when>
+                                           							<c:otherwise>
+                                           							<td>${batting.bbi}</td>
+                                           							</c:otherwise>
+                                           							
+                                           							</c:choose>  --%>
+                                           			
+                                           			
                                            			<td>${bowler.fiveWicketsCount}</td>
                                            			<td>${bowler.tenWicketsCount}</td>
                                            			<td><fmt:formatNumber type="number"  pattern="##########.##"  value="${bowler.average}" /></td>
@@ -900,7 +941,11 @@ var rosterrowObj=[];
                				htm+="<tr><td> "+res[i].firstName+" "+res[i].lastName+" </td>";
                				htm+="<td>"+res[i].matchCount+"</td>";
                				htm+="<td>"+res[i].inningsCount+"</td>";
-               				htm+="<td>"+res[i].notOut+"</td>";
+               				if(res[i].notOut == 0 || res[i].notOut == null)
+               					{
+               					htm+="<td>-</td>";
+               					}else
+               				{htm+="<td>"+res[i].notOut+"</td>";}
                				htm+="<td>"+res[i].runs+"</td>";
                				htm+="<td>"+res[i].highScore+"</td>";
                				htm+="<td>"+res[i].average+"</td>";
@@ -984,7 +1029,10 @@ var roasterid="${RoasterResponseById.rosterDetails.rosterId}";
        				htm+="<td>"+res[i].matchCount+"</td>";
        				htm+="<td>"+res[i].runs+"</td>";
        				htm+="<td>"+res[i].wickets+"</td>";
-       				htm+="<td>"+res[i].bbi+"</td>";
+       				if(res[i].bbi == 0 || res[i].bbi == null || res[i].bbi == "0/0"){
+       					htm+="<td>-</td>";	
+       				}else{
+       				htm+="<td>"+res[i].bbi+"</td>";}
        				htm+="<td>"+res[i].fiveWicketsCount+"</td>";
        				htm+="<td>"+res[i].tenWicketsCount+"</td>";
        				htm+="<td>"+res[i].average+"</td>";
