@@ -154,14 +154,14 @@ $(function(){
 							
 							if(res[i].status == 'InProgress')
 								{
-								htmlco+="<a class='vw-score' href='javascript:void(0);' onclick=showScoreCardInProgress('"+res[i].tournamentSchedulerId+"','"+res[i].createdBy+"')>Live Score</a>";
+								htmlco+="<a class='vw-score' href='${pageContext.request.contextPath}/showScoreCardForInProgressPublicProfile/boardId/"+res[i].createdBy+"/matchId/"+res[i].tournamentSchedulerId+"'>Live Score</a>";
 								}else
 									{
 									htmlco+="<a class='vw-score' href='javascript:void(0);' onclick=showScoreCardInProgress('"+res[i].tournamentSchedulerId+"','no')>View Score</a>";	
 									}
 							
 							htmlco+="<span class='teamLogos'>";
-							htmlco+="<a href='javascript:void(0);'><img src="+hometeam.boardImageURL+"? class='teamLogo' onError='this.onerror=null;this.src=${pageContext.request.contextPath}/images/boardIcon.png;' ></a> <b>VS</b> <a href='javascript:void(0);'><img src="+awayteam.boardImageURL+"? class='teamLogo'></a>";
+							htmlco+="<a href='javascript:void(0);'><img src="+hometeam.boardImageURL+"? class='teamLogo' onerror=errorImageset(this) ></a> <b>VS</b> <a href='javascript:void(0);'><img src="+awayteam.boardImageURL+"? class='teamLogo' onerror=errorImageset(this)></a>";
 							htmlco+="</span></div></li>";
 							
 							/* var k=parseInt(i)+1;
@@ -1161,6 +1161,12 @@ function showScoreCardInProgress(id,bid){
 		 window.location.href = "${pageContext.request.contextPath}/showScoreCardForInProgressPublicProfile/boardId/"+bid+"/matchId/"+id;
 			}
 		}
+		
+function errorImageset(id)
+{
+	id.src="${pageContext.request.contextPath}/images/profileIcon.png";
+	
+}
 
 </script>
 <script type="text/javascript">

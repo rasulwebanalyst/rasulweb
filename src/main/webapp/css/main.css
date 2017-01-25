@@ -23,10 +23,8 @@ a{
 	font-family: 'Bree Serif', serif;
 }
 .loginBody .dBtn {
-    background: #112937 none repeat scroll 0 0;
+    background: #224e6b;
     color: #fff;
-    padding: 10px 12px;
-    width: 117px;
 }
 .loginBody .form-group .form-control {
 	height: 38px;

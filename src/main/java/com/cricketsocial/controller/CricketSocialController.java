@@ -2659,7 +2659,13 @@ System.out.println("keyToFindAccount-----> "+keyToFindAccount);
 				model=new ModelAndView("resetPassword");
 				model.addObject("email", "");
 				String msg=request.getParameter("msg");
-				model.addObject("MSG", msg);
+				System.out.println("The msg :"+msg);
+				if(msg != null && msg != ""){
+				model.addObject("MSG", msg.replace("%20", " "));}
+				else
+				{
+					model.addObject("MSG", msg);
+				}
 
 			}
 		}
