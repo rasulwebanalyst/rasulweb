@@ -507,7 +507,9 @@ ol.roa-ol li {
     box-shadow: none;
 }
 #nt-example1 {
-	height: 495px !important;
+	/* height: 495px !important; */
+	min-height: 60px;
+max-height: 500px;
 }
 .sidebar-container.home-scroller  .sidebar-header {
     padding: 10px;

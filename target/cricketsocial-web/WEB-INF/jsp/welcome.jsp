@@ -331,7 +331,6 @@ var fbURL='110086556012641'; // QA
     
                  
                
-               
                <div class="sidebar-container widget-MAU home-scroller">
                
                      <div class="sidebar-content">
@@ -361,7 +360,7 @@ var fbURL='110086556012641'; // QA
                      
                      <div id="Matchesaroundyoudiv" style="display: none;">
                      
-                         <div class="sidebar-header"><a href="${pageContext.request.contextPath}/matchesAroundYou">Matches Around You</a></div>
+                         <div class="sidebar-header"><a href="javascript:void(0);">Matches Around You</a></div>
                        
 
     <div id="nt-example1-container" class="scroll-slider">
@@ -623,8 +622,8 @@ var fbURL='110086556012641'; // QA
 </body>
 <script>
 var nt_example1 = $('#nt-example1').newsTicker({
-    row_height: 85,
-    max_rows: 5,
+    /* row_height: 85,
+    max_rows: 5, */
     duration: 1000000,
     prevButton: $('#nt-example1-prev'),
     nextButton: $('#nt-example1-next')

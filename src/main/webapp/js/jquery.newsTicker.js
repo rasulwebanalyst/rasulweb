@@ -50,8 +50,8 @@
         // Create the defaults once
         var pluginName = 'newsTicker',
                 defaults = {
-                        row_height: 20,
-                        max_rows: 3,
+             /*           row_height: 20,
+                        max_rows: 3,*/
                         speed: 400,
                         duration: 2500,
                         direction: 'up',
