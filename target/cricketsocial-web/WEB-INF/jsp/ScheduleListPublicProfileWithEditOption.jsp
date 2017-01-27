@@ -13,7 +13,8 @@
 <meta name="author" content="">
 
 <title>Cricket Social</title>
-
+        <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
 <!-- Bootstrap Core CSS -->
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -154,6 +155,7 @@ var formatAMPMTime = function(date) {
 								</div>  
 								
 								<!--  </h1> -->
+								<div class="form-group">
 								<c:choose>
 								 <c:when test="${empty tournamentList}">
 								 <table  id="scheduleTable">
@@ -266,6 +268,7 @@ var formatAMPMTime = function(date) {
 										</c:forEach>
 									</tbody>
 								</table>
+								</div>
 								 	<span id="errorSpan" style="color:red"></span>
 								 </c:otherwise>
 								 </c:choose>

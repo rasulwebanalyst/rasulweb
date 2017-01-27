@@ -11,7 +11,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cricket Social</title>
-
+     <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 <!--Gallery-->
 <link rel="stylesheet" href="css/colorbox.css" />
 

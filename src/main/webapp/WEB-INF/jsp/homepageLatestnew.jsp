@@ -10,6 +10,8 @@
  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cricket Social</title>
+    <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
 <script>var ctx="${pageContext.request.contextPath}";</script>
 <script type="text/javascript">
 var pageNum=50;

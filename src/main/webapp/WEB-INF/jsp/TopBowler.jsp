@@ -5,6 +5,12 @@
        <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
        <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Cricket Social</title>
 <style type="text/css">
 .css-serial {
   counter-reset: serial-number;  /* Set the serial number counter to 0 */
@@ -19,13 +25,6 @@
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
  <!-- responsive css -->
  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
-<title>Cricket Social</title>
-
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/cricketSocial/topList.js"></script>
 <script type="text/javascript">
 var pageNum=500;
@@ -64,7 +63,7 @@ var pageNum=500;
                               </div> -->
                   
                   </h1></div>
-                  <div class="col-md-2" style="display: inline-block;">
+                  <div class="col-md-12 col-sm-12 col-xs-12" style="display: inline-block;">
 								    <label style="text-align: center;">Filter</label>
 								    <div class="selectdiv" style="height: 25px !important;">
 								        <c:choose>
@@ -154,7 +153,7 @@ var pageNum=500;
                  </div>
                  </div> 
                   </form>
-            <div class="col-md-10 pull-right">
+            <div class="col-md-10 pull-right rightnone">
       		
               <div class="col-md-12 whiteBox font13px"> 
      <div id="centTable" >    

@@ -25,7 +25,7 @@
         
          <%@ include file="BuddySideMenu.jsp" %>
 
-     <div class="col-md-10 pull-right">
+     <div class="col-md-10 pull-right rightnone">
       			<div class="col-md-12 whiteBox">
                 	<h1 class="">Contact Us</h1>
                 	 <%  			

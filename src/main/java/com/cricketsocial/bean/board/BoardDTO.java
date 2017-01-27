@@ -5,8 +5,18 @@ public class BoardDTO {
 	private String boardId;
 	private String boardName;
 	private String boardImgURL;
+	private String matchStatus;
 	
 	
+	
+	
+	
+	public String getMatchStatus() {
+		return matchStatus;
+	}
+	public void setMatchStatus(String matchStatus) {
+		this.matchStatus = matchStatus;
+	}
 	public String getBoardId() {
 		return boardId;
 	}

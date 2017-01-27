@@ -24,9 +24,17 @@ public class ScorerCardDTO {
 	private List<String> totalExtras;	
 	private String totalNumExtras;
 	private CommentaryDetails commentary;
+	private String isInningsCompleted;
 	
 	
 	
+	
+	public String getIsInningsCompleted() {
+		return isInningsCompleted;
+	}
+	public void setIsInningsCompleted(String isInningsCompleted) {
+		this.isInningsCompleted = isInningsCompleted;
+	}
 	public UUID getBattingTeamId() {
 		return battingTeamId;
 	}

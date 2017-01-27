@@ -12,6 +12,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cricket Social</title>
+      <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 <script>var ctx="${pageContext.request.contextPath}";</script>
 
 <script type="text/javascript">

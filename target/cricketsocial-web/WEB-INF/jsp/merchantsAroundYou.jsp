@@ -10,6 +10,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cricket Social</title>
+      <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 <script>var ctx="${pageContext.request.contextPath}";</script>
 
 
@@ -65,7 +67,7 @@
           	    <c:choose>
           	  <c:when test="${not empty Merchant.boardName}">
  
-                         <div class="buddysBlock col-md-6">
+                         <div class="laeguesBlock buddysBlock col-md-6">
                 				<div class="media">
                                   <a href="${pageContext.request.contextPath}/${Merchant.boardName}/board/${Merchant.boardId}">
                                   <div class="media-left">

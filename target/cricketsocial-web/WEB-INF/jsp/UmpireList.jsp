@@ -74,8 +74,8 @@
                                         	<th>Name</th>
                                             <th>Rating</th>
                                             <th>Address</th>
-                                            <th>Home Phone</th>
-                                            <th>Work Phone</th>
+                                           <!--  <th>Home Phone</th>
+                                            <th>Work Phone</th> -->
                                             <th>Cell Phone</th>
                                             <th>E-mail</th>
                                             <th class="tdBtns">Action</th>
@@ -98,8 +98,8 @@
                                         	<th>Name</th>
                                             <th>Rating</th>
                                             <th>Address</th>
-                                            <th>Home Phone</th>
-                                            <th>Work Phone</th>
+                                            <!-- <th>Home Phone</th>
+                                            <th>Work Phone</th> -->
                                             <th>Cell Phone</th>
                                             <th>E-mail</th>
                                             <th class="tdBtns">Action</th>
@@ -123,7 +123,7 @@
                                             </td>
                                             <td>${brdUmpire.addressLine1} ${brdUmpire.addressLine2} ${brdUmpire.city} ${brdUmpire.state} ${brdUmpie.country}</td>
                                             
-                                            <c:choose>
+                                            <%-- <c:choose>
                                             <c:when test="${brdUmpire.homePhone eq null || brdUmpire.homePhone eq ''}">
                                             <td>-</td>
                                             </c:when>
@@ -139,7 +139,7 @@
                                             <c:otherwise>
                                            <td>${brdUmpire.workPhone}</td>
                                             </c:otherwise>
-                                            </c:choose>
+                                            </c:choose> --%>
                                             
                                             
                                             

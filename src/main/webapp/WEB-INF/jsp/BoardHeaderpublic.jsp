@@ -49,6 +49,17 @@
 	<span class="insideBlock noti_arrow" id="">Please Login or Signup to access</span>
 </div> -->
 
+
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']
+
+</script> -->
+
+<%@ include file="GoogleAnalytical.jsp" %>
+
+
+
+
 <div class="notification" id="notificationPopupDiv" style="display:none;"  >
 	<span class="insideBlock noti_arrow" id="notificationPopupMessageDIV"></span>
 	

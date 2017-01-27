@@ -1,9 +1,59 @@
   <!DOCTYPE html>
  <%@taglib uri="http://example.com/functions" prefix="f" %>
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+ <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html lang="en">
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
  <title>Cricket Social</title>
+ <!-- Bootstrap Core CSS -->
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
+	rel="stylesheet">
+	
+	<!-- Bootstrap Core JavaScript -->
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+ <style>
+
+.dropbtn {
+    color: blue;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 9;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+
+
+</style>
  
   <style>
 
@@ -35,6 +85,29 @@ var formatAMPMTime = function(date) {
 	
 	}
 	
+	function calculateage(dob)
+	{
+		
+		var birthdate=new Date(dob); 
+		var birthda=birthdate.getDate();
+		var birthmonth=birthdate.getMonth();
+		var birthyear=birthdate.getFullYear()
+		
+		var date=new Date();
+		var nowdate=date.getDate();
+		var nowmonth=date.getMonth();
+		var nowyear=date.getFullYear();
+		
+		var age=nowyear-birthyear;
+		var agemonth=nowmonth-birthmonth;
+		var agedate=nowdate-birthda;
+		
+		 if(agemonth < 0 || (agemonth == 0 && agedate < 0))
+			 {
+			 age=parseInt(age)-1;
+			 }
+		return age;
+	}
 	
 	 
 </script>
@@ -59,21 +132,95 @@ var formatAMPMTime = function(date) {
                  <%@ include file="BuddySideMenu.jsp" %>
 
                  
-                 <div class="col-md-10">
+                 <div class="col-md-10 pull-right" >
      
      
      				 
                         
-                          <div class="col-md-12 membersBlock whiteBox">
+                          <div class="col-md-12 whiteBox">
                      	<h1 class="noBorder">${UserInfo.firstName} ${UserInfo.lastName}</h1>
                      
-                     <div class="col-md-5 statusUpdateBox colon">
-                            <p><span>Role </span><strong><c:forEach var = "roleDetails" items="${UserInfo.userRoleMap}" varStatus = "loop">                      
+                     <div class="col-md-8 statusUpdateBox colon">
+                     <p><span><strong>Age </strong> </span> <script> document.writeln(calculateage("${UserMatchInfo.dob}"))</script></p>
+                            <p><span><strong>Playing role </strong></span><c:forEach var = "roleDetails" items="${UserInfo.userRoleMap}" varStatus = "loop">                      
                             ${roleDetails.role}<c:if test="${!loop.last}">,</c:if>                                          
                         </c:forEach></strong></p> 
-                            <p><span>Bats </span> <strong>${SelectedPlayersInfo.player1.battingInfo}</strong></p> 
-                            <p><span>Bowls </span> <strong>${SelectedPlayersInfo.player1.bowlingInfo}</strong></p>
-                            <p><span>Country </span> <strong>${UserInfo.country}</strong></p>
+                            <p><span><strong>Batting </strong></span> ${SelectedPlayersInfo.player1.battingInfo}</p> 
+                            <p><span><strong>Bowling </strong></span> ${SelectedPlayersInfo.player1.bowlingInfo}</p>
+                            <p><span><strong>Country </strong></span> ${UserInfo.country}</p>
+                            
+                            
+                             <p><span><strong>MOM  </strong></span>  ${UserMatchInfo.manofMatchCount}</p>
+                             
+                             
+                             <!-- Team Associate -->
+                             
+                             <div style="margin-bottom: 40px;"><p><span style="float:left; width: 134px; margin-right: 5px; clear:both"><strong>Teams Associated</strong> </span>  
+                              <c:choose>
+                             <c:when test="${fn:length(UserMatchInfo.teamBoardList) gt 2}">
+                             
+                             <c:forEach items="${UserMatchInfo.teamBoardList}" var="teams" varStatus="loop" begin="0" end="1">
+                             <div style="float:left;">${teams.boardName}<c:if test="${!loop.last}">,&nbsp;</c:if></div>
+                             </c:forEach>
+                             
+				   <div style="float:left;" class="dropdown">
+				  <a style="font-size: 12px; color: #4c9fe1;" href="#" class="dropbtn">more</a>
+				  <div class="dropdown-content">
+				  <c:forEach items="${UserMatchInfo.teamBoardList}" var="teams" begin="2">
+				    <a href="#">${teams.boardName}</a> 
+				   
+				     </c:forEach>
+				    
+				  </div>
+				</div>
+                             </c:when>
+                             <c:otherwise>
+                             
+                             <c:forEach items="${UserMatchInfo.teamBoardList}" var="teams" varStatus="loop">
+                          <div style="float:left;">   ${teams.boardName}<c:if test="${!loop.last}">,</c:if></div>
+                             </c:forEach>
+                             
+                             </c:otherwise>
+                             
+                             </c:choose> 
+                             </p>
+                             </div>
+                             
+                             
+                             <!-- Leage Associate -->
+                             
+                             <div><p><span style="float:left; width: 134px; margin-right: 5px; clear:both"><strong>Leagues Associated</strong> </span>  
+                              <c:choose>
+                             <c:when test="${fn:length(UserMatchInfo.leagueBoardList) gt 2}">
+                             
+                             <c:forEach items="${UserMatchInfo.leagueBoardList}" var="leagues" varStatus="loop" begin="0" end="1">
+                             <div style="float:left;">${leagues.boardName}<c:if test="${!loop.last}">,&nbsp;</c:if></div>
+                             </c:forEach>
+                             
+				   <div style="float:left;" class="dropdown">
+				  <a style="font-size: 12px; color: #4c9fe1;" href="#" class="dropbtn">more</a>
+				  <div class="dropdown-content">
+				  <c:forEach items="${UserMatchInfo.leagueBoardList}" var="leagues" begin="2">
+				    <a href="#">${leagues.boardName}</a> 
+				   
+				     </c:forEach>
+				    
+				  </div>
+				</div>
+                             </c:when>
+                             <c:otherwise>
+                             
+                             <c:forEach items="${UserMatchInfo.leagueBoardList}" var="leagues" varStatus="loop">
+                            <div style="float:left;"> ${leagues.boardName}<c:if test="${!loop.last}">,</c:if></div>
+                             </c:forEach>
+                             
+                             </c:otherwise>
+                             
+                             </c:choose> 
+                             </p>
+                             </div>
+                             
+                             
                     	</div> 
                      
                      	<%-- <div class="col-md-2 statusUpdateBox ">
@@ -113,10 +260,37 @@ var formatAMPMTime = function(date) {
                         </div> --%> 
                         
                         
-                        <div class="col-md-7 feedcube">
-                            <div class="cube bulucolor">${UserMatchInfo.playedMatches}<br><p>Matches</p></div>
+                        <div class="col-md-4 feedcube">
+                           <%--  <div class="cube bulucolor">${UserMatchInfo.playedMatches}<br><p>Matches</p></div>
                             <div class="cube greencolor">${UserMatchInfo.totalMadeRuns}<br> <p>Runs</p></div>
-                            <div class="cube redcolor">${UserMatchInfo.totalWicketTaken}<br> <p>Wickets<p></div>
+                            <div class="cube redcolor">${UserMatchInfo.totalWicketTaken}<br> <p>Wickets<p></div> --%>
+                            
+                            
+                            <div class="pull-left cube-holder">
+                            <div class="cube color5">${UserMatchInfo.playedMatches}</div>
+                            <p style="font-size: 12px;">Matches</p>
+                           	</div>
+                           	<div class="pull-left cube-holder">
+                            <div class="cube color5">${UserMatchInfo.totalMadeRuns}</div>
+                            <p style="font-size: 12px;">Runs</p>
+                            </div>
+                           	<div class="pull-left cube-holder">
+                            <div class="cube color5">${UserMatchInfo.totalWicketTaken}</div> 
+                            <p style="font-size: 12px;">Wickets<p>
+                            </div>
+                            <div class="clearfix"></div>
+                           	<div class="pull-left cube-holder">
+                            <div class="cube color5">${UserMatchInfo.centuryCount}</div>
+                            <p style="font-size: 12px;">Centuries</p>
+                            </div>
+                           	<div class="pull-left cube-holder">
+                            <div class="cube color5">${UserMatchInfo.halfCenturiesCount}</div>
+                            <p style="font-size: 12px;">Half Centuries</p>
+                            </div>
+                           	<div class="pull-left cube-holder">
+                            <div class="cube color5">${UserMatchInfo.fiveFerCount}</div>
+                            <p style="font-size: 12px;">5fer<p>
+                            </div>
                             
                             
                                                     </div>

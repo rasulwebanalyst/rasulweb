@@ -12,7 +12,8 @@
     <meta name="author" content="">
 
     <title>Cricket Social</title>
-
+        <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
     <!-- Bootstrap Core CSS -->
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 
@@ -70,6 +71,7 @@
                        </c:forEach>
                        
                        </h1>
+                       <div class="form-group">
                   <c:choose>
                   <c:when test="${groundListSize == 0 }">
                   <table id="tableId">
@@ -155,6 +157,7 @@
                 </tbody>
                 
             </table>
+            </div>
             </c:otherwise> 
                  </c:choose> 
                   

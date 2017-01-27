@@ -12,7 +12,8 @@
     <meta name="author" content="">
 
     <title>Cricket Social</title>
-
+        <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
     <!-- Bootstrap Core JavaScript -->
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/circketsocial/validationfunction.js"></script>
@@ -50,7 +51,8 @@
                   </c:forEach>
                   </h1>
                   
-                  <div class="form-group col-md-12 noPadding">
+                  <div class="col-md-12 noPadding">
+                  <div class="form-group">
                   <c:choose>
                   <c:when test="${BoardUmpireListSize == 0 }">
                   <table id="tableId" >
@@ -60,8 +62,8 @@
                                         	<th>Name</th>
                                             <th>Rating</th>
                                             <th>Address</th>
-                                            <th>Home Phone</th>
-                                            <th>Work Phone</th>
+                                           <!--  <th>Home Phone</th>
+                                            <th>Work Phone</th> -->
                                             <th>Cell Phone</th>
                                             <th>E-mail</th>
                                             <th class="tdBtns">Action</th>
@@ -73,10 +75,11 @@
                                          
                                            </tbody>
                                            </table>
+                                           </div>
                                              <span class="noContentDivRed">No Umpires Available Now</span>
                   </c:when>
                   <c:otherwise>
-                  
+                  <div class="form-group">
                   <table id="tableId" >
                                     	<thead>
                                         	<tr>
@@ -84,8 +87,8 @@
                                         	<th>Name</th>
                                             <th>Rating</th>
                                             <th>Address</th>
-                                            <th>Home Phone</th>
-                                            <th>Work Phone</th>
+                                           <!--  <th>Home Phone</th>
+                                            <th>Work Phone</th> -->
                                             <th>Cell Phone</th>
                                             <th>E-mail</th>
                                             
@@ -120,7 +123,7 @@
                                             </td>
                                            <td>${brdUmpire.addressLine1} ${brdUmpire.addressLine2} ${brdUmpire.city} ${brdUmpire.state} ${brdUmpie.country}</td>
                                             <%-- <td>${brdUmpire.homePhone}</td> --%>
-                                            <c:choose>
+                                           <%--  <c:choose>
                                             <c:when test="${brdUmpire.homePhone eq null || brdUmpire.homePhone eq ''}">
                                             <td>-</td>
                                             </c:when>
@@ -130,7 +133,6 @@
                                             </c:choose>
                                             
                                             
-                                            <%-- <td>${brdUmpire.workPhone}</td> --%>
                                             
                                              <c:choose>
                                             <c:when test="${brdUmpire.workPhone eq null || brdUmpire.workPhone eq ''}">
@@ -139,7 +141,7 @@
                                             <c:otherwise>
                                            <td>${brdUmpire.workPhone}</td>
                                             </c:otherwise>
-                                            </c:choose>
+                                            </c:choose> --%>
                                             
                                             
                                             <td>${brdUmpire.cellPhone}</td>
@@ -151,23 +153,20 @@
                                                 
                                                 
                                             </td> --%>
-                                            
-                                             <td class="alignCenter">
-                                             
-                                              <c:forEach items="${BoradInfo.boardCoordinatorList}" var="coordinator">
+                                            <c:forEach items="${BoradInfo.boardCoordinatorList}" var="coordinator">
 							                  <c:if test="${coordinator.coOrdinatorId eq USRID}">
 							                  <c:if test="${coordinator.coOrdinatorTypeId eq 15}">
+                                             
+                                             <td class="alignCenter">
 							                  
 							                   <a href="#" title="Edit" ><i onclick="editUmpireList('${brdUmpire.umpireId}','${brdUmpire.boardId}')" class="fa fa-pencil editIcon"></i></a> 
 							                  <a href="#" title="Delete" ><i onclick="deleteUmpireList('${brdUmpire.umpireId}','${brdUmpire.boardId}')" class="fa fa-trash-o deleteIcon"></i></a>
-							                  
-							                 </c:if>
-							                  </c:if>
-							                  </c:forEach>
-                                             
                                              
                                              </td>
-                                            
+                                             
+                                             </c:if>
+							                  </c:if>
+							                  </c:forEach>
                                             
                                             </tr>
                                             
@@ -176,6 +175,7 @@
                                            </tbody> 
                                           
                                     </table>
+                                    </div>
                   
                   
                   </c:otherwise>

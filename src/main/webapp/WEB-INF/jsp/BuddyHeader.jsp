@@ -56,6 +56,17 @@
 
 
  <script type="text/javascript" src="${pageContext.request.contextPath}/js/cricketSocial/loadfunction.js"></script>
+ 
+ 
+ 
+<!--  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject'
+
+</script> -->
+
+<%@ include file="GoogleAnalytical.jsp" %>
+ 
+ 
   
   <script type="text/javascript">
  

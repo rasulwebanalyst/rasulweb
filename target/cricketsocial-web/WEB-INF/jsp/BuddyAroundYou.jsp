@@ -10,6 +10,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cricket Social</title>
+      <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 <script>var ctx="${pageContext.request.contextPath}";</script>
 <script type="text/javascript">
 var pageNum=40;
@@ -39,7 +41,7 @@ var pageNum=40;
 		       <c:forEach items="${BuddyAroundYou}" var="buddy" varStatus="theCount">
           	  <c:if test="${not empty buddy.firstName}">
  
-                        <div class="buddysBlock col-md-6">
+                        <div class="laeguesBlock buddysBlock col-md-6">
                 				<div class="media">
                                   <a href="${pageContext.request.contextPath}/buddy/${buddy.firstName}/${buddy.userId}">
                                   <div class="media-left">

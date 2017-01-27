@@ -184,18 +184,23 @@
                 
                 
                 <div class="col-md-6 noPadding PageVisi1">
-                  <div class=" col-md-3 PG-Visi">
-                    <h6>Classification</h6>
+                  <div class=" col-md-3 PG-Visi" style="display: table; min-height: 83px;">
+                    <h6 style="min-height: 50px; display: table-cell;  vertical-align: middle;">Classification</h6>
                   </div>
                   
                     <input type="radio" class="cboxBtnLeft" id="r3" name="classification" value="Cricket Ball">
                     <label for="r3"><span></span>Cricket Ball</label>
                  
                 
-                    <input type="radio" class="cboxBtnLeft" id="r4" name="classification" value="Tennis Ball">
-                    <label for="r4"><span></span>Tennis Ball</label>
+                    <input type="radio" class="cboxBtnLeft" id="r4" name="classification" value="Other Ball Variety">
+                    <label for="r4"><span></span>Other Ball Variety</label>
+                    
+                    <input type="radio" class="cboxBtnLeft" id="r5" name="classification" value="Both">
+                    <label for="r5"><span></span>Both</label>
                  
                 </div>
+                
+                
               </div>
               
               
@@ -243,6 +248,7 @@
 	                   <div class=" col-md-8  noPadding PG-radio2">
                     		<input type="radio" class="cboxBtnLeft" id="n${loop.index }" name="notification" value="${Notification.codeId }">
                     		<label for="n${loop.index }"><span></span>${Notification.codeDesc }</label>
+                    		<div class="clearfix"></div>
                   	</div>
                    </c:forEach>
               </div>

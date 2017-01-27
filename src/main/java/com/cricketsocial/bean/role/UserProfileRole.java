@@ -81,7 +81,7 @@ List<UserSubRoleLevelFourMap> usersubrolelevelfourmap;
 List<UserBallPreferences> userballpreferences;
 List<UserBoardMap> userboardmap;
 	
-private List<BoardProfile>leagueboardlist;
+private List<BoardProfile> leagueboardlist;
 private List<BoardProfile> teamboardlist;
 
 //private String countryCode;

@@ -12,7 +12,8 @@
     <meta name="author" content="">
 
     <title>Cricket Social</title>
-
+  <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
     <!-- Bootstrap Core CSS -->
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 

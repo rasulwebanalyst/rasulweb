@@ -13,7 +13,9 @@
     <meta name="author" content="">
 
     <title>Cricket Social</title>
-
+    
+        <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
     <!-- Bootstrap Core CSS -->
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 
@@ -26,7 +28,8 @@
 
 <!--Google Fonts-->    
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
-    
+       <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 
  <!-- jQuery -->
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -338,9 +341,10 @@ var formatAMPMTime = function(date) {
                   
                   <div id="replaceId">
                   <div id="upcommingmatchesdiv">
-            <div class="col-md-10 pull-right">
+            <div class="col-md-10 pull-right rightnone">
       		<div class="col-md-12 whiteBox" style="font-size: 12px">
                   <h2 class="noBorder noLeftPad">Upcoming Matches</h2>
+                  <div class="form-group">
                   <c:choose>
                        <c:when test="${upcomingMatchesListSize == 0 }">
                       <table>
@@ -472,7 +476,7 @@ var formatAMPMTime = function(date) {
                          </c:otherwise>
                        </c:choose>    
                              
-                  
+                  </div>
                   
                        </div>
                 	</div>
@@ -480,9 +484,10 @@ var formatAMPMTime = function(date) {
                     </div>
                     <div id="incompletegamesdiv">
                     
-                    <div class="col-md-10 pull-right">
+                    <div class="col-md-10 pull-right rightnone">
       		<div class="col-md-12 whiteBox" style="font-size: 12px">
                   <h2 class="noBorder noLeftPad">Incomplete Matches</h2>
+                  <div class="form-group">
                   <c:choose>
                        <c:when test="${inCompletedMatchesListSize == 0 }">
                       <table>
@@ -615,16 +620,16 @@ var formatAMPMTime = function(date) {
                        </c:choose>    
                              
                   
-                  
+                  </div>
                        </div>
                 	</div>
                     
                     </div>
                     <div id="inprogressmatchesdiv">
-                    <div class="col-md-10 pull-right">
+                    <div class="col-md-10 pull-right rightnone">
       		<div class="col-md-12 whiteBox" style="font-size: 12px">
                   <h2 class="noBorder noLeftPad">In progress Matches</h2>
-                  
+                   <div class="form-group">
                    <c:choose>
                        <c:when test="${inprogressMatchesListSize == 0 }">
                       <table>
@@ -748,16 +753,16 @@ var formatAMPMTime = function(date) {
                  </table>                  
                          </c:otherwise>
                        </c:choose> 
-                  
+                  </div>
                        </div>
                 	</div>
                     </div>
                     
                     <div id="completedmatchesdiv">
-                    <div class="col-md-10 pull-right">
+                    <div class="col-md-10 pull-right rightnone">
       		<div class="col-md-12 whiteBox" style="font-size: 12px">
                   <h2 class="noBorder noLeftPad">Completed Matches</h2>
-                  
+                  <div class="form-group">
                    <c:choose>
                        <c:when test="${completedMatchesListSize == 0 }">
                       <table>
@@ -903,7 +908,7 @@ var formatAMPMTime = function(date) {
                  </table>                  
                          </c:otherwise>
                        </c:choose> 
-                  
+                  </div>
                        </div>
                 	</div>
                 	</div>
@@ -1268,7 +1273,7 @@ var dateString = null;
    			
    			
    			 var htmlco="";
-            htmlco+="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>Upcoming Matches</h2>";      
+            htmlco+="<div class='col-md-10 pull-right rightnone'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>Upcoming Matches</h2><div class='form-group'>";      
    			htmlco+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Umpire</th><th>App Scorer</th><th>Portal Scorer</th><th>Trophy</th><th>Enter Scorecard</th></tr></thead>";
    			if(upcomminglist.length !=0)
    				{
@@ -1360,14 +1365,14 @@ var dateString = null;
    				htmlco+="<span class='noContentDivRed'>No Upcoming Matches</span>";
    			}
    			
-   			htmlco+="</div></div>"; 
+   			htmlco+="</div></div></div>"; 
    			$("#upcommingmatchesdiv").html(htmlco).trigger('create');
    			
    			
    			// incomepltelist
    			
    			   var htmlco1="";
-   			  htmlco1="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>Incomplete Matches</h2>";
+   			  htmlco1="<div class='col-md-10 pull-right rightnone'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>Incomplete Matches</h2><div class='form-group'>";
    			 htmlco1+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Umpire</th><th>App Scorer</th><th>Portal Scorer</th><th>Trophy</th><th>Enter Scorecard</th></tr></thead>";
    			if(incomepltelist.length!=0){
    				htmlco1+="<tbody>";
@@ -1451,7 +1456,7 @@ var dateString = null;
    			htmlco1+="</table>";
    				htmlco1+="<span class='noContentDivRed'>No Incomplete Matches</span>";
    			}
-   			htmlco1+="</div></div>";
+   			htmlco1+="</div></div></div>";
    			
    			$("#incompletegamesdiv").html(htmlco1).trigger('create'); 
    			
@@ -1460,7 +1465,7 @@ var dateString = null;
    		// inprogress
    		
 			   var htmlco2="";
-			  htmlco2="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>In progress Matches</h2>";
+			  htmlco2="<div class='col-md-10 pull-right rightnone'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>In progress Matches</h2><div class='form-group'>";
 			 htmlco2+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Trophy</th><th>Umpire</th><th>App Scorer</th><th>Portal Scorer</th><th>Enter Scorecard</th><th>Scorecard</th></tr></thead>";
 			if(inprogresslist.length!=0){
 				htmlco2+="<tbody>";
@@ -1536,7 +1541,7 @@ var dateString = null;
 			htmlco2+="</table>";
 				htmlco2+="<span class='noContentDivRed'>No In progress Matches</span>";
 			}
-			htmlco2+="</div></div>";
+			htmlco2+="</div></div></div>";
 			
 			$("#inprogressmatchesdiv").html(htmlco2).trigger('create'); 
 			
@@ -1544,7 +1549,7 @@ var dateString = null;
 			
 			// completed
 			   var htmlco3="";
-			  htmlco3="<div class='col-md-10 pull-right'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>Completed Matches</h2>";
+			  htmlco3="<div class='col-md-10 pull-right rightnone'><div class='col-md-12 whiteBox' style='font-size: 12px;'><h2 class='noBorder noLeftPad'>Completed Matches</h2><div class='form-group'>";
 			 htmlco3+="<table><thead><tr><th class='tbDate'>Date (MM-DD-YYYY)</th><th>Home Team</th><th>Away Team</th><th>Ground</th><th>Trophy</th><th>Umpire</th><th>App Scorer</th><th>Portal Scorer</th><th>Result</th><th>Edit Scorecard</th><th>Scorecard</th></tr></thead>";
 			if(completedlist.length!=0){
 				htmlco3+="<tbody>";
@@ -1641,7 +1646,7 @@ var dateString = null;
 			htmlco3+="</table>";
 				htmlco3+="<span class='noContentDivRed'>No Completed Matches</span>";
 			}
-			htmlco3+="</div></div>";
+			htmlco3+="</div></div></div>";
 			
 			$("#completedmatchesdiv").html(htmlco3).trigger('create'); 
    			 

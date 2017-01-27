@@ -11,7 +11,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cricket Social</title>
-
+        <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
 
 </head>
 <body>
@@ -100,7 +101,7 @@
                  </div> 
               </form>
                   
-            <div class="col-md-10 pull-right">
+            <div class="col-md-10 pull-right rightnone">
       		<!-- <div class="col-md-12 whiteBox"> -->
                   
                   <c:choose>
@@ -112,6 +113,7 @@
 
             <span class="text-danger" style="font-weight: bold; color: #3253a8 !important;">Tournament
 												Name : ${tournament.tournamentName}</span> <br>
+			<div class="form-group">
             <table>
                 <thead>
                     <tr>
@@ -185,6 +187,7 @@
 
                 </tbody>
             </table>
+            </div>
         </div>
         </c:if>
     </c:forEach>

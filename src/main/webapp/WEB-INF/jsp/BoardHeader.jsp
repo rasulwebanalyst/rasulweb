@@ -6,6 +6,9 @@
     <!-- Custom CSS -->
     <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
 
+         <!-- Responsive CSS -->
+   <%--  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet"> --%>
+    
 	<!--Date picker-->
     <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
 
@@ -47,6 +50,16 @@
 <!-- <div class="notification" id="" style="display: none;">
 	<span class="insideBlock noti_arrow" id="">Please Login or Signup to access</span>
 </div> -->
+
+
+
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']
+
+</script> -->
+
+<%@ include file="GoogleAnalytical.jsp" %>
+
 
 
 <script type="text/javascript">

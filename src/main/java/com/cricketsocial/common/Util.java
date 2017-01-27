@@ -116,50 +116,50 @@ public class Util {
 			  int index= workingDir.lastIndexOf("\\");
 			  String project= workingDir.substring(index+1, workingDir.length());
 			  System.out.println("projectname-----------> "+project);
-			  menu.put(4, "<a href='"+domain+"/ground-list/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Ground List</a></li>");
-			  menu.put(2, "<a href='"+domain+"/umpire-list/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Umpire List</a></li>");
-			  menu.put(9, "<a href='"+domain+"/Scheduler-List/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Schedule List</a>");
-			  menu.put(13, "<a href='"+domain+"/GameSchedulePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Schedule & Scores</a>");
+			  menu.put(4, "<a href='"+domain+"/ground-list/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Ground List</span></a></li>");
+			  menu.put(2, "<a href='"+domain+"/umpire-list/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Umpire List</span></a></li>");
+			  menu.put(9, "<a href='"+domain+"/Scheduler-List/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Schedule List</span></a>");
+			  menu.put(13, "<a href='"+domain+"/GameSchedulePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Schedule & Scores</span></a>");
 			  if(boardProfile.getBoardCoordinatorList()!=null){
 				  for(CoOrdinator c : boardProfile.getBoardCoordinatorList())
 					 {
 						 if(userId.endsWith(c.getCoOrdinatorId()) && c.getCoOrdinatorTypeId()==28)
 						 {
 							 resultList.add("GroundCoordinator");
-							 menu.put(3, "<a href='"+domain+"/create-ground/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Create Ground</a></li>");
-							 menu.put(4, "<a href='"+domain+"/ground-list/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Ground List</a></li>");
-							 menu.put(2, "<a href='"+domain+"/umpire-list/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Umpire List</a></li>");
-							 menu.put(9, "<a href='"+domain+"/Scheduler-List/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Schedule List</a>");
-							 menu.put(14, "<a href='"+domain+"/teamcontactspublic/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Team Contacts</a>");
+							 menu.put(3, "<a href='"+domain+"/create-ground/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Create Ground</span></a></li>");
+							 menu.put(4, "<a href='"+domain+"/ground-list/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Ground List</span></a></li>");
+							 menu.put(2, "<a href='"+domain+"/umpire-list/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Umpire List</span></a></li>");
+							 menu.put(9, "<a href='"+domain+"/Scheduler-List/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Schedule List</span></a>");
+							 menu.put(14, "<a href='"+domain+"/teamcontactspublic/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Team Contacts</span></a>");
 						 
 						 }
 						 
 						 if(userId.endsWith(c.getCoOrdinatorId()) && c.getCoOrdinatorTypeId()==15)
 						 {
 							 resultList.add("UmpireCoordinator");
-							 menu.put(1, "<a href='"+domain+"/Create-Umpire/boardId/"+boardProfile.getBoardId()+"' class='active'><i class='fa fa-angle-right'></i> Create Umpire</a></li>");
-							 menu.put(2, "<a href='"+domain+"/umpire-list/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Umpire List</a></li>");
-							 menu.put(7, "<a href='"+domain+"/AssignUmpire/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Assign Umpire to Schedule </a>");
-							 menu.put(9, "<a href='"+domain+"/Scheduler-List/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Schedule List</a>");
-							 menu.put(14, "<a href='"+domain+"/teamcontactspublic/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Team Contacts</a>");
+							 menu.put(1, "<a href='"+domain+"/Create-Umpire/boardId/"+boardProfile.getBoardId()+"' class='active'><i class='fa fa-angle-right'></i><span> Create Umpire</span></a></li>");
+							 menu.put(2, "<a href='"+domain+"/umpire-list/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Umpire List</span></a></li>");
+							 menu.put(7, "<a href='"+domain+"/AssignUmpire/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Assign Umpire to Schedule </span></a>");
+							 menu.put(9, "<a href='"+domain+"/Scheduler-List/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Schedule List</span></a>");
+							 menu.put(14, "<a href='"+domain+"/teamcontactspublic/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Team Contacts</span></a>");
 						 }
 						 if(userId.endsWith(c.getCoOrdinatorId()) && c.getCoOrdinatorTypeId()==14)
 						 {
 							 resultList.add("ScheduleCoordinator");
-							 menu.put(5, "<a href='"+domain+"/CreateSchedulePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Create Schedule</a>");
+							 menu.put(5, "<a href='"+domain+"/CreateSchedulePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Create Schedule</span></a>");
 							 /*menu.put(6, "<a href='"+domain+"/AmendSchedulePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Amend Schedule</a>");*/
-							 menu.put(7, "<a href='"+domain+"/AssignUmpire/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Assign Umpire to Schedule </a>");
-							 menu.put(8, "<a href='"+domain+"/AssignScorer/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Assign Scorer to Schedule</a>");
-							 menu.put(9, "<a href='"+domain+"/ScheduleListPubProfWithEdit/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Schedule List</a>");
-							 menu.put(10, "<a href='"+domain+"/CancelGameByDatePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Cancel Game by date</a>");
-							 menu.put(11, "<a href='"+domain+"/CancelTournamentPublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Cancel Tournment</a>");
+							 menu.put(7, "<a href='"+domain+"/AssignUmpire/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Assign Umpire to Schedule </span></a>");
+							 menu.put(8, "<a href='"+domain+"/AssignScorer/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Assign Scorer to Schedule</span></a>");
+							 menu.put(9, "<a href='"+domain+"/ScheduleListPubProfWithEdit/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Schedule List</span></a>");
+							 menu.put(10, "<a href='"+domain+"/CancelGameByDatePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Cancel Game by date</span></a>");
+							 menu.put(11, "<a href='"+domain+"/CancelTournamentPublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Edit/Cancel Tournament</span></a>");
 							 
-							 menu.put(3, "<a href='"+domain+"/create-ground/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Create Ground</a></li>");
-							 menu.put(4, "<a href='"+domain+"/ground-list/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Ground List</a></li>");
+							 menu.put(3, "<a href='"+domain+"/create-ground/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Create Ground</span></a></li>");
+							 menu.put(4, "<a href='"+domain+"/ground-list/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Ground List</span></a></li>");
 							 
-							 menu.put(1, "<a href='"+domain+"/Create-Umpire/boardId/"+boardProfile.getBoardId()+"' class='active'><i class='fa fa-angle-right'></i> Create Umpire</a></li>");
-							 menu.put(2, "<a href='"+domain+"/umpire-list/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Umpire List</a></li>");
-							 menu.put(14, "<a href='"+domain+"/teamcontactspublic/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Team Contacts</a>");
+							 menu.put(1, "<a href='"+domain+"/Create-Umpire/boardId/"+boardProfile.getBoardId()+"' class='active'><i class='fa fa-angle-right'></i><span> Create Umpire</span></a></li>");
+							 menu.put(2, "<a href='"+domain+"/umpire-list/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Umpire List</span></a></li>");
+							 menu.put(14, "<a href='"+domain+"/teamcontactspublic/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Team Contacts</span></a>");
 							 
 						 }
 						 
@@ -174,20 +174,20 @@ public class Util {
 					 if(b.getCoOwnerId().endsWith(userId))
 					 {
 						 resultList.add("CoOwner");
-						 menu.put(1, "<a href='"+domain+"/Create-Umpire/boardId/"+boardProfile.getBoardId()+"' class='active'><i class='fa fa-angle-right'></i> Create Umpire</a></li>");
-						 menu.put(2, "<a href='"+domain+"/umpire-list/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Umpire List</a></li>");
-						 menu.put(3, "<a href='"+domain+"/create-ground/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Create Ground</a></li>");
-						 menu.put(4, "<a href='"+domain+"/ground-list/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Ground List</a></li>");
-						 menu.put(5, "<a href='"+domain+"/CreateSchedulePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Create Schedule</a>");
+						 menu.put(1, "<a href='"+domain+"/Create-Umpire/boardId/"+boardProfile.getBoardId()+"' class='active'><i class='fa fa-angle-right'></i><span> Create Umpire</span></a></li>");
+						 menu.put(2, "<a href='"+domain+"/umpire-list/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Umpire List</span></a></li>");
+						 menu.put(3, "<a href='"+domain+"/create-ground/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Create Ground</span></a></li>");
+						 menu.put(4, "<a href='"+domain+"/ground-list/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Ground List</span></a></li>");
+						 menu.put(5, "<a href='"+domain+"/CreateSchedulePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Create Schedule</span></a>");
 						/* menu.put(6, "<a href='"+domain+"/AmendSchedulePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Amend Schedule</a>");*/
-						 menu.put(7, "<a href='"+domain+"/AssignUmpire/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Assign Umpire to Schedule </a>");
-						 menu.put(8, "<a href='"+domain+"/AssignScorer/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Assign Scorer to Schedule</a>");
-						 menu.put(9, "<a href='"+domain+"/ScheduleListPubProfWithEdit/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Schedule List</a>");
-						 menu.put(10, "<a href='"+domain+"/CancelGameByDatePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Cancel Game by date</a>");
-						 menu.put(11, "<a href='"+domain+"/CancelTournamentPublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Cancel Tournment</a>");
-						 menu.put(12, "<a href='"+domain+"/DisputeManagementPublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Dispute Management</a>");
+						 menu.put(7, "<a href='"+domain+"/AssignUmpire/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Assign Umpire to Schedule </span></a>");
+						 menu.put(8, "<a href='"+domain+"/AssignScorer/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Assign Scorer to Schedule</span></a>");
+						 menu.put(9, "<a href='"+domain+"/ScheduleListPubProfWithEdit/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Schedule List</span></a>");
+						 menu.put(10, "<a href='"+domain+"/CancelGameByDatePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Cancel Game by date</span></a>");
+						 menu.put(11, "<a href='"+domain+"/CancelTournamentPublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Edit/Cancel Tournament</span></a>");
+						 menu.put(12, "<a href='"+domain+"/DisputeManagementPublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Dispute Management</span></a>");
 					 
-						 menu.put(14, "<a href='"+domain+"/teamcontactspublic/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Team Contacts</a>");
+						 menu.put(14, "<a href='"+domain+"/teamcontactspublic/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Team Contacts</span></a>");
 					 }
 				 }
 			}
@@ -195,20 +195,20 @@ public class Util {
 			 if(userId.endsWith(boardProfile.getCreatedBy()))
 			 {
 				 resultList.add("Owner");
-				 menu.put(1, "<a href='"+domain+"/Create-Umpire/boardId/"+boardProfile.getBoardId()+"' class='active'><i class='fa fa-angle-right'></i> Create Umpire</a></li>");
-				 menu.put(2, "<a href='"+domain+"/umpire-list/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Umpire List</a></li>");
-				 menu.put(3, "<a href='"+domain+"/create-ground/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Create Ground</a></li>");
-				 menu.put(4, "<a href='"+domain+"/ground-list/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Ground List</a></li>");
-				 menu.put(5, "<a href='"+domain+"/CreateSchedulePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Create Schedule</a>");
+				 menu.put(1, "<a href='"+domain+"/Create-Umpire/boardId/"+boardProfile.getBoardId()+"' class='active'><i class='fa fa-angle-right'></i><span> Create Umpire</span></a></li>");
+				 menu.put(2, "<a href='"+domain+"/umpire-list/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Umpire List</span></a></li>");
+				 menu.put(3, "<a href='"+domain+"/create-ground/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Create Ground</span></a></li>");
+				 menu.put(4, "<a href='"+domain+"/ground-list/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Ground List</span></a></li>");
+				 menu.put(5, "<a href='"+domain+"/CreateSchedulePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Create Schedule</span></a>");
 				 /*menu.put(6, "<a href='"+domain+"/AmendSchedulePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Amend Schedule</a>");*/
-				 menu.put(7, "<a href='"+domain+"/AssignUmpire/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Assign Umpire to Schedule </a>");
-				 menu.put(8, "<a href='"+domain+"/AssignScorer/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Assign Scorer to Schedule</a>");
-				 menu.put(9, "<a href='"+domain+"/ScheduleListPubProfWithEdit/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Schedule List</a>");
-				 menu.put(10, "<a href='"+domain+"/CancelGameByDatePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Cancel Game by date</a>");
-				 menu.put(11, "<a href='"+domain+"/CancelTournamentPublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Cancel Tournment</a>");
-				 menu.put(12, "<a href='"+domain+"/DisputeManagementPublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Dispute Management</a>");
+				 menu.put(7, "<a href='"+domain+"/AssignUmpire/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Assign Umpire to Schedule </span></a>");
+				 menu.put(8, "<a href='"+domain+"/AssignScorer/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Assign Scorer to Schedule</span></a>");
+				 menu.put(9, "<a href='"+domain+"/ScheduleListPubProfWithEdit/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Schedule List</span></a>");
+				 menu.put(10, "<a href='"+domain+"/CancelGameByDatePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Cancel Game by date</span></a>");
+				 menu.put(11, "<a href='"+domain+"/CancelTournamentPublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Edit/Cancel Tournament</span></a>");
+				 menu.put(12, "<a href='"+domain+"/DisputeManagementPublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Dispute Management</span></a>");
 			 
-				 menu.put(14, "<a href='"+domain+"/teamcontactspublic/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Team Contacts</a>");
+				 menu.put(14, "<a href='"+domain+"/teamcontactspublic/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Team Contacts</span></a>");
 			 }
 			 
 			 

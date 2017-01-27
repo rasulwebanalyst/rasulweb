@@ -49,6 +49,16 @@
 </div> -->
 
 
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[
+
+</script> -->
+
+
+<%@ include file="GoogleAnalytical.jsp" %>
+
+
+
 <script type="text/javascript">
 <!--
 

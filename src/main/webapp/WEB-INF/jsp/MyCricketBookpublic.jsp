@@ -10,6 +10,8 @@
 <meta name="author" content="">
 <title>Cricket Social</title>
 
+      <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 </head>
 <body>
 
@@ -32,7 +34,7 @@
 
       
                   
-            <div class="col-md-10 pull-right">
+            <div class="col-md-10 pull-right rightnone">
       			<div class="col-md-12 whiteBox">
                 
                 
@@ -179,6 +181,7 @@
                                 </div>
                          </div> --%>
                          <div class="col-md-12 noPadding MyScor-table">
+                         <div class="form-group">
                        <c:choose>  <c:when test="${battingPerformanceListSize eq 0 }">
                        <table>
                             	<thead>
@@ -278,6 +281,7 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
+                            </div>
                          	<!-- <button class="btn btn-default dBtn pull-right lodbtn" onclick="loadMoreBattings()">LOAD MORE</button> -->
                      
                      <c:forEach items="${BattingMatchesScoreList}" var="score">
@@ -457,6 +461,7 @@
                                 </div>
                          </div> --%>
                          <div class="col-md-12 noPadding MyScor-table">
+                         <div class="form-group">
                          	
                          	<c:choose>  <c:when test="${bowlingPerformanceListSize eq 0 }">
                          	<table>
@@ -534,6 +539,7 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
+                            </div>
                          	<!-- <button class="btn btn-default dBtn pull-right lodbtn" onclick="loadMoreBowlings()">LOAD MORE</button> -->
                        </c:otherwise>
                          
@@ -544,8 +550,9 @@
                         <div class="col-md-12 statusUpdateBox noPadding">
                         <div class="buluback">Achievement</div>
                             	<div class="col-md-12 noPadding AchHead">
+                            	
                                 	<!-- <h4>ODI Series Match Record</h4> -->
-                                	
+                                <div class="form-group">	
                                 	<c:choose>  <c:when test="${achievementsListSize eq 0 }">
                          	<table>
                             	<thead>
@@ -625,6 +632,7 @@
                                      
                                 </tbody>
                             </table>
+                            </div>
                          	<button class="btn btn-default dBtn pull-right lodbtn" onclick="loadMoreAchievements()">LOAD MORE</button>
                        </c:otherwise>
                          
@@ -693,7 +701,7 @@ function loadMoreBattings(){
 			if(res.length != 0){
 				var html = '';
 		
-				 html += '<table id="battingTable"><thead><tr>';
+				 html += '<div class="form-group"><table id="battingTable"><thead><tr>';
 				 html += '<th>DATE</th>';
 				 html += '<th>TROPHY</th>';
 				 html += '<th>LEAGUE</th>';
@@ -751,7 +759,7 @@ function loadMoreBattings(){
 					 html += '</tr>';
 				 }
 				 html += '</tbody>';
-				 html += '</table>';
+				 html += '</table></div>';
 				
 				 $("#battingTable").html(html).trigger('create');
 				
@@ -762,7 +770,7 @@ function loadMoreBattings(){
 				
 				var html = '';
 				
-				 html += '<table id="battingTable"><thead><tr>';
+				 html += '<div class="form-group"><table id="battingTable"><thead><tr>';
 				 html += '<th>DATE</th>';
 				 html += '<th>TROPHY</th>';
 				 html += '<th>LEAGUE</th>';
@@ -860,7 +868,7 @@ function loadMoreBowlings(){
 					 html += '</tr>';
 				 }
 				 html += '</tbody>';
-				 html += '</table>';
+				 html += '</table></div>';
 				
 				 $("#bowlingTable").html(html).trigger('create');
 				
@@ -870,7 +878,7 @@ function loadMoreBowlings(){
 			}else{
 				var html = '';
 				
-				 html += '<table id="bowlingTable"><thead><tr>';
+				 html += '<div class="form-group"><table id="bowlingTable"><thead><tr>';
 				 html += '<th>DATE</th>';
 				 html += '<th>TROPHY</th>';
 				 html += '<th>LEAGUE</th>';
@@ -917,7 +925,7 @@ function loadMoreAchievements(){
 			if(res.length != 0){
 				var html = '';
 		
-				 html += '<table id="achievementsTable"><thead><tr>';
+				 html += '<div class="form-group"><table id="achievementsTable"><thead><tr>';
 				 html += '<th>DATE</th>';
 				 html += '<th>TROPHY</th>';
 				 html += '<th>LEAGUE</th>';
@@ -965,7 +973,7 @@ function loadMoreAchievements(){
 					 html += '</tr>';
 				 }
 				 html += '</tbody>';
-				 html += '</table>';
+				 html += '</table></div>';
 				
 				 $("#achievementsTable").html(html).trigger('create');
 				
@@ -976,7 +984,7 @@ function loadMoreAchievements(){
 				
 				var html = '';
 				
-				 html += '<table id="achievementsTable"><thead><tr>';
+				 html += '<div class="form-group"><table id="achievementsTable"><thead><tr>';
 				 html += '<th>DATE</th>';
 				 html += '<th>TROPHY</th>';
 				 html += '<th>LEAGUE</th>';
@@ -1025,7 +1033,7 @@ function yearWiseBatting(val){
 			if(res.length != 0){
 				var html = '';
 		
-				 html += '<table id="battingTable"><thead><tr>';
+				 html += '<div class="form-group"><table id="battingTable"><thead><tr>';
 				 html += '<th>DATE</th>';
 				 html += '<th>TROPHY</th>';
 				 html += '<th>LEAGUE</th>';
@@ -1083,7 +1091,7 @@ function yearWiseBatting(val){
 					 html += '</tr>';
 				 }
 				 html += '</tbody>';
-				 html += '</table>';
+				 html += '</table></div>';
 				
 				 $("#battingTable").html(html).trigger('create');
 				
@@ -1140,7 +1148,7 @@ function yearWiseBowling(val){
 			if(res.length != 0){
 				var html = '';
 		
-				 html += '<table id="bowlingTable"><thead><tr>';
+				 html += '<div class="form-group"><table id="bowlingTable"><thead><tr>';
 				 html += '<th>DATE</th>';
 				 html += '<th>TROPHY</th>';
 				 html += '<th>LEAGUE</th>';
@@ -1187,7 +1195,7 @@ function yearWiseBowling(val){
 					 html += '</tr>';
 				 }
 				 html += '</tbody>';
-				 html += '</table>';
+				 html += '</table></div>';
 				
 				 $("#bowlingTable").html(html).trigger('create');
 				

@@ -8,7 +8,8 @@
 <meta name="author" content="">
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
 <title>Cricket Social</title>
-
+     <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 </head>
 <body>
 
@@ -31,7 +32,7 @@
              	<div class="col-md-12 whiteBox">
                 <h1>SELECT PLAYERS TO COMPARE</h1>
                 
-                
+                <div class="form-group">
                 <table>
                         <thead>
                         <tr>
@@ -89,6 +90,7 @@
                          
                      </tbody>
                  </table>
+                 </div>
                  <div style="color: red; text-align: center;" id="compareerror"></div>
                 <form action="playerComparing" method="post" id="playerCompareForm" name="playerCompareForm" onsubmit="return playerValidation()">
                 

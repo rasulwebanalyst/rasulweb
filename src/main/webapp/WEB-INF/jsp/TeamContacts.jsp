@@ -38,7 +38,7 @@
 
       
                   
-            <div class="col-md-10 pull-right">
+            <div class="col-md-10 pull-right rightnone">
       			<div class="col-md-12 whiteBox">
                 	<h1 class="">Team Contacts</h1>
                        <a style="margin-top: -40px;" class="pull-right" href="javascript:getPDF()"><img style="width: 30px; height: 25px;" src='${pageContext.request.contextPath}/images/Pdfdownload.png'></a></div>
@@ -269,153 +269,151 @@
    <script type="text/javascript">
    
    function getPDF(){
-		  /*  alert("Print") */
-		  
-		  console.log(teamrowObj);
-		  console.log(JSON.stringify(teamrowObj));
-		  var teamObj=teamrowObj;
-		  
-		 
-		  var dateformat="${PrintDate}";
-		  var doc = new jsPDF('p', 'pt','a4');
-		    doc.setProperties({
-		    	title: 'Cricket Socio',
-		    	subject: 'Buddy Score Card',
-		    	author: 'Vignesh Ranganathan',
-		    	keywords: 'Team Details',
-		    	creator: 'Cricket Social'
-		    	
-		    });
-		    
-		    
-		 // for date
-		    doc.setFontSize(10);
-		    doc.setFontType("normal");
-		    doc.setTextColor(0,0,0);
-		    doc.text(485,10,"Printed On ");
-		    doc.text(535,10,": "+dateformat);
-		    
-		    
-		    //Header
-		    
-		    doc.setFontSize(20);
-	    doc.setFont("helvetica");
-	    doc.setFontType("bold");
-	    doc.setTextColor(50,83,168);
-	    doc.text(220,30,"Team Contacts");
+	  /*  alert("Print") */
+	  
+	  console.log(teamrowObj);
+	  console.log(JSON.stringify(teamrowObj));
+	  var teamObj=teamrowObj;
+	  
+	 
+	  var dateformat="${PrintDate}";
+	  var doc = new jsPDF('p', 'pt','a4');
+	    doc.setProperties({
+	    	title: 'Cricket Socio',
+	    	subject: 'Buddy Score Card',
+	    	author: 'Vignesh Ranganathan',
+	    	keywords: 'Team Details',
+	    	creator: 'Cricket Social'
+	    	
+	    });
 	    
 	    
-	    var leaguename="${BoradInfo.boardName}"
-	        
-	        doc.setFontSize(12);
-	        doc.setFont("normal");
-	        doc.setFontType("normal");
-	        doc.setTextColor(0,0,0);
-	        doc.text(10,70,"League Name");
-	        doc.text(85,70,": "+leaguename);
+	 // for date
+	    doc.setFontSize(10);
+	    doc.setFontType("normal");
+	    doc.setTextColor(0,0,0);
+	    doc.text(485,10,"Printed On ");
+	    doc.text(535,10,": "+dateformat);
 	    
-	    var yHeight=100;
-	    var Gapdiff=0;
-		    for(var i in teamObj)
-			  {
-			  var teamsingleObj=teamObj[i];
-			  var teamname=teamnameObj[i];
-				  
-				  
-			   doc.setFontSize(12);
-			    doc.setFont("helvetica");
-			    doc.setFontType("bold");
-			    doc.setTextColor(50,83,168);
-			    doc.text(10,yHeight,"Team Name");
-			   /*  doc.setTextColor(0,0,0);  */
-			    doc.text(80,yHeight,": "+teamname);
-			    
-			    
-			    
-			    var columns = [
-			                   {title: "S.No", dataKey: "serialno"},
-			                   {title: "Name", dataKey: "fullName"},
-			                   {title: "Designation", dataKey: "designation"},
-			                   {title: "Phone Number", dataKey: "phoneNumber"},
-			                   {title: "E-mail", dataKey: "email"}
-			               ];
+	    
+	    //Header
+	    
+	    doc.setFontSize(20);
+    doc.setFont("helvetica");
+    doc.setFontType("bold");
+    doc.setTextColor(50,83,168);
+    doc.text(220,30,"Team Contacts");
+    
+    
+    var leaguename="${BoradInfo.boardName}"
+        
+        doc.setFontSize(12);
+        doc.setFont("normal");
+        doc.setFontType("normal");
+        doc.setTextColor(0,0,0);
+        doc.text(10,70,"League Name");
+        doc.text(85,70,": "+leaguename);
+    
+    var yHeight=100;
+    var Gapdiff=0;
+	    for(var i in teamObj)
+		  {
+		  var teamsingleObj=teamObj[i];
+		  var teamname=teamnameObj[i];
 			  
-			    
-			    
-		 			if(teamsingleObj.length>0)
-		 				{
-		 					
-		 					  doc.autoTable(columns,teamsingleObj, {
-		 		 			        theme: 'grid',
-		 		 			        startY: parseInt(yHeight)+parseInt(10),
-		 		 			        margin: {horizontal: 10},
-		 		 			        styles: {overflow: 'linebreak'},
-		 		 			        bodyStyles: {valign: 'top'},
-		 		 			        alternateRowStyles: {fillColor: [233, 234, 237]},
-		 		 			        columnStyles: {email: {columnWidth: 'wrap'}},
-		 		 			        headerStyles: {fillColor: [99, 184, 255]}
-		 		 			    });
-		 					
-		 					 
-		 					  
-		 					
-		 					/* var theight=parseInt(teamsingleObj.length)*20+yHeight+parseInt(32); */
-		 					
-		 					/* doc.text(10,theight,"EndTable :"+i); */
-		 					/* console.log(parseInt(yHeight)+parseInt(10)); */
-		 					/*   doc.text(10,parseInt(yHeight)+parseInt(32)+parseInt(20),"EndTable :"+i);   */
-		 					
-		 					 /*  if(teamsingleObj.length<3)
-		 						  {
-									    yHeight=parseInt(teamsingleObj.length)*40+yHeight;
-		 						  }else if(teamsingleObj.length>=3)
-		 							  {
-		 							 	yHeight=parseInt(teamsingleObj.length)*40+yHeight;
-		 							  } */
-		 							  
-		 							 /*  doc.text(10,parseInt(teamsingleObj.length)*20+yHeight+parseInt(42),"EndTable :"+i);  */ 
-		 							 /*  console.log(parseInt(teamsingleObj.length)*20+yHeight+parseInt(42) +"    "+i) */
-		 					
-		 							  if(parseInt(teamsingleObj.length)*20+yHeight+parseInt(42)>=730)
-		 								  {
-		 								 Gapdiff=50;
-		 								  }else{
-		 									 Gapdiff=0;
-		 								  }
-		 							  
-		 							   yHeight=parseInt(teamsingleObj.length)*20+yHeight+parseInt(82);
-		 							  
-		 					  
-		 					  
-		 					var pageHeight= parseInt(doc.internal.pageSize.height);
-		 					
-		 					if (yHeight>=pageHeight)
-		 					{
-		 						var diff=yHeight-pageHeight;
-		 						yHeight=diff+parseInt(42)+Gapdiff;
-		 						/* console.log("yHeight :"+yHeight);
-		 						console.log("pageHeight :"+pageHeight);
-		 						console.log("diff :"+diff);
-		 						
-		 						console.log("After Resize :"+yHeight) */
-		 						
-		 						if(diff <10)
+			  
+		   doc.setFontSize(12);
+		    doc.setFont("helvetica");
+		    doc.setFontType("bold");
+		    doc.setTextColor(50,83,168);
+		    doc.text(10,yHeight,"Team Name");
+		   /*  doc.setTextColor(0,0,0);  */
+		    doc.text(80,yHeight,": "+teamname);
+		    
+		    
+		    
+		    var columns = [
+		                   {title: "S.No", dataKey: "serialno"},
+		                   {title: "Name", dataKey: "fullName"},
+		                   {title: "Designation", dataKey: "designation"},
+		                   {title: "Phone Number", dataKey: "phoneNumber"},
+		                   {title: "E-mail", dataKey: "email"}
+		               ];
+		  
+		    
+		    
+	 			if(teamsingleObj.length>0)
+	 				{
+	 					
+	 					  doc.autoTable(columns,teamsingleObj, {
+	 		 			        theme: 'grid',
+	 		 			        startY: parseInt(yHeight)+parseInt(10),
+	 		 			        margin: {horizontal: 10},
+	 		 			        styles: {overflow: 'linebreak'},
+	 		 			        bodyStyles: {valign: 'top'},
+	 		 			        alternateRowStyles: {fillColor: [233, 234, 237]},
+	 		 			        columnStyles: {email: {columnWidth: 'wrap'}},
+	 		 			        headerStyles: {fillColor: [99, 184, 255]}
+	 		 			    });
+	 					
+	 					 
+	 					  
+	 					
+	 					/* var theight=parseInt(teamsingleObj.length)*20+yHeight+parseInt(32); */
+	 					
+	 					/* doc.text(10,theight,"EndTable :"+i); */
+	 					/* console.log(parseInt(yHeight)+parseInt(10)); */
+	 					/*   doc.text(10,parseInt(yHeight)+parseInt(32)+parseInt(20),"EndTable :"+i);   */
+	 					
+	 					 /*  if(teamsingleObj.length<3)
+	 						  {
+								    yHeight=parseInt(teamsingleObj.length)*40+yHeight;
+	 						  }else if(teamsingleObj.length>=3)
+	 							  {
+	 							 	yHeight=parseInt(teamsingleObj.length)*40+yHeight;
+	 							  } */
+	 							  
+	 							 /*  doc.text(10,parseInt(teamsingleObj.length)*20+yHeight+parseInt(42),"EndTable :"+i);  */ 
+	 							   /* console.log(parseInt(teamsingleObj.length)*20+yHeight+parseInt(42) +"    "+i)  */
+	 					
+	 							  if(parseInt(teamsingleObj.length)*20+yHeight+parseInt(42)>=730)
+	 								  {
+	 								 Gapdiff=50;
+	 								  }else{
+	 									 Gapdiff=0;
+	 								  }
+	 							  
+	 							   yHeight=parseInt(teamsingleObj.length)*20+yHeight+parseInt(82);
+	 							  console.log(yHeight);
+	 					  
+	 					  
+	 					var pageHeight= parseInt(doc.internal.pageSize.height);
+	 					
+	 					if (yHeight>=pageHeight)
+	 					{
+	 						var diff=yHeight-pageHeight;
+	 						yHeight=diff+parseInt(42)+Gapdiff;
+	 						/* console.log("yHeight :"+yHeight);
+	 						console.log("pageHeight :"+pageHeight);
+	 						console.log("diff :"+diff);
+	 						
+	 						console.log("After Resize :"+yHeight) */
+	 						if(diff <10)
 	 							{
 	 							doc.addPage();
 	 							}
-		 						
-		 					}
-		 					  
-		 					
-		 				}
-			    
-			    
-			  }
-	    
-	    
-	    
-	    doc.save('Team contacts.pdf');
-	   }
+	 					}
+	 					  
+	 					
+	 				}
+		    
+		    
+		  }
+    
+    
+    
+    doc.save('Team contacts.pdf');
+   }
    
    </script>
    

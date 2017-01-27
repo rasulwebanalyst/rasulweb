@@ -9,7 +9,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Cricket Social</title>
-
+     <!-- responsive css -->
+ <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 </head>
 <body>
 
@@ -32,7 +33,7 @@
 
       
                   
-            <div class="col-md-10 pull-right">
+            <div class="col-md-10 pull-right rightnone">
       			<div class="col-md-12 whiteBox">
                 
                 
@@ -179,6 +180,7 @@
                                 </div>
                          </div> --%>
                          <div class="col-md-12 noPadding MyScor-table">
+                         <div class="form-group">
                        <c:choose>  <c:when test="${battingPerformanceListSize eq 0 }">
                        <table>
                             	<thead>
@@ -278,6 +280,7 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
+                            </div>
                          	<!-- <button class="btn btn-default dBtn pull-right lodbtn" onclick="loadMoreBattings()">LOAD MORE</button> -->
                      
                      <c:forEach items="${BattingMatchesScoreList}" var="score">
@@ -457,6 +460,7 @@
                                 </div>
                          </div> --%>
                          <div class="col-md-12 noPadding MyScor-table">
+                         <div class="form-group">
                          	
                          	<c:choose>  <c:when test="${bowlingPerformanceListSize eq 0 }">
                          	<table>
@@ -534,6 +538,7 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
+                            </div>
                          	<!-- <button class="btn btn-default dBtn pull-right lodbtn" onclick="loadMoreBowlings()">LOAD MORE</button> -->
                        </c:otherwise>
                          
@@ -545,8 +550,8 @@
                         <div class="buluback">Achievement</div>
                             	<div class="col-md-12 noPadding AchHead">
                                 	<!-- <h4>ODI Series Match Record</h4> -->
-                                	
-                                	<c:choose>  <c:when test="${achievementsListSize eq 0 }">
+                              <div class="form-group">  	
+                              <c:choose>  <c:when test="${achievementsListSize eq 0 }">
                          	<table>
                             	<thead>
                                 	<tr>
@@ -625,6 +630,7 @@
                                      
                                 </tbody>
                             </table>
+                            </div>
                          	<button class="btn btn-default dBtn pull-right lodbtn" onclick="loadMoreAchievements()">LOAD MORE</button>
                        </c:otherwise>
                          
