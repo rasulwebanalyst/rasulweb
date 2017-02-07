@@ -839,6 +839,7 @@ table sup{
         <input type="hidden" id="schedulerId">  
         <input type="hidden" id="hiddenHomeId">
         <input type="hidden" id="hiddenAwayId">
+        <input type="hidden" id="GroundId" name="GroundId" value="${GroundId}">
                           
       
     
@@ -1946,6 +1947,7 @@ function saveFunction(){
 	var homeTeamId = $("#homeTeamName").val();
 	var awayTeamId = $("#awayTeamName").val();
 	var noOfOver = $("#totalOver").val();
+	var groundid=$("#GroundId").val();
 	
 	if(tournament == 0){
 		document.getElementById("firInnPlayerName").innerHTML = "";
@@ -2449,7 +2451,8 @@ console.log('--------------------------------  loseTeamRuns --------------------
 		    firstInningsTeamId : homeTeamId,
 		    secondInningsTeamId : awayTeamId,
 		    firstInningsTotalRuns  : winTeamRuns,
-		    secondInningsTotalRuns : loseTeamRuns
+		    secondInningsTotalRuns : loseTeamRuns,
+		    groundId : groundid
 		    
 		}
 	console.log(JSON.stringify(scorerBean));	
