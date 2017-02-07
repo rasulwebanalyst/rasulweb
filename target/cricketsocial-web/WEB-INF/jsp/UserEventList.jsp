@@ -116,6 +116,7 @@ var formatAMPMTime = function(date) {
 	return formatAMPMTime(gettingFromServer); 
 	
 	}
+	
 </script>
 
 </head>

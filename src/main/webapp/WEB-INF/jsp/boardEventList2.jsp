@@ -182,7 +182,7 @@ overflow-y: auto !important;
 					            										<c:otherwise>
 					            										<div id="MyEventListDIV">
 					            											<c:forEach items="${MyEvents.upcomingCreatedEventList}" var="event" varStatus="index">
-															                     <div class="col-md-12 noPadding leag-Acc">
+															                     <div class="col-md-12 noPadding leag-Acc" id="hide_${event.eventId}">
 												                           		<!-- <div class="col-md-1 eveDate"> -->
 										                          						<div class="col-md-1 col-sm-12 col-xs-12 noPadding N-btn">
 										                         						<%-- <span><fmt:formatDate pattern="d" value="${event.eventDate}" /><br><fmt:formatDate pattern="E" value="${event.eventDate}" /></span> --%>
@@ -741,15 +741,22 @@ function CancelEvent(id)
 			eventId : id
 	}
 	
-	$.ajax({
+$.ajax({
 		
 		type : "post",
 		url : "${pageContext.request.contextPath}/cancelEvent",
 		data : JSON.stringify(request),
 		contentType : "application/json",
 		success : function(res){
+			/* alert(res); */
+			if(res == "success")
+				{
+				
+				$("#hide_"+id).hide();
+				
+			 displaynotification('Event canceled successfully',2000); 
 			
-			alert(res);
+				}
 			}
 		
 	})

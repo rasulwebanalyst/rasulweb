@@ -42794,12 +42794,14 @@ public @ResponseBody  String cancelEvent(HttpServletRequest request,@RequestBody
 		if(hub !=null)
 		{
 			System.out.println("The hub is :"+hub);
+			if(hub.getResults() !=null ){
 			if(hub.getResults().getCancelResponse().equalsIgnoreCase("SUCCESS"))
 			{
 				response="success";
 			}else
 			{
 				response="failure";
+			}
 			}
 		}
 		

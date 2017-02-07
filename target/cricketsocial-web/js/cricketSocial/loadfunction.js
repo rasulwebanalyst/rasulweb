@@ -135,8 +135,24 @@ function getNoficationList()
 			 		        	  			}
 			 		        	  		
 		 		        	  	 }
-		 		        	  }else
-		 		        		  {
+		 		        	  }else if(res[i].eventId != null ){
+		 		        		  
+		 		        		  htm +='<li>';
+		 		        		 htm +='<div class="col-md-12 noPadding">';
+			 		 				htm +='<div class="col-md-12 Leag-Img notify-list">';
+			 		 				
+			 		 				htm +='<h4 style="font-size: 12px;text-align: center;color: #4c9fe1;">'+res[i].eventName+'</h4>'
+			 		 				htm +='<p style="font-size: 12px; "> Event Description : '+res[i].eventDescription+'</p>';
+			 		 				var givendate=testdirect(res[i].createdDate);
+			 		 				htm +='<p style="font-size: 12px; ">Event Date : '+givendate+' </p>';
+			 		 				htm +='<p style="font-size: 12px; ">Venue : '+res[i].venue+' </p>';
+				 		            
+				 		            htm +='</div>';
+				 		            htm +='</div>';
+		 		        		 htm +='</li>';
+		 		        		  
+		 		        	  }
+		 		        	  else{
 		 		        		  console.log("Tournament scheduler is 0");
 		 		        		  
 		 		        		 htm +='<li>';
@@ -195,6 +211,29 @@ function getNoficationList()
 	
 	
 }
+function testdirect(dt)
+{
+	var date = dt;	
+    var offset = new Date().getTimezoneOffset() * 60 * 1000;
+var gettingFromServer= new Date(date);
+gettingFromServer = new Date(gettingFromServer.valueOf() - offset);
+return formatAMPMTime(gettingFromServer); 
+}
+
+var formatAMPMTime = function(date) {
+	  var hours = date.getHours();
+	  console.log(hours);
+	  var minutes = date.getMinutes();
+	  var ampm = hours >= 12 ? 'PM' : 'AM';
+	  hours = hours % 12;
+	  hours = hours ? hours : 12; // the hour '0' should be '12'
+	  minutes = minutes < 10 ? '0'+minutes : minutes;
+	  hours = hours < 10 ? '0'+hours : hours ;
+	  var monthNames =  ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	  /*var strTime =date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear()+" "+ hours + ':' + minutes + ' ' + ampm;*/
+	  var strTime = monthNames[(date.getMonth()+1)]+"-"+date.getDate()+"-"+date.getFullYear()+" "+ hours + ':' + minutes + ' ' + ampm;
+	  return strTime;
+	}
 
 function getDateInStringFormateWithShortMonthNameTime_withTimeStampInput(timestamp)
 {
