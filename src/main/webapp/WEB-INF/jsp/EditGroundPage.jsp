@@ -498,6 +498,19 @@ function GetLocation() {
                                   <input type="hidden" class="form-control" placeholder="" id="addTeamIDDIV" name="" value="${groundDetails.homeTeamId}">
                                   </div>
                                   </div> 
+                                  
+                                  
+                                  <div class="col-md-12 noPadding">	
+                                  <div class="col-md-4">
+                                  	<label for="email">Additional Direction</label> <input type="text" class="form-control" placeholder="" id="directionsToGround" name="directionsToGround" value="${groundDetails.directionsToGround}">
+                                  </div>
+                                  
+                                  <div class="col-md-4 ">
+                              <label for="email">Ground Facilities</label> <input  type="textarea" class="form-control" placeholder="" id="groundFacilities" name="groundFacilities" value="${groundDetails.groundFacilities}">
+                              </div>
+                              
+                                  
+                                  </div>
                              
                               </form>   
                             </div>
@@ -713,6 +726,8 @@ function submitFunction(){
 		var boardId = "${boardId}";
 		var groundId = "${groundId}";
 		var latLang = $("#hiddenLatLang").val();
+		var groundfacilities=$("#groundFacilities").val();
+		var grounddirection=$("#directionsToGround").val();
 		//alert(boardId);
 		//alert(latLang);
 		var groundBean = {
@@ -727,7 +742,9 @@ function submitFunction(){
 				homeTeamId : teamId,
 				modifiedBy : boardId,
 				groundId : groundId,
-				latLang :latLang
+				latLang :latLang,
+				groundFacilities : groundfacilities,
+				directionsToGround : grounddirection
 					
 		}
 		//alert(JSON.stringify(groundBean));

@@ -127,6 +127,7 @@
                         <th>Address</th>
                         <th>City</th>
                         <th class="alignCenter">Action</th>
+                        <th class="alignCenter">Ground Info</th>
                     </tr>
                   </thead>
         </table>
@@ -145,6 +146,7 @@
                         <th>Address</th>
                         <th>City</th>
                         <th class="alignCenter">Action</th>
+                        <th class="alignCenter">Ground Info</th>
                     </tr>
                   </thead>
                   
@@ -169,6 +171,10 @@
                         <td class="alignCenter">
                         	<a href="#" title="Edit"><i onclick="editGround('${grndList.groundId}')" class="fa fa-pencil editIcon"></i></a>
                         	<a href="#" title="Delete"><i onclick="deleteGround('${grndList.groundId}')" class="fa fa-trash-o deleteIcon"></i></a>
+                        </td>
+                        
+                         <td class="alignCenter">
+                        	<a href="${pageContext.request.contextPath}/groundInfoprivate/${grndList.groundId}/${boardId}">Info</a>
                         </td>
                         
                     </tr>

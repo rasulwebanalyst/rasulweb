@@ -139,10 +139,28 @@
  function userHitBtn(id,vid)
  {
 	// alert(''+id);
-	$('#hittDiv'+vid).hide();
-	 $('#hittedDiv'+vid).show();
 	 
-	 document.getElementById('feed'+vid).href = 'javascript:'; 
+	 var flag="";
+	 
+	 if($('#hittDiv'+vid).css('display') == 'none')
+		 {
+		 console.log("hittDiv")
+		 flag="remove";
+		 $('#hittDiv'+vid).show();
+		 $('#hittedDiv'+vid).hide();
+		 
+		 }else
+			 {
+			 console.log("hittedDiv")
+			 flag="add"
+			 $('#hittDiv'+vid).hide();
+			 $('#hittedDiv'+vid).show();
+			 }
+	 
+	/*$('#hittDiv'+vid).hide();
+	 $('#hittedDiv'+vid).show();*/
+	 
+	 /*document.getElementById('feed'+vid).href = 'javascript:'; */
 		if(id!='')
 			{
 			 var   projectURL=  document.getElementById('projectURL').value;
@@ -154,12 +172,13 @@
 					 feedId: id,
 					 hittedBy : buddyID,
 					 hittedByName : buddyName,
-					 active : 1
+					 active : 1,
+					 hitFlag : flag
 		     };
 			 
 			 var postinfo=JSON.stringify(postHitparams);
 			 
-			 $.ajax({
+			$.ajax({
 					type : "POST",
 					url : projectURL+"/FeedHitByBuddy",
 					dataType: "json",
@@ -172,7 +191,7 @@
 							
 								$('#HitCountDIv'+vid).html('<img src="'+projectURL+'/images/hitIcon1.png" width="18" class="hitIcon1" >'+res.hitCount+'');
 							
-								document.getElementById('feed'+vid).href = 'javascript:';							
+								/*document.getElementById('feed'+vid).href = 'javascript:';*/							
 								console.log(document.getElementById('feed'+vid).href);
 							}
 					},

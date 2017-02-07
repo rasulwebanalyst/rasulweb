@@ -82,6 +82,7 @@
                         <th>Address</th>
                         <th>City</th>
                         <th class="alignCenter">Action</th>
+                        <th class="alignCenter">Ground Info</th>
                     </tr>
                   </thead>
       
@@ -111,7 +112,7 @@
                        </c:if>
                        </c:forEach>
                        
-                       
+                       <th class="alignCenter">Ground Info</th>
                        
                     </tr>
                   </thead>
@@ -150,6 +151,12 @@
                        </c:if>
                        </c:if>
                        </c:forEach>
+                        
+                        
+                        <td class="alignCenter">
+                        	<a href="${pageContext.request.contextPath}/groundInfopublic/${grndList.groundId}/${boardId}">Info</a>
+                        </td>
+                        
                         
                         
                     </tr>

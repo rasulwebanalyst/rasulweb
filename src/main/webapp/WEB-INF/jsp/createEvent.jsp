@@ -160,11 +160,30 @@ $(document).ready(function (){
                                     </span>
                                   </div> -->
                                   
-                                  <div class="input-group clockpicker" id="strtimeselecter">
+                                 <!--  <div class="input-group clockpicker" id="strtimeselecter">
                                 		<input type="text" placeholder="Choose event time" readonly class="form-control fomtexbox clockIconImg" value="" id="strTime" name="strTime" onfocus="timeValidation()">
                                 		<div  id="timeValidation" class="error" style="display: none;color: red;">Please enter valid time</div>
                                 		                              
-                            </div>
+                            </div> -->
+                            
+                            <div class="input-group " style="width: 65%;">
+                             <div class="col-md-5 noLeftPad">
+                              <input type="text" id="hourValue" name="hourValue" placeholder="Hour" class="form-control" onblur="validateHourInput()" style="border-radius: 4px;" />
+                              </div>
+                              <div class="col-md-5">
+                              <input type="text" id="minuteValue" name="minuteValue" placeholder="Minutes" class="form-control" onblur="validateMinuteInput()" style="border-radius: 4px;" />
+                               </div>
+                               <div class="col-md-2 noRightPad">
+                               <select id="timeMode" style="width: 100%; height: 34px; border: 1px solid #ccc; border-radius: 4px;">
+                              <option value="AM">AM</option>
+                              <option value="PM">PM</option>
+                              </select>
+                              </div>
+                              <div  id="timeValidation" class="error" style="display: none;color: red;">Please enter valid time</div>
+                              
+                              <input type="hidden"  value="" id="strTime" name="strTime">
+                              
+                              </div>
                                   
                             
                           </div>
@@ -172,7 +191,7 @@ $(document).ready(function (){
                           
                           <div class="form-group">
 				            <label class="fomlabel" for="r1"><span class="mandatory">*</span>Venue</label>
-                            <input type="text" placeholder="Include a place or address" class="form-control tbox fomtexbox" id="venue" name="venue">
+                            <input type="text" placeholder="Include a place or address" class="form-control tbox fomtexbox" onFocus="geolocate()" id="venue" name="venue">
                           </div>
                           
                           <div class="form-group">
@@ -381,6 +400,9 @@ function errorImageset(id)
 
 function submiitingForm(){
 	$("#timeValidation").hide();
+	
+	timeFunction();
+	
 	if($('#createEventForm').validate({
     	
 		 errorPlacement: function(error, element) {
@@ -688,7 +710,227 @@ function timeValidation(){
 			
   </script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.tokeninput.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initAutocomplete"
+    
+    
+    
+    <script type="text/javascript">
+  
+  
+  /* New GeoLocation */
+  var placeSearch, autocomplete;
+  var componentForm = {
+    street_number: 'short_name',
+    route : 'long_name',
+    locality : 'long_name',
+    administrative_area_level_1: 'short_name',
+    country: 'long_name',
+    postal_code: 'short_name'
+  };
+
+  function initAutocomplete() {
+    // Create the autocomplete object, restricting the search to geographical
+    // location types.
+    autocomplete = new google.maps.places.Autocomplete(
+        /** @type {!HTMLInputElement} */(document.getElementById('venue')),
+        {types: ['geocode']});
+
+    // When the user selects an address from the dropdown, populate the address
+    // fields in the form.
+    autocomplete.addListener('place_changed', fillInAddress);
+  }
+
+  // [START region_fillform]
+  function fillInAddress() {
+    // Get the place details from the autocomplete object.
+    var place = autocomplete.getPlace();
+
+   /*  for (var component in componentForm) {
+      document.getElementById(component).value = '';
+      document.getElementById(component).disabled = false;
+    } */
+  console.log(JSON.stringify(place));
+
+  console.log(JSON.stringify(place.geometry.location));
+  var geoAttributes=place.geometry.location;
+  $('#latlang').val(geoAttributes.lat()+","+geoAttributes.lng());
+  console.log(place.geometry.location.lat());
+  console.log(place.geometry.location.lng());
+
+    // Get each component of the address from the place details
+    // and fill the corresponding field on the form.
+    for (var i = 0; i < place.address_components.length; i++) {
+      var addressType = place.address_components[i].types[0];
+      if (componentForm[addressType]) {
+        var val = place.address_components[i][componentForm[addressType]];
+        
+        if(addressType == 'locality'){
+  	        document.getElementById('city').value = val;
+  	        $('.label.error').text('');
+  	  } 
+
+  	  var address = $("#autocomplete").val();
+  	  var city = $("#city").val();
+  	  
+  	  var address1 = address+","+city;
+  	  
+  	  $("#hiddenAddressCity").val(address);
+  	  
+  	  if(addressType == 'administrative_area_level_1') {
+  	   document.getElementById('state').value = val;
+  		}
+  	  if(addressType == 'country')
+  		  {
+  		   document.getElementById('country').value = val;
+  		   $('.label.error').text('');
+  		  }
+  	  
+  	  if(addressType == 'postal_code')
+  	  {
+  	   /* document.getElementById('zipcode').value = val;
+  	   $('.label.error').text(''); */
+  	   
+  		  var numbers = /^[0-9]+$/; 
+  		  if(numbers.test(val)){
+  			  document.getElementById('zipcode').value = val;
+  			   $('.label.error').text('');
+  		  }else{
+  		  }
+  	  }
+  	  
+  	  if(address != ''){
+  		  GetLocation();
+  	  }
+  	 
+    }
+  }
+
+
+
+  }
+
+  function geolocate() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var geolocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      var circle = new google.maps.Circle({
+        center: geolocation,
+        radius: position.coords.accuracy
+      });
+      autocomplete.setBounds(circle.getBounds());
+    });
+  }
+  }
+
+  function newGeoLocation(){
+  	
+  	for (var i = 0, marker; marker = markers[i]; i++) {
+  		marker.setMap(null);
+  	}
+  	var address = $("#autocomplete").val();
+  	var city = $("#autocomplete").val();
+  	var addresscity = address+","+city;
+  	//$("#city").val(addresscity);
+  	if(address != '' && city != ''){
+  		GetLocation();
+  	}
+  }
+
+  function checkValidation(){
+  	var cityVal = $("#autocomplete").val();
+  	if(cityVal == ''){
+  		for (var i = 0, marker; marker = markers[i]; i++) {
+  			marker.setMap(null);
+  		}
+  		$("#state").val("");
+  		$("#country").val("");
+  		$("#city").val("");
+  		$("#zipcode").val("");
+  	}
+  }
+  
+  </script>
+    
+   <script type="text/javascript">
+  
+  function validateHourInput(){
+		
+		var hour = parseInt($("#hourValue").val());
+		var max = 12;
+		//alert("Invalid"+hour);
+		var numberRegex = /^[+-]?\d+(\.\d+)?([eE][+-]?\d+)?$/;
+		if(hour > max){
+		//alert("Invalid");
+		$("#timeError").text("Please enter valid game time");
+		}else if(numberRegex.test($("#hourValue").val()) != true){
+		$("#timeError").text("Please enter valid game time");
+		}else{
+		//alert("valid");
+		$("#timeError").text("");
+		}
+		
+		
+		}
+	   function validateMinuteInput(){
+	   var minute = parseInt($("#minuteValue").val());
+	   var max = 60;
+	   var numberRegex = /^[+-]?\d+(\.\d+)?([eE][+-]?\d+)?$/;
+	   //alert("Invalid"+min);
+		if(minute > max){
+		//alert("Invalid Minute");
+		$("#timeError").text("Please enter valid game time");
+		}else if(numberRegex.test($("#minuteValue").val()) != true){
+		$("#timeError").text("Please enter valid game time");
+		}else{
+		//alert("valid Minute");
+		$("#timeError").text("");
+		}
+		
+		if(numberRegex.test($("#hourValue").val()) != true){
+		$("#timeError").text("Please enter valid game time");
+		}
+	   }
+	   
+	   
+	   
+	   
+	   function timeFunction(){
+			//var date  = $("#time").val();
+			
+			var date = $("#hourValue").val();
+			var minute = $("#minuteValue").val();
+			var max = 12;
+			var maxMinute = 60;
+			var hour = parseInt(date);
+			var minuteValue = parseInt(minute);
+			var numberRegex = /^[+-]?\d+(\.\d+)?([eE][+-]?\d+)?$/;
+			console.log("time value--->>"+date);
+		if(date == null || date == "" || typeof date == 'undefined' || date == '00' || date == '0'){
+			return false;
+		}else if(minute == null || minute == "" || typeof minute == 'undefined' || minute == '0'){
+			return false;
+		}else if(hour > max || minuteValue > maxMinute ){
+			return false;
+		}else if(numberRegex.test(date) != true || numberRegex.test(minute) != true){
+			return false;
+		}else{
+			
+			var hour = $("#hourValue").val();
+	         var min = $("#minuteValue").val();
+	         var timeMode = $("#timeMode").val();
+	         $("#strTime").val(hour+":"+min+""+timeMode);
+	         
+			return true;
+		}
+			}
+	   
+	   
+  
+  </script> 
+    
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4eJlFHh6Wm9BWa8x-H-cBUjCcdlEplT0&signed_in=true&libraries=places&callback=initAutocomplete"
         async defer></script> 
 </body>
 </html>

@@ -35,6 +35,7 @@ import com.cricketsocial.bean.event.EventList;
 import com.cricketsocial.bean.event.EventType;
 import com.cricketsocial.bean.event.SheduleAcceptEventResponse;
 import com.cricketsocial.bean.feed.FeedComment;
+import com.cricketsocial.bean.feed.FeedHit;
 import com.cricketsocial.bean.ground.Ground;
 import com.cricketsocial.bean.leauge.PlayerDTO;
 import com.cricketsocial.bean.leauge.TournamentDTO;
@@ -293,11 +294,31 @@ public class ResponseType {
 	 
 	 private List<BoardProfile> teamContactDetailList;
 	 
+	 private List<FeedHit> feedHitList;
+	 
+	 private String cancelResponse;
+	 
 	 
 	 
 	 
 	
 	
+
+	public String getCancelResponse() {
+		return cancelResponse;
+	}
+
+	public void setCancelResponse(String cancelResponse) {
+		this.cancelResponse = cancelResponse;
+	}
+
+	public List<FeedHit> getFeedHitList() {
+		return feedHitList;
+	}
+
+	public void setFeedHitList(List<FeedHit> feedHitList) {
+		this.feedHitList = feedHitList;
+	}
 
 	public List<BoardProfile> getTeamContactDetailList() {
 		return teamContactDetailList;

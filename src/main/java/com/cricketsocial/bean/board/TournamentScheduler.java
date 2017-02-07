@@ -73,13 +73,48 @@ public class TournamentScheduler {
 	
 	private List<ScorerNameList> portalScorerList;
 	
+	private int runs;
+	
+	private String runsFlag;
+	
+	private String teamId;
+	
+	private String teamName;
+	
+	
+	
+	
+	
+	public int getRuns() {
+		return runs;
+	}
+	public void setRuns(int runs) {
+		this.runs = runs;
+	}
+	public String getRunsFlag() {
+		return runsFlag;
+	}
+	public void setRunsFlag(String runsFlag) {
+		this.runsFlag = runsFlag;
+	}
+	public String getTeamId() {
+		return teamId;
+	}
+	public void setTeamId(String teamId) {
+		this.teamId = teamId;
+	}
+	public String getTeamName() {
+		return teamName;
+	}
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
+	}
 	public List<ScorerNameList> getPortalScorerList() {
 		return portalScorerList;
 	}
 	public void setPortalScorerList(List<ScorerNameList> portalScorerList) {
 		this.portalScorerList = portalScorerList;
 	}
-	
 	public String getGameType() {
 		return gameType;
 	}

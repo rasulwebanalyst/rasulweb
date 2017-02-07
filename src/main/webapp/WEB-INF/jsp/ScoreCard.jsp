@@ -177,7 +177,7 @@ var formatAMPMTime = function(date) {
                          
                          <div class="col-md-12 statusUpdateBox whiteBox ">
                         
-                        	<h1 class="noBorder">Full ScoreBoard</h1>  
+                        	<h1 class="noBorder">Full ScoreBoard</h1>  <!-- <input type="button" value="facebook" onclick="facebook()"> -->
                              <div>
                         		<c:choose>
                         			<c:when test="${scoreCardListSize == 0 }">
@@ -968,7 +968,34 @@ var formatAMPMTime = function(date) {
 		});
    </script>            
     
+<script type="text/javascript">
+/* 
+function facebook()
+{
+	var url=window.location.href;
+	console.log(url);
+	
+	
+	
+	   var appmsg="Hello";
+	
+    
+	  window
+	  .open(
+	  "https://www.facebook.com/dialog/feed?app_id=1654958434805143&display=popup"
+	  +"&name=Cricket Social"
+	  + "&link=https://dev.cricketsocial.net/showScoreCard/boardId/226e432a-dcbe-4a03-abe0-6c0c2f0a9db4/matchId/6c50b95f-ee12-4191-97dc-a62701bdb022"
+	  + "/&"
+	  + "description="
+	  + "ScoreCard", '',
+	  'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+	  return false;
+	
+	
+	
+	} */
 
+</script>
 </body>
 
 </html>

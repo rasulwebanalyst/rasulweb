@@ -419,6 +419,20 @@ function getAddress1(e,addr)
                                   
                                   </div>
                                   
+                                  
+                                  <div class="col-md-12 noPadding">	
+                                  <div class="col-md-4">
+                                  	<label for="email">Additional Direction</label> <input type="text" class="form-control" placeholder="" id="directionsToGround" name="directionsToGround">
+                                  </div>
+                                  
+                                  <div class="col-md-4 ">
+                              <label for="email">Ground Facilities</label> <input  type="textarea" class="form-control" placeholder="" id="groundFacilities" name="groundFacilities">
+                              </div>
+                              
+                                  
+                                  </div>
+                                  
+                                  
                              
                               </form>   
                             </div>
@@ -614,6 +628,8 @@ function submitFunction(){
 		var teamId = $("#addTeamIDDIV").val();
 		var boardId = "${boardId}";
 		var latLang = $("#hiddenLatLang").val();
+		var groundfacilities=$("#groundFacilities").val();
+		var grounddirection=$("#directionsToGround").val();
 		//alert(latLang.replace(/[^a-zA-Z0-9\.,]/g, ""));
 		
 		var groundBean = {
@@ -627,7 +643,9 @@ function submitFunction(){
 				createdBy : boardId,
 				homeTeamId : teamId,
 				modifiedBy : boardId,
-				latLang :latLang
+				latLang :latLang,
+				groundFacilities : groundfacilities,
+				directionsToGround : grounddirection
 					
 		}
 		//alert(JSON.stringify(groundBean));

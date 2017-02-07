@@ -13,10 +13,18 @@ public class FeedHit {
 	private String sharedFrom;
 	
 	private String sharedTo;
+	private String hitFlag;
 	
 	
 	
 	
+	
+	public String getHitFlag() {
+		return hitFlag;
+	}
+	public void setHitFlag(String hitFlag) {
+		this.hitFlag = hitFlag;
+	}
 	public String getSharedTo() {
 		return sharedTo;
 	}

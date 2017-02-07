@@ -3457,8 +3457,16 @@ System.out.println("keyToFindAccount-----> "+keyToFindAccount);
 		
 		 //Map<String , Object> request;
 		 hubReq=new HubRequest();
-		 hubReq.setMsgType(11);		
+		 if(feedHit.getHitFlag() == "remove" || feedHit.getHitFlag().equalsIgnoreCase("remove"))
+		 {
+			 hubReq.setMsgType(272);	
+		 }else
+		 {
+			 hubReq.setMsgType(11);	 
+		 }
+		 	
 		 hubReq.setRequestParam(feedHit);
+		 System.out.println("The feed flag :"+feedHit.getHitFlag());
 		 String strbuddyresponse=cricketSocialRestTemplateService.userRegistration(hubReq);
 		 System.out.println("board result : "+strbuddyresponse);
 		  GsonBuilder builder = new GsonBuilder();
@@ -11684,6 +11692,109 @@ public ModelAndView groundList(@PathVariable String boardId,HttpServletRequest r
 	return mav;
 }
 
+
+@RequestMapping(value="/groundInfoprivate/{groundId}/{boardId}", method=RequestMethod.GET)
+public ModelAndView groundinfoprivate(@PathVariable String groundId,@PathVariable String boardId, HttpServletRequest req)
+{
+	ModelAndView mav=null;
+	try{
+		HttpSession session=req.getSession();
+		if(session !=null && session.getAttribute("USRID") != null)
+		{
+			
+			Gson gson = new Gson();
+			mav=new ModelAndView("GroundInfoprivate");
+			mav.addObject("boardId", boardId);
+			
+			
+			hubReq=new HubRequest();
+			
+			
+			
+			UUID userId = (UUID) session.getAttribute("USRID");
+			
+			hubReq= new HubRequest();
+			 hubReq.setMsgType(41);
+			 ModelMap map=new ModelMap();
+			 map.put("userId", userId);
+			 map.put("startNode", 0);
+			 map.put("endNode", 200);
+			  hubReq.setRequestParam(map);
+				 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
+				 if(strBoardList!=null)
+				 {
+					 HubResponse hubResponse= gson.fromJson(strBoardList, HubResponse.class);
+					 if(hubResponse!=null && hubResponse.getResults()!=null)
+					 {
+						 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
+					 }
+				 }
+			 
+				//*************************** Getting Board info  ***************************************
+				 HubRequest hubReq1=new HubRequest();
+				 hubReq1.setMsgType(40);
+				 ModelMap map11=new ModelMap();			
+				 map11.put("userId", session.getAttribute("USRID"));			 
+				 map11.put("boardId", boardId);
+				 hubReq1.setRequestParam(map11);
+				 String strBoarddetail=cricketSocialRestTemplateService.userRegistration(hubReq1);		
+				 if(strBoarddetail!=null)
+				 {
+					 HubResponse hubResponse1= gson.fromJson(strBoarddetail, HubResponse.class);
+					if(hubResponse1!=null && hubResponse1.getResults().getBoardStatusDetail()!=null && hubResponse1.getResults().getBoardStatusDetail().size()>0)
+					{
+						 mav.addObject("BoardId", boardId);
+						 mav.addObject("BoradInfo", hubResponse1.getResults().getBoardStatusDetail().get(0));
+						 final String context = req.getContextPath();
+						 MenuList menuList= Util.leaugeMenuList(hubResponse1.getResults().getBoardStatusDetail().get(0), session.getAttribute("USRID")+"", context);						
+						 mav.addObject("LeaugeMenuList", menuList);				
+					}
+				 }	
+				 
+				 
+				 
+				 
+				 hubReq = new HubRequest(90);
+					hubReq.setMsgType(90);
+					ModelMap map1 = new ModelMap();
+					map1.put("groundId", "523960ff-ff10-4ce6-b71f-af6ec24f282a");
+					hubReq.setRequestParam(map1);
+					String response  = cricketSocialRestTemplateService.userRegistration(hubReq);
+					GsonBuilder builder = new GsonBuilder();
+					
+					if(response != null){
+						HubResponse  hubRes = gson.fromJson(response, HubResponse.class);
+						if(hubRes != null && hubRes.getRequestStatus() != null && hubRes.getResults().getGroundList().size() != 0){
+							mav.addObject("groundDetails", hubRes.getResults().getGroundList().get(0));
+							mav.addObject("groundId", groundId);
+							if(hubRes.getResults().getGroundList().get(0).getTeamScores().size()>0)
+							{
+							mav.addObject("teamScores",hubRes.getResults().getGroundList().get(0).getTeamScores());}
+							else{mav.addObject("teamscoresize", 0);}
+							if(hubRes.getResults().getGroundList().get(0).getPlayerStatistics().size() > 0){
+							mav.addObject("playerStatistics",hubRes.getResults().getGroundList().get(0).getPlayerStatistics());}
+							else{
+								mav.addObject("playerStatisticssize",0);}
+							}
+						}
+					}
+				 
+			
+			
+			
+		
+		
+	}catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	
+	System.out.println("The ground id is :"+groundId);
+	System.out.println("The board is :"+boardId);
+	return mav;
+}
+
+
 @RequestMapping(value="/deleteGround",method=RequestMethod.POST)
 public @ResponseBody String deleteGround(@RequestBody Ground ground,HttpServletRequest req){
 	
@@ -17987,6 +18098,130 @@ public ModelAndView groundProfileList(@PathVariable String boardId,HttpServletRe
 	}
 	return mav;
 }
+
+
+@RequestMapping(value="/groundInfopublic/{groundId}/{boardId}",method=RequestMethod.GET)
+public ModelAndView groundInfopublic(@PathVariable String groundId,@PathVariable String boardId,HttpServletRequest req)
+{
+	ModelAndView mav=null;
+	try{
+		HttpSession session=req.getSession();
+		if(session != null && session.getAttribute("USRID")!=null)
+		{
+			mav = new ModelAndView("Groundinfopublic");
+			mav.addObject("boardId", boardId);
+			
+			
+			
+			Gson gson=new Gson();
+			UUID userId = (UUID) session.getAttribute("USRID");
+			
+			hubReq= new HubRequest();
+			 hubReq.setMsgType(41);
+			 ModelMap map=new ModelMap();
+			 map.put("userId", userId);
+			 map.put("startNode", 0);
+			 map.put("endNode", 200);
+			  hubReq.setRequestParam(map);
+				 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
+				 if(strBoardList!=null)
+				 {
+					 HubResponse hubResponse= gson.fromJson(strBoardList, HubResponse.class);
+					 if(hubResponse!=null && hubResponse.getResults()!=null)
+					 {
+						 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
+					 }
+				 }
+			 
+				 
+				 //*********************************************************** Boad Fan check  ******************************************************
+						 hubReq= new HubRequest();
+						 hubReq.setMsgType(76);
+						 ModelMap fanmap4=new ModelMap();
+						 fanmap4.put("boardId",boardId);
+						 fanmap4.put("userId", userId);						
+						 hubReq.setRequestParam(fanmap4);
+						 String buddyFandeatil=cricketSocialRestTemplateService.userRegistration(hubReq);
+						 boolean buddyFan=false;
+						 if(buddyFandeatil!=null)
+						 {
+							 HubResponse buddyFanResponse= GsonConverters.getGsonObject().fromJson(buddyFandeatil, HubResponse.class);
+							 if(buddyFanResponse!=null)
+							 {
+								 if(buddyFanResponse.getRequestStatus()!=null && buddyFanResponse.getRequestStatus().endsWith("4"))
+								 {
+									 buddyFan=true;
+								 }
+							 }
+							 
+						 }
+						// buddyFan=true;
+						 System.out.println("board : "+buddyFan);
+						 mav.addObject("BoardFanReq", buddyFan);
+						 
+				 
+				 
+				//*************************** Getting Board info  ***************************************
+				 HubRequest hubReq1=new HubRequest();
+				 hubReq1.setMsgType(40);
+				 ModelMap map1=new ModelMap();			
+				 map1.put("userId", userId);			 
+				 map1.put("boardId", boardId);
+				 hubReq1.setRequestParam(map1);
+				 String strBoarddetail=cricketSocialRestTemplateService.userRegistration(hubReq1);		
+				 if(strBoarddetail!=null)
+				 {
+					 HubResponse hubResponse1= gson.fromJson(strBoarddetail, HubResponse.class);
+					if(hubResponse1!=null && hubResponse1.getResults().getBoardStatusDetail()!=null && hubResponse1.getResults().getBoardStatusDetail().size()>0)
+					{
+						 mav.addObject("BoardId", boardId);
+						 mav.addObject("BoradInfo", hubResponse1.getResults().getBoardStatusDetail().get(0));
+						 final String context = req.getContextPath();
+						 MenuList menuList= Util.leaugeMenuList(hubResponse1.getResults().getBoardStatusDetail().get(0), userId+"", context);						
+						 mav.addObject("LeaugeMenuList", menuList);				
+					}
+				 }
+				 
+				 
+				 
+				 hubReq = new HubRequest(90);
+					hubReq.setMsgType(90);
+					ModelMap map2 = new ModelMap();
+					map2.put("groundId", "523960ff-ff10-4ce6-b71f-af6ec24f282a");
+					hubReq.setRequestParam(map2);
+					String response  = cricketSocialRestTemplateService.userRegistration(hubReq);
+					GsonBuilder builder = new GsonBuilder();
+					
+					if(response != null){
+						HubResponse  hubRes = gson.fromJson(response, HubResponse.class);
+						if(hubRes != null && hubRes.getRequestStatus() != null && hubRes.getResults().getGroundList().size() != 0){
+							mav.addObject("groundDetails", hubRes.getResults().getGroundList().get(0));
+							mav.addObject("groundId", groundId);
+							if(hubRes.getResults().getGroundList().get(0).getTeamScores().size()>0)
+							{
+							mav.addObject("teamScores",hubRes.getResults().getGroundList().get(0).getTeamScores());}
+							else{mav.addObject("teamscoresize", 0);}
+							if(hubRes.getResults().getGroundList().get(0).getPlayerStatistics().size() > 0){
+							mav.addObject("playerStatistics",hubRes.getResults().getGroundList().get(0).getPlayerStatistics());}
+							else{
+								mav.addObject("playerStatisticssize",0);}
+							}
+						}
+					
+				 
+				 
+				 
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
+
+		}
+	}catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return mav;
+}
+
 
 @RequestMapping(value="/create-ground/{boardId}", method=RequestMethod.GET)
 public ModelAndView createGroundProfile(@PathVariable String boardId,HttpServletRequest req){
@@ -42449,7 +42684,128 @@ public @ResponseBody List<MatchesAroundYouResponse> matchesaround(HttpServletReq
 	return matcheslist;
 }
 
+@RequestMapping(value="/UpdateFeed", method=RequestMethod.POST)
+public @ResponseBody  String updateFeed(HttpServletRequest request,@RequestBody Feeds feeds)
+{
+	String response="";
+	try{
+		Gson gson=new Gson();
+		hubReq =new HubRequest(271);
+		ModelMap map=new ModelMap();
+		hubReq.setRequestParam(feeds);
+		String response271=cricketSocialRestTemplateService.userRegistration(hubReq);
+		if(response271 !=null)
+		{
+			HubResponse hub=gson.fromJson(response271, HubResponse.class);
+			if(hub !=null)
+			{
+				response="success";
+			}
+		}
+		
+	}catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return response;
+			
+}
 
+@RequestMapping(value="/UpdateComment", method=RequestMethod.POST)
+public @ResponseBody  String UpdateComment(HttpServletRequest request,@RequestBody Feeds feeds)
+{
+	String response="";
+	try{
+		Gson gson=new Gson();
+		hubReq =new HubRequest(271);
+		ModelMap map=new ModelMap();
+		hubReq.setRequestParam(feeds);
+		String response271=cricketSocialRestTemplateService.userRegistration(hubReq);
+		if(response271 !=null)
+		{
+			HubResponse hub=gson.fromJson(response271, HubResponse.class);
+			if(hub !=null)
+			{
+				response="success";
+			}
+		}
+		
+	}catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return response;
+			
+}
+
+@RequestMapping(value="/hitList", method=RequestMethod.POST)
+public @ResponseBody  List<FeedHit> hitList(HttpServletRequest request,@RequestBody Feeds feeds)
+{
+	String response="";
+	List<FeedHit> hitlist=null;
+	try{
+		Gson gson=new Gson();
+		hubReq =new HubRequest(273);
+		ModelMap map=new ModelMap();
+		hubReq.setRequestParam(feeds);
+		String response273=cricketSocialRestTemplateService.userRegistration(hubReq);
+		if(response273 !=null)
+		{
+			HubResponse hub=gson.fromJson(response273, HubResponse.class);
+			if(hub !=null)
+			{
+				if(hub.getResults().getFeedHitList() !=null)
+				{
+					System.out.println("Not null");
+					hitlist=hub.getResults().getFeedHitList();
+				}else
+				{
+					System.out.println("null Case");
+					hitlist=new ArrayList<FeedHit>();
+				}
+			}
+		}
+		
+	}catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return hitlist;
+			
+}
+
+
+@RequestMapping(value="/cancelEvent", method=RequestMethod.POST)
+public @ResponseBody  String cancelEvent(HttpServletRequest request,@RequestBody Event event)
+{
+	String response="";
+	try{
+		Gson gson=new Gson();
+		hubReq =new HubRequest(274);
+		ModelMap map=new ModelMap();
+		map.put("eventId", event.getEventId());
+		hubReq.setRequestParam(map);
+		String response274=cricketSocialRestTemplateService.userRegistration(hubReq);
+		System.out.println("The response is :"+response274);
+		HubResponse hub=gson.fromJson(response, HubResponse.class);
+		if(hub !=null)
+		{
+			if(hub.getResults().getCancelResponse().equalsIgnoreCase("SUCCESS"))
+			{
+				response="success";
+			}else
+			{
+				response="failure";
+			}
+		}
+		
+	}catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return response;
+			
+}
 
 
 

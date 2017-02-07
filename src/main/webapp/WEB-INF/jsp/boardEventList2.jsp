@@ -201,6 +201,8 @@ overflow-y: auto !important;
 																	                                	<img src="images/teamLogo1.png" class="teamLogo"> <b>VS</b> <img src="images/teamLogo2.png" class="teamLogo">
 																	                                	</div> -->
 																	                            		<a href="${pageContext.request.contextPath}/editboardEvent/board/${BoradInfo.boardId}/${event.eventId}"><i style="margin-left: 5px;" class="fa fa-pencil" title="Edit Event"></i></a>
+																	                            		<a onclick="CancelEvent('${event.eventId}')"><i style="margin-left: 5px;" class="fa fa-times" title="Close Event"></i></a>
+																	                            		
 																	                         </div>
 																	                          <script>
 																	                         eventIDS.push("${event.eventName}");
@@ -726,6 +728,33 @@ function showScoreCardInProgress1(id,bid){
 	}
 
   
+</script>
+
+
+<script type="text/javascript">
+
+function CancelEvent(id)
+{
+	
+	var request={
+			
+			eventId : id
+	}
+	
+	$.ajax({
+		
+		type : "post",
+		url : "${pageContext.request.contextPath}/cancelEvent",
+		data : JSON.stringify(request),
+		contentType : "application/json",
+		success : function(res){
+			
+			alert(res);
+			}
+		
+	})
+}
+
 </script>
    
 </body>

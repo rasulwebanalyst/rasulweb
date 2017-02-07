@@ -44,6 +44,48 @@ return result;
 }
 </SCRIPT>
 </head>
+
+<style>
+
+.dropbtn {
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none; 
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 9;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+
+
+</style>
+
 <body >
 <div>
 <div>
@@ -52,6 +94,17 @@ return result;
 <%@ include file="CSCommon.jsp" %>
 </div>
 <%@ include file="BuddyPublicHeader.jsp" %>
+
+<script type="text/javascript">
+ 
+		
+  viewFlag=1;
+	
+
+   </script> 
+
+
+
  <section class="middleContentBlock">
   <%--   
     <div class="profileBanner">
@@ -215,7 +268,21 @@ return result;
 		                                    </div> --%>
 		                                    
 		                                    <div class="headRight">
-		                                    	<p id="commentCount${feed.feedId}" onclick="getAllComments('${feed.feedId}')"><i class="fa fa-commenting-o"></i>${feed.feedCommentCount}</p> <p id="HitCountDIv${index.count}"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" >${feed.feedHitCount}</p>
+		                                    	<p id="commentCount${feed.feedId}" onclick="getAllComments('${feed.feedId}')"><i class="fa fa-commenting-o"></i>${feed.feedCommentCount}</p> 
+		                                    	
+		                                    	
+		                                    	<%-- <p id="HitCountDIv${index.count}"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" >${feed.feedHitCount}</p> --%>
+		                                    
+		                                    
+		                                    <div class="dropdown">
+		                                    	<p id="HitCountDIv${index.count}" onmouseout="removeHitList('${feed.feedId}')" onmouseover="getHitList('${feed.feedId}')" class="trash-holder"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" >${feed.feedHitCount}</p>
+		                                    	<div id="Hitlist_${feed.feedId}"></div>
+		                                    
+		                                    </div>
+		                                    
+		                                    
+		                                    
+		                                    
 		                                    </div>
 		                                    
 		                                    
@@ -258,12 +325,23 @@ return result;
 	                                    <c:choose>
 	                                    		<c:when test="${feed.userFeedHit}">
 	                                    					<%-- <a href="javascript:" class="shareLink" id="hitAchor${feed.feedId}"><i class="fa hitIcon"></i> Hit</a> --%>	
-	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" ><i class="fa hitIcon"></i> Hit</div>
+	                                    					<%-- <div class="hitIconDiv" id="hittedDiv${index.count}"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" ><i class="fa hitIcon"></i> Hit</div> --%>
+	                                    		
+	                                    		
+	                                    		           <div class="hitIconDiv" id="hittDiv${index.count}" style="display: none;"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" id="feed${index.count}"><i class="fa hitIcon"></i> Hit</a></div>
+	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" style="color: #4c9fe1;"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" > Hit</a></div>
+	                                    		
+	                                    		
 	                                    		</c:when>
 	                                    		<c:otherwise>
 	                                    					
-	                                    					<div class="hitIconDiv" id="hittDiv${index.count}"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" id="feed${index.count}"><i class="fa hitIcon"></i> Hit</a></div>
-	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}" style="display: none;"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" ><i class="fa hitIcon"></i> Hit</div>
+	                                    					<%-- <div class="hitIconDiv" id="hittDiv${index.count}"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" id="feed${index.count}"><i class="fa hitIcon"></i> Hit</a></div>
+	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}" style="display: none;"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" ><i class="fa hitIcon"></i> Hit</div> --%>
+	                                    		
+	                                    		
+	                                    		            <div class="hitIconDiv" id="hittDiv${index.count}"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" id="feed${index.count}"><i class="fa hitIcon"></i> Hit</a></div>
+	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}" style="display: none;"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" style="color: #4c9fe1;"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" > Hit</a></div>
+	                                    		
 	                                    		</c:otherwise>
 	                                    </c:choose>
 	                                    <%-- <a href="#" class="shareLink" onclick="showCommentDIV('${feed.feedId}')"><i class="fa fa-commenting"></i> Comment</a> --%>
@@ -625,5 +703,86 @@ $(function(){
 	$('#loading').hide();
 });
 </script>
+
+<script type="text/javascript">
+
+function SaveComment(id,fid)
+{
+	var comment=$("#Edited"+id).val();
+	 /*alert(comment);*/
+	
+	console.log("Edited feed :"+comment);
+	
+	var request={
+			feedCommentId : id,
+			content : comment,
+			updateFlag : "feedComment",
+			feedId : fid,
+	}
+	
+	$.ajax({
+		
+		type : "post",
+		url : "${pageContext.request.contextPath}/UpdateComment",
+		data : JSON.stringify(request),
+		contentType : "application/json",
+		success : function(res){
+			
+			if(res == "success")
+				{
+				console.log("Edit comment :"+res);
+				$("#Original"+id).text(comment);
+				$("#editdiv_"+id).show();
+				 $("#body_"+id).hide();
+				}
+			}
+		
+	})
+	
+}
+
+
+function getHitList(fid)
+{
+	 console.log("add");
+	 
+	 var request={
+			 feedId : fid,	 
+	 }
+	 $.ajax({
+		 type : "post",
+		 url : "${pageContext.request.contextPath}/hitList",
+		 data : JSON.stringify(request),
+		 contentType : "application/json",
+		 success : function(res)
+		 {
+			 var htmlco="";
+			 if(res !=null)
+				 {
+				 htmlco+="<div class='dropdown-content'>";
+			for(var i in res)
+				{
+				htmlco+="<li>"+res[i].hittedByName+"</li>";
+				}
+
+			 htmlco+="</div>";
+
+				 }
+			 
+			 $("#Hitlist_"+fid).html(htmlco).trigger('create');
+			 
+		 }
+		 
+	 })
+}
+
+function removeHitList(fid)
+{
+	  $("#Hitlist_"+fid).html("").trigger('create');
+	 console.log("remove"); 
+}
+
+</script>
+
 </body>
 </html>

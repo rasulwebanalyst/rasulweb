@@ -61,7 +61,25 @@ public class Feeds {
 	
 	private String publicProfileUserId;
 	
+	private String updateFlag;
 	
+	private String feedCommentId;
+	
+	
+	
+	
+	public String getFeedCommentId() {
+		return feedCommentId;
+	}
+	public void setFeedCommentId(String feedCommentId) {
+		this.feedCommentId = feedCommentId;
+	}
+	public String getUpdateFlag() {
+		return updateFlag;
+	}
+	public void setUpdateFlag(String updateFlag) {
+		this.updateFlag = updateFlag;
+	}
 	public FeedImage getVideoFile() {
 		return videoFile;
 	}

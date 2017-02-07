@@ -66,6 +66,30 @@ a{
 	margin-right: 0px;
 	margin-left: 2px;
 }
+.headRight .dropdown-content {
+	z-index: 9999;
+	top: 16px;
+	right: 0px;
+}
+.headRight .dropdown-content li {
+	text-align: left;
+    list-style: none;
+    color: #111;
+    padding: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.headRight .dropdown-content li:last-child {
+    border-bottom: none !important;
+}
+.weatherInfo table tr td {
+	border: none;
+}
+.weatherInfo table tr:nth-child(even),.weatherInfo table tr:nth-child(odd) {
+	background: none;
+} 
+#feedMainDIV .media, #feedMainDIV .media-body {
+	overflow: visible;
+}
 .scroll-slider ul li {
 	list-style: none;
 	clear: both;	
@@ -1962,12 +1986,12 @@ textarea {
 }
 .feedBlock .media-heading {
 	display: inline-block;
-	width: 70%;
+	width: 60%;
 }
 .feedBlock .headRight {
 	display: inline-block;
 	vertical-align: top;
-	width: 140px;
+	width: 170px;
 	font-size: 12px;
 	float: right;
 	text-align: right;
@@ -4210,8 +4234,8 @@ ul.topNav li .badge {
 .headRight p {
 	float: right;
 	margin: 0;
-	margin-left: 11px;
-	margin-right: 10px;
+	margin-left: 4px;
+	margin-right: 4px;
 }
 
 
@@ -6116,7 +6140,7 @@ color: red;
   */
 
 .trash-holder {
-    margin: 2px 10px !important;
+    margin: 2px 5px !important;
 	float: right;
 }
 .trash {

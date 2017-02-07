@@ -39,29 +39,32 @@ public class PlayerDTO {
 	private String strikeRate;
 	private String notOutFlag;
 	private int battingBalls;
-	private UUID sheduledId;
-	private String groundName;
-	private Date gameDate;
-	
 	private UUID tournamentSchedulerId;
 	private UUID createdBy;
 	
+	private UUID sheduledId;
+	private String groundName;
+	private Date gameDate;
+	private String flag;
+	private String bbi;
 	
 	
 	
 	
 	
-	public UUID getTournamentSchedulerId() {
-		return tournamentSchedulerId;
+	
+	
+	public String getBbi() {
+		return bbi;
 	}
-	public void setTournamentSchedulerId(UUID tournamentSchedulerId) {
-		this.tournamentSchedulerId = tournamentSchedulerId;
+	public void setBbi(String bbi) {
+		this.bbi = bbi;
 	}
-	public UUID getCreatedBy() {
-		return createdBy;
+	public String getFlag() {
+		return flag;
 	}
-	public void setCreatedBy(UUID createdBy) {
-		this.createdBy = createdBy;
+	public void setFlag(String flag) {
+		this.flag = flag;
 	}
 	public UUID getSheduledId() {
 		return sheduledId;
@@ -80,6 +83,18 @@ public class PlayerDTO {
 	}
 	public void setGameDate(Date gameDate) {
 		this.gameDate = gameDate;
+	}
+	public UUID getTournamentSchedulerId() {
+		return tournamentSchedulerId;
+	}
+	public void setTournamentSchedulerId(UUID tournamentSchedulerId) {
+		this.tournamentSchedulerId = tournamentSchedulerId;
+	}
+	public UUID getCreatedBy() {
+		return createdBy;
+	}
+	public void setCreatedBy(UUID createdBy) {
+		this.createdBy = createdBy;
 	}
 	public int getBattingBalls() {
 		return battingBalls;

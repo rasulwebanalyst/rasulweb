@@ -1,5 +1,10 @@
 package com.cricketsocial.bean.ground;
 
+import java.util.List;
+
+import com.cricketsocial.bean.board.TournamentScheduler;
+import com.cricketsocial.bean.leauge.PlayerDTO;
+
 public class Ground {
 	private String groundId;
 	private int active;
@@ -21,7 +26,44 @@ public class Ground {
 	private long tokenId;
 
 	private String paginationFlag;
+	
+	
+     private List<TournamentScheduler> teamScores;
+	 
+	 private List<PlayerDTO> playerStatistics;
+	
+	 private String groundFacilities;
+	 
+	 private String directionsToGround;
+	 
+	 
+	 
+	
 
+	public String getGroundFacilities() {
+		return groundFacilities;
+	}
+	public void setGroundFacilities(String groundFacilities) {
+		this.groundFacilities = groundFacilities;
+	}
+	public String getDirectionsToGround() {
+		return directionsToGround;
+	}
+	public void setDirectionsToGround(String directionsToGround) {
+		this.directionsToGround = directionsToGround;
+	}
+	public List<TournamentScheduler> getTeamScores() {
+		return teamScores;
+	}
+	public void setTeamScores(List<TournamentScheduler> teamScores) {
+		this.teamScores = teamScores;
+	}
+	public List<PlayerDTO> getPlayerStatistics() {
+		return playerStatistics;
+	}
+	public void setPlayerStatistics(List<PlayerDTO> playerStatistics) {
+		this.playerStatistics = playerStatistics;
+	}
 	public String getGroundId() {
 		return groundId;
 	}

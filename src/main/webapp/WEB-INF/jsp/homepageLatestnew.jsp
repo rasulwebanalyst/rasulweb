@@ -73,6 +73,48 @@ return result;
 
 </style>
 </head>
+
+<style>
+
+.dropbtn {
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none; 
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 9;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+
+
+</style>
+
 <body >
 <div>
 <div>
@@ -82,6 +124,26 @@ return result;
 </div>
 <%@ include file="BuddyHeader.jsp" %>
  <section class="middleContentBlock">
+ 
+ 
+ <div id="feededit" class="popupDiv" style="display: none;">
+												
+												           <div class="box">
+												                <span class="head">Edit feed</span>
+												                <span class="close_btn" > <i class="fa fa-close" onclick="closeFeededit()"></i> </span>
+												
+												                <div class="popupContentDiv">
+												                
+												                		
+												                        	<textarea class="form-control" id="feedsedited" rows="5" placeholder="" ></textarea>
+												                        	<input type="hidden" id="EditedId">
+												                          
+												                          <div class="centerbtns"><button type="button" class="btn btn-default blueBtn" onclick="updatePost()">OK</button></div>
+												                       
+												                </div>
+												            </div>
+												 
+												 	</div>
     
     <%-- <div class="profileBanner">
     	<img src="${pageContext.request.contextPath}/images/innerBanner.png" class="innerBanner">
@@ -209,10 +271,21 @@ return result;
 		                                    </div> --%>
 		                                    
 		                                    <div class="headRight">
+		                                    
+		                                    <div class="dropdown">
+		                                    	<p id="HitCountDIv${index.count}" onmouseout="removeHitList('${feed.feedId}')" onmouseover="getHitList('${feed.feedId}')" class="trash-holder"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" >${feed.feedHitCount}</p>
+		                                    	<div id="Hitlist_${feed.feedId}"></div>
+		                                    
+		                                    </div>
 		                                  
 		                                    	<c:choose>
 		                                    		<c:when test="${feed.postedBy eq USRID}">
 		                                    			<p class="trash-holder" onclick="feedDelete('${feed.feedId}')" title="Delete"  ><i class="fa fa-trash trash"></i> </p>
+		                                    			
+		                                    			<p class="trash-holder"  onclick="feedEdit('${feed.feedId}')" title="Edit"  ><i class="fa fa-pencil trash"></i> </p>
+		                                    			
+		                                    			
+		                                    			
 		                                    		</c:when>
 		                                    		<c:otherwise>
 		                                    			<p class="trash-holder" onclick="feedSpam('${feed.feedId}')" title="Report spam"><i class="fa fa-ban"></i> </p>
@@ -220,7 +293,7 @@ return result;
 		                                    	</c:choose>
 		                                   
 		                                    	<p id="commentCount${feed.feedId}" onclick="getAllComments('${feed.feedId}')" ><i class="fa fa-commenting"></i>${feed.feedCommentCount}</p> 
-		                                    	<p id="HitCountDIv${index.count}"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" >${feed.feedHitCount}</p>
+		                                    	
 		                                    	
 		                                    </div>
 		                                    
@@ -258,19 +331,20 @@ return result;
 	                                    	</c:forEach>
 	                                    </c:if>
 
-	                                         <P>${feed.content}</P>
+	                                         <P id="${feed.feedId}">${feed.content}</P>
 	                                    </div>
 	                                    
 	                                    
 	                                    <c:choose>
 	                                    		<c:when test="${feed.userFeedHit}">
 	                                    					<%-- <a href="javascript:" class="shareLink" id="hitAchor${feed.feedId}"><i class="fa hitIcon"></i> Hit</a> --%>	
-	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" ><i class="fa hitIcon"></i> Hit</div>
+	                                    					<div class="hitIconDiv" id="hittDiv${index.count}" style="display: none;"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" id="feed${index.count}"><i class="fa hitIcon"></i> Hit</a></div>
+	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" style="color: #4c9fe1;"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" > Hit</a></div>
 	                                    		</c:when>
 	                                    		<c:otherwise>
 	                                    					
 	                                    					<div class="hitIconDiv" id="hittDiv${index.count}"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" id="feed${index.count}"><i class="fa hitIcon"></i> Hit</a></div>
-	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}" style="display: none;"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" ><i class="fa hitIcon"></i> Hit</div>
+	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}" style="display: none;"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" style="color: #4c9fe1;"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" > Hit</a></div>
 	                                    		</c:otherwise>
 	                                    </c:choose>
 	                                    <%-- <a href="#" class="shareLink" onclick="showCommentDIV('${feed.feedId}')"><i class="fa fa-commenting"></i> Comment</a> --%>
@@ -830,6 +904,132 @@ function showScoreCard(id){
 	 var boardId ="${boardId}";
 	 window.location.href = "${pageContext.request.contextPath}/showScoreCard/boardId/"+boardId+"/matchId/"+id;
 }
+</script>
+
+<script type="text/javascript">
+
+function feedEdit(id)
+{
+	var feed=$("#"+id).text();
+	$("#feedsedited").val(feed);
+	$("#EditedId").val(id);
+	$("#feededit").show();
+	console.log(feed);
+	}
+function closeFeededit()
+{
+	$("#feededit").hide();
+	}
+	
+	function updatePost()
+	{
+		var feed=$("#feedsedited").val();
+		var editedid=$("#EditedId").val();
+		console.log("Edited feed :"+feed);
+		
+		var request={
+				
+				content : feed,
+				updateFlag : "feed",
+				feedId : editedid,
+		}
+		
+		$.ajax({
+			
+			type : "post",
+			url : "${pageContext.request.contextPath}/UpdateFeed",
+			data : JSON.stringify(request),
+			contentType : "application/json",
+			success : function(res){
+				
+				if(res == "success")
+					{
+					$("#"+editedid).text(feed);
+					}
+				$("#feedsedited").val("");
+				$("#EditedId").val("");
+				$("#feededit").hide();
+				}
+			
+		})
+	}
+	
+	 function SaveComment(id,fid)
+	 {
+		var comment=$("#Edited"+id).val();
+		 /*alert(comment);*/
+		
+		console.log("Edited feed :"+comment);
+		
+		var request={
+				feedCommentId : id,
+				content : comment,
+				updateFlag : "feedComment",
+				feedId : fid,
+		}
+		
+		$.ajax({
+			
+			type : "post",
+			url : "${pageContext.request.contextPath}/UpdateComment",
+			data : JSON.stringify(request),
+			contentType : "application/json",
+			success : function(res){
+				
+				if(res == "success")
+					{
+					console.log("Edit comment :"+res);
+					$("#Original"+id).text(comment);
+					$("#editdiv_"+id).show();
+					 $("#body_"+id).hide();
+					}
+				}
+			
+		})
+		
+	 }
+	 
+	 function getHitList(fid)
+	 {
+		 console.log("add");
+		 
+		 var request={
+				 feedId : fid,	 
+		 }
+		 $.ajax({
+			 type : "post",
+			 url : "${pageContext.request.contextPath}/hitList",
+			 data : JSON.stringify(request),
+			 contentType : "application/json",
+			 success : function(res)
+			 {
+				 var htmlco="";
+				 if(res !=null)
+					 {
+					 htmlco+="<div class='dropdown-content'>";
+				for(var i in res)
+					{
+					htmlco+="<li>"+res[i].hittedByName+"</li>";
+					}
+  
+				 htmlco+="</div>";
+	
+					 }
+				 
+				 $("#Hitlist_"+fid).html(htmlco).trigger('create');
+				 
+			 }
+			 
+		 })
+	 }
+	 
+	 function removeHitList(fid)
+	 {
+		  $("#Hitlist_"+fid).html("").trigger('create');
+		 console.log("remove"); 
+	 }
+	 
+	
 </script>
 </body>
 </html>
