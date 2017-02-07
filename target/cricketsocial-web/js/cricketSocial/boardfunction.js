@@ -288,29 +288,41 @@ $('#postfrom').validate({
 									 var time=feedDisplayDate2(res[i].createdDate);
 											 console.log(res[i].createdDate);
 											 var commentId="'"+res[i].feedCommentId+"'";
+											 var cmtid=res[i].feedCommentId;
+											 var fid=res[i].feedId;
 											 var feedId="'"+res[i].feedId+"'";
 											htm +='<div class="media">'
 					                             +'<div class="media-left">'
 					                          //   +'<img src="'+projectURL+'/images/profileIcon.png" class="teamLogo">'
-					                             +'<img src="'+res[i].userProfilePic+'" onError="this.onerror=null;this.src='+projectURL+'/images/profileIcon.png;" class="teamLogo">'
+					                             +'<img src="'+res[i].userProfilePic+'" onerror=errorImageset1(this) class="teamLogo">'
 					                             +'</div>'
-					                             +'<div class="media-body">'
+					                             +'<div class="media-body" id="editdiv_'+cmtid+'">'
 					                             +'<h4 class="media-heading">'+res[i].commentedByName;
-											
+											console.log("Flag value :"+viewFlag);
 											if(viewFlag>0){
 												if(buddyID==res[i].commentedBy){
 													
-													 htm +='<span class="trash-holder" title="Delete" onClick="commentDelete('+commentId+','+feedId+')"> <i class="fa fa-trash trash"></i> </span><br>';
+													htm +='<span class="trash-holder" title="Edit" onClick="commentEdit('+commentId+','+feedId+')"> <i class="fa fa-pencil trash"></i> </span>';
+													 htm +='<span class="trash-holder" title="Delete" onClick="commentDelete('+commentId+','+feedId+')"> <i class="fa fa-trash trash"></i> </span>';
 												}else{
-													htm +='<span class="trash-holder" title="Report spam" onClick="commentSpam('+commentId+','+feedId+')"> <i class="fa fa-ban"></i> </span><br>';
+													htm +='<span class="trash-holder" title="Report spam" onClick="commentSpam('+commentId+','+feedId+')"> <i class="fa fa-ban"></i> </span>';
 												}
 											}
 											
 					                            
 					                             htm +='<span class="date">'+time+'</span></h4>'
-					                             +'<p>'+res[i].comments+'</p>'
-					                        +'</div>'
-					                      +'</div>';
+					                             +"<p id='Original"+cmtid+"'>"+res[i].comments+"</p>"
+					                        +'</div>';
+					                             
+					                             
+					                             console.log("It has come hear");
+					                             htm +='<div class="media-body" style="display: none;" id="body_'+cmtid+'">';
+					                             htm +="<span class='trash-holder' title='save' onclick=SaveComment('"+cmtid+"','"+fid+"')><i class='fa fa-check-square-o' aria-hidden='true'></i></span>";
+					                             htm +="<span class='trash-holder' title='save' onclick=SaveCommentClose('"+cmtid+"')><i class='fa fa-times' aria-hidden='true'></i></span>";
+					                             htm +="<textarea  class='form-control' style='margin-bottom: 10px;width: 356px;height: 53px !important;' id='Edited"+cmtid+"'>"+res[i].comments+"</textarea>";
+					                             htm +="</div>";
+					                             
+					                      htm+='</div>';
 											
 									
 									}// for
@@ -341,6 +353,24 @@ $('#postfrom').validate({
 		}
 	 
 	 
+ }
+ 
+ function errorImageset1(id)
+ {
+	 var   projectURL=  document.getElementById('projectURL').value;
+ 	id.src=projectURL+"/images/profileIcon.png";
+ }
+ 
+ function commentEdit(id,fid)
+ {
+	 $("#editdiv_"+id).hide();
+	 $("#body_"+id).show();
+ }
+ 
+ function SaveCommentClose(id)
+ {
+	 $("#editdiv_"+id).show();
+	 $("#body_"+id).hide();
  }
  
  function commentDelete(id, fid){

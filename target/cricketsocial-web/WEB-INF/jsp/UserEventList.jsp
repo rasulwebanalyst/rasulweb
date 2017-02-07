@@ -295,89 +295,93 @@ var formatAMPMTime = function(date) {
                       
                         <div role="tabpanel" class="tab-pane active" id="Myevent">
 					                       
-					                       <c:choose>
-						                       	<c:when test="${!empty MyEvents}">
-						                       			<div class="col-md-12 whiteBox">
-					            
-					            							<h1 class="noBorder">Organize Events</h1>
-					            									<c:choose>
-					            										<c:when test="${empty MyEvents.upcomingCreatedEventList}">
-					            											<div style="color: red;">No Event</div>	
-					            										</c:when>
-					            										<c:otherwise>
-					            										<div id="MyEventListDIV">
-					            											<c:forEach items="${MyEvents.upcomingCreatedEventList}" var="event" varStatus="index">
-																						                     <div class="col-md-12 noPadding leag-Acc">
-																						                           		<!-- <div class="col-md-1 eveDate"> -->
-																				                          						<div class="col-md-1 noPadding N-btn">
-																				                         						<%-- <span><fmt:formatDate pattern="d" value="${event.eventDate}" /><br><fmt:formatDate pattern="E" value="${event.eventDate}" /></span> --%>
-																				                         						<p><span id="format_${event.eventId}" style="display:none"><fmt:formatDate pattern="M/d/YYYY hh:mm a" value="${event.eventDate}" /></span><script>document.write(dateFunction('${event.eventId}'));</script><br><span id="formatDay_${event.eventId}" style="display:none"><fmt:formatDate pattern="M/d/YYYY hh:mm a" value="${event.eventDate}" /></span><script>document.write(dayName('${event.eventId}'));</script></p>
-																				                                                     
-																									 						</div>
-																						                    
-																									                    	 	<div class="col-md-11 borderleft">
-																									                         
-																											                         <div class="col-md-12 noPadding eventUserDetails">
-																											                         			<!-- <img src="images/userImg4.jpg" class="nav-avatar"> Lakshith -->
-																											                         			<img src="${USRIMG}" class="nav-avatar" onerror="userErrorDefaultImg(this)">  ${USRLastName}
-																											                            
-																											                            
-																											                            		<!-- <div class="teamLogos">
-																											                                	<img src="images/teamLogo1.png" class="teamLogo"> <b>VS</b> <img src="images/teamLogo2.png" class="teamLogo">
-																											                                	</div> -->
-																											                            		<a href="${pageContext.request.contextPath}/editEvent/${event.eventId}"><i style="margin-left: 5px;" class="fa fa-pencil" title="Edit Event"></i></a>
-																											                         </div>
-																											                         
-																											                        	<div class="col-md-6 Leag-Img">
-																											                         			 <h4>${event.eventName}</h4>
-																											                         			 <p id="formatDate_${event.eventId}" style="display:none"><fmt:formatDate pattern="M/d/YYYY hh:mm a" value="${event.eventDate}" /></p><script>document.writeln(test("${event.eventId}"));</script>
-																											                         			 
-																											                         			<p>
-																											                         		<!-- 	<script type="text/javascript">
-																											                         			document.writeln(getevntUTCtime("${event.eventDate}"));																									                         			
-																											                         			</script> -->
-																											                         			</p>
-																											                         			 <p>${event.eventName}</p>
-																											                        	</div>
-																											                        <div class="col-md-6 threebtn">
-																											                            
-																											                                <p><input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="Reject" disabled="disabled"><br><a href="javascript:gettingEventAcceptedPeopleList('${event.eventId}','reject${event.eventId}',143)">Rejected : ${event.rejectedCount}</a></p>
-																											                                <p><input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="May Be" disabled="disabled"><br><a href="javascript:gettingEventAcceptedPeopleList('${event.eventId}','reject${event.eventId}',152)">May Be : ${event.maybeCount}</a></p>
-																											                             	<p> <input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="Accept" disabled="disabled"><br><a href="javascript:gettingEventAcceptedPeopleList('${event.eventId}','reject${event.eventId}',151)">Accepted : ${event.acceptedCount}  </a></p>
-																											                             	<%-- <p> <input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="Edit event" onclick="editEvent('${event.eventId}');" ></p> --%>
-																											                            
-																											                         </div>
-																											                         <script>
-																											                         eventIDS.push("${event.eventName}");
-																											                         </script>
-																									                         </div>
-																									                         
-																									                         <div id="reject${event.eventId}" class="col-md-12 accbox eventoption" style="display: none;">
-																									                     
-																												                     <h1 class="noBorder">Accepted Guys</h1>
-																												                     
-																												                     <div class=" col-md-12 accptguybg">
-																												                    	<p>1 Govind</p>
-																												                        <img class="pull-right" src="images/userImg3.jpg">
-																												                     </div>
-																												                     
-																												                     
-																									                     
-																									                     	</div>
-																						                         
-																						                          
-																						                     </div>
-																						                     
-																				                     </c:forEach>
-																				                     </div>
-																				                     <div id="myEventPageBtn">
-																				                         <button class="btn dBtn pull-right btnalian1" type="button" onclick="my_Event_Page(10,'MyEventListDIV','myEventPageBtn','${USRID}')">Load More</button>
-																				                         </div>   
-					            										</c:otherwise>
-					            									
-					            									</c:choose>    							
-					            								<div class="clear"></div>
-					    									</div>
+                       <c:choose>
+	                       	<c:when test="${!empty MyEvents}">
+	                       			<div class="col-md-12 whiteBox">
+            
+            							<h1 class="noBorder">Organize Events</h1>
+            									<c:choose>
+            										<c:when test="${empty MyEvents.upcomingCreatedEventList}">
+            											<div style="color: red;">No Event</div>	
+            										</c:when>
+            										<c:otherwise>
+            										<div id="MyEventListDIV">
+            											<c:forEach items="${MyEvents.upcomingCreatedEventList}" var="event" varStatus="index">
+									                     <div class="col-md-12 noPadding leag-Acc">
+									                           		<!-- <div class="col-md-1 eveDate"> -->
+							                          						<div class="col-md-1 noPadding N-btn">
+							                         						<%-- <span><fmt:formatDate pattern="d" value="${event.eventDate}" /><br><fmt:formatDate pattern="E" value="${event.eventDate}" /></span> --%>
+							                         						<p><span id="format_${event.eventId}" style="display:none"><fmt:formatDate pattern="M/d/YYYY hh:mm a" value="${event.eventDate}" /></span><script>document.write(dateFunction('${event.eventId}'));</script><br><span id="formatDay_${event.eventId}" style="display:none"><fmt:formatDate pattern="M/d/YYYY hh:mm a" value="${event.eventDate}" /></span><script>document.write(dayName('${event.eventId}'));</script></p>
+							                                                     
+												 						</div>
+									                    
+												                    	 	<div class="col-md-11 borderleft">
+												                         
+														                         <div class="col-md-12 noPadding eventUserDetails">
+														                         			<!-- <img src="images/userImg4.jpg" class="nav-avatar"> Lakshith -->
+														                         			<img src="${USRIMG}" class="nav-avatar" onerror="userErrorDefaultImg(this)">  ${USRLastName}
+														                            
+														                            
+														                            		<!-- <div class="teamLogos">
+														                                	<img src="images/teamLogo1.png" class="teamLogo"> <b>VS</b> <img src="images/teamLogo2.png" class="teamLogo">
+														                                	</div> -->
+														                            		<a href="${pageContext.request.contextPath}/editEvent/${event.eventId}"><i style="margin-left: 5px;" class="fa fa-pencil" title="Edit Event"></i></a>
+														                            		<a onclick="CancelEvent('${event.eventId}')"><i style="margin-left: 5px;" class="fa fa-times" title="Close Event"></i></a>
+														                            		
+														                            		
+														                            		<%-- <input  type="button" class="btn dBtn " value="Cancel" onclick="CancelEvent('${event.eventId}')" > --%>
+														                         </div>
+														                         
+														                        	<div class="col-md-6 Leag-Img">
+														                         			 <h4>${event.eventName}</h4>
+														                         			 <p id="formatDate_${event.eventId}" style="display:none"><fmt:formatDate pattern="M/d/YYYY hh:mm a" value="${event.eventDate}" /></p><script>document.writeln(test("${event.eventId}"));</script>
+														                         			 
+														                         			<p>
+														                         		<!-- 	<script type="text/javascript">
+														                         			document.writeln(getevntUTCtime("${event.eventDate}"));																									                         			
+														                         			</script> -->
+														                         			</p>
+														                         			 <p>${event.eventName}</p>
+														                        	</div>
+														                        <div class="col-md-6 threebtn">
+														                            
+														                                <p><input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="Reject" disabled="disabled"><br><a href="javascript:gettingEventAcceptedPeopleList('${event.eventId}','reject${event.eventId}',143)">Rejected : ${event.rejectedCount}</a></p>
+														                                <p><input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="May Be" disabled="disabled"><br><a href="javascript:gettingEventAcceptedPeopleList('${event.eventId}','reject${event.eventId}',152)">May Be : ${event.maybeCount}</a></p>
+														                             	<p> <input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="Accept" disabled="disabled"><br><a href="javascript:gettingEventAcceptedPeopleList('${event.eventId}','reject${event.eventId}',151)">Accepted : ${event.acceptedCount}  </a></p>
+														                             	<%-- <p> <input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="Edit event" onclick="editEvent('${event.eventId}');" ></p> --%>
+														                            
+														                         </div>
+														                         <script>
+														                         eventIDS.push("${event.eventName}");
+														                         </script>
+												                         </div>
+												                         
+												                         <div id="reject${event.eventId}" class="col-md-12 accbox eventoption" style="display: none;">
+												                     
+															                     <h1 class="noBorder">Accepted Guys</h1>
+															                     
+															                     <div class=" col-md-12 accptguybg">
+															                    	<p>1 Govind</p>
+															                        <img class="pull-right" src="images/userImg3.jpg">
+															                     </div>
+															                     
+															                     
+												                     
+												                     	</div>
+																	                         
+																	                          
+																	                     </div>
+																	                     
+															                     </c:forEach>
+															                     </div>
+															                     <div id="myEventPageBtn">
+															                         <button class="btn dBtn pull-right btnalian1" type="button" onclick="my_Event_Page(10,'MyEventListDIV','myEventPageBtn','${USRID}')">Load More</button>
+															                         </div>   
+            										</c:otherwise>
+            									
+            									</c:choose>    							
+            								<div class="clear"></div>
+    									</div>
 
                            
                            
@@ -393,65 +397,65 @@ var formatAMPMTime = function(date) {
 					            										<c:otherwise>
 					            										<div id="MyEventListDIV2">
 					            											<c:forEach items="${MyEvents.completedCreatedEventList}" var="event" varStatus="index">
-																						                     <div class="col-md-12 noPadding leag-Acc">
-																						                           		<!-- <div class="col-md-1 eveDate"> -->
-																				                          						<div class="col-md-1 noPadding N-btn">
-																				                         						<%-- <span><fmt:formatDate pattern="d" value="${event.eventDate}" /><br><fmt:formatDate pattern="E" value="${event.eventDate}" /></span> --%>
-																				                         						<%-- <p><fmt:formatDate pattern="d" value="${event.eventDate}" /><br><fmt:formatDate pattern="E" value="${event.eventDate}" /></p> --%>
-																				                         						<p><span id="format_${event.eventId}" style="display:none"><fmt:formatDate pattern="M/d/YYYY hh:mm a" value="${event.eventDate}" /></span><script>document.write(dateFunction('${event.eventId}'));</script><br><span id="formatDay_${event.eventId}" style="display:none"><fmt:formatDate pattern="M/d/YYYY hh:mm a" value="${event.eventDate}" /></span><script>document.write(dayName('${event.eventId}'));</script></p>
-																				                                                     
-																									 						</div>
-																						                    
-																									                    	 	<div class="col-md-11 borderleft">
-																									                         
-																											                         <div class="col-md-12 noPadding eventUserDetails">
-																											                         			<!-- <img src="images/userImg4.jpg" class="nav-avatar"> Lakshith -->
-																											                         			<img src="${USRIMG}" class="nav-avatar" onerror="userErrorDefaultImg(this)">  ${USRLastName}
-																											                            
-																											                            
-																											                            		<!-- <div class="teamLogos">
-																											                                	<img src="images/teamLogo1.png" class="teamLogo"> <b>VS</b> <img src="images/teamLogo2.png" class="teamLogo">
-																											                                	</div> -->
-																											                            	<%-- 	<a href="${pageContext.request.contextPath}/editEvent/${event.eventId}"><i class="fa fa-pencil" title="Edit Event"></i></a> --%>
-																											                         </div>
-																											                         
-																											                        	<div class="col-md-6 Leag-Img">
-																											                         			 <h4>${event.eventName}</h4>
-																											                         			 <p id="formatDate_${event.eventId}" style="display:none"><fmt:formatDate pattern="M/d/YYYY hh:mm a" value="${event.eventDate}" /></p><script>document.writeln(test("${event.eventId}"));</script>
-																											                         			 <p>${event.venue}</p>
-																											                        	</div>
-																											                       <%--  <div class="col-md-6 threebtn">
-																											                            
-																											                                <p><input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="Reject" disabled="disabled"><br><a href="javascript:gettingEventAcceptedPeopleList('${event.eventId}','reject${event.eventId}',143)">Rejected : ${event.rejectedCount}</a></p>
-																											                                <p><input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="May Be" disabled="disabled"><br><a href="javascript:gettingEventAcceptedPeopleList('${event.eventId}','reject${event.eventId}',152)">May Be : ${event.maybeCount}</a></p>
-																											                             	<p> <input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="Accept" disabled="disabled"><br><a href="javascript:gettingEventAcceptedPeopleList('${event.eventId}','reject${event.eventId}',151)">Accepted : ${event.acceptedCount}  </a></p>
-																											                             	<p> <input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="Edit event" onclick="editEvent('${event.eventId}');" ></p>
-																											                            
-																											                         </div> --%>
-																									                         </div>
-																									                         
-																									                         <div id="reject${event.eventId}" class="col-md-12 accbox eventoption" style="display: none;">
-																									                     
-																												                     <h1 class="noBorder">Accepted Guys</h1>
-																												                     
-																												                     <div class=" col-md-12 accptguybg">
-																												                    	<p>1 Govind</p>
-																												                        <img class="pull-right" src="images/userImg3.jpg">
-																												                     </div>
-																												                     
-																												                     
-																									                     
-																									                     	</div>
+														                     <div class="col-md-12 noPadding leag-Acc">
+														                           		<!-- <div class="col-md-1 eveDate"> -->
+												                          						<div class="col-md-1 noPadding N-btn">
+												                         						<%-- <span><fmt:formatDate pattern="d" value="${event.eventDate}" /><br><fmt:formatDate pattern="E" value="${event.eventDate}" /></span> --%>
+												                         						<%-- <p><fmt:formatDate pattern="d" value="${event.eventDate}" /><br><fmt:formatDate pattern="E" value="${event.eventDate}" /></p> --%>
+												                         						<p><span id="format_${event.eventId}" style="display:none"><fmt:formatDate pattern="M/d/YYYY hh:mm a" value="${event.eventDate}" /></span><script>document.write(dateFunction('${event.eventId}'));</script><br><span id="formatDay_${event.eventId}" style="display:none"><fmt:formatDate pattern="M/d/YYYY hh:mm a" value="${event.eventDate}" /></span><script>document.write(dayName('${event.eventId}'));</script></p>
+												                                                     
+																	 						</div>
+														                    
+																	                    	 	<div class="col-md-11 borderleft">
+																	                         
+																			                         <div class="col-md-12 noPadding eventUserDetails">
+																			                         			<!-- <img src="images/userImg4.jpg" class="nav-avatar"> Lakshith -->
+																			                         			<img src="${USRIMG}" class="nav-avatar" onerror="userErrorDefaultImg(this)">  ${USRLastName}
+																			                            
+																			                            
+																			                            		<!-- <div class="teamLogos">
+																			                                	<img src="images/teamLogo1.png" class="teamLogo"> <b>VS</b> <img src="images/teamLogo2.png" class="teamLogo">
+																			                                	</div> -->
+																			                            	<%-- 	<a href="${pageContext.request.contextPath}/editEvent/${event.eventId}"><i class="fa fa-pencil" title="Edit Event"></i></a> --%>
+																			                         </div>
+																			                         
+																			                        	<div class="col-md-6 Leag-Img">
+																			                         			 <h4>${event.eventName}</h4>
+																			                         			 <p id="formatDate_${event.eventId}" style="display:none"><fmt:formatDate pattern="M/d/YYYY hh:mm a" value="${event.eventDate}" /></p><script>document.writeln(test("${event.eventId}"));</script>
+																			                         			 <p>${event.venue}</p>
+																			                        	</div>
+																			                       <%--  <div class="col-md-6 threebtn">
+																			                            
+																			                                <p><input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="Reject" disabled="disabled"><br><a href="javascript:gettingEventAcceptedPeopleList('${event.eventId}','reject${event.eventId}',143)">Rejected : ${event.rejectedCount}</a></p>
+																			                                <p><input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="May Be" disabled="disabled"><br><a href="javascript:gettingEventAcceptedPeopleList('${event.eventId}','reject${event.eventId}',152)">May Be : ${event.maybeCount}</a></p>
+																			                             	<p> <input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="Accept" disabled="disabled"><br><a href="javascript:gettingEventAcceptedPeopleList('${event.eventId}','reject${event.eventId}',151)">Accepted : ${event.acceptedCount}  </a></p>
+																			                             	<p> <input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="Edit event" onclick="editEvent('${event.eventId}');" ></p>
+																			                            
+																			                         </div> --%>
+																	                         </div>
+																	                         
+																	                         <div id="reject${event.eventId}" class="col-md-12 accbox eventoption" style="display: none;">
+																	                     
+																				                     <h1 class="noBorder">Accepted Guys</h1>
+																				                     
+																				                     <div class=" col-md-12 accptguybg">
+																				                    	<p>1 Govind</p>
+																				                        <img class="pull-right" src="images/userImg3.jpg">
+																				                     </div>
+																				                     
+																				                     
+																	                     
+																	                     	</div>
 																						                         
 																						                          
-																						                     </div>
-																						                     
-																				                     </c:forEach>
-																				                     </div>
-																				                     <div id="myEventPageBtn">
-																				                         <a class="btn dBtn pull-right btnalian1" href="javascript:my_Event_Page(10,'MyEventListDIV','myEventPageBtn','${USRID}')">Load More</a>
-																				                         
-																				                         </div>   
+																	                     </div>
+																	                     
+															                     </c:forEach>
+															                     </div>
+															                     <div id="myEventPageBtn">
+															                         <a class="btn dBtn pull-right btnalian1" href="javascript:my_Event_Page(10,'MyEventListDIV','myEventPageBtn','${USRID}')">Load More</a>
+															                         
+															                         </div>   
 					            										</c:otherwise>
 					            									
 					            									</c:choose> 
@@ -792,6 +796,35 @@ function showScoreCardInProgress1(id,bid){
 	  else if(url.indexOf("No")!=-1)
 		  displaynotification('Sorry! Match schedule has been updated, Please check your updated E-Mail',2000);
   })
+</script>
+
+
+<script type="text/javascript">
+
+function CancelEvent(id)
+{
+	
+	var request={
+			
+			eventId : id
+	}
+	
+	$.ajax({
+		
+		type : "post",
+		url : "${pageContext.request.contextPath}/cancelEvent",
+		data : JSON.stringify(request),
+		contentType : "application/json",
+		success : function(res){
+			if(res == "success")
+				{
+			displaynotification('Event canceled successfully',2000);
+				}
+			}
+		
+	})
+}
+
 </script>
 
 </body>

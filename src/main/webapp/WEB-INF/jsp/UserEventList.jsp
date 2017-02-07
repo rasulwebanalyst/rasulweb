@@ -307,7 +307,7 @@ var formatAMPMTime = function(date) {
             										<c:otherwise>
             										<div id="MyEventListDIV">
             											<c:forEach items="${MyEvents.upcomingCreatedEventList}" var="event" varStatus="index">
-									                     <div class="col-md-12 noPadding leag-Acc">
+									                     <div class="col-md-12 noPadding leag-Acc" id="hide_${event.eventId}">
 									                           		<!-- <div class="col-md-1 eveDate"> -->
 							                          						<div class="col-md-1 noPadding N-btn">
 							                         						<%-- <span><fmt:formatDate pattern="d" value="${event.eventDate}" /><br><fmt:formatDate pattern="E" value="${event.eventDate}" /></span> --%>
@@ -816,9 +816,14 @@ function CancelEvent(id)
 		data : JSON.stringify(request),
 		contentType : "application/json",
 		success : function(res){
+			/* alert(res); */
 			if(res == "success")
 				{
-			displaynotification('Event canceled successfully',2000);
+				
+				$("#hide_"+id).hide();
+				
+			 displaynotification('Event canceled successfully',2000); 
+			
 				}
 			}
 		

@@ -11757,7 +11757,7 @@ public ModelAndView groundinfoprivate(@PathVariable String groundId,@PathVariabl
 				 hubReq = new HubRequest(90);
 					hubReq.setMsgType(90);
 					ModelMap map1 = new ModelMap();
-					map1.put("groundId", "523960ff-ff10-4ce6-b71f-af6ec24f282a");
+					map1.put("groundId", groundId);
 					hubReq.setRequestParam(map1);
 					String response  = cricketSocialRestTemplateService.userRegistration(hubReq);
 					GsonBuilder builder = new GsonBuilder();
@@ -18187,7 +18187,7 @@ public ModelAndView groundInfopublic(@PathVariable String groundId,@PathVariable
 				 hubReq = new HubRequest(90);
 					hubReq.setMsgType(90);
 					ModelMap map2 = new ModelMap();
-					map2.put("groundId", "523960ff-ff10-4ce6-b71f-af6ec24f282a");
+					map2.put("groundId", groundId);
 					hubReq.setRequestParam(map2);
 					String response  = cricketSocialRestTemplateService.userRegistration(hubReq);
 					GsonBuilder builder = new GsonBuilder();
@@ -29456,6 +29456,7 @@ public ModelAndView enterScoreSelectedMatch(HttpServletRequest req, @PathVariabl
 				 if(umpireAndScorerDetails != null){
 					 HubResponse hubResponse = gson.fromJson(umpireAndScorerDetails, HubResponse.class);
 					 mav.addObject("umpireAndScorerDetails", hubResponse.getResults().getUmpireAndScorerDetails());
+					 mav.addObject("GroundId", hubResponse.getResults().getUmpireAndScorerDetails().getGroundId());
 					
 					 if(hubResponse.getResults().getUmpireAndScorerDetails().getUmpireNamesList().size() > 0){
 					 List<UmpireNameList> listOfUmpires = hubResponse.getResults().getUmpireAndScorerDetails().getUmpireNamesList();
@@ -29649,6 +29650,7 @@ try{
 				 if(umpireAndScorerDetails != null){
 					 HubResponse hubResponse = gson.fromJson(umpireAndScorerDetails, HubResponse.class);
 					 mav.addObject("umpireAndScorerDetails", hubResponse.getResults().getUmpireAndScorerDetails());
+					 mav.addObject("GroundId", hubResponse.getResults().getUmpireAndScorerDetails().getGroundId());
 					
 					 if(hubResponse.getResults().getUmpireAndScorerDetails().getUmpireNamesList().size() > 0){
 					 List<UmpireNameList> listOfUmpires = hubResponse.getResults().getUmpireAndScorerDetails().getUmpireNamesList();
@@ -30125,6 +30127,7 @@ public @ResponseBody String enterScoreInsert(@RequestBody ScoreBean scorer, Http
 			bean.setFirstInningsTotalRuns(scorer.getFirstInningsTotalRuns());
 			bean.setFirstInningsTeamId(scorer.getFirstInningsTeamId());
 			bean.setSecondInningsTeamId(scorer.getSecondInningsTeamId());
+			bean.setGroundId(scorer.getGroundId());
 			hubReq.setRequestParam(bean);
 			
 			String response = cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -42787,9 +42790,10 @@ public @ResponseBody  String cancelEvent(HttpServletRequest request,@RequestBody
 		hubReq.setRequestParam(map);
 		String response274=cricketSocialRestTemplateService.userRegistration(hubReq);
 		System.out.println("The response is :"+response274);
-		HubResponse hub=gson.fromJson(response, HubResponse.class);
+		HubResponse hub=gson.fromJson(response274, HubResponse.class);
 		if(hub !=null)
 		{
+			System.out.println("The hub is :"+hub);
 			if(hub.getResults().getCancelResponse().equalsIgnoreCase("SUCCESS"))
 			{
 				response="success";

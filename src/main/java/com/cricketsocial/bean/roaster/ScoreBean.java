@@ -49,11 +49,17 @@ public class ScoreBean {
 	private String firstInningsTeamId;
 	private String secondInningsTeamId;
 	private int noOfOvers;
+	private String groundId;
 	
 	
 	
 	
-	
+	public String getGroundId() {
+		return groundId;
+	}
+	public void setGroundId(String groundId) {
+		this.groundId = groundId;
+	}
 	public double getWinTeamOvers() {
 		return winTeamOvers;
 	}
