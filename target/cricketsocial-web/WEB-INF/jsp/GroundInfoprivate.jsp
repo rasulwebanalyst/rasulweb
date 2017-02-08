@@ -430,16 +430,16 @@ function GetLocation() {
                          </table>
                          </c:when>
                          <c:otherwise>
-                         <table class="brd-info" style="width: 65%;">
+                         <table class="brd-info" style="width: 80%;">
                          <tr><td>Ground Highest</td><td>:</td><td>
                          
-                        <c:forEach items="${teamScores}" var="scores" begin="0" end="0">${scores.runs}</c:forEach> 
+                        <c:forEach items="${teamScores}" var="scores" begin="0" end="0">${scores.runs}/${scores.wickets}  by ${scores.teamName} <a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${scores.tournamentSchedulerId}','${BoradInfo.boardId}')">Score</a> </c:forEach> 
                          
                          
                          </td></tr>
                          <tr><td>Ground Lowest</td><td>:</td><td>
                          
-                         <c:forEach items="${teamScores}" var="scores" begin="1" end="1">${scores.runs}</c:forEach>
+                         <c:forEach items="${teamScores}" var="scores" begin="1" end="1">${scores.runs}/${scores.wickets} by ${scores.teamName} <a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${scores.tournamentSchedulerId}','${BoradInfo.boardId}')">Score</a></c:forEach>
                          
                          </td></tr>
                           <tr><td>player Highest Runs</td><td>:</td><td>
@@ -562,7 +562,7 @@ function GetLocation() {
 	  console.log("Lat :"+latlong.split(",")[0]);
 	  console.log("Long :"+latlong.split(",")[1]);
 	  
-	  $.get("http://api.openweathermap.org/data/2.5/weather?lat="+latlong.split(",")[0]+"&lon="+latlong.split(",")[1]+"&appid=7e1f6381006c91e81299924b625b4b86&units=metric",
+/* 	  $.get("http://api.openweathermap.org/data/2.5/weather?lat="+latlong.split(",")[0]+"&lon="+latlong.split(",")[1]+"&appid=7e1f6381006c91e81299924b625b4b86&units=metric",
 			  function(data,status){
 		  if(data !=null)
 {
@@ -598,6 +598,56 @@ function GetLocation() {
 		  $("#Weatherbody").html(htm).trigger("create");
            
            }		  
+	  }) */
+	  
+	  $.ajax({
+		  type : "Get",
+		  url :"${pageContext.request.contextPath}/weatherApi/"+latlong.split(",")[0]+"/"+latlong.split(",")[1],
+		  success:function(res)
+		  {
+			  if(res !=null)
+			  {
+				  var res1=JSON.parse(res)
+			  		  var response=JSON.stringify(res1);
+			  		  console.log("response :"+response);
+			  		  console.log(res1);
+			  		  var  Weather=res1.weather;
+			  		  console.log("Weather :"+Weather);
+			  		  var wind=res1.wind;
+			  		  var description=Weather[0].main;
+			  		  var main=res1.main;
+			  		  var pressure=main.pressure;
+			  		  var hmidity=main.humidity;
+			  		  var visibility=res1.visibility;
+			  		  var temperature=main.temp;
+			  		  console.log("Description :"+description);
+			  		  console.log("Wind :"+wind.speed);
+			  		  console.log("main :"+main);
+			  		  console.log("pressure :"+pressure);
+			  		  console.log("humidity :"+hmidity);
+			  		  console.log("Visibility :"+ visibility);
+			  		  
+			  		  var htm="";
+			  		  
+			  		  
+			  		  
+			  		  htm+="<tr><td><b>Wind:</b></td><td> "+wind.speed+" m/s</td></tr>";
+			  		  htm+="<tr><td><b>Pressure:</b></td><td> "+pressure+" hpa</td></tr>";
+			  		  if(visibility != "undefined" || visibility != "")
+			  			  {
+			  			htm+="<tr><td><b>Visibility:</b></td><td> "+visibility+" km</td></tr>";
+			  			  }else
+			  		  {htm+="<tr><td><b>Visibility:</b></td><td> -</td></tr>";}
+			  		  htm+="<tr><td><b>Humidity:</b></td><td> "+hmidity+" %</td></tr>";
+			  		  
+			  		  $("#WeatherDesc").text(description+" ");
+			  		  $("#temperature").text(" "+temperature);
+			  		  $("#maindiv").show();
+			  		  $("#Weatherbody").html(htm).trigger("create");
+			             
+			             }		  
+		  }
+		  
 	  })
    }
    
@@ -702,6 +752,9 @@ function loadMoreGround(){
 }
 
 
+function showScoreCard(id,boardId){
+	 window.location.href = "${pageContext.request.contextPath}/showScoreCard/boardId/"+boardId+"/matchId/"+id;
+}
 </script>
    
    

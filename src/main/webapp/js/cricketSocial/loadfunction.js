@@ -217,10 +217,10 @@ function testdirect(dt)
     var offset = new Date().getTimezoneOffset() * 60 * 1000;
 var gettingFromServer= new Date(date);
 gettingFromServer = new Date(gettingFromServer.valueOf() - offset);
-return formatAMPMTime(gettingFromServer); 
+return formatAMPMTime1(gettingFromServer); 
 }
 
-var formatAMPMTime = function(date) {
+var formatAMPMTime1 = function(date) {
 	  var hours = date.getHours();
 	  console.log(hours);
 	  var minutes = date.getMinutes();

@@ -1,6 +1,9 @@
 package com.cricketsocial.controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -42814,7 +42817,27 @@ public @ResponseBody  String cancelEvent(HttpServletRequest request,@RequestBody
 }
 
 
-
+@RequestMapping(value="/weatherApi/{lat}/{lng}", method=RequestMethod.GET)
+@ResponseBody
+public  Object weatherApi(HttpServletRequest req,@PathVariable String lat,@PathVariable String lng)
+{
+	Object weather="";
+	try{
+	URL url = new URL("http://api.openweathermap.org/data/2.5/weather?lat=12.9869513&lon=80.17150270000002&appid=7e1f6381006c91e81299924b625b4b86&units=metric");
+	BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+	String strTemp = "";
+	while (null != (strTemp = br.readLine())) {
+		System.out.println(strTemp);
+		weather=strTemp;
+	}
+	
+	System.out.println("The weather response is :"+weather);
+	}catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return weather;
+}
 
 
 }
