@@ -87,8 +87,6 @@ public class TournamentScheduler {
 	
 	
 	
-	
-	
 	public int getWickets() {
 		return wickets;
 	}
