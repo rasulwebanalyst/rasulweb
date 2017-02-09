@@ -63,7 +63,7 @@ var pageNum=500;
                               </div> -->
                   
                   </h1></div>
-                  <div class="col-md-12 col-sm-12 col-xs-12" style="display: inline-block;">
+                  <div class="col-md-2 col-sm-12 col-xs-12" style="display: inline-block;">
 								    <label style="text-align: center;">Filter</label>
 								    <div class="selectdiv" style="height: 25px !important;">
 								        <c:choose>
@@ -376,6 +376,7 @@ var pageNum=500;
   					$('#SelectTournMent').val("");
   					$('#loading').hide();
   	  			} else {
+  	  			$('#loading').hide();
   	  		}
   	  			
   	  			
