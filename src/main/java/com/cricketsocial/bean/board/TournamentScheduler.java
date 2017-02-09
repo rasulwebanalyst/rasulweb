@@ -81,7 +81,9 @@ public class TournamentScheduler {
 	
 	private String teamName;
 	
-	private int wickets; 
+	
+	private int wickets;
+	
 	
 	
 	

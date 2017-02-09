@@ -433,7 +433,7 @@ function GetLocation() {
                          <table class="brd-info" style="width: 80%;">
                          <tr><td>Ground Highest</td><td>:</td><td>
                          
-                        <c:forEach items="${teamScores}" var="scores" begin="0" end="0">${scores.runs}/${scores.runs}  by ${scores.teamName} <a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${scores.tournamentSchedulerId}','${BoradInfo.boardId}')">Score</a> </c:forEach> 
+                        <c:forEach items="${teamScores}" var="scores" begin="0" end="0">${scores.runs}/${scores.wickets}  by ${scores.teamName} <a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${scores.tournamentSchedulerId}','${BoradInfo.boardId}')">Score</a> </c:forEach> 
                          
                          
                          </td></tr>
