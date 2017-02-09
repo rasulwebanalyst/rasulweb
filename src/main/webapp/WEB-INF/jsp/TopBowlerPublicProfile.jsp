@@ -379,6 +379,7 @@ var pageNum=50;
   					$('#SelectTournMent').val("");
   					$('#loading').hide();
   	  			} else {
+  	  			$('#loading').hide();
   	  		}
   	  			
   	  			

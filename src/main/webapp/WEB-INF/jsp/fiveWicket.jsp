@@ -426,6 +426,7 @@
     					$('#SelectTournMent').val("");
     					$('#loading').hide();
         			} else {
+        				$('#loading').hide();
         		}
         	},
         	error : function(err) {
