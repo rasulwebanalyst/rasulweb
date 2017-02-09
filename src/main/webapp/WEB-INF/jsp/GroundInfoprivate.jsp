@@ -433,13 +433,13 @@ function GetLocation() {
                          <table class="brd-info" style="width: 80%;">
                          <tr><td>Ground Highest</td><td>:</td><td>
                          
-                        <c:forEach items="${teamScores}" var="scores" begin="0" end="0">${scores.runs}/${scores.wickets}  by ${scores.teamName} <a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${scores.tournamentSchedulerId}','${BoradInfo.boardId}')">Score</a> </c:forEach> 
+                        <c:forEach items="${teamScores}" var="scores" begin="0" end="0">${scores.runs}  by ${scores.teamName} <a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${scores.tournamentSchedulerId}','${BoradInfo.boardId}')">Score</a> </c:forEach> 
                          
                          
                          </td></tr>
                           <tr><td>Ground Lowest</td><td>:</td><td>
                          
-                         <c:forEach items="${teamScores}" var="scores" begin="1" end="1">${scores.runs}/${scores.wickets} by ${scores.teamName} <a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${scores.tournamentSchedulerId}','${BoradInfo.boardId}')">Score</a></c:forEach>
+                         <c:forEach items="${teamScores}" var="scores" begin="1" end="1">${scores.runs} by ${scores.teamName} <a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${scores.tournamentSchedulerId}','${BoradInfo.boardId}')">Score</a></c:forEach>
                          
                          </td></tr>
                           <tr><td>player Highest Runs</td><td>:</td><td>
@@ -633,7 +633,7 @@ function GetLocation() {
 			  		  
 			  		  htm+="<tr><td><b>Wind:</b></td><td> "+wind.speed+" m/s</td></tr>";
 			  		  htm+="<tr><td><b>Pressure:</b></td><td> "+pressure+" hpa</td></tr>";
-			  		  if(visibility != "undefined" || visibility != "")
+			  		  if(typeof(visibility) != "undefined" )
 			  			  {
 			  			htm+="<tr><td><b>Visibility:</b></td><td> "+visibility+" km</td></tr>";
 			  			  }else
