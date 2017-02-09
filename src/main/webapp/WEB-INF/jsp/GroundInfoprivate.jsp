@@ -420,7 +420,7 @@ function GetLocation() {
                          
                          <h4>Ground Statistics :</h4>
                          
-                         <c:choose>
+                        <%--  <c:choose>
                          <c:when test="${teamscoresize == 0 }">
                           <table class="brd-info">
                          <tr><td>Ground Highest</td><td>:</td><td></td></tr>
@@ -454,7 +454,7 @@ function GetLocation() {
                            </td></tr>
                          </table>
                          </c:otherwise>
-                         </c:choose>
+                         </c:choose> --%>
                          
                          
                  </div>        
