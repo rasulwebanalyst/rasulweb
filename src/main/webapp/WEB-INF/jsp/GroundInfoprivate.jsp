@@ -420,7 +420,7 @@ function GetLocation() {
                          
                          <h4>Ground Statistics :</h4>
                          
-                        <%--  <c:choose>
+                          <c:choose>
                          <c:when test="${teamscoresize == 0 }">
                           <table class="brd-info">
                          <tr><td>Ground Highest</td><td>:</td><td></td></tr>
@@ -437,7 +437,7 @@ function GetLocation() {
                          
                          
                          </td></tr>
-                         <tr><td>Ground Lowest</td><td>:</td><td>
+                        <%--  <tr><td>Ground Lowest</td><td>:</td><td>
                          
                          <c:forEach items="${teamScores}" var="scores" begin="1" end="1">${scores.runs}/${scores.wickets} by ${scores.teamName} <a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${scores.tournamentSchedulerId}','${BoradInfo.boardId}')">Score</a></c:forEach>
                          
@@ -451,10 +451,10 @@ function GetLocation() {
                            
                            <c:forEach items="${playerStatistics}" var="player" begin="1" end="1">${player.bbi}</c:forEach>
                            
-                           </td></tr>
+                           </td></tr> --%>
                          </table>
                          </c:otherwise>
-                         </c:choose> --%>
+                         </c:choose> 
                          
                          
                  </div>        
