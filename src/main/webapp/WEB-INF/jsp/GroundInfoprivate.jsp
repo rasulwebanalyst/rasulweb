@@ -562,7 +562,7 @@ function GetLocation() {
 	  console.log("Lat :"+latlong.split(",")[0]);
 	  console.log("Long :"+latlong.split(",")[1]);
 	  
- 	  $.get("http://api.openweathermap.org/data/2.5/weather?lat="+latlong.split(",")[0]+"&lon="+latlong.split(",")[1]+"&appid=7e1f6381006c91e81299924b625b4b86&units=metric",
+/* 	  $.get("http://api.openweathermap.org/data/2.5/weather?lat="+latlong.split(",")[0]+"&lon="+latlong.split(",")[1]+"&appid=7e1f6381006c91e81299924b625b4b86&units=metric",
 			  function(data,status){
 		  if(data !=null)
 {
@@ -598,9 +598,9 @@ function GetLocation() {
 		  $("#Weatherbody").html(htm).trigger("create");
            
            }		  
-	  }) 
+	  }) */
 	  
-	  /* $.ajax({
+	  $.ajax({
 		  type : "Get",
 		  url :"${pageContext.request.contextPath}/weatherApi/"+latlong.split(",")[0]+"/"+latlong.split(",")[1],
 		  success:function(res)
@@ -648,7 +648,7 @@ function GetLocation() {
 			             }		  
 		  }
 		  
-	  }) */
+	  })
    }
    
    

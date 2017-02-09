@@ -81,10 +81,18 @@ public class TournamentScheduler {
 	
 	private String teamName;
 	
+	private int wickets; 
 	
 	
 	
 	
+	
+	public int getWickets() {
+		return wickets;
+	}
+	public void setWickets(int wickets) {
+		this.wickets = wickets;
+	}
 	public int getRuns() {
 		return runs;
 	}
