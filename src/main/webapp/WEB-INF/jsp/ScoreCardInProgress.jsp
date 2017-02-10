@@ -51,10 +51,32 @@ var formatAMPMTime = function(date) {
 
     <section class="middleContentBlock">
     
+    
+    <div id="feededit" class="popupDiv" style="display: none;">
+												
+												           <div class="box">
+												                <span class="head">Scorecard share</span>
+												                <span class="close_btn" > <i class="fa fa-close" onclick="closeFeededit()"></i> </span>
+												
+												                <div class="popupContentDiv">
+												                
+												                		
+												                        	<textarea class="form-control" id="feedsedited" rows="5" placeholder="" ></textarea>
+												                        	<input type="hidden" id="EditedId">
+												                          
+												                          <div class="centerbtns"><button type="button" class="btn btn-default blueBtn" onclick="updatePost()">OK</button></div>
+												                       
+												                </div>
+												            </div>
+												 
+												 	</div>
+    
+    
     <div class="profileBanner">
      	<div class="container bannerBtnsblock">
         	
-            <i class="fa fa-camera changePhoto" title="Change Photo"></i>
+            <i class="fa fa-camera changePhoto" title="Change Photo" id="upload_link"></i>
+            <input id="upload" type="file" onchange="readURL(this)" name="boardImagefile" />
           </div>
           
           
@@ -68,7 +90,7 @@ var formatAMPMTime = function(date) {
          </div>   
         </div>-->
         
-    	<img src="${pageContext.request.contextPath}/images/innerBanner.png">
+    	<img src="${pageContext.request.contextPath}/images/innerBanner.png" id="profileimg">
         
     </div>
     
@@ -177,6 +199,14 @@ var formatAMPMTime = function(date) {
                          <div class="col-md-12 statusUpdateBox whiteBox ">
                         
                         	<h1 class="noBorder">Full ScoreBoard</h1>  
+                        	
+                        	
+                        	<div style="float: right;margin-top: -35px;">
+                        <i onclick="facebook()" style="cursor: pointer;">	 <img src="${pageContext.request.contextPath}/images/facebook.png" style="max-width: 22px;margin-right: 5px;"></i>
+			              <i onclick="twitter()" style="cursor: pointer;"> <img src="${pageContext.request.contextPath}/images/twitter.png" style="max-width: 22px;margin-right: 5px;"></i>
+			                    <i onclick="CS()" style="cursor: pointer;"> <img src="${pageContext.request.contextPath}/images/logo-bg.png" style="max-width: 22px;margin-right: 5px;"></i>
+                        	   </div>
+                        	
                             <div>
                         		<c:choose>
                         			<c:when test="${scoreCardListSize == 0 }">
@@ -967,7 +997,130 @@ var formatAMPMTime = function(date) {
 			});
 		});
    </script>            
+    <script type="text/javascript">
+
+function facebook()
+{
+	  
+	  var url=window.location.href;
+		console.log(url);
+		
+		var url1="https://dev.cricketsocial.net/showScoreCard/boardId/226e432a-dcbe-4a03-abe0-6c0c2f0a9db4/matchId/6c50b95f-ee12-4191-97dc-a62701bdb022"; 
+	  var data=$("#feeddata").val();
+	   
+	var appmsg="hello";
     
+	  window
+	  .open(
+	 "https://www.facebook.com/dialog/feed?app_id=1654958434805143&display=popup"
+	  +"&name="+data+""
+	  + "&link="+url1+""
+	  + '&picture=https://s3.amazonaws.com/dev-cricket-social-images/cf0a4a05-4305-4115-9f6f-10bdb7a842c9.png'
+	 
+	  + "&description=ScoreCard", '',
+	  'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+	  return false;
+	  
+
+	} 
+	
+	function twitter()
+	{
+		
+		var url=window.location.href;
+		console.log(url);
+		var sharedata=$("#feeddata").val();
+		console.log(sharedata);
+		var url1="https://dev.cricketsocial.net/showScoreCard/boardId/226e432a-dcbe-4a03-abe0-6c0c2f0a9db4/matchId/6c50b95f-ee12-4191-97dc-a62701bdb022";
+		/* window
+		.open("https://twitter.com/share?text="+sharedata+"",
+				'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600'); */
+				
+		/* window
+		.open("https://twitter.com/share?text="+url+"&url='www.appreiz.com'",
+				'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600'); */
+				
+				
+		window.open('http://twitter.com/share?url='+url1+'&text='+sharedata, '', 
+				'left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+				
+	}
+	
+	function CS()
+	{
+		var url=window.location.href;
+		console.log(url);
+		var sharedata=$("#feeddata").val()+"    "+url;
+		console.log(sharedata);
+		
+		$("#feedsedited").val(sharedata);
+		$("#feededit").show();
+		
+		
+		
+	}
+	function closeFeededit()
+	{
+		$("#feededit").hide();
+		}
+	
+	function updatePost()
+	{
+		
+		/* var url=window.location.href; */
+		var url=$("#feedsedited").val();
+		var request={
+				
+				content : url,
+				active : 0,
+				feedType : "Buddy",
+				userFeedHit: false,
+		        feedTo: "All"
+				
+		}
+		$.ajax({
+			type : "POST",
+			url : "${pageContext.request.contextPath}/scorecardShare",
+			data : JSON.stringify(request),
+			contentType : "application/json",
+			success : function(res)
+			{
+				alert(res);
+			}
+			
+		})
+		
+	}
+
+</script>
+
+
+<script type="text/javascript">
+
+
+$("#upload_link").on('click', function(e){
+	e.preventDefault();
+	$("#upload:hidden").trigger('click');
+});
+
+
+
+function readURL(input) {
+	//alert("alert");
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+        	console.log(e);
+        	console.log(reader);
+        	 //alert("e.target.result"+e.target.result);
+            $('#profileimg').attr('src', e.target.result);
+        };
+        
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+</script>
 
 </body>
 

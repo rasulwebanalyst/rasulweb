@@ -842,8 +842,8 @@ var formatAMPMTime = function(date) {
                         </c:if>
                            </div>
                          
-                      <c:if test="${!empty  CommentryAvailable}">
-                           
+                      <%-- <c:if test="${!empty  CommentryAvailable}"> --%>
+                           <c:if test="${!empty  FirstInningsCommentary}">
 	                           <p ><strong>First Innings Match Notes:</strong></p>
 	                             <c:forEach var="powerPlayComments" items="${firstInningsPowerPlayDetails}">
 	                              <p>${powerPlayComments.commentaryName} </p>
@@ -851,7 +851,8 @@ var formatAMPMTime = function(date) {
 	                             <c:forEach var="comments" items="${firstInningsCommentryDetails}">
 	                               <p>${comments.commentaryName} </p>
 	                             </c:forEach>
-	                             
+	                             </c:if>
+	                             <c:if test="${!empty  SecondInningsCommentary}">
 	                           <p ><strong>Second Innings Match Notes:</strong></p>
 	                             <c:forEach var="powerPlayComments" items="${secondInningsPowerPlayDetails}">
 	                              <p>${powerPlayComments.commentaryName} </p>

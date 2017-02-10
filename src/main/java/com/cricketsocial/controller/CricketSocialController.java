@@ -22967,6 +22967,17 @@ public ModelAndView showScoreCard(HttpServletRequest req, @PathVariable String b
 										mav.addObject("CommentryAvailable","Yes");
 									}
 									
+									if(res.getResults().getFirstInnings().getCommentary().getCommentary() != null){				
+									    if(res.getResults().getFirstInnings().getCommentary().getCommentary().size() > 0 || res.getResults().getFirstInnings().getCommentary().getPowerPlay().size() > 0){
+															mav.addObject("FirstInningsCommentary","Yes");
+									    				} 
+									    }
+									    if(res.getResults().getSecondInnings().getCommentary().getCommentary() != null){
+										    if(res.getResults().getSecondInnings().getCommentary().getCommentary().size() > 0 || res.getResults().getSecondInnings().getCommentary().getPowerPlay().size() > 0){
+										    	 mav.addObject("SecondInningsCommentary", "Yes");
+										    }
+										 }
+									
 									String manOfTheMatch = "";
 									if(res.getResults().getMatchResult().getManOfTheMatch() != null){
 										if(res.getResults().getMatchResult().getManOfTheMatch().size() > 0){
@@ -41493,6 +41504,20 @@ public ModelAndView showScoreCardSessionout(HttpServletRequest req,@PathVariable
 									mav.addObject("CommentryAvailable","Yes");
 								}
 								
+								
+								if(res.getResults().getFirstInnings().getCommentary().getCommentary() != null){				
+								    if(res.getResults().getFirstInnings().getCommentary().getCommentary().size() > 0 || res.getResults().getFirstInnings().getCommentary().getPowerPlay().size() > 0){
+														mav.addObject("FirstInningsCommentary","Yes");
+								    				} 
+								    }
+								    if(res.getResults().getSecondInnings().getCommentary().getCommentary() != null){
+									    if(res.getResults().getSecondInnings().getCommentary().getCommentary().size() > 0 || res.getResults().getSecondInnings().getCommentary().getPowerPlay().size() > 0){
+									    	 mav.addObject("SecondInningsCommentary", "Yes");
+									    }
+									 }
+								
+								
+								
 								String manOfTheMatch = "";
 								if(res.getResults().getMatchResult().getManOfTheMatch() != null){
 								if(res.getResults().getMatchResult().getManOfTheMatch().size() > 0){
@@ -42823,7 +42848,7 @@ public  Object weatherApi(HttpServletRequest req,@PathVariable String lat,@PathV
 {
 	Object weather="";
 	try{
-	URL url = new URL("http://api.openweathermap.org/data/2.5/weather?lat=12.9869513&lon=80.17150270000002&appid=7e1f6381006c91e81299924b625b4b86&units=metric");
+	URL url = new URL("http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lng+"&appid=7e1f6381006c91e81299924b625b4b86&units=metric");
 	BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
 	String strTemp = "";
 	while (null != (strTemp = br.readLine())) {
@@ -42837,6 +42862,55 @@ public  Object weatherApi(HttpServletRequest req,@PathVariable String lat,@PathV
 		e.printStackTrace();
 	}
 	return weather;
+}
+
+@RequestMapping(value="/scorecardShare", method=RequestMethod.POST)
+public @ResponseBody List<Feeds> scorecardShare( HttpServletRequest request,@RequestBody Feeds feeds)
+	
+	{
+		ModelAndView model= null;
+		List<Feeds> feedresponse=null;
+			try{
+				 HttpSession session = request.getSession(true);
+				 System.out.println("session.getAttribute()"+session.getAttribute("USRID"));
+				 
+				 if(session.getAttribute("USRID")!=null)
+				 {
+
+					 if(feeds.getFileAttachement() != null){
+						 feeds.setHasAttachement("true"); 
+					 }
+					hubReq=new HubRequest(4);
+					 hubReq.setMsgType(4);
+					 String name=(String) session.getAttribute("USRLastName");
+					 
+					 UUID userId=(UUID) session.getAttribute("USRID");
+					 feeds.setPostedByName(name);
+					 feeds.setPostedBy(userId+"");
+					 hubReq.setRequestParam(feeds);
+					 String result=cricketSocialRestTemplateService.userRegistration(hubReq);
+					
+					 GsonBuilder builder = new GsonBuilder();
+					    Gson gson = builder.create();
+					    UserFeedResponse response=gson.fromJson(result, UserFeedResponse.class);
+					  if(response.getRequestStatus().equals("0"))
+					  {
+						  feedresponse=response.getResults().getItemsFound();
+					  }else{
+						  feedresponse = new ArrayList<Feeds>();
+					  }
+					    
+					
+				}else{
+					model= new ModelAndView("redirect:/");
+				}
+				
+			}catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			
+			return feedresponse;
 }
 
 
