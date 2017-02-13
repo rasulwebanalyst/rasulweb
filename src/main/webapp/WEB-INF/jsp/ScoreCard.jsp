@@ -1087,7 +1087,7 @@ function facebook()
 				
 		}
 		$.ajax({
-			type : "POST",
+			type : "post",
 			url : "${pageContext.request.contextPath}/scorecardShare",
 			data : JSON.stringify(request),
 			contentType : "application/json; charset=utf-8",
