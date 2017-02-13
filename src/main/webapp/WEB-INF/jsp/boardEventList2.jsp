@@ -202,6 +202,7 @@ overflow-y: auto !important;
 																	                                	</div> -->
 																	                            		<a href="${pageContext.request.contextPath}/editboardEvent/board/${BoradInfo.boardId}/${event.eventId}"><i style="margin-left: 5px;" class="fa fa-pencil" title="Edit Event"></i></a>
 																	                            		<a onclick="CancelEvent('${event.eventId}')"><i style="margin-left: 5px;" class="fa fa-trash" title="Cancel Event"></i></a>
+																	                            		<a onclick="updatePost('${event.eventId}')"><i style="margin-left: 5px;" class="fa fa-trash" title="Cancel Event"></i></a>
 																	                            		
 																	                         </div>
 																	                          <script>
@@ -761,6 +762,35 @@ $.ajax({
 		
 	})
 }
+
+
+
+function updatePost()
+{
+	
+	 var url=window.location.href; 
+	/* var url=$("#feedsedited").val(); */
+	var request={
+			
+			content : url,
+			
+	}
+	console.log(request);
+	$.ajax({
+		type : "POST",
+		url : "${pageContext.request.contextPath}/scorecardShare",
+		data : JSON.stringify(request),
+		contentType : "application/json; charset=utf-8",
+		success : function(res)
+		{
+			displaynotification('ScoreCard link as been shared',2000);
+			$("#feededit").hide();
+		}
+		
+	})
+	
+}
+
 
 </script>
    
