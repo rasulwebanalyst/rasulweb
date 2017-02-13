@@ -1084,20 +1084,22 @@ function facebook()
 		} 
 		/* var request=url; */
 		console.log(request);
-		$.ajax({
-			type : "POST",
-			url : "${pageContext.request.contextPath}/scorecardShare",
+$.ajax({
+			
+			type : "post",
+			url : "${pageContext.request.contextPath}/cardShare",
 			data : JSON.stringify(request),
 			contentType : "application/json",
-			success : function(res)
-			{
-				displaynotification('ScoreCard link as been shared',2000);
-				$("#feededit").hide();
-			}
+			success : function(res){
+				
+				console.log(res);
+				}
 			
 		})
 		
 	}
+	
+	
 
 </script>
 </body>

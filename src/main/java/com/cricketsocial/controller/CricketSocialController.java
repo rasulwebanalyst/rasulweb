@@ -42864,7 +42864,7 @@ public  Object weatherApi(HttpServletRequest req,@PathVariable String lat1,@Path
 	return weather;
 }
 
-@RequestMapping(value="/scorecardShare", method=RequestMethod.POST)
+/*@RequestMapping(value="/scorecardShare", method=RequestMethod.POST)
 public @ResponseBody List<Feeds> scorecardShare( HttpServletRequest request,@RequestBody Feeds feeds)
 	
 	{
@@ -42918,7 +42918,65 @@ public @ResponseBody List<Feeds> scorecardShare( HttpServletRequest request,@Req
 }
 
 
+}*/
+
+
+@RequestMapping(value="/cardShare", method=RequestMethod.POST)
+public @ResponseBody  List<Feeds> scorecardShare(HttpServletRequest request,@RequestBody Feeds feeds)
+{
+	ModelAndView model=null;
+	List<Feeds> feedresponse=null;
+		try{
+			 HttpSession session = request.getSession(true);
+			 System.out.println("session.getAttribute()"+session.getAttribute("USRID"));
+			 
+			 if(session.getAttribute("USRID")!=null)
+			 {
+
+				 if(feeds.getFileAttachement() != null){
+					 feeds.setHasAttachement("true"); 
+				 }
+				hubReq=new HubRequest(4);
+				 hubReq.setMsgType(4);
+				 String name=(String) session.getAttribute("USRLastName");
+				 
+				 UUID userId=(UUID) session.getAttribute("USRID");
+				 feeds.setPostedByName(name);
+				 feeds.setPostedBy(userId+"");
+				 feeds.setActive(0);
+				 feeds.setFeedType("Buddy");
+				 feeds.setUserFeedHit(false);
+				 feeds.setFeedTo("All");
+				 hubReq.setRequestParam(feeds);
+				 String result=cricketSocialRestTemplateService.userRegistration(hubReq);
+				
+				 GsonBuilder builder = new GsonBuilder();
+				    Gson gson = builder.create();
+				    UserFeedResponse response=gson.fromJson(result, UserFeedResponse.class);
+				  if(response.getRequestStatus().equals("0"))
+				  {
+					  feedresponse=response.getResults().getItemsFound();
+				  }else{
+					  feedresponse = new ArrayList<Feeds>();
+				  }
+				    
+				
+			}else{
+				model= new ModelAndView("redirect:/");
+			}
+			
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return feedresponse;
+
+			
 }
+
+}
+
 
 class UpcommingComprator implements Comparator<Object>
 {
