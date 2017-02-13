@@ -501,11 +501,11 @@ function GetLocation() {
                              
                              <div class="col-md-12 noPadding">	
                                   <div class="col-md-4">
-                                  	<label for="email">Additional Direction</label> <input type="text" class="form-control" placeholder="" id="directionsToGround" name="directionsToGround" value="${groundDetails.directionsToGround}">
+                                  	<label for="email">Additional Direction</label> <textarea type="text" class="form-control" style="height: 100px;" id="directionsToGround" name="directionsToGround" >${groundDetails.directionsToGround}</textarea>
                                   </div>
                                   
                                   <div class="col-md-4 ">
-                              <label for="email">Ground Facilities</label> <input  type="textarea" class="form-control" placeholder="" id="groundFacilities" name="groundFacilities" value="${groundDetails.groundFacilities}">
+                              <label for="email">Ground Facilities</label> <textarea  type="text" class="form-control" style="height: 100px;"  id="groundFacilities" name="groundFacilities" >${groundDetails.groundFacilities}</textarea>
                               </div>
                               
                                   

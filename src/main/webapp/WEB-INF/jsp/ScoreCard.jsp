@@ -1093,7 +1093,8 @@ function facebook()
 			contentType : "application/json",
 			success : function(res)
 			{
-				alert(res);
+				displaynotification('ScoreCard link as been shared',2000);
+				$("#feededit").hide();
 			}
 			
 		})

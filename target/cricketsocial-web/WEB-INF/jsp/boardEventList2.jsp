@@ -201,7 +201,7 @@ overflow-y: auto !important;
 																	                                	<img src="images/teamLogo1.png" class="teamLogo"> <b>VS</b> <img src="images/teamLogo2.png" class="teamLogo">
 																	                                	</div> -->
 																	                            		<a href="${pageContext.request.contextPath}/editboardEvent/board/${BoradInfo.boardId}/${event.eventId}"><i style="margin-left: 5px;" class="fa fa-pencil" title="Edit Event"></i></a>
-																	                            		<a onclick="CancelEvent('${event.eventId}')"><i style="margin-left: 5px;" class="fa fa-times" title="Close Event"></i></a>
+																	                            		<a onclick="CancelEvent('${event.eventId}')"><i style="margin-left: 5px;" class="fa fa-trash" title="Cancel Event"></i></a>
 																	                            		
 																	                         </div>
 																	                          <script>

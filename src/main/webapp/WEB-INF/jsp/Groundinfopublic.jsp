@@ -409,10 +409,7 @@ function GetLocation() {
         <%@ include file="BoardFanMenu.jsp" %>
       <div class="col-md-10">
       		<div class="col-md-12 whiteBox" style="font-size: 12px;">
-                       <h1 class="">Ground List 
                       
-                       
-                       </h1>
                        <div class="form-group">
                        
                        

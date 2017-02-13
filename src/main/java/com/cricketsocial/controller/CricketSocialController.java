@@ -42856,7 +42856,6 @@ public  Object weatherApi(HttpServletRequest req,@PathVariable String lat,@PathV
 		weather=strTemp;
 	}
 	
-	
 	System.out.println("The weather response is :"+weather);
 	}catch(Exception e)
 	{

@@ -422,11 +422,11 @@ function getAddress1(e,addr)
                                   
                                   <div class="col-md-12 noPadding">	
                                   <div class="col-md-4">
-                                  	<label for="email">Additional Direction</label> <input type="text" class="form-control" placeholder="" id="directionsToGround" name="directionsToGround">
+                                  	<label for="email">Additional Direction</label> <textarea type="text" class="form-control" style="height: 100px;" id="directionsToGround" name="directionsToGround"></textarea>
                                   </div>
                                   
                                   <div class="col-md-4 ">
-                              <label for="email">Ground Facilities</label> <input  type="textarea" class="form-control" placeholder="" id="groundFacilities" name="groundFacilities">
+                              <label for="email">Ground Facilities</label> <textarea  type="text" class="form-control" style="height: 100px;" id="groundFacilities" name="groundFacilities"></textarea>
                               </div>
                               
                                   
