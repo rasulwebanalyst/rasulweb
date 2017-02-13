@@ -1013,7 +1013,7 @@ function facebook()
 	  var url=window.location.href;
 		console.log(url);
 		
-		var url1="https://dev.cricketsocial.net/showScoreCard/boardId/226e432a-dcbe-4a03-abe0-6c0c2f0a9db4/matchId/6c50b95f-ee12-4191-97dc-a62701bdb022"; 
+		/* var url1="https://dev.cricketsocial.net/showScoreCard/boardId/226e432a-dcbe-4a03-abe0-6c0c2f0a9db4/matchId/6c50b95f-ee12-4191-97dc-a62701bdb022"; */ 
 	  var data=$("#feeddata").val();
 	   
 	var appmsg="hello";
@@ -1022,7 +1022,7 @@ function facebook()
 	  .open(
 	 "https://www.facebook.com/dialog/feed?app_id=1654958434805143&display=popup"
 	  +"&name="+data+""
-	  + "&link="+url1+""
+	  + "&link="+url+""
 	  + '&picture=https://s3.amazonaws.com/dev-cricket-social-images/cf0a4a05-4305-4115-9f6f-10bdb7a842c9.png'
 	 
 	  + "&description=ScoreCard", '',
@@ -1039,7 +1039,7 @@ function facebook()
 		console.log(url);
 		var sharedata=$("#feeddata").val();
 		console.log(sharedata);
-		var url1="https://dev.cricketsocial.net/showScoreCard/boardId/226e432a-dcbe-4a03-abe0-6c0c2f0a9db4/matchId/6c50b95f-ee12-4191-97dc-a62701bdb022";
+		/* var url1="https://dev.cricketsocial.net/showScoreCard/boardId/226e432a-dcbe-4a03-abe0-6c0c2f0a9db4/matchId/6c50b95f-ee12-4191-97dc-a62701bdb022"; */
 		/* window
 		.open("https://twitter.com/share?text="+sharedata+"",
 				'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600'); */
@@ -1049,7 +1049,7 @@ function facebook()
 				'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600'); */
 				
 				
-		window.open('http://twitter.com/share?url='+url1+'&text='+sharedata, '', 
+		window.open('http://twitter.com/share?url='+url+'&text='+sharedata, '', 
 				'left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
 				
 	}
