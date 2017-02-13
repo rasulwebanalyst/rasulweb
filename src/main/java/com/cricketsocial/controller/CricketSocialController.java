@@ -42865,12 +42865,13 @@ public  Object weatherApi(HttpServletRequest req,@PathVariable String lat,@PathV
 }
 
 @RequestMapping(value="/scorecardShare", method=RequestMethod.POST)
-public @ResponseBody List<Feeds> scorecardShare( HttpServletRequest request,@RequestBody Feeds feeds)
+public @ResponseBody List<Feeds> scorecardShare( HttpServletRequest request,@RequestBody String  content)
 	
 	{
 		ModelAndView model= null;
 		List<Feeds> feedresponse=null;
 			try{
+				Feeds feeds=new Feeds();
 				 HttpSession session = request.getSession(true);
 				 System.out.println("session.getAttribute()"+session.getAttribute("USRID"));
 				 
@@ -42880,6 +42881,7 @@ public @ResponseBody List<Feeds> scorecardShare( HttpServletRequest request,@Req
 					 if(feeds.getFileAttachement() != null){
 						 feeds.setHasAttachement("true"); 
 					 }
+					 feeds.setContent(content);
 					hubReq=new HubRequest(4);
 					 hubReq.setMsgType(4);
 					 String name=(String) session.getAttribute("USRLastName");
