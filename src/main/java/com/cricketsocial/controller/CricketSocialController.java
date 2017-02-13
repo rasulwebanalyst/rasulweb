@@ -42920,6 +42920,23 @@ public @ResponseBody List<Feeds> scorecardShare( HttpServletRequest request)
 }
 
 
+@RequestMapping(value="/sharecheck", method=RequestMethod.POST)
+public @ResponseBody  String sharecheck(HttpServletRequest request,@RequestBody Feeds feeds)
+{
+	String response="";
+	try{
+		response=feeds.getContent();
+		
+	}catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return response;
+			
+}
+
+
+
 }
 
 class UpcommingComprator implements Comparator<Object>

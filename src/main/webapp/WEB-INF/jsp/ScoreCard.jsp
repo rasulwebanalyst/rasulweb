@@ -1084,18 +1084,34 @@ function facebook()
 		} 
 		/* var request=url; */
 		console.log(request);
-		$.ajax({
+		/* $.ajax({
 			type : "POST",
 			url : "${pageContext.request.contextPath}/scorecardShare",
-			/* data : request,
-			contentType : "application/json; charset=utf-8", */
+			 data : request,
+			contentType : "application/json; charset=utf-8", 
 			success : function(res)
 			{
 				displaynotification('ScoreCard link as been shared',2000);
 				$("#feededit").hide();
 			}
 			
-		})
+		}) */
+		
+		
+		 $.ajax({
+			 type : "post",
+			 url : "${pageContext.request.contextPath}/sharecheck",
+			 data : JSON.stringify(request),
+			 contentType : "application/json",
+			 success : function(res)
+			 {
+				 displaynotification('ScoreCard link as been shared',2000);
+					$("#feededit").hide();
+					console.log(res);
+				 
+			 }
+			 
+		 })
 		
 	}
 

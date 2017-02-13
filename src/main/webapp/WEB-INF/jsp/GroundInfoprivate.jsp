@@ -653,13 +653,10 @@ function GetLocation() {
            
            }		  
 	  }) */
-	  var latitude=latlong.split(",")[0];
-	  var longitude=latlong.split(",")[1];
-	  console.log()
 	  
 	  $.ajax({
 		  type : "Get",
-		  url :"${pageContext.request.contextPath}/weatherApi/"+latlong,
+		  url :"${pageContext.request.contextPath}/weatherApi/"+latlong.split(",")[0]+"/"+latlong.split(",")[1],
 		  success:function(res)
 		  {
 			  if(res !=null)
