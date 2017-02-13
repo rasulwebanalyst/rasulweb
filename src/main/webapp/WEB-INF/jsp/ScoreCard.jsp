@@ -1077,18 +1077,18 @@ function facebook()
 		
 		/* var url=window.location.href; */
 		var url=$("#feedsedited").val();
-		/* var request={
+		 var request={
 				
 				content : url,
 				
-		} */
-		var request=url;
+		} 
+		/* var request=url; */
 		console.log(request);
 		$.ajax({
 			type : "POST",
 			url : "${pageContext.request.contextPath}/scorecardShare",
-			data : request,
-			contentType : "application/json; charset=utf-8",
+			/* data : request,
+			contentType : "application/json; charset=utf-8", */
 			success : function(res)
 			{
 				displaynotification('ScoreCard link as been shared',2000);

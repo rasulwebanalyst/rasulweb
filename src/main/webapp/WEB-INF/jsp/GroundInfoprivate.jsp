@@ -364,6 +364,37 @@ function GetLocation() {
 };
 
 </script>
+
+
+<style>
+.engineTable{
+    width: 100%;
+    border-collapse: collapse;
+    padding: 0px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    line-height: normal;
+    }
+    
+    
+.engineTable caption {
+    padding: 2px 3px 3px 3px;
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #010101;
+    caption-side: top;
+    text-align: left;
+    background-color: #d9effd;
+    height: auto;
+}
+    
+    .engineTable tr.head {
+    text-align: right;
+    vertical-align: middle;
+}
+</style>
+
 </head>
 <body onload="onload()">
 
@@ -420,7 +451,7 @@ function GetLocation() {
                          
                          <h4>Ground Statistics :</h4>
                          
-                          <c:choose>
+                         <%--  <c:choose>
                          <c:when test="${teamscoresize == 0 }">
                           <table class="brd-info">
                          <tr><td>Ground Highest</td><td>:</td><td></td></tr>
@@ -454,8 +485,31 @@ function GetLocation() {
                            </td></tr> 
                          </table>
                          </c:otherwise>
-                         </c:choose> 
-                         
+                         </c:choose>  --%>
+                         <table class="engineTable">
+<caption>Highest totals</caption>
+<thead>
+ <tr class="head">
+  <th title="team playing for" class="left" nowrap="nowrap">Team</th>
+  <th title="team score" class="padTS-b" nowrap="nowrap"><b>Score</b></th>
+  <th title="overs faced" nowrap="nowrap">Overs</th>
+  <th title="opposition" class="left" nowrap="nowrap">Opposition</th>
+  <th title="match start date" nowrap="nowrap">Match Date</th>
+  <th title="match scorecard" nowrap="nowrap">Scorecard</th>
+ </tr>
+</thead>
+<tbody>
+ 
+ <tr class="data1" data-days="736667">
+  <td class="left" title="record rank: 50" nowrap="nowrap"><a href="/ci/content/team/5.html" class="data-link">New Zealand</a></td>
+  <td class="padTSao-b" nowrap="nowrap"><b>256</b></td>
+  <td nowrap="nowrap">44.2</td>
+  <td class="left" nowrap="nowrap"><a href="/ci/content/team/2.html" class="data-link">v Australia</a></td>
+  <td nowrap="nowrap">4 Dec 2016</td>
+  <td nowrap="nowrap"><a href="/ci/engine/match/1001371.html" class="data-link">ODI # 3811</a></td>
+ </tr>
+</tbody>
+</table>
                          
                  </div>        
                          
@@ -599,10 +653,13 @@ function GetLocation() {
            
            }		  
 	  }) */
+	  var latitude=latlong.split(",")[0];
+	  var longitude=latlong.split(",")[1];
+	  console.log()
 	  
 	  $.ajax({
 		  type : "Get",
-		  url :"${pageContext.request.contextPath}/weatherApi/"+latlong.split(",")[0]+"/"+latlong.split(",")[1],
+		  url :"${pageContext.request.contextPath}/weatherApi/"+latlong,
 		  success:function(res)
 		  {
 			  if(res !=null)
