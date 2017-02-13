@@ -1090,7 +1090,7 @@ function facebook()
 			type : "POST",
 			url : "${pageContext.request.contextPath}/scorecardShare",
 			data : JSON.stringify(request),
-			contentType : "application/json",
+			contentType : "application/json; charset=utf-8",
 			success : function(res)
 			{
 				displaynotification('ScoreCard link as been shared',2000);
