@@ -1080,14 +1080,11 @@ function facebook()
 		var request={
 				
 				content : url,
-				active : 0,
-				feedType : "Buddy",
-				userFeedHit: false,
-		        feedTo: "All"
 				
 		}
+		console.log(request);
 		$.ajax({
-			type : "post",
+			type : "POST",
 			url : "${pageContext.request.contextPath}/scorecardShare",
 			data : JSON.stringify(request),
 			contentType : "application/json; charset=utf-8",

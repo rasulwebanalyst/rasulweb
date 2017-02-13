@@ -42887,6 +42887,10 @@ public @ResponseBody List<Feeds> scorecardShare( HttpServletRequest request,@Req
 					 UUID userId=(UUID) session.getAttribute("USRID");
 					 feeds.setPostedByName(name);
 					 feeds.setPostedBy(userId+"");
+					 feeds.setActive(0);
+					 feeds.setFeedType("Buddy");
+					 feeds.setUserFeedHit(false);
+					 feeds.setFeedTo("All");
 					 hubReq.setRequestParam(feeds);
 					 String result=cricketSocialRestTemplateService.userRegistration(hubReq);
 					
