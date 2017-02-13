@@ -1075,20 +1075,18 @@ function facebook()
 	function updatePost()
 	{
 		
-		/* var url=window.location.href; */
 		var url=$("#feedsedited").val();
 		 var request={
 				
 				content : url,
 				
 		} 
-		/* var request=url; */
 		console.log(request);
 		/* $.ajax({
 			type : "POST",
 			url : "${pageContext.request.contextPath}/scorecardShare",
-			 data : request,
-			contentType : "application/json; charset=utf-8", 
+			data : request,
+			contentType : "application/json; charset=utf-8",
 			success : function(res)
 			{
 				displaynotification('ScoreCard link as been shared',2000);
@@ -1099,19 +1097,31 @@ function facebook()
 		
 		
 		 $.ajax({
-			 type : "post",
-			 url : "${pageContext.request.contextPath}/sharecheck",
-			 data : JSON.stringify(request),
-			 contentType : "application/json",
-			 success : function(res)
-			 {
-				 displaynotification('ScoreCard link as been shared',2000);
-					$("#feededit").hide();
+				type : "POST",
+				url :ctx+"/getUserNotification",
+				dataType: "json",
+		        contentType: "application/json; charset=utf-8",
+				success : function(res) {
 					console.log(res);
-				 
-			 }
-			 
-		 })
+					if(res!=null)
+						{
+							var count=res.eventNotificationCount;
+							if(count>0)
+								{
+									$('#userNoficationCount').text(count);
+								}
+						}else{
+							
+						}
+					
+				},
+				error:function(response){
+					console.log("Your request failed due to some service problem"+JSON.stringify(response));
+				},
+			
+			}); 
+		
+		
 		
 	}
 

@@ -42842,15 +42842,13 @@ public @ResponseBody  String cancelEvent(HttpServletRequest request,@RequestBody
 }
 
 
-@RequestMapping(value="/weatherApi/{latlong}", method=RequestMethod.GET)
+@RequestMapping(value="/weatherApi/{lat1}/{lng1}", method=RequestMethod.GET)
 @ResponseBody
-public  Object weatherApi(HttpServletRequest req,@PathVariable String latlong)
+public  Object weatherApi(HttpServletRequest req,@PathVariable String lat1,@PathVariable String lng1)
 {
 	Object weather="";
 	try{
-		String latatiude=latlong.split(",")[0];
-		String longitude=latlong.split(",")[1];
-	URL url = new URL("http://api.openweathermap.org/data/2.5/weather?lat="+latatiude+"&lon="+longitude+"&appid=7e1f6381006c91e81299924b625b4b86&units=metric");
+	URL url = new URL("http://api.openweathermap.org/data/2.5/weather?lat="+lat1+"&lon="+lng1+"&appid=7e1f6381006c91e81299924b625b4b86&units=metric");
 	BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
 	String strTemp = "";
 	while (null != (strTemp = br.readLine())) {
@@ -42867,13 +42865,14 @@ public  Object weatherApi(HttpServletRequest req,@PathVariable String latlong)
 }
 
 @RequestMapping(value="/scorecardShare", method=RequestMethod.POST)
-public @ResponseBody List<Feeds> scorecardShare( HttpServletRequest request)
+public @ResponseBody List<Feeds> scorecardShare( HttpServletRequest request,@RequestBody String  content)
 	
 	{
 		ModelAndView model= null;
 		List<Feeds> feedresponse=null;
 			try{
-				/*		 HttpSession session = request.getSession(true);
+				Feeds feeds=new Feeds();
+				 HttpSession session = request.getSession(true);
 				 System.out.println("session.getAttribute()"+session.getAttribute("USRID"));
 				 
 				 if(session.getAttribute("USRID")!=null)
@@ -42882,6 +42881,7 @@ public @ResponseBody List<Feeds> scorecardShare( HttpServletRequest request)
 					 if(feeds.getFileAttachement() != null){
 						 feeds.setHasAttachement("true"); 
 					 }
+					 feeds.setContent(content);
 					hubReq=new HubRequest(4);
 					 hubReq.setMsgType(4);
 					 String name=(String) session.getAttribute("USRLastName");
@@ -42909,7 +42909,7 @@ public @ResponseBody List<Feeds> scorecardShare( HttpServletRequest request)
 					
 				}else{
 					model= new ModelAndView("redirect:/");
-				}*/
+				}
 				
 			}catch(Exception e)
 			{
@@ -42918,23 +42918,6 @@ public @ResponseBody List<Feeds> scorecardShare( HttpServletRequest request)
 			
 			return feedresponse;
 }
-
-
-@RequestMapping(value="/sharecheck", method=RequestMethod.POST)
-public @ResponseBody  String sharecheck(HttpServletRequest request,@RequestBody Feeds feeds)
-{
-	String response="";
-	try{
-		response=feeds.getContent();
-		
-	}catch(Exception e)
-	{
-		e.printStackTrace();
-	}
-	return response;
-			
-}
-
 
 
 }
