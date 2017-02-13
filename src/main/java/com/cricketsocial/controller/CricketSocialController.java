@@ -42842,13 +42842,13 @@ public @ResponseBody  String cancelEvent(HttpServletRequest request,@RequestBody
 }
 
 
-@RequestMapping(value="/weatherApi/{lat}/{lng}", method=RequestMethod.GET)
+@RequestMapping(value="/weatherApi/{lat1}/{lng1}", method=RequestMethod.GET)
 @ResponseBody
-public  Object weatherApi(HttpServletRequest req,@PathVariable String lat,@PathVariable String lng)
+public  Object weatherApi(HttpServletRequest req,@PathVariable String lat1,@PathVariable String lng1)
 {
 	Object weather="";
 	try{
-	URL url = new URL("http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lng+"&appid=7e1f6381006c91e81299924b625b4b86&units=metric");
+	URL url = new URL("http://api.openweathermap.org/data/2.5/weather?lat="+lat1+"&lon="+lng1+"&appid=7e1f6381006c91e81299924b625b4b86&units=metric");
 	BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
 	String strTemp = "";
 	while (null != (strTemp = br.readLine())) {
