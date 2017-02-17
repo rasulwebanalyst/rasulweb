@@ -62,8 +62,8 @@ return result;
 .dropdown-content {
     display: none; 
     position: absolute;
-    background-color: #f9f9f9;
-    min-width: 200px;
+    background-color: #9197a3;
+    min-width: 130px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 9;
 }
@@ -103,7 +103,24 @@ return result;
 
    </script> 
 
-
+<div id="feededit" class="popupDiv" style="display: none;">
+												
+												           <div class="box">
+												                <span class="head">Edit feed</span>
+												                <span class="close_btn" > <i class="fa fa-close" onclick="closeFeededit()"></i> </span>
+												
+												                <div class="popupContentDiv">
+												                
+												                		
+												                        	<textarea class="form-control" id="feedsedited" rows="5" placeholder="" ></textarea>
+												                        	<input type="hidden" id="EditedId">
+												                          
+												                          <div class="centerbtns"><button type="button" class="btn btn-default blueBtn" onclick="updatePost()">OK</button></div>
+												                       
+												                </div>
+												            </div>
+												 
+												 	</div>
 
  <section class="middleContentBlock">
   <%--   
@@ -122,7 +139,7 @@ return result;
                  <div class="col-md-12 noPadding">
                          <%@ include file="BuddyPublicSideMenu.jsp" %>
 <div class="userName col-md-10" id="likesDiv">
-	
+	<input type="hidden" id="Buddypublicid" value="${BuddyPublicUserId}">
 							<div class="hitBoard">
 							            <c:if test="${USRID ne BuddyPublicUserId}">
 							            <c:set var="fancount" value="${BuddyPublicFanCount+BuddyPublicBoradFanCount}"/>
@@ -179,6 +196,9 @@ return result;
 </div>
                     <div class="col-md-7 pageMiddleBlock">
                      <form action="postFeed.htm" name="postfrom" id="postfrom" method="post" enctype="multipart/form-data" onsubmit="return feedValidation()">
+                     	
+                     	<input type="hidden" id="publiccheck" value="FromPublic">
+                     	
                      	<div class="col-md-12 statusUpdateBox whiteBox">
                            <div id="fileDiv">
                            	 <input id="upload0" type="file" style="visibility: hidden;" name="file" onchange="readURL(this); this.value=null;return false;" />
@@ -329,7 +349,7 @@ return result;
 	                                    		
 	                                    		
 	                                    		           <div class="hitIconDiv" id="hittDiv${index.count}" style="display: none;"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" id="feed${index.count}"><i class="fa hitIcon"></i> Hit</a></div>
-	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" style="color: #4c9fe1;"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" > Hit</a></div>
+	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" style="color: #4c9fe1;"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" > UnHit</a></div>
 	                                    		
 	                                    		
 	                                    		</c:when>
@@ -340,7 +360,7 @@ return result;
 	                                    		
 	                                    		
 	                                    		            <div class="hitIconDiv" id="hittDiv${index.count}"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" id="feed${index.count}"><i class="fa hitIcon"></i> Hit</a></div>
-	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}" style="display: none;"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" style="color: #4c9fe1;"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" > Hit</a></div>
+	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}" style="display: none;"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" style="color: #4c9fe1;"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" > UnHit</a></div>
 	                                    		
 	                                    		</c:otherwise>
 	                                    </c:choose>
@@ -781,6 +801,77 @@ function removeHitList(fid)
 	  $("#Hitlist_"+fid).html("").trigger('create');
 	 console.log("remove"); 
 }
+
+function feedEdit(id)
+{
+	var feed=$("#"+id).text();
+	$("#feedsedited").val(feed);
+	$("#EditedId").val(id);
+	$("#feededit").show();
+	console.log(feed);
+	}
+	
+function closeFeededit()
+{
+	$("#feededit").hide();
+	}
+	
+function updatePost()
+{
+	var feed=$("#feedsedited").val();
+	var editedid=$("#EditedId").val();
+	console.log("Edited feed :"+feed);
+	
+	
+	var feedarray=feed.split(" ");
+	var sentfeed="";
+	for(var i in feedarray)
+		{
+		var word=linkify(feedarray[i]);
+		console.log(sentfeed);
+		console.log(i);
+		if(i == 0){sentfeed+=word;}else{
+		sentfeed+=" "+word;}
+		}
+	console.log(sentfeed);
+	
+	
+var request={
+			
+			content : sentfeed,
+			updateFlag : "feed",
+			feedId : editedid,
+	}
+	
+	$.ajax({
+		
+		type : "post",
+		url : "${pageContext.request.contextPath}/UpdateFeed",
+		data : JSON.stringify(request),
+		contentType : "application/json",
+		success : function(res){
+			
+			if(res == "success")
+				{
+				$("#"+editedid).html(sentfeed);
+				}
+			$("#feedsedited").val("");
+			$("#EditedId").val("");
+			$("#feededit").hide();
+			}
+		
+	}) 
+}
+
+function linkify(text) {
+    var urlRegex =/(\b(((https?|ftp|file|):\/\/)|www[.])[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    return text.replace(urlRegex, function(url) {
+        return '<a href="' + url + '">' + url + '</a>';
+    });
+}
+	
+	
+	
 
 </script>
 

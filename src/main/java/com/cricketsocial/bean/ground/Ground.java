@@ -36,10 +36,37 @@ public class Ground {
 	 
 	 private String directionsToGround;
 	 
+	 private String pitchDescription;
+	 
+	 private String wicketType;
+	 
+	 private String landmark;
+	 
+	 
+	 
+	 
 	 
 	 
 	
 
+	public String getLandmark() {
+		return landmark;
+	}
+	public void setLandmark(String landmark) {
+		this.landmark = landmark;
+	}
+	public String getWicketType() {
+		return wicketType;
+	}
+	public void setWicketType(String wicketType) {
+		this.wicketType = wicketType;
+	}
+	public String getPitchDescription() {
+		return pitchDescription;
+	}
+	public void setPitchDescription(String pitchDescription) {
+		this.pitchDescription = pitchDescription;
+	}
 	public String getGroundFacilities() {
 		return groundFacilities;
 	}

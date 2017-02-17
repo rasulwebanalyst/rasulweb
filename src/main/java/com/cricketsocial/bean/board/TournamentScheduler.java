@@ -81,12 +81,36 @@ public class TournamentScheduler {
 	
 	private String teamName;
 	
+	private int wickets; 
 	
-	private int wickets;
+	private int overs;
+	
+	private String againstTeamName;
+	
+	private String againstTeamId;
 	
 	
 	
 	
+	
+	public String getAgainstTeamId() {
+		return againstTeamId;
+	}
+	public void setAgainstTeamId(String againstTeamId) {
+		this.againstTeamId = againstTeamId;
+	}
+	public String getAgainstTeamName() {
+		return againstTeamName;
+	}
+	public void setAgainstTeamName(String againstTeamName) {
+		this.againstTeamName = againstTeamName;
+	}
+	public int getOvers() {
+		return overs;
+	}
+	public void setOvers(int overs) {
+		this.overs = overs;
+	}
 	public int getWickets() {
 		return wickets;
 	}

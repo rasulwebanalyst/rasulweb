@@ -28,13 +28,34 @@ messages :
 	 var   buddyID=  document.getElementById('BuddyID').value;
 	 var feedto=$('input[name="feedTo"]:checked').val();
 	// alert(feedto);
- var postfeed={
+	 
+	 var publiccheck=$("#publiccheck").val()
+	 var postfeed;
+	 
+	 if(publiccheck == 'FromPublic')
+		 {
+		 var publicid=$("#Buddypublicid").val();
+		 
+		 postfeed={
+				 content:content,
+				 feedType : 'Buddy',
+				 postedBy : buddyID,
+				 fileAttachement:feedImagesArray,
+				 feedTo : feedto,
+				 publicProfileId : publicid,
+				 feedType : "PublicBuddy"
+		 };
+		 
+		 }else{
+	 
+  postfeed={
 		 content:content,
 		 feedType : 'Buddy',
 		 postedBy : buddyID,
 		 fileAttachement:feedImagesArray,
 		 feedTo : feedto
  };
+		 }
 	 console.log(JSON.stringify(postfeed));
 	 	 
      var postinfo=JSON.stringify(postfeed);
@@ -49,6 +70,8 @@ messages :
 				
 				var htm ='';
 				$('.uploadedFiles').empty();
+				var contentwithurl="";
+				var contentwithid="";
 				 
 				if(res!=null)
 					{
@@ -123,13 +146,14 @@ messages :
 	                			}
 	                	}
 	                }
-	               
+	                contentwithurl=res[0].content;
+	                contentwithid=res[0].feedId;
 	                htm +='<p id='+res[0].feedId+'>'+res[0].content+'</p>'               	
 	                	+'</div>'
 	                
 	             //   +'<a href="javascript:addfeedHit('+fid+')" class="shareLink"><i class="fa hitIcon"></i> Hit</a>'
 	                	+'<div class="hitIconDiv" id="hittDiv'+res[0].feedId+'"><a href="javascript:userHitBtn('+fid+','+fid+')" class="shareLink" id="feed'+res[0].feedId+'"><i class="fa hitIcon"></i> Hit</a></div>'
-	                	+'<div class="hitIconDiv" id="hittedDiv'+res[0].feedId+'" style="display: none;"><a href="javascript:userHitBtn('+fid+','+fid+')" class="shareLink" style="color: #4c9fe1;"><img src="'+projectURL+'/images/hitIcon1.png" width="18" class="hitIcon1" > Hit</a></div>'
+	                	+'<div class="hitIconDiv" id="hittedDiv'+res[0].feedId+'" style="display: none;"><a href="javascript:userHitBtn('+fid+','+fid+')" class="shareLink" style="color: #4c9fe1;"><img src="'+projectURL+'/images/hitIcon1.png" width="18" class="hitIcon1" > UnHit</a></div>'
 	                	
 	                	
 	                	
@@ -158,6 +182,13 @@ messages :
 				$("#postedresult").prepend(htm);
 				document.getElementById('content').value='';
 				// $('#fileDiv').html('');
+				
+				
+				contentwithurl=res[0].content;
+                contentwithid=res[0].feedId;
+				
+                $("#"+contentwithid).html(contentwithurl);
+				
 				 $('#loading').hide();
 				$('#NoFeedMsgDIV').html('');
 				 feedImagesArray.length=0;

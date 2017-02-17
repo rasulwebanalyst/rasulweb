@@ -484,7 +484,7 @@ function GetLocation() {
                                   </div>
                                   
                                   <div class="col-md-4 ">
-                              <label for="email">Landmark</label> <input  type="textarea" class="form-control" placeholder="" id="landMark" name="landMark" value="">
+                              <label for="email">Landmark</label> <input  type="textarea" class="form-control" placeholder="" id="landMark" name="landMark" value="${groundDetails.landmark}">
                               </div>
                               
                               <div class="col-md-4 ">
@@ -507,6 +507,26 @@ function GetLocation() {
                                   <div class="col-md-4 ">
                               <label for="email">Ground Facilities</label> <textarea  type="text" class="form-control" style="height: 100px;"  id="groundFacilities" name="groundFacilities" >${groundDetails.groundFacilities}</textarea>
                               </div>
+                              
+                               <div class="col-md-4 ">
+                              <label for="email">Pitch Description</label> <textarea  type="text" class="form-control" style="height: 100px;" id="pitchDescription" name="pitchDescription">${groundDetails.pitchDescription}</textarea>
+                              </div>
+                                  
+                                  </div>
+                                  
+                                   <div class="col-md-12 noPadding">	
+                                  <div class="col-md-4">
+                                  	<label for="email">Wicket Type</label> 
+                                  	<input type="hidden" id="selectedhidden" value="${groundDetails.wicketType}">
+                                  	<!-- <textarea type="text" class="form-control" style="height: 100px;" id="directionsToGround" name="directionsToGround"></textarea> -->
+                                  	<select id="wickettype" class="form-control">
+                              <option value="Regular Turf">Regular Turf</option>
+                              <option value="Astro Turf">Astro Turf </option>
+                              <option value="Mat turf">Mat turf</option>
+                              
+                              </select>
+                                  </div>
+                                  
                               
                                   
                                   </div>
@@ -585,6 +605,15 @@ function GetLocation() {
 			});
 		</script>
 <script>
+
+
+$(document).ready(function(){
+	var selected=$("#selectedhidden").val();
+	
+	$("#wickettype").val(selected);
+});
+
+
 function getTeamAutoComplete(elem,divId,hiddenId){
 	
  	var key=$(elem).val();
@@ -728,6 +757,9 @@ function submitFunction(){
 		var latLang = $("#hiddenLatLang").val();
 		var groundfacilities=$("#groundFacilities").val();
 		var grounddirection=$("#directionsToGround").val();
+		var pitchdescription=$("#pitchDescription").val();
+        var landmark=$("#landMark").val();
+        var wickettype=$("#wickettype").val();
 		//alert(boardId);
 		//alert(latLang);
 		var groundBean = {
@@ -744,7 +776,10 @@ function submitFunction(){
 				groundId : groundId,
 				latLang :latLang,
 				groundFacilities : groundfacilities,
-				directionsToGround : grounddirection
+				directionsToGround : grounddirection,
+				pitchDescription : pitchdescription,
+				landmark : landmark,
+				wicketType : wickettype
 					
 		}
 		//alert(JSON.stringify(groundBean));

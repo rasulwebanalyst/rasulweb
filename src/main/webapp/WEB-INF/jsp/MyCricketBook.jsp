@@ -1232,7 +1232,7 @@ function yearWiseBowling(val){
 	   
 	   var doc = new jsPDF('p', 'pt','a4');
 	    doc.setProperties({
-	    	title: 'Cricket Socio',
+	    	title: 'Cricket Social',
 	    	subject: 'Buddy Score Card',
 	    	author: 'Thamaramurthy Devarala',
 	    	keywords: 'Batting, Bowling',

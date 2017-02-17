@@ -91,8 +91,8 @@ return result;
 .dropdown-content {
     display: none; 
     position: absolute;
-    background-color: #f9f9f9;
-    min-width: 200px;
+    background-color: #9197a3;
+    min-width: 130px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 9;
 }
@@ -927,9 +927,23 @@ function closeFeededit()
 		var editedid=$("#EditedId").val();
 		console.log("Edited feed :"+feed);
 		
-		var request={
+		
+		var feedarray=feed.split(" ");
+		var sentfeed="";
+		for(var i in feedarray)
+			{
+			var word=linkify(feedarray[i]);
+			console.log(sentfeed);
+			console.log(i);
+			if(i == 0){sentfeed+=word;}else{
+			sentfeed+=" "+word;}
+			}
+		console.log(sentfeed);
+		
+		
+var request={
 				
-				content : feed,
+				content : sentfeed,
 				updateFlag : "feed",
 				feedId : editedid,
 		}
@@ -944,15 +958,23 @@ function closeFeededit()
 				
 				if(res == "success")
 					{
-					$("#"+editedid).text(feed);
+					$("#"+editedid).html(sentfeed);
 					}
 				$("#feedsedited").val("");
 				$("#EditedId").val("");
 				$("#feededit").hide();
 				}
 			
-		})
+		}) 
 	}
+	
+	function linkify(text) {
+	    var urlRegex =/(\b(((https?|ftp|file|):\/\/)|www[.])[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+	    return text.replace(urlRegex, function(url) {
+	        return '<a href="' + url + '">' + url + '</a>';
+	    });
+	}
+	
 	
 	 function SaveComment(id,fid)
 	 {

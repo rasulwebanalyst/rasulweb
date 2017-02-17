@@ -48,12 +48,28 @@ public class PlayerDTO {
 	private String flag;
 	private String bbi;
 	
+	private String againstTeamName;
+	private String againstTeamId;
 	
 	
 	
 	
 	
 	
+	
+	
+	public String getAgainstTeamId() {
+		return againstTeamId;
+	}
+	public void setAgainstTeamId(String againstTeamId) {
+		this.againstTeamId = againstTeamId;
+	}
+	public String getAgainstTeamName() {
+		return againstTeamName;
+	}
+	public void setAgainstTeamName(String againstTeamName) {
+		this.againstTeamName = againstTeamName;
+	}
 	public String getBbi() {
 		return bbi;
 	}

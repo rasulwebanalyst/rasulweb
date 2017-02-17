@@ -57,8 +57,19 @@ public class Event {
 	 	private List<Event> upcomingCreatedEventList;
 	 	private List<Event> completedCreatedEventList;
 	 	
+	 	private String cancelResason;
 	 	
-	    public List<Event> getUpcomingCreatedEventList() {
+	 	
+	 	
+	 	
+	 	
+	    public String getCancelResason() {
+			return cancelResason;
+		}
+		public void setCancelResason(String cancelResason) {
+			this.cancelResason = cancelResason;
+		}
+		public List<Event> getUpcomingCreatedEventList() {
 			return upcomingCreatedEventList;
 		}
 		public void setUpcomingCreatedEventList(List<Event> upcomingCreatedEventList) {

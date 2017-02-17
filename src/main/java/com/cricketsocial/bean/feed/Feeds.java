@@ -65,9 +65,18 @@ public class Feeds {
 	
 	private String feedCommentId;
 	
+	private String publicProfileId;
 	
 	
 	
+	
+	
+	public String getPublicProfileId() {
+		return publicProfileId;
+	}
+	public void setPublicProfileId(String publicProfileId) {
+		this.publicProfileId = publicProfileId;
+	}
 	public String getFeedCommentId() {
 		return feedCommentId;
 	}

@@ -429,6 +429,26 @@ function getAddress1(e,addr)
                               <label for="email">Ground Facilities</label> <textarea  type="text" class="form-control" style="height: 100px;" id="groundFacilities" name="groundFacilities"></textarea>
                               </div>
                               
+                              <div class="col-md-4 ">
+                              <label for="email">Pitch Description</label> <textarea  type="text" class="form-control" style="height: 100px;" id="pitchDescription" name="pitchDescription"></textarea>
+                              </div>
+                              
+                                  
+                                  </div>
+                                  
+                                  <div class="col-md-12 noPadding">	
+                                  <div class="col-md-4">
+                                  	<label for="email">Wicket Type</label> 
+                                  	<!-- <textarea type="text" class="form-control" style="height: 100px;" id="directionsToGround" name="directionsToGround"></textarea> -->
+                                  	<select id="wickettype" class="form-control">
+                              <option value="Regular Turf">Regular Turf</option>
+                              <option value="Astro Turf">Astro Turf </option>
+                              <option value="Mat turf">Mat turf</option>
+                              
+                              </select>
+                                  </div>
+                                  
+                              
                                   
                                   </div>
                                   
@@ -630,6 +650,9 @@ function submitFunction(){
 		var latLang = $("#hiddenLatLang").val();
 		var groundfacilities=$("#groundFacilities").val();
 		var grounddirection=$("#directionsToGround").val();
+		var pitchdescription=$("#pitchDescription").val();
+        var landmark=$("#landMark").val();
+        var wickettype=$("#wickettype").val();
 		//alert(latLang.replace(/[^a-zA-Z0-9\.,]/g, ""));
 		
 		var groundBean = {
@@ -645,7 +668,10 @@ function submitFunction(){
 				modifiedBy : boardId,
 				latLang :latLang,
 				groundFacilities : groundfacilities,
-				directionsToGround : grounddirection
+				directionsToGround : grounddirection,
+				pitchDescription : pitchdescription,
+				landmark : landmark,
+				wicketType : wickettype
 					
 		}
 		//alert(JSON.stringify(groundBean));

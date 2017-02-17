@@ -130,6 +130,37 @@ overflow-y: auto !important;
 	<script>
 	var eventIDS=[];
 	</script>
+	
+	
+	
+	<div id="cancelTournament" class="popupDiv" style="display: none;">
+
+           <div class="box">
+                <span class="head">Reason</span>
+                <span class="close_btn"> <i onclick="cancelFunction()" class="fa fa-close"></i> </span>
+
+                <div class="popupContentDiv">
+                
+                		
+                        	<textarea class="form-control" id="reasonId" rows="5" placeholder=""></textarea>
+                          
+                          <div class="centerbtns">
+                          <input type="hidden" id="cancelTournamentid">
+                          
+                           <button type="button" class="btn btn-default blueBtn" onclick="okFunction()">OK</button>
+                          <button type="button" class="btn btn-default blueBtn" onclick="cancelFunction()">Cancel</button>
+                          
+                          
+                          </div>
+                       
+                </div>
+            </div>
+ 
+ 	</div>
+	
+	
+	
+	
 	<%@ include file="BoardHeader.jsp" %>
 
  <section class="middleContentBlock">
@@ -736,7 +767,14 @@ function showScoreCardInProgress1(id,bid){
 function CancelEvent(id)
 {
 	
-	var request={
+	
+$("#cancelTournamentid").val(id);
+	
+	$("#cancelTournament").show();
+	
+	
+	
+	/* var request={
 			
 			eventId : id
 	}
@@ -748,7 +786,6 @@ $.ajax({
 		data : JSON.stringify(request),
 		contentType : "application/json",
 		success : function(res){
-			/* alert(res); */
 			if(res == "success")
 				{
 				
@@ -759,8 +796,55 @@ $.ajax({
 				}
 			}
 		
-	})
+	}) */
 }
+
+
+function okFunction(){
+	
+	var id=$("#cancelTournamentid").val();
+	var reason=$("#reasonId").val();
+	if(reason != ''){
+	var request={
+			
+			eventId : id,
+			cancelResason : reason
+	}
+	
+$.ajax({
+		
+		type : "post",
+		url : "${pageContext.request.contextPath}/cancelEvent",
+		data : JSON.stringify(request),
+		contentType : "application/json",
+		success : function(res){
+			
+			if(res == "success")
+				{
+				
+				$("#hide_"+id).hide();
+				$("#cancelReasonPopup").hide();
+				$("#cancelTournament").hide();
+			 displaynotification('Event canceled successfully',2000); 
+			
+				}
+			}
+		
+	})
+	}else
+		{
+		displaynotification("Please give reason to cancel event",1000);
+		}
+	
+}
+
+function cancelFunction(){
+	   
+	  
+	   $("#cancelTournament").hide();
+}
+
+
 
 </script>
    

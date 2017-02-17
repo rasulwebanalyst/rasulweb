@@ -91,9 +91,30 @@ $('#postfrom').validate({
 		              +'</div>'
 		              +'<div class="media-body">'
 		                +'<h4 class="media-heading">'+res[0].postedByName+'</h4>'
-		                +'<div class="headRight"> <p class="trash-holder" onclick="feedDelete('+fid+')" title="Delete"  ><i class="fa fa-trash trash"></i> </p>'
+		                +'<div class="headRight">' 
+		               /* +'<p class="trash-holder" onclick="feedDelete('+fid+')" title="Delete"  ><i class="fa fa-trash trash"></i> </p>'
 		                +	'<span id="HitCountDIv'+res[0].feedId+'"><img src="'+projectURL+'/images/hitIcon1.png" width="18" class="hitIcon1"  >0</span><span id="commentCount'+res[0].feedId+'" onclick=getAllComments("'+res[0].feedId+'")><i class="fa fa-commenting-o"></i>0</span>'
-		                +'</div>';
+		                +'</div>';*/
+						
+			                
+			                +'<div class="dropdown">'
+		                	+'<p id="HitCountDIv'+res[0].feedId+'" onmouseout="removeHitList('+fid+')" onmouseover="getHitList('+fid+')" class="trash-holder"><img src="'+projectURL+'/images/hitIcon1.png" width="18" class="hitIcon1" >0</p>'
+		                	+'<div id="Hitlist_'+res[0].feedId+'"></div>'
+		                
+		                +'</div>'
+			                
+			                
+			                +'<p class="trash-holder" onclick="feedDelete('+fid+')" title="Delete"  ><i class="fa fa-trash trash"></i> </p>'
+			                +'<p class="trash-holder"  onclick="feedEdit('+fid+')" title="Edit"  ><i class="fa fa-pencil trash"></i> </p>'
+			                +	'<p id="commentCount'+res[0].feedId+'" onclick=getAllComments("'+res[0].feedId+'")><i class="fa fa-commenting"></i>0</p>'
+			                +'</div>';
+						
+						
+						
+						
+						
+						
+						
 		                
 		                //+'<span class="postTime">'+result+'</span>'
 		                htm+='<span class="postTime">Just now</span>'
@@ -114,13 +135,20 @@ $('#postfrom').validate({
 		                	}
 		                }
 		               
-		                htm +='<p>'+res[0].content+'</p>'               	
+		                htm +='<p id='+res[0].feedId+'>'+res[0].content+'</p>'               	
 		                	+'</div>'
 		                
 		               // +'<a href="javascript:addfeedHit2('+fid+',this)" id="feed'+res[0].feedId+'" class="shareLink"><i class="fa hitIcon"></i> Hit</a>'
+		                	/*+'<div class="hitIconDiv" id="hittDiv'+res[0].feedId+'"><a href="javascript:userHitBtn('+fid+','+fid+')" class="shareLink" id="feed'+res[0].feedId+'"><i class="fa hitIcon"></i> Hit</a></div>'
+		                	+'<div class="hitIconDiv" id="hittedDiv'+res[0].feedId+'" style="display: none;"><img src="'+projectURL+'/images/hitIcon1.png" width="18" class="hitIcon1" ><i class="fa hitIcon"></i> Hit</div>'*/
+		               
+		                	
 		                	+'<div class="hitIconDiv" id="hittDiv'+res[0].feedId+'"><a href="javascript:userHitBtn('+fid+','+fid+')" class="shareLink" id="feed'+res[0].feedId+'"><i class="fa hitIcon"></i> Hit</a></div>'
-		                	+'<div class="hitIconDiv" id="hittedDiv'+res[0].feedId+'" style="display: none;"><img src="'+projectURL+'/images/hitIcon1.png" width="18" class="hitIcon1" ><i class="fa hitIcon"></i> Hit</div>'
-		                +'<a href="javascript:showCommentDIV('+fid+')" class="shareLink"><i class="fa fa-commenting"></i> Comment</a>'
+		                	+'<div class="hitIconDiv" id="hittedDiv'+res[0].feedId+'" style="display: none;"><a href="javascript:userHitBtn('+fid+','+fid+')" class="shareLink" style="color: #4c9fe1;"><img src="'+projectURL+'/images/hitIcon1.png" width="18" class="hitIcon1" > UnHit</a></div>'
+		                	
+		                	
+		                	
+		                	+'<a href="javascript:showCommentDIV('+fid+')" class="shareLink"><i class="fa fa-commenting"></i> Comment</a>'
 		                +'<a href="#" class="shareLink"><i class="fa fa-share"></i> Share</a>'
 		              +'</div>'
 		            +'  </div>'
@@ -683,3 +711,81 @@ $('#postfrom').validate({
 	 
 	 
  }
+ 
+ 
+ 
+ function userHitBtn(id,vid)
+ {
+	// alert(''+id);
+	 
+	 var flag="";
+	 
+	 if($('#hittDiv'+vid).css('display') == 'none')
+		 {
+		 console.log("hittDiv")
+		 flag="remove";
+		 $('#hittDiv'+vid).show();
+		 $('#hittedDiv'+vid).hide();
+		 
+		 }else
+			 {
+			 console.log("hittedDiv")
+			 flag="add"
+			 $('#hittDiv'+vid).hide();
+			 $('#hittedDiv'+vid).show();
+			 }
+	 
+	/*$('#hittDiv'+vid).hide();
+	 $('#hittedDiv'+vid).show();*/
+	 
+	 /*document.getElementById('feed'+vid).href = 'javascript:'; */
+		if(id!='')
+			{
+			 var   projectURL=  document.getElementById('projectURL').value;
+			 var   buddyID=  document.getElementById('BuddyID').value;
+			 var   buddyName= document.getElementById('BuddyNME').value;
+			
+			
+			 var postHitparams={
+					 feedId: id,
+					 hittedBy : buddyID,
+					 hittedByName : buddyName,
+					 active : 1,
+					 hitFlag : flag
+		     };
+			 
+			 var postinfo=JSON.stringify(postHitparams);
+			 
+			$.ajax({
+					type : "POST",
+					url : projectURL+"/FeedHitByBuddy",
+					dataType: "json",
+		   contentType: "application/json; charset=utf-8",
+		   data:postinfo,			            
+					success : function(res) {
+						console.log(res);
+						if(res!=null)
+							{
+							
+								$('#HitCountDIv'+vid).html('<img src="'+projectURL+'/images/hitIcon1.png" width="18" class="hitIcon1" >'+res.hitCount+'');
+							
+								/*document.getElementById('feed'+vid).href = 'javascript:';*/							
+								console.log(document.getElementById('feed'+vid).href);
+							}
+					},
+					
+					error:function(response){
+					alert("Error message"+JSON.stringify(response));
+					},
+				
+					
+				}); 
+			}else{
+				
+			}
+	 
+	 
+	 
+ }
+ 
+ 

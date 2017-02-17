@@ -33,9 +33,6 @@ a{
 .loginBody .loginMiddleBlock .nav-tabs > li.active > a, .loginMiddleBlock .nav-tabs > li.active > a:hover {
     background: #112937;
 }
-.carousel-inner {
-	border: 10px solid rgba(255,255,255,0.3);
-}
 .login-bg {
 	background: url(../images/login-bg2.png) no-repeat center;
 	-webkit-background-size: cover;
@@ -66,16 +63,64 @@ a{
 	margin-right: 0px;
 	margin-left: 2px;
 }
+.galleryBlock p {
+	word-wrap: break-word;
+	word-break: break-all;
+}
+.cover.carousel-caption {
+	left: 0;
+	right: 0;
+    text-align: right;
+    padding-right: 20px;
+    padding-bottom: 0;
+	
+}
+.cover.carousel-caption button {
+	width: 120px;
+	background: rgba(255,255,255,0.7);
+	padding: 10px;
+	color: #111;
+	border: none;
+}
+table.brd-info tr td:first-child {
+	width: 60px;
+}
+table.engineTable {
+	margin-bottom: 1%;
+}
+.engineTable caption {
+    padding: 2px 3px 3px;
+    color: #010101;
+    caption-side: top;
+    text-align: left;
+    background-color: #d9effd;
+    height: auto;
+    font-weight: 600;
+ }
+ table.engineTable > thead {
+ 	background: #f5f5f5;
+ }
+ table.engineTable > thead > tr > th {
+ 	background-color: transparent;
+ 	color: #111;
+    border: none;
+ } 
+ table.engineTable > tbody > tr > td {
+ 	background-color: #fff;
+ 	color: #111;
+    border: none;
+    border-bottom: 1px dotted #ccc;
+ } 
 .headRight .dropdown-content {
 	z-index: 9999;
-	top: 16px;
-	right: 0px;
+    top: 20px;
+    right: 5px;
 }
 .headRight .dropdown-content li {
 	text-align: left;
     list-style: none;
-    color: #111;
-    padding: 10px;
+    color: #fff;
+    padding: 4px 6px;
     border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 .headRight .dropdown-content li:last-child {
@@ -1131,6 +1176,7 @@ table.brd-info tr td {
 	border: 0;
 	color: #111;
     font-size: 12px;
+    vertical-align: top;
 }
 table.bd-table.direc tr td .bd-soc-holder,table.bd-table.direc.direc-main tr td .bd-soc-holder {
 	width: 100%;

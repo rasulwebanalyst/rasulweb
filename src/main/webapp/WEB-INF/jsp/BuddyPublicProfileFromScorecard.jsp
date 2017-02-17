@@ -1654,7 +1654,7 @@ function yearWiseAchievements(val) {
 	   
 	   var doc = new jsPDF('p', 'pt');
 	    doc.setProperties({
-	    	title: 'Cricket Socio',
+	    	title: 'Cricket Social',
 	    	subject: 'Buddy Score Card',
 	    	author: 'Thamaramurthy Devarala',
 	    	keywords: 'Batting, Bowling',

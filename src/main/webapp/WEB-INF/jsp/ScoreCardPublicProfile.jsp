@@ -62,6 +62,7 @@ var formatAMPMTime = function(date) {
 												                
 												                		
 												                        	<textarea class="form-control" id="feedsedited" rows="5" placeholder="" ></textarea>
+												                        	<input type="hidden"  id="feedseditedhidden" rows="5" placeholder="" ></textarea>
 												                        	<input type="hidden" id="EditedId">
 												                          
 												                          <div class="centerbtns"><button type="button" class="btn btn-default blueBtn" onclick="updatePost()">OK</button></div>
@@ -529,6 +530,7 @@ var formatAMPMTime = function(date) {
                              
                                 <c:when test="${SecondInningsBattingPlayerSize == 0 }">
                                 <!-- <span style="color:red">No Details Available</span> -->
+                                </div>
                                 </c:when>
                                 <c:otherwise>
                                 
@@ -912,13 +914,14 @@ var formatAMPMTime = function(date) {
 
 
                        </div> 
+                       
 
                      <!--Right Block-->
                      	 <%@ include file="AroundYouMenu.jsp" %>
                      
                      <!--/Right Block End-->
                             
-                             </div>
+                              </div> 
                         
                      </div>
 
@@ -1039,6 +1042,8 @@ function facebook()
 		console.log(sharedata);
 		
 		$("#feedsedited").val(sharedata);
+		var hreftag="<a href="+url+">"+url+"</a>";
+		$("#feedseditedhidden").val($("#feeddata").val()+"            "+hreftag);
 		$("#feededit").show();
 		
 		
@@ -1053,7 +1058,8 @@ function facebook()
 	{
 		
 		/* var url=window.location.href; */
-		var url=$("#feedsedited").val();
+		/* var url=$("#feedsedited").val(); */
+		var url=$("#feedseditedhidden").val();
 		var request={
 				
 				content : url,
@@ -1070,7 +1076,8 @@ function facebook()
 			contentType : "application/json",
 			success : function(res)
 			{
-				alert(res);
+				displaynotification('ScoreCard link as been shared',2000);
+				$("#feededit").hide();
 			}
 			
 		})

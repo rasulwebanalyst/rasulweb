@@ -1582,7 +1582,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
 	   
 	   var doc = new jsPDF('p', 'pt','a4');
 	    doc.setProperties({
-	    	title: 'Cricket Socio',
+	    	title: 'Cricket Social',
 	    	subject: 'Buddy Score Card',
 	    	author: 'Vignesh Ranganathan',
 	    	keywords: 'Batting, Bowling',

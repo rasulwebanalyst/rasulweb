@@ -105,7 +105,7 @@ var formatAMPMTime = function(date) {
 	  hours = hours ? hours : 12; // the hour '0' should be '12'
 	  minutes = minutes < 10 ? '0'+minutes : minutes;
 	  hours = hours < 10 ? '0'+hours : hours ;
-	  var strTime =date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear()+" "+ hours + ':' + minutes + ' ' + ampm;
+	  var strTime =(date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear()+" "+ hours + ':' + minutes + ' ' + ampm;
 	  return strTime;
 	}
 	function test(id){
@@ -125,6 +125,36 @@ var formatAMPMTime = function(date) {
 	<script>
 	var eventIDS=[];
 	</script>
+	
+	
+	
+	 <div id="cancelTournament" class="popupDiv" style="display: none;">
+
+           <div class="box">
+                <span class="head">Reason</span>
+                <span class="close_btn"> <i onclick="cancelFunction()" class="fa fa-close"></i> </span>
+
+                <div class="popupContentDiv">
+                
+                		
+                        	<textarea class="form-control" id="reasonId" rows="5" placeholder=""></textarea>
+                          
+                          <div class="centerbtns">
+                          <input type="hidden" id="cancelTournamentid">
+                          
+                           <button type="button" class="btn btn-default blueBtn" onclick="okFunction()">OK</button>
+                          <button type="button" class="btn btn-default blueBtn" onclick="cancelFunction()">Cancel</button>
+                          
+                          
+                          </div>
+                       
+                </div>
+            </div>
+ 
+ 	</div>
+	
+	
+	
 	<div id="umpireRattingFromPopup" class="popupDiv" style="display: none;">
 
           <div class="box">
@@ -342,7 +372,7 @@ var formatAMPMTime = function(date) {
 														                         			document.writeln(getevntUTCtime("${event.eventDate}"));																									                         			
 														                         			</script> -->
 														                         			</p>
-														                         			 <p>${event.eventName}</p>
+														                         			 <p>${event.venue}</p>
 														                        	</div>
 														                        <div class="col-md-6 threebtn">
 														                            
@@ -805,19 +835,19 @@ function showScoreCardInProgress1(id,bid){
 function CancelEvent(id)
 {
 	
-	var request={
-			
-			eventId : id
-	}
 	
-	$.ajax({
+	$("#cancelTournamentid").val(id);
+	
+	$("#cancelTournament").show();
+	
+	/* $.ajax({
 		
 		type : "post",
 		url : "${pageContext.request.contextPath}/cancelEvent",
 		data : JSON.stringify(request),
 		contentType : "application/json",
 		success : function(res){
-			/* alert(res); */
+			
 			if(res == "success")
 				{
 				
@@ -828,7 +858,51 @@ function CancelEvent(id)
 				}
 			}
 		
+	}) */
+}
+
+function okFunction(){
+	
+	var id=$("#cancelTournamentid").val();
+	var reason=$("#reasonId").val();
+	if(reason != ''){
+	var request={
+			
+			eventId : id,
+			cancelResason : reason
+	}
+	
+$.ajax({
+		
+		type : "post",
+		url : "${pageContext.request.contextPath}/cancelEvent",
+		data : JSON.stringify(request),
+		contentType : "application/json",
+		success : function(res){
+			
+			if(res == "success")
+				{
+				
+				$("#hide_"+id).hide();
+				$("#cancelReasonPopup").hide();
+				$("#cancelTournament").hide();
+			 displaynotification('Event canceled successfully',2000); 
+			
+				}
+			}
+		
 	})
+	}else
+		{
+		displaynotification("Please give reason to cancel event",1000);
+		}
+	
+}
+
+function cancelFunction(){
+	   
+	  
+	   $("#cancelTournament").hide();
 }
 
 </script>

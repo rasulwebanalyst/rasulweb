@@ -2461,6 +2461,26 @@ public ModelAndView userprofile(HttpServletRequest request)
 						 UUID userId=(UUID) session.getAttribute("USRID");
 						 feeds.setPostedByName(name);
 						 feeds.setPostedBy(userId+"");
+						 
+						 // check for url 
+						 
+						 String contentarray[]=feeds.getContent().split(" ");
+						 String savecontent="";
+						 for(String word : contentarray)
+						 {
+							 
+							if( word.matches("(ftp:\\/\\/|www\\.|https?:\\/\\/){1}[a-zA-Z0-9u00a1-\\uffff0-]{2,}\\.[a-zA-Z0-9u00a1-\\uffff0-]{2,}(\\S*)"))
+							{
+								savecontent+=" <a href=" + word + ">"+ word + "</a>";
+							}else{
+								savecontent+=" "+word;
+							}
+							 
+							 
+						 }
+						 System.out.println("Content  : : :  : ;  ; "+savecontent);
+						 feeds.setContent(savecontent);
+						 
 						 hubReq.setRequestParam(feeds);
 						 String result=cricketSocialRestTemplateService.userRegistration(hubReq);
 						
@@ -42815,6 +42835,7 @@ public @ResponseBody  String cancelEvent(HttpServletRequest request,@RequestBody
 		hubReq =new HubRequest(274);
 		ModelMap map=new ModelMap();
 		map.put("eventId", event.getEventId());
+		map.put("cancelResason", event.getCancelResason());
 		hubReq.setRequestParam(map);
 		String response274=cricketSocialRestTemplateService.userRegistration(hubReq);
 		System.out.println("The response is :"+response274);
@@ -42864,7 +42885,7 @@ public  Object weatherApi(HttpServletRequest req,@PathVariable String lat1,@Path
 	return weather;
 }
 
-/*@RequestMapping(value="/scorecardShare", method=RequestMethod.POST)
+@RequestMapping(value="/scorecardShare", method=RequestMethod.POST)
 public @ResponseBody List<Feeds> scorecardShare( HttpServletRequest request,@RequestBody Feeds feeds)
 	
 	{
@@ -42887,10 +42908,7 @@ public @ResponseBody List<Feeds> scorecardShare( HttpServletRequest request,@Req
 					 UUID userId=(UUID) session.getAttribute("USRID");
 					 feeds.setPostedByName(name);
 					 feeds.setPostedBy(userId+"");
-					 feeds.setActive(0);
-					 feeds.setFeedType("Buddy");
-					 feeds.setUserFeedHit(false);
-					 feeds.setFeedTo("All");
+					
 					 hubReq.setRequestParam(feeds);
 					 String result=cricketSocialRestTemplateService.userRegistration(hubReq);
 					
@@ -42918,65 +42936,7 @@ public @ResponseBody List<Feeds> scorecardShare( HttpServletRequest request,@Req
 }
 
 
-}*/
-
-
-@RequestMapping(value="/cardShare", method=RequestMethod.POST)
-public @ResponseBody  List<Feeds> scorecardShare(HttpServletRequest request,@RequestBody Feeds feeds)
-{
-	ModelAndView model=null;
-	List<Feeds> feedresponse=null;
-		try{
-			 HttpSession session = request.getSession(true);
-			 System.out.println("session.getAttribute()"+session.getAttribute("USRID"));
-			 
-			 if(session.getAttribute("USRID")!=null)
-			 {
-
-				 if(feeds.getFileAttachement() != null){
-					 feeds.setHasAttachement("true"); 
-				 }
-				hubReq=new HubRequest(4);
-				 hubReq.setMsgType(4);
-				 String name=(String) session.getAttribute("USRLastName");
-				 
-				 UUID userId=(UUID) session.getAttribute("USRID");
-				 feeds.setPostedByName(name);
-				 feeds.setPostedBy(userId+"");
-				 feeds.setActive(0);
-				 feeds.setFeedType("Buddy");
-				 feeds.setUserFeedHit(false);
-				 feeds.setFeedTo("All");
-				 hubReq.setRequestParam(feeds);
-				 String result=cricketSocialRestTemplateService.userRegistration(hubReq);
-				
-				 GsonBuilder builder = new GsonBuilder();
-				    Gson gson = builder.create();
-				    UserFeedResponse response=gson.fromJson(result, UserFeedResponse.class);
-				  if(response.getRequestStatus().equals("0"))
-				  {
-					  feedresponse=response.getResults().getItemsFound();
-				  }else{
-					  feedresponse = new ArrayList<Feeds>();
-				  }
-				    
-				
-			}else{
-				model= new ModelAndView("redirect:/");
-			}
-			
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		
-		return feedresponse;
-
-			
 }
-
-}
-
 
 class UpcommingComprator implements Comparator<Object>
 {

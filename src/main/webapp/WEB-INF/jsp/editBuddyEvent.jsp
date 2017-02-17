@@ -190,49 +190,42 @@ $(document).ready(function (){
                           </div>
                           
                           <div class="form-group">
-				            <label class="fomlabel" for="r1"><span class="mandatory">*</span>Date</label>
-                            <!-- <input type="text" placeholder="" class="form-control tbox fomtexbox datepicker" id="" > -->
-                            
-                            <%--  <div id="datetimepicker3" class="input-append">
-                                    <input data-format="yyyy-MM-dd" type="text" class="form-control fomtexbox" name="strDate" readonly id="strDate" value="<fmt:formatDate pattern="YYYY-M-d" value="${EditEventObj.eventDateAndTime}" />">
-                                    <span class="add-on datetime">
-                                      <i class="fa fa-calendar eve_calIcon" data-time-icon="icon-time" data-date-icon="icon-calendar">
-                                      </i>
-                                    </span>
-                                  </div> --%>
+				            <label class="fomlabel" for="r1"><span class="mandatory">*</span>Date&Time</label>
+                           
+                                  <div class="input-group" style="width: 65%;">
+                                  <div class="col-md-5 noLeftPad">
                                   <div class="input-append">
-                                    <input data-format="yyyy-MM-dd" placeholder="Choose event date" readonly type="text" class="form-control fomtexbox datepicker calIconImg" name="strDate" id="strDate" value="">
-                                   <!--  <span class="add-on datetime">
-                                      <i class="fa fa-calendar eve_calIcon" data-time-icon="icon-time" data-date-icon="icon-calendar">
-                                      </i>
-                                    </span> -->
+                                    <input data-format="yyyy-MM-dd" placeholder="Choose event date" readonly type="text" class="form-control fomtexbox datepicker calIconImg" name="strDate" id="strDate" value="" style="border-radius: 4px;">
+                                   
                                   </div>
-                            
+                                  </div>
+                                  
+                                  <div class="col-md-3 ">
+                              <input type="text" id="hourValue" name="hourValue" placeholder="Hour" class="form-control" onblur="validateHourInput()" style="border-radius: 4px;" />
+                              </div>
+                              <div class="col-md-3">
+                              <input type="text" id="minuteValue" name="minuteValue" placeholder="Minutes" class="form-control" onblur="validateMinuteInput()"  style="border-radius: 4px; margin-left: -7px;"/>
+                               </div>
+                               <div class="col-md-1 noRightPad">
+                               <select id="timeMode" style="width: 140%; height: 34px; border: 1px solid #ccc; border-radius: 4px; margin-left: -15px;">
+                              <option value="AM">AM</option>
+                              <option value="PM">PM</option>
+                              </select>
+                              <!-- <div  id="timeValidation" class="error" style="display: none;color: red;">Please enter valid time</div> -->
+                              
+                              </div>
+                               <span id="timeValidation" class="error" style="color: red;"></span>
+                              
+                              <input type="hidden"  value="" id="strTime" name="strTime">
+                                  
+                            </div>
                             
                           </div>
                          
                           
                           
-                          <div class="form-group">
+                         <!--  <div class="form-group">
 				            <label class="fomlabel" for="r1"><span class="mandatory">*</span>Time</label>
-                            <!-- <input type="text" placeholder="" class="form-control tbox fomtexbox" id=""> -->
-                            
-                            <%-- <div id="datetimepicker4" class="input-append">
-                                    <input data-format="hh:mm:ss" type="text" class="form-control fomtexbox" id="strTime" name="strTime" value="<fmt:formatDate pattern="HH:mm:ss" value="${EditEventObj.eventDateAndTime}" />">
-                                    <span class="add-on datetime">
-                                      <i data-time-icon="icon-time" data-date-icon="icon-calendar" class="fa fa-clock-o eve_calIcon" >
-                                      </i>
-                                    </span>
-                                  </div> --%>
-                             <!--      <div class="input-group clockpicker">
-                                <input type="text" placeholder="Choose event time"  class="form-control fomtexbox clockIconImg"  id="strTime" name="strTime" readonly value="">
-                                <span class="add-on datetime">
-                                      <i data-time-icon="icon-time" data-date-icon="icon-calendar" class="fa fa-clock-o eve_calIcon" >
-                                      </i>
-                                    </span>
-                                
-                            </div>
-                            <span id="timeValidation" class="error" style="color: red;"></span> -->
                             
                             <div class="input-group " style="width: 65%;">
                               <div class="col-md-5 noLeftPad">
@@ -246,13 +239,13 @@ $(document).ready(function (){
                               <option value="AM">AM</option>
                               <option value="PM">PM</option>
                               </select>
-                              <!-- <div  id="timeValidation" class="error" style="display: none;color: red;">Please enter valid time</div> -->
+                              <div  id="timeValidation" class="error" style="display: none;color: red;">Please enter valid time</div>
                               <span id="timeValidation" class="error" style="color: red;"></span>
                               
                               <input type="hidden"  value="" id="strTime" name="strTime">
                               
                               </div>
-                          </div>
+                          </div> -->
                           
                           
                           <div class="form-group">

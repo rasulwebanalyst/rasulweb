@@ -71,8 +71,10 @@ var formatAMPMTime = function(date) {
 	}
 	function test(id){
 		var date = $("#formatDate_"+id).html();	
+		console.log("Date :"+date);
 	    var offset = new Date().getTimezoneOffset() * 60 * 1000;
 	var gettingFromServer= new Date(date);
+	console.log("gettingFromServer :"+gettingFromServer);
 	gettingFromServer = new Date(gettingFromServer.valueOf() - offset);
 	return formatAMPMTime(gettingFromServer); 
 	
