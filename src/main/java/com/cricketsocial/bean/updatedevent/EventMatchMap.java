@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.cricketsocial.bean.board.TournamentScheduler;
+import com.cricketsocial.bean.buddy.UserProfile;
 
 public class EventMatchMap {
 
@@ -31,6 +32,78 @@ public class EventMatchMap {
 	private int rejectedCount;
 	private int maybeCount;
 	
+	
+	private UUID eventId;
+	private UUID createdBy;
+	private String eventDescription;
+	private String venue;
+	private Date eventDate;
+	private String cancelReason;
+	private String eventName;
+	private UserProfile creatorDetails;
+	
+	
+	
+	
+	
+	
+	public String getEventName() {
+		return eventName;
+	}
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public UserProfile getCreatorDetails() {
+		return creatorDetails;
+	}
+	public void setCreatorDetails(UserProfile creatorDetails) {
+		this.creatorDetails = creatorDetails;
+	}
+	public UUID getEventId() {
+		return eventId;
+	}
+	public void setEventId(UUID eventId) {
+		this.eventId = eventId;
+	}
+	public UUID getCreatedBy() {
+		return createdBy;
+	}
+	public void setCreatedBy(UUID createdBy) {
+		this.createdBy = createdBy;
+	}
+	public String getEventDescription() {
+		return eventDescription;
+	}
+	public void setEventDescription(String eventDescription) {
+		this.eventDescription = eventDescription;
+	}
+	public String getVenue() {
+		return venue;
+	}
+	public void setVenue(String venue) {
+		this.venue = venue;
+	}
+	public Date getEventDate() {
+		return eventDate;
+	}
+	public void setEventDate(Date eventDate) {
+		this.eventDate = eventDate;
+	}
+	public String getCancelReason() {
+		return cancelReason;
+	}
+	public void setCancelReason(String cancelReason) {
+		this.cancelReason = cancelReason;
+	}
 	public UUID getEventMatchMapId() {
 		return eventMatchMapId;
 	}

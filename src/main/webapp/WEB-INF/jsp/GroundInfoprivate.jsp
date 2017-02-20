@@ -451,7 +451,7 @@ var formatAMPMTime = function(date) {
                   
                   <div class="col-md-4 col-sm-12 col-xs-12">
                          <div id="Boardinfo">
-                         <h1 class="noBorder" style="width:100%;">${groundDetails.groundName}</h1>
+                         <h1 class="noBorder" style="width:100%; margin-bottom: 0;">${groundDetails.groundName}</h1>
                          
                          <table class="brd-info">
                          <tr><td>Addres</td><td>:</td><td>${groundDetails.address1}</td></tr>
@@ -462,7 +462,19 @@ var formatAMPMTime = function(date) {
                          </table>
                         
                          </div>
-                   </div>      
+                         
+                         <div class=" ">
+                   <h4>Pitch Description :</h4>
+                 <textarea type="text" style="height: 150px; width: 100%;" > ${groundDetails.pitchDescription}</textarea>
+                 </div> 
+                        
+                         
+                   </div>  
+                   
+                   
+                   
+                   
+                       
                          
                  <div class="col-md-8 col-sm-12 col-xs-12">
                   <input type="hidden" class="form-control" id="pac-input" placeholder="Search Places" style="width: 800px"> 
@@ -471,19 +483,18 @@ var formatAMPMTime = function(date) {
                  </div>
                  
                  
-                 <div class="col-md-6 col-sm-12 col-xs-12">                         
-                         <h4 style="margin-top: 40px;">Additional Directions :</h4>
-                         <p>${groundDetails.directionsToGround}</p>
+                 
+                 
+                 <div class="col-md-8 col-sm-12 col-xs-12">                         
+                         <h4>Additional Directions :</h4>
+                         <p style="margin-bottom: 5%;">${groundDetails.directionsToGround}</p>
                          
                          <h4>Ground facilities :</h4>
                          <p>${groundDetails.groundFacilities}</p>
                          
                          
-                         <h4>Pitch Description :</h4>
-                         <p>${groundDetails.pitchDescription}</p>
                          
                          
-                         <h4>Ground Statistics :</h4>
                          
                           <c:choose>
                          <c:when test="${teamscoresize == 0 }">
@@ -492,8 +503,50 @@ var formatAMPMTime = function(date) {
                          <c:otherwise>
                          
                          <!-- Ground highest -->
+                   </div>
+                        
                          
                          
+                         
+                         
+                      <div class="col-md-4 col-sm-12 col-xs-12">  
+                     
+                         <div style="align:center; color:#4677B8;font:bold 14px Arial;margin:15px 0px 8px 0px; text-align: left;"><h3 style="color: #204d79; font-size: 16px;">Weather in ${groundDetails.groundName}</h3></div>
+                       
+                    <div style="background-color:#BFE9FF;color:#111;padding:10px 10px;border:solid 1px #BFE9FF">
+                    <div id="weatherInfoCol" style="background-color:rgba(255,255,255,0.5);border:rgba(255,255,255,0.5)">
+					<span class="climate" id="maindiv" style="white-space:nowrap;text-align:center;align:center;padding-left:10px;font-size:24px; color:#4677B8;display: none;">
+					 <!-- <img alt="weather in Fortaleza is Fair" title="weather in Fortaleza is Fair" align="absmiddle" src="/images/weather/33.gif"> &nbsp;Fair<br> -->
+					<span style="margin-left:23px;line-height:50px;"  id="WeatherDesc"></span><span id="temperature"></span><sup>o</sup>C</span>
+					<div class="weatherInfo" style="padding: 0 10px 5px 10px;"> 
+					<table width="90%" cellspacing="3" border="0" cellpadding="0">
+					<tbody id="Weatherbody">
+					<tr>
+					<td><b>Wind:</b></td>
+					<td> NNE 0 m/s</td>
+					</tr>
+					<tr>
+					<td><b>Pressure:</b></td>
+					<td> --</td>
+					</tr>
+					<tr>
+					<td><b>Visibility:</b></td>
+					<td> N/A</td>
+					</tr>
+					<tr>
+					<td><b>Humidity:</b></td>
+					<td> 50% </td>
+					</tr>
+					
+					
+					
+					</tbody></table> </div> 
+					</div>
+					
+					</div></div>
+					
+					<div class="col-md-12 col-sm-12 col-xs-12">   
+					 <h4>Ground Statistics :</h4>                      
 						<table class="engineTable">
 						<caption>Highest totals</caption>
 						<thead>
@@ -507,7 +560,7 @@ var formatAMPMTime = function(date) {
 						 </tr>
 						</thead>
 						<tbody>
-						 <c:forEach items="${teamScores}" var="scores" begin="0" end="0">
+						 <c:forEach items="${teamHighest}" var="scores" >
 						 <tr class="data1" data-days="736667">
 						  <td class="left" title="record rank: 50"><a href="${pageContext.request.contextPath}/${scores.teamName}/board/${scores.teamId}">${scores.teamName}</a></td>
 						  <td class="padTSao-b"><b>${scores.runs}/${scores.wickets}</b></td>
@@ -538,7 +591,7 @@ var formatAMPMTime = function(date) {
 						 </tr>
 						</thead>
 						<tbody>
-						 <c:forEach items="${teamScores}" var="scores" begin="1" end="1">
+						 <c:forEach items="${teamLowest}" var="scores">
 						 <tr class="data1" data-days="736667">
 						  <td class="left" title="record rank: 50" ><a href="${pageContext.request.contextPath}/${scores.teamName}/board/${scores.teamId}">${scores.teamName}</a></td>
 						  <td class="padTSao-b" ><b>${scores.runs}/${scores.wickets}</b></td>
@@ -568,7 +621,7 @@ var formatAMPMTime = function(date) {
 						 </tr>
 						</thead>
 						<tbody>
-						   <c:forEach items="${playerStatistics}" var="player" begin="0" end="0">
+						   <c:forEach items="${playerHighest}" var="player" >
 						 <tr class="data1" data-days="736667">
 						  <td class="left" title="record rank: 50" ><a style="color: #227fbc;" href="${pageContext.request.contextPath}/scorecard/buddy/${player.userName}/${player.userId}">${player.userName}</a></td>
 						  <td class="padTSao-b" ><b>${player.highest}</b></td>
@@ -599,7 +652,7 @@ var formatAMPMTime = function(date) {
 						 </tr>
 						</thead>
 						<tbody>
-						   <c:forEach items="${playerStatistics}" var="player" begin="1" end="1">
+						   <c:forEach items="${playerBestBowl}" var="player" >
 						 <tr class="data1" data-days="736667">
 						  <td class="left" title="record rank: 50" ><a style="color: #227fbc;" href="${pageContext.request.contextPath}/scorecard/buddy/${player.userName}/${player.userId}">${player.userName}</a></td>
 						  <td class="padTSao-b" ><b>${player.wickets}</b></td>
@@ -616,46 +669,9 @@ var formatAMPMTime = function(date) {
                          </c:otherwise>
                          </c:choose>  
                          
-                 </div>        
-                         
-                         
-                         
-                         
-                      <div class="col-md-6 col-sm-12 col-xs-12">   
-                         <div style="align:center; color:#4677B8;font:bold 14px Arial;margin:15px 0px 8px 0px;text-align:center"><h3 style="color: #204d79; font-size: 16px;">Weather in ${groundDetails.groundName}</h3></div>
-                         
-                         
-					                         <div style="width:255px;min-height:200px;background-color:#BFE9FF;color:#111;margin:0 auto;padding:10px 10px;border:solid 1px #BFE9FF">
-					                         <div id="weatherInfoCol" style="background-color:rgba(255,255,255,0.5);border:rgba(255,255,255,0.5)">
-					<br><span class="climate" id="maindiv" style="white-space:nowrap;text-align:center;align:center;padding-left:10px;font-size:24px; color:#4677B8;display: none;">
-					 <!-- <img alt="weather in Fortaleza is Fair" title="weather in Fortaleza is Fair" align="absmiddle" src="/images/weather/33.gif"> &nbsp;Fair<br> -->
-					<span style="margin-left:23px;line-height:50px;"  id="WeatherDesc"></span><span id="temperature"></span><sup>o</sup>C</span>
-					<div class="weatherInfo" style="margin-left:20px"> 
-					<table width="90%" cellspacing="3" border="0" cellpadding="0">
-					<tbody id="Weatherbody">
-					<tr>
-					<td><b>Wind:</b></td>
-					<td> NNE 0 m/s</td>
-					</tr>
-					<tr>
-					<td><b>Pressure:</b></td>
-					<td> --</td>
-					</tr>
-					<tr>
-					<td><b>Visibility:</b></td>
-					<td> N/A</td>
-					</tr>
-					<tr>
-					<td><b>Humidity:</b></td>
-					<td> 50% </td>
-					</tr>
+                 </div>   
 					
 					
-					
-					</tbody></table> </div> 
-					</div>
-					
-					</div></div>
                   
                   
                   

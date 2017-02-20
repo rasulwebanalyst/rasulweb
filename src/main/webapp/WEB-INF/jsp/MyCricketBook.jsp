@@ -64,13 +64,24 @@
                     	</div> 
                         
                         <div class="col-md-7 feedcube">
-                            <div class="cube bulucolor">${UserMatchInfo.playedMatches}<br><p>Matches</p></div>
+<%--                             <div class="cube bulucolor">${UserMatchInfo.playedMatches}<br><p>Matches</p></div>
                             <div class="cube greencolor">${UserMatchInfo.totalMadeRuns}<br> <p>Runs</p></div>
-                            <div class="cube redcolor">${UserMatchInfo.totalWicketTaken}<br> <p>Wickets<p></div>
-                            
-                            
+                            <div class="cube redcolor">${UserMatchInfo.totalWicketTaken}<br> <p>Wickets<p></div>   --%>                      
+                        <div class="pull-left cube-holder">
+                            <div class="cube bulucolor">${UserMatchInfo.playedMatches}</div>
+                            <p style="font-size: 12px;">Matches</p>
+                        </div>
+                        <div class="pull-left cube-holder">
+                            <div class="cube greencolor">${UserMatchInfo.totalMadeRuns}</div>
+                            <p style="font-size: 12px;">Runs</p>
+                        </div>
+                        <div class="pull-left cube-holder">
+                            <div class="cube redcolor">${UserMatchInfo.totalWicketTaken}</div>
+                            <p style="font-size: 12px;">Wickets</p>
                         </div>
                         
+                        </div>
+
                         	
                            
                            

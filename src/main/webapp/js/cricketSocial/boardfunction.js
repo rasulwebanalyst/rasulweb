@@ -144,7 +144,7 @@ $('#postfrom').validate({
 		               
 		                	
 		                	+'<div class="hitIconDiv" id="hittDiv'+res[0].feedId+'"><a href="javascript:userHitBtn('+fid+','+fid+')" class="shareLink" id="feed'+res[0].feedId+'"><i class="fa hitIcon"></i> Hit</a></div>'
-		                	+'<div class="hitIconDiv" id="hittedDiv'+res[0].feedId+'" style="display: none;"><a href="javascript:userHitBtn('+fid+','+fid+')" class="shareLink" style="color: #4c9fe1;"><img src="'+projectURL+'/images/hitIcon1.png" width="18" class="hitIcon1" > UnHit</a></div>'
+		                	+'<div class="hitIconDiv" id="hittedDiv'+res[0].feedId+'" style="display: none;"><a href="javascript:userHitBtn('+fid+','+fid+')" class="shareLink" style="color: #4c9fe1;"><img src="'+projectURL+'/images/hitIcon1.png" width="18" class="hitIcon1" > Unhit</a></div>'
 		                	
 		                	
 		                	

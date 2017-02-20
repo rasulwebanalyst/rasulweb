@@ -43,12 +43,43 @@ public class Ground {
 	 private String landmark;
 	 
 	 
+	 private List<TournamentScheduler> teamHeighestScore;
+	 private List<TournamentScheduler> teamLowestScore;
+	 private List<PlayerDTO> playerHighScore;
+	 private List<PlayerDTO> playerBestBowling;
+	 
+	 
+	 
 	 
 	 
 	 
 	 
 	
 
+	public List<TournamentScheduler> getTeamHeighestScore() {
+		return teamHeighestScore;
+	}
+	public void setTeamHeighestScore(List<TournamentScheduler> teamHeighestScore) {
+		this.teamHeighestScore = teamHeighestScore;
+	}
+	public List<TournamentScheduler> getTeamLowestScore() {
+		return teamLowestScore;
+	}
+	public void setTeamLowestScore(List<TournamentScheduler> teamLowestScore) {
+		this.teamLowestScore = teamLowestScore;
+	}
+	public List<PlayerDTO> getPlayerHighScore() {
+		return playerHighScore;
+	}
+	public void setPlayerHighScore(List<PlayerDTO> playerHighScore) {
+		this.playerHighScore = playerHighScore;
+	}
+	public List<PlayerDTO> getPlayerBestBowling() {
+		return playerBestBowling;
+	}
+	public void setPlayerBestBowling(List<PlayerDTO> playerBestBowling) {
+		this.playerBestBowling = playerBestBowling;
+	}
 	public String getLandmark() {
 		return landmark;
 	}

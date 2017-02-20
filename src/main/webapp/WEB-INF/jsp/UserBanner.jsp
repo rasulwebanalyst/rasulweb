@@ -6,10 +6,10 @@
           <div class="carousel-inner" role="listbox">
           <div class="item active">
           <img src="${banner.bannerImageUrl}?" class="innerBanner" alt="" onerror="userErrorDefaultBanner(this)">
-          <div class="cover carousel-caption pull-right">
+          <!-- <div class="cover carousel-caption pull-right">
           <button type="button">OK</button>
           <button type="button">CANCEL</button>
-          </div>
+          </div> -->
           
           
           

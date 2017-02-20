@@ -152,6 +152,23 @@ var formatAMPMTime = function(date) {
        <%@ include file="BoardPublicProfileBanner.jsp" %>
        
        
+        <div id="feedhittedlist" class="popupDiv feedhit" style="display: none;">
+												
+												           <div class="box">
+												                <span class="head">Hit List</span>
+												                <span class="close_btn" > <i class="fa fa-close" onclick="closeFeededit()"></i> </span>
+												
+												                <div class="popupContentDiv">
+												                
+												                		<div id="hittedlists"></div>
+												                        	
+												                          
+												                          <!-- <div class="centerbtns"><button type="button" class="btn btn-default blueBtn" onclick="updatePost()">OK</button></div> -->
+												                       
+												                </div>
+												            </div>
+												 
+												 	</div>
        
        <div id="feededit" class="popupDiv" style="display: none;">
 												
@@ -909,7 +926,7 @@ var formatAMPMTime = function(date) {
 		                                    	
 		                                    	
 		                                    	<div class="dropdown">
-		                                    	<p id="HitCountDIv${index.count}" onmouseout="removeHitList('${feed.feedId}')" onmouseover="getHitList('${feed.feedId}')" class="trash-holder"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" >${feed.feedHitCount}</p>
+		                                    	<p id="HitCountDIv${index.count}" onmouseout="removeHitList('${feed.feedId}')" onmouseover="getHitList('${feed.feedId}')" onclick="gitHitedList('${feed.feedId}')" class="trash-holder"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" >${feed.feedHitCount}</p>
 		                                    	<div id="Hitlist_${feed.feedId}"></div>
 		                                    
 		                                    </div>
@@ -978,12 +995,12 @@ var formatAMPMTime = function(date) {
 	                                    		<c:when test="${feed.userFeedHit}">
 	                                    					<%-- <a href="javascript:" class="shareLink" id="hitAchor${feed.feedId}"><i class="fa hitIcon"></i> Hit</a> --%>	
 	                                    					<div class="hitIconDiv" id="hittDiv${index.count}" style="display: none;"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" id="feed${index.count}"><i class="fa hitIcon"></i> Hit</a></div>
-	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" style="color: #4c9fe1;"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" > UnHit</a></div>
+	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" style="color: #4c9fe1;"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" > Unhit</a></div>
 	                                    		</c:when>
 	                                    		<c:otherwise>
 	                                    					
 	                                    					<div class="hitIconDiv" id="hittDiv${index.count}"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" id="feed${index.count}"><i class="fa hitIcon"></i> Hit</a></div>
-	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}" style="display: none;"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" style="color: #4c9fe1;"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" > UnHit</a></div>
+	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}" style="display: none;"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" style="color: #4c9fe1;"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" > Unhit</a></div>
 	                                    		</c:otherwise>
 	                                    </c:choose>
 	                                    
@@ -1504,6 +1521,7 @@ function feedEdit(id)
 function closeFeededit()
 {
 	$("#feededit").hide();
+	$("#feedhittedlist").hide();
 	}
 	
 	function updatePost()
@@ -1556,7 +1574,7 @@ var request={
 	function linkify(text) {
 	    var urlRegex =/(\b(((https?|ftp|file|):\/\/)|www[.])[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
 	    return text.replace(urlRegex, function(url) {
-	        return '<a href="' + url + '">' + url + '</a>';
+	        return '<a href="' + url + '" target="_blank">' + url + '</a>';
 	    });
 	}
 	
@@ -1634,6 +1652,53 @@ var request={
 	 {
 		  $("#Hitlist_"+fid).html("").trigger('create');
 		 console.log("remove"); 
+	 }
+	 
+	 function gitHitedList(fid)
+	 {
+		 var request={
+				 feedId : fid,	 
+		 }
+		 $.ajax({
+			 type : "post",
+			 url : "${pageContext.request.contextPath}/hitList",
+			 data : JSON.stringify(request),
+			 contentType : "application/json",
+			 success : function(res)
+			 {
+				 var htm="";
+				 if(res !=null)
+					 {
+				for(var i in res)
+					{
+					
+					
+					htm +='<li  class="selection-item">';
+					
+                        htm+='<div class="media">'
+                        +'<div class="media-left">'
+                      
+                  	
+                  		htm +='<img src="'+ctx+'/images/profileIcon.png" class="nav-avatar">'
+                    +'</div>'
+                    +'<div class="media-body">'
+                    +'<a href="'+ctx+'/buddy/'+res[i].hittedByName+'/'+res[i].hittedBy+'">'
+                     +' <h4 class="media-heading">'+res[i].hittedByName+'<br>'
+                     +'</a>';
+                  htm+='</h4>'
+                   	 +'</div>'
+                 	 +'</div>'
+          			+'</li>';
+					}
+					 }
+				 
+				 $("#hittedlists").html(htm).trigger('create');
+				 $("#feedhittedlist").show();
+				 
+			 }
+			 
+		 })
+		
 	 }
 	 
 	

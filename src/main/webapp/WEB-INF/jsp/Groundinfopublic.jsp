@@ -445,7 +445,7 @@ var formatAMPMTime = function(date) {
                        
                        <div class="col-md-4 col-sm-12 col-xs-12">
                          <div id="Boardinfo">
-                         <h1 class="noBorder" style="width:100%;">${groundDetails.groundName}</h1>
+                         <h1 class="noBorder" style="width:100%; margin-bottom: 0;">${groundDetails.groundName}</h1>
                          
                          <table class="brd-info">
                          <tr><td>Address</td><td>:</td><td>${groundDetails.address1}</td></tr>
@@ -455,6 +455,13 @@ var formatAMPMTime = function(date) {
                          </table>
                         
                          </div>
+                         
+                         
+                         <div class=" ">
+                   <h4>Pitch Description :</h4>
+                 <textarea type="text" style="height: 150px; width: 100%;" > ${groundDetails.pitchDescription}</textarea>
+                 </div> 
+                         
                    </div>      
                          
                  <div class="col-md-8 col-sm-12 col-xs-12">
@@ -464,192 +471,66 @@ var formatAMPMTime = function(date) {
                  </div>
                  
                  
-                 <div class="col-md-6 col-sm-12 col-xs-12">                         
+                  <div class="col-md-8 col-sm-12 col-xs-12">                         
                          <h4>Additional Directions :</h4>
-                         <p>${groundDetails.directionsToGround}</p>
+                         <p style="margin-bottom: 5%;">${groundDetails.directionsToGround}</p>
                          
                          <h4>Ground facilities :</h4>
                          <p>${groundDetails.groundFacilities}</p>
                          
-                         <h4>Pitch Description :</h4>
-                         <p>${groundDetails.pitchDescription}</p>
                          
-                         <h4>Ground Statistics :</h4>
                          
-                         <c:choose>
+                         
+                         
+                          <c:choose>
                          <c:when test="${teamscoresize == 0 }">
                            <span style="margin-left: 50px;" >   No data available</span>
                          </c:when>
                          <c:otherwise>
-                        <%--  <table class="brd-info" style="width: 80%;">
-                         <tr><td>Ground Highest</td><td>:</td><td>
                          
-                        <c:forEach items="${teamScores}" var="scores" begin="0" end="0">${scores.runs}  by ${scores.teamName}<a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${scores.tournamentSchedulerId}','${BoradInfo.boardId}')">Score</a></c:forEach> 
-                         
-                         
-                         </td></tr>
-                         <tr><td>Ground Lowest</td><td>:</td><td>
-                         
-                         <c:forEach items="${teamScores}" var="scores" begin="1" end="1">${scores.runs}  by ${scores.teamName}<a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${scores.tournamentSchedulerId}','${BoradInfo.boardId}')">Score</a></c:forEach>
-                         
-                         </td></tr>
-                          <tr><td>player Highest Runs</td><td>:</td><td>
-                          
-                          <c:forEach items="${playerStatistics}" var="player" begin="0" end="0">${player.highest}</c:forEach>
-                          
-                          </td></tr>
-                           <tr><td>player Best Bowling</td><td>:</td><td>
-                           
-                           <c:forEach items="${playerStatistics}" var="player" begin="1" end="1">${player.bbi}</c:forEach>
-                           
-                           </td></tr>
-                         </table> --%>
-                         
-                         
-                         
-                        <%--  <!-- Ground highest -->
-                         
-                         
-						                         <table class="engineTable">
-						<caption>Highest totals</caption>
-						<thead>
-						 <tr class="head">
-						  <th title="team playing for" class="left" >Team</th>
-						  <th title="team score" class="padTS-b" ><b>Score</b></th>
-						  <th title="overs faced" >Overs</th>
-						  <th title="opposition" class="left" >Opposition</th>
-						  <th title="match start date" >Match Date</th>
-						  <th title="match scorecard" >Scorecard</th>
-						 </tr>
-						</thead>
-						<tbody>
-						 <c:forEach items="${teamScores}" var="scores" begin="0" end="0">
-						 <tr class="data1" data-days="736667">
-						  <td class="left" title="record rank: 50" ><a href="/ci/content/team/5.html" class="data-link">${scores.teamName}</a></td>
-						  <td class="padTSao-b" ><b>${scores.runs}/${scores.wickets}</b></td>
-						  <td >${scores.overs}</td>
-						  <td class="left" ><a href="/ci/content/team/2.html" class="data-link">v Australia</a></td>
-						  <td >${scores.gameDate}</td>
-						  <td ><a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${scores.tournamentSchedulerId}','${BoradInfo.boardId}')"><i class="fa fa-newspaper-o editIcon"></i></a></td>
-						 </tr>
-						 </c:forEach>
-						</tbody>
-						</table>
-                         
-                         
-                         
-                         
-                         
-                         
-                         
-                         
-                         
-                         
-                         <!-- Ground lowest -->
-                         
-                         
-                         <table class="engineTable">
-						<caption>Lowest totals</caption>
-						<thead>
-						 <tr class="head">
-						  <th title="team playing for" class="left" >Team</th>
-						  <th title="team score" class="padTS-b" ><b>Score</b></th>
-						  <th title="overs faced" >Overs</th>
-						  <th title="opposition" class="left" >Opposition</th>
-						  <th title="match start date" >Match Date</th>
-						  <th title="match scorecard" >Scorecard</th>
-						 </tr>
-						</thead>
-						<tbody>
-						 <c:forEach items="${teamScores}" var="scores" begin="1" end="1">
-						 <tr class="data1" data-days="736667">
-						  <td class="left" title="record rank: 50" ><a href="/ci/content/team/5.html" class="data-link">${scores.teamName}</a></td>
-						  <td class="padTSao-b" ><b>${scores.runs}/${scores.wickets}</b></td>
-						  <td >${scores.overs}</td>
-						  <td class="left" ><a href="/ci/content/team/2.html" class="data-link">v Australia</a></td>
-						  <td >${scores.gameDate}</td>
-						  <td ><a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${scores.tournamentSchedulerId}','${BoradInfo.boardId}')"><i class="fa fa-newspaper-o editIcon"></i></a></td>
-						 </tr>
-						 </c:forEach>
-						</tbody>
-						</table>
-                         
-                         
-                         
-                         
-                         
-                         
-                         <!-- Batting highest -->
-                         
-                         
-                         
-                          
-                          
-                          
-                          
-                          <table class="engineTable">
-						<caption>Best batting figures</caption>
-						<thead>
-						 <tr class="head">
-						  <th title="team playing for" class="left" >Name</th>
-						  <th title="team score" class="padTS-b" ><b>Runs</b></th>
-						  <th title="opposition" class="left" >Opposition</th>
-						  <th title="match start date" >Match Date</th>
-						  <th title="match scorecard" >Scorecard</th>
-						 </tr>
-						</thead>
-						<tbody>
-						  <c:forEach items="${playerStatistics}" var="player" begin="0" end="0">
-						 <tr class="data1" data-days="736667">
-						  <td class="left" title="record rank: 50" ><a href="/ci/content/team/5.html" class="data-link">${scores.teamName}</a></td>
-						  <td class="padTSao-b" ><b>${scores.runs}</b></td>
-						  <td class="left" ><a href="/ci/content/team/2.html" class="data-link">v Australia</a></td>
-						  <td >${scores.gameDate}</td>
-						  <td ><a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${scores.tournamentSchedulerId}','${BoradInfo.boardId}')"><i class="fa fa-newspaper-o editIcon"></i></a></td>
-						 </tr>
-						 </c:forEach>
-						</tbody>
-						</table>
-                          
-                          
-                           
-                           <!-- 
-                           Best bowwling -->
-                           
-                           
-                           
-                           <table class="engineTable">
-						<caption>Best bowling figures</caption>
-						<thead>
-						 <tr class="head">
-						  <th title="team playing for" class="left" >Name</th>
-						  <th title="team score" class="padTS-b" ><b>Wickets</b></th>
-						  <th title="opposition" class="left" >Opposition</th>
-						  <th title="match start date" >Match Date</th>
-						  <th title="match scorecard" >Scorecard</th>
-						 </tr>
-						</thead>
-						<tbody>
-						  <c:forEach items="${playerStatistics}" var="player" begin="0" end="0">
-						 <tr class="data1" data-days="736667">
-						  <td class="left" title="record rank: 50" ><a href="/ci/content/team/5.html" class="data-link">${scores.teamName}</a></td>
-						  <td class="padTSao-b" ><b>${scores.runs}</b></td>
-						  <td class="left" ><a href="/ci/content/team/2.html" class="data-link">v Australia</a></td>
-						  <td >${scores.gameDate}</td>
-						  <td ><a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${scores.tournamentSchedulerId}','${BoradInfo.boardId}')"><i class="fa fa-newspaper-o editIcon"></i></a></td>
-						 </tr>
-						 </c:forEach>
-						</tbody>
-						</table>
-                   --%> 
+                         <!-- Ground highest -->
+                   </div>
                    
                    
                    
-                    <!-- Ground highest -->
-                         
+                   <div class="col-md-4 col-sm-12 col-xs-12">  
+                     
+                         <div style="align:center; color:#4677B8;font:bold 14px Arial;margin:15px 0px 8px 0px; text-align: left;"><h3 style="color: #204d79; font-size: 16px;">Weather in ${groundDetails.groundName}</h3></div>
+                       
+                    <div style="background-color:#BFE9FF;color:#111;padding:10px 10px;border:solid 1px #BFE9FF">
+                    <div id="weatherInfoCol" style="background-color:rgba(255,255,255,0.5);border:rgba(255,255,255,0.5)">
+					<span class="climate" id="maindiv" style="white-space:nowrap;text-align:center;align:center;padding-left:10px;font-size:24px; color:#4677B8;display: none;">
+					 <!-- <img alt="weather in Fortaleza is Fair" title="weather in Fortaleza is Fair" align="absmiddle" src="/images/weather/33.gif"> &nbsp;Fair<br> -->
+					<span style="margin-left:23px;line-height:50px;"  id="WeatherDesc"></span><span id="temperature"></span><sup>o</sup>C</span>
+					<div class="weatherInfo" style="padding: 0 10px 5px 10px;"> 
+					<table width="90%" cellspacing="3" border="0" cellpadding="0">
+					<tbody id="Weatherbody">
+					<tr>
+					<td><b>Wind:</b></td>
+					<td> NNE 0 m/s</td>
+					</tr>
+					<tr>
+					<td><b>Pressure:</b></td>
+					<td> --</td>
+					</tr>
+					<tr>
+					<td><b>Visibility:</b></td>
+					<td> N/A</td>
+					</tr>
+					<tr>
+					<td><b>Humidity:</b></td>
+					<td> 50% </td>
+					</tr>
+					
+					
+					
+					</tbody></table> </div> 
+					</div>
+					
+					</div></div>
                          
 						 
-						<table class="engineTable">
+						<%-- <table class="engineTable">
 						<caption>Highest totals</caption>
 						<thead>
 						 <tr class="head">
@@ -812,11 +693,135 @@ var formatAMPMTime = function(date) {
 					</div>
 					
 					</div></div>
-					
+					 --%>
                        
                        
                        
-                       
+                     <div class="col-md-12 col-sm-12 col-xs-12">   
+					 <h4>Ground Statistics :</h4>                      
+						<table class="engineTable">
+						<caption>Highest totals</caption>
+						<thead>
+						 <tr class="head">
+						  <th title="team playing for" class="left">Team</th>
+						  <th title="team score" class="padTS-b"><b>Score</b></th>
+						  <th title="overs faced">Overs</th>
+						  <th title="opposition" class="left">Opposition</th>
+						  <th title="match start date">Match Date</th>
+						  <th title="match scorecard">Scorecard</th>
+						 </tr>
+						</thead>
+						<tbody>
+						 <c:forEach items="${teamHighest}" var="scores" >
+						 <tr class="data1" data-days="736667">
+						  <td class="left" title="record rank: 50"><a href="${pageContext.request.contextPath}/${scores.teamName}/board/${scores.teamId}">${scores.teamName}</a></td>
+						  <td class="padTSao-b"><b>${scores.runs}/${scores.wickets}</b></td>
+						  <td>${scores.overs}</td>
+						  <td class="left"><a href="${pageContext.request.contextPath}/${scores.againstTeamName}/board/${scores.againstTeamId}">${scores.againstTeamName}</a></td>
+						  <td><script>document.writeln(test('${scores.gameDate}'))</script></td>
+						  <td><a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${scores.tournamentSchedulerId}','${BoradInfo.boardId}')"><i class="fa fa-newspaper-o editIcon"></i></a></td>
+						 </tr>
+						 </c:forEach>
+						</tbody>
+						</table>
+                         
+                         
+                         
+                         <!-- Ground lowest -->
+                         
+                         
+                         <table class="engineTable">
+						<caption>Lowest totals</caption>
+						<thead>
+						 <tr class="head">
+						  <th title="team playing for" class="left" >Team</th>
+						  <th title="team score" class="padTS-b" ><b>Score</b></th>
+						  <th title="overs faced" >Overs</th>
+						  <th title="opposition" class="left" >Opposition</th>
+						  <th title="match start date" >Match Date</th>
+						  <th title="match scorecard" >Scorecard</th>
+						 </tr>
+						</thead>
+						<tbody>
+						 <c:forEach items="${teamLowest}" var="scores">
+						 <tr class="data1" data-days="736667">
+						  <td class="left" title="record rank: 50" ><a href="${pageContext.request.contextPath}/${scores.teamName}/board/${scores.teamId}">${scores.teamName}</a></td>
+						  <td class="padTSao-b" ><b>${scores.runs}/${scores.wickets}</b></td>
+						  <td >${scores.overs}</td>
+						  <td class="left" ><a href="${pageContext.request.contextPath}/${scores.againstTeamName}/board/${scores.againstTeamId}">${scores.againstTeamName}</a></td>
+						  <td ><script>document.writeln(test('${scores.gameDate}'))</script></td>
+						  <td ><a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${scores.tournamentSchedulerId}','${BoradInfo.boardId}')"><i class="fa fa-newspaper-o editIcon"></i></a></td>
+						 </tr>
+						 </c:forEach>
+						</tbody>
+						</table>
+                         
+                         
+                         
+                         
+                         <!-- Batting highest -->
+                         
+                          <table class="engineTable">
+						<caption>Best batting figures</caption>
+						<thead>
+						 <tr class="head">
+						  <th title="team playing for" class="left" >Name</th>
+						  <th title="team score" class="padTS-b" ><b>Runs</b></th>
+						  <th title="opposition" class="left" >Opposition</th>
+						  <th title="match start date" >Match Date</th>
+						  <th title="match scorecard" >Scorecard</th>
+						 </tr>
+						</thead>
+						<tbody>
+						   <c:forEach items="${playerHighest}" var="player" >
+						 <tr class="data1" data-days="736667">
+						  <td class="left" title="record rank: 50" ><a style="color: #227fbc;" href="${pageContext.request.contextPath}/scorecard/buddy/${player.userName}/${player.userId}">${player.userName}</a></td>
+						  <td class="padTSao-b" ><b>${player.highest}</b></td>
+						  <td class="left" ><a href="${pageContext.request.contextPath}/${player.againstTeamName}/board/${scores.againstTeamId}">${player.againstTeamName}</a></td>
+						  <td ><script>document.writeln(test('${player.gameDate}'))</script></td>
+						  <td ><a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${player.tournamentSchedulerId}','${BoradInfo.boardId}')"><i class="fa fa-newspaper-o editIcon"></i></a></td>
+						 </tr>
+						 </c:forEach> 
+						</tbody>
+						</table>
+                          
+                          
+                           
+                           <!-- 
+                           Best bowwling -->
+                           
+                           
+                           
+                           <table class="engineTable">
+						<caption>Best bowling figures</caption>
+						<thead>
+						 <tr class="head">
+						  <th title="team playing for" class="left" >Name</th>
+						  <th title="team score" class="padTS-b" ><b>Wickets</b></th>
+						  <th title="opposition" class="left" >Opposition</th>
+						  <th title="match start date" >Match Date</th>
+						  <th title="match scorecard" >Scorecard</th>
+						 </tr>
+						</thead>
+						<tbody>
+						   <c:forEach items="${playerBestBowl}" var="player" >
+						 <tr class="data1" data-days="736667">
+						  <td class="left" title="record rank: 50" ><a style="color: #227fbc;" href="${pageContext.request.contextPath}/scorecard/buddy/${player.userName}/${player.userId}">${player.userName}</a></td>
+						  <td class="padTSao-b" ><b>${player.wickets}</b></td>
+						  <td class="left" ><a href="${pageContext.request.contextPath}/${player.againstTeamName}/board/${scores.againstTeamId}">${player.againstTeamName}</a></td>
+						  <td ><script>document.writeln(test('${player.gameDate}'))</script></td>
+						  <td ><a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${player.tournamentSchedulerId}','${BoradInfo.boardId}')"><i class="fa fa-newspaper-o editIcon"></i></a></td>
+						 </tr>
+						 </c:forEach> 
+						</tbody>
+						</table>
+                           
+                           
+                           
+                         </c:otherwise>
+                         </c:choose>  
+                         
+                 </div>     
                        
                        
                        

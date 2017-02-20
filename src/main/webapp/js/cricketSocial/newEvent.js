@@ -425,7 +425,55 @@ function buddyCancelledEvents(){
 			                        htm+='</div>';
 			                        nextindicate= parseInt(nextindicate)+parseInt(1);
 								
-							 }
+							 }else
+								 
+								 {
+								 
+								 
+								    var dateObj=dateFunction(res[i].eventDate);	
+								 
+									var dateNewObject = getDateInObjectUTCFormate_withTimeStampInput(res[i].eventDate);
+									var creatorDetails=res[i].creatorDetails;
+
+									htm+='<div class="col-md-12 noPadding leag-Acc">';
+			                        htm+='<div class="col-md-1 eveDate">';		                        
+			                        htm +='<p>'+dateObj.day+'<br>'+dateObj.dateName+'';
+					 				htm+='</div>';		                    
+			                    	htm+='<div class="col-md-11 borderleft">';		                         
+			                        htm+='<div class="col-md-12 noPadding eventUserDetails">';
+			                        htm+='<a href="'+ctx+'/buddy/'+creatorDetails.fullName+'/'+creatorDetails.userId+'">';
+			                        htm+='<img src="'+creatorDetails.userImageUrl+'" onerror=errorImageset1(this) class="nav-avatar">'+creatorDetails.fullName+'</a>';	                            
+			                        htm+='</div>';		                         
+			                        htm+='<div class="col-md-6 Leag-Img">';
+			                        htm+='<h4>'+res[i].eventName+'</h4>';
+			                        
+			                        htm +='<p>'+dateNewObject+'</p>';
+			                        
+			                        if(res[i].cancelReason!=null){
+				                        htm+='<div class="">';
+				                        htm+='<h4>Reason :</h4>';
+				                        htm+='<p>'+res[i].cancelReason+'</p>';
+				                        htm+='</div>';
+		                        }
+			                        
+			                        
+			                      
+					                        htm+='<p>';
+					                        htm+=''+res[i].venue+'';
+					                        htm+='</p>';
+			                      
+			                        htm+='</div>';		                       
+			                    
+			                        htm+='</div>';
+			                        htm+='</div>';
+			                        nextindicate= parseInt(nextindicate)+parseInt(1);
+								 
+								 
+								 
+								 
+								 
+								 
+								 }
 							
 						}				
 						console.log(nextindicate);
@@ -460,6 +508,11 @@ function buddyCancelledEvents(){
 	
 	
 	
+}
+
+function errorImageset1(id)
+{
+	id.src=ctx+"/images/profileIcon.png";
 }
 
 function buddyCancelledEvent_Page(startNode,display,pageCall){
@@ -1665,9 +1718,11 @@ function boardCancelEvent(){
 			if(response!=null)
 				{
 				
-				if(response.leagueBoardCancelledMatches!=null){
+				if(response.leagueBoardCancelledMatches!=null && response.leagueBoardCancelledMatches.length > 0){
 
-					var res=response.leagueBoardCancelledMatches;
+					/*var res=response.leagueBoardCancelledMatches;*/
+					var res=response.cancelledEventList;
+					
 					for(var i in res){
 						
 						var event=res[i].tournamentSchedulerObj;
@@ -1706,15 +1761,68 @@ function boardCancelEvent(){
 	                        htm+='</div>';
 	                        htm+='</div>';
 	                        nextindicate= parseInt(nextindicate)+parseInt(1);
-						}//event null checking
+						}else {
+						
+						  var dateObj=dateFunction(res[i].eventDate);	
+							 
+							var dateNewObject = getDateInObjectUTCFormate_withTimeStampInput(res[i].eventDate);
+							var creatorDetails=res[i].creatorDetails;
+
+							htm+='<div class="col-md-12 noPadding leag-Acc">';
+	                        htm+='<div class="col-md-1 eveDate">';		                        
+	                        htm +='<p>'+dateObj.day+'<br>'+dateObj.dateName+'';
+			 				htm+='</div>';		                    
+	                    	htm+='<div class="col-md-11 borderleft">';		                         
+	                        htm+='<div class="col-md-12 noPadding eventUserDetails">';
+	                        htm+='<a href="'+ctx+'/buddy/'+creatorDetails.fullName+'/'+creatorDetails.userId+'">';
+	                        htm+='<img src="'+creatorDetails.userImageUrl+'" onerror=errorImageset1(this) class="nav-avatar">'+creatorDetails.fullName+'</a>';	                            
+	                        htm+='</div>';		                         
+	                        htm+='<div class="col-md-6 Leag-Img">';
+	                        htm+='<h4>'+res[i].eventName+'</h4>';
+	                        
+	                        htm +='<p>'+dateNewObject+'</p>';
+	                        
+	                        if(res[i].cancelReason!=null){
+		                        htm+='<div class="">';
+		                        htm+='<h4>Reason :</h4>';
+		                        htm+='<p>'+res[i].cancelReason+'</p>';
+		                        htm+='</div>';
+                      }
+	                        
+	                        
+	                      
+			                        htm+='<p>';
+			                        htm+=''+res[i].venue+'';
+			                        htm+='</p>';
+	                      
+	                        htm+='</div>';		                       
+	                    
+	                        htm+='</div>';
+	                        htm+='</div>';
+	                        nextindicate= parseInt(nextindicate)+parseInt(1);
+						 
+						
+						
+					}
+						
+						
+						
+						
 					}				
 					
 				}	
 				if(response.teamBoardCancelledMatches!=null){
 
-					var res=response.teamBoardCancelledMatches;
+					/*var res=response.teamBoardCancelledMatches;*/
+					var res=response.cancelledEventList;
 				var event=res;
 						for(var j in event){
+							
+							
+							var eventid=res[i].tournamentSchedulerId;
+							if(eventid!=null){
+							
+							
 							//var dateObj=getDateInObjectFormate_withTimeStampInput(event[j].gameDate);
 							 var dateObj=dateFunction(event[j].gameDate);	
 							var dateNewObject = getDateInObjectUTCFormate_withTimeStampInput(event[j].gameDate);
@@ -1756,6 +1864,54 @@ function boardCancelEvent(){
 	                        htm+='</div>';
 	                        htm+='</div>';
 	                        nextindicate= parseInt(nextindicate)+parseInt(1);
+						}else {
+							
+							  var dateObj=dateFunction(res[i].eventDate);	
+								 
+								var dateNewObject = getDateInObjectUTCFormate_withTimeStampInput(res[i].eventDate);
+								var creatorDetails=res[i].creatorDetails;
+
+								htm+='<div class="col-md-12 noPadding leag-Acc">';
+		                        htm+='<div class="col-md-1 eveDate">';		                        
+		                        htm +='<p>'+dateObj.day+'<br>'+dateObj.dateName+'';
+				 				htm+='</div>';		                    
+		                    	htm+='<div class="col-md-11 borderleft">';		                         
+		                        htm+='<div class="col-md-12 noPadding eventUserDetails">';
+		                        htm+='<a href="'+ctx+'/buddy/'+creatorDetails.fullName+'/'+creatorDetails.userId+'">';
+		                        htm+='<img src="'+creatorDetails.userImageUrl+'" onerror=errorImageset1(this) class="nav-avatar">'+creatorDetails.fullName+'</a>';	                            
+		                        htm+='</div>';		                         
+		                        htm+='<div class="col-md-6 Leag-Img">';
+		                        htm+='<h4>'+res[i].eventName+'</h4>';
+		                        
+		                        htm +='<p>'+dateNewObject+'</p>';
+		                        
+		                        if(res[i].cancelReason!=null){
+			                        htm+='<div class="">';
+			                        htm+='<h4>Reason :</h4>';
+			                        htm+='<p>'+res[i].cancelReason+'</p>';
+			                        htm+='</div>';
+	                      }
+		                        
+		                        
+		                      
+				                        htm+='<p>';
+				                        htm+=''+res[i].venue+'';
+				                        htm+='</p>';
+		                      
+		                        htm+='</div>';		                       
+		                    
+		                        htm+='</div>';
+		                        htm+='</div>';
+		                        nextindicate= parseInt(nextindicate)+parseInt(1);
+							 
+							
+							
+						}
+							
+							
+							
+							
+							
 						}
 									
 					

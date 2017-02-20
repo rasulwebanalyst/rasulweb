@@ -94,8 +94,20 @@ $('#rosterFeedPostfrom').validate({
 		              +'</div>'
 		              +'<div class="media-body">'
 		                +'<h4 class="media-heading">'+res[0].postedByName+'</h4>'
-		                +'<div class="headRight"> <p class="trash-holder" onclick="feedDelete('+fid+')" title="Delete"  ><i class="fa fa-trash trash"></i> </p>'
-		                +	'<span id="HitCountDIv'+res[0].feedId+'"><img src="images/hitIcon1.png" width="18" class="hitIcon1"  >0</span><span id="commentCount'+res[0].feedId+'" onclick=getAllComments("'+res[0].feedId+'")><i class="fa fa-commenting-o"></i>0</span>'
+		                +'<div class="headRight">'
+		                
+		                +'<div class="dropdown">'
+	                	+'<p id="HitCountDIv'+res[0].feedId+'" onmouseout="removeHitList('+fid+')" onmouseover="getHitList('+fid+')" class="trash-holder"><img src="'+ctx+'/images/hitIcon1.png" width="18" class="hitIcon1" >0</p>'
+	                	+'<div id="Hitlist_'+res[0].feedId+'"></div>'
+	                
+	                +'</div>'
+		                
+		                
+		                
+		                +'<p class="trash-holder" onclick="feedDelete('+fid+')" title="Delete"  ><i class="fa fa-trash trash"></i> </p>'
+		                +'<p class="trash-holder"  onclick="feedEdit('+fid+')" title="Edit"  ><i class="fa fa-pencil trash"></i> </p>'
+		               /* +	'<p id="HitCountDIv'+res[0].feedId+'"><img src="images/hitIcon1.png" width="18" class="hitIcon1"  >0</p>'*/
+		                +'<p id="commentCount'+res[0].feedId+'" onclick=getAllComments("'+res[0].feedId+'")><i class="fa fa-commenting-o"></i>0</p>'
 		                +'</div>';
 						
 		               // +'<span class="postTime">'+result+'</span>'
@@ -117,13 +129,19 @@ $('#rosterFeedPostfrom').validate({
 		                			}
 		                	}
 		                }
-		                htm +='<p>'+res[0].content+'</p>'               	
+		                htm +='<p id='+res[0].feedId+'>'+res[0].content+'</p>'               	
 	                	+'</div>'
 		                
 		             //   +'<a href="javascript:addfeedHit('+fid+')" class="shareLink"><i class="fa hitIcon"></i> Hit</a>'
+	                	/*+'<div class="hitIconDiv" id="hittDiv'+res[0].feedId+'"><a href="javascript:userHitBtn('+fid+','+fid+')" class="shareLink" id="feed'+res[0].feedId+'"><i class="fa hitIcon"></i> Hit</a></div>'
+	                	+'<div class="hitIconDiv" id="hittedDiv'+res[0].feedId+'" style="display: none;"><img src="'+ctx+'/images/hitIcon1.png" width="18" class="hitIcon1" ><i class="fa hitIcon"></i> Hit</div>'*/
 	                	+'<div class="hitIconDiv" id="hittDiv'+res[0].feedId+'"><a href="javascript:userHitBtn('+fid+','+fid+')" class="shareLink" id="feed'+res[0].feedId+'"><i class="fa hitIcon"></i> Hit</a></div>'
-	                	+'<div class="hitIconDiv" id="hittedDiv'+res[0].feedId+'" style="display: none;"><img src="'+ctx+'/images/hitIcon1.png" width="18" class="hitIcon1" ><i class="fa hitIcon"></i> Hit</div>'
-		                +'<a href="javascript:showCommentDIV('+fid+')" class="shareLink"><i class="fa fa-commenting"></i> Comment</a>'
+	                	+'<div class="hitIconDiv" id="hittedDiv'+res[0].feedId+'" style="display: none;"><a href="javascript:userHitBtn('+fid+','+fid+')" class="shareLink" style="color: #4c9fe1;"><img src="'+ctx+'/images/hitIcon1.png" width="18" class="hitIcon1" > Unhit</a></div>'
+		               
+	                	
+	                	
+	                	
+	                	+'<a href="javascript:showCommentDIV('+fid+')" class="shareLink"><i class="fa fa-commenting"></i> Comment</a>'
 		                +'<a href="#" class="shareLink"><i class="fa fa-share"></i> Share</a>'
 		              +'</div>'
 		            +'  </div>'
@@ -311,25 +329,36 @@ $('#rosterFeedPostfrom').validate({
 											// var time=timeDifferenceCal(res[i].createdDate);
 									 var commentId="'"+res[i].feedCommentId+"'";
 									 var feedId="'"+res[i].feedId+"'";
+									 var fid=res[i].feedId;
+									 var cmtid=res[i].feedCommentId;
 									var time=feedDisplayDate2(res[i].createdDate);
 											 console.log(res[i].createdDate);
 											htm +='<div class="media">'
 					                             +'<div class="media-left">'
 					                             +'<img src="'+res[i].userProfilePic+'" onError="userErrorDefaultImg(this)" class="teamLogo">'
 					                             +'</div>'
-					                             +'<div class="media-body">'
+					                             +'<div class="media-body" id="editdiv_'+cmtid+'">'
 					                             +'<h4 class="media-heading">'+res[i].commentedByName;
 											if(viewFlag>0){
 												if(buddyID==res[i].commentedBy){
 													
-													 htm +='<span class="trash-holder" title="Delete" onClick="commentDelete('+commentId+','+feedId+')"> <i class="fa fa-trash trash"></i> </span><br>';
+													htm +='<span class="trash-holder" title="Edit" onClick="commentEdit('+commentId+','+feedId+')"> <i class="fa fa-pencil trash"></i> </span>';
+													 htm +='<span class="trash-holder" title="Delete" onClick="commentDelete('+commentId+','+feedId+')"> <i class="fa fa-trash trash"></i> </span>';
 												}else{
 													htm +='<span class="trash-holder" title="Report spam" onClick="commentSpam('+commentId+','+feedId+')"> <i class="fa fa-ban"></i> </span><br>';
 												}
 											}
 											 	htm+='<span class="date">'+time+'</span></h4>'
-					                             +'<p>'+res[i].comments+'</p>'
-					                        +'</div>'
+					                             +"<p id='Original"+cmtid+"'>"+res[i].comments+"</p>"
+					                        +'</div>';
+											 	
+											 	console.log("It has come hear");
+					                             htm +='<div class="media-body" style="display: none;" id="body_'+cmtid+'">';
+					                             htm +="<span class='trash-holder' title='save' onclick=SaveComment('"+cmtid+"','"+fid+"')><i class='fa fa-check-square-o' aria-hidden='true'></i></span>";
+					                             htm +="<span class='trash-holder' title='save' onclick=SaveCommentClose('"+cmtid+"')><i class='fa fa-times' aria-hidden='true'></i></span>";
+					                             htm +="<textarea  class='form-control' style='margin-bottom: 10px;width: 356px;height: 53px !important;' id='Edited"+cmtid+"'>"+res[i].comments+"</textarea>";
+					                             htm +="</div>";
+											 	
 					                      +'</div>';
 											
 									
@@ -391,7 +420,17 @@ $('#rosterFeedPostfrom').validate({
 	 
 	 
  }
+ function commentEdit(id,fid)
+ {
+	 $("#editdiv_"+id).hide();
+	 $("#body_"+id).show();
+ }
  
+ function SaveCommentClose(id)
+ {
+	 $("#editdiv_"+id).show();
+	 $("#body_"+id).hide();
+ }
 
  function commentSpam(id, fid){
 	 //alert('id------------> '+id);

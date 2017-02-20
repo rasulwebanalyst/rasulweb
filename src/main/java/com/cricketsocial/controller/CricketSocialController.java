@@ -2471,7 +2471,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 							 
 							if( word.matches("(ftp:\\/\\/|www\\.|https?:\\/\\/){1}[a-zA-Z0-9u00a1-\\uffff0-]{2,}\\.[a-zA-Z0-9u00a1-\\uffff0-]{2,}(\\S*)"))
 							{
-								savecontent+=" <a href=" + word + ">"+ word + "</a>";
+								savecontent+=" <a href=" + word + " target='_blank'>"+ word + "</a>";
 							}else{
 								savecontent+=" "+word;
 							}
@@ -11790,14 +11790,31 @@ public ModelAndView groundinfoprivate(@PathVariable String groundId,@PathVariabl
 						if(hubRes != null && hubRes.getRequestStatus() != null && hubRes.getResults().getGroundList().size() != 0){
 							mav.addObject("groundDetails", hubRes.getResults().getGroundList().get(0));
 							mav.addObject("groundId", groundId);
-							if(hubRes.getResults().getGroundList().get(0).getTeamScores().size()>0)
+							/*if(hubRes.getResults().getGroundList().get(0).getTeamScores().size()>0)
 							{
 							mav.addObject("teamScores",hubRes.getResults().getGroundList().get(0).getTeamScores());}
 							else{mav.addObject("teamscoresize", 0);}
 							if(hubRes.getResults().getGroundList().get(0).getPlayerStatistics().size() > 0){
 							mav.addObject("playerStatistics",hubRes.getResults().getGroundList().get(0).getPlayerStatistics());}
 							else{
-								mav.addObject("playerStatisticssize",0);}
+								mav.addObject("playerStatisticssize",0);}*/
+							
+							
+							
+							
+							if(hubRes.getResults().getGroundList().get(0).getTeamHeighestScore().size() > 0)
+							{
+								mav.addObject("teamHighest", hubRes.getResults().getGroundList().get(0).getTeamHeighestScore());
+								mav.addObject("teamLowest", hubRes.getResults().getGroundList().get(0).getTeamLowestScore());
+								mav.addObject("playerHighest", hubRes.getResults().getGroundList().get(0).getPlayerHighScore());
+								mav.addObject("playerBestBowl", hubRes.getResults().getGroundList().get(0).getPlayerBestBowling());
+							}else
+							{
+								mav.addObject("teamscoresize", 0);
+							}
+							
+							
+							
 							}
 						}
 					}
@@ -42835,7 +42852,7 @@ public @ResponseBody  String cancelEvent(HttpServletRequest request,@RequestBody
 		hubReq =new HubRequest(274);
 		ModelMap map=new ModelMap();
 		map.put("eventId", event.getEventId());
-		map.put("cancelResason", event.getCancelResason());
+		map.put("cancelReason", event.getCancelResason());
 		hubReq.setRequestParam(map);
 		String response274=cricketSocialRestTemplateService.userRegistration(hubReq);
 		System.out.println("The response is :"+response274);

@@ -2,8 +2,11 @@ package com.cricketsocial.bean.board;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
+import com.cricketsocial.bean.buddy.UserProfile;
 import com.cricketsocial.bean.ground.Ground;
+import com.cricketsocial.bean.updatedevent.EventMatchMap;
 
 public class TournamentScheduler {
 
@@ -93,6 +96,205 @@ public class TournamentScheduler {
 	
 	
 	
+	private int winPoints;
+	private int umpireCheck;
+	private String teamboardsId;
+	private List<String> teamboardstrlist;
+	private boolean scheduleCoordinator;
+	private List<BoardDTO> boardSearchBean;	
+	private List<TournamentScheduler> tournamentScheduler;
+	private String gametypeinTour;
+	private String modifiedBy;
+
+	
+	private Date createdDate;
+	private Date modifiedDate;
+	private Date matchDate;
+	private UUID matchId;
+	private int matchStatusId;
+	private UUID playerId;
+	private int statusId;
+	private UUID teamBoardId;
+
+	private List<EventMatchMap> upcomingMatch;
+	private List<TournamentScheduler> tournamentSchedulerList;
+	
+	private TournamentScheduler tournamentSchedulerObj;
+	
+	
+	private UUID eventId;
+	private String eventDescription;
+	private String venue;
+	private Date eventDate;
+	private String eventName;
+	private UserProfile creatorDetails;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public int getWinPoints() {
+		return winPoints;
+	}
+	public void setWinPoints(int winPoints) {
+		this.winPoints = winPoints;
+	}
+	public int getUmpireCheck() {
+		return umpireCheck;
+	}
+	public void setUmpireCheck(int umpireCheck) {
+		this.umpireCheck = umpireCheck;
+	}
+	public String getTeamboardsId() {
+		return teamboardsId;
+	}
+	public void setTeamboardsId(String teamboardsId) {
+		this.teamboardsId = teamboardsId;
+	}
+	public List<String> getTeamboardstrlist() {
+		return teamboardstrlist;
+	}
+	public void setTeamboardstrlist(List<String> teamboardstrlist) {
+		this.teamboardstrlist = teamboardstrlist;
+	}
+	public boolean isScheduleCoordinator() {
+		return scheduleCoordinator;
+	}
+	public void setScheduleCoordinator(boolean scheduleCoordinator) {
+		this.scheduleCoordinator = scheduleCoordinator;
+	}
+	public List<BoardDTO> getBoardSearchBean() {
+		return boardSearchBean;
+	}
+	public void setBoardSearchBean(List<BoardDTO> boardSearchBean) {
+		this.boardSearchBean = boardSearchBean;
+	}
+	public List<TournamentScheduler> getTournamentScheduler() {
+		return tournamentScheduler;
+	}
+	public void setTournamentScheduler(List<TournamentScheduler> tournamentScheduler) {
+		this.tournamentScheduler = tournamentScheduler;
+	}
+	public String getGametypeinTour() {
+		return gametypeinTour;
+	}
+	public void setGametypeinTour(String gametypeinTour) {
+		this.gametypeinTour = gametypeinTour;
+	}
+	public String getModifiedBy() {
+		return modifiedBy;
+	}
+	public void setModifiedBy(String modifiedBy) {
+		this.modifiedBy = modifiedBy;
+	}
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+	public Date getModifiedDate() {
+		return modifiedDate;
+	}
+	public void setModifiedDate(Date modifiedDate) {
+		this.modifiedDate = modifiedDate;
+	}
+	public Date getMatchDate() {
+		return matchDate;
+	}
+	public void setMatchDate(Date matchDate) {
+		this.matchDate = matchDate;
+	}
+	public UUID getMatchId() {
+		return matchId;
+	}
+	public void setMatchId(UUID matchId) {
+		this.matchId = matchId;
+	}
+	public int getMatchStatusId() {
+		return matchStatusId;
+	}
+	public void setMatchStatusId(int matchStatusId) {
+		this.matchStatusId = matchStatusId;
+	}
+	public UUID getPlayerId() {
+		return playerId;
+	}
+	public void setPlayerId(UUID playerId) {
+		this.playerId = playerId;
+	}
+	public int getStatusId() {
+		return statusId;
+	}
+	public void setStatusId(int statusId) {
+		this.statusId = statusId;
+	}
+	public UUID getTeamBoardId() {
+		return teamBoardId;
+	}
+	public void setTeamBoardId(UUID teamBoardId) {
+		this.teamBoardId = teamBoardId;
+	}
+	public List<EventMatchMap> getUpcomingMatch() {
+		return upcomingMatch;
+	}
+	public void setUpcomingMatch(List<EventMatchMap> upcomingMatch) {
+		this.upcomingMatch = upcomingMatch;
+	}
+	public List<TournamentScheduler> getTournamentSchedulerList() {
+		return tournamentSchedulerList;
+	}
+	public void setTournamentSchedulerList(
+			List<TournamentScheduler> tournamentSchedulerList) {
+		this.tournamentSchedulerList = tournamentSchedulerList;
+	}
+	public TournamentScheduler getTournamentSchedulerObj() {
+		return tournamentSchedulerObj;
+	}
+	public void setTournamentSchedulerObj(TournamentScheduler tournamentSchedulerObj) {
+		this.tournamentSchedulerObj = tournamentSchedulerObj;
+	}
+	public UUID getEventId() {
+		return eventId;
+	}
+	public void setEventId(UUID eventId) {
+		this.eventId = eventId;
+	}
+	public String getEventDescription() {
+		return eventDescription;
+	}
+	public void setEventDescription(String eventDescription) {
+		this.eventDescription = eventDescription;
+	}
+	public String getVenue() {
+		return venue;
+	}
+	public void setVenue(String venue) {
+		this.venue = venue;
+	}
+	public Date getEventDate() {
+		return eventDate;
+	}
+	public void setEventDate(Date eventDate) {
+		this.eventDate = eventDate;
+	}
+	public String getEventName() {
+		return eventName;
+	}
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
+	}
+	public UserProfile getCreatorDetails() {
+		return creatorDetails;
+	}
+	public void setCreatorDetails(UserProfile creatorDetails) {
+		this.creatorDetails = creatorDetails;
+	}
 	public String getAgainstTeamId() {
 		return againstTeamId;
 	}

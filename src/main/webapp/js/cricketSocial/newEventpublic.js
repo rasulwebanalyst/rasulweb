@@ -450,6 +450,54 @@ function buddyCancelledEvents(){
 		                        htm+='</div>';
 		                        nextindicate= parseInt(nextindicate)+parseInt(1);
 							
+						 }else
+							 
+						 {
+						 
+						 
+						    var dateObj=dateFunction(res[i].eventDate);	
+						 
+							var dateNewObject = getDateInObjectUTCFormate_withTimeStampInput(res[i].eventDate);
+							var creatorDetails=res[i].creatorDetails;
+
+							htm+='<div class="col-md-12 noPadding leag-Acc">';
+	                        htm+='<div class="col-md-1 eveDate">';		                        
+	                        htm +='<p>'+dateObj.day+'<br>'+dateObj.dateName+'';
+			 				htm+='</div>';		                    
+	                    	htm+='<div class="col-md-11 borderleft">';		                         
+	                        htm+='<div class="col-md-12 noPadding eventUserDetails">';
+	                        htm+='<a href="'+ctx+'/buddy/'+creatorDetails.fullName+'/'+creatorDetails.userId+'">';
+	                        htm+='<img src="'+creatorDetails.userImageUrl+'" onerror=errorImageset1(this) class="nav-avatar">'+creatorDetails.fullName+'</a>';	                            
+	                        htm+='</div>';		                         
+	                        htm+='<div class="col-md-6 Leag-Img">';
+	                        htm+='<h4>'+res[i].eventName+'</h4>';
+	                        
+	                        htm +='<p>'+dateNewObject+'</p>';
+	                        
+	                        if(res[i].cancelReason!=null){
+		                        htm+='<div class="">';
+		                        htm+='<h4>Reason :</h4>';
+		                        htm+='<p>'+res[i].cancelReason+'</p>';
+		                        htm+='</div>';
+                        }
+	                        
+	                        
+	                      
+			                        htm+='<p>';
+			                        htm+=''+res[i].venue+'';
+			                        htm+='</p>';
+	                      
+	                        htm+='</div>';		                       
+	                    
+	                        htm+='</div>';
+	                        htm+='</div>';
+	                        nextindicate= parseInt(nextindicate)+parseInt(1);
+						 
+						 
+						 
+						 
+						 
+						 
 						 }
 						
 					}				
@@ -486,6 +534,13 @@ function buddyCancelledEvents(){
 	
 	
 }
+
+
+function errorImageset1(id)
+{
+	id.src=ctx+"/images/profileIcon.png";
+}
+
 
 function buddyCancelledEvent_Page(startNode,display,pageCall){
 	

@@ -23,6 +23,50 @@ var rosterrowObj=[];
 
 </head>
 
+<style>
+
+.dropbtn {
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none; 
+    position: absolute;
+    background-color: #9197a3;
+    min-width: 130px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 9;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+
+
+</style>
+
+
+
+
 <body>
 
 
@@ -41,6 +85,45 @@ function checkbbi(bbi)
 	return show;
 	}
 </script>
+
+
+ <div id="feedhittedlist" class="popupDiv feedhit" style="display: none;">
+												
+												           <div class="box">
+												                <span class="head">Hit List</span>
+												                <span class="close_btn" > <i class="fa fa-close" onclick="closeFeededit()"></i> </span>
+												
+												                <div class="popupContentDiv">
+												                
+												                		<div id="hittedlists"></div>
+												                        	
+												                          
+												                          <!-- <div class="centerbtns"><button type="button" class="btn btn-default blueBtn" onclick="updatePost()">OK</button></div> -->
+												                       
+												                </div>
+												            </div>
+												 
+												 	</div>
+
+
+ <div id="feededit" class="popupDiv" style="display: none;">
+												
+												           <div class="box">
+												                <span class="head">Edit feed</span>
+												                <span class="close_btn" > <i class="fa fa-close" onclick="closeFeededit()"></i> </span>
+												
+												                <div class="popupContentDiv">
+												                
+												                		
+												                        	<textarea class="form-control" id="feedsedited" rows="5" placeholder="" ></textarea>
+												                        	<input type="hidden" id="EditedId">
+												                          
+												                          <div class="centerbtns"><button type="button" class="btn btn-default blueBtn" onclick="updatePost()">OK</button></div>
+												                       
+												                </div>
+												            </div>
+												 
+												 	</div>
 
 
 <div id="RoasterPopup" class="modal" role="dialog" style="display: none;">
@@ -767,15 +850,27 @@ function checkbbi(bbi)
 	                                    <h4 class="media-heading">${feed.postedByName}</h4>
 		                                    <div class="headRight">
 		                                    	<%-- <span id="HitCountDIv${feed.feedId}"><img src="images/hitIcon1.png" width="18" class="hitIcon1" >${feed.feedHitCount}</span><span id="commentCount${feed.feedId}" onclick="getAllComments('${feed.feedId}')"><i class="fa fa-commenting-o"></i>${feed.feedCommentCount}</span> --%>
+		                                    	
+		                                    	<div class="dropdown">
+		                                    	<p id="HitCountDIv${index.count}" onmouseout="removeHitList('${feed.feedId}')" onmouseover="getHitList('${feed.feedId}')" onclick="gitHitedList('${feed.feedId}')" class="trash-holder"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" >${feed.feedHitCount}</p>
+		                                    	<div id="Hitlist_${feed.feedId}"></div>
+		                                    
+		                                    </div>
+		                                    	
+		                                    	
+		                                    	
 		                                    	<c:choose>
 		                                    		<c:when test="${feed.postedBy eq USRID}">
 		                                    			<p class="trash-holder" onclick="feedDelete('${feed.feedId}')" title="Delete"><i class="fa fa-trash trash"></i> </p>
+		                                    		
+		                                    		   <p class="trash-holder"  onclick="feedEdit('${feed.feedId}')" title="Edit"  ><i class="fa fa-pencil trash"></i> </p>
 		                                    		</c:when>
 		                                    		<c:otherwise>
 		                                    			<p class="trash-holder" onclick="feedSpam('${feed.feedId}')" title="Report spam"><i class="fa fa-ban"></i> </p>
 		                                    		</c:otherwise>
 		                                    	</c:choose>
-		                                    	<p id="commentCount${feed.feedId}" onclick="getAllComments('${feed.feedId}')"><i class="fa fa-commenting-o"></i>${feed.feedCommentCount}</p> <p id="HitCountDIv${index.count}"><img src="images/hitIcon1.png" width="18" class="hitIcon1" >${feed.feedHitCount}</p>
+		                                    	<p id="commentCount${feed.feedId}" onclick="getAllComments('${feed.feedId}')"><i class="fa fa-commenting-o"></i>${feed.feedCommentCount}</p> 
+		                                    	<%-- <p id="HitCountDIv${index.count}"><img src="images/hitIcon1.png" width="18" class="hitIcon1" >${feed.feedHitCount}</p> --%>
 		                                    </div>
 	                                    <span class="postTime">
 		                                    <script type="text/javascript">
@@ -814,13 +909,13 @@ function checkbbi(bbi)
 	                                    	</c:forEach>
 	                                    </c:if>
 
-	                                         <P>${feed.content}</P>
+	                                         <P id="${feed.feedId}">${feed.content}</P>
 	                                    </div>
 	                                    
 	                                   <%--  <a href="javascript:addfeedHit('${feed.feedId}')" class="shareLink"><i class="fa hitIcon"></i> Hit</a> --%>
-	                                   <c:choose>
+	                                  <%--  <c:choose>
 	                                    		<c:when test="${feed.userFeedHit}">
-	                                    					<%-- <a href="javascript:" class="shareLink" id="hitAchor${feed.feedId}"><i class="fa hitIcon"></i> Hit</a> --%>	
+	                                    					<a href="javascript:" class="shareLink" id="hitAchor${feed.feedId}"><i class="fa hitIcon"></i> Hit</a>	
 	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" ><i class="fa hitIcon"></i> Hit</div>
 	                                    		</c:when>
 	                                    		<c:otherwise>
@@ -828,7 +923,21 @@ function checkbbi(bbi)
 	                                    					<div class="hitIconDiv" id="hittDiv${index.count}"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" id="feed${index.count}"><i class="fa hitIcon"></i> Hit</a></div>
 	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}" style="display: none;"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" ><i class="fa hitIcon"></i> Hit</div>
 	                                    		</c:otherwise>
+	                                    </c:choose> --%>
+	                                    
+	                                     <c:choose>
+	                                    		<c:when test="${feed.userFeedHit}">
+	                                    					<div class="hitIconDiv" id="hittDiv${index.count}" style="display: none;"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" id="feed${index.count}"><i class="fa hitIcon"></i> Hit</a></div>
+	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" style="color: #4c9fe1;"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" > Unhit</a></div>
+	                                    		</c:when>
+	                                    		<c:otherwise>
+	                                    					
+	                                    					<div class="hitIconDiv" id="hittDiv${index.count}"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" id="feed${index.count}"><i class="fa hitIcon"></i> Hit</a></div>
+	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}" style="display: none;"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" style="color: #4c9fe1;"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" > Unhit</a></div>
+	                                    		</c:otherwise>
 	                                    </c:choose>
+	                                    
+	                                    
 	                                    <a href="javascript:showCommentDIV('${feed.feedId}')" class="shareLink" ><i class="fa fa-commenting"></i> Comment</a>
 	                                   
 	                                    <a href="javascript:shareFeed('${feed.feedId}','Roster')" class="shareLink" id="share${feed.feedId}"><i class="fa fa-share"></i> Share</a>
@@ -1684,6 +1793,205 @@ function getTeamAroundYou(pageNum, numberOFRecords){
    }
    
    </script>
+   
+   
+   <script type="text/javascript">
+
+function feedEdit(id)
+{
+	var feed=$("#"+id).text();
+	$("#feedsedited").val(feed);
+	$("#EditedId").val(id);
+	$("#feededit").show();
+	console.log(feed);
+	}
+function closeFeededit()
+{
+	$("#feededit").hide();
+	$("#feedhittedlist").hide();
+	}
+	
+	function updatePost()
+	{
+		var feed=$("#feedsedited").val();
+		var editedid=$("#EditedId").val();
+		console.log("Edited feed :"+feed);
+		
+		
+		var feedarray=feed.split(" ");
+		var sentfeed="";
+		for(var i in feedarray)
+			{
+			var word=linkify(feedarray[i]);
+			console.log(sentfeed);
+			console.log(i);
+			if(i == 0){sentfeed+=word;}else{
+			sentfeed+=" "+word;}
+			}
+		console.log(sentfeed);
+		
+		
+var request={
+				
+				content : sentfeed,
+				updateFlag : "feed",
+				feedId : editedid,
+		}
+		
+		$.ajax({
+			
+			type : "post",
+			url : "${pageContext.request.contextPath}/UpdateFeed",
+			data : JSON.stringify(request),
+			contentType : "application/json",
+			success : function(res){
+				
+				if(res == "success")
+					{
+					$("#"+editedid).html(sentfeed);
+					}
+				$("#feedsedited").val("");
+				$("#EditedId").val("");
+				$("#feededit").hide();
+				}
+			
+		}) 
+	}
+	
+	function linkify(text) {
+	    var urlRegex =/(\b(((https?|ftp|file|):\/\/)|www[.])[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+	    return text.replace(urlRegex, function(url) {
+	        return '<a href="' + url + '" target="_blank">' + url + '</a>';
+	    });
+	}
+	
+	
+	 function SaveComment(id,fid)
+	 {
+		var comment=$("#Edited"+id).val();
+		 /*alert(comment);*/
+		
+		console.log("Edited feed :"+comment);
+		
+		var request={
+				feedCommentId : id,
+				content : comment,
+				updateFlag : "feedComment",
+				feedId : fid,
+		}
+		
+		$.ajax({
+			
+			type : "post",
+			url : "${pageContext.request.contextPath}/UpdateComment",
+			data : JSON.stringify(request),
+			contentType : "application/json",
+			success : function(res){
+				
+				if(res == "success")
+					{
+					console.log("Edit comment :"+res);
+					$("#Original"+id).text(comment);
+					$("#editdiv_"+id).show();
+					 $("#body_"+id).hide();
+					}
+				}
+			
+		})
+		
+	 }
+	 
+	 function getHitList(fid)
+	 {
+		 console.log("add");
+		 
+		 var request={
+				 feedId : fid,	 
+		 }
+		 $.ajax({
+			 type : "post",
+			 url : "${pageContext.request.contextPath}/hitList",
+			 data : JSON.stringify(request),
+			 contentType : "application/json",
+			 success : function(res)
+			 {
+				 var htmlco="";
+				 if(res !=null)
+					 {
+					 htmlco+="<div class='dropdown-content'>";
+				for(var i in res)
+					{
+					htmlco+="<li>"+res[i].hittedByName+"</li>";
+					}
+  
+				 htmlco+="</div>";
+	
+					 }
+				 
+				 $("#Hitlist_"+fid).html(htmlco).trigger('create');
+				 
+			 }
+			 
+		 })
+	 }
+	 
+	 function removeHitList(fid)
+	 {
+		  $("#Hitlist_"+fid).html("").trigger('create');
+		 console.log("remove"); 
+	 }
+	 
+	 
+	 function gitHitedList(fid)
+	 {
+		 var request={
+				 feedId : fid,	 
+		 }
+		 $.ajax({
+			 type : "post",
+			 url : "${pageContext.request.contextPath}/hitList",
+			 data : JSON.stringify(request),
+			 contentType : "application/json",
+			 success : function(res)
+			 {
+				 var htm="";
+				 if(res !=null)
+					 {
+				for(var i in res)
+					{
+					
+					
+					htm +='<li  class="selection-item">';
+					
+                        htm+='<div class="media">'
+                        +'<div class="media-left">'
+                      
+                  	
+                  		htm +='<img src="'+ctx+'/images/profileIcon.png" class="nav-avatar">'
+                    +'</div>'
+                    +'<div class="media-body">'
+                    +'<a href="'+ctx+'/buddy/'+res[i].hittedByName+'/'+res[i].hittedBy+'">'
+                     +' <h4 class="media-heading">'+res[i].hittedByName+'<br>'
+                     +'</a>';
+                  htm+='</h4>'
+                   	 +'</div>'
+                 	 +'</div>'
+          			+'</li>';
+					}
+					 }
+				 
+				 $("#hittedlists").html(htm).trigger('create');
+				 $("#feedhittedlist").show();
+				 
+			 }
+			 
+		 })
+		
+	 }
+	 
+	
+</script>
+   
 
 </body>
 
