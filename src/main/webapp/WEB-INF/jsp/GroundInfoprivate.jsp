@@ -378,8 +378,9 @@ var formatAMPMTime = function(date) {
 	  var strTime = (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear()+" "+ hours + ':' + minutes + ' ' + ampm;
 	  return strTime;
 	}
-	function test(date){
-		var date = date.replace("IST","");	
+	function test(date1){
+		var date = date1.replace("IST","");	
+		date = date.replace("UTC","");
 		console.log("Date :"+date);
 	    var offset = new Date().getTimezoneOffset() * 60 * 1000;
 	var gettingFromServer= new Date(date);
@@ -458,6 +459,7 @@ var formatAMPMTime = function(date) {
                          <tr><td>City</td><td>:</td><td>${groundDetails.city}</td></tr>
                           <tr><td>State</td><td>:</td><td>${groundDetails.state}</td></tr>
                            <tr><td>Zip Code</td><td>:</td><td>${groundDetails.zipcode}</td></tr>
+                           <tr><td>Wicket Type</td><td>:</td><td>${groundDetails.wicketType}</td></tr>
                         <!-- <tr><td>Home Team</td><td>:</td><td>CSK</td></tr> -->
                          </table>
                         
@@ -465,7 +467,7 @@ var formatAMPMTime = function(date) {
                          
                          <div class=" ">
                    <h4>Pitch Description :</h4>
-                 <textarea type="text" style="height: 150px; width: 100%;" > ${groundDetails.pitchDescription}</textarea>
+                 <textarea type="text" style="height: 100px; width: 100%;" > ${groundDetails.pitchDescription}</textarea>
                  </div> 
                         
                          
@@ -487,22 +489,41 @@ var formatAMPMTime = function(date) {
                  
                  <div class="col-md-8 col-sm-12 col-xs-12">                         
                          <h4>Additional Directions :</h4>
-                         <p style="margin-bottom: 5%;">${groundDetails.directionsToGround}</p>
+                         <p style="margin-bottom: 5%;">
                          
-                         <h4>Ground facilities :</h4>
-                         <p>${groundDetails.groundFacilities}</p>
-                         
-                         
-                         
-                         
-                         
-                          <c:choose>
-                         <c:when test="${teamscoresize == 0 }">
-                           <span style="margin-left: 50px;" >   No data available</span>
+                         <c:choose>
+                         <c:when test="${groundDetails.directionsToGround ne '' && groundDetails.directionsToGround ne null}">
+                         ${groundDetails.directionsToGround}</p>
                          </c:when>
                          <c:otherwise>
+                         <span style="margin-left: 4px; color: red;" >   No data available</span></p>
+                         </c:otherwise>
+                         </c:choose>
                          
-                         <!-- Ground highest -->
+                         
+                         
+                         <h4>Ground facilities :</h4>
+                         <p style="margin-bottom: 5%;">
+                         
+                         <c:choose>
+                         <c:when test="${groundDetails.groundFacilities ne '' && groundDetails.groundFacilities ne null}">
+                         ${groundDetails.groundFacilities}</p>
+                         </c:when>
+                         <c:otherwise>
+                         <span style="margin-left: 4px; color: red;" >   No data available</span></p>
+                         </c:otherwise>
+                         </c:choose>
+                         
+                         
+                         
+                         
+                         </p>
+                         
+                         
+                         
+                         
+                         
+                         
                    </div>
                         
                          
@@ -545,8 +566,20 @@ var formatAMPMTime = function(date) {
 					
 					</div></div>
 					
+					
 					<div class="col-md-12 col-sm-12 col-xs-12">   
-					 <h4>Ground Statistics :</h4>                      
+					 <h4>Ground Statistics :</h4>  
+					 <c:choose>
+                         <c:when test="${teamscoresize == 0 }">
+                           <span style="margin-left: 4px; color: red;" >   No data available</span>
+                         </c:when>
+                         <c:otherwise>
+                         
+                         <!-- Ground highest -->
+					
+					
+					
+					                    
 						<table class="engineTable">
 						<caption>Highest totals</caption>
 						<thead>
@@ -624,7 +657,16 @@ var formatAMPMTime = function(date) {
 						   <c:forEach items="${playerHighest}" var="player" >
 						 <tr class="data1" data-days="736667">
 						  <td class="left" title="record rank: 50" ><a style="color: #227fbc;" href="${pageContext.request.contextPath}/scorecard/buddy/${player.userName}/${player.userId}">${player.userName}</a></td>
-						  <td class="padTSao-b" ><b>${player.highest}</b></td>
+						  <td class="padTSao-b" ><b>${player.highest}(${player.battingBalls})
+						  
+						  <c:if test="${player.notOutFlag eq 'NotOut'}">
+						  <div class="star-rating">*</div>
+						  
+						  </c:if>
+						  
+						  
+						  
+						  </b></td>
 						  <td class="left" ><a href="${pageContext.request.contextPath}/${player.againstTeamName}/board/${scores.againstTeamId}">${player.againstTeamName}</a></td>
 						  <td ><script>document.writeln(test('${player.gameDate}'))</script></td>
 						  <td ><a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${player.tournamentSchedulerId}','${BoradInfo.boardId}')"><i class="fa fa-newspaper-o editIcon"></i></a></td>
@@ -655,7 +697,7 @@ var formatAMPMTime = function(date) {
 						   <c:forEach items="${playerBestBowl}" var="player" >
 						 <tr class="data1" data-days="736667">
 						  <td class="left" title="record rank: 50" ><a style="color: #227fbc;" href="${pageContext.request.contextPath}/scorecard/buddy/${player.userName}/${player.userId}">${player.userName}</a></td>
-						  <td class="padTSao-b" ><b>${player.wickets}</b></td>
+						  <td class="padTSao-b" ><b>${player.bbi}</b></td>
 						  <td class="left" ><a href="${pageContext.request.contextPath}/${player.againstTeamName}/board/${scores.againstTeamId}">${player.againstTeamName}</a></td>
 						  <td ><script>document.writeln(test('${player.gameDate}'))</script></td>
 						  <td ><a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${player.tournamentSchedulerId}','${BoradInfo.boardId}')"><i class="fa fa-newspaper-o editIcon"></i></a></td>

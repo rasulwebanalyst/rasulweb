@@ -128,12 +128,34 @@ table.engineTable {
 }
 .weatherInfo table tr td {
 	border: none;
+	padding: 2px;
 }
 .weatherInfo table tr:nth-child(even),.weatherInfo table tr:nth-child(odd) {
 	background: none;
 } 
 #feedMainDIV .media, #feedMainDIV .media-body {
 	overflow: visible;
+}
+.feedhit li {
+	list-style: none;	
+    padding: 5px 10px 10px 0;
+    border-bottom: 1px solid #eee;
+}
+.feedhit li .media-body {
+	text-align: left;
+	vertical-align: middle;
+}
+.feedhit .box {
+	top: 214px !important;
+    width: 400px !important;
+}
+.feedhit .popupContentDiv {
+    min-height: 63px;
+    max-height: 256px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #fff;
+    margin: 10px 0 10px 0;
 }
 .scroll-slider ul li {
 	list-style: none;

@@ -1605,10 +1605,26 @@ var request={
 				 if(res !=null)
 					 {
 					 htmlco+="<div class='dropdown-content'>";
-				for(var i in res)
-					{
-					htmlco+="<li>"+res[i].hittedByName+"</li>";
-					}
+					 
+					 
+if(res.length > 5){
+						 
+						 
+						 for(var i=0;i < 5;i++)
+							 {
+							 htmlco+="<li>"+res[i].hittedByName+"</li>";
+							 }
+						  htmlco+="<li>more .. </li>"; 
+					 }else
+						 {
+						 
+						 for(var i in res)
+							{
+							htmlco+="<li>"+res[i].hittedByName+"</li>";
+							}
+						 }
+					 
+				
   
 				 htmlco+="</div>";
 	
@@ -1642,7 +1658,7 @@ var request={
 			 success : function(res)
 			 {
 				 var htm="";
-				 if(res !=null)
+				 if(res !=null && res.length > 0)
 					 {
 				for(var i in res)
 					{
@@ -1665,7 +1681,13 @@ var request={
                  	 +'</div>'
           			+'</li>';
 					}
-					 }
+					 }else{
+						 htm +='<li  class="selection-item">  No Records';
+							
+		                   
+		       			+'</li>';
+							 
+						 }
 				 
 				 $("#hittedlists").html(htm).trigger('create');
 				 $("#feedhittedlist").show();

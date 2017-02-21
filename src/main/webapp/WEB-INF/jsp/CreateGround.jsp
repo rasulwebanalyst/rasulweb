@@ -442,8 +442,8 @@ function getAddress1(e,addr)
                                   	<!-- <textarea type="text" class="form-control" style="height: 100px;" id="directionsToGround" name="directionsToGround"></textarea> -->
                                   	<select id="wickettype" class="form-control">
                               <option value="Regular Turf">Regular Turf</option>
-                              <option value="Astro Turf">Astro Turf </option>
-                              <option value="Mat turf">Mat turf</option>
+                              <option value="Astro Turf">Astro Turf</option>
+                              <option value="Mat turf">Mat</option>
                               
                               </select>
                                   </div>

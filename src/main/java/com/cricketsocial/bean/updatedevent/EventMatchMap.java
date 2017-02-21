@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import com.cricketsocial.bean.board.BoardProfile;
 import com.cricketsocial.bean.board.TournamentScheduler;
 import com.cricketsocial.bean.buddy.UserProfile;
 
@@ -41,12 +42,23 @@ public class EventMatchMap {
 	private String cancelReason;
 	private String eventName;
 	private UserProfile creatorDetails;
+	private BoardProfile boardInfo;
 	
 	
 	
 	
 	
 	
+	
+	
+	
+	
+	public BoardProfile getBoardInfo() {
+		return boardInfo;
+	}
+	public void setBoardInfo(BoardProfile boardInfo) {
+		this.boardInfo = boardInfo;
+	}
 	public String getEventName() {
 		return eventName;
 	}

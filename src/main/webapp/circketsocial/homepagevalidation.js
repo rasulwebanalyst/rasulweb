@@ -117,7 +117,7 @@ messages :
 	                +'<div class="headRight">'
 	                
 	                +'<div class="dropdown">'
-                	+'<p id="HitCountDIv'+res[0].feedId+'" onmouseout="removeHitList('+fid+')" onmouseover="getHitList('+fid+')" class="trash-holder"><img src="'+projectURL+'/images/hitIcon1.png" width="18" class="hitIcon1" >0</p>'
+                	+'<p id="HitCountDIv'+res[0].feedId+'" onmouseout="removeHitList('+fid+')" onmouseover="getHitList('+fid+')" onclick="gitHitedList('+fid+')" class="trash-holder"><img src="'+projectURL+'/images/hitIcon1.png" width="18" class="hitIcon1" >0</p>'
                 	+'<div id="Hitlist_'+res[0].feedId+'"></div>'
                 
                 +'</div>'

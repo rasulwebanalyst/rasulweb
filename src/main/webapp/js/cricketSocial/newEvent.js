@@ -425,8 +425,7 @@ function buddyCancelledEvents(){
 			                        htm+='</div>';
 			                        nextindicate= parseInt(nextindicate)+parseInt(1);
 								
-							 }else
-								 
+							 }else if(res[i].creatorDetails != null)
 								 {
 								 
 								 
@@ -473,7 +472,50 @@ function buddyCancelledEvents(){
 								 
 								 
 								 
-								 }
+								 }else if(res[i].boardInfo != null)
+								 {
+									 
+									 var dateObj=dateFunction(res[i].eventDate);	
+									 
+										var dateNewObject = getDateInObjectUTCFormate_withTimeStampInput(res[i].eventDate);
+										var boardInfo=res[i].boardInfo;
+
+										htm+='<div class="col-md-12 noPadding leag-Acc">';
+				                        htm+='<div class="col-md-1 eveDate">';		                        
+				                        htm +='<p>'+dateObj.day+'<br>'+dateObj.dateName+'';
+						 				htm+='</div>';		                    
+				                    	htm+='<div class="col-md-11 borderleft">';		                         
+				                        htm+='<div class="col-md-12 noPadding eventUserDetails">';
+				                        htm+='<a href="'+ctx+'/'+boardInfo.boardName+'/board/'+boardInfo.boardId+'">';
+				                        htm+='<img src="'+boardInfo.boardImageURL+'" onerror=errorImageset1(this) class="nav-avatar">'+boardInfo.boardName+'</a>';	                            
+				                        htm+='</div>';		                         
+				                        htm+='<div class="col-md-6 Leag-Img">';
+				                        htm+='<h4>'+res[i].eventName+'</h4>';
+				                        
+				                        htm +='<p>'+dateNewObject+'</p>';
+				                        
+				                        if(res[i].cancelReason!=null){
+					                        htm+='<div class="">';
+					                        htm+='<h4>Reason :</h4>';
+					                        htm+='<p>'+res[i].cancelReason+'</p>';
+					                        htm+='</div>';
+			                        }
+				                        
+				                        
+				                      
+						                        htm+='<p>';
+						                        htm+=''+res[i].venue+'';
+						                        htm+='</p>';
+				                      
+				                        htm+='</div>';		                       
+				                    
+				                        htm+='</div>';
+				                        htm+='</div>';
+				                        nextindicate= parseInt(nextindicate)+parseInt(1);
+									 
+									 
+									 
+									 }
 							
 						}				
 						console.log(nextindicate);
@@ -1761,12 +1803,12 @@ function boardCancelEvent(){
 	                        htm+='</div>';
 	                        htm+='</div>';
 	                        nextindicate= parseInt(nextindicate)+parseInt(1);
-						}else {
+						}else if(res[i].boardInfo != null) {
 						
 						  var dateObj=dateFunction(res[i].eventDate);	
 							 
 							var dateNewObject = getDateInObjectUTCFormate_withTimeStampInput(res[i].eventDate);
-							var creatorDetails=res[i].creatorDetails;
+							var boardInfo=res[i].boardInfo;
 
 							htm+='<div class="col-md-12 noPadding leag-Acc">';
 	                        htm+='<div class="col-md-1 eveDate">';		                        
@@ -1774,8 +1816,8 @@ function boardCancelEvent(){
 			 				htm+='</div>';		                    
 	                    	htm+='<div class="col-md-11 borderleft">';		                         
 	                        htm+='<div class="col-md-12 noPadding eventUserDetails">';
-	                        htm+='<a href="'+ctx+'/buddy/'+creatorDetails.fullName+'/'+creatorDetails.userId+'">';
-	                        htm+='<img src="'+creatorDetails.userImageUrl+'" onerror=errorImageset1(this) class="nav-avatar">'+creatorDetails.fullName+'</a>';	                            
+	                        htm+='<a href="'+ctx+'/'+boardInfo.boardName+'/board/'+boardInfo.boardId+'">';
+	                        htm+='<img src="'+boardInfo.boardImageURL+'" onerror=errorImageset1(this) class="nav-avatar">'+boardInfo.boardName+'</a>';	                            
 	                        htm+='</div>';		                         
 	                        htm+='<div class="col-md-6 Leag-Img">';
 	                        htm+='<h4>'+res[i].eventName+'</h4>';
@@ -1811,7 +1853,7 @@ function boardCancelEvent(){
 					}				
 					
 				}	
-				if(response.teamBoardCancelledMatches!=null){
+				if(response.teamBoardCancelledMatches!=null && response.teamBoardCancelledMatches.length > 0){
 
 					/*var res=response.teamBoardCancelledMatches;*/
 					var res=response.cancelledEventList;
@@ -1819,7 +1861,8 @@ function boardCancelEvent(){
 						for(var j in event){
 							
 							
-							var eventid=res[i].tournamentSchedulerId;
+							
+							var	eventid=res[j].tournamentSchedulerId
 							if(eventid!=null){
 							
 							
@@ -1866,10 +1909,10 @@ function boardCancelEvent(){
 	                        nextindicate= parseInt(nextindicate)+parseInt(1);
 						}else {
 							
-							  var dateObj=dateFunction(res[i].eventDate);	
+							  var dateObj=dateFunction(res[j].eventDate);	
 								 
-								var dateNewObject = getDateInObjectUTCFormate_withTimeStampInput(res[i].eventDate);
-								var creatorDetails=res[i].creatorDetails;
+								var dateNewObject = getDateInObjectUTCFormate_withTimeStampInput(res[j].eventDate);
+								var boardInfo=res[j].boardInfo;
 
 								htm+='<div class="col-md-12 noPadding leag-Acc">';
 		                        htm+='<div class="col-md-1 eveDate">';		                        
@@ -1877,25 +1920,25 @@ function boardCancelEvent(){
 				 				htm+='</div>';		                    
 		                    	htm+='<div class="col-md-11 borderleft">';		                         
 		                        htm+='<div class="col-md-12 noPadding eventUserDetails">';
-		                        htm+='<a href="'+ctx+'/buddy/'+creatorDetails.fullName+'/'+creatorDetails.userId+'">';
-		                        htm+='<img src="'+creatorDetails.userImageUrl+'" onerror=errorImageset1(this) class="nav-avatar">'+creatorDetails.fullName+'</a>';	                            
+		                        htm+='<a href="'+ctx+'/'+boardInfo.boardName+'/board/'+boardInfo.boardId+'">';
+		                        htm+='<img src="'+boardInfo.boardImageURL+'" onerror=errorImageset1(this) class="nav-avatar">'+boardInfo.boardName+'</a>';	                            
 		                        htm+='</div>';		                         
 		                        htm+='<div class="col-md-6 Leag-Img">';
-		                        htm+='<h4>'+res[i].eventName+'</h4>';
+		                        htm+='<h4>'+res[j].eventName+'</h4>';
 		                        
 		                        htm +='<p>'+dateNewObject+'</p>';
 		                        
-		                        if(res[i].cancelReason!=null){
+		                        if(res[j].cancelReason!=null){
 			                        htm+='<div class="">';
 			                        htm+='<h4>Reason :</h4>';
-			                        htm+='<p>'+res[i].cancelReason+'</p>';
+			                        htm+='<p>'+res[j].cancelReason+'</p>';
 			                        htm+='</div>';
 	                      }
 		                        
 		                        
 		                      
 				                        htm+='<p>';
-				                        htm+=''+res[i].venue+'';
+				                        htm+=''+res[j].venue+'';
 				                        htm+='</p>';
 		                      
 		                        htm+='</div>';		                       
@@ -1907,7 +1950,6 @@ function boardCancelEvent(){
 							
 							
 						}
-							
 							
 							
 							

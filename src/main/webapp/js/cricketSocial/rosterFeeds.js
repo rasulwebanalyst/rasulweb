@@ -97,7 +97,7 @@ $('#rosterFeedPostfrom').validate({
 		                +'<div class="headRight">'
 		                
 		                +'<div class="dropdown">'
-	                	+'<p id="HitCountDIv'+res[0].feedId+'" onmouseout="removeHitList('+fid+')" onmouseover="getHitList('+fid+')" class="trash-holder"><img src="'+ctx+'/images/hitIcon1.png" width="18" class="hitIcon1" >0</p>'
+	                	+'<p id="HitCountDIv'+res[0].feedId+'" onmouseout="removeHitList('+fid+')" onmouseover="getHitList('+fid+')" onclick="gitHitedList('+fid+')" class="trash-holder"><img src="'+ctx+'/images/hitIcon1.png" width="18" class="hitIcon1" >0</p>'
 	                	+'<div id="Hitlist_'+res[0].feedId+'"></div>'
 	                
 	                +'</div>'
@@ -339,7 +339,8 @@ $('#rosterFeedPostfrom').validate({
 					                             +'</div>'
 					                             +'<div class="media-body" id="editdiv_'+cmtid+'">'
 					                             +'<h4 class="media-heading">'+res[i].commentedByName;
-											if(viewFlag>0){
+											/*if(viewFlag>0){ changed for edit by madhavan*/
+											if(viewFlag>=0){
 												if(buddyID==res[i].commentedBy){
 													
 													htm +='<span class="trash-holder" title="Edit" onClick="commentEdit('+commentId+','+feedId+')"> <i class="fa fa-pencil trash"></i> </span>';

@@ -11800,8 +11800,8 @@ public ModelAndView groundinfoprivate(@PathVariable String groundId,@PathVariabl
 								mav.addObject("playerStatisticssize",0);}*/
 							
 							
-							
-							
+							if(hubRes.getResults().getGroundList().get(0).getTeamHeighestScore() != null)
+							{
 							if(hubRes.getResults().getGroundList().get(0).getTeamHeighestScore().size() > 0)
 							{
 								mav.addObject("teamHighest", hubRes.getResults().getGroundList().get(0).getTeamHeighestScore());
@@ -11813,7 +11813,10 @@ public ModelAndView groundinfoprivate(@PathVariable String groundId,@PathVariabl
 								mav.addObject("teamscoresize", 0);
 							}
 							
-							
+							}else
+							{
+								mav.addObject("teamscoresize", 0);
+							}
 							
 							}
 						}
@@ -18237,15 +18240,38 @@ public ModelAndView groundInfopublic(@PathVariable String groundId,@PathVariable
 						if(hubRes != null && hubRes.getRequestStatus() != null && hubRes.getResults().getGroundList().size() != 0){
 							mav.addObject("groundDetails", hubRes.getResults().getGroundList().get(0));
 							mav.addObject("groundId", groundId);
-							if(hubRes.getResults().getGroundList().get(0).getTeamScores().size()>0)
+							/*if(hubRes.getResults().getGroundList().get(0).getTeamScores().size()>0)
 							{
 							mav.addObject("teamScores",hubRes.getResults().getGroundList().get(0).getTeamScores());}
 							else{mav.addObject("teamscoresize", 0);}
 							if(hubRes.getResults().getGroundList().get(0).getPlayerStatistics().size() > 0){
 							mav.addObject("playerStatistics",hubRes.getResults().getGroundList().get(0).getPlayerStatistics());}
 							else{
-								mav.addObject("playerStatisticssize",0);}
+								mav.addObject("playerStatisticssize",0);}*/
+
+						
+							if(hubRes.getResults().getGroundList().get(0).getTeamHeighestScore() != null)
+							{
+							if(hubRes.getResults().getGroundList().get(0).getTeamHeighestScore().size() > 0)
+							{
+								mav.addObject("teamHighest", hubRes.getResults().getGroundList().get(0).getTeamHeighestScore());
+								mav.addObject("teamLowest", hubRes.getResults().getGroundList().get(0).getTeamLowestScore());
+								mav.addObject("playerHighest", hubRes.getResults().getGroundList().get(0).getPlayerHighScore());
+								mav.addObject("playerBestBowl", hubRes.getResults().getGroundList().get(0).getPlayerBestBowling());
+							}else
+							{
+								mav.addObject("teamscoresize", 0);
 							}
+							
+							}else
+							{
+								mav.addObject("teamscoresize", 0);
+							}
+						
+						
+						
+						
+						}
 						}
 					
 				 
