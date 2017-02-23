@@ -786,7 +786,7 @@ function getHitList(fid)
 					 
 					 for(var i=0;i < 5;i++)
 						 {
-						 htmlco+="<li>"+res[i].hittedByName+"</li>";
+						 htmlco+="<li style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 114px;'>"+res[i].hittedByName+"</li>";
 						 }
 					  htmlco+="<li>more .. </li>"; 
 				 }else
@@ -794,7 +794,7 @@ function getHitList(fid)
 					 
 					 for(var i in res)
 						{
-						htmlco+="<li>"+res[i].hittedByName+"</li>";
+						htmlco+="<li style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 114px;'>"+res[i].hittedByName+"</li>";
 						}
 					 }
 

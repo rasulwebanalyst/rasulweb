@@ -448,12 +448,7 @@ function buddyCancelledEvents(){
 			                        
 			                        htm +='<p>'+dateNewObject+'</p>';
 			                        
-			                        if(res[i].cancelReason!=null){
-				                        htm+='<div class="">';
-				                        htm+='<h4>Reason :</h4>';
-				                        htm+='<p>'+res[i].cancelReason+'</p>';
-				                        htm+='</div>';
-		                        }
+			                       
 			                        
 			                        
 			                      
@@ -461,7 +456,17 @@ function buddyCancelledEvents(){
 					                        htm+=''+res[i].venue+'';
 					                        htm+='</p>';
 			                      
-			                        htm+='</div>';		                       
+			                        htm+='</div>';		
+			                        
+			                        
+			                        
+			                        if(res[i].cancelReason!=null){
+				                        htm+='<div class="col-md-6 Leag-Img">';
+				                        htm+='<h4>Reason :</h4>';
+				                        htm+='<p>'+res[i].cancelReason+'</p>';
+				                        htm+='</div>';
+		                        }
+			                        
 			                    
 			                        htm+='</div>';
 			                        htm+='</div>';
@@ -494,12 +499,12 @@ function buddyCancelledEvents(){
 				                        
 				                        htm +='<p>'+dateNewObject+'</p>';
 				                        
-				                        if(res[i].cancelReason!=null){
+				                       /* if(res[i].cancelReason!=null){
 					                        htm+='<div class="">';
 					                        htm+='<h4>Reason :</h4>';
 					                        htm+='<p>'+res[i].cancelReason+'</p>';
 					                        htm+='</div>';
-			                        }
+			                        }*/
 				                        
 				                        
 				                      
@@ -507,7 +512,14 @@ function buddyCancelledEvents(){
 						                        htm+=''+res[i].venue+'';
 						                        htm+='</p>';
 				                      
-				                        htm+='</div>';		                       
+				                        htm+='</div>';	
+				                        
+				                        if(res[i].cancelReason!=null){
+					                        htm+='<div class="col-md-6 Leag-Img">';
+					                        htm+='<h4>Reason :</h4>';
+					                        htm+='<p>'+res[i].cancelReason+'</p>';
+					                        htm+='</div>';
+			                        }
 				                    
 				                        htm+='</div>';
 				                        htm+='</div>';
@@ -1824,12 +1836,13 @@ function boardCancelEvent(){
 	                        
 	                        htm +='<p>'+dateNewObject+'</p>';
 	                        
-	                        if(res[i].cancelReason!=null){
+	                       /* if(res[i].cancelReason!=null){
 		                        htm+='<div class="">';
 		                        htm+='<h4>Reason :</h4>';
 		                        htm+='<p>'+res[i].cancelReason+'</p>';
 		                        htm+='</div>';
-                      }
+                      }*/
+	                        
 	                        
 	                        
 	                      
@@ -1837,7 +1850,16 @@ function boardCancelEvent(){
 			                        htm+=''+res[i].venue+'';
 			                        htm+='</p>';
 	                      
-	                        htm+='</div>';		                       
+	                        htm+='</div>';		
+	                        
+	                        if(res[i].cancelReason!=null){
+		                        htm+='<div class="col-md-6 Leag-Img">';
+		                        htm+='<h4>Reason</h4>';
+		                        htm+='<p>'+res[i].cancelReason+'</p>';
+		                        htm+='</div>';
+		                        
+		                        
+                      }
 	                    
 	                        htm+='</div>';
 	                        htm+='</div>';
@@ -1909,6 +1931,8 @@ function boardCancelEvent(){
 	                        nextindicate= parseInt(nextindicate)+parseInt(1);
 						}else {
 							
+							if(res[j].boardInfo !=null ){
+							
 							  var dateObj=dateFunction(res[j].eventDate);	
 								 
 								var dateNewObject = getDateInObjectUTCFormate_withTimeStampInput(res[j].eventDate);
@@ -1928,20 +1952,29 @@ function boardCancelEvent(){
 		                        
 		                        htm +='<p>'+dateNewObject+'</p>';
 		                        
-		                        if(res[j].cancelReason!=null){
+		                        /*if(res[j].cancelReason!=null){
 			                        htm+='<div class="">';
 			                        htm+='<h4>Reason :</h4>';
 			                        htm+='<p>'+res[j].cancelReason+'</p>';
 			                        htm+='</div>';
 	                      }
-		                        
+		                        */
 		                        
 		                      
 				                        htm+='<p>';
 				                        htm+=''+res[j].venue+'';
 				                        htm+='</p>';
 		                      
-		                        htm+='</div>';		                       
+		                        htm+='</div>';	
+		                        
+		                        if(res[j].cancelReason!=null){
+			                        htm+='<div class="col-md-6 Leag-Img">';
+			                        htm+='<h4>Reason</h4>';
+			                        htm+='<p>'+res[j].cancelReason+'</p>';
+			                        htm+='</div>';
+			                        
+			                        
+	                      }
 		                    
 		                        htm+='</div>';
 		                        htm+='</div>';
@@ -1952,12 +1985,64 @@ function boardCancelEvent(){
 						}
 							
 							
-							
+						}	
 							
 						}
 									
 					
 				}	
+				
+				
+				
+				
+				if(response.leagueBoardCancelledMatches.length == 0 && response.teamBoardCancelledMatches.length == 0)
+					{
+					
+					var res=response.cancelledEventList;
+					var event=res;
+							for(var j in event){
+								
+								  var dateObj=dateFunction(res[j].eventDate);	
+									var dateNewObject = getDateInObjectUTCFormate_withTimeStampInput(res[j].eventDate);
+									var boardInfo=res[j].boardInfo;
+
+									htm+='<div class="col-md-12 noPadding leag-Acc">';
+			                        htm+='<div class="col-md-1 eveDate">';		                        
+			                        htm +='<p>'+dateObj.day+'<br>'+dateObj.dateName+'';
+					 				htm+='</div>';		                    
+			                    	htm+='<div class="col-md-11 borderleft">';		                         
+			                        htm+='<div class="col-md-12 noPadding eventUserDetails">';
+			                        htm+='<a href="'+ctx+'/'+boardInfo.boardName+'/board/'+boardInfo.boardId+'">';
+			                        htm+='<img src="'+boardInfo.boardImageURL+'" onerror=errorImageset1(this) class="nav-avatar">'+boardInfo.boardName+'</a>';	                            
+			                        htm+='</div>';		                         
+			                        htm+='<div class="col-md-6 Leag-Img">';
+			                        htm+='<h4>'+res[j].eventName+'</h4>';
+			                        
+			                        htm +='<p>'+dateNewObject+'</p>';
+			                        
+					                        htm+='<p>';
+					                        htm+=''+res[j].venue+'';
+					                        htm+='</p>';
+			                      
+			                        htm+='</div>';	
+			                        
+			                        if(res[j].cancelReason!=null){
+				                        htm+='<div class="col-md-6 Leag-Img">';
+				                        htm+='<h4>Reason</h4>';
+				                        htm+='<p>'+res[j].cancelReason+'</p>';
+				                        htm+='</div>';
+				                        
+				                        
+		                      }
+			                        
+			                    
+			                        htm+='</div>';
+			                        htm+='</div>';
+			                        nextindicate= parseInt(nextindicate)+parseInt(1);
+								 
+							}
+					
+					}
 		
 				
 				}else{

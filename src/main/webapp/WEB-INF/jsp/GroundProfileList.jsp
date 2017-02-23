@@ -82,7 +82,7 @@
                         <th>Address</th>
                         <th>City</th>
                         <th class="alignCenter">Action</th>
-                        <th class="alignCenter">Ground Info</th>
+                       <!--  <th class="alignCenter">Ground Info</th> -->
                     </tr>
                   </thead>
       
@@ -112,7 +112,7 @@
                        </c:if>
                        </c:forEach>
                        
-                       <th class="alignCenter">Ground Info</th>
+                       <!-- <th class="alignCenter">Ground Info</th> -->
                        
                     </tr>
                   </thead>
@@ -121,7 +121,7 @@
                   <c:forEach var="grndList" items="${groundList}" varStatus="index">
                     <tr>
                         <td style="text-align: center !important;">${index.count}</td>
-                    	<td class="alignCenter">${grndList.groundName}</td>
+                    	<td class="alignCenter"><a href="${pageContext.request.contextPath}/groundInfopublic/${grndList.groundId}/${boardId}">${grndList.groundName}</a></td>
                     	
                     	<c:choose>
                                             <c:when test="${grndList.address1 eq null || grndList.address1 eq ''}">
@@ -153,9 +153,9 @@
                        </c:forEach>
                         
                         
-                        <td class="alignCenter">
+                       <%--  <td class="alignCenter">
                         	<a href="${pageContext.request.contextPath}/groundInfopublic/${grndList.groundId}/${boardId}">Info</a>
-                        </td>
+                        </td> --%>
                         
                         
                         

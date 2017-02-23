@@ -791,7 +791,7 @@ $.ajax({
 				
 				$("#hide_"+id).hide();
 				
-			 displaynotification('Event canceled successfully',2000); 
+			 displaynotification('Event cancelled successfully',2000); 
 			
 				}
 			}
@@ -825,7 +825,7 @@ $.ajax({
 				$("#hide_"+id).hide();
 				$("#cancelReasonPopup").hide();
 				$("#cancelTournament").hide();
-			 displaynotification('Event canceled successfully',2000); 
+			 displaynotification('Event cancelled successfully',2000); 
 			
 				}
 			}

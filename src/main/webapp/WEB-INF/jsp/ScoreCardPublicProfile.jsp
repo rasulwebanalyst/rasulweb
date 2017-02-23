@@ -61,7 +61,7 @@ var formatAMPMTime = function(date) {
 												                <div class="popupContentDiv">
 												                
 												                		
-												                        	<textarea class="form-control" id="feedsedited" rows="5" placeholder="" ></textarea>
+												                        	<textarea class="form-control" id="feedsedited" rows="5" placeholder="" disabled="disabled"></textarea>
 												                        	<input type="hidden"  id="feedseditedhidden" rows="5" placeholder="" ></textarea>
 												                        	<input type="hidden" id="EditedId">
 												                          
@@ -997,13 +997,14 @@ function facebook()
 	  var data=$("#feeddata").val();
 	   
 	var appmsg="hello";
+	var picture="https://s3.amazonaws.com/prod-cricket-social-images/a63b10b3-69f9-44ad-8487-e7a0f6b9a19c.png?6"
     
 	  window
 	  .open(
 	 "https://www.facebook.com/dialog/feed?app_id=1654958434805143&display=popup"
 	  +"&name="+data+""
 	  + "&link="+url+""
-	  + '&picture=https://s3.amazonaws.com/dev-cricket-social-images/cf0a4a05-4305-4115-9f6f-10bdb7a842c9.png'
+	  + '&picture='+picture+''
 	 
 	  + "&description=ScoreCard", '',
 	  'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');

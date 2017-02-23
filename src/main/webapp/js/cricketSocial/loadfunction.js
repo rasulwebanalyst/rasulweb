@@ -143,8 +143,9 @@ function getNoficationList()
 			 		 				
 			 		 				htm +='<h4 style="font-size: 12px; center;color: #4c9fe1;">Event Name : '+res[i].eventName+'</h4>'
 			 		 				htm +='<p style="font-size: 12px; "> Event Description : '+res[i].eventDescription+'</p>';
-			 		 				var givendate=testdirect(res[i].eventDate);
-			 		 				htm +='<p style="font-size: 12px; ">Event Date : '+givendate+' </p>';
+			 		 				/**/
+			 		 				var dateNewObject = getDateInObjectUTCFormate_withTimeStampInput(res[i].eventDate);
+			 		 				htm +='<p style="font-size: 12px; ">Event Date : '+dateNewObject+' </p>';
 			 		 				htm +='<p style="font-size: 12px; ">Venue : '+res[i].venue+' </p>';
 				 		            
 				 		            htm +='</div>';
