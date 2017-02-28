@@ -1233,7 +1233,7 @@ var roasterid="${RoasterResponseById.rosterDetails.rosterId}";
 										$('#affilatedLeagueId').text(leagueName);
 										$('#affilatedLeagueId').css("display", "inline-block");
 										
-										showNotification("Your roster has been affiliated success fully",1000);
+										showNotification("Your roster has been affiliated successfully",1000);
 									}else{
 										showNotification("Service has been interupted due to some reasons",1000);
 									}

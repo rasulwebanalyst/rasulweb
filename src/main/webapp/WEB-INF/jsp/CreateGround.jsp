@@ -326,6 +326,18 @@ function getAddress1(e,addr)
 	</script>
 
 </head>
+
+
+
+<style>
+
+#map_canvas div{
+margin-bottom: 0px;
+}
+
+</style>
+
+
 <body>
 
 

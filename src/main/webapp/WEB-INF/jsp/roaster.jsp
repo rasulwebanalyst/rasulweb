@@ -1613,7 +1613,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
 											$('#affilatedLeagueId').text(leagueName);
 											$('#affilatedLeagueId').css("display", "inline-block");
 											
-											displaynotification("Your roster has been affiliated success fully",1000);
+											displaynotification("Your roster has been affiliated successfully",1000);
 											
 											$('#Deleterosteroption').hide();
 											
@@ -1648,7 +1648,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
 										$('#affilatedLeagueId').text(leagueName);
 										$('#affilatedLeagueId').css("display", "inline-block");
 										
-										displaynotification("Your roster has been affiliated success fully",1000);
+										displaynotification("Your roster has been affiliated successfully",1000);
 										$('#Deleterosteroption').hide();
 										}
 									}

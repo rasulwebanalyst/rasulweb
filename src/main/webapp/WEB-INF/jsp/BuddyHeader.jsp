@@ -95,7 +95,7 @@
                 
                
 
-               <div class="popupContentDiv">
+               <div class="popupContentDiv" style="overflow: auto;">
 					<div class="col-md-12 commentsListBlock " id="commentListDivPopup">
                         
                         

@@ -15,6 +15,20 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jstz-1.0.4.min.js"></script>
     
 </head>
+
+
+
+<style>
+
+.token-input-list-facebook{
+    z-index: 1;
+}
+
+
+</style>
+
+
+
 <body onclick="datehasbeenchoosenornot()">
 <%@ include file="CSCommon.jsp" %>
   

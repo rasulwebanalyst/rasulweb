@@ -7,6 +7,11 @@ a{
 }
 
 
+.navbar-fixed-top {
+	    z-index: 999999999;
+}
+
+
 .loginBody {
 /* 	
  	background: #b9b9ae;

@@ -482,7 +482,7 @@ height:100%;
                          <h1 class="noBorder" style="width:100%; margin-bottom: 0;">${groundDetails.groundName}</h1>
                          
                          <table class="brd-info">
-                         <tr><td>Addres</td><td>:</td><td>${groundDetails.address1}</td></tr>
+                         <tr><td>Address</td><td>:</td><td>${groundDetails.address1}</td></tr>
                          <tr><td>City</td><td>:</td><td>${groundDetails.city}</td></tr>
                           <tr><td>State</td><td>:</td><td>${groundDetails.state}</td></tr>
                            <tr><td>Zip Code</td><td>:</td><td>${groundDetails.zipcode}</td></tr>

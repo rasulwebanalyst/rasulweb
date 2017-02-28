@@ -393,6 +393,18 @@ function GetLocation() {
 
 
 </head>
+
+
+
+<style>
+
+#map_canvas div{
+margin-bottom: 0px;
+}
+
+</style>
+
+
 <body onload="onload()">
 
 
