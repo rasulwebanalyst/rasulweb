@@ -192,7 +192,7 @@ $(document).ready(function (){
                           <div class="form-group">
 				            <label class="fomlabel" for="r1"><span class="mandatory">*</span>Date&Time</label>
                            
-                                  <div class="input-group" style="width: 65%;">
+                                  <div class="input-group" style="width: 65%; z-index: 9;">
                                   <div class="col-md-5 noLeftPad">
                                   <div class="input-append">
                                     <input data-format="yyyy-MM-dd" placeholder="Choose event date" readonly type="text" class="form-control fomtexbox datepicker calIconImg" name="strDate" id="strDate" value="" style="border-radius: 4px;">

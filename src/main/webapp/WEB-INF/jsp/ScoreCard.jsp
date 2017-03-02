@@ -517,11 +517,11 @@ var formatAMPMTime = function(date) {
                                 </tbody>
                                 
                             </table>
-                            </div>
+                           
                              </c:otherwise>
                                 </c:choose>
                                 
-                            	
+                            	 </div>
                             
                             
                             </div>
@@ -546,7 +546,7 @@ var formatAMPMTime = function(date) {
                              
                                 <c:when test="${SecondInningsBattingPlayerSize == 0 }">
                                 <!-- <span style="color:red">No Details Available</span> -->
-                                </div>
+                              
                                 </c:when>
                                 <c:otherwise>
                                 <c:if test="${!empty SecondInningsBattingPlayer}">

@@ -13,8 +13,45 @@ public class AcceptEventInfo {
 	
 	private int eventCount;
 	
+	private String status;
 	
+	private int acceptedCount;
+	private int rejectedCount;
+	private int maybeCount;
 	
+
+	public int getAcceptedCount() {
+		return acceptedCount;
+	}
+
+	public void setAcceptedCount(int acceptedCount) {
+		this.acceptedCount = acceptedCount;
+	}
+
+	public int getRejectedCount() {
+		return rejectedCount;
+	}
+
+	public void setRejectedCount(int rejectedCount) {
+		this.rejectedCount = rejectedCount;
+	}
+
+	public int getMaybeCount() {
+		return maybeCount;
+	}
+
+	public void setMaybeCount(int maybeCount) {
+		this.maybeCount = maybeCount;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public String getEventId() {
 		return eventId;
 	}

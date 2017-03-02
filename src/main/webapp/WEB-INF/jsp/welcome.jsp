@@ -1147,7 +1147,28 @@ $(document).ready(function()
 		
 		
 		
+		
+$(document).ready(function(){
+	  var url="${responsestring}";
+	  if(url.indexOf("ss")!=-1)
+		  displaynotification('Event status has been updated successfully',2000);
+	  else if(url.indexOf("oo")!=-1)
+		  displaynotification('Sorry! Event has been updated, Please check your updated E-Mail',2000);
+})
+		
+		
+		
+		
+		
+		
+		
 </script>
+
+
+
+
+
+
 
 <script type="text/javascript">
 

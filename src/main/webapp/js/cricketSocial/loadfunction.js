@@ -137,6 +137,8 @@ function getNoficationList()
 		 		        	  	 }
 		 		        	  }else if(res[i].eventId != null ){
 		 		        		  
+		 		        		  if(res[i].notificationType == 'Create'){
+		 		        		  
 		 		        		  htm +='<li>';
 		 		        		 htm +='<div class="col-md-12 noPadding">';
 			 		 				htm +='<div class="col-md-12 Leag-Img notify-list">';
@@ -151,6 +153,20 @@ function getNoficationList()
 				 		            htm +='</div>';
 				 		            htm +='</div>';
 		 		        		 htm +='</li>';
+		 		        		  }
+		 		        		  else{
+		 		        			  
+		 		        			 htm +='<li>';
+			 		        		 htm +='<div class="col-md-12 noPadding">';
+				 		 				htm +='<div class="col-md-12 Leag-Img notify-list">';
+				 		 				htm +='<h4 style="font-size: 13px;  center; color: #4c9fe1;">Event Canceled</h4>'
+				 		 				htm +='<p style="font-size: 12px; ">Event Name : '+res[i].eventName+'</p>'
+				 		 				htm +='<p style="font-size: 12px; "> Canceled Reason : '+res[i].cancelReason+'</p>';
+					 		            
+					 		            htm +='</div>';
+					 		            htm +='</div>';
+			 		        		 htm +='</li>';
+		 		        		  }
 		 		        		  
 		 		        	  }
 		 		        	  else{

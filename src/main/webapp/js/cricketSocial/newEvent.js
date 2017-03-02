@@ -1183,7 +1183,7 @@ function buddyInvitation_Events(){
 							htm +='<p>'+upcomingevent[i].venue+'</p>';
 							htm +='</div>';
 						
-							if(upcomingevent[i].statusId==28){
+							/*if(upcomingevent[i].statusId==28){
 							var acceptdiv="'invitationacceptcountdisp"+upcomingevent[i].eventId+"'";
 							var	rejectiv="'invitationrejectcountdisp"+upcomingevent[i].eventId+"'";
 							var	maybediv="'invitationmaybecountdisp"+upcomingevent[i].eventId+"'";
@@ -1205,7 +1205,70 @@ function buddyInvitation_Events(){
 								htm +='<p> <input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="Accept" disabled="disabled" id="inviteAccept'+upcomingevent[i].eventId+'"><br>';
 								htm +='<a href="javascript:gettingEventAcceptedPeopleList('+eventid+','+reject+',151)">Accepted :  '+upcomingevent[i].acceptedCount+' </a></p>';
 								htm +='</div>';
-							}
+							}*/
+							var accept="'ACCEPT'";
+							var maybe="'MAYBE'";
+							var reject1="'REJECT'";
+							if(upcomingevent[i].statusId==25){
+								var acceptdiv="'invitationacceptcountdisp"+upcomingevent[i].eventId+"'";
+								var	rejectiv="'invitationrejectcountdisp"+upcomingevent[i].eventId+"'";
+								var	maybediv="'invitationmaybecountdisp"+upcomingevent[i].eventId+"'";
+									
+									htm +='<div class="col-md-6 threebtn">';
+									htm +='<p><input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="Reject" onclick="eventoption2('+eventid+','+reject1+',this,'+acceptdiv+')" id="inviteReject'+upcomingevent[i].eventId+'"><br>';
+									htm +='<a href="javascript:gettingEventAcceptedPeopleList('+eventid+','+reject+',143)" id="invitationacceptcountdisp'+upcomingevent[i].eventId+'">Rejected :'+upcomingevent[i].rejectedCount+' </a></p>';
+									htm +='<p><input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="May Be" onclick="eventoption2('+eventid+','+maybe+',this,'+maybediv+')" id="inviteMaybe'+upcomingevent[i].eventId+'" ><br>';
+									htm +='<a href="javascript:gettingEventAcceptedPeopleList('+eventid+','+reject+',152)" id="invitationmaybecountdisp'+upcomingevent[i].eventId+'">May Be : '+upcomingevent[i].maybeCount+'</a></p>';
+									htm +='<p> <input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="Accept" onclick="eventoption2('+eventid+','+accept+',this,'+rejectiv+')" disabled="disabled" id="inviteAccept'+upcomingevent[i].eventId+'"><br>';
+									htm +='<a href="javascript:gettingEventAcceptedPeopleList('+eventid+','+reject+',151)" id="invitationrejectcountdisp'+upcomingevent[i].eventId+'">Accepted :  '+upcomingevent[i].acceptedCount+' </a></p>';
+									htm +='</div>';
+								}else if(upcomingevent[i].statusId==26){
+									
+									var acceptdiv="'invitationacceptcountdisp"+upcomingevent[i].eventId+"'";
+									var	rejectiv="'invitationrejectcountdisp"+upcomingevent[i].eventId+"'";
+									var	maybediv="'invitationmaybecountdisp"+upcomingevent[i].eventId+"'";
+										
+										htm +='<div class="col-md-6 threebtn">';
+										htm +='<p><input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="Reject" onclick="eventoption2('+eventid+','+reject1+',this,'+acceptdiv+')" id="inviteReject'+upcomingevent[i].eventId+'"><br>';
+										htm +='<a href="javascript:gettingEventAcceptedPeopleList('+eventid+','+reject+',143)" id="invitationacceptcountdisp'+upcomingevent[i].eventId+'">Rejected :'+upcomingevent[i].rejectedCount+' </a></p>';
+										htm +='<p><input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="May Be" onclick="eventoption2('+eventid+','+maybe+',this,'+maybediv+')" disabled="disabled"  id="inviteMaybe'+upcomingevent[i].eventId+'" ><br>';
+										htm +='<a href="javascript:gettingEventAcceptedPeopleList('+eventid+','+reject+',152)" id="invitationmaybecountdisp'+upcomingevent[i].eventId+'">May Be : '+upcomingevent[i].maybeCount+'</a></p>';
+										htm +='<p> <input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="Accept"  onclick="eventoption2('+eventid+','+accept+',this,'+rejectiv+')" id="inviteAccept'+upcomingevent[i].eventId+'"><br>';
+										htm +='<a href="javascript:gettingEventAcceptedPeopleList('+eventid+','+reject+',151)" id="invitationrejectcountdisp'+upcomingevent[i].eventId+'">Accepted :  '+upcomingevent[i].acceptedCount+' </a></p>';
+										htm +='</div>';
+								}else if(upcomingevent[i].statusId==27){
+									var acceptdiv="'invitationacceptcountdisp"+upcomingevent[i].eventId+"'";
+									var	rejectiv="'invitationrejectcountdisp"+upcomingevent[i].eventId+"'";
+									var	maybediv="'invitationmaybecountdisp"+upcomingevent[i].eventId+"'";
+										
+										htm +='<div class="col-md-6 threebtn">';
+										htm +='<p><input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="Reject" onclick="eventoption2('+eventid+','+reject1+',this,'+acceptdiv+')" disabled="disabled" id="inviteReject'+upcomingevent[i].eventId+'"><br>';
+										htm +='<a href="javascript:gettingEventAcceptedPeopleList('+eventid+','+reject+',143)" id="invitationacceptcountdisp'+upcomingevent[i].eventId+'">Rejected :'+upcomingevent[i].rejectedCount+' </a></p>';
+										htm +='<p><input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="May Be" onclick="eventoption2('+eventid+','+maybe+',this,'+maybediv+')" id="inviteMaybe'+upcomingevent[i].eventId+'" ><br>';
+										htm +='<a href="javascript:gettingEventAcceptedPeopleList('+eventid+','+reject+',152)" id="invitationmaybecountdisp'+upcomingevent[i].eventId+'">May Be : '+upcomingevent[i].maybeCount+'</a></p>';
+										htm +='<p> <input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="Accept"  onclick="eventoption2('+eventid+','+accept+',this,'+rejectiv+')" id="inviteAccept'+upcomingevent[i].eventId+'"><br>';
+										htm +='<a href="javascript:gettingEventAcceptedPeopleList('+eventid+','+reject+',151)" id="invitationrejectcountdisp'+upcomingevent[i].eventId+'">Accepted :  '+upcomingevent[i].acceptedCount+' </a></p>';
+										htm +='</div>';
+									}else{
+									
+										var acceptdiv="'invitationacceptcountdisp"+upcomingevent[i].eventId+"'";
+										var	rejectiv="'invitationrejectcountdisp"+upcomingevent[i].eventId+"'";
+										var	maybediv="'invitationmaybecountdisp"+upcomingevent[i].eventId+"'";
+											
+											htm +='<div class="col-md-6 threebtn">';
+											htm +='<p><input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="Reject" onclick="eventoption2('+eventid+','+reject1+',this,'+acceptdiv+')" id="inviteReject'+upcomingevent[i].eventId+'"><br>';
+											htm +='<a href="javascript:gettingEventAcceptedPeopleList('+eventid+','+reject+',143)" id="invitationacceptcountdisp'+upcomingevent[i].eventId+'">Rejected :'+upcomingevent[i].rejectedCount+' </a></p>';
+											htm +='<p><input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="May Be" onclick="eventoption2('+eventid+','+maybe+',this,'+maybediv+')" id="inviteMaybe'+upcomingevent[i].eventId+'" ><br>';
+											htm +='<a href="javascript:gettingEventAcceptedPeopleList('+eventid+','+reject+',152)" id="invitationmaybecountdisp'+upcomingevent[i].eventId+'">May Be : '+upcomingevent[i].maybeCount+'</a></p>';
+											htm +='<p> <input src="" type="button" class="btn dBtn btn-sm pull-right btnalian1" value="Accept"  onclick="eventoption2('+eventid+','+accept+',this,'+rejectiv+')" id="inviteAccept'+upcomingevent[i].eventId+'"><br>';
+											htm +='<a href="javascript:gettingEventAcceptedPeopleList('+eventid+','+reject+',151)" id="invitationrejectcountdisp'+upcomingevent[i].eventId+'">Accepted :  '+upcomingevent[i].acceptedCount+' </a></p>';
+											htm +='</div>';
+									}
+									
+									
+							
+							
+							
 							htm +='</div>';
 							htm +='<div id="preject'+upcomingevent[i].eventId+'" class="col-md-12 accbox eventoption" style="display: none;">';
 							htm +='<h1 class="noBorder">Accepted Guys</h1>';
