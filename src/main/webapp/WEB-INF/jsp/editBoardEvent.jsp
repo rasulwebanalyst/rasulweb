@@ -26,6 +26,11 @@
 }
 
 
+.multiSelect .token-input-list-facebook {
+    
+    z-index: 1;
+}
+
 </style>
 
 
@@ -212,7 +217,7 @@ $(document).ready(function (){
                                     </span>
                                   </div> --%>
                                   <div class="input-group " style="width: 65%;">
-                                  <div class="col-md-5 noLeftPad">
+                                  <div class="col-md-5 noLeftPad" style="z-index: 9;">
                                    <div class="input-append">
                                     <input data-format="yyyy-MM-dd" placeholder="Choose event date" readonly type="text" class="form-control fomtexbox datepicker calIconImg" name="strDate" id="strDate" value="">
                                    <!--  <span class="add-on datetime">

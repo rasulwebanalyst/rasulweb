@@ -159,9 +159,12 @@ function getNoficationList()
 		 		        			 htm +='<li>';
 			 		        		 htm +='<div class="col-md-12 noPadding">';
 				 		 				htm +='<div class="col-md-12 Leag-Img notify-list">';
-				 		 				htm +='<h4 style="font-size: 13px;  center; color: #4c9fe1;">Event Canceled</h4>'
+				 		 				htm +='<h4 style="font-size: 13px;  center; color: #4c9fe1;">Event Cancelled</h4>'
 				 		 				htm +='<p style="font-size: 12px; ">Event Name : '+res[i].eventName+'</p>'
-				 		 				htm +='<p style="font-size: 12px; "> Canceled Reason : '+res[i].cancelReason+'</p>';
+				 		 				var dateNewObject = getDateInObjectUTCFormate_withTimeStampInput(res[i].eventDate);
+				 		 				htm +='<p style="font-size: 12px; ">Event Date : '+dateNewObject+' </p>';
+				 		 				htm +='<p style="font-size: 12px; ">Venue : '+res[i].venue+' </p>';
+				 		 				htm +='<p style="font-size: 12px; "> Cancel Reason : '+res[i].cancelReason+'</p>';
 					 		            
 					 		            htm +='</div>';
 					 		            htm +='</div>';
