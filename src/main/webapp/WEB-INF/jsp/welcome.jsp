@@ -194,7 +194,7 @@ $(function(){
 						}
 					
 					$('#loading').hide();
-					
+					event();
 					
 				}
 				
@@ -1148,13 +1148,13 @@ $(document).ready(function()
 		
 		
 		
-$(document).ready(function(){
-	  var url="${responsestring}";
-	  if(url.indexOf("ss")!=-1)
+function event(){
+	  var url="${Schedulemessage}";
+	  if(url == "ss")
 		  displaynotification('Event status has been updated successfully',2000);
-	  else if(url.indexOf("oo")!=-1)
+	  else if(url == "oo")
 		  displaynotification('Sorry! Event has been updated, Please check your updated E-Mail',2000);
-})
+}
 		
 		
 		
