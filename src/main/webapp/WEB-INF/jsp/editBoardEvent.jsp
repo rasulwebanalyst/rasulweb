@@ -347,7 +347,7 @@ $(document).ready(function (){
                                 <div>                                	
                                 </div>
                     </div>
-                    <div class="form-group" id="roasterListDiv" style="display: none;">
+                    <div class="form-group multiSelect" id="roasterListDiv" style="display: none;">
                               <label class="fomlabel" for="r1">Roster</label>
                             <input type="text" placeholder="search buddies" class="form-control tbox fomtexbox" id="roastersearchfield" name="roastersearchfield">
                           	<input type="hidden" name="arrayRoasterIds" id="arrayRoasterIds">
