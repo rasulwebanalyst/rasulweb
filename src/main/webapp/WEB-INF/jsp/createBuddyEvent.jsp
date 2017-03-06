@@ -316,7 +316,7 @@
                           </div>
                           
                           <div class="form-group">
-				            <label class="fomlabel" for="r1"><span class="mandatory">*</span>Date&Time</label>
+				            <label class="fomlabel" for="r1"><span class="mandatory">*</span>Date & Time</label>
                             <!-- <input type="text" placeholder="" class="form-control tbox fomtexbox datepicker" id="" > -->
                             
                             <div class="input-group" style="width: 65%; z-index: 9;">

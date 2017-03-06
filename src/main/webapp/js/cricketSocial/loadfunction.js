@@ -186,7 +186,7 @@ function getNoficationList()
 			 		 				if(res[i].firstName != res[i].oldFname || res[i].lastName != res[i].oldLname)
 	 		        	  			{
 			 		 					namechanges=1;
-			 		 					htm +='name as <a href="'+ctx+'/buddy/'+res[i].firstName+'/'+res[i].userId+'">'+res[i].firstName+' '+res[i].lastName+'</a>';
+			 		 					htm +='name as <a style="margin-right: -3px;" href="'+ctx+'/buddy/'+res[i].firstName+'/'+res[i].userId+'">'+res[i].firstName+' '+res[i].lastName+'</a>';
 	 		        	  			}
 			 		 				if(res[i].newDob != res[i].oldDob )
 	 		        	  			{

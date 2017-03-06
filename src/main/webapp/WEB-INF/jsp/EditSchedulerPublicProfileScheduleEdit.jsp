@@ -278,7 +278,7 @@
                             <div class="col-md-12 alignCenter Drobox noPadding">
                             	
                                <div class="tBox"> 
-                               <label for="email">Date&Time</label>
+                               <label for="email">Date & Time</label>
 									<input type="text" class="form-control fomtexbox datepicker calIconImg" placeholder="Date" id="date" name="gameDateStr" value="" onfocus="makeReadonly()" style="width: 20%;" />
 									<!-- <i class="fa fa-calendar calIcon"></i> -->
                               <div class="dateandtime-holder">

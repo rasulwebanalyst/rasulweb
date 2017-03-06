@@ -136,7 +136,7 @@
 										<form id="createScheduleForm" method="post" action = "${pageContext.request.contextPath}/insertScheduleDetails.htm">
 										
 									<div class="tBox">
-									<label for="email">Date&Time</label>
+									<label for="email">Date & Time</label>
 								<!-- 	<div class="input-append"> -->
 									<input type="text" class="form-control fomtexbox datepicker calIconImg"
 											placeholder="Pick game date" id="date" name="gameDateStr" onfocus="makeReadonly()" onchange="dateFunction()" style="width: 20%;">

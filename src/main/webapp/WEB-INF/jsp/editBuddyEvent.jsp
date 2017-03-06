@@ -190,7 +190,7 @@ $(document).ready(function (){
                           </div>
                           
                           <div class="form-group">
-				            <label class="fomlabel" for="r1"><span class="mandatory">*</span>Date&Time</label>
+				            <label class="fomlabel" for="r1"><span class="mandatory">*</span>Date & Time</label>
                            
                                   <div class="input-group" style="width: 65%; z-index: 9;">
                                   <div class="col-md-5 noLeftPad">
@@ -749,6 +749,14 @@ $('.clockpicker').clockpicker({
   </script>
   
    <script type="text/javascript">
+   
+   
+   window.localStorage.removeItem("createdEvents5");
+   
+   
+   
+   
+   
   
   function validateHourInput(){
 		
