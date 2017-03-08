@@ -1352,7 +1352,7 @@ function buddyInvitation_Events(){
 								htm +='</div>';
 							}*/
 							
-							
+							 
 							
 							var accept="'ACCEPT'";
 							var maybe="'MAYBE'";
