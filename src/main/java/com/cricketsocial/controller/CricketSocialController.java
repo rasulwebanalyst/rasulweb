@@ -24553,7 +24553,7 @@ public ModelAndView updateEvent(HttpServletRequest request, Event2 event)
 							list=event.getArrayRoasterIds().split(",");
 						}
 						//event.setRosterIds(list);
-						if(list.length>0)
+						if(list != null)
 						{
 							event.setRosterIds(list);
 						}else{

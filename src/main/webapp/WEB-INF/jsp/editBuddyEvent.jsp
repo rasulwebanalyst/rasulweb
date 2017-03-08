@@ -470,14 +470,23 @@ function eventValidation(){
 			}
 		//return true;
 	}
+	
+	
+	
+var buddyDiv="${BuddyDiv}";
+	
+	
 	 $("#buddyvalidation").text(''); 
 	if(document.getElementById('buddy').checked)
 	{
 		
 	if(arruserid.length==0)
          {
+		if(buddyDiv=='false')
+		{
 		 $("#buddyvalidation").text('Please select the buddies.'); 
 		return false ;
+		}
 		}else
 			{
 			$("#buddyvalidation").text('');

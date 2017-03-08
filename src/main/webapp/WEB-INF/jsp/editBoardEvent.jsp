@@ -351,6 +351,10 @@ $(document).ready(function (){
                               <label class="fomlabel" for="r1">Roster</label>
                             <input type="text" placeholder="search buddies" class="form-control tbox fomtexbox" id="roastersearchfield" name="roastersearchfield">
                           	<input type="hidden" name="arrayRoasterIds" id="arrayRoasterIds">
+                                
+                                
+                                <span id="Rostervalidation" class="error" style="color: red; float: left;"></span>
+                                
                                 <div>                                	
                                 </div>
                     </div> 
@@ -508,12 +512,19 @@ function eventValidation(){
 		//return true;
 	}
 	
+	
+
+	var buddyDiv="${BuddyDiv}";
+	var rosterdiv="${RosterDiv}";
 	if(document.getElementById('buddy').checked)
 	{
 	if(arruserid.length==0)
          {
+		if(buddyDiv=='false')
+		{
 		 $("#buddyvalidation").text('Please select the buddies.'); 
 		return false;
+		}
 		}else
 			{
 			 $("#buddyvalidation").text(''); 
@@ -521,6 +532,27 @@ function eventValidation(){
 	
 	
 	}
+	
+	if(document.getElementById('Roaster').checked)
+	{
+	if(arrroaster.length==0)
+         {
+		if(rosterdiv=='false')
+		{
+		 $("#Rostervalidation").text('Please select the Roaster.'); 
+		return false;
+		}
+		}else
+			{
+			$("#Rostervalidation").text(''); 
+			}
+	
+	
+	}
+	
+	
+	
+	
 }
 
 </script>
