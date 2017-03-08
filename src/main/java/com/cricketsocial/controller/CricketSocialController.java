@@ -10592,7 +10592,21 @@ public ModelAndView updateUserDetail(@ModelAttribute UserProfileUpdate2 userProf
 		   System.out.println("userProfile.getUserimgfile().getContentType()---->"+userProfile.getUserimgfile());
 		   System.out.println("request ===========> "+request.getParameter("userimgfile"));
 		   if(userProfile.getLatLang()=="" || userProfile.getLatLang().length()<3){
-				userProfile.setLatLang(userProfile.getOldLatlong());
+			//	userProfile.setLatLang(userProfile.getOldLatlong());
+				
+				
+				if (userProfile.getOldLatlong().endsWith(",")) {
+					userProfile.setLatLang(userProfile.getOldLatlong().substring(0, userProfile.getOldLatlong().length()-1));
+				}
+				
+			}else{
+				
+				
+				if (userProfile.getLatLang().endsWith(",")) {
+					userProfile.setLatLang(userProfile.getLatLang().substring(0, userProfile.getLatLang().length()-1));
+				}
+				
+				
 			}
 		 List<SubRoleLevelOne> subRoleLevelOne= new ArrayList<SubRoleLevelOne>();
 		 List<SubRoleLevelTwo> subRoleLevelTwo = new ArrayList<SubRoleLevelTwo>();
@@ -10910,13 +10924,19 @@ public ModelAndView updateUserDetail(@ModelAttribute UserProfileUpdate2 userProf
 		 
 		 hubReq.setRequestParam(userProfile);
 		
-		 String result2=cricketSocialRestTemplateService.userRegistration(hubReq);
-		 System.out.println("controller result -------------------> "+result2);
-			model=new ModelAndView("redirect:/");
-			System.out.println("-------------------> Model View Added");
-		 	/*GsonBuilder builder = new GsonBuilder();
-		    Gson gson = builder.create()*/;
-		    LoginResponse he=gson.fromJson(result2, LoginResponse.class);
+		 
+			
+			 String result2=cricketSocialRestTemplateService.userRegistration(hubReq);
+			 System.out.println("controller result -------------------> "+result2);
+				model=new ModelAndView("redirect:/");
+				System.out.println("-------------------> Model View Added");
+			 	/*GsonBuilder builder = new GsonBuilder();
+			    Gson gson = builder.create()*/;
+			    LoginResponse he=gson.fromJson(result2, LoginResponse.class);
+		    
+		    
+		    
+		    
 		
 		    
 		    HubRequest hubReq=new HubRequest(13);
@@ -10959,11 +10979,14 @@ public ModelAndView updateUserDetail(@ModelAttribute UserProfileUpdate2 userProf
 			    		 //userprofileupdate
 			    	 
 			    		 String name2=profile.getResults().getItemsFound()[0].getFirstName();
+			    		 
 						 if(profile.getResults().getItemsFound()[0].getLastName()!=null){
 							 name2=name2+" "+profile.getResults().getItemsFound()[0].getLastName();
 						 }
 						 session.removeAttribute("USRLastName");
 						 session.setAttribute("USRLastName", name2);
+						 
+						 System.out.println("The name is sessio nis :"+name2);
 			    		 
 			    		 
 			    	 //session.setMaxInactiveInterval(arg0)
@@ -19872,7 +19895,7 @@ public ModelAndView userEvent(HttpServletRequest request)
 				 
 			 }
 			 
-			
+			System.out.println("Inside event list :");
 			// SimpleDateFormat sdf1 = new SimpleDateFormat("'"); 
 			// Date date = sdf1.parse(currentTime);
 			 /*{
@@ -43178,7 +43201,7 @@ public ModelAndView Maileventnvitation(HttpServletRequest request, @PathVariable
 
 
 
-/*
+
 
 
 @RequestMapping(value="/lockScorecard/boardId/{boardId}", method = RequestMethod.GET)
@@ -43265,7 +43288,7 @@ try{
 return mav;
 }
 
-*/
+
 
 
 

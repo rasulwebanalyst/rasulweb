@@ -826,6 +826,7 @@ $.ajax({
 				$("#cancelReasonPopup").hide();
 				$("#cancelTournament").hide();
 			 displaynotification('Event cancelled successfully',2000); 
+			 $("#reasonId").val('');
 			
 				}
 			}
@@ -842,6 +843,7 @@ function cancelFunction(){
 	   
 	  
 	   $("#cancelTournament").hide();
+	   $("#reasonId").val('');
 }
 
 

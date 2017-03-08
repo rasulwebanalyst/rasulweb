@@ -106,6 +106,7 @@ $(function(){
 	    	  console.log( "Geolocation is not supported by this browser.");
 	    	  $("#Matchesaroundyoudiv").hide();
 	    	  $("#contentdiv").show();
+	    	  event();
 	      }
 	 function showPosition(position){
 		/*  alert( "Geolocation is not supported by this browser."); */
@@ -215,11 +216,13 @@ $(function(){
 		            console.log("User denied the request for Geolocation.");
 		            $("#Matchesaroundyoudiv").hide();
 			    	  $("#contentdiv").show();
+			    	  event();
 		            break;
 		        case error.POSITION_UNAVAILABLE:
 		            	console.log("Location information is unavailable.");
 		            $("#Matchesaroundyoudiv").hide();
 			    	  $("#contentdiv").show();
+			    	  event();
 		            break;
 		    }
 		}
