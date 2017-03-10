@@ -386,7 +386,7 @@ var fbURL='110086556012641'; // QA
             </div>
             
             <!-- /.col-md-8 -->   
-        <a href="whatsapp://send?text=Hello%20World!" id="Whatsappshare" style="display: none;">Hello, world!</a>
+        
             
             <div class="col-md-6" >
            <!--          <h1>Welcome to <span style="">CricketSocial</span></h1> -->
@@ -574,6 +574,11 @@ var fbURL='110086556012641'; // QA
           	</div>
          
          <span class="forgotPw"><a href="${pageContext.request.contextPath}/account-recovery">I can't access my account</a></span>
+         
+         
+         <a href="whatsapp://send?text=Hello%20World!" id="Whatsappshare" style="display: none;">Hello, world!</a>
+         
+         
 <div class="clearfix"></div>
           <div class="row">
           <div class="col-md-12 loginSocial">
