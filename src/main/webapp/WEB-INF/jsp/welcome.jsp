@@ -386,7 +386,7 @@ var fbURL='110086556012641'; // QA
             </div>
             
             <!-- /.col-md-8 -->   
-        
+        <a href="whatsapp://send?text=Hello%20World!" id="Whatsappshare" style="display: none;">Hello, world!</a>
             
             <div class="col-md-6" >
            <!--          <h1>Welcome to <span style="">CricketSocial</span></h1> -->
@@ -1241,7 +1241,15 @@ window.onload=initializemarquee */
 
 <script type="text/javascript">
 
-
+$(window).load(function(){
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		 // some code..
+		 console.log("Device :"+navigator.userAgent)
+		 $("#Whatsappshare").show();
+		}else{
+			console.log("DEsktop"+navigator.userAgent)
+		}
+});
 
 
 </script>
