@@ -299,10 +299,22 @@ public class ResponseType {
 	 private String cancelResponse;
 	 
 	 
+	 private String CancelledEventCheck;
+	 
+	 
+	 
 	 
 	 
 	
 	
+
+	public String getCancelledEventCheck() {
+		return CancelledEventCheck;
+	}
+
+	public void setCancelledEventCheck(String cancelledEventCheck) {
+		CancelledEventCheck = cancelledEventCheck;
+	}
 
 	public String getCancelResponse() {
 		return cancelResponse;

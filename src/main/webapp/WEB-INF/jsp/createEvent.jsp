@@ -15,6 +15,26 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jstz-1.0.4.min.js"></script>
     
 </head>
+
+
+
+<style>
+
+.token-input-list-facebook{
+    z-index: 1;
+}
+
+
+.multiSelect .token-input-list-facebook {
+    
+    z-index: 1;
+}
+
+
+</style>
+
+
+
 <body onclick="datehasbeenchoosenornot()">
 <%@ include file="CSCommon.jsp" %>
   
@@ -112,7 +132,7 @@ $(document).ready(function (){
                           </div>
                           
                           <div class="form-group">
-				            <label class="fomlabel" for="r1"><span class="mandatory">*</span>Date&Time</label>
+				            <label class="fomlabel" for="r1"><span class="mandatory">*</span>Date & Time</label>
                             <!-- <input type="text" placeholder="" class="form-control tbox fomtexbox datepicker" id="" > -->
                             
                              <!-- <div class="input-append">
@@ -123,7 +143,7 @@ $(document).ready(function (){
                                     </span>
                                   </div> -->
                                   <div class="input-group " style="width: 65%;">
-                                  <div class="col-md-5 noLeftPad">
+                                  <div class="col-md-5 noLeftPad" style="z-index: 9;">
                                   <div class="input-append" id="strdateselecter">
                                     <input data-format="yyyy-MM-dd" placeholder="Choose event date " readonly type="text" class="form-control fomtexbox datepicker calIconImg" name="strDate" id="strDate" style="border-radius: 4px;">
                                    <!--  <span class="add-on datetime">

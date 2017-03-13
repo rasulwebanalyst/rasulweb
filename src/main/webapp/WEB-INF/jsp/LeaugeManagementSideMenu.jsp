@@ -65,6 +65,7 @@ ul.side_menu_main li span {
             
             
                                             <li class="head"><a href="${pageContext.request.contextPath}/DisputeManagement/boardId/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i><span> Dispute Management</span></a></li>
+                                            <%-- <li class="head"><a href="${pageContext.request.contextPath}/lockScorecard/boardId/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i><span> Lock Scorecard</span></a></li> --%>
                                                   
                                         </ul>
                                                 </div>

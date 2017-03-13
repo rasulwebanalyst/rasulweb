@@ -28,7 +28,6 @@ public class EventNotificationDTO {
 	private Date eventDate;
 	private int notificationFlag;
 	private List<TournamentScheduler> tournamentScheduler;
-	
 	private String firstName;
 	private String lastName;
 	
@@ -40,22 +39,47 @@ public class EventNotificationDTO {
 	private String oldDob;
 	private String newDob;
 	
+	private String notificationType;
+	
+	private String cancelReason;
 	
 	
 	
 	
 	
-	public String getFirstName() {
-		return firstName;
+	
+	
+	
+	
+	public String getCancelReason() {
+		return cancelReason;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setCancelReason(String cancelReason) {
+		this.cancelReason = cancelReason;
 	}
-	public String getLastName() {
-		return lastName;
+	public String getNotificationType() {
+		return notificationType;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setNotificationType(String notificationType) {
+		this.notificationType = notificationType;
+	}
+	public String getOldDob() {
+		return oldDob;
+	}
+	public void setOldDob(String oldDob) {
+		this.oldDob = oldDob;
+	}
+	public String getNewDob() {
+		return newDob;
+	}
+	public void setNewDob(String newDob) {
+		this.newDob = newDob;
+	}
+	public String getUserImageUrl() {
+		return userImageUrl;
+	}
+	public void setUserImageUrl(String userImageUrl) {
+		this.userImageUrl = userImageUrl;
 	}
 	public String getOldFname() {
 		return oldFname;
@@ -69,23 +93,17 @@ public class EventNotificationDTO {
 	public void setOldLname(String oldLname) {
 		this.oldLname = oldLname;
 	}
-	public String getUserImageUrl() {
-		return userImageUrl;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setUserImageUrl(String userImageUrl) {
-		this.userImageUrl = userImageUrl;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public String getOldDob() {
-		return oldDob;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setOldDob(String oldDob) {
-		this.oldDob = oldDob;
-	}
-	public String getNewDob() {
-		return newDob;
-	}
-	public void setNewDob(String newDob) {
-		this.newDob = newDob;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	public UUID getEventId() {
 		return eventId;

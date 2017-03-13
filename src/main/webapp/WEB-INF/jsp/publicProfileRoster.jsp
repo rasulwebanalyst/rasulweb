@@ -1233,7 +1233,7 @@ var roasterid="${RoasterResponseById.rosterDetails.rosterId}";
 										$('#affilatedLeagueId').text(leagueName);
 										$('#affilatedLeagueId').css("display", "inline-block");
 										
-										showNotification("Your roster has been affiliated success fully",1000);
+										showNotification("Your roster has been affiliated successfully",1000);
 									}else{
 										showNotification("Service has been interupted due to some reasons",1000);
 									}
@@ -1750,7 +1750,7 @@ if(res.length > 5){
 						 
 						 for(var i=0;i < 5;i++)
 							 {
-							 htmlco+="<li>"+res[i].hittedByName+"</li>";
+							 htmlco+="<li style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 114px;'>"+res[i].hittedByName+"</li>";
 							 }
 						  htmlco+="<li>more .. </li>"; 
 					 }else
@@ -1758,7 +1758,7 @@ if(res.length > 5){
 						 
 						 for(var i in res)
 							{
-							htmlco+="<li>"+res[i].hittedByName+"</li>";
+							htmlco+="<li style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 114px;'>"+res[i].hittedByName+"</li>";
 							}
 						 }
   

@@ -218,7 +218,7 @@ function oAuthsubmit()
 			    'scope' : 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.google.com/m8/feeds/ https://www.googleapis.com/auth/contacts.readonly',
 			  };
 			  gapi.auth.signIn(myParams);
-} */ // QA Environment                (Working for both dev & qa)
+}*/  // QA Environment                (Working for both dev & qa)
 
 function googleLogin()
 {

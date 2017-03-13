@@ -106,6 +106,7 @@ $(function(){
 	    	  console.log( "Geolocation is not supported by this browser.");
 	    	  $("#Matchesaroundyoudiv").hide();
 	    	  $("#contentdiv").show();
+	    	  event();
 	      }
 	 function showPosition(position){
 		/*  alert( "Geolocation is not supported by this browser."); */
@@ -194,7 +195,7 @@ $(function(){
 						}
 					
 					$('#loading').hide();
-					
+					event();
 					
 				}
 				
@@ -215,11 +216,13 @@ $(function(){
 		            console.log("User denied the request for Geolocation.");
 		            $("#Matchesaroundyoudiv").hide();
 			    	  $("#contentdiv").show();
+			    	  event();
 		            break;
 		        case error.POSITION_UNAVAILABLE:
 		            	console.log("Location information is unavailable.");
 		            $("#Matchesaroundyoudiv").hide();
 			    	  $("#contentdiv").show();
+			    	  event();
 		            break;
 		    }
 		}
@@ -1147,7 +1150,28 @@ $(document).ready(function()
 		
 		
 		
+		
+function event(){
+	  var url="${Schedulemessage}";
+	  if(url == "ss")
+		  displaynotification('Event status has been updated successfully',2000);
+	  else if(url == "oo")
+		  displaynotification('Sorry! Event has been updated, Please check your updated E-Mail',2000);
+}
+		
+		
+		
+		
+		
+		
+		
 </script>
+
+
+
+
+
+
 
 <script type="text/javascript">
 

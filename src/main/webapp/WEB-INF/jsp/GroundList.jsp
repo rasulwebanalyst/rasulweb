@@ -127,7 +127,7 @@
                         <th>Address</th>
                         <th>City</th>
                         <th class="alignCenter">Action</th>
-                        <th class="alignCenter">Ground Info</th>
+                       <!--  <th class="alignCenter">Ground Info</th> -->
                     </tr>
                   </thead>
         </table>
@@ -146,7 +146,7 @@
                         <th>Address</th>
                         <th>City</th>
                         <th class="alignCenter">Action</th>
-                        <th class="alignCenter">Ground Info</th>
+                        <!-- <th class="alignCenter">Ground Info</th> -->
                     </tr>
                   </thead>
                   
@@ -154,7 +154,7 @@
                   <c:forEach var="grndList" items="${groundList}" varStatus="index">
                     <tr>
                     <td style="text-align: center !important;">${index.count}</td>
-                    	<td class="alignCenter">${grndList.groundName}</td>
+                    	<td class="alignCenter"><a href="${pageContext.request.contextPath}/groundInfoprivate/${grndList.groundId}/${boardId}">${grndList.groundName}</a></td>
                         <%-- <td>${grndList.address1}</td> --%>
                         
                         <c:choose>
@@ -172,10 +172,10 @@
                         	<a href="#" title="Edit"><i onclick="editGround('${grndList.groundId}')" class="fa fa-pencil editIcon"></i></a>
                         	<a href="#" title="Delete"><i onclick="deleteGround('${grndList.groundId}')" class="fa fa-trash-o deleteIcon"></i></a>
                         </td>
-                        
+                       <%--  
                          <td class="alignCenter">
                         	<a href="${pageContext.request.contextPath}/groundInfoprivate/${grndList.groundId}/${boardId}">Info</a>
-                        </td>
+                        </td> --%>
                         
                     </tr>
                     </c:forEach>

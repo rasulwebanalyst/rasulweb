@@ -1613,7 +1613,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
 											$('#affilatedLeagueId').text(leagueName);
 											$('#affilatedLeagueId').css("display", "inline-block");
 											
-											displaynotification("Your roster has been affiliated success fully",1000);
+											displaynotification("Your roster has been affiliated successfully",1000);
 											
 											$('#Deleterosteroption').hide();
 											
@@ -1648,7 +1648,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
 										$('#affilatedLeagueId').text(leagueName);
 										$('#affilatedLeagueId').css("display", "inline-block");
 										
-										displaynotification("Your roster has been affiliated success fully",1000);
+										displaynotification("Your roster has been affiliated successfully",1000);
 										$('#Deleterosteroption').hide();
 										}
 									}
@@ -1925,7 +1925,7 @@ if(res.length > 5){
 						 
 						 for(var i=0;i < 5;i++)
 							 {
-							 htmlco+="<li>"+res[i].hittedByName+"</li>";
+							 htmlco+="<li style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 114px;'>"+res[i].hittedByName+"</li>";
 							 }
 						  htmlco+="<li>more .. </li>"; 
 					 }else
@@ -1933,7 +1933,7 @@ if(res.length > 5){
 						 
 						 for(var i in res)
 							{
-							htmlco+="<li>"+res[i].hittedByName+"</li>";
+							htmlco+="<li style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 114px;'>"+res[i].hittedByName+"</li>";
 							}
 						 }
   

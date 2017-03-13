@@ -16,6 +16,25 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap-clockpicker.min.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jstz-1.0.4.min.js"></script>
 </head>
+
+
+
+<style>
+
+.token-input-list-facebook{
+    z-index: 1;
+}
+
+
+.multiSelect .token-input-list-facebook {
+    
+    z-index: 1;
+}
+
+</style>
+
+
+
 <body>
 <%@ include file="CSCommon.jsp" %>
   
@@ -187,7 +206,7 @@ $(document).ready(function (){
                           </div>
                           
                           <div class="form-group">
-				            <label class="fomlabel" for="r1"><span class="mandatory">*</span>Date&Time</label>
+				            <label class="fomlabel" for="r1"><span class="mandatory">*</span>Date & Time</label>
                             <!-- <input type="text" placeholder="" class="form-control tbox fomtexbox datepicker" id="" > -->
                             
                             <%--  <div id="datetimepicker3" class="input-append">
@@ -198,7 +217,7 @@ $(document).ready(function (){
                                     </span>
                                   </div> --%>
                                   <div class="input-group " style="width: 65%;">
-                                  <div class="col-md-5 noLeftPad">
+                                  <div class="col-md-5 noLeftPad" style="z-index: 9;">
                                    <div class="input-append">
                                     <input data-format="yyyy-MM-dd" placeholder="Choose event date" readonly type="text" class="form-control fomtexbox datepicker calIconImg" name="strDate" id="strDate" value="">
                                    <!--  <span class="add-on datetime">
@@ -328,10 +347,14 @@ $(document).ready(function (){
                                 <div>                                	
                                 </div>
                     </div>
-                    <div class="form-group" id="roasterListDiv" style="display: none;">
+                    <div class="form-group multiSelect" id="roasterListDiv" style="display: none;">
                               <label class="fomlabel" for="r1">Roster</label>
                             <input type="text" placeholder="search buddies" class="form-control tbox fomtexbox" id="roastersearchfield" name="roastersearchfield">
                           	<input type="hidden" name="arrayRoasterIds" id="arrayRoasterIds">
+                                
+                                
+                                <span id="Rostervalidation" class="error" style="color: red; float: left;"></span>
+                                
                                 <div>                                	
                                 </div>
                     </div> 
@@ -489,12 +512,19 @@ function eventValidation(){
 		//return true;
 	}
 	
+	
+
+	var buddyDiv="${BuddyDiv}";
+	var rosterdiv="${RosterDiv}";
 	if(document.getElementById('buddy').checked)
 	{
 	if(arruserid.length==0)
          {
+		if(buddyDiv=='false')
+		{
 		 $("#buddyvalidation").text('Please select the buddies.'); 
 		return false;
+		}
 		}else
 			{
 			 $("#buddyvalidation").text(''); 
@@ -502,6 +532,27 @@ function eventValidation(){
 	
 	
 	}
+	
+	if(document.getElementById('Roaster').checked)
+	{
+	if(arrroaster.length==0)
+         {
+		if(rosterdiv=='false')
+		{
+		 $("#Rostervalidation").text('Please select the Roaster.'); 
+		return false;
+		}
+		}else
+			{
+			$("#Rostervalidation").text(''); 
+			}
+	
+	
+	}
+	
+	
+	
+	
 }
 
 </script>

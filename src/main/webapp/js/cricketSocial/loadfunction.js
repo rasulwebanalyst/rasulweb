@@ -137,19 +137,39 @@ function getNoficationList()
 		 		        	  	 }
 		 		        	  }else if(res[i].eventId != null ){
 		 		        		  
+		 		        		  if(res[i].notificationType == 'Create'){
+		 		        		  
 		 		        		  htm +='<li>';
 		 		        		 htm +='<div class="col-md-12 noPadding">';
 			 		 				htm +='<div class="col-md-12 Leag-Img notify-list">';
 			 		 				
 			 		 				htm +='<h4 style="font-size: 12px; center;color: #4c9fe1;">Event Name : '+res[i].eventName+'</h4>'
 			 		 				htm +='<p style="font-size: 12px; "> Event Description : '+res[i].eventDescription+'</p>';
-			 		 				var givendate=testdirect(res[i].eventDate);
-			 		 				htm +='<p style="font-size: 12px; ">Event Date : '+givendate+' </p>';
+			 		 				/**/
+			 		 				var dateNewObject = getDateInObjectUTCFormate_withTimeStampInput(res[i].eventDate);
+			 		 				htm +='<p style="font-size: 12px; ">Event Date : '+dateNewObject+' </p>';
 			 		 				htm +='<p style="font-size: 12px; ">Venue : '+res[i].venue+' </p>';
 				 		            
 				 		            htm +='</div>';
 				 		            htm +='</div>';
 		 		        		 htm +='</li>';
+		 		        		  }
+		 		        		  else{
+		 		        			  
+		 		        			 htm +='<li>';
+			 		        		 htm +='<div class="col-md-12 noPadding">';
+				 		 				htm +='<div class="col-md-12 Leag-Img notify-list">';
+				 		 				htm +='<h4 style="font-size: 13px;  center; color: #4c9fe1;">Event Cancelled</h4>'
+				 		 				htm +='<p style="font-size: 12px; ">Event Name : '+res[i].eventName+'</p>'
+				 		 				var dateNewObject = getDateInObjectUTCFormate_withTimeStampInput(res[i].eventDate);
+				 		 				htm +='<p style="font-size: 12px; ">Event Date : '+dateNewObject+' </p>';
+				 		 				htm +='<p style="font-size: 12px; ">Venue : '+res[i].venue+' </p>';
+				 		 				htm +='<p style="font-size: 12px; "> Cancel Reason : '+res[i].cancelReason+'</p>';
+					 		            
+					 		            htm +='</div>';
+					 		            htm +='</div>';
+			 		        		 htm +='</li>';
+		 		        		  }
 		 		        		  
 		 		        	  }
 		 		        	  else{
@@ -166,7 +186,7 @@ function getNoficationList()
 			 		 				if(res[i].firstName != res[i].oldFname || res[i].lastName != res[i].oldLname)
 	 		        	  			{
 			 		 					namechanges=1;
-			 		 					htm +='name as <a href="'+ctx+'/buddy/'+res[i].firstName+'/'+res[i].userId+'">'+res[i].firstName+' '+res[i].lastName+'</a>';
+			 		 					htm +='name as <a style="margin-right: -3px;" href="'+ctx+'/buddy/'+res[i].firstName+'/'+res[i].userId+'">'+res[i].firstName+' '+res[i].lastName+'</a>';
 	 		        	  			}
 			 		 				if(res[i].newDob != res[i].oldDob )
 	 		        	  			{

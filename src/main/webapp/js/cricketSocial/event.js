@@ -167,7 +167,7 @@ function eventoption2(eid,aid,ele,countid)
 	
 		var datainfo={
 				eventId : eid,	
-				eventInfoId : aid 	
+				status : aid 	
 		};	
 		var postinfo=JSON.stringify(datainfo);	
 		$.ajax({
@@ -178,7 +178,7 @@ function eventoption2(eid,aid,ele,countid)
 	        data : postinfo,
 			success : function(res) {
 				var htm="";	
-				console.log(' value------> '+res);
+				console.log(' value------> '+JSON.stringify(res));
 				console.log(res);
 				var count=0;
 				if(res!=null)
@@ -188,17 +188,32 @@ function eventoption2(eid,aid,ele,countid)
 				
 				ele.disabled = true;
 				
-				document.getElementById('inviteReject'+eid).disabled = true;
-				document.getElementById('inviteMaybe'+eid).disabled = true;
-				document.getElementById('inviteAccept'+eid).disabled = true;
-				if(aid=='71')
+				if(aid == 'ACCEPT')
 					{
-					document.getElementById(countid).text='Accepted : '+count;
-					}else if(aid=='72'){
-						document.getElementById(countid).text='May Be : '+count;
-					}else{
-						document.getElementById(countid).text='Rejected : '+count;
+					document.getElementById('inviteReject'+eid).disabled = false;
+					document.getElementById('inviteMaybe'+eid).disabled = false;
+					document.getElementById('inviteAccept'+eid).disabled = true;
+					}else if(aid == 'MAYBE'){
+						document.getElementById('inviteReject'+eid).disabled = false;
+						document.getElementById('inviteMaybe'+eid).disabled = true;
+						document.getElementById('inviteAccept'+eid).disabled = false;
 					}
+					else{
+						document.getElementById('inviteReject'+eid).disabled = true;
+						document.getElementById('inviteMaybe'+eid).disabled = false;
+						document.getElementById('inviteAccept'+eid).disabled = false;
+					}
+				
+				/*document.getElementById('inviteReject'+eid).disabled = true;
+				document.getElementById('inviteMaybe'+eid).disabled = true;
+				document.getElementById('inviteAccept'+eid).disabled = true;*/
+				
+					   document.getElementById('invitationrejectcountdisp'+eid).text='Accepted : '+res.acceptedCount;
+					
+						document.getElementById('invitationmaybecountdisp'+eid).text='May Be : '+res.maybeCount;
+				
+						document.getElementById('invitationacceptcountdisp'+eid).text='Rejected : '+res.rejectedCount;
+				
 				
 			},
 			error:function(response){

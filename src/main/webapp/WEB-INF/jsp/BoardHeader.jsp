@@ -83,7 +83,7 @@ viewFlag=1;
                <span class="head">Comments</span>
                <a href="javascript:commentpopuphide()" onclick=""><span class="close_btn" > <i class="fa fa-close"></i> </span></a>
 
-               <div class="popupContentDiv">
+               <div class="popupContentDiv" style="overflow: auto;">
 					<div class="col-md-12 commentsListBlock scrollContent" id="commentListDivPopup">
                         
                         

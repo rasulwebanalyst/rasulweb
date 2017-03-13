@@ -399,7 +399,7 @@ var formatAMPMTime = function(date) {
 	  hours = hours ? hours : 12; // the hour '0' should be '12'
 	  minutes = minutes < 10 ? '0'+minutes : minutes;
 	  hours = hours < 10 ? '0'+hours : hours ;
-	  var strTime = (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear()+" "+ hours + ':' + minutes + ' ' + ampm;
+	  var strTime = (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear();
 	  return strTime;
 	}
 	function test(date1){
@@ -419,6 +419,64 @@ var formatAMPMTime = function(date) {
 
 
 </head>
+
+
+<style type="text/css">
+
+textarea.note {
+	width:100%;
+	display:block;
+	max-width:100%;
+	line-height:1.5;
+	border-radius:3px;
+	border: none;
+	font-size: 12px;
+	box-shadow:0 none;
+	overflow:hidden;
+	padding: 10px;
+	outlne: 0;
+}
+textarea.note[disabled] {
+	background: #fff;
+}
+html{
+    height:100%;
+}
+body{
+    
+height:100%;
+}
+
+</style>
+<style>
+.engineTable{
+    width: 100%;
+    border-collapse: collapse;
+    padding: 0px;
+    margin-bottom: 30px !important;
+    text-decoration: none;
+    line-height: normal;
+    }
+    
+    
+.engineTable caption {
+    padding: 2px 3px 3px 3px;
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #010101;
+    caption-side: top;
+    text-align: left;
+    background-color: #d9effd;
+    height: auto;
+}
+    
+    .engineTable tr.head {
+    text-align: right;
+    vertical-align: middle;
+}
+</style>
+
 <body onload="onload()">
 
 
@@ -448,7 +506,7 @@ var formatAMPMTime = function(date) {
                          <h1 class="noBorder" style="width:100%; margin-bottom: 0;">${groundDetails.groundName}</h1>
                          
                          <table class="brd-info">
-                         <tr><td>Addres</td><td>:</td><td>${groundDetails.address1}</td></tr>
+                         <tr><td>Address</td><td>:</td><td>${groundDetails.address1}</td></tr>
                          <tr><td>City</td><td>:</td><td>${groundDetails.city}</td></tr>
                           <tr><td>State</td><td>:</td><td>${groundDetails.state}</td></tr>
                            <tr><td>Zip Code</td><td>:</td><td>${groundDetails.zipcode}</td></tr>
@@ -482,28 +540,32 @@ var formatAMPMTime = function(date) {
                  
                  <div class="col-md-8 col-sm-12 col-xs-12">                         
                          <h4>Additional Directions :</h4>
-                         <p style="margin-bottom: 5%;">
+                         
                          
                          <c:choose>
                          <c:when test="${groundDetails.directionsToGround ne '' && groundDetails.directionsToGround ne null}">
-                         ${groundDetails.directionsToGround}</p>
+                         <%-- <p style="margin-bottom: 5%;">${groundDetails.directionsToGround}</p> --%>
+                         
+                         <div id="note1"><textarea readonly id="note" class="note" disabled>${groundDetails.directionsToGround}</textarea></div>
                          </c:when>
                          <c:otherwise>
-                         <span style="margin-left: 4px; color: red;" >   No data available</span></p>
+                         <p style="margin-bottom: 5%;"><span style="margin-left: 4px; color: red;" >   No data available</span></p>
                          </c:otherwise>
                          </c:choose>
                          
                          
                          
                          <h4>Ground facilities :</h4>
-                         <p style="margin-bottom: 5%;">
+                         
                          
                          <c:choose>
                          <c:when test="${groundDetails.groundFacilities ne '' && groundDetails.groundFacilities ne null}">
-                         ${groundDetails.groundFacilities}</p>
+                        <%-- <p style="margin-bottom: 5%;"> ${groundDetails.groundFacilities}</p> --%>
+                        <div id="note1"><textarea readonly id="note2" class="note" disabled>${groundDetails.groundFacilities}</textarea></div>
+                        
                          </c:when>
                          <c:otherwise>
-                         <span style="margin-left: 4px; color: red;" >   No data available</span></p>
+                         <p style="margin-bottom: 5%;"><span style="margin-left: 4px; color: red;" >   No data available</span></p>
                          </c:otherwise>
                          </c:choose>
                          
@@ -739,6 +801,20 @@ var formatAMPMTime = function(date) {
 <script src="js/bootstrap.min.js"></script>
 <!--Select Box-->
 <script>
+
+
+$(document).ready(function () {
+	
+	
+	var s_height = document.getElementById('note').scrollHeight;
+	document.getElementById('note').setAttribute('style','height:'+s_height+'px');
+	
+	var s_height1 = document.getElementById('note2').scrollHeight;
+	document.getElementById('note2').setAttribute('style','height:'+s_height1+'px');
+});
+
+
+
         $(document).ready(function () {
             $("select").change(function () {
                 var str = "";

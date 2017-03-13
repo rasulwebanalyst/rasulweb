@@ -1011,13 +1011,14 @@ function facebook()
 	  var data=$("#feeddata").val();
 	   
 	var appmsg="hello";
+	var picture="${pageContext.request.contextPath}/images/facebookshare.png"
     
 	  window
 	  .open(
 	 "https://www.facebook.com/dialog/feed?app_id=1654958434805143&display=popup"
 	  +"&name="+data+""
 	  + "&link="+url+""
-	  + '&picture=https://s3.amazonaws.com/dev-cricket-social-images/cf0a4a05-4305-4115-9f6f-10bdb7a842c9.png'
+	  + '&picture='+picture+''
 	 
 	  + "&description=ScoreCard", '',
 	  'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
