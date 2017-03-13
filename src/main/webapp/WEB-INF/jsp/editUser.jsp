@@ -16,6 +16,11 @@
  <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
  <link rel="stylesheet" href="css/token-input.css" type="text/css" />
     <link rel="stylesheet" href="css/token-input-facebook.css" type="text/css" />
+    
+     <link href="${pageContext.request.contextPath}/resources/css/cropper.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/Customcropper.css" rel="stylesheet">
+    
+    
  <style type="text/css">
  .token-input-delete-token-facebook{
  float : right !important;
@@ -63,6 +68,74 @@ var teamdeletearray=[];
  
  </script>
  </c:forEach>
+   
+   
+    <div id="Editimage" class="popupDiv" style="display: none;">
+
+           <div class="box">
+                <span class="head">Reason</span>
+                <span class="close_btn"> <i onclick="cancelFunction()" class="fa fa-close"></i> </span>
+
+                <div class="popupContentDiv">
+                
+                		
+                        	<!-- <textarea class="form-control" id="reasonId" rows="5" placeholder=""></textarea> -->
+                        	
+                        	
+                        	
+                        	
+                        	
+                        	
+                    <div  class="col-md-12" style="margin-bottom:10px" id=""><label class="poppulab">Edit Team Image</label><input id="uploadImageForEditTeam" class="" type="file" onchange="readURLTeam(this)"/>                    
+                    
+                    
+                                   
+                    <div class="popupContentDiv cropPopup">
+                    <div class="row">
+                    <div class="col-md-6"><p>Adjust Picture</p>
+                    <div class="img-container">
+                    <img id="teamLogo" src="/apreizspring/resources/images/picture.jpg" alt="Picture">
+                    </div>
+                    <div class="btn-group imgCrop">
+
+
+
+                          <button class="btn btn-primary" data-method="zoom" data-option="0.1" type="button" title="Zoom In">
+                    <span class="docs-tooltip" data-toggle="tooltip" title="Zoomin"><span class="icon icon-zoom-in"></span></span></button>
+                    
+                    
+                    <button class="btn btn-primary" data-method="zoom" data-option="-0.1" type="button" title="Zoom Out">
+                    <span class="docs-tooltip" data-toggle="tooltip" title="Zoom out"><span class="icon icon-zoom-out"></span></span></button>
+                    
+                    
+                    <button class="btn btn-primary" data-method="rotate" data-option="-45" type="button" title="Rotate Left">
+                    <span class="docs-tooltip" data-toggle="tooltip" title="Rotate Left"><span class="icon icon-rotate-left"></span></span></button>
+               
+                    
+                   <button class="btn btn-primary" data-method="rotate" data-option="45" type="button" title="Rotate Right">
+                    
+                    
+                    <span class="docs-tooltip" data-toggle="tooltip" title="Rotate Right"><span class="icon icon-rotate-right"></span></span></button></div></div>
+                    <div class="col-md-6"><p>Preview</p><div class="docs-preview clearfix"><div class="img-preview preview-lg"></div></div></div></div></div>
+                        	
+                        	
+                        	
+                        	
+                        	
+                          
+                          <div class="centerbtns">
+                          <input type="hidden" id="cancelTournamentid">
+                          
+                           <button type="button" class="btn btn-default blueBtn" onclick="okFunction()">OK</button>
+                          <button type="button" class="btn btn-default blueBtn" onclick="cancelFunction()">Cancel</button>
+                          
+                          
+                          </div>
+                       
+                </div>
+            </div>
+ 
+ 	</div>
    
    
     <section class="middleContentBlock">
@@ -1258,7 +1331,20 @@ $(function(){
 			}); */
 			
 			 $('#upload_link1').click(function () {
-					$('#upload1').trigger('click');
+				 
+				 
+				 
+				 
+				 //new change
+				 
+				 
+				 $("#Editimage").show();
+				 
+				 
+				 
+				 
+				 
+					/* $('#upload1').trigger('click'); */
 				});
 			
 		//	$('.datepicker').datepicker();
@@ -1950,6 +2036,13 @@ $(document).ready(function(){
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.tokeninput.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initAutocomplete"
         async defer></script>
+        
+        
+        <script src="${pageContext.servletContext.contextPath}/resources/js/cropper.js"></script> 
+    
+    <script src="${pageContext.servletContext.contextPath}/resources/js/Customcropper.js"></script> 
+        
+        
         <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
 
 </body>
