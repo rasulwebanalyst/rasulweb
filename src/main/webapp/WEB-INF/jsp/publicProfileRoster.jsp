@@ -248,7 +248,7 @@ function checkbbi(bbi)
                      <%@ include file="BoardFanMenu.jsp" %> 
                 <div class="col-md-10 pull-right rosterBlock rightnone">
                  <div class="col-md-12 whiteBox">
-                 	No Rosters are available.
+                 	No Squads are available.
                  </div>
                  </div>
                  
@@ -273,17 +273,17 @@ function checkbbi(bbi)
           			
           			
           			
-		          <h1 class="noBorder">Roster                   			
+		          <h1 class="noBorder">Squad                   			
                             <div class="h1Sbox">
                                 <div class="selectdiv pull-right">
                                     <select class="selectboxdiv" onchange="getRosterDetails(this.value)">
-                                    <option value="">Select Roster</option>
+                                    <option value="">Select Squad</option>
                                          <c:forEach var="Roster" items="${Roasters}" >
                                     		<option value="${Roster.rosterId}">${Roster.rosterName}</option>
                                    		 </c:forEach>
                                         
                                     </select>
-                                    <div class="out"> Select Roster</div>    
+                                    <div class="out"> Select Squad</div>    
                                 </div>
                                 </div>
                              
@@ -407,7 +407,7 @@ function checkbbi(bbi)
                                         <div class="h1Sbox BFP_field">
                                          <div class="selectdiv pull-right" style="width: 180px;height: 30px; margin-top: 3px; display: none;" id="Firstselect" >
                                     <select class="selectboxdiv" onchange="battingDetails(this.value)">
-                                    <option value="All">Select Roster</option>
+                                    <option value="All">Select Squad</option>
                                         <c:forEach var="tournamnetlist" items="${tournamentlist}" >
                                     		<option value="${tournamnetlist.tournamentId}">${tournamnetlist.tournamentName}</option>
                                    		 </c:forEach>
@@ -502,7 +502,7 @@ function checkbbi(bbi)
                                        <div class="h1Sbox BFP_field">
                                         <div class="selectdiv pull-right" style="width: 180px;height: 30px; margin-top: 3px; display: none;"  id="Secondselect" >
                                     <select class="selectboxdiv" onchange="Bowlingperformance(this.value)">
-                                    <option value="All">Select Roster</option>
+                                    <option value="All">Select Squad</option>
                                          <c:forEach var="tournamnetlist" items="${tournamentlist}" >
                                     		<option value="${tournamnetlist.tournamentId}">${tournamnetlist.tournamentName}</option>
                                    		 </c:forEach>
@@ -1233,7 +1233,7 @@ var roasterid="${RoasterResponseById.rosterDetails.rosterId}";
 										$('#affilatedLeagueId').text(leagueName);
 										$('#affilatedLeagueId').css("display", "inline-block");
 										
-										showNotification("Your roster has been affiliated successfully",1000);
+										showNotification("Your Squad has been affiliated successfully",1000);
 									}else{
 										showNotification("Service has been interupted due to some reasons",1000);
 									}

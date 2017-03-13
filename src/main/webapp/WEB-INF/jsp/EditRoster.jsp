@@ -90,13 +90,13 @@ var sequencNumber=0;
       		<form action="updateRostor" method="post" id="rosterForm" name="rosterForm">
       				<div class="col-md-12 whiteBox">
           
-		          <h1 class="">Edit Roster</h1>
+		          <h1 class="">Edit Squad</h1>
           	
                         
                     <div class="col-md-12 pageVisi1 adjust">
               	<div class="col-md-12 noPadding rosName">
                 	<div class=" col-md-2 PG-Visi">
-                    <h6>Roster Name</h6>
+                    <h6>Squad Name</h6>
                   </div>
                   <div class="col-md-10 own">
                   	<input type="text" class="form-control" value="${RoasterResponseById.rosterDetails.rosterName}" placeholder="" id="rosterName" name="rosterName" readonly>

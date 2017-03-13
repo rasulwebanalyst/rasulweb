@@ -40,10 +40,10 @@
                            <c:choose>
                         	  	<c:when test="${BoradInfo.statusId==19}">	
                         	  	 	
-                        	  		 <li><a href="javascript:"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyBuddyList.png"></i>Roster</a></li>
+                        	  		 <li><a href="javascript:"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyBuddyList.png"></i>Squad</a></li>
                         	  	</c:when>
                         	  	<c:otherwise>
-                     				 <li><a href="${pageContext.request.contextPath}/roster?bid=${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyBuddyList.png"></i>Roster</a></li>
+                     				 <li><a href="${pageContext.request.contextPath}/roster?bid=${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyBuddyList.png"></i>Squad</a></li>
                      			</c:otherwise>
                         	  </c:choose>
    

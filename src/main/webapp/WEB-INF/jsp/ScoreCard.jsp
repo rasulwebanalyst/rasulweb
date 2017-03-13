@@ -966,7 +966,32 @@ var formatAMPMTime = function(date) {
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
+ 	
+ 	
+ 	
+ 	
+<script type="text/javascript">
+
+$(window).load(function(){
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		 // some code..
+		 var url=window.location.href;
+		 var sharedata=$("#feeddata").val()+"    "+url;
+		 var url1="whatsapp://send?text="+sharedata+"%20%20"+url;
+		 console.log(url1);
+		 $("#Whatsappshare").attr("href", url1);
+		 console.log("Device :"+navigator.userAgent)
+		 $("#Whatsappshare").show();
+		}else{
+			console.log("DEsktop"+navigator.userAgent)
+		}
+});
+
+
+</script>
+ 	
  	<!--Select Box-->
+ 	
 	<script>
         $(document).ready(function () {
             $("select").change(function () {
@@ -1113,24 +1138,6 @@ function facebook()
 
 </script>
 
-<script type="text/javascript">
-
-$(window).load(function(){
-	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-		 // some code..
-		 var sharedata=$("#feeddata").val()+"    "+url;
-		 var url="whatsapp://send?text="+sharedata+"%20%20"+window.location.href;
-		 console.log(url);
-		 $("#Whatsappshare").attr("href", url);
-		 console.log("Device :"+navigator.userAgent)
-		 $("#Whatsappshare").show();
-		}else{
-			console.log("DEsktop"+navigator.userAgent)
-		}
-});
-
-
-</script>
 </body>
 
 </html>

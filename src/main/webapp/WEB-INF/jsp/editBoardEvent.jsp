@@ -320,11 +320,11 @@ $(document).ready(function (){
                           	<c:when test="${f:contains('Roster',SelectCheck)}">
                           	
                           	 <input type="checkbox" class="cboxBtnLeft" id="Roaster" checked name="createdBycheck" value="Roster" onclick="buddiesList()">
-                          <label for="Roaster"><span></span>Roster</label>
+                          <label for="Roaster"><span></span>Squad</label>
                           	</c:when>
                           	<c:otherwise>
                           		<input type="checkbox" class="cboxBtnLeft" id="Roaster" name="createdBycheck" value="Roster" onclick="buddiesList()">
-                          <label for="Roaster"><span></span>Roster</label>
+                          <label for="Roaster"><span></span>Squad</label>
                           	</c:otherwise>
                           </c:choose>
                           

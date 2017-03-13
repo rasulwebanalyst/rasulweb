@@ -113,7 +113,7 @@ return result;
                             	<li><a href="#"><i class="fa imgIcon"><img src="images/MyEvents.png"></i>Events</a></li>
                             	<li><a href="#"><i class="fa imgIcon"><img src="images/MyFans.png"></i>Fans</a></li>
                             	<li><a href="#"><i class="fa imgIcon"><img src="images/IAmFanOf.png"></i>Fan Of</a></li>
-                            	<li><a href="#"><i class="fa imgIcon"><img src="images/MyBuddyList.png"></i>Roster</a></li>
+                            	<li><a href="#"><i class="fa imgIcon"><img src="images/MyBuddyList.png"></i>Squad</a></li>
                             	<li><a href="#"><i class="fa imgIcon"><img src="images/CricketBook.png"></i>League Management</a></li>
                             </ul>
                         

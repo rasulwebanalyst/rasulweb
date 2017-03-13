@@ -205,6 +205,7 @@ var formatAMPMTime = function(date) {
                         <i onclick="facebook()" style="cursor: pointer;">	 <img src="${pageContext.request.contextPath}/images/facebook.png" style="max-width: 22px;margin-right: 5px;"></i>
 			              <i onclick="twitter()" style="cursor: pointer;"> <img src="${pageContext.request.contextPath}/images/twitter.png" style="max-width: 22px;margin-right: 5px;"></i>
 			                    <i onclick="CS()" style="cursor: pointer;"> <img src="${pageContext.request.contextPath}/images/logo-bg.png" style="max-width: 22px;margin-right: 5px;"></i>
+                        	   <a href="" id="Whatsappshare" style="display: none;"> <img src="${pageContext.request.contextPath}/images/whatsapp.png" style="max-width: 22px;margin-right: 5px;"></a>
                         	   </div>
                         	
                         	
@@ -957,6 +958,27 @@ var formatAMPMTime = function(date) {
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    
+    
+    <script type="text/javascript">
+
+$(window).load(function(){
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		 // some code..
+		 var url=window.location.href;
+		 var sharedata=$("#feeddata").val()+"    "+url;
+		 var url1="whatsapp://send?text="+sharedata+"%20%20"+url;
+		 console.log(url1);
+		 $("#Whatsappshare").attr("href", url1);
+		 console.log("Device :"+navigator.userAgent)
+		 $("#Whatsappshare").show();
+		}else{
+			console.log("DEsktop"+navigator.userAgent)
+		}
+});
+
+
+</script>
 
  	<!--Select Box-->
 	<script>

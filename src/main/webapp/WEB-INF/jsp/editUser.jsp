@@ -136,7 +136,7 @@ var teamdeletearray=[];
             </div>
  
  	</div>
-   
+   </div>
    
     <section class="middleContentBlock">
     <div class="container">
