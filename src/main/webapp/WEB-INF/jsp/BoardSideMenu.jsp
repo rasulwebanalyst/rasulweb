@@ -127,7 +127,7 @@
 	                            	</c:when>
 	                            	<c:otherwise>
 	                            	<li>
-	                            	<h1>Sponsers</h1>
+	                            	<a style="margin-left: 47px;">Sponsers</a>
                             	<div id="slideshow">
                             	<c:forEach var="sponser" items="${spoResponse.boardSponsorsList}">
 		    <div>
