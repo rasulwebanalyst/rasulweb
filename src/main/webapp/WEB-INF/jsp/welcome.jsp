@@ -576,7 +576,7 @@ var fbURL='110086556012641'; // QA
          <span class="forgotPw"><a href="${pageContext.request.contextPath}/account-recovery">I can't access my account</a></span>
          
          
-        <!--  <a href="whatsapp://send?text=Hello%20World!" id="Whatsappshare" style="display: none;">Hello, world!</a> -->
+         <a href="whatsapp://send?text=Hello%20World!" id="Whatsappshare" style="display: none;">Hello, world!</a>
          
          
 <div class="clearfix"></div>
@@ -1243,10 +1243,10 @@ window.onload=initializemarquee */
 
 
 </style> 
-<!-- 
+
 <script type="text/javascript">
 
-$(window).load(function(){
+/* $(window).load(function(){
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 		 // some code..
 		 console.log("Device :"+navigator.userAgent)
@@ -1254,8 +1254,8 @@ $(window).load(function(){
 		}else{
 			console.log("DEsktop"+navigator.userAgent)
 		}
-});
+}); */
 
 
-</script> -->
+</script>
 </html>

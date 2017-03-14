@@ -953,8 +953,8 @@ $(window).load(function(){
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 		 // some code..
 		 var url=window.location.href;
-		 var sharedata=$("#feeddata").val()+"    "+url;
-		 var url1="whatsapp://send?text="+sharedata+"%20%20"+url;
+		 var sharedata=$("#feeddata").val();
+		 var url1="whatsapp://send?text="+sharedata+"        "+url;
 		 console.log(url1);
 		 $("#Whatsappshare").attr("href", url1);
 		 console.log("Device :"+navigator.userAgent)

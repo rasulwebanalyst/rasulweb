@@ -6372,3 +6372,11 @@ cursor: pointer;
     background-color: #276f9f;
     border-color: #276f9f;
 	}
+	
+	
+	.navbar-brand > img{
+	
+	    height: 43px !important;
+	    width: 158px;
+	
+	}

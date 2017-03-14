@@ -6028,6 +6028,51 @@ public ModelAndView getboard(@RequestParam String bid, HttpServletRequest reques
 						 System.out.println("user : list :---------->" +merchandiseAroundYouResponse.getResults().getSearchResponse().getUserList().size());
 						 model.addObject("Merchants", merchandiseAroundYouResponse.getResults().getSearchResponse().getUserList());
 					 }
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 // Sponser image
+					 SponserResponse sporesponse=new SponserResponse();
+					 long sponsersize=0;
+					 
+					 UUID uid=UUID.fromString(bid);
+						HubRequest hubreq1=new HubRequest(263);
+						OrganizationDetails orgdetails=new OrganizationDetails();
+						orgdetails.setBoardId(uid);
+						 hubreq1.setRequestParam(orgdetails);
+						 String response1=cricketSocialRestTemplateService.userRegistration(hubreq1);
+						 System.out.println("the 263 response is :"+response1);
+						 if(response1 != null){
+						 JSONObject jobj=new JSONObject(response1);
+						 JSONObject jresult=jobj.getJSONObject("results");
+						 JSONObject jboardobj=jresult.getJSONObject("boardSponsersResponse");
+						  
+						 if(jboardobj.length() !=0)
+						 {
+							 sporesponse= gson.fromJson(jboardobj.toString(), SponserResponse.class);
+							  
+							  if(sporesponse.getBoardSponsorsList().size() > 0)
+							  {
+								  sponsersize=sporesponse.getBoardSponsorsList().size();
+							  }
+							  
+						 }
+						  
+						 }else{
+							 model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
+								 }
+						 model.addObject("spoResponse", sporesponse);
+						 model.addObject("SponserSize", sponsersize);
+					 
+					 
+					 
+					 
+					 
+					 
 					
 					 
 				}else{
@@ -43288,6 +43333,505 @@ try{
 return mav;
 }
 
+
+
+
+
+@RequestMapping(value="/boardSite", method=RequestMethod.GET)
+public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest request) throws CSException
+{
+	ModelAndView model=null;
+	try{
+		
+		HttpSession session=request.getSession(true);
+		
+			UUID userId=(UUID) session.getAttribute("USRID");
+			List<Object> upcommingObject=new ArrayList<Object>();
+			
+			hubReq=new HubRequest();
+			 hubReq.setMsgType(40);
+			 ModelMap map=new ModelMap();			
+			/* map.put("userId", userId);			 */
+			 map.put("boardId", bid);
+			 hubReq.setRequestParam(map);
+			 String strBoarddetail=cricketSocialRestTemplateService.userRegistration(hubReq);
+			 GsonBuilder builder = new GsonBuilder();
+			 Gson gson = builder.create();
+			 if(strBoarddetail!=null)
+			 {
+				 HubResponse hubResponse= gson.fromJson(strBoarddetail, HubResponse.class);
+				if(hubResponse!=null && hubResponse.getResults().getBoardStatusDetail()!=null && hubResponse.getResults().getBoardStatusDetail().size()>0)
+				{
+					 //model= new ModelAndView("boards");
+					//model= new ModelAndView("boardsnew");
+					if(hubResponse.getResults().getBoardStatusDetail().get(0).getCategory().equalsIgnoreCase("Team"))
+					{
+						model= new ModelAndView("boardsnew");
+						System.out.println("Inside team  Board");
+					}else{
+						model=new ModelAndView("Boardswebsite");
+						System.out.println("Inside League  Board");
+						}
+					System.out.println("The category is :"+hubResponse.getResults().getBoardStatusDetail().get(0).getCategory());
+					//model=new ModelAndView("BoardLanding");
+					 model.addObject("BoradInfo", hubResponse.getResults().getBoardStatusDetail().get(0));
+					 model.addObject("LeaguManagement","No");
+					 hubReq=new HubRequest();
+					 hubReq.setMsgType(42);
+					 ModelMap map2=new ModelMap();
+					 map2.put("boardId", bid);
+					 map2.put("userId", userId);
+					 map2.put("startNode", 0);
+					 map2.put("endNode", 10);
+					 map2.put("feedHitUserId", userId);
+					 hubReq.setRequestParam(map2);
+					 String strBoardFeedList=cricketSocialRestTemplateService.userRegistration(hubReq);					
+					 if(strBoardFeedList!=null )
+					 {
+						 HubResponse feedlist= gson.fromJson(strBoardFeedList, HubResponse.class);
+						 
+						 if(feedlist!=null && feedlist.getResults().getBoardFeedResponse()!=null && feedlist.getResults().getBoardFeedResponse()!=null)
+						 {
+							 //FeedsList
+							model.addObject("FeedsList", feedlist.getResults().getBoardFeedResponse().getFeedList());
+						 }
+					 }else{
+						 System.out.println("Board feeds not excuted...........");
+					 }
+					 
+					
+					 
+					 
+					 //*************************************************  Upcomming details  **********************//
+					 
+					 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(133);
+					 ModelMap map5=new ModelMap();
+					 map5.put("boardId", bid);
+					 map5.put("previousNextFlag","current");
+					 map5.put("endNode", 10);
+					 hubReq.setRequestParam(map5);
+
+					 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+					 
+					
+					 if(strGameScheduleList != null){
+						 HubResponse hubResponse1 = gson.fromJson(strGameScheduleList, HubResponse.class);
+						 if(hubResponse1 != null && hubResponse1.getResults() != null){
+							 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null || hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+							 {
+							 upcommingObject.addAll(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
+							 upcommingObject.addAll(hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+							 
+							 Collections.sort(upcommingObject, Collections.reverseOrder(new UpcommingComprator()));
+							 
+							 System.out.println("The Upcomming object list size :"+upcommingObject.size());
+							 
+							// model.addObject("upcomingMatchesList", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
+							 model.addObject("upcomingMatchesList",upcommingObject );
+						 
+							 }
+						 
+						 }else{
+							System.out.println("null condition"); 
+						 }
+					 }
+					 
+					 //Completed phone
+					 
+					 
+					 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					 Date date = new Date();
+					 
+					 long DAY_IN_MS = 1000 * 60 * 60 * 24;
+					 System.out.println(new Date(System.currentTimeMillis() - (7 * DAY_IN_MS)));
+					 
+					 System.out.println(dateFormat.format(date));
+					 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(133);
+					 ModelMap map8=new ModelMap();
+					 map8.put("boardId", bid);
+					 map8.put("toDateString",dateFormat.format(date));
+					 map8.put("fromDateString",dateFormat.format(new Date(System.currentTimeMillis() - (7 * DAY_IN_MS))));
+					 map8.put("endNode", 100);
+					 hubReq.setRequestParam(map8);
+
+					 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+					 
+					
+					 if(strGameScheduleList1 != null){
+						 HubResponse hubResponse2 = gson.fromJson(strGameScheduleList1, HubResponse.class);
+						 if(hubResponse2 != null && hubResponse2.getResults() != null){
+							 model.addObject("completedMatchesList", hubResponse2.getResults().getGameSchedule().getCompletedMatchesList());
+							 
+						 }else{
+							System.out.println("null condition"); 
+						 }
+					 }
+					 
+					 
+					 // TopBowler TopBatsman details
+					 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(265);
+					 ModelMap map6=new ModelMap();
+					 map6.put("boardId", bid);
+					 map6.put("startNode",0);
+					 map6.put("endNode", 500);
+					 hubReq.setRequestParam(map6);
+
+					 String topBatsmanList = cricketSocialRestTemplateService.userRegistration(hubReq);
+					 
+					
+					 if(topBatsmanList != null){
+						 HubResponse hubResponse6 = gson.fromJson(topBatsmanList, HubResponse.class);
+						 if(hubResponse6 != null && hubResponse6.getResults() != null){
+
+							 model.addObject("StarBatsman", hubResponse6.getResults().getStarBatsmen());
+							 
+						 }else{
+							System.out.println("null condition"); 
+						 }
+					 }
+					 
+					 hubReq=new HubRequest();
+					 hubReq.setMsgType(264);
+					 ModelMap map7=new ModelMap();
+					 map7.put("boardId", bid);
+					 map7.put("startNode", 0);
+					 map7.put("endNode", 500);
+					 hubReq.setRequestParam(map7);
+					 
+					 String TopBowlerList=cricketSocialRestTemplateService.userRegistration(hubReq);
+					 
+					 if(TopBowlerList !=null)
+					 {
+						 HubResponse hubResponse7 = gson.fromJson(TopBowlerList, HubResponse.class);
+						 if(hubResponse7 != null && hubResponse7.getResults() != null){
+
+							 model.addObject("StarBowler", hubResponse7.getResults().getStarBowlers());
+						 }else{
+							System.out.println("null condition"); 
+						 }
+						 
+					 }
+					 
+					 
+					 //*******************************************************   Around you details	 *************************************************
+					 hubReq=new HubRequest();
+					 hubReq.setMsgType(77);
+					 BoardSearchRequest searchReq= new BoardSearchRequest();
+					 String userlocation=(String) session.getAttribute("USRLocation");
+
+					 System.out.println("userlocation"+userlocation);
+					 if(userlocation!=null)
+					 {
+						if(userlocation.length()>3)
+						{
+							 searchReq.setLatlang(userlocation);
+						}else{
+							 searchReq.setLatlang(defaultMatchesAroundYouLatLongValue);
+						}
+					 }else{
+						 searchReq.setLatlang(defaultMatchesAroundYouLatLongValue);
+					 }
+					
+					 
+					 searchReq.setStartNode("0");
+					 searchReq.setEndNode("4");
+					 searchReq.setCategory("Matches");
+					 hubReq.setRequestParam(searchReq);
+				    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
+					 HubResponse strMatchesArrounfYouResponse= GsonConverters.getGsonObject().fromJson(matchesArroundYouList, HubResponse.class); 
+					
+					 if(strMatchesArrounfYouResponse.getResults().getSearchResponse()!=null)
+					 {
+						 model.addObject("MatchesArroundYou", strMatchesArrounfYouResponse.getResults().getSearchResponse().getTournamentScheduler());
+					 }
+					 
+					 
+					 hubReq=new HubRequest();
+					 hubReq.setMsgType(22);
+					 //session.setAttribute("USRLocation", userProfile.getLatLang());
+					 if(userlocation!=null)
+					 {
+						if(userlocation.length()>3)
+						{
+							 searchReq.setLatlang(userlocation);
+							 System.out.println("user location setttt");
+						}else{
+							 searchReq.setLatlang(defaultLeagueBoardAroundYouLatLongValue);
+							 System.out.println("user not getted ------------- default 1");
+						}
+					 }else{
+						 searchReq.setLatlang(defaultLeagueBoardAroundYouLatLongValue);
+						 System.out.println("user not getted ------------- default 2");
+					 }
+					
+					 searchReq.setStartNode("0");
+					 searchReq.setEndNode("4");
+					 searchReq.setCategory("League");
+					 hubReq.setRequestParam(searchReq);
+				     String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
+					 System.out.println("board result : "+strboardlist);
+					 HubResponse strsearchResponse= GsonConverters.getGsonObject().fromJson(strboardlist, HubResponse.class); 
+					 System.out.println("logitude : "+strsearchResponse.getResults().getSearchResponse());
+					
+					 if(strsearchResponse.getResults().getSearchResponse()!=null)
+					 {
+						 System.out.println("board list :---------->" +strsearchResponse.getResults().getSearchResponse().getBoardProfileList().size());
+						 model.addObject("BRDAroundYou", strsearchResponse.getResults().getSearchResponse().getBoardProfileList());
+					 }
+					 
+					 searchReq.setCategory("Team");
+					 //searchReq.setLatlang("17.3700,78.4800");
+					 if(userlocation!=null)
+					 {
+						if(userlocation.length()>3)
+						{
+							 searchReq.setLatlang(userlocation);
+						}else{
+							 searchReq.setLatlang(defaultTeamBoardAroundYouLatLongValue);
+						}
+					 }else{
+						 searchReq.setLatlang(defaultTeamBoardAroundYouLatLongValue);
+					 }
+					 hubReq.setRequestParam(searchReq);
+					 String strTeamlist=cricketSocialRestTemplateService.userRegistration(hubReq);
+					 System.out.println("board result : "+strTeamlist);
+					 HubResponse strTeamResponse= GsonConverters.getGsonObject().fromJson(strTeamlist, HubResponse.class); 
+					 System.out.println("logitude : "+strTeamResponse.getResults().getSearchResponse());
+					 
+					 if(strTeamResponse.getResults().getSearchResponse()!=null)
+					 {
+						 System.out.println("TEam list :---------->" +strTeamResponse.getResults().getSearchResponse().getBoardProfileList().size());
+						 model.addObject("TEAMAroundYou", strTeamResponse.getResults().getSearchResponse().getBoardProfileList());
+					 }
+					 
+					 hubReq.setMsgType(23);
+					 searchReq.setCategory("");
+					 //searchReq.setLatlang("17.3700,78.4800");
+					 if(userlocation!=null)
+					 {
+						if(userlocation.length()>3)
+						{
+							 searchReq.setLatlang(userlocation);
+						}else{
+							 searchReq.setLatlang(defaultBuddyAroundYouLatlongValue);
+						}
+					 }else{
+						 searchReq.setLatlang(defaultBuddyAroundYouLatlongValue);
+					 }
+					 hubReq.setRequestParam(searchReq);
+					 String strbuddyresponse=cricketSocialRestTemplateService.userRegistration(hubReq);
+					 System.out.println("board result : "+strbuddyresponse);
+					 HubResponse buddyResponse= GsonConverters.getGsonObject().fromJson(strbuddyresponse, HubResponse.class); 
+					 System.out.println("userid : "+strTeamResponse.getResults().getSearchResponse());
+					 if(buddyResponse.getResults().getSearchResponse()!=null)
+					 {
+						 System.out.println("user : list :---------->" +buddyResponse.getResults().getSearchResponse().getUserList().size());
+						 model.addObject("BuddyAroundYou", buddyResponse.getResults().getSearchResponse().getUserList());
+					 }
+					 
+					 request.setAttribute("BoardId", bid);
+					 hubReq.setMsgType(79);
+					 searchReq.setCategory("Merchants");
+					 //searchReq.setLatlang("17.3700,78.4800");
+					 if(userlocation!=null)
+					 {
+						if(userlocation.length()>3)
+						{
+							 searchReq.setLatlang(userlocation);
+						}else{
+							 searchReq.setLatlang(defaultMerchantAroundYouLatLongValue);
+						}
+					 }else{
+						 searchReq.setLatlang(defaultMerchantAroundYouLatLongValue);
+					 }
+					 hubReq.setRequestParam(searchReq);
+					 String strMerchandiseAroundYouresponse=cricketSocialRestTemplateService.userRegistration(hubReq);
+					 HubResponse merchandiseAroundYouResponse= GsonConverters.getGsonObject().fromJson(strMerchandiseAroundYouresponse, HubResponse.class); 
+					 if(merchandiseAroundYouResponse.getResults().getSearchResponse()!=null)
+					 {
+						 System.out.println("user : list :---------->" +merchandiseAroundYouResponse.getResults().getSearchResponse().getUserList().size());
+						 model.addObject("Merchants", merchandiseAroundYouResponse.getResults().getSearchResponse().getUserList());
+					 }
+					
+					 
+				}else{
+					 model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
+				}
+				 
+				 
+			 }else{
+				 model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
+			 }
+			
+		
+	}catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return model;
+}
+
+@RequestMapping(value="/LeaguePointsProfilesite/{bid}", method=RequestMethod.GET)
+public ModelAndView LeaguePointsProfilesite(HttpServletRequest request, @PathVariable String bid) throws CSException
+{
+	
+
+	
+	
+	 
+	 	ModelAndView model=null;
+	    
+			
+			model= new ModelAndView("PublicPointstablessite");
+			
+			final String context = request.getContextPath();
+
+			
+			
+			 HubRequest hubReq1=new HubRequest();
+			 hubReq1.setMsgType(40);
+			 ModelMap map1=new ModelMap();			
+			 map1.put("boardId", bid);
+			 hubReq1.setRequestParam(map1);
+			 String strBoarddetail=cricketSocialRestTemplateService.userRegistration(hubReq1);
+			 GsonBuilder builder = new GsonBuilder();
+			 Gson gson = builder.create();
+			 if(strBoarddetail!=null)
+			 {
+				 HubResponse hubResponse1= gson.fromJson(strBoarddetail, HubResponse.class);
+				if(hubResponse1!=null && hubResponse1.getResults().getBoardStatusDetail()!=null && hubResponse1.getResults().getBoardStatusDetail().size()>0)
+				{
+					model.addObject("BoardId", bid);
+					 model.addObject("BoradInfo", hubResponse1.getResults().getBoardStatusDetail().get(0));
+					
+				}
+			 }
+			 
+
+
+			 HubRequest hubReq=new HubRequest();
+					 hubReq.setMsgType(142);
+					 ModelMap map=new ModelMap();			
+					 map.put("boardId", bid);
+					 map.put("tournamentId", "");
+					 map.put("homeTeamId", "");
+					 map.put("startNode", 0);
+					 map.put("endNode", 500);
+					 
+					 
+					 hubReq.setRequestParam(map);
+					 String strPoints=cricketSocialRestTemplateService.userRegistration(hubReq);
+					 if(strPoints!=null)
+					 {
+						 HubResponse hubResponse1= gson.fromJson(strPoints, HubResponse.class);
+						 if(hubResponse1!=null && hubResponse1.getResults()!=null && hubResponse1.getResults().getCentueryList()!=null)
+						 {
+							 model.addObject("TournamentPointTableList", hubResponse1.getResults().getCentueryList());
+						 }
+					 }else{
+						 model=new ModelAndView("redirect:/login.htm?loginvalidation=service not available");
+					 }
+					 
+					 
+					
+					 
+					
+							 
+					 
+					 
+			 
+		
+	return model;
+}
+
+
+
+
+@RequestMapping(value="/Organizationdetailssite/boardId/{boardId}", method = RequestMethod.GET)
+public ModelAndView Organizationdetailssite(HttpServletRequest req, @PathVariable String boardId){
+	ModelAndView mav = null;
+	OrganizationResponse orgresponse=new OrganizationResponse();
+	long filesize=0;
+	Gson gson=new Gson();
+	try{
+		
+		
+			mav = new ModelAndView("OrganizationInfosite");
+			mav.addObject("boardId", boardId);
+			UUID uid=UUID.fromString(boardId);
+			
+			
+			
+		
+			
+			
+			HubRequest hubreq1=new HubRequest(261);
+			OrganizationDetails orgdetails=new OrganizationDetails();
+			orgdetails.setBoardId(uid);
+			orgdetails.setBoardInfoType("Organization");
+			/* ModelMap map1=new ModelMap();
+			 map1.put("tournamentSchedulerId", matches.getTournamentSchedulerId());*/
+			 hubreq1.setRequestParam(orgdetails);
+			 String response1=cricketSocialRestTemplateService.userRegistration(hubreq1);
+			 System.out.println("the 261 response is :"+response1);
+			 if(response1 != null){
+					
+		 
+			 JSONObject jobj=new JSONObject(response1);
+			 JSONObject jresult=jobj.getJSONObject("results");
+			 JSONObject jboardobj=jresult.getJSONObject("boardInfoResponse");
+			  
+			 if(jboardobj.length() !=0)
+			 {
+				  orgresponse= gson.fromJson(jboardobj.toString(), OrganizationResponse.class);
+				  if(orgresponse.getFileDetails().size() > 0)
+				  {
+				   filesize=orgresponse.getFileDetails().size();
+				  }
+			 }
+			  
+			 }else{
+				 	mav=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
+					 }
+			 
+			
+			 mav.addObject("OrgResponse", orgresponse);
+				mav.addObject("FileSize", filesize);
+				
+				
+				
+				//*************************** Getting Board info  ***************************************
+				 HubRequest hubReq1=new HubRequest();
+				 hubReq1.setMsgType(40);
+				 ModelMap map11=new ModelMap();			
+				 
+				 map11.put("boardId", boardId);
+				 hubReq1.setRequestParam(map11);
+				 String strBoarddetail=cricketSocialRestTemplateService.userRegistration(hubReq1);		
+				 if(strBoarddetail!=null)
+				 {
+					 HubResponse hubResponse1= gson.fromJson(strBoarddetail, HubResponse.class);
+					if(hubResponse1!=null && hubResponse1.getResults().getBoardStatusDetail()!=null && hubResponse1.getResults().getBoardStatusDetail().size()>0)
+					{
+						 mav.addObject("BoradInfo", hubResponse1.getResults().getBoardStatusDetail().get(0));
+						 final String context = req.getContextPath();
+					}
+				 }	
+				
+		
+		
+		
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+	return mav;
+}
 
 
 
