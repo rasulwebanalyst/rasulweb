@@ -2,6 +2,7 @@
  <%@taglib uri="http://example.com/functions" prefix="f" %>
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html lang="en">
+<head>
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
  <!-- <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -55,6 +56,7 @@ var formatAMPMTime = function(date) {
 	
 	 
 </script>
+</head><body>
 <%@ include file="BoardHeader.jsp" %>
 
     <section class="middleContentBlock">
