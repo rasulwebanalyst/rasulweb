@@ -5,11 +5,18 @@
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
  
   <meta charset="utf-8">
-
+<!-- 
 <meta property="og:image" itemprop="image" content="https://s3.amazonaws.com/prod-cricket-social-images/a63b10b3-69f9-44ad-8487-e7a0f6b9a19c.png" />
 <meta property="og:image:url" itemprop="image" content="https://s3.amazonaws.com/prod-cricket-social-images/a63b10b3-69f9-44ad-8487-e7a0f6b9a19c.png" />
 <meta property="og:image:type" content="image/png" />
- 
+  -->
+  
+  <meta property="og:title" content="San Roque 2014 Pollos" />
+        <meta property="og:description" content="Programa de fiestas de San Roque 2014 del pueblo de Pollos (Valladolid). App para terminales Android y versión web para el resto de dispositivos." />
+        <meta property="og:image" content="http://pollosweb.wesped.es/programa_pollos/play.png" />
+        <meta property="og:url" content="http://pollosweb.wesped.es/whas.html" />
+  
+  
  <title>Cricket Social</title>
  
  <style>
