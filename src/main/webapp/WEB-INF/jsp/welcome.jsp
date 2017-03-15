@@ -576,7 +576,7 @@ var fbURL='110086556012641'; // QA
          <span class="forgotPw"><a href="${pageContext.request.contextPath}/account-recovery">I can't access my account</a></span>
          
          
-         <a href="whatsapp://send?text=%E0%AE%86%E0%AE%B0%E0%AF%8D.%E0%AE%95%E0%AF%87.%E0%AE%A8%E0%AE%95%E0%AE%B0%E0%AF%8D %E0%AE%85%E0%AE%A4%E0%AE%BF%E0%AE%AE%E0%AF%81%E0%AE%95 %E0%AE%B5%E0%AF%87%E0%AE%9F%E0%AF%8D%E0%AE%AA%E0%AE%BE%E0%AE%B3%E0%AE%B0%E0%AE%BE%E0%AE%95%E0%AE%95%E0%AF%8D %E0%AE%95%E0%AE%B3%E0%AE%AE%E0%AF%8D %E0%AE%87%E0%AE%B1%E0%AE%99%E0%AF%8D%E0%AE%95%E0%AF%81%E0%AE%AE%E0%AF%8D %E0%AE%9F%E0%AE%BF.%E0%AE%9F%E0%AE%BF.%E0%AE%B5%E0%AE%BF.%E0%AE%A4%E0%AE%BF%E0%AE%A9%E0%AE%95%E0%AE%B0%E0%AE%A9%E0%AF%8D - http://www.vikatan.com/news/tamilnadu/83682-ttvdinakaran-to-contest-in-rk-nagar-election.html" id="Whatsappshare" style="display: none;">Hello, world!</a>
+         <a href="whatsapp://send?text=Hello%20World!" id="Whatsappshare" style="display: none;">Hello, world!</a>
          
          
 <div class="clearfix"></div>
@@ -1246,7 +1246,7 @@ window.onload=initializemarquee */
 
 <script type="text/javascript">
 
- $(window).load(function(){
+$(window).load(function(){
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 		 // some code..
 		 console.log("Device :"+navigator.userAgent)
@@ -1254,7 +1254,7 @@ window.onload=initializemarquee */
 		}else{
 			console.log("DEsktop"+navigator.userAgent)
 		}
-}); 
+});
 
 
 </script>

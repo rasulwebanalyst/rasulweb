@@ -3,11 +3,13 @@
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html lang="en">
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
- <!-- <meta charset="utf-8">
+  <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 <meta name="description" content="">
-<meta name="author" content=""> -->
+<meta name="author" content=""> 
+<meta property="og:image" content="https://s3.amazonaws.com/prod-cricket-social-images/a63b10b3-69f9-44ad-8487-e7a0f6b9a19c.png">
+<meta property="og:image:type" content="image/png">
  <title>Cricket Social</title>
  <!-- responsive css -->
 <%--  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet"> --%>
