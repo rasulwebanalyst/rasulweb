@@ -3,6 +3,13 @@
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html lang="en">
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+ 
+  <meta charset="utf-8">
+
+<meta property="og:image" itemprop="image" content="https://s3.amazonaws.com/prod-cricket-social-images/a63b10b3-69f9-44ad-8487-e7a0f6b9a19c.png" />
+<meta property="og:image:url" itemprop="image" content="https://s3.amazonaws.com/prod-cricket-social-images/a63b10b3-69f9-44ad-8487-e7a0f6b9a19c.png" />
+<meta property="og:image:type" content="image/png" />
+ 
  <title>Cricket Social</title>
  
  <style>
