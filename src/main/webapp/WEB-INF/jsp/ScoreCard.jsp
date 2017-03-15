@@ -4,9 +4,8 @@
 <html lang="en">
 <head>
 
-  <meta property="og:site_name" content="San Roque 2014 Pollos">
-<meta property="og:title" content="San Roque 2014 Pollos" />
-<meta property="og:description" content="Programa de fiestas" />
+  <meta property="og:site_name" content="ScoreCard">
+<meta property="og:title" content="ScoreCard" />
 <meta property="og:image" itemprop="image" content="https://s3.amazonaws.com/prod-cricket-social-images/a63b10b3-69f9-44ad-8487-e7a0f6b9a19c.png">
 <meta property="og:type" content="website" />
 <meta property="og:updated_time" content="1440432930" />
