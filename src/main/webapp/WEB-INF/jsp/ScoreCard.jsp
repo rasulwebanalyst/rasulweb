@@ -2,7 +2,6 @@
  <%@taglib uri="http://example.com/functions" prefix="f" %>
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html lang="en">
-<head>
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
  <!-- <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +13,6 @@
   <meta property="og:title" content="San Roque 2014 Pollos" />
         <meta property="og:description" content="Programa de fiestas de San Roque 2014 del pueblo de Pollos (Valladolid). App para terminales Android y versión web para el resto de dispositivos." />
         <meta property="og:image" content="http://pollosweb.wesped.es/programa_pollos/play.png" />
-        <meta property="og:url" content="http://pollosweb.wesped.es/whas.html" />
         
  <title>Cricket Social</title>
  <!-- responsive css -->
@@ -56,7 +54,6 @@ var formatAMPMTime = function(date) {
 	
 	 
 </script>
-</head><body>
 <%@ include file="BoardHeader.jsp" %>
 
     <section class="middleContentBlock">
