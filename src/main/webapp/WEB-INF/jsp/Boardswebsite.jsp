@@ -551,7 +551,7 @@ var formatAMPMTime = function(date) {
                              		<div class="ViewMenu">
                              		<h4>View Menu</h4>
                              		
-                             		<a href="${pageContext.request.contextPath}/LeaguePointsProfilesite/${BoradInfo.boardId}"> Points Table</a>
+                             		<a href="javascript:void(0);" onclick="PleaseLogin()"> Points Table</a>
                              		
                              		<c:if test="${!empty Viewmenu}">
 										 <c:forEach var="ground1" items="${Viewmenu}" begin="2" end="3">
@@ -628,7 +628,7 @@ var formatAMPMTime = function(date) {
                              		</div> -->
                              		<div class="ViewMenu">
                              		<h4>View Menu</h4>
-                             	            <a href="${pageContext.request.contextPath}/LeaguePointsProfilesite/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Points Table</a>
+                             	            <a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa fa-angle-right"></i> Points Table</a>
                                             <a href="javascript:"><i class="fa fa-angle-right"></i> Schedule List</a>
                                             <a href="javascript:"><i class="fa fa-angle-right"></i> Schedule & Scores</a>
                              			<div class="moreview" id="more1">...More</div>
@@ -703,7 +703,7 @@ var formatAMPMTime = function(date) {
                              		<h4>View Menu</h4>
                              		
                              		
-                             		<a href="${pageContext.request.contextPath}/LeaguePointsProfilesite/${BoradInfo.boardId}"> Points Table</a>
+                             		<a href="javascript:void(0);" onclick="PleaseLogin()"> Points Table</a>
                              		
                                     	      
                                     	      

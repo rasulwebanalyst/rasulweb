@@ -2,24 +2,16 @@
  <%@taglib uri="http://example.com/functions" prefix="f" %>
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html lang="en">
-<head>
-
-  <meta property="og:site_name" content="ScoreCard">
-<meta property="og:title" content="ScoreCard" />
-<meta property="og:image" itemprop="image" content="https://s3.amazonaws.com/prod-cricket-social-images/a63b10b3-69f9-44ad-8487-e7a0f6b9a19c.png">
-<meta property="og:type" content="website" />
-<meta property="og:updated_time" content="1440432930" />
-
-
-
-
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
- 
-      
-      
- 
+ <!-- <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content=""> -->
  <title>Cricket Social</title>
- </head>
+ <!-- responsive css -->
+<%--  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet"> --%>
+ 
  <style>
 <!--
 
