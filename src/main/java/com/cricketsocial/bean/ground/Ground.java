@@ -49,13 +49,26 @@ public class Ground {
 	 private List<PlayerDTO> playerBestBowling;
 	 
 	 
-	 
+	 private int averageFirstInningsScore;
+	 private int averageSecondInningsScore;
 	 
 	 
 	 
 	 
 	
 
+	public int getAverageFirstInningsScore() {
+		return averageFirstInningsScore;
+	}
+	public void setAverageFirstInningsScore(int averageFirstInningsScore) {
+		this.averageFirstInningsScore = averageFirstInningsScore;
+	}
+	public int getAverageSecondInningsScore() {
+		return averageSecondInningsScore;
+	}
+	public void setAverageSecondInningsScore(int averageSecondInningsScore) {
+		this.averageSecondInningsScore = averageSecondInningsScore;
+	}
 	public List<TournamentScheduler> getTeamHeighestScore() {
 		return teamHeighestScore;
 	}

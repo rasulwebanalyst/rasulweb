@@ -905,7 +905,21 @@ date.add(java.util.Calendar.DATE, +6);
                              <a href="javascript:void(0)" onclick="EDITSCORECARD('${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')"><i class="fa fa-pencil" title="Edit Profile"></i></a>
                         	 <a href="javascript:void(0)" onclick="EDITSCORECARD('${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')">Edit Scorecard</a>
                              </td>
-                          <td align="center" ><a href="#" onclick="showScoreCard('${completed.tournamentSchedulerId}')"><i class="fa fa-newspaper-o editIcon"></i></a></td>
+                          <td align="center" >
+                          <c:choose>
+                          <c:when test="${completed.scorecardLock eq 'OFF'}">
+                          <a id="${completed.tournamentSchedulerId }OFF" href="javascript:void(0)" onclick="lockscorecard('${completed.tournamentSchedulerId }','ON','OFF')"><img src="${pageContext.request.contextPath}/images/unlock.png" style="max-width: 22px;margin-right: 5px; margin-bottom: 17px;"></a>
+                          <a   id="${completed.tournamentSchedulerId }ON" style="display: none;"  href="javascript:void(0)" onclick="lockscorecard('${completed.tournamentSchedulerId }','OFF','ON')"><img src="${pageContext.request.contextPath}/images/lock.png" style="max-width: 22px;margin-right: 5px; margin-bottom: 17px;"></a>
+                          </c:when>
+                          <c:otherwise>
+                          <a id="${completed.tournamentSchedulerId }ON" href="javascript:void(0)" onclick="lockscorecard('${completed.tournamentSchedulerId }','OFF','ON')"><img src="${pageContext.request.contextPath}/images/lock.png" style="max-width: 22px;margin-right: 5px; margin-bottom: 17px;"></a>
+                          <a id="${completed.tournamentSchedulerId }OFF" style="display: none;" href="javascript:void(0)" onclick="lockscorecard('${completed.tournamentSchedulerId }','ON','OFF')"><img src="${pageContext.request.contextPath}/images/unlock.png" style="max-width: 22px;margin-right: 5px; margin-bottom: 17px;"></a>
+                          </c:otherwise>
+                          
+                          </c:choose>
+                          
+                          
+                          <a href="#" onclick="showScoreCard('${completed.tournamentSchedulerId}')"><i class="fa fa-newspaper-o editIcon"></i></a></td>
                         </tr>
                       </c:forEach>
                 
@@ -1635,7 +1649,22 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				    htmlco3+=""+completedlist[i].winTeamName+": "+completedlist[i].winTeamRuns+"/"+completedlist[i].winTeamWickets+" in "+completedlist[i].winTeamOvers+"<br>";
 				    htmlco3+=""+completedlist[i].loseTeamName+" : "+completedlist[i].loseTeamRuns+"/"+completedlist[i].loseTeamWickets+" in "+completedlist[i].loseTeamOvers+"</td>";
 				    htmlco3+="<td><a href=javascript:void(0); onclick=EDITSCORECARD('${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')><i class='fa fa-pencil' title='Edit Profile'></i></a><a href=javascript:void(0); onclick=EDITSCORECARD('${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')>Edit Scorecard</a></td>";
-				    htmlco3+="<td align='center' ><a href=javascript:void(0); onclick=showScoreCard('"+completedlist[i].tournamentSchedulerId+"')><i class='fa fa-newspaper-o editIcon'></i></a></td>";
+				    htmlco3+="<td align='center' >";
+				    
+				    if(completedlist[i].scorecardLock == "OFF"){
+				    	htmlco3+="<a id='"+completedlist[i].tournamentSchedulerId+"OFF' href='javascript:void(0)' onclick=lockscorecard('"+completedlist[i].tournamentSchedulerId+"','ON','OFF')><img src='${pageContext.request.contextPath}/images/unlock.png' style='max-width: 22px;margin-right: 5px; margin-bottom: 17px;'></a>";
+				    	htmlco3+="<a id='"+completedlist[i].tournamentSchedulerId+"ON' style='display: none;'  href='javascript:void(0)' onclick=lockscorecard('"+completedlist[i].tournamentSchedulerId+"','OFF','ON')><img src='${pageContext.request.contextPath}/images/lock.png' style='max-width: 22px;margin-right: 5px; margin-bottom: 17px;'></a>";
+				    	
+				    }else{
+				    	
+				    	htmlco3+="<a id='"+completedlist[i].tournamentSchedulerId+"ON' href='javascript:void(0)' onclick=lockscorecard('"+completedlist[i].tournamentSchedulerId+"','OFF','ON')><img src='${pageContext.request.contextPath}/images/unlock.png' style='max-width: 22px;margin-right: 5px; margin-bottom: 17px;'></a>";
+				    	htmlco3+="<a id='"+completedlist[i].tournamentSchedulerId+"OFF' style='display: none;'  href='javascript:void(0)' onclick=lockscorecard('"+completedlist[i].tournamentSchedulerId+"','ON','OFF')><img src='${pageContext.request.contextPath}/images/lock.png' style='max-width: 22px;margin-right: 5px; margin-bottom: 17px;'></a>";
+				    	
+				    }
+				    
+				    
+                    htmlco3+="<a href=javascript:void(0); onclick=showScoreCard('"+completedlist[i].tournamentSchedulerId+"')><i class='fa fa-newspaper-o editIcon'></i></a></td>";
+				    
 				    htmlco3+="</tr>";
 				}
 				htmlco3+="</tbody></table>";
@@ -1886,6 +1915,45 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
                  			
                  		}
                  	}
+                	</script>
+                	
+                	<script type="text/javascript">
+                	
+                	function lockscorecard(tid,status,status1)
+                	{
+                		
+                		var array=[];
+                		var obj={
+                				tournamentSchedulerId : tid, 
+                					scorecardLock : status
+                		}
+                		array.push(obj);
+                		
+                		var request={
+                				tournamentScheduler : array
+                		}
+                		console.log(JSON.stringify(request));
+                		
+                		$.ajax({
+                			type : "POST",
+                			url : "${pageContext.request.contextPath}/lockScorecard",
+                			contentType : "application/json; charset=utf-8",
+                			data : JSON.stringify(request),
+                			success : function(response)
+                			{
+                				
+                				if(response != null){
+                					$("#"+tid+""+status).show();
+                					$("#"+tid+""+status1).hide();
+                				 console.log(response);
+                				 } 
+                			}
+                			
+                		})
+                		
+                	}
+                	
+                	
                 	</script>
    
 </body>

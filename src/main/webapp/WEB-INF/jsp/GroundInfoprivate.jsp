@@ -514,10 +514,8 @@ height:100%;
                  
                  
                  
-                 <div class="col-md-8 col-sm-12 col-xs-12">                         
+                 <div class="col-md-5 col-sm-12 col-xs-12">                         
                          <h4>Additional Directions :</h4>
-                        
-                         
                          <c:choose>
                          <c:when test="${groundDetails.directionsToGround ne '' && groundDetails.directionsToGround ne null}">
                           <%-- <p style="margin-bottom: 5%;">${groundDetails.directionsToGround}</p> --%>
@@ -529,9 +527,6 @@ height:100%;
                          <p style="margin-bottom: 5%;"><span style="margin-left: 4px; color: red;" >   No data available</span></p>
                          </c:otherwise>
                          </c:choose>
-                         
-                         
-                         
                          <h4>Ground facilities :</h4>
                         
                          
@@ -546,16 +541,45 @@ height:100%;
                          <p style="margin-bottom: 5%;"><span style="margin-left: 4px; color: red;" >   No data available</span></p>
                          </c:otherwise>
                          </c:choose>
-                         
-                         
-                         
-                         
                          </p>
                          
+                   </div>
+                   
+                    <div class="col-md-3 col-sm-12 col-xs-12">                         
+                         <h4>Average Score :</h4>
                          
                          
+                         <table class="brd-info">
+                         <tr><td style="width: 50%;">First Innings Score</td><td>:</td><td>
                          
                          
+                         <c:choose>
+                         <c:when test="${groundDetails.averageFirstInningsScore ne '' && groundDetails.averageFirstInningsScore ne null}">
+                           ${groundDetails.averageFirstInningsScore}
+                          
+                         </c:when>
+                         <c:otherwise>
+                         -
+                         </c:otherwise>
+                         </c:choose>
+                         
+                         </td></tr>
+                         <tr><td style="width: 50%;">Second Innings Score</td><td>:</td><td>
+                         
+                         
+                         <c:choose>
+                         <c:when test="${groundDetails.averageSecondInningsScore ne '' && groundDetails.averageSecondInningsScore ne null}">
+                              ${groundDetails.averageSecondInningsScore}
+                          
+                         </c:when>
+                         <c:otherwise>
+                         -
+                         </c:otherwise>
+                         </c:choose>
+                         
+                         </td></tr>       
+                         </table>
+                         </p>
                          
                    </div>
                         

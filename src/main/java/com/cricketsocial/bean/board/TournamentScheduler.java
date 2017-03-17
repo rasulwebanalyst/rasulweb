@@ -129,6 +129,7 @@ public class TournamentScheduler {
 	private String eventName;
 	private UserProfile creatorDetails;
 	
+	private String scorecardLock;
 	
 	
 	
@@ -138,6 +139,14 @@ public class TournamentScheduler {
 	
 	
 	
+	
+	
+	public String getScorecardLock() {
+		return scorecardLock;
+	}
+	public void setScorecardLock(String scorecardLock) {
+		this.scorecardLock = scorecardLock;
+	}
 	public int getWinPoints() {
 		return winPoints;
 	}

@@ -896,10 +896,44 @@ var formatAMPMTime = function(date) {
 							  ${completed.winTeamName} : ${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}<br>
 							  ${completed.loseTeamName} : ${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers}</td>
                          <td> 
-                             <a href="javascript:void(0)" onclick="EDITSCORECARD('${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')"><i class="fa fa-pencil" title="Edit Profile"></i></a>
+                             <%-- <a href="javascript:void(0)" onclick="EDITSCORECARD('${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')"><i class="fa fa-pencil" title="Edit Profile"></i></a>
+                        	 <a href="javascript:void(0)" onclick="EDITSCORECARD('${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')">Edit Scorecard</a> --%>
+                       
+                       <c:choose>
+                          <c:when test="${completed.scorecardLock eq 'OFF'}">
+                          
+                          <a href="javascript:void(0)" onclick="EDITSCORECARD('${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')"><i class="fa fa-pencil" title="Edit Profile"></i></a>
                         	 <a href="javascript:void(0)" onclick="EDITSCORECARD('${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')">Edit Scorecard</a>
+                          
+                          
+                          </c:when>
+                          <c:otherwise>
+                          
+                          
+                          <a href="javascript:void(0)" onclick="LOCKEDEDITSCORECARD()"><i class="fa fa-pencil" title="Edit Profile"></i></a>
+                        	 <a href="javascript:void(0)" onclick="LOCKEDEDITSCORECARD()">Edit Scorecard</a>
+                          
+                          </c:otherwise>
+                          
+                          </c:choose>
+                       
+                       
                        </td>
-                          <td align="center" ><a href="#" onclick="showScoreCard('${completed.tournamentSchedulerId}')"><i class="fa fa-newspaper-o editIcon"></i></a></td>
+                       
+                       
+                       <td align="center" >
+                       <c:choose>
+                          <c:when test="${completed.scorecardLock eq 'OFF'}">
+                          <a><img src="${pageContext.request.contextPath}/images/unlock.png" style="max-width: 22px;margin-right: 5px; margin-bottom: 17px;"></a>
+                          </c:when>
+                          <c:otherwise>
+                          <a><img src="${pageContext.request.contextPath}/images/lock.png" style="max-width: 22px;margin-right: 5px; margin-bottom: 17px;"></a>
+                          </c:otherwise>
+                          
+                          </c:choose>
+                       
+                       
+                          <a href="#" onclick="showScoreCard('${completed.tournamentSchedulerId}')"><i class="fa fa-newspaper-o editIcon"></i></a></td>
                         </tr>
                       </c:forEach>
                 
@@ -1635,8 +1669,31 @@ var dateString = null;
 				    htmlco3+=""+completedlist[i].winTeamName+": "+completedlist[i].winTeamRuns+"/"+completedlist[i].winTeamWickets+" in "+completedlist[i].winTeamOvers+"<br>";
 				    htmlco3+=""+completedlist[i].loseTeamName+" : "+completedlist[i].loseTeamRuns+"/"+completedlist[i].loseTeamWickets+" in "+completedlist[i].loseTeamOvers+"</td>";
 
-				    htmlco3+="<td><a href=javascript:void(0); onclick=EDITSCORECARD('${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')><i class='fa fa-pencil' title='Edit Profile'></i></a><a href=javascript:void(0); onclick=EDITSCORECARD('${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')>Edit Scorecard</a></td>";
-				    htmlco3+="<td align='center' ><a href=javascript:void(0); onclick=showScoreCard('"+completedlist[i].tournamentSchedulerId+"')><i class='fa fa-newspaper-o editIcon'></i></a></td>";
+				    
+				    if(completedlist[i].scorecardLock == "OFF"){
+				    
+				    	htmlco3+="<td><a href=javascript:void(0); onclick=EDITSCORECARD('${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')><i class='fa fa-pencil' title='Edit Profile'></i></a><a href=javascript:void(0); onclick=EDITSCORECARD('${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')>Edit Scorecard</a></td>";
+				    	
+				    }else{
+				    	
+				    	htmlco3+="<td><a href=javascript:void(0); onclick=LOCKEDEDITSCORECARD()><i class='fa fa-pencil' title='Edit Profile'></i></a><a href=javascript:void(0); onclick=LOCKEDEDITSCORECARD()>Edit Scorecard</a></td>";
+				    }
+				    
+				    
+				    
+				    htmlco3+="<td align='center' >";
+				    
+				    if(completedlist[i].scorecardLock == "OFF"){
+				    	htmlco3+="<a><img src='${pageContext.request.contextPath}/images/unlock.png' style='max-width: 22px;margin-right: 5px; margin-bottom: 17px;'></a>";
+				    	
+				    }else{
+				    	
+				    	htmlco3+="<a><img src='${pageContext.request.contextPath}/images/lock.png' style='max-width: 22px;margin-right: 5px; margin-bottom: 17px;'></a>";
+				    }
+				    
+				    
+				    
+				    htmlco3+="<a href=javascript:void(0); onclick=showScoreCard('"+completedlist[i].tournamentSchedulerId+"')><i class='fa fa-newspaper-o editIcon'></i></a></td>";
 				    htmlco3+="</tr>";
 				}
 				htmlco3+="</tbody></table>";
@@ -1880,6 +1937,12 @@ var dateString = null;
                  			$("#editScoreCardPopUp").show();
                  			
                  		}
+                 	}
+                 	
+                 	function LOCKEDEDITSCORECARD()
+                 	{
+                 		showNotification("Score card has been locked for some reason", 2000);
+             			hide_notificationpoup(2000);
                  	}
                 	</script>
    

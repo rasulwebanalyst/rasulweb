@@ -61,31 +61,37 @@ public class CompletedMatches {
 	private String reasonDispMng;
 	private String rsnDispMngmnt;
 	
-private List<ScorerNameList> portalScorerList;
+	private List<ScorerNameList> portalScorerList;
+	
+	private String scorecardLock;
+	
 	
 	
 	
 
+	public String getScorecardLock() {
+		return scorecardLock;
+	}
+	public void setScorecardLock(String scorecardLock) {
+		this.scorecardLock = scorecardLock;
+	}
 	public List<ScorerNameList> getPortalScorerList() {
 		return portalScorerList;
 	}
 	public void setPortalScorerList(List<ScorerNameList> portalScorerList) {
 		this.portalScorerList = portalScorerList;
 	}
-	
-	
-
-	public String getReasonDispMng() {
-		return reasonDispMng;
-	}
-	public void setReasonDispMng(String reasonDispMng) {
-		this.reasonDispMng = reasonDispMng;
-	}
 	public String getRsnDispMngmnt() {
 		return rsnDispMngmnt;
 	}
 	public void setRsnDispMngmnt(String rsnDispMngmnt) {
 		this.rsnDispMngmnt = rsnDispMngmnt;
+	}
+	public String getReasonDispMng() {
+		return reasonDispMng;
+	}
+	public void setReasonDispMng(String reasonDispMng) {
+		this.reasonDispMng = reasonDispMng;
 	}
 	public String getResultMessage() {
 		return resultMessage;
