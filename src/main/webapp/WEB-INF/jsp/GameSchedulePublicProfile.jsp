@@ -1941,7 +1941,7 @@ var dateString = null;
                  	
                  	function LOCKEDEDITSCORECARD()
                  	{
-                 		showNotification("Score card has been locked for some reason", 2000);
+                 		showNotification("Score card has been locked, Please contact admin", 2000);
              			hide_notificationpoup(2000);
                  	}
                 	</script>
