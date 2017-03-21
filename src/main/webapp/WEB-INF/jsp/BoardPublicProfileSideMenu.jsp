@@ -7,7 +7,53 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title></title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.12/jquery.bxslider.css" rel="stylesheet" type="text/css">
 </head>
+
+<style>
+
+#slideshow {
+ /*  margin: 80px auto; */
+  position: relative;
+ /*  width: 240px; */
+  height: 230px;
+  padding: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+#slideshow > div {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+} 
+
+.eye {
+z-index: 9;
+right: -106px;
+top: 100px;
+}
+.bx-wrapper img {
+height: 200px
+}
+ul.leftMenu li:last-child {
+border: none;
+}	
+
+.bx-wrapper .bx-next {
+
+right: -2px;
+}
+
+.bx-wrapper .bx-prev {
+left: -2px;
+}
+
+
+</style>
+
 <body>
 <div class="col-md-2 profileLogo pLUpdated">
                     	<span class="pLUpdatedImg">
@@ -83,9 +129,84 @@
 		                        	  </c:choose>
                             	</c:if>		
                             	</c:if>
+                            	
+                            	
+                            	
+                            	<c:if test="${showsponsers eq 'YES' }">
+                            	 <c:choose>
+                        			<c:when test="${sponsersize == 0 }">
+	                            	</c:when>
+	                            	<c:otherwise>
+	                            	<li style="border-bottom: 0 !important;">
+	                            	<a >Sponsers</a>
+		
+		<div class="ImageBox" style="margin-top: 5px;">
+		<ul class="bxslider">
+		
+		<c:forEach var="sponser" items="${spoResponse.boardSponsorsList}">
+		    <div>
+		      <li style="text-align: center;"><img style=" margin-bottom: 9px;"  src="${sponser.imageUrl}" /><span>${sponser.sponsorName}</span></li>
+		   </div>
+		 
+		</c:forEach>
+		
+		</ul>
+	</div>
+                            	</li>
+	                            	</c:otherwise>
+	                            	</c:choose> 
+                            	</c:if>
+                            	
+                            	
                             </ul>
                         
                         
                     </div>
+                    
+                    
+                    
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.12/jquery.bxslider.js" type="text/javascript"></script>
+		
+		  <script type="text/javascript">
+		
+		$("#slideshow > div:gt(0)").hide();
+
+		setInterval(function() {
+		  $('#slideshow > div:first')
+		    .fadeOut(1000)
+		    .next()
+		    .fadeIn(1000)
+		    .end()
+		    .appendTo('#slideshow');
+		}, 4000);
+		
+		
+		</script> 
+		 
+		 
+		 
+		 <script>
+		$(window).load(function(){
+		  $('.bxslider').bxSlider({
+		  		/* pager	:	false,
+		  		auto	:	true,	 */
+			  /* auto: true,
+			  speed: 500,
+			  pause: 3000,
+			  pager: false,
+			  controls: true,
+			  responsive:true, */
+			  
+			 
+              
+			  pager	:	false,
+		  		auto	:	true,
+		  		stopAutoClickOn	:	true
+		  });
+		});
+	</script>
+                    
+                    
+                    
 </body>
 </html>

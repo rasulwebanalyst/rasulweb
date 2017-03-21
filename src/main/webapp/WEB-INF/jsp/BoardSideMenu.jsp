@@ -28,14 +28,27 @@
   bottom: 10px;
 } 
 
-.ImageBox { max-width: 1000px; margin: auto; }
-
 .eye {
 z-index: 9;
 right: -106px;
 top: 100px;
 }
-	
+.bx-wrapper img {
+height: 200px
+}
+ul.leftMenu li:last-child {
+border: none;
+}	
+
+.bx-wrapper .bx-next {
+
+right: -2px;
+}
+
+.bx-wrapper .bx-prev {
+left: -2px;
+}
+
 
 </style>
 
@@ -130,30 +143,20 @@ top: 100px;
                             	</c:if>	
                             	</c:if>	
                             	
-                            	
+                            	<c:if test="${showsponsers eq 'YES' }">
                             	 <c:choose>
                         			<c:when test="${sponsersize == 0 }">
 	                            	</c:when>
 	                            	<c:otherwise>
-	                            	<li style="border-bottom: 0;">
-	                            	<a style="margin-left: 47px;">Sponsers</a>
-                            	<%-- <div id="slideshow">
-                            	<c:forEach var="sponser" items="${spoResponse.boardSponsorsList}">
-		    <div>
-		     <img style="width: 146px; height: 184px; margin-bottom: 10px;" src="${sponser.imageUrl}">
-		     <span style="margin-left: 43px;">${sponser.sponsorName}<span>
-		   </div>
-		 
-		</c:forEach>
-		</div> --%>
+	                            	<li style="border-bottom: 0 !important;">
+	                            	<a >Sponsers</a>
 		
-		
-		<div class="ImageBox">
+		<div class="ImageBox" style="margin-top: 5px;">
 		<ul class="bxslider">
 		
 		<c:forEach var="sponser" items="${spoResponse.boardSponsorsList}">
 		    <div>
-		      <li><img src="${sponser.imageUrl}" /></li>
+		      <li style="text-align: center;"><img style=" margin-bottom: 9px;"  src="${sponser.imageUrl}" /><span>${sponser.sponsorName}</span></li>
 		   </div>
 		 
 		</c:forEach>
@@ -165,7 +168,7 @@ top: 100px;
                             	</li>
 	                            	</c:otherwise>
 	                            	</c:choose> 
-                            	
+                            	</c:if>
                             	
                             	
                             </ul>
@@ -208,10 +211,7 @@ top: 100px;
 			  controls: true,
 			  responsive:true, */
 			  
-			 /*  pagerCustom: '#bx-pager',
-              randomStart: false,
-              controls: true,
-              auto: true */
+			 
               
 			  pager	:	false,
 		  		auto	:	true,

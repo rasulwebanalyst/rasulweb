@@ -6067,6 +6067,8 @@ public ModelAndView getboard(@RequestParam String bid, HttpServletRequest reques
 								 }
 						 model.addObject("spoResponse", sporesponse);
 						 model.addObject("SponserSize", sponsersize);
+						 
+						 model.addObject("showsponsers", "YES");
 					 
 					 
 					 
@@ -10098,6 +10100,50 @@ public ModelAndView boardPublicProfile(HttpServletRequest request, @PathVariable
 						 System.out.println("user : list :---------->" +merchandiseAroundYouResponse.getResults().getSearchResponse().getUserList().size());
 						 model.addObject("Merchants", merchandiseAroundYouResponse.getResults().getSearchResponse().getBoardProfileList());
 					 }
+					 
+					 
+					 
+					 
+					 
+					 
+					// Sponser image
+					 SponserResponse sporesponse=new SponserResponse();
+					 long sponsersize=0;
+					 
+					 UUID uid=UUID.fromString(boardID);
+						HubRequest hubreq1=new HubRequest(263);
+						OrganizationDetails orgdetails=new OrganizationDetails();
+						orgdetails.setBoardId(uid);
+						 hubreq1.setRequestParam(orgdetails);
+						 String response1=cricketSocialRestTemplateService.userRegistration(hubreq1);
+						 System.out.println("the 263 response is :"+response1);
+						 if(response1 != null){
+						 JSONObject jobj=new JSONObject(response1);
+						 JSONObject jresult=jobj.getJSONObject("results");
+						 JSONObject jboardobj=jresult.getJSONObject("boardSponsersResponse");
+						  
+						 if(jboardobj.length() !=0)
+						 {
+							 sporesponse= gson.fromJson(jboardobj.toString(), SponserResponse.class);
+							  
+							  if(sporesponse.getBoardSponsorsList().size() > 0)
+							  {
+								  sponsersize=sporesponse.getBoardSponsorsList().size();
+							  }
+							  
+						 }
+						  
+						 }else{
+							 model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
+								 }
+						 model.addObject("spoResponse", sporesponse);
+						 model.addObject("SponserSize", sponsersize);
+						 
+						 model.addObject("showsponsers", "YES");
+					
+					 
+					 
+					 
 					
 					 
 				}else{
@@ -26108,6 +26154,58 @@ public ModelAndView boardPublicProfileByboard(HttpServletRequest request, @PathV
 						 }
 					 }
 					 model.addObject("BoardFanToBoard", boardToBoard);
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 // For Board Sponsers
+					 
+					 
+					// Sponser image
+					 SponserResponse sporesponse=new SponserResponse();
+					 long sponsersize=0;
+					 
+					 UUID uid=UUID.fromString(boardID);
+						HubRequest hubreq1=new HubRequest(263);
+						OrganizationDetails orgdetails=new OrganizationDetails();
+						orgdetails.setBoardId(uid);
+						 hubreq1.setRequestParam(orgdetails);
+						 String response1=cricketSocialRestTemplateService.userRegistration(hubreq1);
+						 System.out.println("the 263 response is :"+response1);
+						 if(response1 != null){
+						 JSONObject jobj=new JSONObject(response1);
+						 JSONObject jresult=jobj.getJSONObject("results");
+						 JSONObject jboardobj=jresult.getJSONObject("boardSponsersResponse");
+						  
+						 if(jboardobj.length() !=0)
+						 {
+							 sporesponse= gson.fromJson(jboardobj.toString(), SponserResponse.class);
+							  
+							  if(sporesponse.getBoardSponsorsList().size() > 0)
+							  {
+								  sponsersize=sporesponse.getBoardSponsorsList().size();
+							  }
+							  
+						 }
+						  
+						 }else{
+							 model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
+								 }
+						 model.addObject("spoResponse", sporesponse);
+						 model.addObject("SponserSize", sponsersize);
+						 
+						 model.addObject("showsponsers", "YES");
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
 				}else{
 					 model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 				}
@@ -43658,6 +43756,49 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 						 System.out.println("user : list :---------->" +merchandiseAroundYouResponse.getResults().getSearchResponse().getUserList().size());
 						 model.addObject("Merchants", merchandiseAroundYouResponse.getResults().getSearchResponse().getUserList());
 					 }
+					 
+					 
+					 
+					 
+					 
+					// Sponser image
+					 SponserResponse sporesponse=new SponserResponse();
+					 long sponsersize=0;
+					 
+					 UUID uid=UUID.fromString(bid);
+						HubRequest hubreq1=new HubRequest(263);
+						OrganizationDetails orgdetails=new OrganizationDetails();
+						orgdetails.setBoardId(uid);
+						 hubreq1.setRequestParam(orgdetails);
+						 String response1=cricketSocialRestTemplateService.userRegistration(hubreq1);
+						 System.out.println("the 263 response is :"+response1);
+						 if(response1 != null){
+						 JSONObject jobj=new JSONObject(response1);
+						 JSONObject jresult=jobj.getJSONObject("results");
+						 JSONObject jboardobj=jresult.getJSONObject("boardSponsersResponse");
+						  
+						 if(jboardobj.length() !=0)
+						 {
+							 sporesponse= gson.fromJson(jboardobj.toString(), SponserResponse.class);
+							  
+							  if(sporesponse.getBoardSponsorsList().size() > 0)
+							  {
+								  sponsersize=sporesponse.getBoardSponsorsList().size();
+							  }
+							  
+						 }
+						  
+						 }else{
+							 model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
+								 }
+						 model.addObject("spoResponse", sporesponse);
+						 model.addObject("SponserSize", sponsersize);
+						 
+						 model.addObject("showsponsers", "YES");
+					 
+					 
+					 
+					 
 					
 					 
 				}else{
