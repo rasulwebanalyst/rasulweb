@@ -12,7 +12,7 @@
  <title>Cricket Social</title>
  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
   <!-- responsive css -->
- <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
+ <%-- <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet"> --%>
   <style>
 
 table{

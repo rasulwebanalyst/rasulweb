@@ -72,7 +72,6 @@
  
 		
   viewFlag=1;
-	
 
    </script> 
    
@@ -376,6 +375,32 @@ function buddySearch(ele){
 					                          	}else{
 					                          	      	htm += '<span>'+users[i].city+','+users[i].state+'</span>'; 
 					                          	}
+					                          
+					                          
+
+					                          	 if(users[i].teamboardlist.length > 0)
+						                          {
+					                          		 htm +="<i class='fa fa-eye' aria-hidden='true' style='float: right;' onmouseover=popup('"+users[i].userId+"')></i>";
+
+					                          		htm +="<div id='popupcontent"+users[i].userId+"'>"
+					                          		htm +="<div id='dropdown"+users[i].userId+"' class='dropdown-content' style='display:none;'>";
+							                         
+							                          for(var j in users[i].teamboardlist){
+							                        	  
+							                          var teamlist=users[i].teamboardlist[j];
+							              
+							                          htm +="<li style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 114px;'>"+teamlist.boardName+"</li>";
+							                          
+							                          }
+							                          htm +="</div>";
+							                          htm +="</div>";
+							                          
+							                          htm +="<div id='popup"+users[i].userId+"' style='display:none;'></div>"
+							                         
+							                      
+						                          
+						                          }
+					                          
 
 					                          htm+='</h4>'
 					                          +'<div class="headRight" >';
@@ -464,7 +489,23 @@ function buddySearch(ele){
 	
 	
 	
-} 
+}
+
+function popup(id)
+{
+	//alert(id);
+	
+	var content=$("#popupcontent"+id).val();
+	var content1=$("#popupcontent"+id).text();
+	var content2=$("#popupcontent"+id).html();
+	console.log("AAAAAAAAAAAAAAAAAAA :"+content);
+	console.log("BBBBBBBBBBBBBBBBBBB :"+content1);
+	console.log("CCCCCCCCCCCCCCCCCCC :"+content2);
+	
+	$("#popup"+id).html(content2);
+	$("#popup"+id).show();
+	$("#dropdown"+id).show();
+}
 
 
 

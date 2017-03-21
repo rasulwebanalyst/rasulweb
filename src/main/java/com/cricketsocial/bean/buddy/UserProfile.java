@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import com.cricketsocial.bean.board.BoardProfile;
+
 public class UserProfile {
 	
 	
@@ -84,10 +86,19 @@ public class UserProfile {
 	
 	private String designation;
 	
+	private List<BoardProfile> teamboardlist;
 	
 	
 	
 	
+	
+	
+	public List<BoardProfile> getTeamboardlist() {
+		return teamboardlist;
+	}
+	public void setTeamboardlist(List<BoardProfile> teamboardlist) {
+		this.teamboardlist = teamboardlist;
+	}
 	public String getDesignation() {
 		return designation;
 	}

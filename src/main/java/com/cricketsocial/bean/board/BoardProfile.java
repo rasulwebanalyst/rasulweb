@@ -80,7 +80,20 @@ public class BoardProfile {
 	private List<UserProfile> ownerList;
 	
 	
-	
+	 private List<BoardProfile> leagueBoardList;
+	 
+	 
+	 
+	 
+	 
+
+	public List<BoardProfile> getLeagueBoardList() {
+		return leagueBoardList;
+	}
+
+	public void setLeagueBoardList(List<BoardProfile> leagueBoardList) {
+		this.leagueBoardList = leagueBoardList;
+	}
 
 	public List<UserProfile> getOwnerList() {
 		return ownerList;

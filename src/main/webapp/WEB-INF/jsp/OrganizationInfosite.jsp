@@ -73,7 +73,8 @@ height:100%;
       <div class="modal-body">
         
         <div id="RoasterPopupText">
-        <p style="text-align: center; id="RoasterPopupText">Please login or Signup to proceed further.</p>
+        <!-- <p style="text-align: center; id="RoasterPopupText">Please login or Signup to proceed further.</p> -->
+        <p style="text-align: center; id="RoasterPopupText">You have signed in as a limited access user, Kindly signup/login with cricketsocial for full access.</p>
         <ol type="number" class="roa-ol">
         	
         </ol>

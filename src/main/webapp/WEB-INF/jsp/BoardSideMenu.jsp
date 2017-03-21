@@ -5,6 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.12/jquery.bxslider.css" rel="stylesheet" type="text/css">
 </head>
 
 <style>
@@ -13,7 +15,7 @@
  /*  margin: 80px auto; */
   position: relative;
  /*  width: 240px; */
-  height: 200px;
+  height: 230px;
   padding: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
@@ -24,9 +26,16 @@
   left: 10px;
   right: 10px;
   bottom: 10px;
+} 
+
+.ImageBox { max-width: 1000px; margin: auto; }
+
+.eye {
+z-index: 9;
+right: -106px;
+top: 100px;
 }
-
-
+	
 
 </style>
 
@@ -126,16 +135,33 @@
                         			<c:when test="${sponsersize == 0 }">
 	                            	</c:when>
 	                            	<c:otherwise>
-	                            	<li>
+	                            	<li style="border-bottom: 0;">
 	                            	<a style="margin-left: 47px;">Sponsers</a>
-                            	<div id="slideshow">
+                            	<%-- <div id="slideshow">
                             	<c:forEach var="sponser" items="${spoResponse.boardSponsorsList}">
 		    <div>
-		     <img style="width: 146px; height: 184px;" src="${sponser.imageUrl}">
+		     <img style="width: 146px; height: 184px; margin-bottom: 10px;" src="${sponser.imageUrl}">
+		     <span style="margin-left: 43px;">${sponser.sponsorName}<span>
 		   </div>
 		 
 		</c:forEach>
-		</div>
+		</div> --%>
+		
+		
+		<div class="ImageBox">
+		<ul class="bxslider">
+		
+		<c:forEach var="sponser" items="${spoResponse.boardSponsorsList}">
+		    <div>
+		      <li><img src="${sponser.imageUrl}" /></li>
+		   </div>
+		 
+		</c:forEach>
+		
+		</ul>
+	</div>
+		
+		
                             	</li>
 	                            	</c:otherwise>
 	                            	</c:choose> 
@@ -150,9 +176,9 @@
                     
 		                    
 		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.12/jquery.bxslider.js" type="text/javascript"></script>
 		
-		
-		 <script type="text/javascript">
+		  <script type="text/javascript">
 		
 		$("#slideshow > div:gt(0)").hide();
 
@@ -163,11 +189,38 @@
 		    .fadeIn(1000)
 		    .end()
 		    .appendTo('#slideshow');
-		}, 3000);
+		}, 4000);
 		
 		
 		</script> 
-		
+		 
+		 
+		 
+		 <script>
+		$(window).load(function(){
+		  $('.bxslider').bxSlider({
+		  		/* pager	:	false,
+		  		auto	:	true,	 */
+			  /* auto: true,
+			  speed: 500,
+			  pause: 3000,
+			  pager: false,
+			  controls: true,
+			  responsive:true, */
+			  
+			 /*  pagerCustom: '#bx-pager',
+              randomStart: false,
+              controls: true,
+              auto: true */
+              
+			  pager	:	false,
+		  		auto	:	true,
+		  		stopAutoClickOn	:	true
+		  });
+		});
+	</script>
+		 
+		 
 		
 </body>
 </html>

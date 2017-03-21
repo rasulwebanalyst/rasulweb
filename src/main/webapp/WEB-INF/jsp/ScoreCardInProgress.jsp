@@ -12,7 +12,7 @@
 
     <title>Cricket Social</title>
         <!-- responsive css -->
- <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
+ <%-- <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">    --%>
   <style>
 
 table{

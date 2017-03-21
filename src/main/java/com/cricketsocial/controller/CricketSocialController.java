@@ -43762,6 +43762,29 @@ public ModelAndView Organizationdetailssite(HttpServletRequest req, @PathVariabl
 	return mav;
 }
 
+@RequestMapping(value="/lockScorecard" , method=RequestMethod.POST)
+public @ResponseBody String lockScorecard(HttpServletRequest request, @RequestBody TournamentScheduler scheduler)
+{
+String response=null;
+
+try{
+	
+	hubReq =new HubRequest(275);
+	ModelMap map=new ModelMap();
+	map.put("tournamentScheduler", scheduler.getTournamentScheduler());
+	
+	hubReq.setRequestParam(map);
+	
+    response=cricketSocialRestTemplateService.userRegistration(hubReq);
+    
+    System.out.println("The 275 response is  :"+response);
+	
+}catch(Exception e){
+	e.printStackTrace();
+}
+
+return response;
+}
 
 
 
