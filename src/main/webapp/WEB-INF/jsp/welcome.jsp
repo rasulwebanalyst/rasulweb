@@ -1151,6 +1151,13 @@ $(document).ready(function()
 			displaynotification('Sorry! Match schedule has been updated, Please check your updated E-Mail',3000);
 			}
 	
+	
+	var Unlock="${Unlock}";
+	if(Unlock != "" && Unlock != null)
+		{
+			displaynotification(Unlock,3000);
+			}
+	
 		});
 		
 		

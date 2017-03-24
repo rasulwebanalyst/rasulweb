@@ -62,7 +62,107 @@
 <!--  <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject'
 
-</script> -->
+</script> -->hidden
+
+
+
+
+<style>
+.media.tool-list {
+	overflow: visible;
+}
+.tool-list .media-body {
+	overflow: visible;
+}
+.tool-list .media-body .tooltiptext1 {
+	height: auto;
+	
+} 
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+    color: #FFF;
+    opacity: 1;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+
+.tooltip1 {
+   
+    float: right;
+   
+}
+
+.tooltip1 .tooltiptext1 {
+    visibility: hidden;
+width: 200px;
+background-color: #555;
+color: #fff;
+text-align: center;
+border-radius: 6px;
+padding: 5px 0;
+position: absolute;
+z-index: 1;
+top: auto;
+right: -200px;
+margin-top: -10px;
+opacity: 0;
+transition: opacity 1s;
+}
+
+.tooltip1 .tooltiptext1::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltip1:hover .tooltiptext1 {
+    visibility: visible;
+    opacity: 1;
+}
+</style>
+
+
+
 
 <%@ include file="GoogleAnalytical.jsp" %>
  
@@ -353,7 +453,7 @@ function buddySearch(ele){
 																							
 											htm +='<input type="hidden" value="'+ctx+'/buddy/'+users[i].firstName.trim()+'/'+users[i].userId.trim()+'" name="url" id="url'+sequence+'">';
 											
-												htm +='<div class="media">'
+												htm +='<div class="media tool-list">'
 					                            +'<div class="media-left">'
 					                          +'<a href="'+ctx+'/buddy/'+users[i].firstName.trim()+'/'+users[i].userId.trim()+'">';
 					                          	if(users[i].userImageUrl != null && users[i].userImageUrl != ""){
@@ -378,7 +478,7 @@ function buddySearch(ele){
 					                          
 					                          
 
-					                          	 if(users[i].teamboardlist.length > 0)
+					                          	/*  if(users[i].teamboardlist.length > 0)
 						                          {
 					                          		 htm +="<i class='fa fa-eye' aria-hidden='true' style='float: right;' onmouseover=popup('"+users[i].userId+"')></i>";
 
@@ -389,17 +489,92 @@ function buddySearch(ele){
 							                        	  
 							                          var teamlist=users[i].teamboardlist[j];
 							              
-							                          htm +="<li style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 114px;'>"+teamlist.boardName+"</li>";
+							                          htm +="<li>"+teamlist.boardName+"";
+							                          
+							                          var leagueboardlist=users[i].teamboardlist[j].leagueBoardList;
+							                          
+							                          
+							                          if(leagueboardlist!=null){
+							                        	 
+							                        		  htm +=" afflicated to ";
+							                        		  
+							                        		  
+							                        		  htm +=" <div class='tooltip'>Leagues";
+							                        		  htm +="<span class='tooltiptext'><ul>";
+							                        		  for(var k in leagueboardlist){
+							                        			  htm +="<li>"+leagueboardlist[k].boardName+"</li>";
+							                        		  
+							                        		  }
+							                        			  htm +="</ul></span>";
+							                        		  htm +="</div>";
+							                          }
+							                          
+							                          htm +="</li>";
 							                          
 							                          }
 							                          htm +="</div>";
 							                          htm +="</div>";
 							                          
 							                          htm +="<div id='popup"+users[i].userId+"' style='display:none;'></div>"
-							                         
-							                      
+						                          } */
 						                          
+						                          
+						                          
+						                          
+						                          
+						                          
+						                          if(users[i].teamboardlist.length > 0)
+						                          {
+						                        	  
+						                        	  htm +=" <div class='tooltip1'><i class='fa fa-eye' aria-hidden='true' style='float: right;'></i>";
+					                        		  htm +="<div class='tooltiptext1'>";
+					                        		  
+
+					                          		htm +="<div id='dropdown"+users[i].userId+"' class='' >";
+							                         
+							                          for(var j in users[i].teamboardlist){
+							                        	  
+							                          var teamlist=users[i].teamboardlist[j];
+							              
+							                          htm +="<li>"+teamlist.boardName;
+							                          
+							                          var leagueboardlist=users[i].teamboardlist[j].leagueBoardList;
+							                          
+							                          
+							                          if(leagueboardlist!=null){
+							                        	 
+							                        		/*   htm +=" afflicated to "; */
+							                        		  
+							                        		  
+							                        		  htm +=" <div class='tooltip'>Leagues";
+							                        		  htm +="<span class='tooltiptext'><ul>";
+							                        		  for(var k in leagueboardlist){
+							                        			  htm +="<li>"+leagueboardlist[k].boardName+"</li>";
+							                        		  
+							                        		  }
+							                        			  htm +="</ul></span>";
+							                        		  htm +="</div>";
+							                          }
+							                          
+							                          htm +="</li>";
+							                          
+							                          }
+							                          htm +="</div>";
+							                          
+							                          htm +="</div>";
+					                        		  htm +="</div>";
+							                          
 						                          }
+						                          
+						                          
+						                          
+						                          
+						                          
+					                          	 
+					                          	 
+					                          	 
+					                          	 
+					                          	 
 					                          
 
 					                          htm+='</h4>'

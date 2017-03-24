@@ -265,7 +265,7 @@ var formatAMPMTime = function(date) {
                         	<%--  <a href="${pageContext.request.contextPath}/${Batsman.teamBoardInfo.boardName}/board/${Batsman.teamBoardInfo.boardId}">${Batsman.teamBoardInfo.boardName}</a> --%>
                         	
                         	<a style="float: left;text-overflow: ellipsis; overflow: hidden;  width: 104px;  white-space: nowrap;" href="javascript:void(0);" onclick="PleaseLogin()">${Batsman.teamBoardInfo.boardName}</a> 
-                        	 <a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="PleaseLogin()">View Score</a> 
+                        	 <a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" onclick="showScoreCard('${Batsman.tournamentSchedulerId}','${BoradInfo.boardId}')">View Score</a> 
                         	 </p> 
                         	 
                         	</div></li>
@@ -296,7 +296,7 @@ var formatAMPMTime = function(date) {
                         	<p class="cs-list-team">
                         	<%-- <a href="${pageContext.request.contextPath}/${Bowler.teamBoardInfo.boardName}/board/${Bowler.teamBoardInfo.boardId}"> ${Bowler.teamBoardInfo.boardName}</a> --%>
                         	<a style="float: left;text-overflow: ellipsis; overflow: hidden;  width: 104px;  white-space: nowrap;" href="javascript:void(0);" onclick="PleaseLogin()"> ${Bowler.teamBoardInfo.boardName}</a> 
-                        	 <a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" href="javascript:void(0);" onclick="PleaseLogin()">View Score</a> 
+                        	 <a class="vw-score" style="float: right; color: #224e6b; font-size: 10px;" href="javascript:void(0);" href="javascript:void(0);" onclick="showScoreCard('${Bowler.tournamentSchedulerId}','${BoradInfo.boardId}')">View Score</a> 
                         	 </p> 
                         	</div>
                         	</li>
@@ -352,7 +352,7 @@ var formatAMPMTime = function(date) {
                            
                         	 
                         	 </c:otherwise> 
-                        	 </c:choose> (<a href="javascript:void(0);" onclick="PleaseLogin()">${completed.winTeamName}</a>:${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}, <a href="javascript:void(0);" onclick="PleaseLogin()">${completed.loseTeamName}</a>:${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers})  </span><a class="vw-score" href="javascript:void(0);" onclick="PleaseLogin()">View Score</a></li>
+                        	 </c:choose> (<a href="javascript:void(0);" onclick="PleaseLogin()">${completed.winTeamName}</a>:${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}, <a href="javascript:void(0);" onclick="PleaseLogin()">${completed.loseTeamName}</a>:${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers})  </span><a class="vw-score" href="javascript:void(0);" onclick="showScoreCard('${completed.tournamentSchedulerId}','${completed.leagueCreatedBy}')">View Score</a></li>
                         	</c:when>
                         	<c:otherwise>
                         	<li><span class="txt-flow"> <%--  <a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName} </a> ${completed.statusOfMatch} --%>
@@ -379,7 +379,7 @@ var formatAMPMTime = function(date) {
                            </c:choose>
                         	 </c:otherwise>
                         	 </c:choose>
-                        	 (<a href="javascript:void(0);" onclick="PleaseLogin()">${completed.winTeamName}</a>:${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}, <a href="javascript:void(0);" onclick="PleaseLogin()">${completed.loseTeamName}</a>:${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers})   </span><a class="vw-score" href="javascript:void(0);" onclick="PleaseLogin()">View Score</a></li>
+                        	 (<a href="javascript:void(0);" onclick="PleaseLogin()">${completed.winTeamName}</a>:${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}, <a href="javascript:void(0);" onclick="PleaseLogin()">${completed.loseTeamName}</a>:${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers})   </span><a class="vw-score" href="javascript:void(0);" onclick="showScoreCard('${completed.tournamentSchedulerId}','${completed.leagueCreatedBy}')">View Score</a></li>
                         	</c:otherwise>
                         	</c:choose>
                         	
@@ -414,12 +414,12 @@ var formatAMPMTime = function(date) {
                         	
                         	
                         	<c:if test="${upcomming.status eq 'InProgress'}">
-                        	<a class="vw-score" href="javascript:void(0);" onclick="PleaseLogin()">Live Score</a>
+                        	<a class="vw-score" href="javascript:void(0);" onclick="showScoreCardInProgress('${upcomming.tournamentSchedulerId}','${upcomming.leagueCreatedBy}')">Live Score</a>
                         	
                         	</c:if>
                         	<c:if test="${upcomming.status eq 'Upcoming'}">
                         	
-                        	<a class="vw-score" href="javascript:void(0);" onclick="PleaseLogin()">View Score</a>
+                        	<a class="vw-score" href="javascript:void(0);" onclick="showScoreCardInProgress('${upcomming.tournamentSchedulerId}','no')">View Score</a>
                         	</c:if>
                         	
                         	

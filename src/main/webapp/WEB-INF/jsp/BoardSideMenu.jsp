@@ -49,6 +49,22 @@ right: -2px;
 left: -2px;
 }
 
+.bx-viewport {
+height: 225px !important;
+}
+ul.bxslider li img {
+margin-bottom: 2px !important;
+}
+ul.bxslider li {
+   text-align: center;
+   margin-bottom: 0;
+   padding-bottom: 5px;
+   background: #e9eaed;
+}
+.bx-wrapper .bx-controls-direction a {
+top: auto;
+bottom: 5px;
+}
 
 </style>
 
@@ -149,7 +165,7 @@ left: -2px;
 	                            	</c:when>
 	                            	<c:otherwise>
 	                            	<li style="border-bottom: 0 !important;">
-	                            	<a >Sponsers</a>
+	                            	<a >sponsors</a>
 		
 		<div class="ImageBox" style="margin-top: 5px;">
 		<ul class="bxslider">

@@ -262,6 +262,36 @@ var formatAMPMTime = function(date) {
 
   </div>
 </div>
+
+
+
+<div id="UnlockScoreCard" class="modal" role="dialog"
+		style="display: none;">
+		<div class="modal-dialog">
+
+			<div class="modal-content">
+				<!--  <div class="modal-header">
+        <button type="button" class="close" onclick="RoasterPopup()" data-dismiss="modal">&times;</button>
+        </div> -->
+
+				<div class="modal-body">
+					<p style="text-align:center;">Score Card has been locked do you want to send request to Admin</p>
+					<br>
+				</div>
+				
+				<input type="hidden" id="lockschedulerid">
+				<input type="hidden" id="lockschedulertime">
+				
+				<div class="modal-footer action">
+					<button type="button" onclick="okUnlockScoreCard()" class="btn btn-default ok">OK</button>
+					<button type="button" onclick="cancelUnlockScoreCard()" class="btn btn-default ok">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
       <div class="col-md-10">
       		<div class="col-md-12 whiteBox">
 		          <h1 class="">Schedule & Scores</h1>
@@ -910,8 +940,8 @@ var formatAMPMTime = function(date) {
                           <c:otherwise>
                           
                           
-                          <a href="javascript:void(0)" onclick="LOCKEDEDITSCORECARD()"><i class="fa fa-pencil" title="Edit Profile"></i></a>
-                        	 <a href="javascript:void(0)" onclick="LOCKEDEDITSCORECARD()">Edit Scorecard</a>
+                          <a href="javascript:void(0)" onclick="LOCKEDEDITSCORECARD('${completed.tournamentSchedulerId }','${completed.gameDate}')"><i class="fa fa-pencil" title="Edit Profile"></i></a>
+                        	 <a href="javascript:void(0)" onclick="LOCKEDEDITSCORECARD('${completed.tournamentSchedulerId }','${completed.gameDate}')">Edit Scorecard</a>
                           
                           </c:otherwise>
                           
@@ -1676,7 +1706,7 @@ var dateString = null;
 				    	
 				    }else{
 				    	
-				    	htmlco3+="<td><a href=javascript:void(0); onclick=LOCKEDEDITSCORECARD()><i class='fa fa-pencil' title='Edit Profile'></i></a><a href=javascript:void(0); onclick=LOCKEDEDITSCORECARD()>Edit Scorecard</a></td>";
+				    	htmlco3+="<td><a href=javascript:void(0); onclick=LOCKEDEDITSCORECARD('"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].gameDate+"')><i class='fa fa-pencil' title='Edit Profile'></i></a><a href=javascript:void(0); onclick=LOCKEDEDITSCORECARD('"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].gameDate+"')>Edit Scorecard</a></td>";
 				    }
 				    
 				    
@@ -1939,11 +1969,90 @@ var dateString = null;
                  		}
                  	}
                  	
-                 	function LOCKEDEDITSCORECARD()
+                 	function LOCKEDEDITSCORECARD(tid,date)
                  	{
-                 		showNotification("Score card has been locked, Please contact admin", 2000);
-             			hide_notificationpoup(2000);
+             			
+             			var datestr=Unlockdate(date);
+             			console.log(datestr);
+        				
+        				$("#lockschedulerid").val(tid);
+        				$("#lockschedulertime").val(datestr);
+        				
+             			
+             			$("#UnlockScoreCard").show();
+             			
                  	}
+                 	
+                 	function cancelUnlockScoreCard()
+                 	{
+                 		$("#UnlockScoreCard").hide();
+                 	}
+                 	
+                 	function okUnlockScoreCard(){
+                 		
+                 		var tid=$("#lockschedulerid").val();
+        				var date=$("#lockschedulertime").val();
+        				
+        				var request={
+        						tournamentSchedulerId : tid,
+        						gameTime : date
+        				}
+                 		
+        				
+        				$.ajax({		
+        					type :"POST",
+        					url : "${pageContext.request.contextPath}/unlockScoreCardmail",
+        					contentType : "application/json; charset=utf-8",
+        					data : JSON.stringify(request),
+        					success : function(response){
+        						
+        						//alert(response);
+        						if(response != null){
+        							var res=JSON.parse(response);
+        							console.log(res.results);
+        							console.log(res.results.MailStatus)
+        							if(res.results.MailStatus == 'SUCESS'){
+        								
+        								$("#UnlockScoreCard").hide();
+        								 displaynotification('Request mail has been sent to Owner',2000);
+        								
+        							}
+        						}
+        						
+        					}
+        					
+        					
+        				})
+        				
+        				
+        				
+                 	}
+                 	
+                 	
+                 	
+                 	function Unlockdate(date2) {
+               		 
+                 		
+                 		var date1=date2.split("IST")[0];
+               		 
+                        var date = date1;
+                		    var offset = new Date().getTimezoneOffset() * 60 * 1000;
+                		var gettingFromServer= new Date(date);
+                		gettingFromServer = new Date(gettingFromServer.valueOf() - offset);
+                		 
+              		  var hours = gettingFromServer.getHours();
+              		  var minutes = gettingFromServer.getMinutes();
+              		  var ampm = hours >= 12 ? 'PM' : 'AM';
+              		  hours = hours % 12;
+              		  hours = hours ? hours : 12; // the hour '0' should be '12'
+              		  minutes = minutes < 10 ? '0'+minutes : minutes;
+              		  hours = hours < 10 ? '0'+hours : hours ;
+              		  var strTimeHours = hours + ':' + minutes +" "+ ampm;
+              		  return strTimeHours;
+              		};
+                 	
+                 	
+                 	
                 	</script>
    
 </body>

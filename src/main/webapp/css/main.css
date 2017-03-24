@@ -141,6 +141,26 @@ table.engineTable {
 #feedMainDIV .media, #feedMainDIV .media-body {
 	overflow: visible;
 }
+
+
+
+.bx-wrapper .bx-controls-direction a.bx-prev {
+	background: url('../images/bx-left.png');
+	width: 14px;
+	height: 14px;
+	left: 3px;
+}
+
+.bx-wrapper .bx-controls-direction a.bx-next {
+	background: url('../images/bx-right.png');
+	width: 14px;
+	height: 14px;
+	right:3px;
+}
+
+
+
+
 .feedhit li {
 	list-style: none;	
     padding: 5px 10px 10px 0;
