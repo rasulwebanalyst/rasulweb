@@ -79,44 +79,47 @@
 	
 } 
 .tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
-    color: #FFF;
-    opacity: 1;
+position: unset;
+display: inline-block;
+border-bottom: 1px dotted black;
+color: #4c9fe1;
+opacity: 1;
+font-weight: 600;
 }
 
 .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -60px;
-    opacity: 0;
-    transition: opacity 1s;
+display: none;
+   visibility: hidden;
+width: 200px;
+background-color: #eee;
+color: #555;
+text-align: center;
+border-radius: 0px;
+padding: 5px 0;
+position: absolute;
+z-index: 1;
+top: auto;
+right: -205px;
+opacity: 0;
+transition: opacity 1s;
+margin-top: -15px;
 }
 
 .tooltip .tooltiptext::after {
     content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
+position: absolute;
+top: 7px;
+left: -5px;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: transparent #555 transparent transparent;
 }
 
 .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
+    display: block;
 }
 
 
@@ -128,37 +131,53 @@
 }
 
 .tooltip1 .tooltiptext1 {
-    visibility: hidden;
+display: none;
+   visibility: hidden;
 width: 200px;
-background-color: #555;
-color: #fff;
+background-color:  #eee;
+color: #555;
 text-align: center;
-border-radius: 6px;
+border-radius: 0px;
 padding: 5px 0;
 position: absolute;
 z-index: 1;
-top: auto;
-right: -200px;
+right: -177px;
 margin-top: -10px;
 opacity: 0;
 transition: opacity 1s;
+box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
 }
 
 .tooltip1 .tooltiptext1::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
+ content: "";
+position: absolute;
+top: 11px;
+left: -5px;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: transparent #555 transparent transparent;
 }
 
 .tooltip1:hover .tooltiptext1 {
     visibility: visible;
     opacity: 1;
+    display: block;
 }
+
+
+.tooltiptext1 div li:last-child {
+border: none !important;
+}
+
+
+
+
+
+.tooltiptext div li,.tooltiptext1 div li  {
+text-align: left;
+}
+
 </style>
 
 
@@ -526,8 +545,8 @@ function buddySearch(ele){
 						                          if(users[i].teamboardlist.length > 0)
 						                          {
 						                        	  
-						                        	  htm +=" <div class='tooltip1'><i class='fa fa-eye' aria-hidden='true' style='float: right;'></i>";
-					                        		  htm +="<div class='tooltiptext1'>";
+						                        	  htm +=" <div onmouseover=getposition("+i+") id=eye"+i+" class='tooltip1'><i class='fa fa-eye' aria-hidden='true' style='float: right;'></i>";
+					                        		  htm +="<div id=showtool"+i+" class='tooltiptext1'>";
 					                        		  
 
 					                          		htm +="<div id='dropdown"+users[i].userId+"' class='' >";
@@ -981,6 +1000,21 @@ function displaynotification(message,sec)
 			 $("#notificationPopupDiv").show();
 		 	setTimeout(function() {$("#notificationPopupDiv").fadeOut(sec); }, sec);
 }
+</script>
+
+<script type="text/javascript">
+
+function getposition(i){
+	console.log(i);
+	var p = $( "#eye"+i);
+	var position = p.position();
+	
+	
+	$('#showtool'+i).css('top', position.top);
+}
+
+
+
 </script>
 	
 </body>

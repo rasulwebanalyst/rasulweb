@@ -1255,6 +1255,10 @@ public ModelAndView userprofile(HttpServletRequest request)
 									 }else if(score.equalsIgnoreCase("InprogressCard"))
 									 {
 										 model=new ModelAndView("redirect:/showScoreCardForInProgress/boardId/"+boardId+"/matchId/"+matchId); 
+									 }else if(score.equalsIgnoreCase("MyScore")){
+										 
+										 model=new ModelAndView("redirect:/showScoreCard/matchId/"+matchId);										 
+										 
 									 }
 									 }else{
 								
@@ -29542,7 +29546,18 @@ public ModelAndView showScoreCardOfPlayer(HttpServletRequest req,@PathVariable S
 			
 			 
 		}else{
-			 mav=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
+			
+			
+			// for my score dummy
+			
+			session.setAttribute("ScoreCardSession","MyScore");
+			//session.setAttribute("ScoreCardBoardId", boardId);
+			session.setAttribute("ScoreCardSessionMatchId", matchId);
+			mav=new ModelAndView("redirect:/showScoreCardSessionOut/boardId/boardid/matchId/"+matchId);
+			
+			System.out.println("The myscore dummy Page");
+			
+			// mav=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 		}
 		 
 		 
@@ -37000,7 +37015,15 @@ public ModelAndView showScoreCardOfPlayerPublicProfile(HttpServletRequest req,@P
 			
 			 
 		}else{
-			 mav=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
+			// mav=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
+			
+			// for my score dummy
+			
+						session.setAttribute("ScoreCardSession","MyScore");
+						session.setAttribute("ScoreCardSessionMatchId", matchId);
+						mav=new ModelAndView("redirect:/showScoreCardSessionOut/boardId/boardid/matchId/"+matchId);
+						
+						System.out.println("The myscore dummy Page");
 		}
 		 
 		 
@@ -42107,6 +42130,7 @@ public ModelAndView showScoreCardSessionout(HttpServletRequest req,@PathVariable
 		 try{
 	     mav = new ModelAndView("ScoreCardSessionOut");
 	     
+	   
 	     
 	     HubRequest hubReq1=new HubRequest();
 		 hubReq1.setMsgType(40);
@@ -42124,7 +42148,6 @@ public ModelAndView showScoreCardSessionout(HttpServletRequest req,@PathVariable
 				
 			}
 		 }
-	     
 	     
 		 hubReq= new HubRequest();
 		 hubReq.setMsgType(243);

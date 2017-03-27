@@ -90,7 +90,21 @@ bottom: 5px;
                         
                      		<ul class="leftMenu">
                      		
+                     		<c:choose>
+                     		
+                     		<c:when test="${BoradInfo.boardId ne null}">
                      		<li><a href="${pageContext.request.contextPath}/Organizationdetailssite/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/board-icon.png"></i>Board Info</a></li>
+                     		
+                     		</c:when>
+                     		<c:otherwise>
+                     		
+                     		<li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/board-icon.png"></i>Board Info</a></li>
+                     		</c:otherwise>
+                     		
+                     		
+                     		</c:choose>
+                     		
+                     		<%-- <li><a href="${pageContext.request.contextPath}/Organizationdetailssite/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/board-icon.png"></i>Board Info</a></li> --%>
                      		<li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/pitch-icon.png"></i>Pitch</a></li>
                      		
                             	<li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyScore.png"></i>Score</a></li>

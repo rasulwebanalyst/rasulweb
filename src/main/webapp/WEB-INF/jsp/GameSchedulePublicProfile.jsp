@@ -275,7 +275,7 @@ var formatAMPMTime = function(date) {
         </div> -->
 
 				<div class="modal-body">
-					<p style="text-align:center;">Score Card has been locked do you want to send request to Admin</p>
+					<p style="text-align:center;">Sorry !, Score Card has been locked. Do you want to send request to admin?</p>
 					<br>
 				</div>
 				
@@ -940,8 +940,8 @@ var formatAMPMTime = function(date) {
                           <c:otherwise>
                           
                           
-                          <a href="javascript:void(0)" onclick="LOCKEDEDITSCORECARD('${completed.tournamentSchedulerId }','${completed.gameDate}')"><i class="fa fa-pencil" title="Edit Profile"></i></a>
-                        	 <a href="javascript:void(0)" onclick="LOCKEDEDITSCORECARD('${completed.tournamentSchedulerId }','${completed.gameDate}')">Edit Scorecard</a>
+                          <a href="javascript:void(0)" onclick="LOCKEDEDITSCORECARD('${completed.tournamentSchedulerId }','${completed.gameDate}','${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')"><i class="fa fa-pencil" title="Edit Profile"></i></a>
+                        	 <a href="javascript:void(0)" onclick="LOCKEDEDITSCORECARD('${completed.tournamentSchedulerId }','${completed.gameDate}','${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')">Edit Scorecard</a>
                           
                           </c:otherwise>
                           
@@ -1706,7 +1706,7 @@ var dateString = null;
 				    	
 				    }else{
 				    	
-				    	htmlco3+="<td><a href=javascript:void(0); onclick=LOCKEDEDITSCORECARD('"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].gameDate+"')><i class='fa fa-pencil' title='Edit Profile'></i></a><a href=javascript:void(0); onclick=LOCKEDEDITSCORECARD('"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].gameDate+"')>Edit Scorecard</a></td>";
+				    	htmlco3+="<td><a href=javascript:void(0); onclick=LOCKEDEDITSCORECARD('"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].gameDate+"','${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')><i class='fa fa-pencil' title='Edit Profile'></i></a><a href=javascript:void(0); onclick=LOCKEDEDITSCORECARD('"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].gameDate+"','${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')>Edit Scorecard</a></td>";
 				    }
 				    
 				    
@@ -1969,18 +1969,46 @@ var dateString = null;
                  		}
                  	}
                  	
-                 	function LOCKEDEDITSCORECARD(tid,date)
+                 	function LOCKEDEDITSCORECARD(tid,date,id,tournmentId,tournmentShudulorId,homeId,awayTeamId,date,createdBy)
                  	{
-             			
-             			var datestr=Unlockdate(date);
-             			console.log(datestr);
-        				
-        				$("#lockschedulerid").val(tid);
-        				$("#lockschedulertime").val(datestr);
-        				
-             			
-             			$("#UnlockScoreCard").show();
-             			
+                 		
+                 		
+                 		
+                 		
+                 		var tournamentBean = {
+         					   tournamentId : tournmentId,
+         					   createdBy : id,
+         					   tournamentSchedulerId : tournmentShudulorId,
+         			   }; 
+         			   
+         			  $.ajax({
+         				type :"Post",
+         				url:"${pageContext.request.contextPath}/getScheduleHomeAwayName",
+         				data:JSON.stringify(tournamentBean),
+         				contentType:"application/json",
+         				success:function(response){
+         					
+         					 if(response.length > 0){	  
+         						var datestr=Unlockdate(date);
+                     			console.log(datestr);
+                				$("#lockschedulerid").val(tid);
+                				$("#lockschedulertime").val(datestr);
+                     			$("#UnlockScoreCard").show();
+         					 
+         					 }
+         					 else{					 
+         						 showNotification("You are not a valid user to enter the score", 2000);
+         						 hide_notificationpoup(2000);					 
+         					 }
+         					
+         					
+         				},
+         				error:function(err){
+         					console.log(err);
+         				}
+         				  
+         			  });
+                 		
                  	}
                  	
                  	function cancelUnlockScoreCard()

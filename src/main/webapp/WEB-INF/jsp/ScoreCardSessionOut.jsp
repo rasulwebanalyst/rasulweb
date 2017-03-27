@@ -188,12 +188,28 @@ var formatAMPMTime = function(date) {
                         
                         	<h1 class="noBorder">Full ScoreBoard</h1>  
                              <div>
+                             
+                             
+                             
+                              <div style="float: right;margin-top: -35px;">
+                        <i onclick="facebook()" style="cursor: pointer;">	 <img src="${pageContext.request.contextPath}/images/facebook.png" style="max-width: 22px;margin-right: 5px;"></i>
+			              <i onclick="twitter()" style="cursor: pointer;"> <img src="${pageContext.request.contextPath}/images/twitter.png" style="max-width: 22px;margin-right: 5px;"></i>
+			                    <a href="" id="Whatsappshare" style="display: none;"> <img src="${pageContext.request.contextPath}/images/whatsapp.png" style="max-width: 22px;margin-right: 5px;"></a>
+                        	   
+                        	   </div>
+                             
+                             
+                             
                         		<c:choose>
                         			<c:when test="${scoreCardListSize == 0 }">
 	                                	<div style="color:red">No Details Available</div>
 	                            	</c:when>
                             	
                             	<c:otherwise>
+                            	
+                            	
+                            	<input type="hidden" id="feeddata" value="${scoreCardList.homeTeamName} vs ${scoreCardList.awayTeamName}">
+                            	
                             		<div style="float: left; width: 50%;text-align: left;color: #3253a8">
                                 	<%-- <span style="width: 100%;font-size: 16px">${scoreCardList.homeTeamName} Vs ${scoreCardList.awayTeamName }</span><br> --%>
                                 	<p class="summary" style="width: 100%;font-size: 16px;">${scoreCardList.tournamentName}</p>
@@ -1016,7 +1032,73 @@ var formatAMPMTime = function(date) {
         {
         	window.location.href="${pageContext.request.contextPath}/";
         }
-   </script>            
+   </script>    
+   
+   <script type="text/javascript">
+   
+   
+   
+   
+   $(window).load(function(){
+		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+			 // some code..
+			 var url=window.location.href;
+			 var sharedata=$("#feeddata").val();
+			 var url1="whatsapp://send?text="+sharedata+"        "+url;
+			 console.log(url1);
+			 $("#Whatsappshare").attr("href", url1);
+			 console.log("Device :"+navigator.userAgent)
+			 $("#Whatsappshare").show();
+			}else{
+				console.log("DEsktop"+navigator.userAgent)
+			}
+	});
+   
+   
+   
+   
+   
+   function facebook()
+   {
+   	  
+   	  var url=window.location.href;
+   		console.log(url);
+   	  var data=$("#feeddata").val();
+   	   
+   	var appmsg="hello";
+   	var picture="https://s3.amazonaws.com/prod-cricket-social-images/a63b10b3-69f9-44ad-8487-e7a0f6b9a19c.png?6"
+       
+   	  window
+   	  .open(
+   	 "https://www.facebook.com/dialog/feed?app_id=1654958434805143&display=popup"
+   	  +"&name="+data+""
+   	  + "&link="+url+""
+   	  + '&picture='+picture+''
+   	 
+   	  + "&description=ScoreCard", '',
+   	  'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+   	  return false;
+   	  
+
+   	} 
+   	
+   	function twitter()
+   	{
+   		
+   		var url=window.location.href;
+   		console.log(url);
+   		var sharedata=$("#feeddata").val();
+   		console.log(sharedata);
+   				
+   		window.open('http://twitter.com/share?url='+url+'&text='+sharedata, '', 
+   				'left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+   				
+   	}
+   
+   
+   
+   
+   </script>        
     
 
 </body>
