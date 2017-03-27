@@ -583,6 +583,23 @@ function buddySearch(ele){
 							                          htm +="</div>";
 					                        		  htm +="</div>";
 							                          
+						                          }else{
+						                        	  
+						                          // no record
+						                        	  htm +=" <div onmouseover=getposition("+i+") id=eye"+i+" class='tooltip1'><i class='fa fa-eye' aria-hidden='true' style='float: right;'></i>";
+					                        		  htm +="<div id=showtool"+i+" class='tooltiptext1'>";
+					                        		  
+
+					                          		htm +="<div id='dropdown"+users[i].userId+"' class='' >";
+							                         
+							              
+							                          htm +="<li style='text-align: center;'>no record</li>";
+							                         
+							                          htm +="</div>";
+							                          
+							                          htm +="</div>";
+					                        		  htm +="</div>";
+						                          
 						                          }
 						                          
 						                          

@@ -2042,8 +2042,11 @@ var dateString = null;
         							if(res.results.MailStatus == 'SUCESS'){
         								
         								$("#UnlockScoreCard").hide();
-        								 displaynotification('Request mail has been sent to Owner',2000);
+        								 displaynotification('Request has been sent to admin Successfully',2000);
         								
+        							}else{
+        								$("#UnlockScoreCard").hide();
+        								displaynotification('Something went wrong',2000);
         							}
         						}
         						
