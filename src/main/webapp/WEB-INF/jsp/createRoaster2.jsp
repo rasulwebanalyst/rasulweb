@@ -23,6 +23,124 @@ var sequencNumber2=[];
 </script>
 </head>
 
+
+
+
+<style>
+.media.tool-list {
+	overflow: visible;
+}
+.tool-list .media-body {
+	overflow: visible;
+}
+.tool-list .media-body .tooltiptext1 {
+	height: auto;
+	
+} 
+.tooltip {
+position: unset;
+display: inline-block;
+border-bottom: 1px dotted black;
+color: #4c9fe1;
+opacity: 1;
+font-weight: 600;
+}
+
+.tooltip .tooltiptext {
+display: none;
+   visibility: hidden;
+width: 200px;
+background-color: #eee;
+color: #555;
+text-align: center;
+border-radius: 0px;
+padding: 5px 0;
+position: absolute;
+z-index: 1;
+top: auto;
+right: -205px;
+opacity: 0;
+transition: opacity 1s;
+margin-top: -15px;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+position: absolute;
+top: 7px;
+left: -5px;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: transparent #555 transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
+
+
+
+.tooltip1 {
+   
+    float: right;
+   
+}
+
+.tooltip1 .tooltiptext1 {
+display: none;
+   visibility: hidden;
+width: 200px;
+background-color:  #eee;
+color: #555;
+text-align: center;
+border-radius: 0px;
+padding: 5px 0;
+position: absolute;
+z-index: 1;
+right: -177px;
+margin-top: -10px;
+opacity: 0;
+transition: opacity 1s;
+box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+}
+
+.tooltip1 .tooltiptext1::after {
+ content: "";
+position: absolute;
+top: 11px;
+left: -5px;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: transparent #555 transparent transparent;
+}
+
+.tooltip1:hover .tooltiptext1 {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
+
+
+.tooltiptext1 div li:last-child {
+border: none !important;
+}
+
+
+
+
+
+.tooltiptext div li,.tooltiptext1 div li  {
+text-align: left;
+}
+
+</style>
+
+
+
 <body>
 <%@ include file="CSCommon.jsp" %>
 <%@ include file="BoardHeader.jsp" %>
@@ -257,6 +375,72 @@ var sequencNumber2=[];
 									}else{
 										html += '<span class="auto-black">'+users[i].city+','+users[i].state+'</span>'; 
 									}
+										
+										
+										
+										
+										
+										if(users[i].teamboardlist.length > 0)
+				                          {
+				                        	  
+				                        	  html +=" <div onmouseover=getposition("+i+") id=eye"+i+" class='tooltip1'><i class='fa fa-eye' aria-hidden='true' style='float: right;'></i>";
+			                        		  html +="<div id=showtool"+i+" class='tooltiptext1'>";
+			                        		  
+
+			                          		html +="<div id='dropdown"+users[i].userId+"' class='' >";
+					                         
+					                          for(var j in users[i].teamboardlist){
+					                        	  
+					                          var teamlist=users[i].teamboardlist[j];
+					              
+					                          html +="<li>"+teamlist.boardName;
+					                          
+					                          var leagueboardlist=users[i].teamboardlist[j].leagueBoardList;
+					                          
+					                          
+					                          if(leagueboardlist!=null){
+					                        	 
+					                        		/*   htm +=" afflicated to "; */
+					                        		  
+					                        		  
+					                        		  html +=" <div class='tooltip'>Leagues";
+					                        		  html +="<span class='tooltiptext'><ul>";
+					                        		  for(var k in leagueboardlist){
+					                        			  html +="<li>"+leagueboardlist[k].boardName+"</li>";
+					                        		  
+					                        		  }
+					                        			  html +="</ul></span>";
+					                        		  html +="</div>";
+					                          }
+					                          
+					                          html +="</li>";
+					                          
+					                          }
+					                          html +="</div>";
+					                          
+					                          html +="</div>";
+			                        		  html +="</div>";
+					                          
+				                          }else{
+				                        	  
+				                          // no record
+				                        	  html +=" <div onmouseover=getposition("+i+") id=eye"+i+" class='tooltip1'><i class='fa fa-eye' aria-hidden='true' style='float: right;'></i>";
+			                        		  html +="<div id=showtool"+i+" class='tooltiptext1'>";
+			                          		html +="<div id='dropdown"+users[i].userId+"' class='' >";
+					                          html +="<li style='text-align: center;'>No Details</li>";
+					                         
+					                          html +="</div>";
+					                          
+					                          html +="</div>";
+			                        		  html +="</div>";
+				                          
+				                          }
+
+										
+										
+										
+										
+										
 									html +="</h4><div class='headRight' id=''></div></div></div></li>"; 
         								}
     								}else{

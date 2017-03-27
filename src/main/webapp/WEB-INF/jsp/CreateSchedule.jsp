@@ -25,6 +25,129 @@
   <script src="${pageContext.request.contextPath}/js/cricketSocial/createSchedule.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jstz-1.0.4.min.js"></script>
    <script type="text/javascript" src="${pageContext.request.contextPath}/js/wickedpicker.js"></script>
+   
+   
+   
+   
+   
+   
+<style>
+.media.tool-list {
+	overflow: visible;
+}
+.tool-list .media-body {
+	overflow: visible;
+}
+.tool-list .media-body .tooltiptext1 {
+	height: auto;
+	
+} 
+.tooltip {
+position: unset;
+display: inline-block;
+border-bottom: 1px dotted black;
+color: #4c9fe1;
+opacity: 1;
+font-weight: 600;
+}
+
+.tooltip .tooltiptext {
+display: none;
+   visibility: hidden;
+width: 200px;
+background-color: #eee;
+color: #555;
+text-align: center;
+border-radius: 0px;
+padding: 5px 0;
+position: absolute;
+z-index: 1;
+top: auto;
+right: -205px;
+opacity: 0;
+transition: opacity 1s;
+margin-top: -15px;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+position: absolute;
+top: 7px;
+left: -5px;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: transparent #555 transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
+
+
+
+.tooltip1 {
+   
+    float: right;
+   
+}
+
+.tooltip1 .tooltiptext1 {
+display: none;
+   visibility: hidden;
+width: 200px;
+background-color:  #eee;
+color: #555;
+text-align: center;
+border-radius: 0px;
+padding: 5px 0;
+position: absolute;
+z-index: 1;
+right: -177px;
+margin-top: -10px;
+opacity: 0;
+transition: opacity 1s;
+box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+}
+
+.tooltip1 .tooltiptext1::after {
+ content: "";
+position: absolute;
+top: 11px;
+left: -5px;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: transparent #555 transparent transparent;
+}
+
+.tooltip1:hover .tooltiptext1 {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
+
+
+.tooltiptext1 div li:last-child {
+border: none !important;
+}
+
+
+
+
+
+.tooltiptext div li,.tooltiptext1 div li  {
+text-align: left;
+}
+
+</style>
+   
+   
+   
+   
+   
   
 <script>
         $(document).ready(function () {

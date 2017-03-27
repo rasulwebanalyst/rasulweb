@@ -29059,6 +29059,13 @@ public ModelAndView showScoreCardOfPlayer(HttpServletRequest req,@PathVariable S
 	try{
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
+			
+			
+			
+			session.removeAttribute("ScoreCardSession");
+			 session.removeAttribute("ScoreCardSessionMatchId");
+			
+			
 			UUID userId = (UUID) session.getAttribute("USRID");
 			
 		mav = new ModelAndView("ScoreCardForPlayer");

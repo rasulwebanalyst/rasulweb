@@ -40,6 +40,132 @@
     <script src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/cricketSocial/rosterFeeds.js"></script>
    <script type="text/javascript" src="${pageContext.request.contextPath}/js/cricketSocial/loadfunction.js"></script>
+   
+   
+   
+   
+   
+   <style>
+.media.tool-list {
+	overflow: visible;
+}
+.tool-list .media-body {
+	overflow: visible;
+}
+.tool-list .media-body .tooltiptext1 {
+	height: auto;
+	
+} 
+.tooltip {
+position: unset;
+display: inline-block;
+border-bottom: 1px dotted black;
+color: #4c9fe1;
+opacity: 1;
+font-weight: 600;
+}
+
+.tooltip .tooltiptext {
+display: none;
+   visibility: hidden;
+width: 200px;
+background-color: #eee;
+color: #555;
+text-align: center;
+border-radius: 0px;
+padding: 5px 0;
+position: absolute;
+z-index: 1;
+top: auto;
+right: -205px;
+opacity: 0;
+transition: opacity 1s;
+margin-top: -15px;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+position: absolute;
+top: 7px;
+left: -5px;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: transparent #555 transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
+
+
+
+.tooltip1 {
+   
+    float: right;
+   
+}
+
+.tooltip1 .tooltiptext1 {
+display: none;
+   visibility: hidden;
+width: 200px;
+background-color:  #eee;
+color: #555;
+text-align: center;
+border-radius: 0px;
+padding: 5px 0;
+position: absolute;
+z-index: 1;
+right: -177px;
+margin-top: -10px;
+opacity: 0;
+transition: opacity 1s;
+box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+}
+
+.tooltip1 .tooltiptext1::after {
+ content: "";
+position: absolute;
+top: 11px;
+left: -5px;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: transparent #555 transparent transparent;
+}
+
+.tooltip1:hover .tooltiptext1 {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
+
+
+.tooltiptext1 div li:last-child {
+border: none !important;
+}
+
+
+
+
+
+.tooltiptext div li,.tooltiptext1 div li  {
+text-align: left;
+}
+
+</style>
+   
+   
+   
+   
+   
+   
+   
+   
+   
     <script type="text/javascript">
     
     function tes()
@@ -315,6 +441,65 @@ function buddySearch(key){
 					                          	}else{
 					                          	      	htm += '<span>'+users[i].city+','+users[i].state+'</span>'; 
 					                          	}
+					                       
+					                       
+					                       
+					                       
+					                       
+					                          	if(users[i].teamboardlist.length > 0)
+						                          {
+						                        	  
+						                        	  htm +=" <div onmouseover=getposition("+i+") id=eye"+i+" class='tooltip1'><i class='fa fa-eye' aria-hidden='true' style='float: right;'></i>";
+					                        		  htm +="<div id=showtool"+i+" class='tooltiptext1'>";
+					                          		htm +="<div id='dropdown"+users[i].userId+"' class='' >";
+							                         
+							                          for(var j in users[i].teamboardlist){
+							                        	  
+							                          var teamlist=users[i].teamboardlist[j];
+							              
+							                          htm +="<li>"+teamlist.boardName;
+							                          
+							                          var leagueboardlist=users[i].teamboardlist[j].leagueBoardList;
+							                          if(leagueboardlist!=null){
+							                        		  htm +=" <div class='tooltip'>Leagues";
+							                        		  htm +="<span class='tooltiptext'><ul>";
+							                        		  for(var k in leagueboardlist){
+							                        			  htm +="<li>"+leagueboardlist[k].boardName+"</li>";
+							                        		  
+							                        		  }
+							                        			  htm +="</ul></span>";
+							                        		  htm +="</div>";
+							                          }
+							                          
+							                          htm +="</li>";
+							                          
+							                          }
+							                          htm +="</div>";
+							                          
+							                          htm +="</div>";
+					                        		  htm +="</div>";
+							                          
+						                          }else{
+						                        	  
+						                          // no record
+						                        	  htm +=" <div onmouseover=getposition("+i+") id=eye"+i+" class='tooltip1'><i class='fa fa-eye' aria-hidden='true' style='float: right;'></i>";
+					                        		  htm +="<div id=showtool"+i+" class='tooltiptext1'>";
+					                          		htm +="<div id='dropdown"+users[i].userId+"' class='' >";
+							                          htm +="<li style='text-align: center;'>No Details</li>";
+							                         
+							                          htm +="</div>";
+							                          
+							                          htm +="</div>";
+					                        		  htm +="</div>";
+						                          
+						                          }
+
+					                       
+					                       
+					                       
+					                       
+					                       
+					                       
 					                          htm+='</h4>'
 					                          +'<div class="headRight" >';
 					                      
@@ -586,6 +771,21 @@ function buddySearch(key){
     		 	setTimeout(function() {$("#notificationPopupDiv").fadeOut(sec); }, sec);
     }
     </script>
+    
+    <script type="text/javascript">
+
+function getposition(i){
+	console.log(i);
+	var p = $( "#eye"+i);
+	var position = p.position();
+	
+	
+	$('#showtool'+i).css('top', position.top);
+}
+
+
+
+</script>
     
 </body>
 </html>

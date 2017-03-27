@@ -65,6 +65,17 @@ ul.bxslider li {
 top: auto;
 bottom: 5px;
 }
+
+
+.sponser-Flow{
+text-overflow: ellipsis;
+    overflow: hidden;
+    width: 67%;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+
 </style>
 
 
@@ -185,7 +196,7 @@ bottom: 5px;
 		
 		<c:forEach var="sponser" items="${spoResponse.boardSponsorsList}">
 		    <div>
-		      <li style="text-align: center;"><img style=" margin-bottom: 9px;"  src="${sponser.imageUrl}" /><span>${sponser.sponsorName}</span></li>
+		      <li style="text-align: center;"><img style=" margin-bottom: 9px;"  src="${sponser.imageUrl}" /><span class="sponser-Flow" title="${sponser.sponsorName}">${sponser.sponsorName}</span></li>
 		   </div>
 		 
 		</c:forEach>

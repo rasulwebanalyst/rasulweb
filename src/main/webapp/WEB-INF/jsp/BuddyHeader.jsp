@@ -593,7 +593,7 @@ function buddySearch(ele){
 					                          		htm +="<div id='dropdown"+users[i].userId+"' class='' >";
 							                         
 							              
-							                          htm +="<li style='text-align: center;'>no record</li>";
+							                          htm +="<li style='text-align: center;'>No Details</li>";
 							                         
 							                          htm +="</div>";
 							                          
