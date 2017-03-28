@@ -470,7 +470,7 @@ text-overflow: ellipsis;
   					                        	  
   					                          var teamlist=users[i].teamboardlist[j];
   					              
-  					                        htm +="<li><span class='sponser-Flow' title='"+teamlist.boardName+"'>"+teamlist.boardName+"</span>";
+  					                        html +="<li><span class='sponser-Flow' title='"+teamlist.boardName+"'>"+teamlist.boardName+"</span>";
   					                          
   					                          var leagueboardlist=users[i].teamboardlist[j].leagueBoardList;
   					                          
