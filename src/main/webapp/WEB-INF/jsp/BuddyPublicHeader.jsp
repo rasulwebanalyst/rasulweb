@@ -156,6 +156,14 @@ border: none !important;
 text-align: left;
 }
 
+.sponser-Flow{
+text-overflow: ellipsis;
+    overflow: hidden;
+    width: 67%;
+    display: inline-block;
+    white-space: nowrap;
+}
+
 </style>
    
    
@@ -457,10 +465,10 @@ function buddySearch(key){
 							                        	  
 							                          var teamlist=users[i].teamboardlist[j];
 							              
-							                          htm +="<li>"+teamlist.boardName;
+							                          htm +="<li><span class='sponser-Flow' title='"+teamlist.boardName+"'>"+teamlist.boardName+"</span>";
 							                          
 							                          var leagueboardlist=users[i].teamboardlist[j].leagueBoardList;
-							                          if(leagueboardlist!=null){
+							                          if(leagueboardlist!=null && leagueboardlist.length > 0){
 							                        		  htm +=" <div class='tooltip'>Leagues";
 							                        		  htm +="<span class='tooltiptext'><ul>";
 							                        		  for(var k in leagueboardlist){

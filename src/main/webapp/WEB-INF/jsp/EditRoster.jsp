@@ -23,6 +23,153 @@ var sequencNumber=0;
 </script>
 </head>
 
+
+
+
+<style>
+.media.tool-list {
+	overflow: visible;
+}
+.tool-list .media-body {
+	overflow: visible;
+}
+.tool-list .media-body .tooltiptext1 {
+	height: auto;
+	
+} 
+.tooltip {
+position: unset;
+display: inline-block;
+border-bottom: 1px dotted black;
+color: #4c9fe1;
+opacity: 1;
+font-weight: 600;
+}
+
+.tooltip .tooltiptext {
+display: none;
+   visibility: hidden;
+width: 200px;
+background-color: #eee;
+color: #555;
+text-align: center;
+border-radius: 0px;
+padding: 5px 0;
+position: absolute;
+z-index: 1;
+top: auto;
+right: -205px;
+opacity: 0;
+transition: opacity 1s;
+margin-top: -15px;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+position: absolute;
+top: 7px;
+left: -5px;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: transparent #555 transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
+
+
+
+.tooltip1 {
+   
+    float: right;
+   
+}
+
+.tooltip1 .tooltiptext1 {
+display: none;
+   visibility: hidden;
+width: 200px;
+background-color:  #eee;
+color: #555;
+text-align: center;
+border-radius: 0px;
+padding: 5px 0;
+position: absolute;
+z-index: 1;
+right: -177px;
+margin-top: -10px;
+opacity: 0;
+transition: opacity 1s;
+box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+}
+
+.tooltip1 .tooltiptext1::after {
+ content: "";
+position: absolute;
+top: 11px;
+left: -5px;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: transparent #555 transparent transparent;
+}
+
+.tooltip1:hover .tooltiptext1 {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
+
+
+.tooltiptext1 div li:last-child {
+border: none !important;
+}
+
+
+
+
+
+.tooltiptext div li,.tooltiptext1 div li  {
+text-align: left;
+}
+
+.autoSearchBlcok {
+width: 460px !important;
+margin-left: 0 !important;
+z-index: 9999999 ;
+}
+.autoSearchBlcok .media-heading {
+width: 100% !important;
+}
+
+.autoSearchBlcok .media {
+margin-bottom: 0px !important;
+}
+
+.autoSearchBlcok h4 span {
+font-size: 13px !important;
+}
+
+.autoSearchBlcok .media-left {
+margin-bottom: 0px !important;
+}
+
+
+.sponser-Flow{
+text-overflow: ellipsis;
+    overflow: hidden;
+    width: 67%;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+</style>
+
+
 <body>
  	<div id="RoasterPopup" class="modal" role="dialog" style="display: none;">
   <div class="modal-dialog">
@@ -124,7 +271,7 @@ var sequencNumber=0;
 		                               <div class="col-md-12 noPadding" id="memberListDIV${rosterMember.userId}">
 		                               <span class='palyerCount' id='sequenc${rosterMember.userId}'>${i.count}</span>
 		                                  <input type="text" class="form-control player-entry" readonly style="width:73%; float:left;" value="${rosterMember.userProfile.firstName} ${rosterMember.userProfile.lastName}" placeholder="" id="member${rosterMember.userId}" onkeyup="getBuddiesAutoComplete(this,'memberautoCompleteDIV${i.count}','memberHiddeb${i.count}')">
-			                                 <div class="autoComplete" id="memberautoCompleteDIV${i.count}" style="display:none;margin-top: 37px;">
+			                                 <div class="autoSearchBlcok" id="memberautoCompleteDIV${i.count}" style="display:none;margin-top: 37px;">
 													<ul>
 			                                        	<li>Vikki</li>
 			                                        </ul>                                  	
@@ -151,7 +298,7 @@ var sequencNumber=0;
                                 <div class="col-md-12 noPadding">
                                   <input type="text" class="form-control" value="" style="width:80%; float:left;" placeholder="" id="addMemberNameDIV" onkeyup="getBuddiesAutoComplete(this,'addMemberautoCompleteDIV','addMemberIDDIV')">
                                  <button type="button" class="btn btn-default dBtn" style="width:18%; float:right;" onclick="addmemberToRoster()">Add</button>
-                                 <div class="autoComplete" id="addMemberautoCompleteDIV" style="display:none;margin-top: 37px;">
+                                 <div class="autoSearchBlcok" id="addMemberautoCompleteDIV" style="display:none;margin-top: 37px;">
 													<ul>
 			                                        	<li>Vikki</li>
 			                                        </ul>                                  	
@@ -282,7 +429,7 @@ var sequencNumber=0;
     							if(res != null){
     								var users=res.userList;
     								console.log(JSON.stringify(users));
-    								html+="<ul style='width: 80%;'>";
+    								html+="<ul style='overflow: auto; max-height: 275px;'>";
     								
     								if(users!= null && users.length >0){
     									for(var i in users){
@@ -305,6 +452,73 @@ var sequencNumber=0;
     									}else{
     										html += '<span class="auto-black">'+users[i].city+','+users[i].state+'</span>'; 
     									}
+    										
+    										
+    										
+    										
+    										
+    										if(users[i].teamboardlist.length > 0)
+  				                          {
+  				                        	  
+  				                        	  html +=" <div onmouseover=getposition("+i+") id=eye"+i+" class='tooltip1'><i class='fa fa-eye' aria-hidden='true' style='float: right;'></i>";
+  			                        		  html +="<div id=showtool"+i+" class='tooltiptext1'>";
+  			                        		  
+
+  			                          		html +="<div id='dropdown"+users[i].userId+"' class='' >";
+  					                         
+  					                          for(var j in users[i].teamboardlist){
+  					                        	  
+  					                          var teamlist=users[i].teamboardlist[j];
+  					              
+  					                        htm +="<li><span class='sponser-Flow' title='"+teamlist.boardName+"'>"+teamlist.boardName+"</span>";
+  					                          
+  					                          var leagueboardlist=users[i].teamboardlist[j].leagueBoardList;
+  					                          
+  					                          
+  					                          if(leagueboardlist!=null && leagueboardlist.length > 0){
+  					                        	 
+  					                        		/*   htm +=" afflicated to "; */
+  					                        		  
+  					                        		  
+  					                        		  html +=" <div class='tooltip'>Leagues";
+  					                        		  html +="<span class='tooltiptext'><ul>";
+  					                        		  for(var k in leagueboardlist){
+  					                        			  html +="<li>"+leagueboardlist[k].boardName+"</li>";
+  					                        		  
+  					                        		  }
+  					                        			  html +="</ul></span>";
+  					                        		  html +="</div>";
+  					                          }
+  					                          
+  					                          html +="</li>";
+  					                          
+  					                          }
+  					                          html +="</div>";
+  					                          
+  					                          html +="</div>";
+  			                        		  html +="</div>";
+  					                          
+  				                          }else{
+  				                        	  
+  				                          // no record
+  				                        	  html +=" <div onmouseover=getposition("+i+") id=eye"+i+" class='tooltip1'><i class='fa fa-eye' aria-hidden='true' style='float: right;'></i>";
+  			                        		  html +="<div id=showtool"+i+" class='tooltiptext1'>";
+  			                          		html +="<div id='dropdown"+users[i].userId+"' class='' >";
+  					                          html +="<li style='text-align: center;'>No Details</li>";
+  					                         
+  					                          html +="</div>";
+  					                          
+  					                          html +="</div>";
+  			                        		  html +="</div>";
+  				                          
+  				                          }
+    										
+    										
+    										
+    										
+    										
+    										
+    										
     									html +="</h4><div class='headRight' id=''></div></div></div></li>";
         								}
     								}else{

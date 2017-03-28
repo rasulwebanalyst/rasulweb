@@ -160,7 +160,7 @@ text-overflow: ellipsis;
                             	
                             	<c:if test="${showsponsers eq 'YES' }">
                             	 <c:choose>
-                        			<c:when test="${sponsersize == 0 }">
+                        			<c:when test="${SponserSize eq 0 }">
 	                            	</c:when>
 	                            	<c:otherwise>
 	                            	<li style="border-bottom: 0 !important;">

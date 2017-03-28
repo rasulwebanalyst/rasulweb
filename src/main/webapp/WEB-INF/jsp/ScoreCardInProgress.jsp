@@ -1114,7 +1114,7 @@ function facebook()
 			contentType : "application/json",
 			success : function(res)
 			{
-				displaynotification('ScoreCard link as been shared',2000);
+				displaynotification('ScoreCard link has been shared',2000);
 				$("#feededit").hide();
 			}
 			

@@ -4880,7 +4880,7 @@ public ModelAndView boardFanpublicview(HttpServletRequest request,@PathVariable 
 					 }
 			 model.addObject("spoResponse", sporesponse);
 			 model.addObject("SponserSize", sponsersize);
-			 
+			 System.out.println("The sponser size  :"+sponsersize);
 			 model.addObject("showsponsers", "YES");
 		 
 		 
@@ -5170,7 +5170,7 @@ public ModelAndView boardFan(HttpServletRequest request,@RequestParam String bid
 					 }
 			 model.addObject("spoResponse", sporesponse);
 			 model.addObject("SponserSize", sponsersize);
-			 
+			 System.out.println("The sponser size  :"+sponsersize);
 			 model.addObject("showsponsers", "YES");
 		 
 		 
@@ -5443,7 +5443,7 @@ public ModelAndView boardFanOf(HttpServletRequest request,@RequestParam String b
 							 }
 					 model.addObject("spoResponse", sporesponse);
 					 model.addObject("SponserSize", sponsersize);
-					 
+					 System.out.println("The sponser size  :"+sponsersize);
 					 model.addObject("showsponsers", "YES");
 		 
 		 
@@ -5737,7 +5737,7 @@ public ModelAndView boardFanOfpublicprofile(HttpServletRequest request,@PathVari
 							 }
 					 model.addObject("spoResponse", sporesponse);
 					 model.addObject("SponserSize", sponsersize);
-					 
+					 System.out.println("The sponser size  :"+sponsersize);
 					 model.addObject("showsponsers", "YES");
 		 
 		 
@@ -6236,7 +6236,7 @@ public ModelAndView getboard(@RequestParam String bid, HttpServletRequest reques
 								 }
 						 model.addObject("spoResponse", sporesponse);
 						 model.addObject("SponserSize", sponsersize);
-						 
+						 System.out.println("The sponser size  :"+sponsersize);
 						 model.addObject("showsponsers", "YES");
 					 
 					 
@@ -6517,7 +6517,7 @@ public ModelAndView pitch(@RequestParam String bid, HttpServletRequest request) 
 								 }
 						 model.addObject("spoResponse", sporesponse);
 						 model.addObject("SponserSize", sponsersize);
-						 
+						 System.out.println("The sponser size  :"+sponsersize);
 						 model.addObject("showsponsers", "YES");
 					 
 					 
@@ -7532,7 +7532,7 @@ public @ResponseBody ModelAndView getRosterDetails(HttpServletRequest request,@R
 								 }
 						 model.addObject("spoResponse", sporesponse);
 						 model.addObject("SponserSize", sponsersize);
-						 
+						 System.out.println("The sponser size  :"+sponsersize);
 						 model.addObject("showsponsers", "YES");
 				 
 				 
@@ -10386,7 +10386,7 @@ public ModelAndView boardPublicProfile(HttpServletRequest request, @PathVariable
 								 }
 						 model.addObject("spoResponse", sporesponse);
 						 model.addObject("SponserSize", sponsersize);
-						 
+						 System.out.println("The sponser size  :"+sponsersize);
 						 model.addObject("showsponsers", "YES");
 					
 					 
@@ -11757,7 +11757,7 @@ public ModelAndView boardEvent(HttpServletRequest request,@PathVariable String b
 						 }
 				 model.addObject("spoResponse", sporesponse);
 				 model.addObject("SponserSize", sponsersize);
-				 
+				 System.out.println("The sponser size  :"+sponsersize);
 				 model.addObject("showsponsers", "YES");
 			 
 
@@ -15964,7 +15964,7 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 								 }
 						 model.addObject("spoResponse", sporesponse);
 						 model.addObject("SponserSize", sponsersize);
-						 
+						 System.out.println("The sponser size  :"+sponsersize);
 						 model.addObject("showsponsers", "YES");
 					 
 				 
@@ -24245,7 +24245,7 @@ public ModelAndView boardEvents(@PathVariable String bid, HttpServletRequest req
 							 }
 					 model.addObject("spoResponse", sporesponse);
 					 model.addObject("SponserSize", sponsersize);
-					 
+					 System.out.println("The sponser size  :"+sponsersize);
 					 model.addObject("showsponsers", "YES");
 				 
 				 
@@ -26558,7 +26558,7 @@ public ModelAndView boardPublicProfileByboard(HttpServletRequest request, @PathV
 								 }
 						 model.addObject("spoResponse", sporesponse);
 						 model.addObject("SponserSize", sponsersize);
-						 
+						 System.out.println("The sponser size  :"+sponsersize);
 						 model.addObject("showsponsers", "YES");
 					 
 					 
@@ -26933,7 +26933,7 @@ public ModelAndView boardPublicProfileByboardPitch(HttpServletRequest request, @
 								 }
 						 model.addObject("spoResponse", sporesponse);
 						 model.addObject("SponserSize", sponsersize);
-						 
+						 System.out.println("The sponser size  :"+sponsersize);
 						 model.addObject("showsponsers", "YES");
 					 
 					 
@@ -33757,6 +33757,7 @@ public ModelAndView inviteBoardPage(HttpServletRequest req, @PathVariable String
 						 }
 				 mav.addObject("spoResponse", sporesponse);
 				 mav.addObject("SponserSize", sponsersize);
+				 System.out.println("The sponser size  :"+sponsersize);
 				 
 				 mav.addObject("showsponsers", "YES");
 			 
@@ -36541,6 +36542,7 @@ public ModelAndView showScoreCardOfPlayerPublicProfile(HttpServletRequest req,@P
 				UserProfile userProfile= new UserProfile();
 				
 				UUID userUUID = UUID.fromString(uid);
+				UUID BuddyId=null;
 				
 				userProfile.setUserId(userUUID);
 				mav.addObject("publicUserId", userUUID);
@@ -36554,6 +36556,14 @@ public ModelAndView showScoreCardOfPlayerPublicProfile(HttpServletRequest req,@P
 					  if(profile!=null && profile.getResults()!=null)
 					  {
 						  mav.addObject("UserInfo", profile.getResults().getItemsFound()[0]);
+						  
+						  
+						  session.setAttribute("BuddyPublicFirstName", profile.getResults().getItemsFound()[0].getFirstName());
+							session.setAttribute("BuddyPublicLastName", profile.getResults().getItemsFound()[0].getLastName());
+							session.setAttribute("BuddyPublicIMG", profile.getResults().getItemsFound()[0].getUserImageUrl());
+							session.setAttribute("BuddyPublicUserId", profile.getResults().getItemsFound()[0].getUserId());
+							session.setAttribute("BuddyPublicFanCount", profile.getResults().getItemsFound()[0].getUserFanCount());
+							BuddyId =profile.getResults().getItemsFound()[0].getUserId();
 					  }
 				 }
 				 
@@ -36568,6 +36578,8 @@ public ModelAndView showScoreCardOfPlayerPublicProfile(HttpServletRequest req,@P
 				 }
 				 mav.addObject("SelectedPlayersInfo", playerInfo);
 				 
+				 
+					 
 					hubReq=new HubRequest();
 					hubReq.setMsgType(145);		
 					ModelMap map = new ModelMap();
@@ -37184,7 +37196,7 @@ public ModelAndView boardScore(HttpServletRequest req, @PathVariable String boar
 							 }
 					 mav.addObject("spoResponse", sporesponse);
 					 mav.addObject("SponserSize", sponsersize);
-					 
+					 System.out.println("The sponser size  :"+sponsersize);
 					 mav.addObject("showsponsers", "YES");
 				 
 				 
@@ -37377,7 +37389,7 @@ public ModelAndView boardScorePublicProfile(HttpServletRequest req, @PathVariabl
 							 }
 					 mav.addObject("spoResponse", sporesponse);
 					 mav.addObject("SponserSize", sponsersize);
-					 
+					 System.out.println("The sponser size  :"+sponsersize);
 					 mav.addObject("showsponsers", "YES");
 				 
 				 
@@ -42137,6 +42149,19 @@ public ModelAndView showScoreCardSessionout(HttpServletRequest req,@PathVariable
 		 try{
 	     mav = new ModelAndView("ScoreCardSessionOut");
 	     
+	     HttpSession session = req.getSession(true);
+	     
+	     String cardsession= (String) session.getAttribute("ScoreCardSession");
+	     
+	     if(cardsession.equalsIgnoreCase("MyScore"))
+	     {
+	    	 mav.addObject("MyScore", "YES");
+	     }
+	    		 
+	    		 
+	     
+	     
+	     
 	   
 	     
 	     HubRequest hubReq1=new HubRequest();
@@ -43254,7 +43279,7 @@ public ModelAndView Organizationdetails(HttpServletRequest req, @PathVariable St
 							 }
 					 mav.addObject("spoResponse", sporesponse);
 					 mav.addObject("SponserSize", sponsersize);
-					 
+					 System.out.println("The sponser size  :"+sponsersize);
 					 mav.addObject("showsponsers", "YES");
 				 
 				 
@@ -43531,7 +43556,7 @@ public ModelAndView BoardInfoPublic(@PathVariable String bid, HttpServletRequest
 							 }
 					 model.addObject("spoResponse", sporesponse);
 					 model.addObject("SponserSize", sponsersize);
-					 
+					 System.out.println("The sponser size  :"+sponsersize);
 					 model.addObject("showsponsers", "YES");
 				 
 				 
@@ -44430,7 +44455,7 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 								 }
 						 model.addObject("spoResponse", sporesponse);
 						 model.addObject("SponserSize", sponsersize);
-						 
+						 System.out.println("The sponser size  :"+sponsersize);
 						 model.addObject("showsponsers", "YES");
 					 
 					 

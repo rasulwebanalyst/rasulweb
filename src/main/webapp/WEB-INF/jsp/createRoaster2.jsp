@@ -137,6 +137,35 @@ border: none !important;
 text-align: left;
 }
 
+.autoSearchBlcok {
+width: 460px !important;
+margin-left: 0 !important;
+z-index: 9999999 ;
+}
+.autoSearchBlcok .media-heading {
+width: 100% !important;
+}
+
+.autoSearchBlcok .media {
+margin-bottom: 0px !important;
+}
+
+.autoSearchBlcok h4 span {
+font-size: 13px !important;
+}
+
+.autoSearchBlcok .media-left {
+margin-bottom: 0px !important;
+}
+
+.sponser-Flow{
+text-overflow: ellipsis;
+    overflow: hidden;
+    width: 67%;
+    display: inline-block;
+    white-space: nowrap;
+}
+
 </style>
 
 
@@ -218,7 +247,7 @@ text-align: left;
                                 <div class="col-md-12 noPadding">
                                   <input type="text" class="form-control" value="" style="width:80%; float:left;" placeholder="" id="addMemberNameDIV" onkeyup="getBuddiesAutoComplete(this,'addMemberautoCompleteDIV','addMemberIDDIV')">
                                  <button type="button" class="btn btn-default dBtn" style="width:18%; float:right;" onclick="addmemberToRoster()">Add</button>
-                                 <div class="autoComplete" id="addMemberautoCompleteDIV" style="display:none;margin-top: 37px;">
+                                 <div class="autoSearchBlcok" id="addMemberautoCompleteDIV" style="display:none;margin-top: 37px;">
 													<ul>
 			                                        	<li>Vikki</li>
 			                                        </ul>                                  	
@@ -352,7 +381,7 @@ text-align: left;
     							if(res != null){
     								var users=res.userList;
     								console.log(JSON.stringify(users));
-    								html+="<ul style='width: 80%;'>";
+    								html+="<ul style='overflow: auto; max-height: 275px;'>";
     								
     								if(users!= null && users.length >0){
     									for(var i in users){
@@ -393,12 +422,12 @@ text-align: left;
 					                        	  
 					                          var teamlist=users[i].teamboardlist[j];
 					              
-					                          html +="<li>"+teamlist.boardName;
+					                          htm +="<li><span class='sponser-Flow' title='"+teamlist.boardName+"'>"+teamlist.boardName+"</span>";
 					                          
 					                          var leagueboardlist=users[i].teamboardlist[j].leagueBoardList;
 					                          
 					                          
-					                          if(leagueboardlist!=null){
+					                          if(leagueboardlist!=null && leagueboardlist.length > 0){
 					                        	 
 					                        		/*   htm +=" afflicated to "; */
 					                        		  

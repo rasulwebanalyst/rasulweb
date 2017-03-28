@@ -99,6 +99,36 @@ text-overflow: ellipsis;
                         </span>
                         
                         
+                        
+                        
+                        
+                        <c:choose>
+                        
+                        
+                        <c:when test="${MyScore eq 'YES'}">
+                        
+                        
+                        <ul class="leftMenu" id="mainMenu">
+                            	<li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyScore.png"></i>My Score</a></li>
+                            	<li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyEvents.png"></i>My Events</a></li>
+                            	<li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyFans.png"></i>My Fans</a></li>
+                            	<li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/IAmFanOf.png"></i>I Am Fan Of</a></li>                            	
+                            	<li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/IAmFanOf.png"></i>My Board</a></li>
+                            	<li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyBuddyList.png"></i>My Buddies</a></li>
+                            	<li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/PlayerCompare.png"></i>Player Compare</a></li>
+                            	<li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>Cricket Book</a></li>
+                        </ul>
+                        
+                        
+                        </c:when>
+                        <c:otherwise>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                      		<ul class="leftMenu">
                      		
                      		<c:choose>
@@ -185,7 +215,7 @@ text-overflow: ellipsis;
                             	
                             	<c:if test="${showsponsers eq 'YES' }">
                             	 <c:choose>
-                        			<c:when test="${sponsersize == 0 }">
+                        			<c:when test="${SponserSize eq 0 }">
 	                            	</c:when>
 	                            	<c:otherwise>
 	                            	<li style="border-bottom: 0 !important;">
@@ -210,6 +240,19 @@ text-overflow: ellipsis;
                             	
                             		
                             </ul>
+                            
+                            
+                            
+                          </c:otherwise>
+                        
+                        
+                        
+                        
+                        </c:choose>  
+                            
+                            
+                            
+                            
                         
                         
                     </div>
