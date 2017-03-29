@@ -139,7 +139,6 @@ text-align: left;
 
 .autoSearchBlcok {
 width: 460px !important;
-margin-left: 0 !important;
 z-index: 9999999 ;
 }
 .autoSearchBlcok .media-heading {
@@ -164,6 +163,10 @@ text-overflow: ellipsis;
     width: 67%;
     display: inline-block;
     white-space: nowrap;
+}
+span.sponser-Flow {
+	float: none!important;
+	color: #555!important;
 }
 
 </style>
@@ -247,7 +250,7 @@ text-overflow: ellipsis;
                                 <div class="col-md-12 noPadding">
                                   <input type="text" class="form-control" value="" style="width:80%; float:left;" placeholder="" id="addMemberNameDIV" onkeyup="getBuddiesAutoComplete(this,'addMemberautoCompleteDIV','addMemberIDDIV')">
                                  <button type="button" class="btn btn-default dBtn" style="width:18%; float:right;" onclick="addmemberToRoster()">Add</button>
-                                 <div class="autoSearchBlcok" id="addMemberautoCompleteDIV" style="display:none;margin-top: 37px;">
+                                 <div class="autoSearchBlcok" id="addMemberautoCompleteDIV" style="display:none;margin-top: 37px; margin-left: 0!important;">
 													<ul>
 			                                        	<li>Vikki</li>
 			                                        </ul>                                  	

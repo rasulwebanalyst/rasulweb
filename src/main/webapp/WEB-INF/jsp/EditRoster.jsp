@@ -139,7 +139,6 @@ text-align: left;
 
 .autoSearchBlcok {
 width: 460px !important;
-margin-left: 0 !important;
 z-index: 9999999 ;
 }
 .autoSearchBlcok .media-heading {
@@ -158,13 +157,16 @@ font-size: 13px !important;
 margin-bottom: 0px !important;
 }
 
-
 .sponser-Flow{
 text-overflow: ellipsis;
     overflow: hidden;
     width: 67%;
     display: inline-block;
     white-space: nowrap;
+}
+span.sponser-Flow {
+	float: none!important;
+	color: #555!important;
 }
 
 </style>
@@ -271,7 +273,7 @@ text-overflow: ellipsis;
 		                               <div class="col-md-12 noPadding" id="memberListDIV${rosterMember.userId}">
 		                               <span class='palyerCount' id='sequenc${rosterMember.userId}'>${i.count}</span>
 		                                  <input type="text" class="form-control player-entry" readonly style="width:73%; float:left;" value="${rosterMember.userProfile.firstName} ${rosterMember.userProfile.lastName}" placeholder="" id="member${rosterMember.userId}" onkeyup="getBuddiesAutoComplete(this,'memberautoCompleteDIV${i.count}','memberHiddeb${i.count}')">
-			                                 <div class="autoSearchBlcok" id="memberautoCompleteDIV${i.count}" style="display:none;margin-top: 37px;">
+			                                 <div class="autoSearchBlcok" id="memberautoCompleteDIV${i.count}" style="display:none;margin-top: 37px; margin-left: 0!important;">
 													<ul>
 			                                        	<li>Vikki</li>
 			                                        </ul>                                  	
@@ -298,7 +300,7 @@ text-overflow: ellipsis;
                                 <div class="col-md-12 noPadding">
                                   <input type="text" class="form-control" value="" style="width:80%; float:left;" placeholder="" id="addMemberNameDIV" onkeyup="getBuddiesAutoComplete(this,'addMemberautoCompleteDIV','addMemberIDDIV')">
                                  <button type="button" class="btn btn-default dBtn" style="width:18%; float:right;" onclick="addmemberToRoster()">Add</button>
-                                 <div class="autoSearchBlcok" id="addMemberautoCompleteDIV" style="display:none;margin-top: 37px;">
+                                 <div class="autoSearchBlcok" id="addMemberautoCompleteDIV" style="display:none;margin-top: 37px; margin-left: 0!important;">
 													<ul>
 			                                        	<li>Vikki</li>
 			                                        </ul>                                  	
@@ -470,7 +472,7 @@ text-overflow: ellipsis;
   					                        	  
   					                          var teamlist=users[i].teamboardlist[j];
   					              
-  					                        html +="<li><span class='sponser-Flow' title='"+teamlist.boardName+"'>"+teamlist.boardName+"</span>";
+  					                          html +="<li><span class='sponser-Flow' title='"+teamlist.boardName+"'>"+teamlist.boardName+"</span>";
   					                          
   					                          var leagueboardlist=users[i].teamboardlist[j].leagueBoardList;
   					                          
@@ -512,7 +514,6 @@ text-overflow: ellipsis;
   			                        		  html +="</div>";
   				                          
   				                          }
-    										
     										
     										
     										

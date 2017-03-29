@@ -275,7 +275,7 @@ var formatAMPMTime = function(date) {
         </div> -->
 
 				<div class="modal-body">
-					<p style="text-align:center;">Sorry !, Score Card has been locked. Do you want to send request to admin?</p>
+					<p style="text-align:center;">Sorry ! Score Card has been locked. Do you want to send request to admin?</p>
 					<br>
 				</div>
 				
@@ -1988,8 +1988,13 @@ var dateString = null;
          				contentType:"application/json",
          				success:function(response){
          					
-         					 if(response.length > 0){	  
-         						var datestr=Unlockdate(date);
+         					 if(response.length > 0){	
+         						 
+         						 console.log(date);
+         						 
+         						 var datestr1 = $("#formatDate_"+tid).html();	
+         						 
+         						var datestr=Unlockdate(datestr1);
                      			console.log(datestr);
                 				$("#lockschedulerid").val(tid);
                 				$("#lockschedulertime").val(datestr);
@@ -2067,6 +2072,8 @@ var dateString = null;
                  		var date1=date2.split("IST")[0];
                		 
                         var date = date1;
+                        console.log(date1);
+                        console.log(date);
                 		    var offset = new Date().getTimezoneOffset() * 60 * 1000;
                 		var gettingFromServer= new Date(date);
                 		gettingFromServer = new Date(gettingFromServer.valueOf() - offset);

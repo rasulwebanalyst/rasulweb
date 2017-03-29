@@ -1555,7 +1555,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 	    		model.addObject("loginvalidation", loginvalidation.replace("%20", " "));
 	    	}
 	    	}else{
-	    		model.addObject("Unlock", "ScoreCard has been Unlocked");
+	    		model.addObject("Unlock", "ScoreCard Unlocked Successfully");
 	    	}
 	    	HttpSession session=request.getSession(true);
 	    	if(session.getAttribute("Schedulemessage") != null){
@@ -44589,8 +44589,8 @@ try{
 return response;
 }
 
-@RequestMapping(value="/unlockScorecard/{Schedulerid}" ,  method=RequestMethod.GET)
-public ModelAndView unlockScorecard(HttpServletRequest request,@PathVariable String Schedulerid)
+@RequestMapping(value="/unlockScorecard/{Schedulerid}/{Result}" ,  method=RequestMethod.GET)
+public ModelAndView unlockScorecard(HttpServletRequest request,@PathVariable String Schedulerid,@PathVariable String Result)
 {
 
 	ModelAndView mav=null;
