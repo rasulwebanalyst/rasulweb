@@ -1651,14 +1651,27 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				    htmlco3+="<td><a href=javascript:void(0); onclick=EDITSCORECARD('${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')><i class='fa fa-pencil' title='Edit Profile'></i></a><a href=javascript:void(0); onclick=EDITSCORECARD('${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')>Edit Scorecard</a></td>";
 				    htmlco3+="<td align='center' >";
 				    
+				    
+				    console.log("completedlist[i].scorecardLock :"+completedlist[i].scorecardLock);
+				    
+				    
+				    
 				    if(completedlist[i].scorecardLock == "OFF"){
+				    	
+				    	
+				    	console.log("inside off :"+completedlist[i].scorecardLock);
+				    	
 				    	htmlco3+="<a id='"+completedlist[i].tournamentSchedulerId+"OFF' href='javascript:void(0)' onclick=lockscorecard('"+completedlist[i].tournamentSchedulerId+"','ON','OFF')><img src='${pageContext.request.contextPath}/images/unlock.png' style='max-width: 22px;margin-right: 5px; margin-bottom: 17px;'></a>";
 				    	htmlco3+="<a id='"+completedlist[i].tournamentSchedulerId+"ON' style='display: none;'  href='javascript:void(0)' onclick=lockscorecard('"+completedlist[i].tournamentSchedulerId+"','OFF','ON')><img src='${pageContext.request.contextPath}/images/lock.png' style='max-width: 22px;margin-right: 5px; margin-bottom: 17px;'></a>";
 				    	
 				    }else{
 				    	
-				    	htmlco3+="<a id='"+completedlist[i].tournamentSchedulerId+"ON' href='javascript:void(0)' onclick=lockscorecard('"+completedlist[i].tournamentSchedulerId+"','OFF','ON')><img src='${pageContext.request.contextPath}/images/unlock.png' style='max-width: 22px;margin-right: 5px; margin-bottom: 17px;'></a>";
-				    	htmlco3+="<a id='"+completedlist[i].tournamentSchedulerId+"OFF' style='display: none;'  href='javascript:void(0)' onclick=lockscorecard('"+completedlist[i].tournamentSchedulerId+"','ON','OFF')><img src='${pageContext.request.contextPath}/images/lock.png' style='max-width: 22px;margin-right: 5px; margin-bottom: 17px;'></a>";
+				    	
+				    	console.log("inside On :"+completedlist[i].scorecardLock)
+				    	
+				    	
+				    	htmlco3+="<a id='"+completedlist[i].tournamentSchedulerId+"ON' href='javascript:void(0)' onclick=lockscorecard('"+completedlist[i].tournamentSchedulerId+"','OFF','ON')><img src='${pageContext.request.contextPath}/images/lock.png' style='max-width: 22px;margin-right: 5px; margin-bottom: 17px;'></a>";
+				    	htmlco3+="<a id='"+completedlist[i].tournamentSchedulerId+"OFF' style='display: none;'  href='javascript:void(0)' onclick=lockscorecard('"+completedlist[i].tournamentSchedulerId+"','ON','OFF')><img src='${pageContext.request.contextPath}/images/unlock.png' style='max-width: 22px;margin-right: 5px; margin-bottom: 17px;'></a>";
 				    	
 				    }
 				    

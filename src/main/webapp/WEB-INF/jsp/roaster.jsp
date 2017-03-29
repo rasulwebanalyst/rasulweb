@@ -359,7 +359,7 @@ function checkbbi(bbi)
                                    		 </c:forEach>
                                         
                                     </select>
-                                    <div class="out">Select Roster</div>    
+                                    <div class="out">Select Squad</div>    
                                 </div>
                                 </div>
                              

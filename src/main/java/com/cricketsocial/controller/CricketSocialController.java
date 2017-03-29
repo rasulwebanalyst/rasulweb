@@ -42153,7 +42153,7 @@ public ModelAndView showScoreCardSessionout(HttpServletRequest req,@PathVariable
 	     
 	     String cardsession= (String) session.getAttribute("ScoreCardSession");
 	     
-	     if(cardsession.equalsIgnoreCase("MyScore"))
+	     if(boardId.equalsIgnoreCase("boardid"))
 	     {
 	    	 mav.addObject("MyScore", "YES");
 	     }

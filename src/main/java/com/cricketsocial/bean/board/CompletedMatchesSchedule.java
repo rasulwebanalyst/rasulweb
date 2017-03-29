@@ -56,18 +56,25 @@ public class CompletedMatchesSchedule {
 	private String leagueCreatedBy;
 	
 	
-private List<ScorerNameList> portalScorerList;
+	private List<ScorerNameList> portalScorerList;
 
+	private String scorecardLock;
 	
 	
 	
+	
+	public String getScorecardLock() {
+		return scorecardLock;
+	}
+	public void setScorecardLock(String scorecardLock) {
+		this.scorecardLock = scorecardLock;
+	}
 	public List<ScorerNameList> getPortalScorerList() {
 		return portalScorerList;
 	}
 	public void setPortalScorerList(List<ScorerNameList> portalScorerList) {
 		this.portalScorerList = portalScorerList;
 	}
-	
 	public String getDateString() {
 		return dateString;
 	}

@@ -142,6 +142,16 @@ border: none !important;
 text-align: left;
 }
 
+
+
+.sponser-Flow{
+text-overflow: ellipsis;
+    overflow: hidden;
+    width: 67%;
+    display: inline-block;
+    white-space: nowrap;
+}
+
 </style>
    
    
@@ -499,6 +509,7 @@ $(document).ready(function(){
 		// $("#hiddenUmpireDiv0").replaceWith('<input type="text" class="form-control" placeholder="Select Umpires" id="umpireId">');
 		//$("#hiddenUmpireDiv1").replaceWith('<input type="text" class="form-control" placeholder="Select Umpires" id="umpireId1">');
     var umpireArray=[];
+    var i=0
     $("#umpireId").tokenInput(ctx+"/umpireSearchForCreateScheduler/",{
 	resultsFormatter: function(item){ 
 		var citystate="";
@@ -508,7 +519,164 @@ $(document).ready(function(){
     		citystate= item.city+','+item.state; 
     	}
 		
-		return "<li>" + "<img onError='userErrorDefaultImg(this)' src='" + item.userImageUrl + "' title='" + item.fullName + "' height='25px' width='25px' />" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name'>" + item.fullName + " "+citystate+"</div></div></li>"
+		
+		var htm="";
+		
+		
+		console.log(item.teamboardlist.length);
+		i++;
+		if(item.teamboardlist.length > 0)
+        {
+      	  
+      	  htm +=" <div onmouseover=getposition("+i+") id=eye"+i+" class='tooltip1'><i class='fa fa-eye' aria-hidden='true' style='float: right;'></i>";
+  		  htm +="<div id=showtool"+i+" class='tooltiptext1'>";
+  		  
+
+    		htm +="<div id='dropdown"+item.userId+"' class='' >";
+           
+            for(var j in item.teamboardlist){
+          	  
+            var teamlist=item.teamboardlist[j];
+
+            htm +="<li><span class='sponser-Flow' title='"+teamlist.boardName+"'>"+teamlist.boardName+"</span>";
+            
+            var leagueboardlist=item.teamboardlist[j].leagueBoardList;
+            
+            
+            if(leagueboardlist!=null && leagueboardlist.length > 0){
+          	 
+          		/*   htm +=" afflicated to "; */
+          		  
+          		  
+          		  htm +=" <div class='tooltip'>Leagues";
+          		  htm +="<span class='tooltiptext'><ul>";
+          		  for(var k in leagueboardlist){
+          			  htm +="<li>"+leagueboardlist[k].boardName+"</li>";
+          		  
+          		  }
+          			  htm +="</ul></span>";
+          		  htm +="</div>";
+            }
+            
+            htm +="</li>";
+            
+            }
+            htm +="</div>";
+            
+            htm +="</div>";
+  		  htm +="</div>";
+            
+        }else{
+      	  
+        // no record
+      	  htm +=" <div onmouseover=getposition("+i+") id=eye"+i+" class='tooltip1'><i class='fa fa-eye' aria-hidden='true' style='float: right;'></i>";
+  		  htm +="<div id=showtool"+i+" class='tooltiptext1'>";
+  		  
+
+    		htm +="<div id='dropdown"+item.userId+"' class='' >";
+           
+
+            htm +="<li style='text-align: center;'>No Details</li>";
+           
+            htm +="</div>";
+            
+            htm +="</div>";
+  		  htm +="</div>";
+        
+        }
+        
+		
+		
+		
+		
+		return "<li>" + "<img onError='userErrorDefaultImg(this)' src='" + item.userImageUrl + "' title='" + item.fullName + "' height='25px' width='25px' />" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name'>" + item.fullName + " "+citystate+"</div></div>"+htm+""
+		
+		
+		
+		
+		
+		
+		
+		
+		
+/* 
+		if(users[i].teamboardlist.length > 0)
+        {
+			console.log("Hello");
+      	  
+      	  +" <div onmouseover=getposition("+i+") id=eye"+i+" class='tooltip1'><i class='fa fa-eye' aria-hidden='true' style='float: right;'></i>"
+  		  +"<div id=showtool"+i+" class='tooltiptext1'>"
+  		  
+
+    		+"<div id='dropdown"+users[i].userId+"' class='' >"
+           
+            for(var j in users[i].teamboardlist){
+          	  
+            var teamlist=users[i].teamboardlist[j];
+
+            +"<li><span class='sponser-Flow' title='"+teamlist.boardName+"'>"+teamlist.boardName+"</span>"
+            
+            var leagueboardlist=users[i].teamboardlist[j].leagueBoardList;
+            
+            
+            if(leagueboardlist!=null && leagueboardlist.length > 0){
+          	 
+          		  
+          		  
+          		  +" <div class='tooltip'>Leagues"
+          		  +"<span class='tooltiptext'><ul>"
+          		  for(var k in leagueboardlist){
+          			   +"<li>"+leagueboardlist[k].boardName+"</li>"
+          		  
+          		  }
+          			   +"</ul></span>"
+          		   +"</div>"
+            }
+            
+            +"</li>"
+            
+            }
+            +"</div>"
+            
+            +"</div>"
+  		  +"</div>"
+            
+        }else{
+      	  
+        // no record
+        console.log("Hello");
+      	  +" <div onmouseover=getposition("+i+") id=eye"+i+" class='tooltip1'><i class='fa fa-eye' aria-hidden='true' style='float: right;'></i>"
+  		  +"<div id=showtool"+i+" class='tooltiptext1'>"
+  		  
+
+    		+"<div id='dropdown"+users[i].userId+"' class='' >"
+           
+
+            +"<li style='text-align: center;'>No Details</li>"
+           
+            +"</div>"
+            
+            +"</div>"
+  		  +"</div>"
+        
+        }
+	
+	
+	
+	
+		console.log("Hello"); */
+	
+	
+	
+	
+	
+		
+		
+		
+		
+		
+		
+		+"</li>"
 		
 	},
 	preventDuplicates: true,
@@ -536,7 +704,82 @@ $(document).ready(function(){
 });
     var bid = "${boardId}";
     $("#umpireId1").tokenInput(ctx+"/umpireCheckList/"+bid,{
-		resultsFormatter: function(item){ return "<li>" + "<img onError='userErrorDefaultImg(this)' src='" + item.userImageUrl + "' title='" + item.fullName + "' height='25px' width='25px' />" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name'>" + item.fullName + "</div></div></li>" },
+		resultsFormatter: function(item){ return "<li>" + "<img onError='userErrorDefaultImg(this)' src='" + item.userImageUrl + "' title='" + item.fullName + "' height='25px' width='25px' />" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name'>" + item.fullName + "</div></div>"
+		
+		
+		
+			if(users[i].teamboardlist.length > 0)
+            {
+          	  
+          	  htm +=" <div onmouseover=getposition("+i+") id=eye"+i+" class='tooltip1'><i class='fa fa-eye' aria-hidden='true' style='float: right;'></i>";
+      		  htm +="<div id=showtool"+i+" class='tooltiptext1'>";
+      		  
+
+        		htm +="<div id='dropdown"+users[i].userId+"' class='' >";
+               
+                for(var j in users[i].teamboardlist){
+              	  
+                var teamlist=users[i].teamboardlist[j];
+    
+                htm +="<li><span class='sponser-Flow' title='"+teamlist.boardName+"'>"+teamlist.boardName+"</span>";
+                
+                var leagueboardlist=users[i].teamboardlist[j].leagueBoardList;
+                
+                
+                if(leagueboardlist!=null && leagueboardlist.length > 0){
+              	 
+              		/*   htm +=" afflicated to "; */
+              		  
+              		  
+              		  htm +=" <div class='tooltip'>Leagues";
+              		  htm +="<span class='tooltiptext'><ul>";
+              		  for(var k in leagueboardlist){
+              			  htm +="<li>"+leagueboardlist[k].boardName+"</li>";
+              		  
+              		  }
+              			  htm +="</ul></span>";
+              		  htm +="</div>";
+                }
+                
+                htm +="</li>";
+                
+                }
+                htm +="</div>";
+                
+                htm +="</div>";
+      		  htm +="</div>";
+                
+            }else{
+          	  
+            // no record
+          	  htm +=" <div onmouseover=getposition("+i+") id=eye"+i+" class='tooltip1'><i class='fa fa-eye' aria-hidden='true' style='float: right;'></i>";
+      		  htm +="<div id=showtool"+i+" class='tooltiptext1'>";
+      		  
+
+        		htm +="<div id='dropdown"+users[i].userId+"' class='' >";
+               
+    
+                htm +="<li style='text-align: center;'>No Details</li>";
+               
+                htm +="</div>";
+                
+                htm +="</div>";
+      		  htm +="</div>";
+            
+            }
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		+"</li>" },
 		preventDuplicates: true,
 		propertyToSearch: "fullName",
 		theme: "facebook",   
