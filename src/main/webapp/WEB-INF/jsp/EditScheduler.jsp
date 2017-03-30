@@ -44,10 +44,25 @@
 
   <script src="${pageContext.request.contextPath}/js/cricketSocial/createSchedule.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jstz-1.0.4.min.js"></script>
+
+
+</head>
+
+
+
+
+
+
+<body>
+
+<%@ include file="CSCommon.jsp" %>
+ <%@ include file="BoardHeader.jsp" %>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/wickedpicker.js"></script>
   
-   
-
-
+  
+  
+  
+  
 <style>
 .media.tool-list {
 	overflow: visible;
@@ -183,17 +198,14 @@ max-height: 230px;
 right: -186px;
 }
 
+
+
+
+
 </style>
-
-
-
-
-</head>
-<body>
-
-<%@ include file="CSCommon.jsp" %>
- <%@ include file="BoardHeader.jsp" %>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/js/wickedpicker.js"></script>
+  
+  
+  
  <script>
         $(document).ready(function () {
 		
@@ -693,6 +705,9 @@ $(document).ready(function(){
     console.log("scorer prepopulat ---------"+scorerNameList);
     
 	var umpireCheck =" ${umpireCheck}";
+	
+	
+	var i=0;
 	if(umpireCheck ==  0){
 	
 
@@ -705,6 +720,9 @@ $("#umpireId").tokenInput(ctx+"/umpireSearchForCreateScheduler/",{
     	}else{
     		citystate= item.city+','+item.state; 
     	}
+		
+		
+		
 		
 		
 var htm="";
@@ -774,6 +792,7 @@ var htm="";
 		
 		
 		
+		
 		return "<li>" + "<img onError='userErrorDefaultImg(this)' src='" + item.userImageUrl + "' title='" + item.fullName + "' height='25px' width='25px' />" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name'>" + item.fullName + " "+citystate+"</div></div>"+htm+"</li>" },
 	prePopulate:umpireNameList,
 	//prePopulate: $('#umpireId').data('name'),
@@ -810,7 +829,7 @@ onResult: function (item) {
 		 var bid = "${boardId}";
 		
 		$("#umpireId").tokenInput(ctx+"/umpireCheckList/"+bid,{
-			resultsFormatter: function(item){
+			resultsFormatter: function(item){ 
 				
 				
 				var htm="";
@@ -990,6 +1009,9 @@ onResult: function (item) {
 	        
 	        }
 			
+			
+			
+			
 			return "<li>" + "<img onError='userErrorDefaultImg(this)' src='" + item.userImageUrl + "' title='" + item.fullName + "' height='25px' width='25px' />" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name'>" + item.fullName + " "+citystate+"</div></div>"+htm+"</li>" },
 		prePopulate:scorerNameList,
 		preventDuplicates: true,
@@ -1098,70 +1120,9 @@ onResult: function (item) {
 	        
 	        }
 			
-			return "<li>" + "<img onError='userErrorDefaultImg(this)' src='" + item.userImageUrl + "' title='" + item.fullName + "' height='25px' width='25px' />" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name'>" + item.fullName + " "+citystate+"</div></div>"+var htm="";
 			
 			
-			console.log(item.teamboardlist.length);
-			i++;
-			if(item.teamboardlist.length > 0)
-	        {
-	      	  
-	      	  htm +=" <div onmouseover=getposition("+i+") id=eye"+i+" class='tooltip1'><i class='fa fa-eye' aria-hidden='true' style='float: right;'></i>";
-	  		  htm +="<div id=showtool"+i+" class='tooltiptext1'>";
-	  		  
-
-	    		htm +="<div id='dropdown"+item.userId+"' class='' >";
-	           
-	            for(var j in item.teamboardlist){
-	          	  
-	            var teamlist=item.teamboardlist[j];
-
-	            htm +="<ul><li><span class='sponser-Flow' title='"+teamlist.boardName+"'>"+teamlist.boardName+"</span>";
-	            
-	            var leagueboardlist=item.teamboardlist[j].leagueBoardList;
-	            
-	            
-	            if(leagueboardlist!=null && leagueboardlist.length > 0){
-	          	 
-	          		/*   htm +=" afflicated to "; */
-	          		  
-	          		  
-	          		  htm +=" <div class='tooltip2'>Leagues";
-	          		  htm +="<span class='tooltiptext2'><ul>";
-	          		  for(var k in leagueboardlist){
-	          			  htm +="<li>"+leagueboardlist[k].boardName+"</li>";
-	          		  
-	          		  }
-	          			  htm +="</ul></span>";
-	          		  htm +="</div>";
-	            }
-	            
-	            htm +="</li></ul>";
-	            
-	            }
-	            htm +="</div>";
-	            
-	            htm +="</div>";
-	  		  htm +="</div>";
-	            
-	        }else{
-	      	  
-	        // no record
-	      	  htm +=" <div onmouseover=getposition("+i+") id=eye"+i+" class='tooltip1'><i class='fa fa-eye' aria-hidden='true' style='float: right;'></i>";
-	  		  htm +="<div id=showtool"+i+" class='tooltiptext1'>";
-	  		  
-
-	    		htm +="<div id='dropdown"+item.userId+"' class='' >";
-	           
-
-	            htm +="<ul><li style='text-align: center;'>No Details</li></ul>";
-	           
-	            htm +="</div>";
-	            
-	            htm +="</div>";
-	  		  htm +="</div>";
-	        
-	        }+"</li>" },
+			return "<li>" + "<img onError='userErrorDefaultImg(this)' src='" + item.userImageUrl + "' title='" + item.fullName + "' height='25px' width='25px' />" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name'>" + item.fullName + " "+citystate+"</div></div>"+htm+"</li>" },
 			prePopulate:portalscorerNameList,
 			preventDuplicates: true,
 		propertyToSearch: "fullName",

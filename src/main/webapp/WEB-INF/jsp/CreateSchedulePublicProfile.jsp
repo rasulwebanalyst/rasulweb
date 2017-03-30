@@ -527,6 +527,7 @@ $(document).ready(function(){
 		// $("#hiddenUmpireDiv0").replaceWith('<input type="text" class="form-control" placeholder="Select Umpires" id="umpireId">');
 		//$("#hiddenUmpireDiv1").replaceWith('<input type="text" class="form-control" placeholder="Select Umpires" id="umpireId1">');
     var umpireArray=[];
+    var i=0;
     $("#umpireId").tokenInput(ctx+"/umpireSearchForCreateScheduler/",{
 	resultsFormatter: function(item){ 
 		

@@ -52,6 +52,17 @@
 
 
 
+</head>
+<body>
+
+<%@ include file="CSCommon.jsp" %>
+ <%@ include file="BoardHeader.jsp" %>
+ 
+ 
+ 
+ 
+
+
 <style>
 .media.tool-list {
 	overflow: visible;
@@ -189,14 +200,7 @@ right: -186px;
 
 </style>
 
-
-
-
-</head>
-<body>
-
-<%@ include file="CSCommon.jsp" %>
- <%@ include file="BoardHeader.jsp" %>
+ 
  
  <script>
         $(document).ready(function () {
@@ -538,6 +542,7 @@ right: -186px;
 <script>
 var umpireArray=[];
 var scorerArray=[];
+var i=0;
 $(document).ready(function(){
 var umpireId = ${previousUmpireIds};
 	
