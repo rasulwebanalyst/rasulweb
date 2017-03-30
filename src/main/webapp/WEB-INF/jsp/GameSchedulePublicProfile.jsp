@@ -940,8 +940,8 @@ var formatAMPMTime = function(date) {
                           <c:otherwise>
                           
                           
-                          <a href="javascript:void(0)" onclick="LOCKEDEDITSCORECARD('${completed.tournamentSchedulerId }','${completed.gameDate}','${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')"><i class="fa fa-pencil" title="Edit Profile"></i></a>
-                        	 <a href="javascript:void(0)" onclick="LOCKEDEDITSCORECARD('${completed.tournamentSchedulerId }','${completed.gameDate}','${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')">Edit Scorecard</a>
+                          <a href="javascript:void(0)" onclick="LOCKEDEDITSCORECARD('${completed.tournamentSchedulerId }','${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')"><i class="fa fa-pencil" title="Edit Profile"></i></a>
+                        	 <a href="javascript:void(0)" onclick="LOCKEDEDITSCORECARD('${completed.tournamentSchedulerId }','${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')">Edit Scorecard</a>
                           
                           </c:otherwise>
                           
@@ -1621,6 +1621,11 @@ var dateString = null;
 					var dateNewObject = formatDateValue(completedlist[i].gameDate);
 					
 					htmlco3+="<tr>";
+					
+					
+					htmlco3+="<p id='formatDate_"+completedlist[i].tournamentSchedulerId+"' style='display:none'>"+completedlist[i].gameDate+"</p>";
+					
+					
 					htmlco3+="<td>"+dateNewObject+"</td>";
 					htmlco3+="<td class='tdAlignLeft'><a href='${pageContext.request.contextPath}/"+completedlist[i].homeTeamName+"/board/"+completedlist[i].homeTeamId+"'>"+completedlist[i].homeTeamName+"</a></td>";
 					htmlco3+="<td class='tdAlignLeft'><a href='${pageContext.request.contextPath}/"+completedlist[i].awayTeamName+"'/board/"+completedlist[i].awayTeamId+"'>"+completedlist[i].awayTeamName+"</a></td>";
@@ -1706,7 +1711,7 @@ var dateString = null;
 				    	
 				    }else{
 				    	
-				    	htmlco3+="<td><a href=javascript:void(0); onclick=LOCKEDEDITSCORECARD('"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].gameDate+"','${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')><i class='fa fa-pencil' title='Edit Profile'></i></a><a href=javascript:void(0); onclick=LOCKEDEDITSCORECARD('"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].gameDate+"','${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')>Edit Scorecard</a></td>";
+				    	htmlco3+="<td><a href=javascript:void(0); onclick=LOCKEDEDITSCORECARD('"+completedlist[i].tournamentSchedulerId+"','${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')><i class='fa fa-pencil' title='Edit Profile'></i></a><a href=javascript:void(0); onclick=LOCKEDEDITSCORECARD('"+completedlist[i].tournamentSchedulerId+"','${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')>Edit Scorecard</a></td>";
 				    }
 				    
 				    
@@ -1969,7 +1974,7 @@ var dateString = null;
                  		}
                  	}
                  	
-                 	function LOCKEDEDITSCORECARD(tid,date,id,tournmentId,tournmentShudulorId,homeId,awayTeamId,date,createdBy)
+                 	function LOCKEDEDITSCORECARD(tid,id,tournmentId,tournmentShudulorId,homeId,awayTeamId,date,createdBy)
                  	{
                  		
                  		

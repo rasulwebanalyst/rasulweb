@@ -46,6 +46,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jstz-1.0.4.min.js"></script>
   
    
+
+
 <style>
 .media.tool-list {
 	overflow: visible;
@@ -82,13 +84,15 @@ opacity: 0;
 transition: opacity 1s;
 white-space: nowrap;
 right: 0;
+box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+border: 1px solid rgba(0,0,0,0.3)
 }
 
 .tooltip2 .tooltiptext2::after {
     content: "";
 position: absolute;
-top: 0;
-left: 50%;
+top: -10px;
+right: 35%;
 margin: 0 auto;
 border-width: 5px;
 border-style: solid;
@@ -180,6 +184,8 @@ right: -186px;
 }
 
 </style>
+
+
 
 
 </head>
