@@ -164,7 +164,7 @@ text-overflow: ellipsis;
 	                            	</c:when>
 	                            	<c:otherwise>
 	                            	<li style="border-bottom: 0 !important;">
-	                            	<a >sponsors</a>
+	                            	<a >Sponsors</a>
 		
 		<div class="ImageBox" style="margin-top: 5px;">
 		<ul class="bxslider">

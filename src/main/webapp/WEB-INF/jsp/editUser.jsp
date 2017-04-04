@@ -17,8 +17,14 @@
  <link rel="stylesheet" href="css/token-input.css" type="text/css" />
     <link rel="stylesheet" href="css/token-input-facebook.css" type="text/css" />
     
-     <link href="${pageContext.request.contextPath}/resources/css/cropper.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/resources/css/Customcropper.css" rel="stylesheet">
+    
+    
+                         <!--  for cropper -->
+      <link href="${pageContext.request.contextPath}/css/cropper.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/Customcropper.css" rel="stylesheet"> 
+    
+    <!-- <link rel="Stylesheet" type="text/css" href="http://foliotek.github.io/Croppie/croppie.css" />
+  <link rel="Stylesheet" type="text/css" href="http://t4t5.github.io/sweetalert/dist/sweetalert.css" /> -->
     
     
  <style type="text/css">
@@ -28,6 +34,20 @@
  .token-input-input-token-facebook{
  display: none;
  }
+ 
+ 
+ 
+ 
+ 
+ body {
+  min-width: 360px;
+}
+.actions {
+  width: 300px;
+  margin: 0 auto;
+}
+ 
+ 
  </style>
 </head>
 
@@ -73,7 +93,7 @@ var teamdeletearray=[];
     <div id="Editimage" class="popupDiv" style="display: none;">
 
            <div class="box">
-                <span class="head">Reason</span>
+                <span class="head">Image Crop</span>
                 <span class="close_btn"> <i onclick="cancelFunction()" class="fa fa-close"></i> </span>
 
                 <div class="popupContentDiv">
@@ -86,7 +106,7 @@ var teamdeletearray=[];
                         	
                         	
                         	
-                    <div  class="col-md-12" style="margin-bottom:10px" id=""><label class="poppulab">Edit Team Image</label><input id="uploadImageForEditTeam" class="" type="file" onchange="readURLTeam(this)"/>                    
+                    <div  class="col-md-12" style="margin-bottom:10px" id=""><label class="poppulab">Edit  Image</label><input id="uploadImageForEditTeam" class="" type="file" onchange="readURLTeam(this)"/>                    
                     
                     
                                    
@@ -94,7 +114,7 @@ var teamdeletearray=[];
                     <div class="row">
                     <div class="col-md-6"><p>Adjust Picture</p>
                     <div class="img-container">
-                    <img id="teamLogo" src="/apreizspring/resources/images/picture.jpg" alt="Picture">
+                    <img id="teamLogo" src="${pageContext.request.contextPath}/images/userImg.jpg" alt="Picture">
                     </div>
                     <div class="btn-group imgCrop">
 
@@ -132,10 +152,36 @@ var teamdeletearray=[];
                           
                           </div>
                        
-                </div>
+                </div> 
+                
+                
+                
+                
+                
+              <!--   <div id="vanilla-demo"></div>
+
+  <div class="actions">
+    <button class="vanilla-result">Result</button>
+    <button class="vanilla-save">Save</button>
+    <button class="vanilla-rotate" data-deg="-90">Rotate Left</button>
+    <button class="vanilla-rotate" data-deg="90">Rotate Right</button>
+  </div> -->
+                
+                
+                
+                
+                
+                
+                
+                
             </div>
  
- 	</div>
+ 	</div> 
+ 	
+ 	
+ 	
+ 	
+ 	
    </div>
    
     <section class="middleContentBlock">
@@ -1338,13 +1384,13 @@ $(function(){
 				 //new change
 				 
 				 
-				 /* $("#Editimage").show(); */
+				  $("#Editimage").show(); 
 				 
 				 
 				 
 				 
 				 
-					 $('#upload1').trigger('click'); 
+					/*  $('#upload1').trigger('click');  */
 				});
 			
 		//	$('.datepicker').datepicker();
@@ -2029,6 +2075,51 @@ $(document).ready(function(){
 	$("#oldDob").val(month1+"/"+date1+"/"+year);
 	
 	});
+	
+	
+	
+	
+	
+	
+	
+function readURLTeam(input) {
+	
+  	 var srcvalue;
+  	 var URL=window.URL || window.webkitURL;
+  	 var blobURL;
+  	 var files1;
+  	 var $image = $('.img-container > img');
+  	 
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+           var file;
+           files1=input.files;
+          reader.onload = function (e) {
+              srcvalue=e.target.result;
+              	   $('#teamLogo').attr('src',e.target.result);
+              	   
+              file=files1[0];
+             
+              	          if (/^image\/\w+$/.test(file.type)) {
+              	            blobURL = URL.createObjectURL(file);
+              	            alert(blobURL);
+              	           
+              	            $image.one('built.cropper', function () {
+              	              URL.revokeObjectURL(blobURL); // Revoke when load complete
+              	            }).cropper('reset').cropper('replace', blobURL);
+              	            
+              	          } 
+        
+          };
+          
+          reader.readAsDataURL(input.files[0]);
+      }
+     
+  }  
+	
+	
+	
+	
 
    
     </script>
@@ -2037,10 +2128,77 @@ $(document).ready(function(){
     <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initAutocomplete"
         async defer></script>
         
-        
-        <script src="${pageContext.servletContext.contextPath}/resources/js/cropper.js"></script> 
+        <!--  for cropper -->
+        <script src="${pageContext.servletContext.contextPath}/js/cropper.js"></script> 
+    <script src="${pageContext.servletContext.contextPath}/js/Customcropper.js"></script> 
     
-    <script src="${pageContext.servletContext.contextPath}/resources/js/Customcropper.js"></script> 
+    
+    
+ <!--  <script src="http://foliotek.github.io/Croppie/croppie.js"></script>
+  <script src="http://t4t5.github.io/sweetalert/dist/sweetalert-dev.js"></script> -->
+  
+  
+  <script type="text/javascript">
+  
+  
+  
+  
+  var vanillaResult = document.querySelector('.vanilla-result'),
+  vanillaSave = document.querySelector('.vanilla-save'),
+  vanillaRotate = document.querySelector('.vanilla-rotate');
+
+function demoVanilla() {
+  var vanilla = new Croppie(document.getElementById('vanilla-demo'), {
+    viewport: {
+      width: 100,
+      height: 100
+    },
+    boundary: {
+      width: 300,
+      height: 300
+    },
+    enableOrientation: true
+  });
+  vanilla.bind({
+    url: 'http://foliotek.github.io/Croppie/demo/cat.jpg',
+    orientation: 1
+  });
+  vanillaResult.addEventListener('click', function() {
+    vanilla.result('canvas').then(resultVanilla);
+  });
+  vanillaSave.addEventListener('click', function() {
+    vanilla.result('canvas').then(saveVanilla);
+  });
+  vanillaRotate.addEventListener('click', function() {
+    vanilla.rotate(parseInt($(this).data('deg')));
+  });
+}
+
+function resultVanilla(result) {
+  swal({
+    title: '',
+    html: true,
+    text: '<img src="' + result + '" />',
+    allowOutsideClick: true
+  });
+}
+
+function saveVanilla(result) {
+  swal({
+    title: '',
+    html: true,
+    text: '<a id="save" href="' + result + '" download="result"><img src="' + result + '" /><br><button>Download</button></a>',
+    showConfirmButton: false,
+    showCancelButton: true,
+    allowOutsideClick: true,
+
+  });
+}
+
+demoVanilla();
+  
+  
+  </script>
         
         
         <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->

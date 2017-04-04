@@ -16,7 +16,7 @@
 </head>
 <body>
 <div>
-<div id="loading" style="display: block;"> 
+<div id="loading" style="display: block;">
     <div id="loading-center">
         <div id="loading-center-absolute">
             <div class="object" id="object_one"></div>

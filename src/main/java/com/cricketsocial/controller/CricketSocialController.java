@@ -30341,9 +30341,14 @@ try{
 					 JSONArray arr1 = new JSONArray(umpireNameList);
 					 mav.addObject("umpireNameList", arr1);
 					 mav.addObject("winPoint",hubResponse.getResults().getUmpireAndScorerDetails().getWinPoints());
+					 }else{
+						 JsonArray arr=new JsonArray();
+						 mav.addObject("umpireNameList",arr);
+						 mav.addObject("winPoint",hubResponse.getResults().getUmpireAndScorerDetails().getWinPoints());
 					 }
 					 
 				 }
+				 
 			
 		}else{
 			mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");

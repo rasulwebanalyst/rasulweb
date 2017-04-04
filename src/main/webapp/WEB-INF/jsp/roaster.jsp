@@ -1613,7 +1613,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
 											$('#affilatedLeagueId').text(leagueName);
 											$('#affilatedLeagueId').css("display", "inline-block");
 											
-											displaynotification("Your roster has been affiliated successfully",1000);
+											displaynotification("Your squad has been affiliated successfully",1000);
 											
 											$('#Deleterosteroption').hide();
 											
@@ -1648,7 +1648,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
 										$('#affilatedLeagueId').text(leagueName);
 										$('#affilatedLeagueId').css("display", "inline-block");
 										
-										displaynotification("Your roster has been affiliated successfully",1000);
+										displaynotification("Your squad has been affiliated successfully",1000);
 										$('#Deleterosteroption').hide();
 										}
 									}
@@ -1720,7 +1720,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
     doc.setFont("helvetica");
     doc.setFontType("bold");
     doc.setTextColor(50,83,168);
-    doc.text(220,30,"Roster Details");
+    doc.text(220,30,"Squad Details");
 	    
 	    //Roster name ,affliatedto,creatreddate
 	    
@@ -1729,12 +1729,12 @@ function getTeamAroundYou(pageNum, numberOFRecords){
 	    doc.setTextColor(0,0,0);
 	    doc.text(10,70,"Team Name ");
 	    doc.text(110,70,": "+teamname);
-	    doc.text(10,100,"Roster Name ");
+	    doc.text(10,100,"Squad Name ");
 	    doc.text(110,100,": "+Rostername);
-	    doc.text(10,130,"Roster Affiliated to  ");
+	    doc.text(10,130,"Squad Affiliated to  ");
 	   doc.text(110,130,": "+Affliatedto);
 	    /* doc.text(10,160,"Roster Created Date  "); */
-	    doc.text(10,160,"Roster Creation Date  ");
+	    doc.text(10,160,"Squad Creation Date  ");
 	    doc.text(110,160,": "+RosterCreateddate);
 	   
 	   
@@ -1744,7 +1744,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
  			    doc.setFont("helvetica");
  			    doc.setFontType("bold");
  			    doc.setTextColor(50,83,168);
- 			    doc.text(10,205,"Roster Information");
+ 			    doc.text(10,205,"Squad Information");
  			    doc.setTextColor(0,0,0);
 	   
  			   var columns = [
@@ -1752,7 +1752,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
                    {title: "First Name", dataKey: "firstName"},
                    {title: "Last Name", dataKey: "lastName"},
                    {title: "Profile Created On", dataKey: "accountCreateddate"},
-                   {title: "Profile Added to Roster On", dataKey: "addedrosterdate"}
+                   {title: "Profile Added to Squad On", dataKey: "addedrosterdate"}
                ];
  			   
  			   
