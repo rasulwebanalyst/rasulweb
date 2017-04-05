@@ -2108,7 +2108,7 @@ function saveFunction(){
             firstInningsBattingObj.matchId = matchId;
             firstInningsBattingObj.teamId=	 homeTeamId;
            // firstInningsBattingObj.battingOvers = "0.00";
-            
+            WinTeamdetailsinfo
         });
         firstInningsBatting.push(firstInningsBattingObj);
     });
@@ -2188,7 +2188,7 @@ function saveFunction(){
             	firstInningsBowlingObj.bowlingRuns=this.value;
             }
             if(i==3){
-            	firstInningsBowlingObj.maidenOvers=this.value;
+            	firstInningWinTeamdetailsinfosBowlingObj.maidenOvers=this.value;
             }
             if(i==4){
             	firstInningsBowlingObj.wickets = this.value;
@@ -2307,7 +2307,7 @@ function saveFunction(){
 var firstInningsExtraVal = firstInningsExtra;
    
 	
-    var secondInningsExtra = [];
+    var secondInningsExtra WinTeamdetailsinfo= [];
     
     if($("#secondInningsWide").val() != ""){
         var extra={};
@@ -2374,7 +2374,7 @@ var firstInningsExtraVal = firstInningsExtra;
 	if($("#firstInningsFithWicket").val() != ""){
         var fallWic={};
         fallWic.wicketNumber=5;
-        fallWic.runs = $("#firstInningsFithWicket").val();
+        fallWic.runs = $("#WinTeamdetailsinfofirstInningsFithWicket").val();
         fallOfWickets.push(fallWic);
        }
 	if($("#firstInningsSixthWicket").val() != ""){
@@ -2481,7 +2481,7 @@ var firstInningsExtraVal = firstInningsExtra;
      var secondbattingDntPlayers1 = $("#dntPlayerListSecondInnings").val();
 
  
-	var firstInnings = {};
+	var firstInnings = {};WinTeamdetailsinfo
 	firstInnings.battingBeanList = firstInningsBatting;
 	firstInnings.bowlingBeanList = firstInningsBowling;
 	firstInnings.extrasList = firstInningsExtraVal;
@@ -2497,6 +2497,11 @@ var firstInningsExtraVal = firstInningsExtra;
 	
 console.log('--------------------------------  winTeamRuns ------------------------------------------------------- '+winTeamRuns);
 console.log('--------------------------------  loseTeamRuns ------------------------------------------------------- '+loseTeamRuns);
+	
+	
+var FirstInningsScore = $("#firstInnigsScore").val();	
+var SecondInningsScore = $("#secondInnigsScore").val();
+	
 	
 	var scorerBean = {
 		    awayTeamCoach : awayTeamCoach,
@@ -2523,8 +2528,14 @@ console.log('--------------------------------  loseTeamRuns --------------------
 		    result : result,
 		    firstInningsTeamId : homeTeamId,
 		    secondInningsTeamId : awayTeamId,
-		    firstInningsTotalRuns  : winTeamRuns,
-		    secondInningsTotalRuns : loseTeamRuns,
+		    /* firstInningsTotalRuns  : winTeamRuns,
+		    secondInningsTotalRuns : loseTeamRuns, */
+		    
+		    //changes made by vignesh
+		    
+		    firstInningsTotalRuns  : FirstInningsScore,
+		    secondInningsTotalRuns : SecondInningsScore,
+		    
 		    groundId : groundid
 		    
 		}

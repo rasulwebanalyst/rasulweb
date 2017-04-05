@@ -10955,9 +10955,16 @@ public ModelAndView updateUserDetail(@ModelAttribute UserProfileUpdate2 userProf
 		 GsonBuilder builder= new GsonBuilder();
 		    Gson gson = builder.create();
 		    String bytstring = gson.toJson(userProfile.getUpload());
-		  
-		   
-		    if(userProfile.getUserimgfile()!=null)
+		    
+		    
+		    // changed by vignesh for cropimage
+		    if(userProfile.getCroppedFlag().equalsIgnoreCase("Cropped"))
+		    {
+		    	
+		    	
+		    	
+		    }
+		    else if(userProfile.getUserimgfile()!=null)
 		    {
 		    	userProfile.getUserimgfile().getName();
 		    	ImageDetails imgfile= new ImageDetails();
@@ -30705,6 +30712,8 @@ public @ResponseBody String enterScoreInsert(@RequestBody ScoreBean scorer, Http
 		HttpSession session = req.getSession(true);
 		if(session != null){
 			
+			String userid=(String) session.getAttribute("USRID");
+			
 			hubReq = new HubRequest();
 			hubReq.setMsgType(165);
 			Map<String, String> myMap = new HashMap<String, String>();
@@ -30807,6 +30816,7 @@ public @ResponseBody String enterScoreInsert(@RequestBody ScoreBean scorer, Http
 			bean.setFirstInningsTeamId(scorer.getFirstInningsTeamId());
 			bean.setSecondInningsTeamId(scorer.getSecondInningsTeamId());
 			bean.setGroundId(scorer.getGroundId());
+			bean.setScorerId(userid);
 			hubReq.setRequestParam(bean);
 			
 			String response = cricketSocialRestTemplateService.userRegistration(hubReq);

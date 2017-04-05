@@ -140,13 +140,16 @@ var teamdeletearray=[];
                         	
                         	
                         	
-                        	
+                        <input type="hidden" name="croppedBase64" id="croppedBase64">
+                        <input type="hidden" name="croppedFlag" id="croppedFlag"> 	
                         	
                           
                           <div class="centerbtns">
                           <input type="hidden" id="cancelTournamentid">
                           
-                           <button type="button" class="btn btn-default blueBtn" onclick="okFunction()">OK</button>
+                          <img id="teamLogo1" src="" alt="Picture" style="display: none;">
+                          
+                           <a data-method="getCroppedCanvas" style="margin-left: 215px; margin-bottom:0px;" href="javascript:void(0)" class="pull-left  ctmbtn" onclick="setTimeout('changephoto()',400)">Ok</a>
                           <button type="button" class="btn btn-default blueBtn" onclick="cancelFunction()">Cancel</button>
                           
                           
@@ -2196,6 +2199,45 @@ function saveVanilla(result) {
 }
 
 demoVanilla();
+  
+  
+  </script>
+  
+  
+  <script type="text/javascript">
+  
+  
+  
+  function cancelFunction(){
+	  
+	  
+  $("#Editimage").hide();
+	  
+  }
+  
+  function changephoto(){
+	  
+	  
+	  var result=document.getElementById("teamLogo1").src;
+          var imageType=result.substring(result.indexOf('data:')+5,result.indexOf('/'));
+          console.log(imageType);
+      $('#profileimg').attr('src', result);
+      $('#profileimg2').attr('src', result);
+      $('#upload1').attr('src', result);
+      if(imageType=='image')
+      	{
+      		imageValidate=1;
+            
+            $("croppedFlag").val("Cropped");
+            $("croppedBase64").val(result);
+      		
+      	}else{
+      		imageValidate=0;
+      	}
+      
+      $("#Editimage").hide();
+	  
+  }
   
   
   </script>

@@ -50,10 +50,19 @@ public class ScoreBean {
 	private String secondInningsTeamId;
 	private int noOfOvers;
 	private String groundId;
+	private String scorerId;
 	
 	
 	
 	
+	
+	
+	public String getScorerId() {
+		return scorerId;
+	}
+	public void setScorerId(String scorerId) {
+		this.scorerId = scorerId;
+	}
 	public String getGroundId() {
 		return groundId;
 	}
