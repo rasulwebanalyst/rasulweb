@@ -140,9 +140,6 @@ var teamdeletearray=[];
                         	
                         	
                         	
-                        <input type="hidden" name="croppedBase64" id="croppedBase64">
-                        <input type="hidden" name="croppedFlag" id="croppedFlag"> 	
-                        	
                           
                           <div class="centerbtns">
                           <input type="hidden" id="cancelTournamentid">
@@ -195,6 +192,12 @@ var teamdeletearray=[];
         	<!--Content Block-->
             <div class="col-md-12 middleContBlock noPadding">
                  <form action="${pageContext.request.contextPath}/updateUserDetail.htm" name="userprofileupdateform" id="userprofileupdateform"  enctype="multipart/form-data"  method="post" onsubmit="return createProfileValidation(this)">
+                 
+                 
+                 <input type="hidden" name="croppedBase64" id="croppedBase64">
+                        <input type="hidden" name="croppedFlag" id="croppedFlag"> 	
+                        
+                 
                  <div class="col-md-12 noPadding">
                     
                       <div class="col-md-2 profileLogo">
@@ -2228,8 +2231,8 @@ demoVanilla();
       	{
       		imageValidate=1;
             
-            $("croppedFlag").val("Cropped");
-            $("croppedBase64").val(result);
+            $("#croppedFlag").val("Cropped");
+            $("#croppedBase64").val(result);
       		
       	}else{
       		imageValidate=0;

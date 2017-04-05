@@ -10958,10 +10958,16 @@ public ModelAndView updateUserDetail(@ModelAttribute UserProfileUpdate2 userProf
 		    
 		    
 		    // changed by vignesh for cropimage
+		    System.out.println("The base flag :"+userProfile.getCroppedFlag());
 		    if(userProfile.getCroppedFlag().equalsIgnoreCase("Cropped"))
 		    {
-		    	
-		    	
+		    	System.out.println("The base 64 is :"+userProfile.getCroppedBase64());
+		    	String imagestring=userProfile.getCroppedBase64().split(",")[1];
+		    	System.out.println("imagestring :"+imagestring);
+		    	String imgextension=userProfile.getCroppedBase64().split(",")[0].split("/")[1].split(";")[0];
+		    	System.out.println("The image extension :"+imgextension);
+		    	userProfile.setImageData(imagestring);
+		    	userProfile.setImageExtension("."+imgextension);
 		    	
 		    }
 		    else if(userProfile.getUserimgfile()!=null)
@@ -30712,7 +30718,7 @@ public @ResponseBody String enterScoreInsert(@RequestBody ScoreBean scorer, Http
 		HttpSession session = req.getSession(true);
 		if(session != null){
 			
-			String userid=(String) session.getAttribute("USRID");
+			UUID userid=(UUID) session.getAttribute("USRID");
 			
 			hubReq = new HubRequest();
 			hubReq.setMsgType(165);
@@ -30816,7 +30822,7 @@ public @ResponseBody String enterScoreInsert(@RequestBody ScoreBean scorer, Http
 			bean.setFirstInningsTeamId(scorer.getFirstInningsTeamId());
 			bean.setSecondInningsTeamId(scorer.getSecondInningsTeamId());
 			bean.setGroundId(scorer.getGroundId());
-			bean.setScorerId(userid);
+			bean.setScorerId(userid.toString());
 			hubReq.setRequestParam(bean);
 			
 			String response = cricketSocialRestTemplateService.userRegistration(hubReq);
