@@ -248,7 +248,7 @@ function checkbbi(bbi)
                      <%@ include file="BoardFanMenu.jsp" %> 
                 <div class="col-md-10 pull-right rosterBlock rightnone">
                  <div class="col-md-12 whiteBox">
-                 	No squads are available.
+                 	No squad available.
                  </div>
                  </div>
                  
