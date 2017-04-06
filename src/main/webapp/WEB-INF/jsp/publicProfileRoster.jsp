@@ -248,7 +248,7 @@ function checkbbi(bbi)
                      <%@ include file="BoardFanMenu.jsp" %> 
                 <div class="col-md-10 pull-right rosterBlock rightnone">
                  <div class="col-md-12 whiteBox">
-                 	No Squads are available.
+                 	No squads are available.
                  </div>
                  </div>
                  
@@ -1233,7 +1233,7 @@ var roasterid="${RoasterResponseById.rosterDetails.rosterId}";
 										$('#affilatedLeagueId').text(leagueName);
 										$('#affilatedLeagueId').css("display", "inline-block");
 										
-										showNotification("Your Squad has been affiliated successfully",1000);
+										showNotification("Your squad has been affiliated successfully",1000);
 									}else{
 										showNotification("Service has been interupted due to some reasons",1000);
 									}

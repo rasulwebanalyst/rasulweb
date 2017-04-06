@@ -247,7 +247,7 @@ function checkbbi(bbi)
               <div onclick="deleteRosterPOup()"> <span class="close_btn" > <i class="fa fa-close" ></i> </span></div>
 
                <div class="popupContentDiv">
-					<b>Confirm to delete Squad</b><br> 
+					<b>Confirm to delete squad</b><br> 
                     <input type="hidden" id="deleteRosterID" value="" name="deleteRosterID">
                     <div class="centerbtns"><button type="button" class="btn btn-default blueBtn" onclick="conformDeleteRoster()">Ok</button></div>
                                        

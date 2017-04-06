@@ -2108,7 +2108,7 @@ function saveFunction(){
             firstInningsBattingObj.matchId = matchId;
             firstInningsBattingObj.teamId=	 homeTeamId;
            // firstInningsBattingObj.battingOvers = "0.00";
-            WinTeamdetailsinfo
+            
         });
         firstInningsBatting.push(firstInningsBattingObj);
     });
@@ -2188,7 +2188,7 @@ function saveFunction(){
             	firstInningsBowlingObj.bowlingRuns=this.value;
             }
             if(i==3){
-            	firstInningWinTeamdetailsinfosBowlingObj.maidenOvers=this.value;
+            	firstInningsBowlingObj.maidenOvers=this.value;
             }
             if(i==4){
             	firstInningsBowlingObj.wickets = this.value;
@@ -2307,7 +2307,7 @@ function saveFunction(){
 var firstInningsExtraVal = firstInningsExtra;
    
 	
-    var secondInningsExtra WinTeamdetailsinfo= [];
+    var secondInningsExtra = [];
     
     if($("#secondInningsWide").val() != ""){
         var extra={};
@@ -2374,7 +2374,7 @@ var firstInningsExtraVal = firstInningsExtra;
 	if($("#firstInningsFithWicket").val() != ""){
         var fallWic={};
         fallWic.wicketNumber=5;
-        fallWic.runs = $("#WinTeamdetailsinfofirstInningsFithWicket").val();
+        fallWic.runs = $("#firstInningsFithWicket").val();
         fallOfWickets.push(fallWic);
        }
 	if($("#firstInningsSixthWicket").val() != ""){
@@ -2481,7 +2481,7 @@ var firstInningsExtraVal = firstInningsExtra;
      var secondbattingDntPlayers1 = $("#dntPlayerListSecondInnings").val();
 
  
-	var firstInnings = {};WinTeamdetailsinfo
+	var firstInnings = {};
 	firstInnings.battingBeanList = firstInningsBatting;
 	firstInnings.bowlingBeanList = firstInningsBowling;
 	firstInnings.extrasList = firstInningsExtraVal;

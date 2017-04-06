@@ -105,13 +105,6 @@ margin-top: -10px;
 opacity: 0;
 transition: opacity 1s;
 box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
-/* height: 222px;
-overflow-y: scroll;   */
-
-min-height: 10px;
-    overflow-y: auto;
-    max-height: 222px;
-
 }
 
 .tooltip1 .tooltiptext1::after {
