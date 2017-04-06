@@ -400,7 +400,7 @@ margin-bottom: 50%;
     								var users=res.userList;
     								console.log(JSON.stringify(users));
     								html+="<ul style='overflow: auto; max-height: 275px;'>";
-    								
+    								var m=0;
     								if(users!= null && users.length >0){
     									for(var i in users){
     										var name=users[i].firstName;
@@ -429,6 +429,8 @@ margin-bottom: 50%;
 										
 										if(users[i].teamboardlist.length > 0)
 				                          {
+											
+											
 				                        	  
 				                        	  html +=" <div onmouseover=getposition("+i+") id=eye"+i+" class='tooltip1'><i class='fa fa-eye' aria-hidden='true' style='float: right;'></i>";
 			                        		  html +="<div id=showtool"+i+" class='tooltiptext1'>";
@@ -450,12 +452,13 @@ margin-bottom: 50%;
 					                        		/*   htm +=" afflicated to "; */
 					                        		  
 					                        		  
-					                        		  html +=" <div class='tooltip'>Leagues";
-					                        		  html +="<span class='tooltiptext'><ul>";
+					                        		  html +=" <div class='tooltip' onmouseover=getpositiontext("+m+") id=leagues"+m+">Leagues";
+					                        		  html +="<span id=showtooltext"+m+" class='tooltiptext'><ul>";
 					                        		  for(var k in leagueboardlist){
 					                        			  html +="<li>"+leagueboardlist[k].boardName+"</li>";
 					                        		  
 					                        		  }
+					                        		  m++;
 					                        			  html +="</ul></span>";
 					                        		  html +="</div>";
 					                          }
@@ -864,6 +867,17 @@ function removingMemberById(id)
  						
  					
  				}
+ 		}
+ 		
+ 		
+ 		
+ 		function getpositiontext(i){
+ 			console.log(i);
+ 			var p = $( "#leagues"+i);
+ 			var position = p.position();
+ 			
+ 			
+ 			$('#showtooltext'+i).css('top', position.top);
  		}
  		
     </script>

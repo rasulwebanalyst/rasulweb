@@ -446,7 +446,7 @@ margin-bottom: 50%;
     								var users=res.userList;
     								console.log(JSON.stringify(users));
     								html+="<ul style='overflow: auto; max-height: 275px;'>";
-    								
+    								var m=0;
     								if(users!= null && users.length >0){
     									for(var i in users){
     									//	var name=users[i].firstName+" "+users[i].lastName;
@@ -496,12 +496,13 @@ margin-bottom: 50%;
   					                        		/*   htm +=" afflicated to "; */
   					                        		  
   					                        		  
-  					                        		  html +=" <div class='tooltip'>Leagues";
-  					                        		  html +="<span class='tooltiptext'><ul>";
+  					                        		  html +=" <div class='tooltip' onmouseover=getpositiontext("+m+") id=leagues"+m+">Leagues";
+					                        		  html +="<span id=showtooltext"+m+" class='tooltiptext'><ul>";
   					                        		  for(var k in leagueboardlist){
   					                        			  html +="<li>"+leagueboardlist[k].boardName+"</li>";
   					                        		  
   					                        		  }
+  					                        		m++;
   					                        			  html +="</ul></span>";
   					                        		  html +="</div>";
   					                          }
@@ -902,6 +903,22 @@ function RoasterPopup()
 {
 	$("#RoasterPopup").hide();
 }
+
+
+
+
+
+function getpositiontext(i){
+		console.log(i);
+		var p = $( "#leagues"+i);
+		var position = p.position();
+		
+		
+		$('#showtooltext'+i).css('top', position.top);
+	}
+	
+
+
     </script>
     
     <script type="text/javascript">
