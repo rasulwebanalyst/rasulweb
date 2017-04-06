@@ -224,7 +224,7 @@
        	  },
           messages: {
         	  name: {
-                  required: "Please enter Squad name",
+                  required: "Please enter squad name",
                   minlength :"Name should be at least 5 character",
           		maxlength : "Name should be below 30 character's"
               },

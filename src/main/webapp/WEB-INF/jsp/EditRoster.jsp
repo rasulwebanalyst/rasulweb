@@ -105,6 +105,10 @@ margin-top: -10px;
 opacity: 0;
 transition: opacity 1s;
 box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+
+min-height: 10px;
+    overflow-y: auto;
+    max-height: 222px;
 }
 
 .tooltip1 .tooltiptext1::after {
@@ -137,7 +141,7 @@ border: none !important;
 text-align: left;
 }
 
-.autoSearchBlcok {
+.autoSearchBlcok-w-cls {
 width: 460px !important;
 z-index: 9999999 ;
 }
@@ -273,7 +277,7 @@ span.sponser-Flow {
 		                               <div class="col-md-12 noPadding" id="memberListDIV${rosterMember.userId}">
 		                               <span class='palyerCount' id='sequenc${rosterMember.userId}'>${i.count}</span>
 		                                  <input type="text" class="form-control player-entry" readonly style="width:73%; float:left;" value="${rosterMember.userProfile.firstName} ${rosterMember.userProfile.lastName}" placeholder="" id="member${rosterMember.userId}" onkeyup="getBuddiesAutoComplete(this,'memberautoCompleteDIV${i.count}','memberHiddeb${i.count}')">
-			                                 <div class="autoSearchBlcok" id="memberautoCompleteDIV${i.count}" style="display:none;margin-top: 37px; margin-left: 0!important;">
+			                                 <div class="autoSearchBlcok autoSearchBlcok-w-cls" id="memberautoCompleteDIV${i.count}" style="display:none;margin-top: 37px; margin-left: 0!important;">
 													<ul>
 			                                        	<li>Vikki</li>
 			                                        </ul>                                  	
@@ -300,7 +304,7 @@ span.sponser-Flow {
                                 <div class="col-md-12 noPadding">
                                   <input type="text" class="form-control" value="" style="width:80%; float:left;" placeholder="" id="addMemberNameDIV" onkeyup="getBuddiesAutoComplete(this,'addMemberautoCompleteDIV','addMemberIDDIV')">
                                  <button type="button" class="btn btn-default dBtn" style="width:18%; float:right;" onclick="addmemberToRoster()">Add</button>
-                                 <div class="autoSearchBlcok" id="addMemberautoCompleteDIV" style="display:none;margin-top: 37px; margin-left: 0!important;">
+                                 <div class="autoSearchBlcok autoSearchBlcok-w-cls" id="addMemberautoCompleteDIV" style="display:none;margin-top: 37px; margin-left: 0!important;">
 													<ul>
 			                                        	<li>Vikki</li>
 			                                        </ul>                                  	

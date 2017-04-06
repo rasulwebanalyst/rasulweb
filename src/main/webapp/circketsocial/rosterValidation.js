@@ -189,7 +189,7 @@
 	 						return false;
 	 					}
  				}else{
-		 					message='Please enter Squad name';
+		 					message='Please enter squad name';
 		 					console.log('else --> '+message);
 		 					$('#rosterNameMessage').text(message);
 		 					return false;
