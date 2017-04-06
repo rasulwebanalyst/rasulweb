@@ -322,7 +322,7 @@ function checkbbi(bbi)
                 	
                 <div class="col-md-10 pull-right rosterBlock rightnone">
                  <div class="col-md-12 whiteBox">
-                 	No Squad are available.
+                 	No squad available.
                  </div>
                  </div>
                  

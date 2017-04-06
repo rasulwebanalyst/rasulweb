@@ -169,6 +169,21 @@ span.sponser-Flow {
 	color: #555!important;
 }
 
+.tooltiptext1 .test {
+min-height: 40px;
+max-height: 200px;
+overflow: auto;
+}
+.test {
+min-height: 40px;
+max-height: 200px;
+overflow: auto;
+}
+
+.autoSearchBlcok.autoSearchBlcok-w-cls {
+margin-bottom: 50%;
+}
+
 </style>
 
 
@@ -419,7 +434,7 @@ span.sponser-Flow {
 			                        		  html +="<div id=showtool"+i+" class='tooltiptext1'>";
 			                        		  
 
-			                          		html +="<div id='dropdown"+users[i].userId+"' class='' >";
+			                          		html +="<div id='dropdown"+users[i].userId+"' class='test' >";
 					                         
 					                          for(var j in users[i].teamboardlist){
 					                        	  
@@ -458,7 +473,7 @@ span.sponser-Flow {
 				                          // no record
 				                        	  html +=" <div onmouseover=getposition("+i+") id=eye"+i+" class='tooltip1'><i class='fa fa-eye' aria-hidden='true' style='float: right;'></i>";
 			                        		  html +="<div id=showtool"+i+" class='tooltiptext1'>";
-			                          		html +="<div id='dropdown"+users[i].userId+"' class='' >";
+			                          		html +="<div id='dropdown"+users[i].userId+"' class='test' >";
 					                          html +="<li style='text-align: center;'>No Details</li>";
 					                         
 					                          html +="</div>";
