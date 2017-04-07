@@ -552,7 +552,7 @@ var formatAMPMTime = function(date) {
                              		<div class="ViewMenu">
                              		<h4>View Menu</h4>
                              		
-                             		<a href="javascript:void(0);" onclick="PleaseLogin()"> Points Table</a>
+                             		<a href="${pageContext.request.contextPath}/LeaguePointsProfilesite/${BoradInfo.boardId}"> Points Table</a>
                              		
                              		<c:if test="${!empty Viewmenu}">
 										 <c:forEach var="ground1" items="${Viewmenu}" begin="2" end="3">
@@ -629,7 +629,7 @@ var formatAMPMTime = function(date) {
                              		</div> -->
                              		<div class="ViewMenu">
                              		<h4>View Menu</h4>
-                             	            <a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa fa-angle-right"></i> Points Table</a>
+                             	            <a href="${pageContext.request.contextPath}/LeaguePointsProfilesite/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Points Table</a>
                                             <a href="javascript:"><i class="fa fa-angle-right"></i> Schedule List</a>
                                             <a href="javascript:"><i class="fa fa-angle-right"></i> Schedule & Scores</a>
                              			<div class="moreview" id="more1">...More</div>
@@ -704,10 +704,12 @@ var formatAMPMTime = function(date) {
                              		<h4>View Menu</h4>
                              		
                              		
-                             		<a href="javascript:void(0);" onclick="PleaseLogin()"> Points Table</a>
+                             		<a href="${pageContext.request.contextPath}/LeaguePointsProfilesite/${BoradInfo.boardId}"> Points Table</a>
+                             		<a href="${pageContext.request.contextPath}/UmpireProfilesite/${BoradInfo.boardId}"> Umpire List</a>
+                             		<a href="${pageContext.request.contextPath}/GroundProfilesite/${BoradInfo.boardId}"> Ground List</a>
                              		
                                     	      
-                                    	      
+                                    	     <%--  
                                     	      <c:if test="${!empty Viewmenu}">
                                     	      <c:if test="${fn:length(Viewmenu) gt 2}">
 										 <c:forEach var="ground1" items="${Viewmenu}" begin="2" end="3">
@@ -715,18 +717,18 @@ var formatAMPMTime = function(date) {
 											</c:forEach> 
 											</c:if>
 											</c:if>
-                             	       
+                             	        --%>
 
                              			<div class="moreview" id="more1">...More</div>
                              			<span class="showmore" id="showmore1">
                              			
-                             			<c:if test="${!empty Viewmenu}">
+                             			<%-- <c:if test="${!empty Viewmenu}">
 										 <c:forEach var="ground1" items="${Viewmenu}" begin="0" end="1">
 											${ground1}  
 											</c:forEach> 
-											</c:if>
+											</c:if> --%>
                              			
-                             			<c:if test="${!empty Viewmenu}">
+                             			<%-- <c:if test="${!empty Viewmenu}">
                                     	      <c:if test="${fn:length(Viewmenu) gt 4}">
 										 <c:forEach var="ground1" items="${Viewmenu}" begin="4">
 											
@@ -734,8 +736,10 @@ var formatAMPMTime = function(date) {
 											
 											</c:forEach> 
 											</c:if>
-											</c:if>
+											</c:if> --%>
                              			
+                             			 <a href="javascript:void(0);" onclick="PleaseLogin()"> Schedule List</a>
+                             			 <a href="javascript:void(0);" onclick="PleaseLogin()"> Schedule & Scores</a>
                              			 
                              			<a href="javascript:void(0);" onclick="PleaseLogin()"> Teams</a>                                         
                                             

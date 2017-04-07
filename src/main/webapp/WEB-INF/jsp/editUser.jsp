@@ -1390,13 +1390,13 @@ $(function(){
 				 //new change
 				 
 				 
-				  $("#Editimage").show(); 
+				 /*  $("#Editimage").show();  */
 				 
 				 
 				 
 				 
 				 
-					/*  $('#upload1').trigger('click');  */
+					  $('#upload1').trigger('click');  
 				});
 			
 		//	$('.datepicker').datepicker();

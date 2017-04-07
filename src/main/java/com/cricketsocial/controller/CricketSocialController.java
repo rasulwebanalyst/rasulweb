@@ -44586,6 +44586,204 @@ public ModelAndView Organizationdetailssite(HttpServletRequest req, @PathVariabl
 	return mav;
 }
 
+
+
+
+
+
+
+
+
+@RequestMapping(value="/LeaguePointsProfilesite/{bid}", method=RequestMethod.GET)
+public ModelAndView LeaguePointsProfilesite(HttpServletRequest request, @PathVariable String bid) throws CSException
+{
+	
+	 	ModelAndView model=null;
+	    
+			
+			model= new ModelAndView("PublicPointstablessite");
+			
+			final String context = request.getContextPath();
+
+			
+			
+			 HubRequest hubReq1=new HubRequest();
+			 hubReq1.setMsgType(40);
+			 ModelMap map1=new ModelMap();			
+			 map1.put("boardId", bid);
+			 hubReq1.setRequestParam(map1);
+			 String strBoarddetail=cricketSocialRestTemplateService.userRegistration(hubReq1);
+			 GsonBuilder builder = new GsonBuilder();
+			 Gson gson = builder.create();
+			 if(strBoarddetail!=null)
+			 {
+				 HubResponse hubResponse1= gson.fromJson(strBoarddetail, HubResponse.class);
+				if(hubResponse1!=null && hubResponse1.getResults().getBoardStatusDetail()!=null && hubResponse1.getResults().getBoardStatusDetail().size()>0)
+				{
+					model.addObject("BoardId", bid);
+					 model.addObject("BoradInfo", hubResponse1.getResults().getBoardStatusDetail().get(0));
+					
+				}
+			 }
+			 
+
+
+			 HubRequest hubReq=new HubRequest();
+					 hubReq.setMsgType(142);
+					 ModelMap map=new ModelMap();			
+					 map.put("boardId", bid);
+					 map.put("tournamentId", "");
+					 map.put("homeTeamId", "");
+					 map.put("startNode", 0);
+					 map.put("endNode", 500);
+					 
+					 
+					 hubReq.setRequestParam(map);
+					 String strPoints=cricketSocialRestTemplateService.userRegistration(hubReq);
+					 if(strPoints!=null)
+					 {
+						 HubResponse hubResponse1= gson.fromJson(strPoints, HubResponse.class);
+						 if(hubResponse1!=null && hubResponse1.getResults()!=null && hubResponse1.getResults().getCentueryList()!=null)
+						 {
+							 model.addObject("TournamentPointTableList", hubResponse1.getResults().getCentueryList());
+						 }
+					 }else{
+						 model=new ModelAndView("redirect:/login.htm?loginvalidation=service not available");
+					 }
+					 
+	return model;
+}
+
+
+@RequestMapping(value="/UmpireProfilesite/{boardId}", method=RequestMethod.GET)
+public ModelAndView UmpireProfilesite(@PathVariable String boardId, HttpServletRequest req){
+	ModelAndView mav = null;
+	try{
+		
+		System.out.println("board id:"+boardId);
+		mav = new ModelAndView("UmpireListsite");
+
+		 mav.addObject("boardId",boardId);
+
+		 ModelMap modelMap = new ModelMap();
+		modelMap.put("boardId", boardId);
+		hubReq = new HubRequest(65);
+		hubReq.setMsgType(65);
+		hubReq.setRequestParam(modelMap);
+		 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
+		 GsonBuilder gsonBuilder = new GsonBuilder();
+		 Gson gson = gsonBuilder.create();
+		 
+		 		 
+		 
+				//*************************** Getting Board info  ***************************************
+				 HubRequest hubReq1=new HubRequest();
+				 hubReq1.setMsgType(40);
+				 ModelMap map11=new ModelMap();			
+				 map11.put("boardId", boardId);
+				 hubReq1.setRequestParam(map11);
+				 String strBoarddetail=cricketSocialRestTemplateService.userRegistration(hubReq1);		
+				 if(strBoarddetail!=null)
+				 {
+					 HubResponse hubResponse1= gson.fromJson(strBoarddetail, HubResponse.class);
+					if(hubResponse1!=null && hubResponse1.getResults().getBoardStatusDetail()!=null && hubResponse1.getResults().getBoardStatusDetail().size()>0)
+					{
+						 mav.addObject("BoardId", boardId);
+						 mav.addObject("BoradInfo", hubResponse1.getResults().getBoardStatusDetail().get(0));
+						 final String context = req.getContextPath();
+					}
+				 }	
+	
+				 
+				 
+		 
+			 HubResponse hubResponse= gson.fromJson(strBoardList, HubResponse.class);
+			 if(hubResponse!=null && hubResponse.getResults()!=null)
+			 {					 
+				 mav.addObject("BoardUmpireList", hubResponse.getResults().getBoardUmpireList());
+				 if(hubResponse.getResults().getBoardUmpireList() != null){
+				 mav.addObject("BoardUmpireListSize", hubResponse.getResults().getBoardUmpireList().size());
+				 }else{
+					 mav.addObject("BoardUmpireListSize", 0);
+				 }
+				 
+				 
+			 }else{
+				 mav.addObject("BoardUmpireListSize", hubResponse.getResults().getBoardUmpireList().size());
+			 }
+		 
+		 
+		
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}
+	return mav;
+}
+
+@RequestMapping(value="/GroundProfilesite/{boardId}",method=RequestMethod.GET)
+public ModelAndView GroundProfilesite(@PathVariable String boardId,HttpServletRequest req){
+	ModelAndView mav = null;
+	try{
+		
+		
+		mav = new ModelAndView("GroundListSite");
+		mav.addObject("boardId", boardId);
+		hubReq = new HubRequest(85);
+		hubReq.setMsgType(85);
+		
+		ModelMap model= new ModelMap();
+		model.put("boardId", boardId);
+		//model.put("paginationFlag", "No");
+		//model.put("tokenId", 0);
+		
+		
+		
+		System.out.println("board Id :"+boardId);
+		GsonBuilder builder = new GsonBuilder();
+		Gson gson = builder.create();
+		hubReq.setRequestParam(model);
+		String response = cricketSocialRestTemplateService.userRegistration(hubReq);
+		if(response !=  null){
+			HubResponse  hubRes = gson.fromJson(response, HubResponse.class);
+			if(hubRes !=  null && hubRes.getResults() !=  null){
+				mav.addObject("groundList", hubRes.getResults().getGroundList());
+				mav.addObject("groundListSize",hubRes.getResults().getGroundList().size());
+			}
+			else{
+				 mav.addObject("groundListSize", hubRes.getResults().getGroundList().size());
+			}
+		}
+		
+		
+			 
+			//*************************** Getting Board info  ***************************************
+			 HubRequest hubReq1=new HubRequest();
+			 hubReq1.setMsgType(40);
+			 ModelMap map1=new ModelMap();			
+			 map1.put("boardId", boardId);
+			 hubReq1.setRequestParam(map1);
+			 String strBoarddetail=cricketSocialRestTemplateService.userRegistration(hubReq1);		
+			 if(strBoarddetail!=null)
+			 {
+				 HubResponse hubResponse1= gson.fromJson(strBoarddetail, HubResponse.class);
+				if(hubResponse1!=null && hubResponse1.getResults().getBoardStatusDetail()!=null && hubResponse1.getResults().getBoardStatusDetail().size()>0)
+				{
+					 mav.addObject("BoardId", boardId);
+					 mav.addObject("BoradInfo", hubResponse1.getResults().getBoardStatusDetail().get(0));
+					 final String context = req.getContextPath();
+				}
+			 }		 
+			 
+			 
+			 
+	
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}
+	return mav;
+}
+
+
 @RequestMapping(value="/lockScorecard" , method=RequestMethod.POST)
 public @ResponseBody String lockScorecard(HttpServletRequest request, @RequestBody TournamentScheduler scheduler)
 {
@@ -44603,7 +44801,7 @@ try{
     
     System.out.println("The 275 response is  :"+response);
 	
-}catch(Exception e){
+}catch(Exception e){	
 	e.printStackTrace();
 }
 
