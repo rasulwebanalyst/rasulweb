@@ -171,7 +171,7 @@ text-overflow: ellipsis;
 		
 		<c:forEach var="sponser" items="${spoResponse.boardSponsorsList}">
 		    <div>
-		      <li style="text-align: center;"><img style=" margin-bottom: 9px;"  src="${sponser.imageUrl}" /><span class="sponser-Flow" title="${sponser.sponsorName}">${sponser.sponsorName}</span></li>
+		      <li style="text-align: center;"><img style=" margin-bottom: 9px;"  src="${sponser.imageUrl}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" /><span class="sponser-Flow" title="${sponser.sponsorName}">${sponser.sponsorName}</span></li>
 		   </div>
 		 
 		</c:forEach>
