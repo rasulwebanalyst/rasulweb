@@ -2554,8 +2554,16 @@ var SecondInningsScore = $("#secondInnigsScore").val();
 			$("#loading").hide();
 			if(res != "failure"){
 				var boardId  = "${boardId}";
+				
+				
+				if(res == 'Sorry, Scorecard Locked!')
+				{    
+					showNotification("Sorry scorecoard has been locked, Please contact your admin.", 2000);
+					hide_notificationpoup(2000);
+				}else{
+				
 				showNotification("Inserted Successfully", 2000);
-				hide_notificationpoup(2000);
+				hide_notificationpoup(2000);}
 				 window.location.href = "${pageContext.request.contextPath}/GameSchedule/boardId/"+boardId;
 				
 			}else{

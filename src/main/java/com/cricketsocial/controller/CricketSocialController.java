@@ -5947,6 +5947,7 @@ public ModelAndView getboard(@RequestParam String bid, HttpServletRequest reques
 					 hubReq =new HubRequest();
 					 hubReq.setMsgType(133);
 					 ModelMap map5=new ModelMap();
+					 map5.put("userId", userId);
 					 map5.put("boardId", bid);
 					 map5.put("previousNextFlag","current");
 					 map5.put("endNode", 10);
@@ -5991,6 +5992,7 @@ public ModelAndView getboard(@RequestParam String bid, HttpServletRequest reques
 					 hubReq =new HubRequest();
 					 hubReq.setMsgType(133);
 					 ModelMap map8=new ModelMap();
+                     map8.put("userId",userId );
 					 map8.put("boardId", bid);
 					 map8.put("toDateString",dateFormat.format(date));
 					 map8.put("fromDateString",dateFormat.format(new Date(System.currentTimeMillis() - (7 * DAY_IN_MS))));
@@ -9991,6 +9993,7 @@ public ModelAndView boardPublicProfile(HttpServletRequest request, @PathVariable
 				 hubReq =new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map5=new ModelMap();
+				 map5.put("userId",userId );
 				 map5.put("boardId", boardID);
 				 map5.put("previousNextFlag","current");
 				 map5.put("endNode", 10);
@@ -10034,6 +10037,7 @@ public ModelAndView boardPublicProfile(HttpServletRequest request, @PathVariable
 				 hubReq =new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map8=new ModelMap();
+				 map8.put("userId",userId );
 				 map8.put("boardId", boardID);
 				 map8.put("toDateString",dateFormat.format(date));
 				 map8.put("fromDateString",dateFormat.format(new Date(System.currentTimeMillis() - (7 * DAY_IN_MS))));
@@ -22403,6 +22407,7 @@ public ModelAndView gameSchedule(HttpServletRequest req, @PathVariable String bo
 			 hubReq =new HubRequest();
 			 hubReq.setMsgType(133);
 			 ModelMap map3=new ModelMap();
+			 map3.put("userId", userId);
 			 map3.put("boardId", boardId);
 			 map3.put("previousNextFlag","current");
 			 map3.put("endNode", 10);
@@ -22751,6 +22756,7 @@ public ModelAndView filterScheduleFunction(HttpServletRequest req, @ModelAttribu
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
+				 map3.put("userId", userId);
 				 map3.put("boardId", gs.getBoardId());
 				 //map3.put("tournamentId", tournamentId);
 				 map3.put("fromDateString", fromDateString);
@@ -22812,6 +22818,7 @@ public ModelAndView filterScheduleFunction(HttpServletRequest req, @ModelAttribu
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
+				 map3.put("userId", userId);
 				 map3.put("boardId", gs.getBoardId());
 				 map3.put("tournamentId", tournamentId);
 				 map3.put("endNode", 10);
@@ -22854,6 +22861,7 @@ public ModelAndView filterScheduleFunction(HttpServletRequest req, @ModelAttribu
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
+				 map3.put("userId", userId);
 				 map3.put("boardId", gs.getBoardId());
 				 map3.put("tournamentId", tournamentId);
 				 map3.put("fromDateString", fromDateString);
@@ -22900,6 +22908,7 @@ public ModelAndView filterScheduleFunction(HttpServletRequest req, @ModelAttribu
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
+				 map3.put("userId", userId);
 				 map3.put("boardId", gs.getBoardId());
 				 map3.put("endNode", 10);
 				 hubReq.setRequestParam(map3);
@@ -23038,6 +23047,7 @@ public ModelAndView CancelGameByDate(HttpServletRequest req, @PathVariable Strin
 			 hubReq = new HubRequest();
 			 hubReq.setMsgType(133);
 			 ModelMap map3 = new ModelMap();
+			 map3.put("userId",userId );
 			 map3.put("boardId", boardId);
 			 map3.put("fromDateString", todayDate);
 			 map3.put("toDateString", nextDate);
@@ -23911,6 +23921,7 @@ public ModelAndView filterScheduleFunctionForUpcoming(HttpServletRequest req, @M
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
+				 map3.put("userId",userId );
 				 map3.put("boardId", gs.getBoardId());
 				 //map3.put("tournamentId", tournamentId);
 				 map3.put("fromDateString", fromDateString);
@@ -23959,6 +23970,7 @@ public ModelAndView filterScheduleFunctionForUpcoming(HttpServletRequest req, @M
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
+				 map3.put("userId",userId );
 				 map3.put("boardId", gs.getBoardId());
 				 map3.put("tournamentId", tournamentId);
 				 map3.put("previousNextFlag", "cancelTournament");
@@ -24008,6 +24020,7 @@ public ModelAndView filterScheduleFunctionForUpcoming(HttpServletRequest req, @M
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
+				 map3.put("userId",userId );
 				 map3.put("boardId", gs.getBoardId());
 				 map3.put("tournamentId", tournamentId);
 				 map3.put("fromDateString", fromDateString);
@@ -24058,6 +24071,7 @@ public ModelAndView filterScheduleFunctionForUpcoming(HttpServletRequest req, @M
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
+				 map3.put("userId",userId );
 				 map3.put("boardId", gs.getBoardId());
 				 map3.put("endNode", 10);
 				 hubReq.setRequestParam(map3);
@@ -26139,6 +26153,7 @@ public ModelAndView boardPublicProfileByboard(HttpServletRequest request, @PathV
 					 hubReq =new HubRequest();
 					 hubReq.setMsgType(133);
 					 ModelMap map5=new ModelMap();
+					 map5.put("userId",userId );
 					 map5.put("boardId", boardID);
 					 map5.put("previousNextFlag","current");
 					 map5.put("endNode", 10);
@@ -26183,6 +26198,7 @@ public ModelAndView boardPublicProfileByboard(HttpServletRequest request, @PathV
 					 hubReq =new HubRequest();
 					 hubReq.setMsgType(133);
 					 ModelMap map8=new ModelMap();
+					 map8.put("userId",userId );
 					 map8.put("boardId", boardID);
 					 map8.put("toDateString",dateFormat.format(date));
 					 map8.put("fromDateString",dateFormat.format(new Date(System.currentTimeMillis() - (7 * DAY_IN_MS))));
@@ -33925,6 +33941,7 @@ public ModelAndView gameSchedulePublicProfile(HttpServletRequest req, @PathVaria
 			 hubReq = new HubRequest();
 			 hubReq.setMsgType(133);
 			 ModelMap map3 = new ModelMap();
+			 map3.put("userId",userId );
 			 map3.put("boardId", boardId);
 			 map3.put("previousNextFlag","current");
 			 map3.put("endNode", 10);
@@ -34614,6 +34631,7 @@ public ModelAndView filterScheduleFunctionPublicProfile(HttpServletRequest req, 
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
+				 map3.put("userId",userId );
 				 map3.put("boardId", gs.getBoardId());
 				 //map3.put("tournamentId", tournamentId);
 				 map3.put("fromDateString", fromDateString);
@@ -34658,6 +34676,7 @@ public ModelAndView filterScheduleFunctionPublicProfile(HttpServletRequest req, 
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
+				 map3.put("userId",userId );
 				 map3.put("boardId", gs.getBoardId());
 				 map3.put("tournamentId", tournamentId);
 				 map3.put("endNode", 10);
@@ -34699,6 +34718,7 @@ public ModelAndView filterScheduleFunctionPublicProfile(HttpServletRequest req, 
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
+				 map3.put("userId",userId );
 				 map3.put("boardId", gs.getBoardId());
 				 map3.put("tournamentId", tournamentId);
 				 map3.put("fromDateString", fromDateString);
@@ -34743,6 +34763,7 @@ public ModelAndView filterScheduleFunctionPublicProfile(HttpServletRequest req, 
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
+				 map3.put("userId",userId );
 				 map3.put("boardId", gs.getBoardId());
 				 map3.put("endNode", 10);
 				 hubReq.setRequestParam(map3);
@@ -37962,6 +37983,7 @@ public ModelAndView CancelGameByDatePublicProfile(HttpServletRequest req, @PathV
 			 hubReq = new HubRequest();
 			 hubReq.setMsgType(133);
 			 ModelMap map3 = new ModelMap();
+			 map3.put("userId",userId );
 			 map3.put("boardId", boardId);
 			 map3.put("fromDateString", todayDate);
 			 map3.put("toDateString", nextDate);
@@ -38104,6 +38126,7 @@ public ModelAndView filterScheduleFunctionForUpcomingPublicProfile(HttpServletRe
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
+				 map3.put("userId",userId );
 				 map3.put("boardId", gs.getBoardId());
 				 //map3.put("tournamentId", tournamentId);
 				 map3.put("fromDateString", fromDateString);
@@ -38153,6 +38176,7 @@ public ModelAndView filterScheduleFunctionForUpcomingPublicProfile(HttpServletRe
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
+				 map3.put("userId",userId );
 				 map3.put("boardId", gs.getBoardId());
 				 map3.put("tournamentId", tournamentId);
 				 map3.put("previousNextFlag", "cancelTournament");
@@ -38197,6 +38221,7 @@ public ModelAndView filterScheduleFunctionForUpcomingPublicProfile(HttpServletRe
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
+				 map3.put("userId",userId );
 				 map3.put("boardId", gs.getBoardId());
 				 map3.put("tournamentId", tournamentId);
 				 map3.put("fromDateString", fromDateString);
@@ -38245,6 +38270,7 @@ public ModelAndView filterScheduleFunctionForUpcomingPublicProfile(HttpServletRe
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
+				 map3.put("userId",userId );
 				 map3.put("boardId", gs.getBoardId());
 				 map3.put("endNode", 10);
 				 hubReq.setRequestParam(map3);
@@ -42092,9 +42118,10 @@ public @ResponseBody ResponseTypeSchedule gameSchedulePreNext(HttpServletRequest
 	try{
 		HttpSession session=req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
-			
+			UUID userId=(UUID) session.getAttribute("USRID");
 			 hubReq = new HubRequest(133);
 				ModelMap m = new ModelMap();
+				m.put("userId",userId );
 				m.put("boardId", gamescheduler.getBoardId());
 				m.put("previousNextFlag", gamescheduler.getPreviousNextFlag());
 				m.put("endNode", 10);
@@ -44189,6 +44216,7 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 					 hubReq =new HubRequest();
 					 hubReq.setMsgType(133);
 					 ModelMap map5=new ModelMap();
+					 map5.put("userId",userId );
 					 map5.put("boardId", bid);
 					 map5.put("previousNextFlag","current");
 					 map5.put("endNode", 10);
@@ -44233,6 +44261,7 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 					 hubReq =new HubRequest();
 					 hubReq.setMsgType(133);
 					 ModelMap map8=new ModelMap();
+					 map8.put("userId",userId );
 					 map8.put("boardId", bid);
 					 map8.put("toDateString",dateFormat.format(date));
 					 map8.put("fromDateString",dateFormat.format(new Date(System.currentTimeMillis() - (7 * DAY_IN_MS))));
@@ -44808,8 +44837,38 @@ try{
 return response;
 }
 
-@RequestMapping(value="/unlockScorecard/{Schedulerid}/{Result}" ,  method=RequestMethod.GET)
-public ModelAndView unlockScorecard(HttpServletRequest request,@PathVariable String Schedulerid,@PathVariable String Result)
+
+
+
+@RequestMapping(value="/unLockrequesterList" , method=RequestMethod.POST)
+public @ResponseBody String unLockrequesterList(HttpServletRequest request, @RequestBody TournamentScheduler scheduler)
+{
+String response=null;
+
+try{
+	
+	hubReq =new HubRequest(279);
+	ModelMap map=new ModelMap();
+	map.put("tournamentSchedulerId", scheduler.getTournamentSchedulerId());
+	
+	hubReq.setRequestParam(map);
+	
+    response=cricketSocialRestTemplateService.userRegistration(hubReq);
+    
+    System.out.println("The 279 response is  :"+response);
+	
+}catch(Exception e){	
+	e.printStackTrace();
+}
+
+return response;
+}
+
+
+
+
+@RequestMapping(value="/unlockScorecard/{Schedulerid}/{Scorerid}/{Createdby}/{Result}" ,  method=RequestMethod.GET)
+public ModelAndView unlockScorecard(HttpServletRequest request,@PathVariable String Schedulerid,@PathVariable String Scorerid,@PathVariable String Createdby, @PathVariable String Result)
 {
 
 	ModelAndView mav=null;
@@ -44821,7 +44880,10 @@ public ModelAndView unlockScorecard(HttpServletRequest request,@PathVariable Str
 		
 		TournamentScheduler scheduler=new TournamentScheduler();
 		scheduler.setTournamentSchedulerId(Schedulerid);
-		scheduler.setScorecardLock("OFF");;
+		scheduler.setCreatedBy(Createdby);
+		scheduler.setStatus("OTHERS");
+		scheduler.setScorerId(Scorerid);
+		scheduler.setScorecardLock("OFF");
 		schedulerlist.add(scheduler);
 		
 		map.put("tournamentScheduler", schedulerlist);

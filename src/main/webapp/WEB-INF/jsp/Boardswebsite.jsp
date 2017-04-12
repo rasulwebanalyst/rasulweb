@@ -507,7 +507,7 @@ var formatAMPMTime = function(date) {
 		                        	  	<c:otherwise>
 		                     				<%-- <li><a href="${pageContext.request.contextPath}/LeaguePointsProfile/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
 		                     			
-		                     			
+		                     			<c:if test="${!empty entrymenu}">	
 		                     			<div class="EntryMenu">
                              		<h4>Entry Menu</h4>
                              		   
@@ -549,10 +549,13 @@ var formatAMPMTime = function(date) {
                              			
                              			
                              		</div>
+                             		</c:if>
                              		<div class="ViewMenu">
                              		<h4>View Menu</h4>
                              		
                              		<a href="${pageContext.request.contextPath}/LeaguePointsProfilesite/${BoradInfo.boardId}"> Points Table</a>
+                             		<a href="${pageContext.request.contextPath}/UmpireProfilesite/${BoradInfo.boardId}"> Umpire List</a>
+                             		<a href="${pageContext.request.contextPath}/GroundProfilesite/${BoradInfo.boardId}"> Ground List</a>
                              		
                              		<c:if test="${!empty Viewmenu}">
 										 <c:forEach var="ground1" items="${Viewmenu}" begin="2" end="3">
@@ -591,7 +594,8 @@ var formatAMPMTime = function(date) {
                                     	      		   </c:if>
                                     	      </c:if>
                              			      
-                             			      
+                             			      <a href="javascript:void(0);" onclick="PleaseLogin()"> Schedule List</a>
+                             			 <a href="javascript:void(0);" onclick="PleaseLogin()"> Schedule & Scores</a>
                              			                                     
                                             <a href="javascript:void(0);" onclick="PleaseLogin()"> Centuries</a>                             			
                              			 <a href="javascript:void(0);" onclick="PleaseLogin()"> Half Centuries</a>

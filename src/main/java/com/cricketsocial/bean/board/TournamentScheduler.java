@@ -131,6 +131,7 @@ public class TournamentScheduler {
 	
 	private String scorecardLock;
 	
+	private String scorerId;
 	
 	
 	
@@ -140,7 +141,12 @@ public class TournamentScheduler {
 	
 	
 	
-	
+	public String getScorerId() {
+		return scorerId;
+	}
+	public void setScorerId(String scorerId) {
+		this.scorerId = scorerId;
+	}
 	public String getScorecardLock() {
 		return scorecardLock;
 	}

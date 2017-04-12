@@ -67,7 +67,7 @@
 
 
 
-<style>
+<!-- <style>
 .media.tool-list {
 	overflow: visible;
 }
@@ -185,6 +185,150 @@ text-overflow: ellipsis;
     width: 67%;
     display: inline-block;
     white-space: nowrap;
+}
+
+</style> -->
+
+
+
+
+<style>
+.media.tool-list {
+	overflow: visible;
+}
+.tool-list .media-body {
+	overflow: visible;
+}
+.tool-list .media-body .tooltiptext1 {
+	height: auto;
+	
+} 
+.tooltip {
+position: unset;
+display: inline-block;
+border-bottom: 1px dotted black;
+color: #4c9fe1;
+opacity: 1;
+font-weight: 600;
+}
+
+.tooltip .tooltiptext {
+display: none;
+   visibility: hidden;
+width: 200px;
+background-color: #eee;
+color: #555;
+text-align: center;
+border-radius: 0px;
+padding: 0;
+position: absolute;
+z-index: 1;
+top: auto;
+right: -205px;
+opacity: 0;
+transition: opacity 1s;
+margin-top: -15px;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+position: absolute;
+top: 7px;
+left: -5px;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: transparent #555 transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
+
+
+
+.tooltip1 {
+   
+    float: right;
+   
+}
+
+.tooltip1 .tooltiptext1 {
+display: none;
+   visibility: hidden;
+width: 200px;
+background-color:  #eee;
+color: #555;
+text-align: center;
+border-radius: 0px;
+padding: 0;
+position: absolute;
+z-index: 1;
+right: -177px;
+margin-top: -10px;
+opacity: 0;
+transition: opacity 1s;
+box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+}
+
+.tooltip1 .tooltiptext1::after {
+ content: "";
+position: absolute;
+top: 11px;
+left: -5px;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: transparent #555 transparent transparent;
+}
+
+.tooltip1:hover .tooltiptext1 {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
+
+
+.tooltiptext1 div li:last-child {
+border: none !important;
+}
+
+
+
+
+
+.tooltiptext div li,.tooltiptext1 div li  {
+text-align: left;
+}
+
+
+
+
+.sponser-Flow{
+text-overflow: ellipsis;
+    overflow: hidden;
+    width: 67%;
+    display: inline-block;
+    white-space: nowrap;
+}
+span.sponser-Flow {
+	float: none!important;
+	color: #555!important;
+}
+
+.tooltiptext1 .test {
+min-height: 40px;
+max-height: 200px;
+overflow: auto;
+}
+.test {
+min-height: 40px;
+max-height: 200px;
+overflow: auto;
+}
+
 }
 
 </style>
@@ -456,6 +600,9 @@ function buddySearch(ele){
 								var boards=res.boardProfileList;
 								console.log(JSON.stringify(users));
 								var sequence=0;
+								
+								var m=0;
+								
 								for(var i in users){
 									
 									var buddyFanToBuddy="buddyFanToBuddy";
@@ -558,7 +705,7 @@ function buddySearch(ele){
 					                        		  htm +="<div id=showtool"+i+" class='tooltiptext1'>";
 					                        		  
 
-					                          		htm +="<div id='dropdown"+users[i].userId+"' class='' >";
+					                          		htm +="<div id='dropdown"+users[i].userId+"' class='test' >";
 							                         
 							                          for(var j in users[i].teamboardlist){
 							                        	  
@@ -571,15 +718,17 @@ function buddySearch(ele){
 							                          
 							                          if(leagueboardlist!=null && leagueboardlist.length > 0){
 							                        	 
-							                        		/*   htm +=" afflicated to "; */
+							                        		  /* htm +=" <div class='tooltip'>Leagues";
+							                        		  htm +="<span class='tooltiptext'><ul>"; */
 							                        		  
+							                        		  htm +=" <div class='tooltip' onmouseover=getpositiontext("+m+") id=leagues"+m+">Leagues";
+							                        		  htm +="<span id=showtooltext"+m+" class='tooltiptext'><ul>";
 							                        		  
-							                        		  htm +=" <div class='tooltip'>Leagues";
-							                        		  htm +="<span class='tooltiptext'><ul>";
 							                        		  for(var k in leagueboardlist){
 							                        			  htm +="<li>"+leagueboardlist[k].boardName+"</li>";
 							                        		  
 							                        		  }
+							                        		  m++;
 							                        			  htm +="</ul></span>";
 							                        		  htm +="</div>";
 							                          }
@@ -599,7 +748,7 @@ function buddySearch(ele){
 					                        		  htm +="<div id=showtool"+i+" class='tooltiptext1'>";
 					                        		  
 
-					                          		htm +="<div id='dropdown"+users[i].userId+"' class='' >";
+					                          		htm +="<div id='dropdown"+users[i].userId+"' class='test' >";
 							                         
 							              
 							                          htm +="<li style='text-align: center;'>No Details</li>";
@@ -615,12 +764,8 @@ function buddySearch(ele){
 						                          
 						                          
 						                          
-					                          	 
-					                          	 
-					                          	 
-					                          	 
-					                          	 
-					                          
+						                          
+						                          
 
 					                          htm+='</h4>'
 					                          +'<div class="headRight" >';
@@ -1040,7 +1185,15 @@ function getposition(i){
 }
 
 
-
+function getpositiontext(i){
+		console.log(i);
+		var p = $( "#leagues"+i);
+		var position = p.position();
+		
+		
+		$('#showtooltext'+i).css('top', position.top);
+	}
+	
 </script>
 	
 </body>
