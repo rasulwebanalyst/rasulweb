@@ -176,7 +176,7 @@ border-top: none;}
     <div class="modal-content">
     
     
-    <p style="text-align: center; font-weight: 600; margin: 10px 0;" class="head">Requester </p>
+    <p style="text-align: center; font-weight: 600; margin: 10px 0;" class="head">Lock/ Unlock Request </p>
                 <span class="close_btn" style="color: rgba(115, 114, 114, 0.63)"> <i class="fa fa-close" onclick="Requestpopup()"></i> </span>
     
     
@@ -201,7 +201,7 @@ border-top: none;}
       </div>
        <div class="modal-footer action">
       <button type="button" onclick="Requestpopupok()" class="btn btn-default ok">OK</button>
-      <button type="button" onclick="Requestpopup()" class="btn btn-default ok">CANCEL</button>
+      <button type="button" onclick="Requestpopup()" class="btn btn-default ok">Cancel</button>
        </div> 
     </div>
 
@@ -1563,6 +1563,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    				//App Scorer
    	   				htmlco1+="<td> <div >";
    	   				var upcommingscorer=incomepltelist[i].scorerNamesList;
+   	   				if(upcommingscorer !=null){
    	   				if(upcommingscorer.length > 0){
    	   				for(var j=0; j < upcommingscorer.length;j++)
    	   				{
@@ -1577,7 +1578,10 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    	   				}}else
    	   					{
    	   					htmlco1+="<span>-</span>";
-   	   					}
+   	   					}}else
+   	   					{
+   	   	   					htmlco1+="<span>-</span>";
+   	   	   					}
    	   				htmlco1+="</div></td>";
    	   				
    	   				//Portal Scorer
@@ -1747,7 +1751,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				    htmlco3+="</div></td> ";
 				    htmlco3+="<td class='tdAlignLeft'> <div>";
 				    var completescorer=completedlist[i].scorerNamesList;
-				    
+				    if(completescorer !=null){
 				    if(completescorer.length > 0)
 				    	{
 				    for(var j=0;j<completescorer.length;j++){
@@ -1760,7 +1764,10 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				    	}else
 				    		{
 				    		htmlco3+="<span>-</span>";
-				    		}
+				    		}}else
+				    		{
+					    		htmlco3+="<span>-</span>";
+					    		}
 				    htmlco3+="</div></td> ";
 				    
 				    
@@ -1796,6 +1803,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				   
 				    htmlco3+=""+completedlist[i].winTeamName+": "+completedlist[i].winTeamRuns+"/"+completedlist[i].winTeamWickets+" in "+completedlist[i].winTeamOvers+"<br>";
 				    htmlco3+=""+completedlist[i].loseTeamName+" : "+completedlist[i].loseTeamRuns+"/"+completedlist[i].loseTeamWickets+" in "+completedlist[i].loseTeamOvers+"</td>";
+				    htmlco3+="<input type='hidden' id='locktype_"+completedlist[i].tournamentSchedulerId+"' value='"+completedlist[i].scorecardLock+"'>";
 				    htmlco3+="<td><a href=javascript:void(0); onclick=EDITSCORECARD('${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')><i class='fa fa-pencil' title='Edit Profile'></i></a><a href=javascript:void(0); onclick=EDITSCORECARD('${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')>Edit Scorecard</a></td>";
 				    htmlco3+="<td align='center' >";
 				    
@@ -2031,7 +2039,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
                 				  
                 			  });
                 		}else{
-                			showNotification("Scorecard has been locked, please unlock to proceed", 2000);
+                			showNotification("Scorecard has been locked, Please unlock to proceed further", 2000);
                 			hide_notificationpoup(2000);		
                 		}
                 		
@@ -2232,11 +2240,10 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
                 	        $("#StatusRequest").val(status);
                 	        $("#Status1Request").val(status1);
                 	        $("#FlagRequest").val(flag);
-                		
                 		if(status1 == 'OFF'){
-                			$("#RequestPopupcontent").text('Do you want to lock scorecard');
+                			$("#RequestPopupcontent").text('Do you want to lock scorecard for this buddy?');
                 		}else{
-                			$("#RequestPopupcontent").text('Do you want to unlock scorecard');	
+                			$("#RequestPopupcontent").text('Do you want to unlock scorecard for this buddy?');	
                 		}
                 		
                 		$("#Requestpopup").show();
