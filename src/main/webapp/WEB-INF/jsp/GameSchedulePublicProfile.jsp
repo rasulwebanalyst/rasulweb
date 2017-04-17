@@ -275,7 +275,7 @@ var formatAMPMTime = function(date) {
         </div> -->
 
 				<div class="modal-body">
-					<p style="text-align:center;">Sorry ! Score Card has been locked. Do you want to send request to admin?</p>
+					<p style="text-align:center;">Sorry ! scorecard has been locked. Do you want to send request to admin?</p>
 					<br>
 				</div>
 				

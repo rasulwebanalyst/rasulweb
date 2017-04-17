@@ -78,9 +78,15 @@ var formatAMPMTime = function(date) {
         	
             <i class="fa fa-camera changePhoto" title="Change Photo" id="upload_link"></i>
             <input id="upload" type="file" onchange="readURL(this)" name="boardImagefile" />
+            
+           
           </div>
           
-          
+           
+            <div id="Saveimagediv" class="cover carousel-caption pull-right" style="display: none;">
+          <button type="button">OK</button>
+          <button type="button">CANCEL</button>
+          </div>
         
         
         <!--<div class="container bannerBtnsblock">
@@ -1128,15 +1134,19 @@ function facebook()
 <script type="text/javascript">
 
 
-$("#upload_link").on('click', function(e){
+/* $("#upload_link").on('click', function(e){
 	e.preventDefault();
 	$("#upload:hidden").trigger('click');
-});
+}); */
 
 
 
 function readURL(input) {
 	//alert("alert");
+	
+	
+	$("#Saveimagediv").show();
+	
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {

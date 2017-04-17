@@ -22,9 +22,25 @@ ul.side_menu_main li span {
 <div class="col-md-2 profileLogo pLUpdated">
                     	<span class="pLUpdatedImg">
                     		<%-- <a href="${pageContext.request.contextPath}/BoardInfoPublic/${BoradInfo.boardId}"> --%>
-                    		<a href="javascript:void(0);" onclick="PleaseLogin()">
+                    		
+                    		
+                    		
+                    		<c:choose>
+                     		
+                     		<c:when test="${BoradInfo.boardId ne null}">
+                     		<a href="${pageContext.request.contextPath}/boardSite?bid=${BoradInfo.boardId}"><img src="${BoradInfo.boardImageURL}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';"></a>
+                     		</c:when>
+                     		<c:otherwise>
+                     		<a href="javascript:void(0);" onclick="PleaseLogin()">
                     		<img src="${BoradInfo.boardImageURL}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';">
                         	</a>
+                     		</c:otherwise>
+                     		</c:choose>
+                    		
+                    		
+                    		
+                    		
+                    		
                         	
                         	 <a href="javascript:void(0);" onclick="PleaseLogin()">
                         	 ${BoradInfo.boardName}
@@ -62,7 +78,7 @@ ul.side_menu_main li span {
                                     	      		   				</c:forEach>                                             	      		   			
                                     	      		   </c:if>
                                     	      </c:if>                                                                       
-                                           <li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa fa-angle-right"></i> Teams</a></li>   
+                                             
                                            
                                            
                                            <c:if test="${!empty LeaugeMenuList}">
@@ -75,7 +91,7 @@ ul.side_menu_main li span {
                                            
                                            
                                                                                   
-                                            <li><a href="${pageContext.request.contextPath}/LeaguePointsProfilesite/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i><span> Points Table</span></a></li>
+                                            
                                             
                                             <li class="head"><a href="#">Umpire Co-ordinator</a></li>    
                                             
@@ -87,14 +103,16 @@ ul.side_menu_main li span {
                                             
                                             <li class="head"><a href="#">Schedule Co-ordinator</a></li>
                                             
-                                            <li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa fa-angle-right"></i><span> Schedule List</span></a></li>
-                                            <li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa fa-angle-right"></i><span> Schedule & Scores</span></a></li>
-                                            <li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa fa-angle-right"></i><span> Centuries</span></a></li>
-                                            <li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa fa-angle-right"></i><span> Half Centuries</span></a></li>
+                                            <li><a href="${pageContext.request.contextPath}/SchedulerListSite/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i><span> Schedule List</span></a></li>
+                                            <li><a href="${pageContext.request.contextPath}/GameScheduleSite/boardId/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i><span> Schedule & Scores</span></a></li>
+                                             <li><a href="${pageContext.request.contextPath}/teamdetailsSite/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Teams</a></li>
+                                             <li><a href="${pageContext.request.contextPath}/LeaguePointsProfilesite/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i><span> Points Table</span></a></li>
+                                            <li><a href="${pageContext.request.contextPath}/leaguecenturiesSite/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i><span> Centuries</span></a></li>
+                                            <li><a href="${pageContext.request.contextPath}/leaguehalfcenturiesSite/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i><span> Half Centuries</span></a></li>
                                            <%--  <li><a href="${pageContext.request.contextPath}/BoardAchievementsPublicProfile/boardId/${BoradInfo.boardId}">Board Achievements</a></li> --%>
-											<li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa fa-angle-right"></i><span> 5fer</span></a></li>
-                                            <li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa fa-angle-right"></i><span> Top Batsmen</span></a></li>
-                                            <li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa fa-angle-right"></i><span> Top Bowlers</span></a></li>
+											<li><a href="${pageContext.request.contextPath}/fivewicketsSite/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i><span> 5fer</span></a></li>
+                                            <li><a href="${pageContext.request.contextPath}/topbatsmanSite/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i><span> Top Batsmen</span></a></li>
+                                            <li><a href="${pageContext.request.contextPath}/topbowlerSite/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i><span> Top Bowlers</span></a></li>
                                             <li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa fa-angle-right"></i><span> Top Umpires</span></a></li>  
                                             <%--  <li><a href="${pageContext.request.contextPath}/EnterScorePublicProfile/boardId/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Enter Score</a></li> --%>
                                              

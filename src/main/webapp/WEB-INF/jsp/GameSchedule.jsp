@@ -2241,9 +2241,9 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
                 	        $("#Status1Request").val(status1);
                 	        $("#FlagRequest").val(flag);
                 		if(status1 == 'OFF'){
-                			$("#RequestPopupcontent").text('Do you want to lock scorecard for this buddy?');
+                			$("#RequestPopupcontent").text('Do you want to lock the scorecard for this buddy?');
                 		}else{
-                			$("#RequestPopupcontent").text('Do you want to unlock scorecard for this buddy?');	
+                			$("#RequestPopupcontent").text('Do you want to unlock the scorecard for this buddy?');	
                 		}
                 		
                 		$("#Requestpopup").show();

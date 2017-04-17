@@ -82,7 +82,22 @@ text-overflow: ellipsis;
 <body>
 <div class="col-md-2 profileLogo pLUpdated">
                     	<span class="pLUpdatedImg">
-                    	<img src="${BoradInfo.boardImageURL}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';">
+                    	
+                    	
+                    	
+                    	<c:choose>
+                     		
+                     		<c:when test="${BoradInfo.boardId ne null}">
+                     		<a href="${pageContext.request.contextPath}/boardSite?bid=${BoradInfo.boardId}"><img src="${BoradInfo.boardImageURL}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';"></a>
+                     		</c:when>
+                     		<c:otherwise>
+                     		<img src="${BoradInfo.boardImageURL}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';">
+                     		</c:otherwise>
+                     		</c:choose>
+                    	
+                    	
+                    	
+                    	<%-- <img src="${BoradInfo.boardImageURL}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';"> --%>
                         	
                         	<%-- <a href="${pageContext.request.contextPath}/boardProfile?bid=${BoradInfo.boardId}"><i class="fa fa-pencil" title="Edit Profile"></i></a> --%>
                         	 ${BoradInfo.boardName} <br>

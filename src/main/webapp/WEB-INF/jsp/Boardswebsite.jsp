@@ -583,7 +583,7 @@ var formatAMPMTime = function(date) {
 											</c:if>
 											</c:if>
                              			
-                             			<a href="javascript:void(0);" onclick="PleaseLogin()"> Teams</a>    
+                             			<!-- <a href="javascript:void(0);" onclick="PleaseLogin()"> Teams</a>     -->
                              			      
                              			      
                              			        <c:if test="${!empty LeaugeMenuList}">
@@ -594,14 +594,15 @@ var formatAMPMTime = function(date) {
                                     	      		   </c:if>
                                     	      </c:if>
                              			      
-                             			      <a href="javascript:void(0);" onclick="PleaseLogin()"> Schedule List</a>
-                             			 <a href="javascript:void(0);" onclick="PleaseLogin()"> Schedule & Scores</a>
-                             			                                     
-                                            <a href="javascript:void(0);" onclick="PleaseLogin()"> Centuries</a>                             			
-                             			 <a href="javascript:void(0);" onclick="PleaseLogin()"> Half Centuries</a>
-											<a href="javascript:void(0);" onclick="PleaseLogin()"> 5fer</a></li>
-                                            <a href="javascript:void(0);" onclick="PleaseLogin()"> Top Batsmen</a>
-                                            <a href="javascript:void(0);" onclick="PleaseLogin()"> Top Bowlers</a>
+                             			      <a href="${pageContext.request.contextPath}/SchedulerListSite/${BoradInfo.boardId}"> Schedule List</a>
+                             			 <a href="${pageContext.request.contextPath}/GameScheduleSite/boardId/${BoradInfo.boardId}"> Schedule & Scores</a>
+                             			    <a href="${pageContext.request.contextPath}/teamdetailsSite/${BoradInfo.boardId}"> Teams</a></li>                                  
+                                            <a href="${pageContext.request.contextPath}/leaguecenturiesSite/${BoradInfo.boardId}"> Centuries</a>                             			
+                             			 <a href="${pageContext.request.contextPath}/leaguehalfcenturiesSite/${BoradInfo.boardId}"> Half Centuries</a>
+                             			
+											<a href="${pageContext.request.contextPath}/fivewicketsSite/${BoradInfo.boardId}"> 5fer</a></li>
+                                            <a href="${pageContext.request.contextPath}/topbatsmanSite/${BoradInfo.boardId}"> Top Batsmen</a>
+                                            <a href="${pageContext.request.contextPath}/topbowlerSite/${BoradInfo.boardId}"> Top Bowlers</a>
                                             <a href="javascript:void(0);" onclick="PleaseLogin()"> Top Umpires</a>  
                                              
                                              <c:if test="${!empty LeaugeMenuList}">
@@ -745,7 +746,7 @@ var formatAMPMTime = function(date) {
                              			 <a href="javascript:void(0);" onclick="PleaseLogin()"> Schedule List</a>
                              			 <a href="javascript:void(0);" onclick="PleaseLogin()"> Schedule & Scores</a>
                              			 
-                             			<a href="javascript:void(0);" onclick="PleaseLogin()"> Teams</a>                                         
+                             			<!-- <a href="javascript:void(0);" onclick="PleaseLogin()"> Teams</a>    -->                                      
                                             
                                             
                                             <c:if test="${!empty LeaugeMenuList}">
@@ -757,11 +758,22 @@ var formatAMPMTime = function(date) {
                                     	      </c:if>
                                             
                                             
-                                            <a href="javascript:void(0);" onclick="PleaseLogin()"> Centuries</a>                            			
+                                            <!-- <a href="javascript:void(0);" onclick="PleaseLogin()"> Centuries</a>                            			
                              			 <a href="javascript:void(0);" onclick="PleaseLogin()"> Half Centuries</a>
 											<a href="javascript:void(0);" onclick="PleaseLogin()"> 5fer</a></li>
                                             <a href="javascript:void(0);" onclick="PleaseLogin()"> Top Batsmen</a>
                                             <a href="javascript:void(0);" onclick="PleaseLogin()"> Top Bowlers</a>
+                                            <a href="javascript:void(0);" onclick="PleaseLogin()"> Top Umpires</a>   -->
+                                            
+                                            <a href="${pageContext.request.contextPath}/SchedulerListSite/${BoradInfo.boardId}"> Schedule List</a>
+                             			 <a href="${pageContext.request.contextPath}/GameScheduleSite/boardId/${BoradInfo.boardId}"> Schedule & Scores</a>
+                             			    <a href="${pageContext.request.contextPath}/teamdetailsSite/${BoradInfo.boardId}"> Teams</a></li>                                  
+                                            <a href="${pageContext.request.contextPath}/leaguecenturiesSite/${BoradInfo.boardId}"> Centuries</a>                             			
+                             			 <a href="${pageContext.request.contextPath}/leaguehalfcenturiesSite/${BoradInfo.boardId}"> Half Centuries</a>
+                             			
+											<a href="${pageContext.request.contextPath}/fivewicketsSite/${BoradInfo.boardId}"> 5fer</a></li>
+                                            <a href="${pageContext.request.contextPath}/topbatsmanSite/${BoradInfo.boardId}"> Top Batsmen</a>
+                                            <a href="${pageContext.request.contextPath}/topbowlerSite/${BoradInfo.boardId}"> Top Bowlers</a>
                                             <a href="javascript:void(0);" onclick="PleaseLogin()"> Top Umpires</a>  
                                              
                                              <c:if test="${!empty LeaugeMenuList}">
