@@ -46,6 +46,32 @@
   width: 300px;
   margin: 0 auto;
 }
+
+
+/*new added css  */
+ .image_show{
+position: absolute;
+right: 87px;
+bottom: 5px;
+width: 42px;
+z-index: 2; 
+ }
+ 
+a.ctmbtn {
+background: #224e6b;
+padding: 7px 15px;
+border-radius: 4px;
+color: #fff;
+margin-left: 3px;
+margin-right: 5px;
+float: right;
+}
+span.head {
+text-align: center !important;
+}
+.imgCrop button .tooltip {
+position: absolute !important;
+}
  
  
  </style>
@@ -93,23 +119,12 @@ var teamdeletearray=[];
     <div id="Editimage" class="popupDiv" style="display: none;">
 
            <div class="box">
-                <span class="head">Image Crop</span>
+                <span class="head" style="text-align: center !important;">Image Crop</span>
                 <span class="close_btn"> <i onclick="cancelFunction()" class="fa fa-close"></i> </span>
 
-                <div class="popupContentDiv">
-                
-                		
-                        	<!-- <textarea class="form-control" id="reasonId" rows="5" placeholder=""></textarea> -->
-                        	
-                        	
-                        	
-                        	
-                        	
-                        	
-                    <div  class="col-md-12" style="margin-bottom:10px" id=""><label class="poppulab">Edit  Image</label><input id="uploadImageForEditTeam" class="" type="file" onchange="readURLTeam(this)"/>                    
-                    
-                    
-                                   
+                <div class="popupContentDiv">             
+                                       
+                             
                     <div class="popupContentDiv cropPopup">
                     <div class="row">
                     <div class="col-md-6"><p>Adjust Picture</p>
@@ -117,61 +132,40 @@ var teamdeletearray=[];
                     <img id="teamLogo" src="${pageContext.request.contextPath}/images/userImg.jpg" alt="Picture">
                     </div>
                     <div class="btn-group imgCrop">
-
-
-
-                          <button class="btn btn-primary" data-method="zoom" data-option="0.1" type="button" title="Zoom In">
-                    <span class="docs-tooltip" data-toggle="tooltip" title="Zoomin"><span class="icon icon-zoom-in"></span></span></button>
-                    
+                    <button class="btn btn-primary" data-method="zoom" data-option="0.1" type="button" title="Zoom In">
+                    <span class="docs-tooltip" data-toggle="tooltip" title="Zoomin">
+                     <i class="fa fa-search-plus"  style="color:white"></i> 
+                     <!-- <span class="icon icon-zoom-in">  </span>  -->
+                    </span></button>                    
                     
                     <button class="btn btn-primary" data-method="zoom" data-option="-0.1" type="button" title="Zoom Out">
-                    <span class="docs-tooltip" data-toggle="tooltip" title="Zoom out"><span class="icon icon-zoom-out"></span></span></button>
-                    
+                    <span class="docs-tooltip" data-toggle="tooltip" title="Zoom out">
+                   <i class="fa fa-search-minus" style="color:white"></i></span></button>                    
                     
                     <button class="btn btn-primary" data-method="rotate" data-option="-45" type="button" title="Rotate Left">
-                    <span class="docs-tooltip" data-toggle="tooltip" title="Rotate Left"><span class="icon icon-rotate-left"></span></span></button>
-               
+                    <span class="docs-tooltip" data-toggle="tooltip" title="Rotate Left">
+                    <i class="fa fa-mail-reply" style="color:white"></i></span></button>               
                     
-                   <button class="btn btn-primary" data-method="rotate" data-option="45" type="button" title="Rotate Right">
+                   <button class="btn btn-primary" data-method="rotate" data-option="45" type="button" title="Rotate Right">    
+                    <span class="docs-tooltip" data-toggle="tooltip" title="Rotate Right">
+                    <i class="fa fa-mail-forward" style="color:white"></i></span></button></div></div>                    
                     
-                    
-                    <span class="docs-tooltip" data-toggle="tooltip" title="Rotate Right"><span class="icon icon-rotate-right"></span></span></button></div></div>
-                    <div class="col-md-6"><p>Preview</p><div class="docs-preview clearfix"><div class="img-preview preview-lg"></div></div></div></div></div>
-                        	
-                        	
-                        	
+                    <div class="col-md-6"><p>Preview</p>  
+                     <img src="${pageContext.request.contextPath}/images/camera.png" title="Change Photo" id="upload_image" class="image_show" />
+				 	 <input id="imageshow" onchange="readURLTeam(this)" name="boardImagefile" type="file" style="display: none;">                  
+                                     
+                     <div class="docs-preview clearfix">
+                    <div class="img-preview preview-lg">
+                     </div></div></div></div></div>      
+                                                 
+                    <div class="centerbtns">
+                    <input type="hidden" id="cancelTournamentid">
                           
-                          <div class="centerbtns">
-                          <input type="hidden" id="cancelTournamentid">
+                    <img id="teamLogo1" src="" alt="Picture" style="display: none;">
                           
-                          <img id="teamLogo1" src="" alt="Picture" style="display: none;">
-                          
-                           <a data-method="getCroppedCanvas" style="margin-left: 215px; margin-bottom:0px;" href="javascript:void(0)" class="pull-left  ctmbtn" onclick="setTimeout('changephoto()',400)">Ok</a>
-                          <button type="button" class="btn btn-default blueBtn" onclick="cancelFunction()">Cancel</button>
-                          
-                          
-                          </div>
-                       
-                </div> 
-                
-                
-                
-                
-                
-              <!--   <div id="vanilla-demo"></div>
-
-  <div class="actions">
-    <button class="vanilla-result">Result</button>
-    <button class="vanilla-save">Save</button>
-    <button class="vanilla-rotate" data-deg="-90">Rotate Left</button>
-    <button class="vanilla-rotate" data-deg="90">Rotate Right</button>
-  </div> -->
-                
-                
-                
-                
-                
-                
+                    <a data-method="getCroppedCanvas" href="javascript:void(0)" class="pull-left  ctmbtn" onclick="setTimeout('changephoto()',400)">Ok</a>
+                    <button type="button" class="btn btn-default blueBtn" onclick="cancelFunction()">Cancel</button>
+                    </div>     
                 
                 
             </div>
@@ -864,6 +858,13 @@ var teamdeletearray=[];
     
    <script>
    
+   $(document).ready(function () {
+		 $('#upload_image').click(function (e) {
+			 e.preventDefault();
+				   $('#imageshow').trigger('click');   
+			});
+  });
+   
    
    $(document).ready(function(){
 	   if(teamarray.length > 0){
@@ -1388,13 +1389,7 @@ $(function(){
 				 
 				 
 				 //new change
-				 
-				 
 				   $("#Editimage").show();  
-				 
-				 
-				 
-				 
 				 
 					  /* $('#upload1').trigger('click');   */
 				});
@@ -2108,7 +2103,7 @@ function readURLTeam(input) {
              
               	          if (/^image\/\w+$/.test(file.type)) {
               	            blobURL = URL.createObjectURL(file);
-              	            alert(blobURL);
+              	           /*  alert(blobURL); */
               	           
               	            $image.one('built.cropper', function () {
               	              URL.revokeObjectURL(blobURL); // Revoke when load complete

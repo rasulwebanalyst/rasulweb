@@ -15,10 +15,42 @@
 <title>Cricket Social</title>
    <link rel="stylesheet" href="css/token-input.css" type="text/css" />
     <link rel="stylesheet" href="css/token-input-facebook.css" type="text/css" />
+    
+     <link href="${pageContext.request.contextPath}/css/cropper.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/Customcropper.css" rel="stylesheet"> 
  <!-- responsive css -->
  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 <script>var ctx="${pageContext.request.contextPath}";</script>
 </head>
+
+<style type="text/css">
+/*new added css  */
+ .image_show{
+position: absolute;
+right: 87px;
+bottom: 5px;
+width: 42px;
+z-index: 2; 
+ }
+ 
+a.ctmbtn {
+background: #224e6b;
+padding: 7px 15px;
+border-radius: 4px;
+color: #fff;
+margin-left: 3px;
+margin-right: 5px;
+float: right;
+}
+span.head {
+text-align: center !important;
+}
+.imgCrop button .tooltip {
+position: absolute !important;
+}
+ 
+ </style>
+
 <body>
 <div>
 <div id="loading" style="display: block;">
@@ -32,6 +64,69 @@
     </div>
 </div>
 	<%@ include file="BoardHeader.jsp" %>
+	
+	
+	
+	<div id="Editimage" class="popupDiv" style="display: none;">
+
+           <div class="box">
+                <span class="head" style="text-align: center !important;">Image Crop</span>
+                <span class="close_btn"> <i onclick="cancelFunction()" class="fa fa-close"></i> </span>
+
+                <div class="popupContentDiv">             
+                                       
+                             
+                    <div class="popupContentDiv cropPopup">
+                    <div class="row">
+                    <div class="col-md-6"><p>Adjust Picture</p>
+                    <div class="img-container">
+                    <img id="teamLogo" src="${pageContext.request.contextPath}/images/userImg.jpg" alt="Picture">
+                    </div>
+                    <div class="btn-group imgCrop">
+                    <button class="btn btn-primary" data-method="zoom" data-option="0.1" type="button" title="Zoom In">
+                    <span class="docs-tooltip" data-toggle="tooltip" title="Zoomin">
+                     <i class="fa fa-search-plus"  style="color:white"></i> 
+                     <!-- <span class="icon icon-zoom-in">  </span>  -->
+                    </span></button>                    
+                    
+                    <button class="btn btn-primary" data-method="zoom" data-option="-0.1" type="button" title="Zoom Out">
+                    <span class="docs-tooltip" data-toggle="tooltip" title="Zoom out">
+                   <i class="fa fa-search-minus" style="color:white"></i></span></button>                    
+                    
+                    <button class="btn btn-primary" data-method="rotate" data-option="-45" type="button" title="Rotate Left">
+                    <span class="docs-tooltip" data-toggle="tooltip" title="Rotate Left">
+                    <i class="fa fa-mail-reply" style="color:white"></i></span></button>               
+                    
+                   <button class="btn btn-primary" data-method="rotate" data-option="45" type="button" title="Rotate Right">    
+                    <span class="docs-tooltip" data-toggle="tooltip" title="Rotate Right">
+                    <i class="fa fa-mail-forward" style="color:white"></i></span></button></div></div>                    
+                    
+                    <div class="col-md-6"><p>Preview</p>  
+                     <img src="${pageContext.request.contextPath}/images/camera.png" title="Change Photo" id="upload_image" class="image_show" />
+				 	 <input id="imageshow" onchange="readURLTeam(this)" name="boardImagefile" type="file" style="display: none;">                  
+                                     
+                     <div class="docs-preview clearfix">
+                    <div class="img-preview preview-lg">
+                     </div></div></div></div></div>      
+                                                 
+                    <div class="centerbtns">
+                    <input type="hidden" id="cancelTournamentid">
+                          
+                    <img id="teamLogo1" src="" alt="Picture" style="display: none;">
+                          
+                    <a data-method="getCroppedCanvas" href="javascript:void(0)" class="pull-left  ctmbtn" onclick="setTimeout('changephoto()',400)">Ok</a>
+                    <button type="button" class="btn btn-default blueBtn" onclick="cancelFunction()">Cancel</button>
+                    </div>     
+                
+                
+            </div>
+ 
+ 	</div> 
+ 	
+   </div>
+	
+	
+	
 <section class="middleContentBlock">
     <div class="container">
 
@@ -41,6 +136,10 @@
             <div class="col-md-12 middleContBlock noPadding">
                  <div class="col-md-12 noPadding">
                    <form action="updateBoardProfile"  id="boardFormId" method="post"  enctype="multipart/form-data" >
+                   
+                   <input type="hidden" name="croppedBase64" id="croppedBase64">
+                        <input type="hidden" name="croppedFlag" id="croppedFlag"> 	
+                   
              		 <div class="col-md-2 profileLogo">
                         <span class="pLUpdatedImg">
                     	<img src="${BoradInfo.boardImageURL}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" id="profileimg">
@@ -607,8 +706,17 @@ $(document).ready(function() {
 	
 	
 	$("#upload_link").on('click', function(e){
+		/* e.preventDefault();
+		$("#upload:hidden").trigger('click'); */
+		
+		//new change
+		   $("#Editimage").show();  
+		
+	});
+	
+	$("#upload_image").on('click', function(e){
 		e.preventDefault();
-		$("#upload:hidden").trigger('click');
+		   $('#imageshow').trigger('click');   
 	});
 	
 	
@@ -1143,6 +1251,76 @@ function Sponser()
 {
 	window.location.href="${pageContext.request.contextPath}/Sponser/${BoradInfo.boardId}";
 	}
+	
+	
+function readURLTeam(input) {
+	
+ 	 var srcvalue;
+ 	 var URL=window.URL || window.webkitURL;
+ 	 var blobURL;
+ 	 var files1;
+ 	 var $image = $('.img-container > img');
+ 	 
+     if (input.files && input.files[0]) {
+         var reader = new FileReader();
+          var file;
+          files1=input.files;
+         reader.onload = function (e) {
+             srcvalue=e.target.result;
+             	   $('#teamLogo').attr('src',e.target.result);
+             	   
+             file=files1[0];
+            
+             	          if (/^image\/\w+$/.test(file.type)) {
+             	            blobURL = URL.createObjectURL(file);
+             	            /* alert(blobURL); */
+             	           
+             	            $image.one('built.cropper', function () {
+             	              URL.revokeObjectURL(blobURL); // Revoke when load complete
+             	            }).cropper('reset').cropper('replace', blobURL);
+             	            
+             	          } 
+       
+         };
+         
+         reader.readAsDataURL(input.files[0]);
+     }
+    
+ } 
+ 
+function changephoto(){	  
+	  var result=document.getElementById("teamLogo1").src;
+      var imageType=result.substring(result.indexOf('data:')+5,result.indexOf('/'));
+      console.log(imageType);
+  	$('#profileimg').attr('src', result);
+  	$('#profileimg2').attr('src', result);
+  	$('#upload').attr('src', result);
+  	if(imageType=='image')
+  	{
+  	  imageValidate=1;          
+        $("#croppedFlag").val("Cropped");
+        $("#croppedBase64").val(result);    		
+  	}else{
+  		imageValidate=0;
+  	}    
+     $("#Editimage").hide();	  
+}
+
+function imageValidation()
+{
+	  if(imageValidate==1)
+		  {
+		  	return true;
+		  }else{
+			  displaynotification("Please upload valide image",2000);
+			  return false;
+		  }
+}
+
+function cancelFunction()
+{	  
+	  $("#Editimage").hide();		  
+	  }
 
 </script>
 <script type="text/javascript" src="/cricketsocial-web/WebContent/js/cricketSocial/BoardPageFunction.js"></script>
@@ -1150,7 +1328,8 @@ function Sponser()
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.tokeninput.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initAutocomplete"
         async defer></script>
- 
+ <script src="${pageContext.servletContext.contextPath}/js/cropper.js"></script> 
+    <script src="${pageContext.servletContext.contextPath}/js/Customcropper.js"></script> 
 
 </body>
 </html>

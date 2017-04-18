@@ -82,10 +82,39 @@ public class BoardProfile {
 	
 	 private List<BoardProfile> leagueBoardList;
 	 
+	 private String boardCoverImageUrl;
+	 
+	 private String croppedBase64;
+	 private String croppedFlag;
 	 
 	 
 	 
+		
 	 
+
+	public String getCroppedBase64() {
+		return croppedBase64;
+	}
+
+	public void setCroppedBase64(String croppedBase64) {
+		this.croppedBase64 = croppedBase64;
+	}
+
+	public String getCroppedFlag() {
+		return croppedFlag;
+	}
+
+	public void setCroppedFlag(String croppedFlag) {
+		this.croppedFlag = croppedFlag;
+	}
+
+	public String getBoardCoverImageUrl() {
+		return boardCoverImageUrl;
+	}
+
+	public void setBoardCoverImageUrl(String boardCoverImageUrl) {
+		this.boardCoverImageUrl = boardCoverImageUrl;
+	}
 
 	public List<BoardProfile> getLeagueBoardList() {
 		return leagueBoardList;

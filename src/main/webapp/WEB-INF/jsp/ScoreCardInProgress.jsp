@@ -84,8 +84,8 @@ var formatAMPMTime = function(date) {
           
            
             <div id="Saveimagediv" class="cover carousel-caption pull-right" style="display: none;">
-          <button type="button">OK</button>
-          <button type="button">CANCEL</button>
+          <button type="button" onclick="saveImage()">OK</button>
+          <button type="button" onclick="Cancel()">CANCEL</button>
           </div>
         
         
@@ -1145,7 +1145,6 @@ function readURL(input) {
 	//alert("alert");
 	
 	
-	$("#Saveimagediv").show();
 	
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -1153,11 +1152,59 @@ function readURL(input) {
         	console.log(e);
         	console.log(reader);
         	 //alert("e.target.result"+e.target.result);
-            $('#profileimg').attr('src', e.target.result);
+            /* $('#profileimg').attr('src', e.target.result); */
+            
+            
+            var image = new Image();
+       	 image.src = e.target.result;
+       	 image.onload = function() {
+       		 console.log("Width :"+this.width  +"Height :"+this.height)
+       	        if(this.width>=1600 && this.height>=250)
+       	     {
+          		 $('#profileimg').attr('src', e.target.result);
+          		$("#Saveimagediv").show();
+          		 }
+       	        else
+       	        	{
+       	        	alert("The image size shoud be greater than  1800*280 pixel");
+       	        	}
+       	 };   
         };
-        
         reader.readAsDataURL(input.files[0]);
     }
+}
+
+function Cancel()
+{	
+	 $('#profileimg').attr('src', '${pageContext.request.contextPath}/images/innerBanner.png');
+	 $('#Saveimagediv').hide();
+}
+
+function saveImage()
+{			var i='.';
+			var userId='${USRID}';
+			var bid='${BoradInfo.boardId}';
+			var result=$('#profileimg').attr('src');
+			var bytes=result.substring(result.indexOf(',')+1,result.length);			
+	        var imageType=i.concat(result.substring(11,result.indexOf(';'))); 	
+	        var request={
+	        userId:userId,
+			bid:bid,
+			imageExtention:imageType,
+			imageContent:bytes,
+			bannerType:"Board"			
+	};	
+	$.ajax({
+		type : "POST",
+		url : "${pageContext.request.contextPath}/s/BoardId/"+bid,
+		data : JSON.stringify(request),
+		contentType : "application/json",
+		success : function(res)
+		{
+			 $('#profileimg').attr('src');	
+			 $('#buttons1').hide();
+		}		
+	});	 
 }
 
 </script>

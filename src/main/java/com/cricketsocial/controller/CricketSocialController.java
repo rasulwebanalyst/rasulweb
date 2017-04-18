@@ -9223,8 +9223,14 @@ public ModelAndView updateBoardProfile(HttpServletRequest request, BoardProfile 
 		 boardProfile.setLatlang(boardProfile.getOldlatLang());
 	 }
 	 
-	 
-	 if(boardProfile.getBoardImagefile() !=null){
+	 if(boardProfile.getCroppedFlag().equalsIgnoreCase("Cropped"))
+	 {
+		 String imagestring=boardProfile.getCroppedBase64().split(",")[1];
+		 String imgextension=boardProfile.getCroppedBase64().split(",")[0].split("/")[1].split(";")[0];
+		 boardProfile.setImageData(imagestring); 
+		 boardProfile.setImageExtension(imgextension);
+	 }
+	 else if(boardProfile.getBoardImagefile() !=null){
 		 try {
 			//boardProfile.setBoardProfilePic(boardProfile.getBoardImagefile().getBytes());
 			 String imageDataString= new sun.misc.BASE64Encoder().encode(boardProfile.getBoardImagefile().getBytes());
@@ -46770,9 +46776,6 @@ public ModelAndView leagueTopBowlerListSite(CenturiesSerach search , HttpServlet
 public ModelAndView publicLeaguePointspagesite(CenturiesSerach search , HttpServletRequest request) throws CSException
 {
 	
-
-	
-	
 	 
 	 	ModelAndView model=null;
 	   
@@ -46835,6 +46838,48 @@ public ModelAndView publicLeaguePointspagesite(CenturiesSerach search , HttpServ
 		
 	return model;
 }
+
+
+@RequestMapping(value="/s/BoardId/{bid}",method=RequestMethod.POST)
+public @ResponseBody  String saveBannerImage(HttpServletRequest request,@RequestBody BannerInformation information)
+{	String result1="";
+	System.out.println("entered==============================");
+	try{
+	HubRequest hubReq =new HubRequest(277);
+	ModelMap map=new ModelMap();
+	map.put("id",information.getBid());
+	map.put("bannerType",information.getBannerType());
+	map.put("imageContent",information.getImageContent());
+	map.put("imageExtention",information.getImageExtention());
+	hubReq.setRequestParam(map);
+	String result=cricketSocialRestTemplateService.userRegistration(hubReq);
+	System.out.println("response====>"+result);
+	
+	HubRequest hubReq1=new HubRequest();
+	hubReq1.setMsgType(40);
+	 ModelMap map1=new ModelMap();			
+	 map1.put("userId", information.getUserId());			 
+	 map1.put("boardId",information.getBid());
+	 hubReq1.setRequestParam(map1);
+	 String strBoarddetail=cricketSocialRestTemplateService.userRegistration(hubReq1);
+	 GsonBuilder builder = new GsonBuilder();
+	 Gson gson = builder.create();
+	 if(strBoarddetail!=null)
+	 {
+		 HubResponse hubResponse1= gson.fromJson(strBoarddetail, HubResponse.class);
+		if(hubResponse1!=null && hubResponse1.getResults().getBoardStatusDetail()!=null && hubResponse1.getResults().getBoardStatusDetail().size()>0)
+		{
+		 result1= hubResponse1.getResults().getBoardStatusDetail().get(0).getBoardCoverImageUrl();
+		}
+	 }	
+	}
+	catch(Exception e){
+		e.printStackTrace();
+	}	
+	return result1;
+}
+
+
 
 
 }
