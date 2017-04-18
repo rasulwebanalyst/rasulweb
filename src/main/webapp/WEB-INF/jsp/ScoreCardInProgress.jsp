@@ -83,10 +83,7 @@ var formatAMPMTime = function(date) {
           </div>
           
            
-            <div id="Saveimagediv" class="cover carousel-caption pull-right" style="display: none;">
-          <button type="button" onclick="saveImage()">OK</button>
-          <button type="button" onclick="Cancel()">CANCEL</button>
-          </div>
+            
         
         
         <!--<div class="container bannerBtnsblock">
@@ -96,8 +93,19 @@ var formatAMPMTime = function(date) {
            <div class="boardHitBtn"> <i class="fa boardHit"></i>Hit </div>
          </div>   
         </div>-->
-        
-    	<img src="${pageContext.request.contextPath}/images/innerBanner.png" id="profileimg">
+       <!--  changed -->
+    	<%-- <img src="${pageContext.request.contextPath}/images/innerBanner.png" id="profileimg"> --%>
+    	<img src="${BoradInfo.boardCoverImageUrl}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/innerBanner.png';" id="profileimg">
+       
+       
+       
+       
+       
+       <div id="Saveimagediv" class="cover carousel-caption pull-right" style="margin-bottom:350px; display: none;">
+          <button type="button" onclick="saveImage()">OK</button>
+          <button type="button" onclick="Cancel()">CANCEL</button>
+          </div>
+       
         
     </div>
     
@@ -1194,6 +1202,8 @@ function saveImage()
 			imageContent:bytes,
 			bannerType:"Board"			
 	};	
+	        
+	        $('#loading').show();
 	$.ajax({
 		type : "POST",
 		url : "${pageContext.request.contextPath}/s/BoardId/"+bid,
@@ -1201,8 +1211,10 @@ function saveImage()
 		contentType : "application/json",
 		success : function(res)
 		{
+			$('#loading').hide();
+			displaynotification('Image has been changed',1500);
 			 $('#profileimg').attr('src');	
-			 $('#buttons1').hide();
+			 $('#Saveimagediv').hide();
 		}		
 	});	 
 }
