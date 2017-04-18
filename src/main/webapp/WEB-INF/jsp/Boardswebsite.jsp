@@ -554,8 +554,9 @@ var formatAMPMTime = function(date) {
                              		<h4>View Menu</h4>
                              		
                              		<a href="${pageContext.request.contextPath}/LeaguePointsProfilesite/${BoradInfo.boardId}"> Points Table</a>
-                             		<a href="${pageContext.request.contextPath}/UmpireProfilesite/${BoradInfo.boardId}"> Umpire List</a>
-                             		<a href="${pageContext.request.contextPath}/GroundProfilesite/${BoradInfo.boardId}"> Ground List</a>
+                             		<a href="${pageContext.request.contextPath}/SchedulerListSite/${BoradInfo.boardId}"> Schedule List</a>
+                             			 <a href="${pageContext.request.contextPath}/GameScheduleSite/boardId/${BoradInfo.boardId}"> Schedule & Scores</a>
+                             		
                              		
                              		<c:if test="${!empty Viewmenu}">
 										 <c:forEach var="ground1" items="${Viewmenu}" begin="2" end="3">
@@ -594,8 +595,8 @@ var formatAMPMTime = function(date) {
                                     	      		   </c:if>
                                     	      </c:if>
                              			      
-                             			      <a href="${pageContext.request.contextPath}/SchedulerListSite/${BoradInfo.boardId}"> Schedule List</a>
-                             			 <a href="${pageContext.request.contextPath}/GameScheduleSite/boardId/${BoradInfo.boardId}"> Schedule & Scores</a>
+                             			      <a href="${pageContext.request.contextPath}/UmpireProfilesite/${BoradInfo.boardId}"> Umpire List</a>
+                             		<a href="${pageContext.request.contextPath}/GroundProfilesite/${BoradInfo.boardId}"> Ground List</a>
                              			    <a href="${pageContext.request.contextPath}/teamdetailsSite/${BoradInfo.boardId}"> Teams</a></li>                                  
                                             <a href="${pageContext.request.contextPath}/leaguecenturiesSite/${BoradInfo.boardId}"> Centuries</a>                             			
                              			 <a href="${pageContext.request.contextPath}/leaguehalfcenturiesSite/${BoradInfo.boardId}"> Half Centuries</a>
@@ -710,8 +711,8 @@ var formatAMPMTime = function(date) {
                              		
                              		
                              		<a href="${pageContext.request.contextPath}/LeaguePointsProfilesite/${BoradInfo.boardId}"> Points Table</a>
-                             		<a href="${pageContext.request.contextPath}/UmpireProfilesite/${BoradInfo.boardId}"> Umpire List</a>
-                             		<a href="${pageContext.request.contextPath}/GroundProfilesite/${BoradInfo.boardId}"> Ground List</a>
+                             		<a href="${pageContext.request.contextPath}/SchedulerListSite/${BoradInfo.boardId}"> Schedule List</a>
+                             			 <a href="${pageContext.request.contextPath}/GameScheduleSite/boardId/${BoradInfo.boardId}"> Schedule & Scores</a>
                              		
                                     	      
                                     	     <%--  
@@ -743,8 +744,7 @@ var formatAMPMTime = function(date) {
 											</c:if>
 											</c:if> --%>
                              			
-                             			 <a href="javascript:void(0);" onclick="PleaseLogin()"> Schedule List</a>
-                             			 <a href="javascript:void(0);" onclick="PleaseLogin()"> Schedule & Scores</a>
+                             			 
                              			 
                              			<!-- <a href="javascript:void(0);" onclick="PleaseLogin()"> Teams</a>    -->                                      
                                             
@@ -764,9 +764,9 @@ var formatAMPMTime = function(date) {
                                             <a href="javascript:void(0);" onclick="PleaseLogin()"> Top Batsmen</a>
                                             <a href="javascript:void(0);" onclick="PleaseLogin()"> Top Bowlers</a>
                                             <a href="javascript:void(0);" onclick="PleaseLogin()"> Top Umpires</a>   -->
+                                            <a href="${pageContext.request.contextPath}/UmpireProfilesite/${BoradInfo.boardId}"> Umpire List</a>
+                             		<a href="${pageContext.request.contextPath}/GroundProfilesite/${BoradInfo.boardId}"> Ground List</a>
                                             
-                                            <a href="${pageContext.request.contextPath}/SchedulerListSite/${BoradInfo.boardId}"> Schedule List</a>
-                             			 <a href="${pageContext.request.contextPath}/GameScheduleSite/boardId/${BoradInfo.boardId}"> Schedule & Scores</a>
                              			    <a href="${pageContext.request.contextPath}/teamdetailsSite/${BoradInfo.boardId}"> Teams</a></li>                                  
                                             <a href="${pageContext.request.contextPath}/leaguecenturiesSite/${BoradInfo.boardId}"> Centuries</a>                             			
                              			 <a href="${pageContext.request.contextPath}/leaguehalfcenturiesSite/${BoradInfo.boardId}"> Half Centuries</a>
