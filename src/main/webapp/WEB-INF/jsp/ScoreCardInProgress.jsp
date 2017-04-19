@@ -76,7 +76,7 @@ var formatAMPMTime = function(date) {
     <div class="profileBanner">
      	<div class="container bannerBtnsblock">
         	
-            <i class="fa fa-camera changePhoto" title="Change Photo" id="upload_link"></i>
+           <!--  <i class="fa fa-camera changePhoto" title="Change Photo" id="upload_link"></i> -->
             <input id="upload" type="file" onchange="readURL(this)" name="boardImagefile" />
             
            

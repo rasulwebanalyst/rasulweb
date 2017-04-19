@@ -706,11 +706,11 @@ $(document).ready(function() {
 	
 	
 	$("#upload_link").on('click', function(e){
-		/* e.preventDefault();
-		$("#upload:hidden").trigger('click'); */
+		e.preventDefault();
+		$("#upload:hidden").trigger('click'); 
 		
 		//new change
-		   $("#Editimage").show();  
+		  /*  $("#Editimage").show();   */
 		
 	});
 	

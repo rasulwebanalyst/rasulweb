@@ -113,7 +113,7 @@ ul.side_menu_main li span {
 											<li><a href="${pageContext.request.contextPath}/fivewicketsSite/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i><span> 5fer</span></a></li>
                                             <li><a href="${pageContext.request.contextPath}/topbatsmanSite/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i><span> Top Batsmen</span></a></li>
                                             <li><a href="${pageContext.request.contextPath}/topbowlerSite/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i><span> Top Bowlers</span></a></li>
-                                            <li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa fa-angle-right"></i><span> Top Umpires</span></a></li>  
+                                            <!-- <li><a href="javascript:void(0);" onclick="PleaseLogin()"><i class="fa fa-angle-right"></i><span> Top Umpires</span></a></li> -->  
                                             <%--  <li><a href="${pageContext.request.contextPath}/EnterScorePublicProfile/boardId/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Enter Score</a></li> --%>
                                              
                                              <c:if test="${!empty LeaugeMenuList}">

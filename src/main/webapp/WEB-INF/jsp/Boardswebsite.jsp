@@ -604,7 +604,7 @@ var formatAMPMTime = function(date) {
 											<a href="${pageContext.request.contextPath}/fivewicketsSite/${BoradInfo.boardId}"> 5fer</a></li>
                                             <a href="${pageContext.request.contextPath}/topbatsmanSite/${BoradInfo.boardId}"> Top Batsmen</a>
                                             <a href="${pageContext.request.contextPath}/topbowlerSite/${BoradInfo.boardId}"> Top Bowlers</a>
-                                            <a href="javascript:void(0);" onclick="PleaseLogin()"> Top Umpires</a>  
+                                            <!-- <a href="javascript:void(0);" onclick="PleaseLogin()"> Top Umpires</a> -->  
                                              
                                              <c:if test="${!empty LeaugeMenuList}">
                                              <c:if test="${!empty LeaugeMenuList.disputeManagment}">
@@ -774,7 +774,7 @@ var formatAMPMTime = function(date) {
 											<a href="${pageContext.request.contextPath}/fivewicketsSite/${BoradInfo.boardId}"> 5fer</a></li>
                                             <a href="${pageContext.request.contextPath}/topbatsmanSite/${BoradInfo.boardId}"> Top Batsmen</a>
                                             <a href="${pageContext.request.contextPath}/topbowlerSite/${BoradInfo.boardId}"> Top Bowlers</a>
-                                            <a href="javascript:void(0);" onclick="PleaseLogin()"> Top Umpires</a>  
+                                            <!-- <a href="javascript:void(0);" onclick="PleaseLogin()"> Top Umpires</a>   -->
                                              
                                              <c:if test="${!empty LeaugeMenuList}">
                                              <c:if test="${!empty LeaugeMenuList.disputeManagment}">

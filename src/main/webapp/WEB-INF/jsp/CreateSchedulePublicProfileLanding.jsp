@@ -21,7 +21,7 @@
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/wickedpicker.js"></script>
   
   
-  <style>
+ <style>
 .media.tool-list {
 	overflow: visible;
 }
@@ -48,10 +48,10 @@ background-color: #fff;
 color: #555;
 text-align: center;
 border-radius: 0px;
-padding: 5px 0;
+padding: 0;
 position: absolute;
 z-index: 1;
-margin-top: 10px;
+margin-top: 4px;
 font-size: 11px;
 opacity: 0;
 transition: opacity 1s;
@@ -90,11 +90,11 @@ border-color: transparent transparent #555 transparent;
 display: none;
    visibility: hidden;
 width: 200px;
-background-color:  #eee;
+background-color: #fff;
 color: #555;
 text-align: center;
 border-radius: 0px;
-padding: 5px 0;
+padding: 0;
 position: absolute;
 z-index: 1;
 right: -177px;
@@ -103,7 +103,17 @@ opacity: 0;
 transition: opacity 1s;
 box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
 }
+.tooltiptext1 .test ul li:hover span {
+color: #fff !important;
+}
 
+.tooltiptext2 ul li {
+color: #555 !important;
+}
+
+.tooltiptext1 .test ul li span {  
+outline: 0;
+}
 .tooltip1 .tooltiptext1::after {
  content: "";
 position: absolute;
@@ -143,6 +153,15 @@ text-overflow: ellipsis;
     display: inline-block;
     white-space: nowrap;
 }
+.tooltiptext1 .test {
+min-height: 10px;
+max-height: 200px;
+overflow: auto;
+}
+.tooltiptext1 .test ul li {  
+padding: 5px 3px;
+border-bottom: 1px solid rgba(0,0,0,0.2) !important;
+}
 
 .token-input-dropdown-facebook {
 overflow: inherit !important;
@@ -155,8 +174,19 @@ max-height: 230px;
 .tooltip1 .tooltiptext1 {
 right: -186px;
 }
+.tooltiptext2 ul li:hover {
+background-color: #3B5995 ;
+  color: #fff !important;
+}
+.tooltiptext1 .test ul li:hover {
+background-color: #3B5995 ;
+  color: #fff !important;
+}   
+
 
 </style>
+   
+   
    
   
   
@@ -675,6 +705,7 @@ $(document).ready(function(){
 		//$("#hiddenUmpireDiv1").replaceWith('<input type="text" class="form-control" placeholder="Select Umpires" id="umpireId1">');
     var umpireArray=[];
     var i=0;
+    var m=0;
     $("#umpireId").tokenInput(ctx+"/umpireSearchForCreateScheduler/",{
     	
 	resultsFormatter: function(item){ 
@@ -695,7 +726,7 @@ var htm="";
   		  htm +="<div id=showtool"+i+" class='tooltiptext1'>";
   		  
 
-    		htm +="<div id='dropdown"+item.userId+"' class='' >";
+    		htm +="<div id='dropdown"+item.userId+"' class='test' >";
            
             for(var j in item.teamboardlist){
           	  
@@ -711,12 +742,13 @@ var htm="";
           		/*   htm +=" afflicated to "; */
           		  
           		  
-          		  htm +=" <div class='tooltip2'>Leagues";
-          		  htm +="<span class='tooltiptext2'><ul>";
+          		  htm +=" <div class='tooltip2' onmouseover=getpositiontext("+m+") id=leagues"+m+">Leagues";
+          		  htm +="<span id=showtooltext"+m+" class='tooltiptext2'><ul>";
           		  for(var k in leagueboardlist){
           			  htm +="<li>"+leagueboardlist[k].boardName+"</li>";
           		  
           		  }
+          		  m++;
           			  htm +="</ul></span>";
           		  htm +="</div>";
             }
@@ -736,7 +768,7 @@ var htm="";
   		  htm +="<div id=showtool"+i+" class='tooltiptext1'>";
   		  
 
-    		htm +="<div id='dropdown"+item.userId+"' class='' >";
+    		htm +="<div id='dropdown"+item.userId+"' class='test' >";
            
 
             htm +="<ul><li style='text-align: center;'>No Details</li></ul>";
@@ -788,6 +820,7 @@ var htm="";
 			
 			console.log(item.teamboardlist.length);
 			i++;
+			var m=0;
 			if(item.teamboardlist.length > 0)
 	        {
 	      	  
@@ -795,7 +828,7 @@ var htm="";
 	  		  htm +="<div id=showtool"+i+" class='tooltiptext1'>";
 	  		  
 
-	    		htm +="<div id='dropdown"+item.userId+"' class='' >";
+	    		htm +="<div id='dropdown"+item.userId+"' class='test' >";
 	           
 	            for(var j in item.teamboardlist){
 	          	  
@@ -811,12 +844,13 @@ var htm="";
 	          		/*   htm +=" afflicated to "; */
 	          		  
 	          		  
-	          		  htm +=" <div class='tooltip2'>Leagues";
-	          		  htm +="<span class='tooltiptext2'><ul>";
+	          		  htm +=" <div class='tooltip2' onmouseover=getpositiontext("+m+") id=leagues"+m+">Leagues";
+	          		  htm +="<span id=showtooltext"+m+" class='tooltiptext2'><ul>";
 	          		  for(var k in leagueboardlist){
 	          			  htm +="<li>"+leagueboardlist[k].boardName+"</li>";
 	          		  
 	          		  }
+	          		  m++;
 	          			  htm +="</ul></span>";
 	          		  htm +="</div>";
 	            }
@@ -836,7 +870,7 @@ var htm="";
 	  		  htm +="<div id=showtool"+i+" class='tooltiptext1'>";
 	  		  
 
-	    		htm +="<div id='dropdown"+item.userId+"' class='' >";
+	    		htm +="<div id='dropdown"+item.userId+"' class='test' >";
 	           
 
 	            htm +="<ul><li style='text-align: center;'>No Details</li></ul>";
@@ -920,6 +954,7 @@ var htm="";
 			
 			console.log(item.teamboardlist.length);
 			i++;
+			var m=0;
 			if(item.teamboardlist.length > 0)
 	        {
 	      	  
@@ -927,7 +962,7 @@ var htm="";
 	  		  htm +="<div id=showtool"+i+" class='tooltiptext1'>";
 	  		  
 
-	    		htm +="<div id='dropdown"+item.userId+"' class='' >";
+	    		htm +="<div id='dropdown"+item.userId+"' class='test' >";
 	           
 	            for(var j in item.teamboardlist){
 	          	  
@@ -943,12 +978,13 @@ var htm="";
 	          		/*   htm +=" afflicated to "; */
 	          		  
 	          		  
-	          		  htm +=" <div class='tooltip2'>Leagues";
-	          		  htm +="<span class='tooltiptext2'><ul>";
+	          		  htm +=" <div class='tooltip2' onmouseover=getpositiontext("+m+") id=leagues"+m+">Leagues";
+	          		  htm +="<span id=showtooltext"+m+" class='tooltiptext2'><ul>";
 	          		  for(var k in leagueboardlist){
 	          			  htm +="<li>"+leagueboardlist[k].boardName+"</li>";
 	          		  
 	          		  }
+	          		  m++;
 	          			  htm +="</ul></span>";
 	          		  htm +="</div>";
 	            }
@@ -968,7 +1004,7 @@ var htm="";
 	  		  htm +="<div id=showtool"+i+" class='tooltiptext1'>";
 	  		  
 
-	    		htm +="<div id='dropdown"+item.userId+"' class='' >";
+	    		htm +="<div id='dropdown"+item.userId+"' class='test' >";
 	           
 
 	            htm +="<ul><li style='text-align: center;'>No Details</li></ul>";

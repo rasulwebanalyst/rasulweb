@@ -162,7 +162,13 @@ position: relative;
 .dropdown-content.request ul li:last-child {
 border-top: none;}
 
-
+.request-txt {
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+width: 100px;
+margin: 0;
+}
 
 </style>
 
@@ -2183,7 +2189,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
                 				 {
                 					 
                 					 
-                				 htm+="<li>"+requestlist[i].fullName+""; 
+                				 htm+="<li><p class='request-txt' title='"+requestlist[i].fullName+"'>"+requestlist[i].fullName+"</p>"; 
                 				 
                 				 
                 				 var requestid=requestlist[i].userId;
