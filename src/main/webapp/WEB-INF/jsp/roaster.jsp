@@ -247,7 +247,7 @@ function checkbbi(bbi)
               <div onclick="deleteRosterPOup()"> <span class="close_btn" > <i class="fa fa-close" ></i> </span></div>
 
                <div class="popupContentDiv">
-					<b>Confirm to delete roster</b><br> 
+					<b>Confirm to delete squad</b><br> 
                     <input type="hidden" id="deleteRosterID" value="" name="deleteRosterID">
                     <div class="centerbtns"><button type="button" class="btn btn-default blueBtn" onclick="conformDeleteRoster()">Ok</button></div>
                                        
@@ -322,7 +322,7 @@ function checkbbi(bbi)
                 	
                 <div class="col-md-10 pull-right rosterBlock rightnone">
                  <div class="col-md-12 whiteBox">
-                 	No Rosters are available.
+                 	No squad available.
                  </div>
                  </div>
                  
@@ -331,7 +331,7 @@ function checkbbi(bbi)
           			
           			
           			
-		          <h1 class="noBorder">Roster <a href="createRoaster?bid=${BoradInfo.boardId}" class="btn btn-default dBtn pull-right">Create Roster</a>
+		          <h1 class="noBorder">Squad <a href="createRoaster?bid=${BoradInfo.boardId}" class="btn btn-default dBtn pull-right">Create Squad</a>
                            
                   </h1>
                   </div>
@@ -348,18 +348,18 @@ function checkbbi(bbi)
           			
           			
           			
-		          <h1 class="noBorder">Roster <a href="createRoaster?bid=${BoradInfo.boardId}" class="btn btn-default dBtn pull-right">Create Roster</a>
+		          <h1 class="noBorder">Squad <a href="createRoaster?bid=${BoradInfo.boardId}" class="btn btn-default dBtn pull-right">Create Squad</a>
                   			
                             <div class="h1Sbox">
                                 <div class="selectdiv pull-right">
                                     <select class="selectboxdiv" onchange="getRosterDetails(this.value)">
-                                    <option value="">Select Roster</option>
+                                    <option value="">Select Squad</option>
                                          <c:forEach var="Roster" items="${Roasters}" >
                                     		<option value="${Roster.rosterId}">${Roster.rosterName}</option>
                                    		 </c:forEach>
                                         
                                     </select>
-                                    <div class="out">Select Roster</div>    
+                                    <div class="out">Select Squad</div>    
                                 </div>
                                 </div>
                              
@@ -412,10 +412,10 @@ function checkbbi(bbi)
                                          
                                        <%--   <a href="deleteRoster?rosterId=${RoasterResponseById.rosterDetails.rosterId}&bid=${BoradInfo.boardId}" class="btn btn-default btn-sm  dBtn pull-right ">Delete Roster</a> --%>
                                        <c:if test="${!RoasterResponseById.rosterDetails.checkAffiliatedFlag}">
-                                       <a id="Deleterosteroption" href="javascript:" onclick="deleteRosterPoupShow('${RoasterResponseById.rosterDetails.rosterId}')" class="btn btn-default btn-sm  dBtn pull-right ">Delete Roster</a>
+                                       <a id="Deleterosteroption" href="javascript:" onclick="deleteRosterPoupShow('${RoasterResponseById.rosterDetails.rosterId}')" class="btn btn-default btn-sm  dBtn pull-right ">Delete Squad</a>
                                        </c:if>
                                                                          
-                                         <a href="${pageContext.request.contextPath}/editRoster?rid=${RoasterResponseById.rosterDetails.rosterId}" class="btn btn-default btn-sm  dBtn pull-right ">Edit Roster</a>                                
+                                         <a href="${pageContext.request.contextPath}/editRoster?rid=${RoasterResponseById.rosterDetails.rosterId}" class="btn btn-default btn-sm  dBtn pull-right ">Edit Squad</a>                                
                                          <a href="${pageContext.request.contextPath}/rosterMedia/${RoasterResponseById.rosterDetails.rosterId}/${BoradInfo.boardId}" class="btn btn-default btn-sm  dBtn pull-right ">Upload Files</a>                                
                                       </div>
                             	</div>
@@ -498,7 +498,7 @@ function checkbbi(bbi)
                                         
                                          <div class="selectdiv pull-right" style="width: 180px;height: 30px; margin-top: 3px; display: none;" id="Firstselect" >
                                     <select class="selectboxdiv" onchange="battingDetails(this.value)">
-                                    <option value="All">Select Roster</option>
+                                    <option value="All">Select Squad</option>
                                         <c:forEach var="tournamnetlist" items="${tournamentlist}" >
                                     		<option value="${tournamnetlist.tournamentId}">${tournamnetlist.tournamentName}</option>
                                    		 </c:forEach>
@@ -603,7 +603,7 @@ function checkbbi(bbi)
                                         <div class="h1Sbox BFP_field">
                                         <div class="selectdiv pull-right" style="width: 180px;height: 30px;  margin-top: 3px; display: none;" id="Secondselect" >
                                     <select class="selectboxdiv" onchange="Bowlingperformance(this.value)">
-                                    <option value="All">Select Roster</option>
+                                    <option value="All">Select Squad</option>
                                          <c:forEach var="tournamnetlist" items="${tournamentlist}" >
                                     		<option value="${tournamnetlist.tournamentId}">${tournamnetlist.tournamentName}</option>
                                    		 </c:forEach>
@@ -1613,7 +1613,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
 											$('#affilatedLeagueId').text(leagueName);
 											$('#affilatedLeagueId').css("display", "inline-block");
 											
-											displaynotification("Your roster has been affiliated successfully",1000);
+											displaynotification("Your squad has been affiliated successfully",1000);
 											
 											$('#Deleterosteroption').hide();
 											
@@ -1648,7 +1648,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
 										$('#affilatedLeagueId').text(leagueName);
 										$('#affilatedLeagueId').css("display", "inline-block");
 										
-										displaynotification("Your roster has been affiliated successfully",1000);
+										displaynotification("Your squad has been affiliated successfully",1000);
 										$('#Deleterosteroption').hide();
 										}
 									}
@@ -1720,7 +1720,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
     doc.setFont("helvetica");
     doc.setFontType("bold");
     doc.setTextColor(50,83,168);
-    doc.text(220,30,"Roster Details");
+    doc.text(220,30,"Squad Details");
 	    
 	    //Roster name ,affliatedto,creatreddate
 	    
@@ -1729,12 +1729,12 @@ function getTeamAroundYou(pageNum, numberOFRecords){
 	    doc.setTextColor(0,0,0);
 	    doc.text(10,70,"Team Name ");
 	    doc.text(110,70,": "+teamname);
-	    doc.text(10,100,"Roster Name ");
+	    doc.text(10,100,"Squad Name ");
 	    doc.text(110,100,": "+Rostername);
-	    doc.text(10,130,"Roster Affiliated to  ");
+	    doc.text(10,130,"Squad Affiliated to  ");
 	   doc.text(110,130,": "+Affliatedto);
 	    /* doc.text(10,160,"Roster Created Date  "); */
-	    doc.text(10,160,"Roster Creation Date  ");
+	    doc.text(10,160,"Squad Creation Date  ");
 	    doc.text(110,160,": "+RosterCreateddate);
 	   
 	   
@@ -1744,7 +1744,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
  			    doc.setFont("helvetica");
  			    doc.setFontType("bold");
  			    doc.setTextColor(50,83,168);
- 			    doc.text(10,205,"Roster Information");
+ 			    doc.text(10,205,"Squad Information");
  			    doc.setTextColor(0,0,0);
 	   
  			   var columns = [
@@ -1752,7 +1752,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
                    {title: "First Name", dataKey: "firstName"},
                    {title: "Last Name", dataKey: "lastName"},
                    {title: "Profile Created On", dataKey: "accountCreateddate"},
-                   {title: "Profile Added to Roster On", dataKey: "addedrosterdate"}
+                   {title: "Profile Added to Squad On", dataKey: "addedrosterdate"}
                ];
  			   
  			   

@@ -89,7 +89,134 @@ var formatAMPMTime = function(date) {
 		
 		
 </head>
+
+<style>
+
+
+.dropdown-content {
+    /* display: none;  */
+    position: absolute;
+    background-color: #9197a3;
+    min-width: 130px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 9;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content.request {  
+background: #fff;
+    width: 150px;
+    right: 30px;
+    top: 46px;
+}
+.dropdown-content.request::before {
+    border-top: 5px solid transparent;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid rgba(0,0,0,0.8);
+    content: "";
+    position: absolute;
+    top: -9px;
+    right: 0px;
+}
+.dropdown-content.request ul {
+padding-left: 0;
+margin-bottom: 0px;
+}
+.dropdown-content.request ul li {  
+list-style: none;
+white-space: nowrap;
+padding: 0 0px 0 10px;
+display: flex;
+display: -webkit-flex;
+display: -ms-flexbox;
+justify-content: space-between;
+-webkit-justify-content: space-between;
+-ms-justify-content: space-between;
+align-items: center;
+-webkit-align-items: center;
+-ms-align-items: center;
+border: 1px solid rgba(0,0,0,0.3);
+}
+.dropdown-content.request ul li a img {
+width: 16px;
+}
+.dropdown-content.request ul li a {
+padding: 6px 16px;
+}
+td:last-child { 
+position: relative;
+}
+.dropdown-content.request ul li:last-child {
+border-top: none;}
+
+.request-txt {
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+width: 100px;
+margin: 0;
+}
+
+</style>
+
 <body>
+
+
+
+<div id="Requestpopup" class="modal" role="dialog" style="display: none;">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+    
+    
+    <p style="text-align: center; font-weight: 600; margin: 10px 0;" class="head">Lock/ Unlock Request </p>
+                <span class="close_btn" style="color: rgba(115, 114, 114, 0.63)"> <i class="fa fa-close" onclick="Requestpopup()"></i> </span>
+    
+    
+      <div class="modal-body">
+        <div id="RequestPopupcontent" style="text-align: left; margin: 0px 10px;">
+        
+        Do You want to lock scorecard for this user
+        
+        </div>
+        
+        
+        <input type="hidden" id="UidRequest">
+        <input type="hidden" id="TidRequest">
+        <input type="hidden" id="StatusRequest">
+        <input type="hidden" id="Status1Request">
+        <input type="hidden" id="FlagRequest">
+        
+        
+        
+        
+        
+      </div>
+       <div class="modal-footer action">
+      <button type="button" onclick="Requestpopupok()" class="btn btn-default ok">OK</button>
+      <button type="button" onclick="Requestpopup()" class="btn btn-default ok">Cancel</button>
+       </div> 
+    </div>
+
+  </div>
+</div>
+
+
+
+
 
 <div id="ScoreCardPopup" class="modal" role="dialog" style="display: none;">
   <div class="modal-dialog">
@@ -200,6 +327,8 @@ var formatAMPMTime = function(date) {
 
   </div>
 </div>
+
+<input type="hidden" id="Logeduserid" value='<%=session.getAttribute("USRID")%>'>
 
 	<input type="hidden" id="hiddenDate" value="${dateString}"> 
 <input type="hidden" id="hiddenDateStart" value="${startDate}">
@@ -902,10 +1031,49 @@ date.add(java.util.Calendar.DATE, +6);
 							  ${completed.winTeamName} : ${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}<br>
 							  ${completed.loseTeamName} : ${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers}</td>
 							  <td> 
+							  
+							  
+							  <input type="hidden" id="locktype_${completed.tournamentSchedulerId }" value='${completed.scorecardLock}'>
+							  
                              <a href="javascript:void(0)" onclick="EDITSCORECARD('${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')"><i class="fa fa-pencil" title="Edit Profile"></i></a>
                         	 <a href="javascript:void(0)" onclick="EDITSCORECARD('${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')">Edit Scorecard</a>
                              </td>
-                          <td align="center" ><a href="#" onclick="showScoreCard('${completed.tournamentSchedulerId}')"><i class="fa fa-newspaper-o editIcon"></i></a></td>
+                          <td align="center" >
+                          <%-- <c:choose>
+                          <c:when test="${completed.scorecardLock eq 'OFF'}">
+                          <a id="${completed.tournamentSchedulerId }OFF" href="javascript:void(0)" onclick="lockscorecard('${completed.tournamentSchedulerId }','ON','OFF')"><img src="${pageContext.request.contextPath}/images/unlock.png" style="max-width: 22px;margin-right: 5px; margin-bottom: 17px;"></a>
+                          <a   id="${completed.tournamentSchedulerId }ON" style="display: none;"  href="javascript:void(0)" onclick="lockscorecard('${completed.tournamentSchedulerId }','OFF','ON')"><img src="${pageContext.request.contextPath}/images/lock.png" style="max-width: 22px;margin-right: 5px; margin-bottom: 17px;"></a>
+                          </c:when>
+                          <c:otherwise>
+                          <a id="${completed.tournamentSchedulerId }ON" href="javascript:void(0)" onclick="lockscorecard('${completed.tournamentSchedulerId }','OFF','ON')"><img src="${pageContext.request.contextPath}/images/lock.png" style="max-width: 22px;margin-right: 5px; margin-bottom: 17px;"></a>
+                          <a id="${completed.tournamentSchedulerId }OFF" style="display: none;" href="javascript:void(0)" onclick="lockscorecard('${completed.tournamentSchedulerId }','ON','OFF')"><img src="${pageContext.request.contextPath}/images/unlock.png" style="max-width: 22px;margin-right: 5px; margin-bottom: 17px;"></a>
+                          </c:otherwise>
+                          
+                          </c:choose> --%>
+                          
+                           <c:choose>
+                          <c:when test="${completed.scorecardLock eq 'OFF'}">
+                          
+                          
+                          <div id="Requestlist_${completed.tournamentSchedulerId}"></div>
+                          
+                          
+                          <a id="${completed.tournamentSchedulerId }OFF" href="javascript:void(0)" onclick="lockscorecard('${completed.tournamentSchedulerId }','ON','OFF')"><img src="${pageContext.request.contextPath}/images/unlock.png" style="max-width: 22px;margin-right: 5px; margin-bottom: 17px;"></a>
+                          <a   id="${completed.tournamentSchedulerId }ON" style="display: none;"  href="javascript:void(0)" onclick="lockscorecard('${completed.tournamentSchedulerId }','OFF','ON')"><img src="${pageContext.request.contextPath}/images/lock.png" style="max-width: 22px;margin-right: 5px; margin-bottom: 17px;"></a>
+                          </c:when>
+                          <c:otherwise>
+                          
+                          
+                          <div id="Requestlist_${completed.tournamentSchedulerId}"></div>
+                          
+                          <a id="${completed.tournamentSchedulerId }ON" href="javascript:void(0)" onclick="lockscorecard('${completed.tournamentSchedulerId }','OFF','ON')"><img src="${pageContext.request.contextPath}/images/lock.png" style="max-width: 22px;margin-right: 5px; margin-bottom: 17px;"></a>
+                          <a id="${completed.tournamentSchedulerId }OFF" style="display: none;" href="javascript:void(0)" onclick="lockscorecard('${completed.tournamentSchedulerId }','ON','OFF')"><img src="${pageContext.request.contextPath}/images/unlock.png" style="max-width: 22px;margin-right: 5px; margin-bottom: 17px;"></a>
+                          </c:otherwise>
+                          
+                          </c:choose> 
+                          
+                          
+                          <a href="#" onclick="showScoreCard('${completed.tournamentSchedulerId}')"><i class="fa fa-newspaper-o editIcon"></i></a></td>
                         </tr>
                       </c:forEach>
                 
@@ -1401,6 +1569,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    				//App Scorer
    	   				htmlco1+="<td> <div >";
    	   				var upcommingscorer=incomepltelist[i].scorerNamesList;
+   	   				if(upcommingscorer !=null){
    	   				if(upcommingscorer.length > 0){
    	   				for(var j=0; j < upcommingscorer.length;j++)
    	   				{
@@ -1415,7 +1584,10 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    	   				}}else
    	   					{
    	   					htmlco1+="<span>-</span>";
-   	   					}
+   	   					}}else
+   	   					{
+   	   	   					htmlco1+="<span>-</span>";
+   	   	   					}
    	   				htmlco1+="</div></td>";
    	   				
    	   				//Portal Scorer
@@ -1585,7 +1757,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				    htmlco3+="</div></td> ";
 				    htmlco3+="<td class='tdAlignLeft'> <div>";
 				    var completescorer=completedlist[i].scorerNamesList;
-				    
+				    if(completescorer !=null){
 				    if(completescorer.length > 0)
 				    	{
 				    for(var j=0;j<completescorer.length;j++){
@@ -1598,7 +1770,10 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				    	}else
 				    		{
 				    		htmlco3+="<span>-</span>";
-				    		}
+				    		}}else
+				    		{
+					    		htmlco3+="<span>-</span>";
+					    		}
 				    htmlco3+="</div></td> ";
 				    
 				    
@@ -1634,8 +1809,39 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				   
 				    htmlco3+=""+completedlist[i].winTeamName+": "+completedlist[i].winTeamRuns+"/"+completedlist[i].winTeamWickets+" in "+completedlist[i].winTeamOvers+"<br>";
 				    htmlco3+=""+completedlist[i].loseTeamName+" : "+completedlist[i].loseTeamRuns+"/"+completedlist[i].loseTeamWickets+" in "+completedlist[i].loseTeamOvers+"</td>";
+				    htmlco3+="<input type='hidden' id='locktype_"+completedlist[i].tournamentSchedulerId+"' value='"+completedlist[i].scorecardLock+"'>";
 				    htmlco3+="<td><a href=javascript:void(0); onclick=EDITSCORECARD('${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')><i class='fa fa-pencil' title='Edit Profile'></i></a><a href=javascript:void(0); onclick=EDITSCORECARD('${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')>Edit Scorecard</a></td>";
-				    htmlco3+="<td align='center' ><a href=javascript:void(0); onclick=showScoreCard('"+completedlist[i].tournamentSchedulerId+"')><i class='fa fa-newspaper-o editIcon'></i></a></td>";
+				    htmlco3+="<td align='center' >";
+				    
+				    
+				    console.log("completedlist[i].scorecardLock :"+completedlist[i].scorecardLock);
+				    
+				    
+				    
+				    if(completedlist[i].scorecardLock == "OFF"){
+				    	
+				    	
+				    	console.log("inside off :"+completedlist[i].scorecardLock);
+				    	htmlco3+="<div id='Requestlist_"+completedlist[i].tournamentSchedulerId+"'></div>";
+				    	
+				    	htmlco3+="<a id='"+completedlist[i].tournamentSchedulerId+"OFF' href='javascript:void(0)' onclick=lockscorecard('"+completedlist[i].tournamentSchedulerId+"','ON','OFF')><img src='${pageContext.request.contextPath}/images/unlock.png' style='max-width: 22px;margin-right: 5px; margin-bottom: 17px;'></a>";
+				    	htmlco3+="<a id='"+completedlist[i].tournamentSchedulerId+"ON' style='display: none;'  href='javascript:void(0)' onclick=lockscorecard('"+completedlist[i].tournamentSchedulerId+"','OFF','ON')><img src='${pageContext.request.contextPath}/images/lock.png' style='max-width: 22px;margin-right: 5px; margin-bottom: 17px;'></a>";
+				    	
+				    }else{
+				    	
+				    	
+				    	console.log("inside On :"+completedlist[i].scorecardLock)
+				    	htmlco3+="<div id='Requestlist_"+completedlist[i].tournamentSchedulerId+"'></div>";
+				    	
+				    	
+				    	htmlco3+="<a id='"+completedlist[i].tournamentSchedulerId+"ON' href='javascript:void(0)' onclick=lockscorecard('"+completedlist[i].tournamentSchedulerId+"','OFF','ON')><img src='${pageContext.request.contextPath}/images/lock.png' style='max-width: 22px;margin-right: 5px; margin-bottom: 17px;'></a>";
+				    	htmlco3+="<a id='"+completedlist[i].tournamentSchedulerId+"OFF' style='display: none;'  href='javascript:void(0)' onclick=lockscorecard('"+completedlist[i].tournamentSchedulerId+"','ON','OFF')><img src='${pageContext.request.contextPath}/images/unlock.png' style='max-width: 22px;margin-right: 5px; margin-bottom: 17px;'></a>";
+				    	
+				    }
+				    
+				    
+                    htmlco3+="<a href=javascript:void(0); onclick=showScoreCard('"+completedlist[i].tournamentSchedulerId+"')><i class='fa fa-newspaper-o editIcon'></i></a></td>";
+				    
 				    htmlco3+="</tr>";
 				}
 				htmlco3+="</tbody></table>";
@@ -1794,6 +2000,13 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
                 	<script>
                 	function EDITSCORECARD(id,tournmentId,tournmentShudulorId,homeId,awayTeamId,date,createdBy)
                 	{
+                		
+                		
+                		
+                		var locktype=$("#locktype_"+tournmentShudulorId).val();
+                		console.log("locktype :"+locktype);
+                		if(locktype == 'OFF')
+                		{
             	  var tournamentBean = {
                 					   tournamentId : tournmentId,
                 					   createdBy : id,
@@ -1831,7 +2044,10 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
                 				}
                 				  
                 			  });
-                		
+                		}else{
+                			showNotification("Scorecard has been locked, Please unlock to proceed further", 2000);
+                			hide_notificationpoup(2000);		
+                		}
                 		
                 	}
                 	
@@ -1886,6 +2102,271 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
                  			
                  		}
                  	}
+                	</script>
+                	
+                	<script type="text/javascript">
+                	
+                	/* function lockscorecard(tid,status,status1)
+                	{
+                		
+                		var array=[];
+                		var obj={
+                				tournamentSchedulerId : tid, 
+                					scorecardLock : status
+                		}
+                		array.push(obj);
+                		
+                		var request={
+                				tournamentScheduler : array
+                		}
+                		console.log(JSON.stringify(request));
+                		
+                		$.ajax({
+                			type : "POST",
+                			url : "${pageContext.request.contextPath}/lockScorecard",
+                			contentType : "application/json; charset=utf-8",
+                			data : JSON.stringify(request),
+                			success : functionlockscorecard(response)
+                			{
+                				
+                				if(response != null){
+                					$("#"+tid+""+status).show();
+                					$("#"+tid+""+status1).hide();
+                				 console.log(response);
+                				 } 
+                			}
+                			
+                		})
+                		
+                	} */
+                	
+                	function lockscorecard(tid,status,status1)
+                	{
+                		
+                		var userid=$("#Logeduserid").val();
+                		var request={
+                				tournamentSchedulerId : tid
+                		}
+                		console.log(JSON.stringify(request));
+                		console.log(userid)
+                		
+                		$.ajax({
+                			type : "POST",
+                			url : "${pageContext.request.contextPath}/unLockrequesterList",
+                			contentType : "application/json; charset=utf-8",
+                			data : JSON.stringify(request),
+                			success : function(response)
+                			{
+                				
+                				 var res=JSON.parse(response);
+                				 var result=res.results;
+                				 var requestlist=result.RequestList
+                				 
+                				 
+                				 
+                				 var htm="";
+                				 htm+="<div class='dropdown-content request'>";
+                				 htm+="<ul>";
+                				 // for only me
+                				 htm+="<li>Only me"; 
+                				 if(status1 == 'OFF'){
+                					 console.log("status1 :"+status1)
+             				    	htm+="<a id='"+userid+"OFF' href='javascript:void(0)' onclick=scorecardLock('"+userid+"','"+tid+"','ON','OFF','ME')><img src='${pageContext.request.contextPath}/images/unlock.png' ></a>";
+             				    	htm+="<a id='"+userid+"ON' style='display: none;'  href='javascript:void(0)' onclick=scorecardLock('"+userid+"','"+tid+"','OFF','ON','ME')><img src='${pageContext.request.contextPath}/images/lock.png' ></a>";
+             				    	
+             				    }else{
+             				    	console.log("status1 :"+status1)
+             				    	htm+="<a id='"+userid+"ON' href='javascript:void(0)' onclick=scorecardLock('"+userid+"','"+tid+"','OFF','ON','ME')><img src='${pageContext.request.contextPath}/images/lock.png' ></a>";
+             				    	htm+="<a id='"+userid+"OFF' style='display: none;'  href='javascript:void(0)' onclick=scorecardLock('"+userid+"','"+tid+"','ON','OFF','ME')><img src='${pageContext.request.contextPath}/images/unlock.png' ></a>";
+             				    }
+                				 htm+="</li>";
+                				 
+                				 
+                				 if(requestlist.length > 0){
+                				 console.log(res.results.RequestList[0].fullName);
+                				 
+                				 for(var i in requestlist)
+                				 {
+                					 
+                					 
+                				 htm+="<li><p class='request-txt' title='"+requestlist[i].fullName+"'>"+requestlist[i].fullName+"</p>"; 
+                				 
+                				 
+                				 var requestid=requestlist[i].userId;
+                				 
+                				 
+                				 if(requestlist[i].userFlag == 'ON'){
+                					 console.log("requestlist[i].userFlag :"+requestlist[i].userFlag)
+                					 htm+="<a id='"+requestid+"ON' href='javascript:void(0)' onclick=scorecardLock('"+requestid+"','"+tid+"','OFF','ON','OTHERS')><img src='${pageContext.request.contextPath}/images/lock.png' ></a>";
+              				    	htm+="<a id='"+requestid+"OFF' style='display: none;'  href='javascript:void(0)' onclick=scorecardLock('"+requestid+"','"+tid+"','ON','OFF','OTHERS')><img src='${pageContext.request.contextPath}/images/unlock.png' ></a>";
+             				    	
+             				    }else{
+             				    	console.log("requestlist[i].userFlag :"+requestlist[i].userFlag)
+             				    	htm+="<a id='"+requestid+"OFF' href='javascript:void(0)' onclick=scorecardLock('"+requestid+"','"+tid+"','ON','OFF','OTHERS')><img src='${pageContext.request.contextPath}/images/unlock.png' ></a>";
+             				    	htm+="<a id='"+requestid+"ON' style='display: none;'  href='javascript:void(0)' onclick=scorecardLock('"+requestid+"','"+tid+"','OFF','ON','OTHERS')><img src='${pageContext.request.contextPath}/images/lock.png' ></a>";
+             				    
+             				    
+             				    }
+                				 htm+="</li>";
+                				 
+                				 
+                				 
+                				 
+                				 }
+                				 }
+                				 htm+="</ul>";
+                					 htm+="</div>";
+                				 
+                				 
+                				 
+                				 
+                					/* $("#RequestPopupcontent").html(htm); */
+                				 $("#Requestlist_"+tid).html(htm).trigger('create');;
+                				 
+                					  $("#Requestlist_"+tid).show(); 
+                			}
+                			
+                		})
+                		
+                	}
+                	
+                	function Requestpopup(){
+                		$("#Requestpopup").hide();
+                	}
+                	
+                	
+                	
+                	
+                	function scorecardLock(uid,tid,status,status1,flag)
+                	{
+                		
+                		
+                	        $("#UidRequest").val(uid);
+                	        $("#TidRequest").val(tid);
+                	        $("#StatusRequest").val(status);
+                	        $("#Status1Request").val(status1);
+                	        $("#FlagRequest").val(flag);
+                		if(status1 == 'OFF'){
+                			$("#RequestPopupcontent").text('Do you want to lock the scorecard for this buddy?');
+                		}else{
+                			$("#RequestPopupcontent").text('Do you want to unlock the scorecard for this buddy?');	
+                		}
+                		
+                		$("#Requestpopup").show();
+                		
+                		/* var userid=$("#Logeduserid").val();
+                		var array=[];
+                		var obj={
+                				tournamentSchedulerId : tid, 
+                				createdBy : userid,
+                					scorecardLock : status,
+                					status : flag,
+                					scorerId : uid
+                		}
+                		array.push(obj);
+                		
+                		var request={
+                				tournamentScheduler : array
+                		}
+                		console.log(JSON.stringify(request));
+                		
+                		$.ajax({
+                			type : "POST",
+                			url : "${pageContext.request.contextPath}/lockScorecard",
+                			contentType : "application/json; charset=utf-8",
+                			data : JSON.stringify(request),
+                			success : function(response)
+                			{
+                				console.log(response);
+                				if(response != null){
+                					if(flag == 'ME'){
+                					$("#"+tid+""+status).show();
+                					$("#"+tid+""+status1).hide();
+                				 }
+                					
+                					$("#"+uid+""+status).show();
+                					$("#"+uid+""+status1).hide();
+                					
+                					
+                					
+                				 } 
+                			}
+                			
+                		}) */
+                		
+                	} 
+                	
+                	
+                	$('body').click(function() {
+                		$(".dropdown-content").hide();
+                		});
+                	
+                	
+                	function Requestpopupok(){
+                		
+                		
+		                var uid=$("#UidRequest").val();
+		             	var tid=$("#TidRequest").val();
+		             	var status=$("#StatusRequest").val();
+		             	var status1=$("#Status1Request").val();
+		             	var flag=$("#FlagRequest").val();
+                		
+                		
+                		var userid=$("#Logeduserid").val();
+                		var array=[];
+                		var obj={
+                				tournamentSchedulerId : tid, 
+                				createdBy : userid,
+                					scorecardLock : status,
+                					status : flag,
+                					scorerId : uid
+                		}
+                		array.push(obj);
+                		
+                		var request={
+                				tournamentScheduler : array
+                		}
+                		console.log(JSON.stringify(request));
+                		
+                		$.ajax({
+                			type : "POST",
+                			url : "${pageContext.request.contextPath}/lockScorecard",
+                			contentType : "application/json; charset=utf-8",
+                			data : JSON.stringify(request),
+                			success : function(response)
+                			{
+                				console.log(response);
+                				if(response != null){
+                					if(flag == 'ME'){
+                					$("#"+tid+""+status).show();
+                					$("#"+tid+""+status1).hide();
+                					
+                					
+                					if(status1 == 'OFF'){
+                                        $("#locktype_"+tid).val('ON');
+                            		}else{
+                                   		$("#locktype_"+tid).val('OFF');
+                            		}
+                					
+                					
+                				 }
+                					
+                					$("#"+uid+""+status).show();
+                					$("#"+uid+""+status1).hide();
+                					
+                					
+                					
+                				 } 
+                			}
+                			
+                		}) 
+                		
+                		$("#Requestpopup").hide();
+                		
+                		
+                	}
+                	
+                	
                 	</script>
    
 </body>

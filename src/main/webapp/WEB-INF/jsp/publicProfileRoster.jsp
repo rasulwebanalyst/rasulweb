@@ -248,7 +248,7 @@ function checkbbi(bbi)
                      <%@ include file="BoardFanMenu.jsp" %> 
                 <div class="col-md-10 pull-right rosterBlock rightnone">
                  <div class="col-md-12 whiteBox">
-                 	No Rosters are available.
+                 	No squad available.
                  </div>
                  </div>
                  
@@ -273,17 +273,17 @@ function checkbbi(bbi)
           			
           			
           			
-		          <h1 class="noBorder">Roster                   			
+		          <h1 class="noBorder">Squad                   			
                             <div class="h1Sbox">
                                 <div class="selectdiv pull-right">
                                     <select class="selectboxdiv" onchange="getRosterDetails(this.value)">
-                                    <option value="">Select Roster</option>
+                                    <option value="">Select Squad</option>
                                          <c:forEach var="Roster" items="${Roasters}" >
                                     		<option value="${Roster.rosterId}">${Roster.rosterName}</option>
                                    		 </c:forEach>
                                         
                                     </select>
-                                    <div class="out"> Select Roster</div>    
+                                    <div class="out"> Select Squad</div>    
                                 </div>
                                 </div>
                              
@@ -407,7 +407,7 @@ function checkbbi(bbi)
                                         <div class="h1Sbox BFP_field">
                                          <div class="selectdiv pull-right" style="width: 180px;height: 30px; margin-top: 3px; display: none;" id="Firstselect" >
                                     <select class="selectboxdiv" onchange="battingDetails(this.value)">
-                                    <option value="All">Select Roster</option>
+                                    <option value="All">Select Squad</option>
                                         <c:forEach var="tournamnetlist" items="${tournamentlist}" >
                                     		<option value="${tournamnetlist.tournamentId}">${tournamnetlist.tournamentName}</option>
                                    		 </c:forEach>
@@ -502,7 +502,7 @@ function checkbbi(bbi)
                                        <div class="h1Sbox BFP_field">
                                         <div class="selectdiv pull-right" style="width: 180px;height: 30px; margin-top: 3px; display: none;"  id="Secondselect" >
                                     <select class="selectboxdiv" onchange="Bowlingperformance(this.value)">
-                                    <option value="All">Select Roster</option>
+                                    <option value="All">Select Squad</option>
                                          <c:forEach var="tournamnetlist" items="${tournamentlist}" >
                                     		<option value="${tournamnetlist.tournamentId}">${tournamnetlist.tournamentName}</option>
                                    		 </c:forEach>
@@ -1233,7 +1233,7 @@ var roasterid="${RoasterResponseById.rosterDetails.rosterId}";
 										$('#affilatedLeagueId').text(leagueName);
 										$('#affilatedLeagueId').css("display", "inline-block");
 										
-										showNotification("Your roster has been affiliated successfully",1000);
+										showNotification("Your squad has been affiliated successfully",1000);
 									}else{
 										showNotification("Service has been interupted due to some reasons",1000);
 									}
@@ -1371,7 +1371,7 @@ var roasterid="${RoasterResponseById.rosterDetails.rosterId}";
     doc.setFont("helvetica");
     doc.setFontType("bold");
     doc.setTextColor(50,83,168);
-    doc.text(220,30,"Roster Details");
+    doc.text(220,30,"Squad Details");
 	    
 	    //Roster name ,affliatedto,creatreddate
 	    
@@ -1380,12 +1380,12 @@ var roasterid="${RoasterResponseById.rosterDetails.rosterId}";
 	    doc.setTextColor(0,0,0);
 	    doc.text(10,70,"Team Name ");
 	    doc.text(110,70,": "+teamname);
-	    doc.text(10,100,"Roster Name ");
+	    doc.text(10,100,"Squad Name ");
 	    doc.text(110,100,": "+Rostername);
-	    doc.text(10,130,"Roster Affiliated to  ");
+	    doc.text(10,130,"Squad Affiliated to  ");
 	   doc.text(110,130,": "+Affliatedto);
 	    /* doc.text(10,160,"Roster Created Date  "); */
-	    doc.text(10,160,"Roster Creation Date  ");
+	    doc.text(10,160,"Squad Creation Date  ");
 	    doc.text(110,160,": "+RosterCreateddate);
 	   
 	   
@@ -1395,7 +1395,7 @@ var roasterid="${RoasterResponseById.rosterDetails.rosterId}";
  			    doc.setFont("helvetica");
  			    doc.setFontType("bold");
  			    doc.setTextColor(50,83,168);
- 			    doc.text(10,205,"Roster Information");
+ 			    doc.text(10,205,"Squad Information");
  			    doc.setTextColor(0,0,0);
 	   
  			   var columns = [
@@ -1403,7 +1403,7 @@ var roasterid="${RoasterResponseById.rosterDetails.rosterId}";
                    {title: "First Name", dataKey: "firstName"},
                    {title: "Last Name", dataKey: "lastName"},
                    {title: "Profile Created On", dataKey: "accountCreateddate"},
-                   {title: "Profile Added to Roster On", dataKey: "addedrosterdate"}
+                   {title: "Profile Added to Squad On", dataKey: "addedrosterdate"}
                ];
  			   
  			   

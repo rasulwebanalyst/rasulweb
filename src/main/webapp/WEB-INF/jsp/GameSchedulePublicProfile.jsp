@@ -262,6 +262,36 @@ var formatAMPMTime = function(date) {
 
   </div>
 </div>
+
+
+
+<div id="UnlockScoreCard" class="modal" role="dialog"
+		style="display: none;">
+		<div class="modal-dialog">
+
+			<div class="modal-content">
+				<!--  <div class="modal-header">
+        <button type="button" class="close" onclick="RoasterPopup()" data-dismiss="modal">&times;</button>
+        </div> -->
+
+				<div class="modal-body">
+					<p style="text-align:center;">Sorry ! scorecard has been locked. Do you want to send request to admin?</p>
+					<br>
+				</div>
+				
+				<input type="hidden" id="lockschedulerid">
+				<input type="hidden" id="lockschedulertime">
+				
+				<div class="modal-footer action">
+					<button type="button" onclick="okUnlockScoreCard()" class="btn btn-default ok">OK</button>
+					<button type="button" onclick="cancelUnlockScoreCard()" class="btn btn-default ok">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
       <div class="col-md-10">
       		<div class="col-md-12 whiteBox">
 		          <h1 class="">Schedule & Scores</h1>
@@ -896,10 +926,44 @@ var formatAMPMTime = function(date) {
 							  ${completed.winTeamName} : ${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}<br>
 							  ${completed.loseTeamName} : ${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers}</td>
                          <td> 
-                             <a href="javascript:void(0)" onclick="EDITSCORECARD('${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')"><i class="fa fa-pencil" title="Edit Profile"></i></a>
+                             <%-- <a href="javascript:void(0)" onclick="EDITSCORECARD('${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')"><i class="fa fa-pencil" title="Edit Profile"></i></a>
+                        	 <a href="javascript:void(0)" onclick="EDITSCORECARD('${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')">Edit Scorecard</a> --%>
+                       
+                       <c:choose>
+                          <c:when test="${completed.scorecardLock eq 'OFF'}">
+                          
+                          <a href="javascript:void(0)" onclick="EDITSCORECARD('${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')"><i class="fa fa-pencil" title="Edit Profile"></i></a>
                         	 <a href="javascript:void(0)" onclick="EDITSCORECARD('${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')">Edit Scorecard</a>
+                          
+                          
+                          </c:when>
+                          <c:otherwise>
+                          
+                          
+                          <a href="javascript:void(0)" onclick="LOCKEDEDITSCORECARD('${completed.tournamentSchedulerId }','${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')"><i class="fa fa-pencil" title="Edit Profile"></i></a>
+                        	 <a href="javascript:void(0)" onclick="LOCKEDEDITSCORECARD('${completed.tournamentSchedulerId }','${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')">Edit Scorecard</a>
+                          
+                          </c:otherwise>
+                          
+                          </c:choose>
+                       
+                       
                        </td>
-                          <td align="center" ><a href="#" onclick="showScoreCard('${completed.tournamentSchedulerId}')"><i class="fa fa-newspaper-o editIcon"></i></a></td>
+                       
+                       
+                       <td align="center" >
+                       <c:choose>
+                          <c:when test="${completed.scorecardLock eq 'OFF'}">
+                          <a><img src="${pageContext.request.contextPath}/images/unlock.png" style="max-width: 22px;margin-right: 5px; margin-bottom: 17px;"></a>
+                          </c:when>
+                          <c:otherwise>
+                          <a><img src="${pageContext.request.contextPath}/images/lock.png" style="max-width: 22px;margin-right: 5px; margin-bottom: 17px;"></a>
+                          </c:otherwise>
+                          
+                          </c:choose>
+                       
+                       
+                          <a href="#" onclick="showScoreCard('${completed.tournamentSchedulerId}')"><i class="fa fa-newspaper-o editIcon"></i></a></td>
                         </tr>
                       </c:forEach>
                 
@@ -1557,6 +1621,11 @@ var dateString = null;
 					var dateNewObject = formatDateValue(completedlist[i].gameDate);
 					
 					htmlco3+="<tr>";
+					
+					
+					htmlco3+="<p id='formatDate_"+completedlist[i].tournamentSchedulerId+"' style='display:none'>"+completedlist[i].gameDate+"</p>";
+					
+					
 					htmlco3+="<td>"+dateNewObject+"</td>";
 					htmlco3+="<td class='tdAlignLeft'><a href='${pageContext.request.contextPath}/"+completedlist[i].homeTeamName+"/board/"+completedlist[i].homeTeamId+"'>"+completedlist[i].homeTeamName+"</a></td>";
 					htmlco3+="<td class='tdAlignLeft'><a href='${pageContext.request.contextPath}/"+completedlist[i].awayTeamName+"'/board/"+completedlist[i].awayTeamId+"'>"+completedlist[i].awayTeamName+"</a></td>";
@@ -1635,8 +1704,31 @@ var dateString = null;
 				    htmlco3+=""+completedlist[i].winTeamName+": "+completedlist[i].winTeamRuns+"/"+completedlist[i].winTeamWickets+" in "+completedlist[i].winTeamOvers+"<br>";
 				    htmlco3+=""+completedlist[i].loseTeamName+" : "+completedlist[i].loseTeamRuns+"/"+completedlist[i].loseTeamWickets+" in "+completedlist[i].loseTeamOvers+"</td>";
 
-				    htmlco3+="<td><a href=javascript:void(0); onclick=EDITSCORECARD('${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')><i class='fa fa-pencil' title='Edit Profile'></i></a><a href=javascript:void(0); onclick=EDITSCORECARD('${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')>Edit Scorecard</a></td>";
-				    htmlco3+="<td align='center' ><a href=javascript:void(0); onclick=showScoreCard('"+completedlist[i].tournamentSchedulerId+"')><i class='fa fa-newspaper-o editIcon'></i></a></td>";
+				    
+				    if(completedlist[i].scorecardLock == "OFF"){
+				    
+				    	htmlco3+="<td><a href=javascript:void(0); onclick=EDITSCORECARD('${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')><i class='fa fa-pencil' title='Edit Profile'></i></a><a href=javascript:void(0); onclick=EDITSCORECARD('${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')>Edit Scorecard</a></td>";
+				    	
+				    }else{
+				    	
+				    	htmlco3+="<td><a href=javascript:void(0); onclick=LOCKEDEDITSCORECARD('"+completedlist[i].tournamentSchedulerId+"','${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')><i class='fa fa-pencil' title='Edit Profile'></i></a><a href=javascript:void(0); onclick=LOCKEDEDITSCORECARD('"+completedlist[i].tournamentSchedulerId+"','${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')>Edit Scorecard</a></td>";
+				    }
+				    
+				    
+				    
+				    htmlco3+="<td align='center' >";
+				    
+				    if(completedlist[i].scorecardLock == "OFF"){
+				    	htmlco3+="<a><img src='${pageContext.request.contextPath}/images/unlock.png' style='max-width: 22px;margin-right: 5px; margin-bottom: 17px;'></a>";
+				    	
+				    }else{
+				    	
+				    	htmlco3+="<a><img src='${pageContext.request.contextPath}/images/lock.png' style='max-width: 22px;margin-right: 5px; margin-bottom: 17px;'></a>";
+				    }
+				    
+				    
+				    
+				    htmlco3+="<a href=javascript:void(0); onclick=showScoreCard('"+completedlist[i].tournamentSchedulerId+"')><i class='fa fa-newspaper-o editIcon'></i></a></td>";
 				    htmlco3+="</tr>";
 				}
 				htmlco3+="</tbody></table>";
@@ -1881,6 +1973,129 @@ var dateString = null;
                  			
                  		}
                  	}
+                 	
+                 	function LOCKEDEDITSCORECARD(tid,id,tournmentId,tournmentShudulorId,homeId,awayTeamId,date,createdBy)
+                 	{
+                 		
+                 		
+                 		
+                 		
+                 		var tournamentBean = {
+         					   tournamentId : tournmentId,
+         					   createdBy : id,
+         					   tournamentSchedulerId : tournmentShudulorId,
+         			   }; 
+         			   
+         			  $.ajax({
+         				type :"Post",
+         				url:"${pageContext.request.contextPath}/getScheduleHomeAwayName",
+         				data:JSON.stringify(tournamentBean),
+         				contentType:"application/json",
+         				success:function(response){
+         					
+         					 if(response.length > 0){	
+         						 
+         						 console.log(date);
+         						 
+         						 var datestr1 = $("#formatDate_"+tid).html();	
+         						 
+         						var datestr=Unlockdate(datestr1);
+                     			console.log(datestr);
+                				$("#lockschedulerid").val(tid);
+                				$("#lockschedulertime").val(datestr);
+                     			$("#UnlockScoreCard").show();
+         					 
+         					 }
+         					 else{					 
+         						 showNotification("You are not a valid user to enter the score", 2000);
+         						 hide_notificationpoup(2000);					 
+         					 }
+         					
+         					
+         				},
+         				error:function(err){
+         					console.log(err);
+         				}
+         				  
+         			  });
+                 		
+                 	}
+                 	
+                 	function cancelUnlockScoreCard()
+                 	{
+                 		$("#UnlockScoreCard").hide();
+                 	}
+                 	
+                 	function okUnlockScoreCard(){
+                 		
+                 		var tid=$("#lockschedulerid").val();
+        				var date=$("#lockschedulertime").val();
+        				
+        				var request={
+        						tournamentSchedulerId : tid,
+        						gameTime : date
+        				}
+                 		
+        				
+        				$.ajax({		
+        					type :"POST",
+        					url : "${pageContext.request.contextPath}/unlockScoreCardmail",
+        					contentType : "application/json; charset=utf-8",
+        					data : JSON.stringify(request),
+        					success : function(response){
+        						
+        						//alert(response);
+        						if(response != null){
+        							var res=JSON.parse(response);
+        							console.log(res.results);
+        							console.log(res.results.MailStatus)
+        							if(res.results.MailStatus == 'SUCESS'){
+        								
+        								$("#UnlockScoreCard").hide();
+        								 displaynotification('Request has been sent to admin Successfully',2000);
+        								
+        							}else{
+        								$("#UnlockScoreCard").hide();
+        								displaynotification('Something went wrong',2000);
+        							}
+        						}
+        						
+        					}
+        					
+        					
+        				})
+        				
+        				
+        				
+                 	}
+                 	
+                 	
+                 	
+                 	function Unlockdate(date2) {
+               		 
+                 		
+                 		var date1=date2.split("IST")[0];
+               		 
+                        var date = date1;
+                        console.log(date1);
+                        console.log(date);
+                		    var offset = new Date().getTimezoneOffset() * 60 * 1000;
+                		var gettingFromServer= new Date(date);
+                		gettingFromServer = new Date(gettingFromServer.valueOf() - offset);
+                		 
+              		  var hours = gettingFromServer.getHours();
+              		  var minutes = gettingFromServer.getMinutes();
+              		  var ampm = hours >= 12 ? 'PM' : 'AM';
+              		  hours = hours % 12;
+              		  hours = hours ? hours : 12; // the hour '0' should be '12'
+              		  minutes = minutes < 10 ? '0'+minutes : minutes;
+              		  hours = hours < 10 ? '0'+hours : hours ;
+              		  var strTimeHours = hours + ':' + minutes +" "+ ampm;
+              		  return strTimeHours;
+              		};
+                 	
+                 	
+                 	
                 	</script>
    
 </body>

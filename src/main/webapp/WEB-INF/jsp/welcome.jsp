@@ -574,6 +574,11 @@ var fbURL='110086556012641'; // QA
           	</div>
          
          <span class="forgotPw"><a href="${pageContext.request.contextPath}/account-recovery">I can't access my account</a></span>
+         
+         
+         <a href="whatsapp://send?text=Hello%20World!" id="Whatsappshare" style="display: none;">Hello, world!</a>
+         
+         
 <div class="clearfix"></div>
           <div class="row">
           <div class="col-md-12 loginSocial">
@@ -1146,6 +1151,13 @@ $(document).ready(function()
 			displaynotification('Sorry! Match schedule has been updated, Please check your updated E-Mail',3000);
 			}
 	
+	
+	var Unlock="${Unlock}";
+	if(Unlock != "" && Unlock != null)
+		{
+			displaynotification(Unlock,3000);
+			}
+	
 		});
 		
 		
@@ -1241,7 +1253,15 @@ window.onload=initializemarquee */
 
 <script type="text/javascript">
 
-
+$(window).load(function(){
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		 // some code..
+		 console.log("Device :"+navigator.userAgent)
+		 $("#Whatsappshare").show();
+		}else{
+			console.log("DEsktop"+navigator.userAgent)
+		}
+});
 
 
 </script>

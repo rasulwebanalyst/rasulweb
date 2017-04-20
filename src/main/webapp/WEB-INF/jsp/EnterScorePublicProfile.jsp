@@ -278,6 +278,7 @@ table sup{
   	<tr><th>Wides</th><th>No Balls</th><th>Byes</th><th>Leg Byes</th><th>Penalties</th></tr>
   	<tr><td><input type="text" id="firstInningsWide" value=""></td><td><input type="text" id="firstInningsNoBalls" value=""></td><td><input type="text" id="firstInningsByes" value=""></td><td><input type="text" id="firstInningsLegByes" value=""></td><td><input type="text" id="firstInningsPenalties" value=""></td></tr>
   	</table>
+  	<input type="hidden" id="WinTeamdetails">
   	<div class="score-details-in">		
     	<label for="email" class="totscor">TOTAL SCORE</label>
         <input type="text" class="TOT-E OnlyNumber" id="firstInnigsScore" onfocus="numberCheck(this);" onblur="firstInningsTotalScore(this.value)">
@@ -493,9 +494,9 @@ table sup{
   	</table>
   	<div class="score-details-in">		
     	<label for="email" class="totscor">TOTAL SCORE</label>
-        <input type="text" class="TOT-E OnlyNumber"  onfocus="numberCheck(this);" onblur="secondInningsTotalScore(this.value)">
+        <input type="text" class="TOT-E OnlyNumber" id="secondInnigsScore"  onfocus="numberCheck(this);" onblur="secondInningsTotalScore(this.value)">
         <label for="email" class="totscor">TOTAL WICKET</label>
-        <input type="text" class="TOT-E OnlyNumber" onfocus="numberCheck(this);" onblur="secondInningsWickets(this.value)">
+        <input type="text" class="TOT-E OnlyNumber" id="secondInnigsTotalWicket" onfocus="numberCheck(this);" onblur="secondInningsWickets(this.value)">
   	     <label for="text" class="totscor">TOTAL OVER</label>
         <input type="text" class="TOT-E" id="secondBattingTotalOvers" onfocus="numberCheck(this);" onblur="secondInningsTotalOversChange()">  	    
   	</div><!-- score details in end -->	
@@ -894,6 +895,7 @@ $(document).ready(function(){
 	$("#tournamentTextVal").text(tournamentName);
 	//if(selectedTournamentId != 0 ){
 
+		console.log("aaaaaaaaaaaaaaaaaaaaaaa :"+selectedTournamentId)
 	loadScheduler(selectedTournamentId);
 });
 </script>
@@ -1979,7 +1981,7 @@ function saveFunction(){
 	var umpireId = $("#hiddenUmpireId").val();
 	var homeTeamCoach = $("#addMemberIDDIVHomeCoach").val();
 	var awayTeamCoach = $("#addMemberIDDIVAwayCoach").val();
-	var winTeamOvers = $("#winTeamOvers").val();
+	/* var winTeamOvers = $("#winTeamOvers").val();
 	var winTeamPoints = $("#winTeamPoints").val();
 	var winTeamRuns = $("#winTeamRuns").val();	
 	
@@ -1987,13 +1989,58 @@ function saveFunction(){
 	var loseTeamOvers = $("#loseTeamOvers").val();
 	var loseTeamPoints = $("#loseTeamPoints").val();
 	var loseTeamRuns = $("#loseTeamRuns").val();
-	var loseTeamWickets = $("#loseTeamWickets").val();
+	var loseTeamWickets = $("#loseTeamWickets").val(); */
+	
+	
+	var winTeamPoints = $("#winTeamPoints").val();
+	var loseTeamPoints = $("#loseTeamPoints").val();
+	
+	
+	
+	// vignesh changes
+	if($("#winTeamPoints").val() == '0')
+	{
+	winTeamPoints=$("#loseTeamPoints").val();
+	loseTeamPoints=$("#winTeamPoints").val();
+	}
+	
+	
+	var WinTeamdetailsinfo=$("#WinTeamdetails").val();
+	if( WinTeamdetailsinfo == 'first')
+		{
+		
+		var winTeamOvers = $("#firstBattingTotalOvers").val();
+		var winTeamRuns = $("#firstInnigsScore").val();	
+		
+		var winTeamWickets = $("#firstInnigsTotalWicket").val();
+		var loseTeamOvers = $("#secondBattingTotalOvers").val();
+		var loseTeamRuns = $("#secondInnigsScore").val();
+		var loseTeamWickets = $("#secondInnigsTotalWicket").val();
+		}else
+			{
+			
+			var winTeamOvers = $("#secondBattingTotalOvers").val();
+			var winTeamRuns = $("#secondInnigsScore").val();	
+			
+			var winTeamWickets = $("#secondInnigsTotalWicket").val();
+			var loseTeamOvers = $("#firstBattingTotalOvers").val();
+			var loseTeamRuns = $("#firstInnigsScore").val();
+			var loseTeamWickets = $("#firstInnigsTotalWicket").val();
+			
+			}
+	
+	
+	
+	
 	var gameType = $("#gameType").val();
 	
 	var gameDate = $("#gameDate").val();
 	
-	  var homeId = document.getElementById("hiddenHomeId").value;
-	   var awayId = document.getElementById("hiddenAwayId").value;
+	  /* var homeId = document.getElementById("hiddenHomeId").value;
+	   var awayId = document.getElementById("hiddenAwayId").value; */
+	   
+	   var homeId = "${homeTeamId}";
+	   var awayId = "${awayTeamId}";
 	   
 	   var result = $("#result").val();
    
@@ -2425,6 +2472,10 @@ var firstInningsExtraVal = firstInningsExtra;
 console.log('--------------------------------  winTeamRuns ------------------------------------------------------- '+winTeamRuns);
 console.log('--------------------------------  loseTeamRuns ------------------------------------------------------- '+loseTeamRuns);
 	
+	
+var FirstInningsScore = $("#firstInnigsScore").val();	
+var SecondInningsScore = $("#secondInnigsScore").val();
+	
 	var scorerBean = {
 		    awayTeamCoach : awayTeamCoach,
 		    homeTeamCoach : homeTeamCoach,
@@ -2450,8 +2501,14 @@ console.log('--------------------------------  loseTeamRuns --------------------
 		    result : result,
 		    firstInningsTeamId : homeTeamId,
 		    secondInningsTeamId : awayTeamId,
-		    firstInningsTotalRuns  : winTeamRuns,
-		    secondInningsTotalRuns : loseTeamRuns,
+		    /* firstInningsTotalRuns  : winTeamRuns,
+		    secondInningsTotalRuns : loseTeamRuns, */
+		    
+        //changes made by vignesh
+		    
+		    firstInningsTotalRuns  : FirstInningsScore,
+		    secondInningsTotalRuns : SecondInningsScore,
+		    
 		    groundId : groundid
 		    
 		}
@@ -2469,8 +2526,16 @@ console.log('--------------------------------  loseTeamRuns --------------------
 			$("#loading").hide();
 			if(res != "failure"){
 				var boardId  = "${boardId}";
+				
+				
+				if(res == 'Sorry, Scorecard Locked!')
+				{    
+					showNotification("Sorry scorecoard has been locked, Please contact your admin.", 2000);
+					hide_notificationpoup(2000);
+				}else{
 				showNotification("Inserted Successfully", 2000);
-				hide_notificationpoup(2000);
+				hide_notificationpoup(2000);}
+				
 				 window.location.href = "${pageContext.request.contextPath}/GameSchedulePublicProfile/boardId/"+boardId;
 				
 			}else{
@@ -2619,9 +2684,9 @@ function blurFunction()
 					$("#addMemberautoCompleteDIVHomeCoach").fadeOut();
 				});
 			//document.getElementById("tournament").selectedIndex = 0;
-			​ document.getElementById('tournament').value= 0;
+			 /* document.getElementById('tournament').value= 0;
 			var htm="test";
-			$('#tournamentTextVal').html(htm);​​​​​​​​​​
+			$('#tournamentTextVal').html(htm); */
 	});
    
    function tet(){

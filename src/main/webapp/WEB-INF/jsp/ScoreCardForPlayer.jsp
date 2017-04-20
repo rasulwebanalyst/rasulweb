@@ -122,6 +122,30 @@ var formatAMPMTime = function(date) {
         
     </div>
     
+    
+    
+    <div id="feededit" class="popupDiv" style="display: none;">
+												
+												           <div class="box">
+												                <span class="head">Scorecard share</span>
+												                <span class="close_btn" > <i class="fa fa-close" onclick="closeFeededit()"></i> </span>
+												
+												                <div class="popupContentDiv">
+												                
+												                		
+												                        	<textarea class="form-control" id="feedsedited" rows="5" placeholder=""  disabled="disabled" ></textarea>
+												                        	<input type="hidden"  id="feedseditedhidden" rows="5" placeholder="" ></textarea>
+												                        	<input type="hidden" id="EditedId">
+												                          
+												                          <div class="centerbtns"><button type="button" class="btn btn-default blueBtn" onclick="updatePost()">OK</button></div>
+												                       
+												                </div>
+												            </div>
+												 
+												 	</div>
+    
+    
+    
     <div class="container">
 
         <div class="row">
@@ -399,6 +423,16 @@ var formatAMPMTime = function(date) {
                          <div class="col-md-12 statusUpdateBox whiteBox ">
                         
                         	<h1 class="noBorder">Full ScoreBoard</h1>  
+                        	
+                        	
+                        	<div style="float: right;margin-top: -35px;">
+                        <i onclick="facebook()" style="cursor: pointer;">	 <img src="${pageContext.request.contextPath}/images/facebook.png" style="max-width: 22px;margin-right: 5px;"></i>
+			              <i onclick="twitter()" style="cursor: pointer;"> <img src="${pageContext.request.contextPath}/images/twitter.png" style="max-width: 22px;margin-right: 5px;"></i>
+			                    <i onclick="CS()" style="cursor: pointer;"> <img src="${pageContext.request.contextPath}/images/logo-bg.png" style="max-width: 22px;margin-right: 5px;"></i>
+			                    <a href="" id="Whatsappshare" style="display: none;"> <img src="${pageContext.request.contextPath}/images/whatsapp.png" style="max-width: 22px;margin-right: 5px;"></a>
+                        	   
+                        	   </div>
+                        	
                             <div>
                         		<c:choose>
                         			<c:when test="${scoreCardListSize == 0 }">
@@ -406,6 +440,14 @@ var formatAMPMTime = function(date) {
 	                            	</c:when>
                             	
                             	<c:otherwise>
+                            	
+                            	
+                            	
+                            	<input type="hidden" id="feeddata" value="${scoreCardList.homeTeamName} vs ${scoreCardList.awayTeamName}">
+                            	
+                            	
+                            	
+                            	
                             		<div style="float: left; width: 50%;text-align: left;color: #3253a8">
                                 	<%-- <span style="width: 100%;font-size: 16px">${scoreCardList.homeTeamName} Vs ${scoreCardList.awayTeamName }</span><br> --%>
                                 	<p class="summary" style="width: 100%;font-size: 16px;">${scoreCardList.tournamentName}</p>
@@ -1076,5 +1118,122 @@ var formatAMPMTime = function(date) {
     
 
 </body>
+
+<script type="text/javascript">
+
+
+
+$(window).load(function(){
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		 // some code..
+		 var url=window.location.href;
+		 var sharedata=$("#feeddata").val();
+		 var url1="whatsapp://send?text="+sharedata+"        "+url;
+		 console.log(url1);
+		 $("#Whatsappshare").attr("href", url1);
+		 console.log("Device :"+navigator.userAgent)
+		 $("#Whatsappshare").show();
+		}else{
+			console.log("DEsktop"+navigator.userAgent)
+		}
+});
+
+
+
+function facebook()
+{
+	  
+	  var url=window.location.href;
+		console.log(url);
+		
+		/* var url1="https://dev.cricketsocial.net/showScoreCard/boardId/226e432a-dcbe-4a03-abe0-6c0c2f0a9db4/matchId/6c50b95f-ee12-4191-97dc-a62701bdb022"; */ 
+	  var data=$("#feeddata").val();
+	   
+	var appmsg="hello";
+	var picture="https://s3.amazonaws.com/prod-cricket-social-images/a63b10b3-69f9-44ad-8487-e7a0f6b9a19c.png?6"
+    
+	  window
+	  .open(
+	 "https://www.facebook.com/dialog/feed?app_id=1654958434805143&display=popup"
+	  +"&name="+data+""
+	  + "&link="+url+""
+	  + '&picture='+picture+''
+	 
+	  + "&description=ScoreCard", '',
+	  'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+	  return false;
+	  
+
+	} 
+	
+	function twitter()
+	{
+		
+		var url=window.location.href;
+		console.log(url);
+		var sharedata=$("#feeddata").val();
+		console.log(sharedata);
+		
+				
+		window.open('http://twitter.com/share?url='+url+'&text='+sharedata, '', 
+				'left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+				
+	}
+	
+	function CS()
+	{
+		var url=window.location.href;
+		console.log(url);
+		var sharedata=$("#feeddata").val()+"    "+url;
+		console.log(sharedata);
+		
+		$("#feedsedited").val(sharedata);
+		var hreftag="<a href="+url+">"+url+"</a>";
+		$("#feedseditedhidden").val($("#feeddata").val()+"            "+hreftag);
+		$("#feededit").show();
+		
+		
+		
+	}
+	
+	
+	
+	function closeFeededit()
+	{
+		$("#feededit").hide();
+		}
+	
+	function updatePost()
+	{
+		
+		var url=$("#feedseditedhidden").val();
+		 var request={
+				
+				 content : url,
+					active : 0,
+					feedType : "Buddy",
+					userFeedHit: false,
+			        feedTo: "All"
+				
+		} 
+		console.log(request);
+		$.ajax({
+			type : "POST",
+			url : "${pageContext.request.contextPath}/scorecardShare",
+			data : JSON.stringify(request),
+			contentType : "application/json",
+			success : function(res)
+			{
+				displaynotification('ScoreCard link has been shared',2000);
+				$("#feededit").hide();
+			}
+			
+		})
+		
+	}
+
+
+
+</script>
 
 </html>

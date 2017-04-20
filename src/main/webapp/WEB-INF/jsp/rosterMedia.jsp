@@ -42,7 +42,7 @@
       
       <div class="col-md-10">
       		<div class="col-md-12 whiteBox rosterMediaBlock">
-		          <h1 class="">Roster Media</h1>
+		          <h1 class="">Squad Media</h1>
           	
                       	<!--Tab Content-->  
                         

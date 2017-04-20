@@ -12,7 +12,7 @@
 
     <title>Cricket Social</title>
         <!-- responsive css -->
- <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
+ <%-- <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">    --%>
   <style>
 
 table{
@@ -76,11 +76,14 @@ var formatAMPMTime = function(date) {
     <div class="profileBanner">
      	<div class="container bannerBtnsblock">
         	
-            <i class="fa fa-camera changePhoto" title="Change Photo" id="upload_link"></i>
+           <!--  <i class="fa fa-camera changePhoto" title="Change Photo" id="upload_link"></i> -->
             <input id="upload" type="file" onchange="readURL(this)" name="boardImagefile" />
+            
+           
           </div>
           
-          
+           
+            
         
         
         <!--<div class="container bannerBtnsblock">
@@ -90,8 +93,19 @@ var formatAMPMTime = function(date) {
            <div class="boardHitBtn"> <i class="fa boardHit"></i>Hit </div>
          </div>   
         </div>-->
-        
-    	<img src="${pageContext.request.contextPath}/images/innerBanner.png" id="profileimg">
+       <!--  changed -->
+    	<%-- <img src="${pageContext.request.contextPath}/images/innerBanner.png" id="profileimg"> --%>
+    	<img src="${BoradInfo.boardCoverImageUrl}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/innerBanner.png';" id="profileimg">
+       
+       
+       
+       
+       
+       <div id="Saveimagediv" class="cover carousel-caption pull-right" style="margin-bottom:350px; display: none;">
+          <button type="button" onclick="saveImage()">OK</button>
+          <button type="button" onclick="Cancel()">CANCEL</button>
+          </div>
+       
         
     </div>
     
@@ -206,6 +220,7 @@ var formatAMPMTime = function(date) {
                         <i onclick="facebook()" style="cursor: pointer;">	 <img src="${pageContext.request.contextPath}/images/facebook.png" style="max-width: 22px;margin-right: 5px;"></i>
 			              <i onclick="twitter()" style="cursor: pointer;"> <img src="${pageContext.request.contextPath}/images/twitter.png" style="max-width: 22px;margin-right: 5px;"></i>
 			                    <i onclick="CS()" style="cursor: pointer;"> <img src="${pageContext.request.contextPath}/images/logo-bg.png" style="max-width: 22px;margin-right: 5px;"></i>
+                        	   <a href="" id="Whatsappshare" style="display: none;"> <img src="${pageContext.request.contextPath}/images/whatsapp.png" style="max-width: 22px;margin-right: 5px;"></a>
                         	   </div>
                         	
                             <div>
@@ -956,6 +971,28 @@ var formatAMPMTime = function(date) {
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    
+    
+    <script type="text/javascript">
+
+$(window).load(function(){
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		 // some code..
+		 var url=window.location.href;
+		 var sharedata=$("#feeddata").val();
+		 var url1="whatsapp://send?text="+sharedata+"        "+url;
+		 console.log(url1);
+		 $("#Whatsappshare").attr("href", url1);
+		 console.log("Device :"+navigator.userAgent)
+		 $("#Whatsappshare").show();
+		}else{
+			console.log("DEsktop"+navigator.userAgent)
+		}
+});
+
+
+</script>
+    
 
  	<!--Select Box-->
 	<script>
@@ -1091,7 +1128,7 @@ function facebook()
 			contentType : "application/json",
 			success : function(res)
 			{
-				displaynotification('ScoreCard link as been shared',2000);
+				displaynotification('ScoreCard link has been shared',2000);
 				$("#feededit").hide();
 			}
 			
@@ -1105,26 +1142,81 @@ function facebook()
 <script type="text/javascript">
 
 
-$("#upload_link").on('click', function(e){
+/* $("#upload_link").on('click', function(e){
 	e.preventDefault();
 	$("#upload:hidden").trigger('click');
-});
+}); */
 
 
 
 function readURL(input) {
 	//alert("alert");
+	
+	
+	
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
         	console.log(e);
         	console.log(reader);
         	 //alert("e.target.result"+e.target.result);
-            $('#profileimg').attr('src', e.target.result);
+            /* $('#profileimg').attr('src', e.target.result); */
+            
+            
+            var image = new Image();
+       	 image.src = e.target.result;
+       	 image.onload = function() {
+       		 console.log("Width :"+this.width  +"Height :"+this.height)
+       	        if(this.width>=1600 && this.height>=250)
+       	     {
+          		 $('#profileimg').attr('src', e.target.result);
+          		$("#Saveimagediv").show();
+          		 }
+       	        else
+       	        	{
+       	        	alert("The image size shoud be greater than  1800*280 pixel");
+       	        	}
+       	 };   
         };
-        
         reader.readAsDataURL(input.files[0]);
     }
+}
+
+function Cancel()
+{	
+	 $('#profileimg').attr('src', '${pageContext.request.contextPath}/images/innerBanner.png');
+	 $('#Saveimagediv').hide();
+}
+
+function saveImage()
+{			var i='.';
+			var userId='${USRID}';
+			var bid='${BoradInfo.boardId}';
+			var result=$('#profileimg').attr('src');
+			var bytes=result.substring(result.indexOf(',')+1,result.length);			
+	        var imageType=i.concat(result.substring(11,result.indexOf(';'))); 	
+	        var request={
+	        userId:userId,
+			bid:bid,
+			imageExtention:imageType,
+			imageContent:bytes,
+			bannerType:"Board"			
+	};	
+	        
+	        $('#loading').show();
+	$.ajax({
+		type : "POST",
+		url : "${pageContext.request.contextPath}/s/BoardId/"+bid,
+		data : JSON.stringify(request),
+		contentType : "application/json",
+		success : function(res)
+		{
+			$('#loading').hide();
+			displaynotification('Image has been changed',1500);
+			 $('#profileimg').attr('src');	
+			 $('#Saveimagediv').hide();
+		}		
+	});	 
 }
 
 </script>

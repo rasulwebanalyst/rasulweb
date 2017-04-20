@@ -587,7 +587,7 @@ $("#Headervalue").text(bname+" Sponsors");
                   		htmltable +="<div class='bd-soc-holder'><img src='${pageContext.request.contextPath}/images/linkedin.png'><span><a href="+lurl+" target='_blank'>"+lurl+"</a></span></div>";}
                   				if(sponserlist[i].websiteUrl != ""){
                   					var wurl=(sponserlist[i].websiteUrl.charAt(sponserlist[i].websiteUrl.length-1) == "/") ? sponserlist[i].websiteUrl.substring(0,sponserlist[i].websiteUrl.length-1) : sponserlist[i].websiteUrl ;
-                  		htmltable +="<div class='bd-soc-holder' style='margin-bottom: 10px;'><img src='${pageContext.request.contextPath}/images/linkedin.png'><span><a href="+wurl+" target='_blank'>"+wurl+"</a></span></div>";}
+                  		htmltable +="<div class='bd-soc-holder' style='margin-bottom: 10px;'><img src='${pageContext.request.contextPath}/images/web.png'><span><a href="+wurl+" target='_blank'>"+wurl+"</a></span></div>";}
                   			}
                   		
                   		htmltable +="</td></tr>";

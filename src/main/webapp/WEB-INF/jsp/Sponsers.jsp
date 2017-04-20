@@ -330,7 +330,7 @@ var deletedarray=[];
         							if(res != null){
         								var users=res.userList;
         								console.log(JSON.stringify(users));
-        								html+="<ul style='width: 24%;     margin-top: 149px; margin-left: 74px;'>";
+        								html+="<ul style='width: 24%;     margin-top: 165px; margin-left: 74px;'>";
         								
         								if(users!= null && users.length >0){
         									for(var i in users){

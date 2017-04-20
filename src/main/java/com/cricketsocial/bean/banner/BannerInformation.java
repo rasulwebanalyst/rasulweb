@@ -9,6 +9,41 @@ public class BannerInformation implements Serializable {
      private String bannerImageUrl;
      private String bannerType;
      private String geolocation;
+     private String bid;
+     private String userId;
+     private String imageExtention;
+     private String imageContent;
+     
+     
+     
+     
+	public String getBid() {
+		return bid;
+	}
+	public void setBid(String bid) {
+		this.bid = bid;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getImageExtention() {
+		return imageExtention;
+	}
+	public void setImageExtention(String imageExtention) {
+		this.imageExtention = imageExtention;
+	}
+	public String getImageContent() {
+		return imageContent;
+	}
+	public void setImageContent(String imageContent) {
+		this.imageContent = imageContent;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	public String getActive() {
 		return active;
 	}

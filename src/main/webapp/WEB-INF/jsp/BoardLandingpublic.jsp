@@ -548,7 +548,7 @@ var formatAMPMTime = function(date) {
 		                        	  	<c:otherwise>
 		                     				<%-- <li><a href="${pageContext.request.contextPath}/LeaguePointsProfile/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/CricketBook.png"></i>League Management</a></li> --%>
 		                     			
-		                     			
+		                     			<c:if test="${!empty entrymenu}">
 		                     			<div class="EntryMenu">
                              		<h4>Entry Menu</h4>
                              		   
@@ -606,6 +606,7 @@ var formatAMPMTime = function(date) {
                              			
                              			
                              		</div>
+                             		</c:if>
                              		<div class="ViewMenu">
                              		<h4>View Menu</h4>
                              		

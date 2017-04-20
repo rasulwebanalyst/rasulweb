@@ -1,5 +1,5 @@
 body {
-	background: #e4e4e5;
+	background:  #e9eaed;
 }
 
 a{
@@ -141,6 +141,26 @@ table.engineTable {
 #feedMainDIV .media, #feedMainDIV .media-body {
 	overflow: visible;
 }
+
+
+
+.bx-wrapper .bx-controls-direction a.bx-prev {
+	background: url('../images/bx-left.png');
+	width: 14px;
+	height: 14px;
+	left: 3px;
+}
+
+.bx-wrapper .bx-controls-direction a.bx-next {
+	background: url('../images/bx-right.png');
+	width: 14px;
+	height: 14px;
+	right:3px;
+}
+
+
+
+
 .feedhit li {
 	list-style: none;	
     padding: 5px 10px 10px 0;
@@ -2682,7 +2702,7 @@ a.shareLink:hover .hitIcon {
 	position: absolute;
 	width: 350px;
 	background: #fff;
-	margin-left: 185px;
+	margin-left: 240px;
 	margin-top: 38px;
 	border: #ccc solid 1px;
 	max-height: 280px;
@@ -6184,6 +6204,15 @@ color: red;
 	background: #eee;
 }
 
+
+
+
+.autoSearchBlcok li div {
+margin-bottom: 0;
+}
+
+
+
 #roleErrorMessage{
 	margin-bottom: 0;
 }
@@ -6371,4 +6400,11 @@ cursor: pointer;
 	color: #fff;
     background-color: #276f9f;
     border-color: #276f9f;
+	}
+	
+	
+	.navbar-brand > img{	
+	height: auto !important;
+	width: 213px;
+	margin-top: -3px;	
 	}

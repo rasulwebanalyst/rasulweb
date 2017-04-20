@@ -94,10 +94,26 @@ public class UserProfileUpdate2 {
 	private List<String> hiddenLeagues;
 	private List<String> hiddenTeams;
 	
+	private String croppedBase64;
+	private String croppedFlag;
+	
+	
 	
 	
 	
 
+	public String getCroppedBase64() {
+		return croppedBase64;
+	}
+	public void setCroppedBase64(String croppedBase64) {
+		this.croppedBase64 = croppedBase64;
+	}
+	public String getCroppedFlag() {
+		return croppedFlag;
+	}
+	public void setCroppedFlag(String croppedFlag) {
+		this.croppedFlag = croppedFlag;
+	}
 	public List<String> getAssociatedLeagues() {
 		return associatedLeagues;
 	}

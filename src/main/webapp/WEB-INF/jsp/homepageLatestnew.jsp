@@ -16,6 +16,9 @@
 <script type="text/javascript">
 var pageNum=50;
 </script>
+
+
+
 <SCRIPT>
 function feedDuration(feeddate)
 {
@@ -123,6 +126,21 @@ return result;
 <%@ include file="CSCommon.jsp" %>
 </div>
 <%@ include file="BuddyHeader.jsp" %>
+
+
+
+<script>
+        var url = window.location.href;
+        
+        if(url.indexOf('validation=') != -1){
+        	console.log("ddddddddddddddddddddddddddddddddd"+url.indexOf('validation='));
+        	/* var urlsplit=url.split("validation=")[1];
+        	console.log(urlsplit); */
+        	displaynotification("ScoreCard unlocked successfully",2000);
+        }
+    </script>
+
+
  <section class="middleContentBlock">
  
  

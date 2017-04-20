@@ -234,7 +234,7 @@ $(document).ready(function (){
                           <label for="buddy"><span></span>Buddy</label>
                           
                           <input type="checkbox" class="cboxBtnLeft" id="Roaster" name="createdBycheck" value="Roster" onclick="buddiesList()">
-                          <label for="Roaster"><span></span>Roster</label>
+                          <label for="Roaster"><span></span>Squad</label>
                           
                           </div>
                           
@@ -253,7 +253,7 @@ $(document).ready(function (){
                                 </div>
                     </div>
                     <div class="form-group multiSelect" id="roasterListDiv" style="display: none;">
-                              <label class="fomlabel" for="r1">Roster</label>
+                              <label class="fomlabel" for="r1">Squad</label>
                             <input type="text" placeholder="search buddies" class="form-control tbox fomtexbox" id="roastersearchfield" name="roastersearchfield">
                           	<label  id="Roastervalidation" class="error" style="display: none">Please select the Roaster.</label>
                           	<input type="hidden" name="arrayRoasterIds" id="arrayRoasterIds">

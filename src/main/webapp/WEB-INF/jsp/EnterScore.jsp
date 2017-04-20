@@ -2498,6 +2498,11 @@ var firstInningsExtraVal = firstInningsExtra;
 console.log('--------------------------------  winTeamRuns ------------------------------------------------------- '+winTeamRuns);
 console.log('--------------------------------  loseTeamRuns ------------------------------------------------------- '+loseTeamRuns);
 	
+	
+var FirstInningsScore = $("#firstInnigsScore").val();	
+var SecondInningsScore = $("#secondInnigsScore").val();
+	
+	
 	var scorerBean = {
 		    awayTeamCoach : awayTeamCoach,
 		    homeTeamCoach : homeTeamCoach,
@@ -2523,8 +2528,14 @@ console.log('--------------------------------  loseTeamRuns --------------------
 		    result : result,
 		    firstInningsTeamId : homeTeamId,
 		    secondInningsTeamId : awayTeamId,
-		    firstInningsTotalRuns  : winTeamRuns,
-		    secondInningsTotalRuns : loseTeamRuns,
+		    /* firstInningsTotalRuns  : winTeamRuns,
+		    secondInningsTotalRuns : loseTeamRuns, */
+		    
+		    //changes made by vignesh
+		    
+		    firstInningsTotalRuns  : FirstInningsScore,
+		    secondInningsTotalRuns : SecondInningsScore,
+		    
 		    groundId : groundid
 		    
 		}
@@ -2543,8 +2554,16 @@ console.log('--------------------------------  loseTeamRuns --------------------
 			$("#loading").hide();
 			if(res != "failure"){
 				var boardId  = "${boardId}";
+				
+				
+				if(res == 'Sorry, Scorecard Locked!')
+				{    
+					showNotification("Sorry scorecoard has been locked, Please contact your admin.", 2000);
+					hide_notificationpoup(2000);
+				}else{
+				
 				showNotification("Inserted Successfully", 2000);
-				hide_notificationpoup(2000);
+				hide_notificationpoup(2000);}
 				 window.location.href = "${pageContext.request.contextPath}/GameSchedule/boardId/"+boardId;
 				
 			}else{
