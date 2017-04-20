@@ -136,7 +136,7 @@ return result;
         	console.log("ddddddddddddddddddddddddddddddddd"+url.indexOf('validation='));
         	/* var urlsplit=url.split("validation=")[1];
         	console.log(urlsplit); */
-        	displaynotification("ScoreCard Unlocked Successfully",2000);
+        	displaynotification("ScoreCard unlocked successfully",2000);
         }
     </script>
 

@@ -1555,7 +1555,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 	    		model.addObject("loginvalidation", loginvalidation.replace("%20", " "));
 	    	}
 	    	}else{
-	    		model.addObject("Unlock", "ScoreCard Unlocked Successfully");
+	    		model.addObject("Unlock", "ScoreCard unlocked successfully");
 	    	}
 	    	HttpSession session=request.getSession(true);
 	    	if(session.getAttribute("Schedulemessage") != null){
