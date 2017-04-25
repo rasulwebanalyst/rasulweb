@@ -1352,7 +1352,7 @@ function buddyInvitation_Events(){
 								htm +='</div>';
 							}*/
 							
-							 
+							
 							
 							var accept="'ACCEPT'";
 							var maybe="'MAYBE'";
@@ -2419,6 +2419,16 @@ function boardMatchEvent(){
                 	htm+='<div class="col-md-11 borderleft">';		                         
                     htm+='<div class="col-md-12 noPadding eventUserDetails">';
                     htm+='<a href="'+ctx+'/'+event.boardInfo.boardName+'/board/'+event.boardInfo.boardId+'"><img src="'+event.boardInfo.boardImageURL+'" class="nav-avatar">'+event.boardInfo.boardName+'</a>';	                            
+                   
+                    htm+="<a class='pull-right' href=javascript:gettingmatchAcceptedPeopleList1('"+event.tournamentSchedulerId+"','"+event.rosterId+"') style='margin-top: -20px;'><img style='width: 30px; height: 25px;' src='${pageContext.request.contextPath}/images/Pdfdownload.png'>";
+                    htm+='</a>';
+                    htm+='<input type="hidden" id="tourname_'+event.tournamentSchedulerId+'" name="tourname" value="'+mat[i].tournamentName+'">';
+                    htm+='<input type="hidden" id="hometeamname_'+event.tournamentSchedulerId+'" name="board" value="'+event.homeTeamInfo.boardName+'">';
+                    htm+='<input type="hidden" id="awayteamname_'+event.tournamentSchedulerId+'" name="awayteamname" value="'+event.awayTeamInfo.boardName+'">';
+                    htm+='<input type="hidden" id="groundName_'+event.tournamentSchedulerId+'" name="groundName" value="'+event.groundDetails.groundName+'">';
+                    htm+='<input type="hidden" id="date_'+event.tournamentSchedulerId+'" name="date" value="'+dateNewObject+'">';
+                    
+                    
                     htm+='<div class="teamLogos">';
                     htm+='<a href="'+ctx+'/'+event.homeTeamInfo.boardName+'/board/'+event.homeTeamInfo.boardId+'"><img src="'+event.homeTeamInfo.boardImageURL+'" class="teamLogo" onError=imgError(this)></a> <b>VS</b> <a href="'+ctx+'/'+event.awayTeamInfo.boardName+'/board/'+event.awayTeamInfo.boardId+'"><img src="'+event.awayTeamInfo.boardImageURL+'" class="teamLogo" onError=imgError(this)></a>';
                     htm+='</div>';		                            
@@ -2463,6 +2473,17 @@ function boardMatchEvent(){
 		                if(event.boardInfo!=null){
 		                htm+='<a href="'+ctx+'/'+event.boardInfo.boardName+'/board/'+event.boardInfo.boardId+'"><img src="'+event.boardInfo.boardImageURL+'" onError=imgError(this) class="nav-avatar">'+event.boardInfo.boardName+'</a>';	                            
 		                }
+		                
+		                
+		                htm+="<a class='pull-right' href=javascript:gettingmatchAcceptedPeopleList1('"+event.tournamentSchedulerId+"','"+event.rosterId+"') style='margin-top: -20px;'><img style='width: 30px; height: 25px;' src='${pageContext.request.contextPath}/images/Pdfdownload.png'>";
+	                    htm+='</a>';
+	                    htm+='<input type="hidden" id="tourname_'+event.tournamentSchedulerId+'" name="tourname" value="'+event.tournamentInfo.tournamentName+'">';
+	                    htm+='<input type="hidden" id="hometeamname_'+event.tournamentSchedulerId+'" name="board" value="'+event.homeTeamInfo.boardName+'">';
+	                    htm+='<input type="hidden" id="awayteamname_'+event.tournamentSchedulerId+'" name="awayteamname" value="'+event.awayTeamInfo.boardName+'">';
+	                    htm+='<input type="hidden" id="groundName_'+event.tournamentSchedulerId+'" name="groundName" value="'+event.groundDetails.groundName+'">';
+	                    htm+='<input type="hidden" id="date_'+event.tournamentSchedulerId+'" name="date" value="'+dateNewObject+'">';
+		                
+		                
 		                htm+='<div class="teamLogos">';
 		                htm+='<a href="'+ctx+'/'+event.homeTeamInfo.boardName+'/board/'+event.homeTeamInfo.boardId+'"><img src="'+event.homeTeamInfo.boardImageURL+'" class="teamLogo" onError=imgError(this)></a> <b>VS</b> <a href="'+ctx+'/'+event.awayTeamInfo.boardName+'/board/'+event.awayTeamInfo.boardId+'"><img src="'+event.awayTeamInfo.boardImageURL+'" class="teamLogo" onError=imgError(this)></a>';
 		                htm+='</div>';		                            

@@ -244,8 +244,18 @@ var teamdeletearray=[];
                             <div class="form-group col-md-12 noPadding profileForm">
                             
                             <div class="col-md-12 noPadding">
-                              <div class="col-md-3"><label for="email"><span>*</span>First Name</label> <input type="text" class="form-control" placeholder="" id="firstName" name="firstName" value="${UserProfileOBJ.firstName}"></div>
+                            <c:choose>
+                            <c:when test="${UserProfileOBJ.leagueboardlist eq null}">
+                            <div class="col-md-3"><label for="email"><span>*</span>First Name</label> <input type="text" class="form-control" placeholder="" id="firstName" name="firstName" value="${UserProfileOBJ.firstName}"></div>
                               <div class="col-md-3"><label for="email"><span>*</span>Last Name</label> <input type="text" class="form-control" placeholder="" id="lastName" name="lastName" value="${UserProfileOBJ.lastName}"></div>
+                            </c:when>
+                            <c:otherwise>
+                            
+                            <div class="col-md-3"><label for="email"><span>*</span>First Name</label> <input type="text" class="form-control" placeholder="" id="firstName" name="firstName" value="${UserProfileOBJ.firstName}" readonly onclick="infoFunction()"></div>
+                              <div class="col-md-3"><label for="email"><span>*</span>Last Name</label> <input type="text" class="form-control" placeholder="" id="lastName" name="lastName" value="${UserProfileOBJ.lastName}" readonly onclick="infoFunction()"></div>
+                            </c:otherwise>
+                            </c:choose>
+                              
                               <%-- <div class="col-md-4"><label for="email"><span>*</span>Date of Birth</label> <input type="text" class="form-control" placeholder="" id="dateOfBirth" name="bodDate" value='<fmt:formatDate pattern="MM/dd/yyyy" value="${UserProfileOBJ.dob}" />' readonly> --%>
                                <%-- <div class="col-md-4"><label for="email"><span>*</span>Date of Birth</label> <input type="text" class="form-control datepicker" placeholder="" id="dateOfBirth" name="bodDate" value='<fmt:formatDate pattern="MM/dd/yyyy" value="${UserProfileOBJ.dob}" />' readonly>  
                               	<i class="fa fa-calendar calIcon"></i>
@@ -2235,6 +2245,12 @@ demoVanilla();
       
       $("#Editimage").hide();
 	  
+  }
+  
+  
+  function infoFunction()
+  {
+	  displaynotification("Sorry already you have affiliated to leagues, unable to edit the name.",2000);
   }
   
   

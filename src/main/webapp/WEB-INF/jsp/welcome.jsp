@@ -1157,9 +1157,20 @@ $(document).ready(function()
 		{
 			displaynotification(Unlock,3000);
 			}
+
+	
+	
+	var InvalidURl="${InvalidURl}";
+	if(InvalidURl != "" && InvalidURl != null)
+		{
+			displaynotification(InvalidURl,3000);
+			}
+	
 	
 		});
 		
+
+
 		
 		
 		

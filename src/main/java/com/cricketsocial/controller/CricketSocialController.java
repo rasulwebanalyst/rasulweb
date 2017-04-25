@@ -1491,7 +1491,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 									 //userlocation
 									 
 									 //hubReq= new HubRequest();
-									 System.out.println("user latlong location ----------------> "+userlocation);
+									/* System.out.println("user latlong location ----------------> "+userlocation);
 									 hubReq.setMsgType(215);
 									 ModelMap bannermap=new ModelMap();
 									 bannermap.put("geolocation", userlocation);
@@ -1503,13 +1503,15 @@ public ModelAndView userprofile(HttpServletRequest request)
 										 if(hubResponse!=null && hubResponse.getResults()!=null && hubResponse.getResults().getBannerListByLatLang()!=null){
 											 session.setAttribute("UserBannerList", hubResponse.getResults().getBannerListByLatLang().getBannerList());
 										 }
-										 /*if(hubResponse!=null && hubResponse.getResults()!=null && hubResponse.getResults().getSearchResponse()!=null){
+										 
+										 // hided
+										 if(hubResponse!=null && hubResponse.getResults()!=null && hubResponse.getResults().getSearchResponse()!=null){
 											 session.setAttribute("UserBannerList", hubResponse.getResults().getSearchResponse().getBannerList());
 											 System.out.println("banner list "+hubResponse.getResults().getSearchResponse().getBannerList().size());
 											 List<BannerInformation> bannlist=(List<BannerInformation>) session.getAttribute("UserBannerList");
 											 System.out.println("bannlist ---------> "+bannlist.size());
-										 }*/
-									}
+										 }
+									}*/
 							  }	
 								 
 							  }else{
@@ -1551,9 +1553,14 @@ public ModelAndView userprofile(HttpServletRequest request)
 			model=new ModelAndView("welcome");
 	    	model.addObject("LGIN", "Login");
 	    	if(!loginvalidation.equalsIgnoreCase("Unlock")){
+	    		
+	    		if(loginvalidation.equalsIgnoreCase("Invalid UUID")){
+	    			model.addObject("InvalidURl", "Something went wrong");
+	    		}else{
 	    	if(loginvalidation!=null){
 	    		model.addObject("loginvalidation", loginvalidation.replace("%20", " "));
-	    	}
+	    	}}
+	    		
 	    	}else{
 	    		model.addObject("Unlock", "ScoreCard unlocked successfully");
 	    	}
@@ -13441,7 +13448,7 @@ public ModelAndView createScheduleLanding(HttpServletRequest req,@PathVariable S
 	 
 		}
 		
-		List<UmpireNameList> umpireList = new ArrayList<UmpireNameList>();
+		/*List<UmpireNameList> umpireList = new ArrayList<UmpireNameList>();
 			hubReq = new HubRequest(223);
 			hubReq.setMsgType(223);
 			ModelMap m = new ModelMap();
@@ -13454,7 +13461,7 @@ public ModelAndView createScheduleLanding(HttpServletRequest req,@PathVariable S
 					mav.addObject("tournamentList", hubRes.getResults().getTournamentSchedulerList());
 							}
 		 
-			}	
+			}	*/
 			
 			hubReq = new HubRequest();
 			hubReq.setMsgType(176);
@@ -13705,7 +13712,7 @@ public ModelAndView insertScheduleDetails(HttpServletRequest req, @ModelAttribut
 				HubResponse hubRes = gson.fromJson(schedulerResponse, HubResponse.class);
 				if(hubRes != null && hubRes.getResults() != null){
 					
-					mav = new ModelAndView("ScheduleList");
+					/*mav = new ModelAndView("ScheduleList");
 					mav.addObject("boardId", boardId);
 					
 						 hubReq = new HubRequest(104);
@@ -13718,65 +13725,18 @@ public ModelAndView insertScheduleDetails(HttpServletRequest req, @ModelAttribut
 							String tournamentList = cricketSocialRestTemplateService.userRegistration(hubReq);
 							if(tournamentList !=  null){
 								HubResponse  hubResponse = gson.fromJson(tournamentList, HubResponse.class);
-								if(hubResponse !=  null && hubResponse.getResults() !=  null){
-								/*	mav.addObject("tournamentList", hubResponse.getResults().getTournamentSchedulerList());
-									//String scheduleId=hubResponse.getResults().getTournamentSchedulerList().get(0).getTournamentSchedulerId();
-									mav.addObject("dateString", hubResponse.getResults().getEndDateStr());
-									mav.addObject("startDate", hubResponse.getResults().getStartDateStr());
-									
-									String endDate = hubResponse.getResults().getEndDateStr();
-
-									String startDate = hubResponse.getResults().getStartDateStr();
-									String[] spliteDOB1 = startDate.split("-");
-									
-									 String monthInEditProfile1 = spliteDOB1[0];
-									 String dayInEditProfile1 = spliteDOB1[1];
-									 String yearInEditProfile1 = spliteDOB1[2];
-									
-									 String startDateSet= dayInEditProfile1+'/'+yearInEditProfile1+'/'+monthInEditProfile1;
-									
-									
-										mav.addObject("startDateSet", startDateSet);
-									
-									
-									String[] spliteDOB123 = endDate.split("-");
-									
-									 String monthInEditProfile2 = spliteDOB123[0];
-									 String dayInEditProfile2 = spliteDOB123[1];
-									 String yearInEditProfile2 = spliteDOB123[2];
-									 
-									
-									 String endDateSet= dayInEditProfile2+'/'+yearInEditProfile2+'/'+monthInEditProfile2;
-									
-									 mav.addObject("endDateSet", endDateSet);*/
+								if(hubResponse !=  null && hubResponse.getResults() !=  null){*/
+								
 									
 									session.setAttribute("CreateScheduleLanding", "Created");
 									
 									 mav=new ModelAndView("redirect:/CreateScheduleLanding/boardId/"+boardId);
-									/*mav=new ModelAndView("redirect:/SchedulerList/boardId/"+boardId);*/
-								//	 mav=new ModelAndView("redirect:/SchedulerList/boardId/"+boardId+"/"+scheduleId);
 									 return mav;
 									 
-									 
+							/*		 
 								}
-							}
+							}*/
 					 
-					
-					
-					
-					
-					/*if(hubRes.getResults().getTournamentList() != null){
-						mav.addObject("tournamentDetails", hubRes.getResults().getTournamentList());
-						if(hubRes.getResults().getTournamentList().size() != 0){
-						mav.addObject("teamList", hubRes.getResults().getTournamentList().get(0).getBoardSearchBean());
-						mav.addObject("umpireCheck", hubRes.getResults().getTournamentList().get(0).getUmpireCheck());
-						mav.addObject("tournamentId", hubRes.getResults().getTournamentList().get(0).getTournamentId());
-						System.out.println("teamlistSize : "+hubRes.getResults().getTournamentList().get(0).getBoardSearchBean().size());
-						}
-						}else{
-						
-					}
-					*/
 				}
 			}
 	
@@ -23325,6 +23285,9 @@ public ModelAndView DisputeManagementPublic(HttpServletRequest req, @PathVariabl
 public ModelAndView showScoreCard(HttpServletRequest req, @PathVariable String boardId,@PathVariable String matchId) throws CSException{
 	ModelAndView mav = null;
 	try{
+		
+		if(isUUID(boardId) && isUUID(matchId)){
+		
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -23776,7 +23739,9 @@ public ModelAndView showScoreCard(HttpServletRequest req, @PathVariable String b
              /*	mav=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");*/
 		}
 		 
-		 
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+		}	 
 	 
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -29103,6 +29068,9 @@ public @ResponseBody List<TournamentDTO> halfCentrePage( HttpServletRequest requ
 public ModelAndView showScoreCardOfPlayer(HttpServletRequest req,@PathVariable String matchId) throws CSException{
 	ModelAndView mav = null;
 	try{
+		
+		if(isUUID(matchId)){
+		
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			
@@ -29613,7 +29581,9 @@ public ModelAndView showScoreCardOfPlayer(HttpServletRequest req,@PathVariable S
 			// mav=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 		}
 		 
-		 
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+		} 
 	 
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -32307,6 +32277,8 @@ public ModelAndView EnterScorePublicProfile(HttpServletRequest req, @PathVariabl
 public ModelAndView showScoreCardForInProgress(HttpServletRequest req, @PathVariable String boardId,@PathVariable String matchId) throws CSException{
 	ModelAndView mav = null;
 	try{
+		
+		if(isUUID(boardId) && isUUID(matchId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -32628,7 +32600,9 @@ public ModelAndView showScoreCardForInProgress(HttpServletRequest req, @PathVari
 			mav=new ModelAndView("redirect:/showScoreCardSessionOut/boardId/"+boardId+"/matchId/"+matchId);
 		}
 		 
-		 
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+		}
 	 
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -32640,6 +32614,7 @@ public ModelAndView showScoreCardForInProgress(HttpServletRequest req, @PathVari
 public ModelAndView showScoreCardPublicProfile(HttpServletRequest req, @PathVariable String boardId,@PathVariable String matchId) throws CSException{
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId) && isUUID(matchId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -33135,7 +33110,9 @@ public ModelAndView showScoreCardPublicProfile(HttpServletRequest req, @PathVari
 			mav=new ModelAndView("redirect:/showScoreCardSessionOut/boardId/"+boardId+"/matchId/"+matchId);
 		}
 		 
-		 
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+		} 
 	 
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -34054,6 +34031,7 @@ public ModelAndView gameSchedulePublicProfile(HttpServletRequest req, @PathVaria
 public ModelAndView showScoreCardForInProgressPublicProfile(HttpServletRequest req, @PathVariable String boardId,@PathVariable String matchId) throws CSException{
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId) && isUUID(matchId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -34546,7 +34524,9 @@ public ModelAndView showScoreCardForInProgressPublicProfile(HttpServletRequest r
 			mav=new ModelAndView("redirect:/showScoreCardSessionOut/boardId/"+boardId+"/matchId/"+matchId);
 		}
 		 
-		 
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+		} 
 	 
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -36589,6 +36569,9 @@ public ModelAndView myScorePublicProfile(HttpServletRequest request,@PathVariabl
 public ModelAndView showScoreCardOfPlayerPublicProfile(HttpServletRequest req,@PathVariable String matchId,@PathVariable String uid) throws CSException{
 	ModelAndView mav = null;
 	try{
+		
+		if(isUUID(uid) && isUUID(matchId)){
+		
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -37104,7 +37087,9 @@ public ModelAndView showScoreCardOfPlayerPublicProfile(HttpServletRequest req,@P
 						System.out.println("The myscore dummy Page");
 		}
 		 
-		 
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");		
+		}
 	 
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -42214,6 +42199,10 @@ public ModelAndView showScoreCardSessionout(HttpServletRequest req,@PathVariable
 	GsonBuilder builder = new GsonBuilder();
 	 Gson gson = builder.create();
 		 try{
+			 
+			 if(isUUID(boardId) && isUUID(matchId)){
+			 
+			 
 	     mav = new ModelAndView("ScoreCardSessionOut");
 	     
 	     HttpSession session = req.getSession(true);
@@ -42449,6 +42438,10 @@ public ModelAndView showScoreCardSessionout(HttpServletRequest req,@PathVariable
 						 
 					 }
 				 }
+			 }
+			 
+			 }else{
+				 mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	 
 			 }
 		 }
 		 catch(Exception e)
@@ -44170,6 +44163,9 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 	ModelAndView model=null;
 	try{
 		
+		
+		if(isUUID(bid)){
+		
 		HttpSession session=request.getSession(true);
 		
 			UUID userId=(UUID) session.getAttribute("USRID");
@@ -44203,28 +44199,7 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 					//model=new ModelAndView("BoardLanding");
 					 model.addObject("BoradInfo", hubResponse.getResults().getBoardStatusDetail().get(0));
 					 model.addObject("LeaguManagement","No");
-					 hubReq=new HubRequest();
-					 hubReq.setMsgType(42);
-					 ModelMap map2=new ModelMap();
-					 map2.put("boardId", bid);
-					 map2.put("userId", userId);
-					 map2.put("startNode", 0);
-					 map2.put("endNode", 10);
-					 map2.put("feedHitUserId", userId);
-					 hubReq.setRequestParam(map2);
-					 String strBoardFeedList=cricketSocialRestTemplateService.userRegistration(hubReq);					
-					 if(strBoardFeedList!=null )
-					 {
-						 HubResponse feedlist= gson.fromJson(strBoardFeedList, HubResponse.class);
-						 
-						 if(feedlist!=null && feedlist.getResults().getBoardFeedResponse()!=null && feedlist.getResults().getBoardFeedResponse()!=null)
-						 {
-							 //FeedsList
-							model.addObject("FeedsList", feedlist.getResults().getBoardFeedResponse().getFeedList());
-						 }
-					 }else{
-						 System.out.println("Board feeds not excuted...........");
-					 }
+					
 					 
 					
 					 
@@ -44348,149 +44323,7 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 					 }
 					 
 					 
-					 //*******************************************************   Around you details	 *************************************************
-					 hubReq=new HubRequest();
-					 hubReq.setMsgType(77);
-					 BoardSearchRequest searchReq= new BoardSearchRequest();
-					 String userlocation=(String) session.getAttribute("USRLocation");
-
-					 System.out.println("userlocation"+userlocation);
-					 if(userlocation!=null)
-					 {
-						if(userlocation.length()>3)
-						{
-							 searchReq.setLatlang(userlocation);
-						}else{
-							 searchReq.setLatlang(defaultMatchesAroundYouLatLongValue);
-						}
-					 }else{
-						 searchReq.setLatlang(defaultMatchesAroundYouLatLongValue);
-					 }
 					
-					 
-					 searchReq.setStartNode("0");
-					 searchReq.setEndNode("4");
-					 searchReq.setCategory("Matches");
-					 hubReq.setRequestParam(searchReq);
-				    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
-					 HubResponse strMatchesArrounfYouResponse= GsonConverters.getGsonObject().fromJson(matchesArroundYouList, HubResponse.class); 
-					
-					 if(strMatchesArrounfYouResponse.getResults().getSearchResponse()!=null)
-					 {
-						 model.addObject("MatchesArroundYou", strMatchesArrounfYouResponse.getResults().getSearchResponse().getTournamentScheduler());
-					 }
-					 
-					 
-					 hubReq=new HubRequest();
-					 hubReq.setMsgType(22);
-					 //session.setAttribute("USRLocation", userProfile.getLatLang());
-					 if(userlocation!=null)
-					 {
-						if(userlocation.length()>3)
-						{
-							 searchReq.setLatlang(userlocation);
-							 System.out.println("user location setttt");
-						}else{
-							 searchReq.setLatlang(defaultLeagueBoardAroundYouLatLongValue);
-							 System.out.println("user not getted ------------- default 1");
-						}
-					 }else{
-						 searchReq.setLatlang(defaultLeagueBoardAroundYouLatLongValue);
-						 System.out.println("user not getted ------------- default 2");
-					 }
-					
-					 searchReq.setStartNode("0");
-					 searchReq.setEndNode("4");
-					 searchReq.setCategory("League");
-					 hubReq.setRequestParam(searchReq);
-				     String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
-					 System.out.println("board result : "+strboardlist);
-					 HubResponse strsearchResponse= GsonConverters.getGsonObject().fromJson(strboardlist, HubResponse.class); 
-					 System.out.println("logitude : "+strsearchResponse.getResults().getSearchResponse());
-					
-					 if(strsearchResponse.getResults().getSearchResponse()!=null)
-					 {
-						 System.out.println("board list :---------->" +strsearchResponse.getResults().getSearchResponse().getBoardProfileList().size());
-						 model.addObject("BRDAroundYou", strsearchResponse.getResults().getSearchResponse().getBoardProfileList());
-					 }
-					 
-					 searchReq.setCategory("Team");
-					 //searchReq.setLatlang("17.3700,78.4800");
-					 if(userlocation!=null)
-					 {
-						if(userlocation.length()>3)
-						{
-							 searchReq.setLatlang(userlocation);
-						}else{
-							 searchReq.setLatlang(defaultTeamBoardAroundYouLatLongValue);
-						}
-					 }else{
-						 searchReq.setLatlang(defaultTeamBoardAroundYouLatLongValue);
-					 }
-					 hubReq.setRequestParam(searchReq);
-					 String strTeamlist=cricketSocialRestTemplateService.userRegistration(hubReq);
-					 System.out.println("board result : "+strTeamlist);
-					 HubResponse strTeamResponse= GsonConverters.getGsonObject().fromJson(strTeamlist, HubResponse.class); 
-					 System.out.println("logitude : "+strTeamResponse.getResults().getSearchResponse());
-					 
-					 if(strTeamResponse.getResults().getSearchResponse()!=null)
-					 {
-						 System.out.println("TEam list :---------->" +strTeamResponse.getResults().getSearchResponse().getBoardProfileList().size());
-						 model.addObject("TEAMAroundYou", strTeamResponse.getResults().getSearchResponse().getBoardProfileList());
-					 }
-					 
-					 hubReq.setMsgType(23);
-					 searchReq.setCategory("");
-					 //searchReq.setLatlang("17.3700,78.4800");
-					 if(userlocation!=null)
-					 {
-						if(userlocation.length()>3)
-						{
-							 searchReq.setLatlang(userlocation);
-						}else{
-							 searchReq.setLatlang(defaultBuddyAroundYouLatlongValue);
-						}
-					 }else{
-						 searchReq.setLatlang(defaultBuddyAroundYouLatlongValue);
-					 }
-					 hubReq.setRequestParam(searchReq);
-					 String strbuddyresponse=cricketSocialRestTemplateService.userRegistration(hubReq);
-					 System.out.println("board result : "+strbuddyresponse);
-					 HubResponse buddyResponse= GsonConverters.getGsonObject().fromJson(strbuddyresponse, HubResponse.class); 
-					 System.out.println("userid : "+strTeamResponse.getResults().getSearchResponse());
-					 if(buddyResponse.getResults().getSearchResponse()!=null)
-					 {
-						 System.out.println("user : list :---------->" +buddyResponse.getResults().getSearchResponse().getUserList().size());
-						 model.addObject("BuddyAroundYou", buddyResponse.getResults().getSearchResponse().getUserList());
-					 }
-					 
-					 request.setAttribute("BoardId", bid);
-					 hubReq.setMsgType(79);
-					 searchReq.setCategory("Merchants");
-					 //searchReq.setLatlang("17.3700,78.4800");
-					 if(userlocation!=null)
-					 {
-						if(userlocation.length()>3)
-						{
-							 searchReq.setLatlang(userlocation);
-						}else{
-							 searchReq.setLatlang(defaultMerchantAroundYouLatLongValue);
-						}
-					 }else{
-						 searchReq.setLatlang(defaultMerchantAroundYouLatLongValue);
-					 }
-					 hubReq.setRequestParam(searchReq);
-					 String strMerchandiseAroundYouresponse=cricketSocialRestTemplateService.userRegistration(hubReq);
-					 HubResponse merchandiseAroundYouResponse= GsonConverters.getGsonObject().fromJson(strMerchandiseAroundYouresponse, HubResponse.class); 
-					 if(merchandiseAroundYouResponse.getResults().getSearchResponse()!=null)
-					 {
-						 System.out.println("user : list :---------->" +merchandiseAroundYouResponse.getResults().getSearchResponse().getUserList().size());
-						 model.addObject("Merchants", merchandiseAroundYouResponse.getResults().getSearchResponse().getUserList());
-					 }
-					 
-					 
-					 
-					 
 					 
 					// Sponser image
 					 SponserResponse sporesponse=new SponserResponse();
@@ -44540,7 +44373,10 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 			 }else{
 				 model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 			 }
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
 			
+		}
 		
 	}catch(Exception e)
 	{
@@ -44561,7 +44397,7 @@ public ModelAndView Organizationdetailssite(HttpServletRequest req, @PathVariabl
 	long filesize=0;
 	Gson gson=new Gson();
 	try{
-		
+		if(isUUID(boardId)){
 		
 			mav = new ModelAndView("OrganizationInfosite");
 			mav.addObject("boardId", boardId);
@@ -44625,7 +44461,10 @@ public ModelAndView Organizationdetailssite(HttpServletRequest req, @PathVariabl
 					}
 				 }	
 				
-		
+		}else{
+			
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+		}
 		
 		
 	}catch(Exception e){
@@ -44647,7 +44486,7 @@ public ModelAndView LeaguePointsProfilesite(HttpServletRequest request, @PathVar
 {
 	
 	 	ModelAndView model=null;
-	    
+	 	if(isUUID(bid)){
 			
 			model= new ModelAndView("PublicPointstablessite");
 			
@@ -44699,6 +44538,10 @@ public ModelAndView LeaguePointsProfilesite(HttpServletRequest request, @PathVar
 						 model=new ModelAndView("redirect:/login.htm?loginvalidation=service not available");
 					 }
 					 
+	 	}else{
+	 		model=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+	 	}
+					 
 	return model;
 }
 
@@ -44707,7 +44550,7 @@ public ModelAndView LeaguePointsProfilesite(HttpServletRequest request, @PathVar
 public ModelAndView UmpireProfilesite(@PathVariable String boardId, HttpServletRequest req){
 	ModelAndView mav = null;
 	try{
-		
+		if(isUUID(boardId)){
 		System.out.println("board id:"+boardId);
 		mav = new ModelAndView("UmpireListsite");
 
@@ -44760,7 +44603,9 @@ public ModelAndView UmpireProfilesite(@PathVariable String boardId, HttpServletR
 				 mav.addObject("BoardUmpireListSize", hubResponse.getResults().getBoardUmpireList().size());
 			 }
 		 
-		 
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+		} 
 		
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -44772,7 +44617,7 @@ public ModelAndView UmpireProfilesite(@PathVariable String boardId, HttpServletR
 public ModelAndView GroundProfilesite(@PathVariable String boardId,HttpServletRequest req){
 	ModelAndView mav = null;
 	try{
-		
+		if(isUUID(boardId)){
 		
 		mav = new ModelAndView("GroundListSite");
 		mav.addObject("boardId", boardId);
@@ -44823,7 +44668,9 @@ public ModelAndView GroundProfilesite(@PathVariable String boardId,HttpServletRe
 			 }		 
 			 
 			 
-			 
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+		}	 
 	
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -44975,7 +44822,8 @@ return response;
 @RequestMapping(value="/SchedulerListSite/{boardId}", method = RequestMethod.GET)
 public ModelAndView SchedulerListSite(HttpServletRequest req, @PathVariable String boardId) throws CSException{
 ModelAndView mav = null;
-try{		
+try{	
+	if(isUUID(boardId)){
 	mav = new ModelAndView("ScheduleListSite");
 	mav.addObject("boardId", boardId);	
 	//*************************** Getting Board info  ***************************************
@@ -45040,7 +44888,9 @@ try{
 					
 				}
 			}
-	
+	}else{
+		mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+	}
 	}
 	
 catch(Exception ex){
@@ -45230,6 +45080,7 @@ public ModelAndView filterForScheduleListSite(HttpServletRequest req, @ModelAttr
 public ModelAndView gameScheduleSite(HttpServletRequest req, @PathVariable String boardId) throws CSException{
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 		
 		mav = new ModelAndView("GameScheduleSite");
 		mav.addObject("boardId", boardId);
@@ -45343,7 +45194,10 @@ public ModelAndView gameScheduleSite(HttpServletRequest req, @PathVariable Strin
 				 
 			 }
 			 
-		 
+		}else{
+			
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");		
+		}
 		 
 		}
 		catch(Exception ex){
@@ -45698,6 +45552,8 @@ public ModelAndView teamdetailsSite(@PathVariable String bid, HttpServletRequest
 {
 	ModelAndView model= null;
 	try{		
+		
+		if(isUUID(bid)){
 			model= new ModelAndView("TeamDetailsSite");
 			hubReq= new HubRequest();
 			hubReq.setMsgType(170);
@@ -45769,7 +45625,9 @@ public ModelAndView teamdetailsSite(@PathVariable String bid, HttpServletRequest
 					model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 				}
 			 
-		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");		
+		}
 		
 	}catch(Exception e)
 	{
@@ -45786,6 +45644,7 @@ public ModelAndView teamsSearchFormSite1(@PathVariable String tid,@PathVariable 
 {
 	ModelAndView model= null;
 	try{
+		if(isUUID(bid) && isUUID(tid)){
 			
 				model= new ModelAndView("TeamDetailsSite");				
 				hubReq= new HubRequest();
@@ -45870,7 +45729,9 @@ public ModelAndView teamsSearchFormSite1(@PathVariable String tid,@PathVariable 
 				
 				
 			
-				 
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+		}	 
 		
 		
 	}catch(Exception e)
@@ -45887,6 +45748,8 @@ public ModelAndView leaguecenturiesSite(@PathVariable String bid, HttpServletReq
 {
 	ModelAndView model= null;
 	try{
+		
+		if(isUUID(bid)){
 			
 				model= new ModelAndView("CenturiesSite");
 				model.addObject("boardId", bid);
@@ -45970,7 +45833,9 @@ public ModelAndView leaguecenturiesSite(@PathVariable String bid, HttpServletReq
 					}
 				 }
 				 
-			
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+		}	
 		
 	}catch(Exception e)
 	{
@@ -46071,6 +45936,8 @@ public ModelAndView leaguehalfcenturiesSite(@PathVariable String bid, HttpServle
 {
 	ModelAndView model= null;
 	try{
+		
+		if(isUUID(bid)){
 		  		model= new ModelAndView("HalfCenturiesSearchSite"); 
 				model.addObject("boardId", bid);				
 				hubReq= new HubRequest();
@@ -46144,7 +46011,9 @@ public ModelAndView leaguehalfcenturiesSite(@PathVariable String bid, HttpServle
 						
 					}
 				 }
-			
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+		}	
 		
 	}catch(Exception e)
 	{
@@ -46243,6 +46112,9 @@ public ModelAndView fiveWicketsSite(@PathVariable String bid, HttpServletRequest
 {
 	ModelAndView model= null;
 	try{
+		if(isUUID(bid)){
+			
+		
 		model= new ModelAndView("fiveWicketSite");
 		
 			 model.addObject("boardId", bid);
@@ -46321,7 +46193,10 @@ public ModelAndView fiveWicketsSite(@PathVariable String bid, HttpServletRequest
 						model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 					}
 				 
-		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");		
+			
+		}
 		
 	}catch(Exception e)
 	{
@@ -46427,6 +46302,8 @@ public ModelAndView topbatsmanSite(@PathVariable String bid , HttpServletRequest
 	ModelAndView model= null;
 	try{
 		
+		if(isUUID(bid)){
+		
 			model= new ModelAndView("TopBatsmanSite");
 			model.addObject("boardId", bid);
 			
@@ -46500,7 +46377,10 @@ public ModelAndView topbatsmanSite(@PathVariable String bid , HttpServletRequest
 						model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 					}
 				 
-				
+		}else{
+			
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+		}	
 		
 	}catch(Exception e)
 	{
@@ -46596,6 +46476,8 @@ public ModelAndView topbowlerSite(@PathVariable String bid , HttpServletRequest 
 	ModelAndView model= null;
 	try{
 		
+		if(isUUID(bid)){
+		
 			model= new ModelAndView("TopBowlerSite");
 			model.addObject("boardId", bid);
 			
@@ -46674,7 +46556,9 @@ public ModelAndView topbowlerSite(@PathVariable String bid , HttpServletRequest 
 					}
 				 
 				 
-			
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+		}
 		
 	}catch(Exception e)
 	{
@@ -46882,6 +46766,20 @@ public @ResponseBody  String saveBannerImage(HttpServletRequest request,@Request
 
 
 
+public boolean isUUID(String string) {
+    try {
+        UUID.fromString(string);
+        if (string.matches("[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}")) 
+        	return true;
+        else
+        	return false;
+    } catch (Exception ex) {
+        return false;
+    }
+}
+
+
+
 }
 
 class UpcommingComprator implements Comparator<Object>
@@ -46918,3 +46816,7 @@ class UpcommingComprator implements Comparator<Object>
 	}
 	
 }
+
+
+
+
