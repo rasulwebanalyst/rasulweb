@@ -207,7 +207,7 @@ function gettingmatchAcceptedPeopleList1(matchid,rosterid)
 			                   {title: "Name", dataKey: "firstName"},			                   
 			               ];
 			 		
-			    var yHeight=200;
+			    var yHeight=190;
 		 			if(acceptevent.length>0)
 		 				{		 					
 		 					  doc.autoTable(columns,acceptevent, {
