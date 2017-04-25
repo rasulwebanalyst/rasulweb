@@ -51,6 +51,7 @@ import com.cricketsocial.bean.board.BoardDTO;
 import com.cricketsocial.bean.board.BoardFanRequest;
 import com.cricketsocial.bean.board.BoardFormAttributes;
 import com.cricketsocial.bean.board.BoardListFunction;
+import com.cricketsocial.bean.board.BoardMatchSchedule;
 import com.cricketsocial.bean.board.BoardProfile;
 import com.cricketsocial.bean.board.BoardResponse;
 import com.cricketsocial.bean.board.BoardUmpire;
@@ -1554,8 +1555,8 @@ public ModelAndView userprofile(HttpServletRequest request)
 	    	model.addObject("LGIN", "Login");
 	    	if(!loginvalidation.equalsIgnoreCase("Unlock")){
 	    		
-	    		if(loginvalidation.equalsIgnoreCase("Invalid UUID")){
-	    			model.addObject("InvalidURl", "Something went wrong");
+	    		if(loginvalidation.equalsIgnoreCase("InvalidUUID")){
+	    			model.addObject("InvalidURl", "Sorry, unable to process the request");
 	    		}else{
 	    	if(loginvalidation!=null){
 	    		model.addObject("loginvalidation", loginvalidation.replace("%20", " "));
@@ -23740,7 +23741,7 @@ public ModelAndView showScoreCard(HttpServletRequest req, @PathVariable String b
 		}
 		 
 		}else{
-			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
 		}	 
 	 
 	}catch(Exception ex){
@@ -29582,7 +29583,7 @@ public ModelAndView showScoreCardOfPlayer(HttpServletRequest req,@PathVariable S
 		}
 		 
 		}else{
-			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
 		} 
 	 
 	}catch(Exception ex){
@@ -32601,7 +32602,7 @@ public ModelAndView showScoreCardForInProgress(HttpServletRequest req, @PathVari
 		}
 		 
 		}else{
-			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
 		}
 	 
 	}catch(Exception ex){
@@ -33111,7 +33112,7 @@ public ModelAndView showScoreCardPublicProfile(HttpServletRequest req, @PathVari
 		}
 		 
 		}else{
-			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
 		} 
 	 
 	}catch(Exception ex){
@@ -34525,7 +34526,7 @@ public ModelAndView showScoreCardForInProgressPublicProfile(HttpServletRequest r
 		}
 		 
 		}else{
-			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
 		} 
 	 
 	}catch(Exception ex){
@@ -37088,7 +37089,7 @@ public ModelAndView showScoreCardOfPlayerPublicProfile(HttpServletRequest req,@P
 		}
 		 
 		}else{
-			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");		
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");		
 		}
 	 
 	}catch(Exception ex){
@@ -42441,7 +42442,7 @@ public ModelAndView showScoreCardSessionout(HttpServletRequest req,@PathVariable
 			 }
 			 
 			 }else{
-				 mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	 
+				 mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	 
 			 }
 		 }
 		 catch(Exception e)
@@ -44374,7 +44375,7 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 				 model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 			 }
 		}else{
-			model=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
 			
 		}
 		
@@ -44463,7 +44464,7 @@ public ModelAndView Organizationdetailssite(HttpServletRequest req, @PathVariabl
 				
 		}else{
 			
-			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
 		}
 		
 		
@@ -44539,7 +44540,7 @@ public ModelAndView LeaguePointsProfilesite(HttpServletRequest request, @PathVar
 					 }
 					 
 	 	}else{
-	 		model=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+	 		model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
 	 	}
 					 
 	return model;
@@ -44604,7 +44605,7 @@ public ModelAndView UmpireProfilesite(@PathVariable String boardId, HttpServletR
 			 }
 		 
 		}else{
-			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
 		} 
 		
 	}catch(Exception ex){
@@ -44669,7 +44670,7 @@ public ModelAndView GroundProfilesite(@PathVariable String boardId,HttpServletRe
 			 
 			 
 		}else{
-			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
 		}	 
 	
 	}catch(Exception ex){
@@ -44889,7 +44890,7 @@ try{
 				}
 			}
 	}else{
-		mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+		mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
 	}
 	}
 	
@@ -45196,7 +45197,7 @@ public ModelAndView gameScheduleSite(HttpServletRequest req, @PathVariable Strin
 			 
 		}else{
 			
-			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");		
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");		
 		}
 		 
 		}
@@ -45626,7 +45627,7 @@ public ModelAndView teamdetailsSite(@PathVariable String bid, HttpServletRequest
 				}
 			 
 		}else{
-			model=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");		
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");		
 		}
 		
 	}catch(Exception e)
@@ -45730,7 +45731,7 @@ public ModelAndView teamsSearchFormSite1(@PathVariable String tid,@PathVariable 
 				
 			
 		}else{
-			model=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
 		}	 
 		
 		
@@ -45834,7 +45835,7 @@ public ModelAndView leaguecenturiesSite(@PathVariable String bid, HttpServletReq
 				 }
 				 
 		}else{
-			model=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
 		}	
 		
 	}catch(Exception e)
@@ -46012,7 +46013,7 @@ public ModelAndView leaguehalfcenturiesSite(@PathVariable String bid, HttpServle
 					}
 				 }
 		}else{
-			model=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
 		}	
 		
 	}catch(Exception e)
@@ -46194,7 +46195,7 @@ public ModelAndView fiveWicketsSite(@PathVariable String bid, HttpServletRequest
 					}
 				 
 		}else{
-			model=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");		
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");		
 			
 		}
 		
@@ -46379,7 +46380,7 @@ public ModelAndView topbatsmanSite(@PathVariable String bid , HttpServletRequest
 				 
 		}else{
 			
-			model=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
 		}	
 		
 	}catch(Exception e)
@@ -46557,7 +46558,7 @@ public ModelAndView topbowlerSite(@PathVariable String bid , HttpServletRequest 
 				 
 				 
 		}else{
-			model=new ModelAndView("redirect:/login.htm?loginvalidation=Invalid UUID");	
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
 		}
 		
 	}catch(Exception e)
@@ -46761,6 +46762,76 @@ public @ResponseBody  String saveBannerImage(HttpServletRequest request,@Request
 		e.printStackTrace();
 	}	
 	return result1;
+}
+
+@RequestMapping(value="/matchPeopleList", method=RequestMethod.POST)
+public @ResponseBody BoardMatchSchedule matchPeopleList(@RequestBody AcceptEventInfo event,HttpServletRequest request)
+{
+	BoardMatchSchedule boardResult=new BoardMatchSchedule();
+	List<UserProfile> acceptEventList=null;
+	List<UserProfile> maybeEventList=null;
+	List<UserProfile> rejectEventList=null;
+	try{			
+			hubReq = new HubRequest();
+			hubReq.setMsgType(200);		
+			ModelMap map = new ModelMap();
+			map.put("rosterId", event.getRosterId());	
+			map.put("matchId", event.getMatchid());	
+			hubReq.setRequestParam(map);
+			String strSearchResponse   = cricketSocialRestTemplateService.userRegistration(hubReq);
+			
+			if(strSearchResponse!=null )
+			{
+				HubResponse response= GsonConverters.getGsonObject().fromJson(strSearchResponse, HubResponse.class);
+				
+				if(response!=null && response.getResults()!=null)				
+				{
+					acceptEventList=response.getResults().getRosterMatchAcceptedPlayerList();					
+					boardResult.setAcceptEventList(acceptEventList);
+					System.out.println("==accept==>"+new JSONArray(acceptEventList));
+				}				
+			}			
+			hubReq = new HubRequest();
+			hubReq.setMsgType(201);		
+			ModelMap map1 = new ModelMap();
+			map1.put("rosterId", event.getRosterId());	
+			map1.put("matchId", event.getMatchid());	
+			hubReq.setRequestParam(map1);
+			String strSearchResponse1   = cricketSocialRestTemplateService.userRegistration(hubReq);
+			
+			if(strSearchResponse1!=null )
+			{
+				HubResponse response1= GsonConverters.getGsonObject().fromJson(strSearchResponse1, HubResponse.class);
+				
+				if(response1!=null && response1.getResults()!=null)				
+				{
+					rejectEventList=response1.getResults().getRosterMatchRejectedPlayerList();					
+					boardResult.setRejectEventList(rejectEventList);
+					System.out.println("==reject==>"+new JSONArray(rejectEventList));
+				}				
+			}
+			hubReq = new HubRequest();
+			hubReq.setMsgType(202);		
+			ModelMap map2 = new ModelMap();
+			map2.put("rosterId", event.getRosterId());	
+			map2.put("matchId", event.getMatchid());	
+			hubReq.setRequestParam(map2);
+			String strSearchResponse2   = cricketSocialRestTemplateService.userRegistration(hubReq);
+			if(strSearchResponse2!=null )
+			{
+				HubResponse response2= GsonConverters.getGsonObject().fromJson(strSearchResponse2, HubResponse.class);
+				if(response2!=null && response2.getResults()!=null)				
+				{
+					maybeEventList=response2.getResults().getRosterMatchMayBePlayerList();	
+					boardResult.setMaybeEventList(maybeEventList);
+					System.out.println("==maybe==>"+new JSONArray(maybeEventList));
+				}				
+			}		
+	}catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return boardResult;
 }
 
 
