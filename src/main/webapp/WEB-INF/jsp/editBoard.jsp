@@ -1326,7 +1326,7 @@ function cancelFunction()
 <script type="text/javascript" src="/cricketsocial-web/WebContent/js/cricketSocial/BoardPageFunction.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.tokeninput.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initAutocomplete"
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4eJlFHh6Wm9BWa8x-H-cBUjCcdlEplT0&signed_in=true&libraries=places&callback=initAutocomplete"
         async defer></script>
  <script src="${pageContext.servletContext.contextPath}/js/cropper.js"></script> 
     <script src="${pageContext.servletContext.contextPath}/js/Customcropper.js"></script> 

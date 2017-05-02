@@ -244,17 +244,17 @@ var teamdeletearray=[];
                             <div class="form-group col-md-12 noPadding profileForm">
                             
                             <div class="col-md-12 noPadding">
-                            <c:choose>
-                            <c:when test="${UserProfileOBJ.teamboardlist[0] eq null || UserProfileOBJ.teamboardlist[0] eq ''}">
+                           <%--  <c:choose>
+                            <c:when test="${UserProfileOBJ.teamboardlist[0] eq null || UserProfileOBJ.teamboardlist[0] eq ''}"> --%>
                             <div class="col-md-3"><label for="email"><span>*</span>First Name</label> <input type="text" class="form-control" placeholder="" id="firstName" name="firstName" value="${UserProfileOBJ.firstName}"></div>
                               <div class="col-md-3"><label for="email"><span>*</span>Last Name</label> <input type="text" class="form-control" placeholder="" id="lastName" name="lastName" value="${UserProfileOBJ.lastName}"></div>
-                            </c:when>
+                           <%--  </c:when>
                             <c:otherwise>
                             
                             <div class="col-md-3"><label for="email"><span>*</span>First Name</label> <input type="text" class="form-control" placeholder="" id="firstName" name="firstName" value="${UserProfileOBJ.firstName}" readonly onclick="infoFunction()"></div>
                               <div class="col-md-3"><label for="email"><span>*</span>Last Name</label> <input type="text" class="form-control" placeholder="" id="lastName" name="lastName" value="${UserProfileOBJ.lastName}" readonly onclick="infoFunction()"></div>
                             </c:otherwise>
-                            </c:choose>
+                            </c:choose> --%>
                               
                               <%-- <div class="col-md-4"><label for="email"><span>*</span>Date of Birth</label> <input type="text" class="form-control" placeholder="" id="dateOfBirth" name="bodDate" value='<fmt:formatDate pattern="MM/dd/yyyy" value="${UserProfileOBJ.dob}" />' readonly> --%>
                                <%-- <div class="col-md-4"><label for="email"><span>*</span>Date of Birth</label> <input type="text" class="form-control datepicker" placeholder="" id="dateOfBirth" name="bodDate" value='<fmt:formatDate pattern="MM/dd/yyyy" value="${UserProfileOBJ.dob}" />' readonly>  
@@ -2136,7 +2136,7 @@ function readURLTeam(input) {
     </script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.tokeninput.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initAutocomplete"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrgGqKmxNG-xG7AstscoIdC7h4vFbUT2s&signed_in=true&libraries=places&callback=initAutocomplete"
         async defer></script>
         
         <!--  for cropper -->

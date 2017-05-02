@@ -864,14 +864,14 @@ var formatAMPMTime = function(date) {
                              </script>
                          </c:if>
                          
-                         <div class="points">
+                        <!--  <div class="points"> -->
                         <c:if test="${!empty scoreCardList.endMatchReason}">
                          <c:if test="${scoreCardList.endMatchReason ne 'null' }">
                          <p ><strong>Match Details:</strong></p>
                            <p> ${scoreCardList.endMatchReason}</p>
                         </c:if>
                         </c:if>
-                           </div>
+                          <!--  </div> -->
                       
                          <c:if test="${!empty  FirstInningsCommentary}">
                                <p ><strong>First Innings Match Notes:</strong></p>
