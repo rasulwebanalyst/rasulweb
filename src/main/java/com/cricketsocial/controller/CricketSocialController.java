@@ -47344,6 +47344,14 @@ public @ResponseBody BoardMatchSchedule matchPeopleList(@RequestBody AcceptEvent
 	return boardResult;
 }
 
+@RequestMapping(value="/errorPage",  method=RequestMethod.GET)
+public ModelAndView errorPage(HttpServletRequest request){
+	ModelAndView mav=null;
+	mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	System.out.println("Inside error page");
+	return mav;
+	
+}
 
 
 
