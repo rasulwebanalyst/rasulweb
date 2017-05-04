@@ -122,10 +122,10 @@ return result;
 <div>
 <div>
 
-
+<%@ include file="BuddyHeader.jsp" %>
 <%@ include file="CSCommon.jsp" %>
 </div>
-<%@ include file="BuddyHeader.jsp" %>
+
 
 
 

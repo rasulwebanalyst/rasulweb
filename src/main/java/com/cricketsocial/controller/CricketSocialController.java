@@ -21,10 +21,14 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
+
+
+/*import org.apache.log4j.Logger;*/
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -209,7 +213,8 @@ public class CricketSocialController {
 	@SuppressWarnings("unused")
 	private Gson gsonobj=null;
 	
-	private Logger logger = Logger.getLogger(CricketSocialController.class);
+	//private Logger logger = Logger.getLogger(CricketSocialController.class);
+	private static final Logger logger=LoggerFactory.getLogger("JsonLogging");
 	
 	@RequestMapping(value="/healthcheck",method=RequestMethod.GET)
 	public  @ResponseBody String healthcheck(HttpServletRequest request)
@@ -398,6 +403,10 @@ public class CricketSocialController {
 	{
 		UserProfile profile=null;
 		ModelAndView model=null;
+		
+System.out.println("Print log");
+		
+		//logger.info(new JSONObject(userProfile).toString());
 		try{
 			System.out.println("useremailaddress : "+userProfile.getEmailAddress());
 			System.out.println("password : -------> "+userProfile.getPassword());
@@ -24558,7 +24567,7 @@ public ModelAndView boardEvents(@PathVariable String bid, HttpServletRequest req
 		}else{
 			model = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		 logger.error("board event public profile");
+		/* logger.error("board event public profile");*/
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
 		}
@@ -44133,7 +44142,7 @@ public ModelAndView BoardInfoPublic(@PathVariable String bid, HttpServletRequest
 		}else{
 			model = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		 logger.error("board event public profile");
+		/* logger.error("board event public profile");*/
 		
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");

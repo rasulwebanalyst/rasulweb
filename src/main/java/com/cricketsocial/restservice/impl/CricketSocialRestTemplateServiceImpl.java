@@ -1,8 +1,11 @@
 package com.cricketsocial.restservice.impl;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -44,7 +47,7 @@ public class CricketSocialRestTemplateServiceImpl  implements CricketSocialRestT
     //private static String domain2="http://52.73.86.69:8040/ScoringFrontEndServices/";
 	//private static String domain2=Util.webServiceDomainName("ScroingApp_URL1");
     
-  
+    private static final Logger logger=LoggerFactory.getLogger("JsonLogging");
 	private RestTemplate restTemplate=null;
 	GsonBuilder builder=null;
 	public String userRegistration(HubRequest hubRequest)throws CSException {
@@ -56,7 +59,12 @@ public class CricketSocialRestTemplateServiceImpl  implements CricketSocialRestT
 			String reqString = GsonConverters.getGsonObject().toJson(hubRequest);			
 			System.out.println("request : --------------------- >userRegistration "+reqString);
 			restTemplate=new RestTemplate();
+			long startdate=new  Date().getTime();
+			logger.info(reqString);
 			result = restTemplate.postForObject(URL,hubRequest,String.class);
+			long enddate=new  Date().getTime();
+			logger.info(result);
+			logger.info("The msgtype  :"+hubRequest.getMsgType() +" Time taken---------------->"+String.valueOf(enddate-startdate));
 			System.out.println("response : =============== > "+result);
 		}catch(Exception e)
 		{
