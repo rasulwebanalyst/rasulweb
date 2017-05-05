@@ -246,8 +246,8 @@ var teamdeletearray=[];
                             <div class="col-md-12 noPadding">
                            <%--  <c:choose>
                             <c:when test="${UserProfileOBJ.teamboardlist[0] eq null || UserProfileOBJ.teamboardlist[0] eq ''}"> --%>
-                            <div class="col-md-3"><label for="email"><span>*</span>First Name</label> <input type="text" class="form-control" placeholder="" id="firstName" name="firstName" value="${UserProfileOBJ.firstName}"></div>
-                              <div class="col-md-3"><label for="email"><span>*</span>Last Name</label> <input type="text" class="form-control" placeholder="" id="lastName" name="lastName" value="${UserProfileOBJ.lastName}"></div>
+                            <div class="col-md-3"><label for="email"><span>*</span>First Name</label> <input type="text" class="form-control" placeholder="" id="firstName" name="firstName" value="${UserProfileOBJ.firstName}" readonly></div>
+                              <div class="col-md-3"><label for="email"><span>*</span>Last Name</label> <input type="text" class="form-control" placeholder="" id="lastName" name="lastName" value="${UserProfileOBJ.lastName}" readonly></div>
                            <%--  </c:when>
                             <c:otherwise>
                             

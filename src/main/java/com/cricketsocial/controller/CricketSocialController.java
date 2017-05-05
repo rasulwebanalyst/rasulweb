@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
 
 
 
-/*import org.apache.log4j.Logger;*/
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -213,7 +213,10 @@ public class CricketSocialController {
 	@SuppressWarnings("unused")
 	private Gson gsonobj=null;
 	
-	//private Logger logger = Logger.getLogger(CricketSocialController.class);
+	/*private Logger logger = Logger.getLogger(CricketSocialController.class);*/
+	
+	/*private static final org.slf4j.Logger logger1=LoggerFactory.getLogger("JsonLogging");*/
+	
 	private static final Logger logger=LoggerFactory.getLogger("JsonLogging");
 	
 	@RequestMapping(value="/healthcheck",method=RequestMethod.GET)
@@ -404,9 +407,10 @@ public class CricketSocialController {
 		UserProfile profile=null;
 		ModelAndView model=null;
 		
-System.out.println("Print log");
 		
-		//logger.info(new JSONObject(userProfile).toString());
+		System.out.println("Print log");
+		
+		
 		try{
 			System.out.println("useremailaddress : "+userProfile.getEmailAddress());
 			System.out.println("password : -------> "+userProfile.getPassword());
@@ -459,7 +463,22 @@ System.out.println("Print log");
 							 session.setAttribute("USRLastName", name);
 							// session.setAttribute("LoginLatLong", arg1);
 							 String userLatLongVal=userProfile.getLatLang();
-							 HubRequest hubReq=new HubRequest(13);
+							 
+							 
+							 
+							 
+							 
+							 if(userLatLongVal==null || userLatLongVal==""){
+				    			 userLatLongVal=profile.getLatLang();
+				    			 session.setAttribute("USRLocationAllowed", "No"); 
+				    		 }else
+				    		 {
+				    			 session.setAttribute("USRLocationAllowed", "Yes"); 
+				    		 }
+							 
+							 
+							 
+							/* HubRequest hubReq=new HubRequest(13);
 							 hubReq.setMsgType(13);				
 							 UserProfile userdetails= new UserProfile();
 							 userdetails.setUserId(profile.getUserId());
@@ -474,8 +493,6 @@ System.out.println("Print log");
 						    if(profile2.getResults().getItemsFound()!=null)
 						    {
 
-							   
-							    	 
 							    	 System.out.println("session valude===============");
 							    	    session.removeAttribute("USRIMG");
 							    	    System.out.println("user image==============="+ session.getAttribute("USRIMG"));
@@ -502,7 +519,8 @@ System.out.println("Print log");
 							    		 }
 							    		 
 							    		 
-						    }
+						    }*/
+						    
 						   
 							 session.setAttribute("USRLocation", userLatLongVal);
 							 
@@ -1234,13 +1252,17 @@ public ModelAndView userprofile(HttpServletRequest request)
 			 {
 				 gsonobj=GsonConverters.getGsonObject();
 				 UUID userid=(UUID) session.getAttribute("USRID");
-					hubReq=new HubRequest(13);
-					 hubReq.setMsgType(13);
+				 String username= (String) session.getAttribute("USRLastName");
+					hubReq=new HubRequest(280);
+					 hubReq.setMsgType(280);
 					
 					 UserProfile userProfile= new UserProfile();
 					 userProfile.setUserId(userid);
 					 hubReq.setRequestParam(userProfile);
+					 hubReq.setUserName(username);
+					 logger.info(new JSONObject(hubReq).toString());
 					 String result=cricketSocialRestTemplateService.userRegistration(hubReq);
+					 logger.info("The msgtype  :"+hubReq.getMsgType() +" Response---------------->"+result);
 					  LoginResponse profile=GsonConverters.getGsonObject().fromJson(result, LoginResponse.class);
 					  
 					 if(profile!= null &&  profile.getResults()!=null)
@@ -1305,9 +1327,11 @@ public ModelAndView userprofile(HttpServletRequest request)
 								 map1.put("startNode", 0);
 								 map1.put("endNode", 100);
 								 hubReq.setRequestParam(map1);
-								 
+								 hubReq.setUserName(username);
+								 logger.info(new JSONObject(hubReq).toString());
 								 String invitaionResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
-								
+								 logger.info("The msgtype  :"+hubReq.getMsgType() +" Response---------------->"+invitaionResponse);
+								 
 							    SearchMainResponse response2=GsonConverters.getGsonObject().fromJson(invitaionResponse, SearchMainResponse.class);
 								
 							    SearchResults searchResults1=response2.getResults();
@@ -1330,8 +1354,10 @@ public ModelAndView userprofile(HttpServletRequest request)
 								 feed.setUserId(userid.toString());
 								 feed.setFeedHitUserId(userid.toString());
 								 hubReq.setRequestParam(feed);
+								 hubReq.setUserName(username);
+								 logger.info(new JSONObject(hubReq).toString());
 								 String result2=cricketSocialRestTemplateService.userRegistration(hubReq);
-								 
+								 logger.info("The msgtype  :"+hubReq.getMsgType() +" Response---------------->"+result2);
 								 HubResponse resp= GsonConverters.getGsonObject().fromJson(result2, HubResponse.class);
 								 model.addObject("FeedsList", resp.getResults().getFeedResponse().getFeedList());
 								 
@@ -1365,7 +1391,12 @@ public ModelAndView userprofile(HttpServletRequest request)
 								 searchReq.setEndNode("20");
 								 searchReq.setCategory("Matches");
 								 hubReq.setRequestParam(searchReq);
+								 
+								 
+								 hubReq.setUserName(username);
+								 logger.info(new JSONObject(hubReq).toString());
 							    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
+							    logger.info("The msgtype  :"+hubReq.getMsgType() +" Response---------------->"+matchesArroundYouList);
 								 HubResponse strMatchesArrounfYouResponse= GsonConverters.getGsonObject().fromJson(matchesArroundYouList, HubResponse.class); 
 								
 								 if(strMatchesArrounfYouResponse.getResults().getSearchResponse()!=null)
@@ -1396,7 +1427,10 @@ public ModelAndView userprofile(HttpServletRequest request)
 								 searchReq.setEndNode("4");
 								 searchReq.setCategory("League");
 								 hubReq.setRequestParam(searchReq);
+								 hubReq.setUserName(username);
+								 logger.info(new JSONObject(hubReq).toString());
 							    String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
+							    logger.info("The msgtype  :"+hubReq.getMsgType() +" Response---------------->"+strboardlist);
 								 HubResponse strsearchResponse= GsonConverters.getGsonObject().fromJson(strboardlist, HubResponse.class); 
 								
 								 if(strsearchResponse.getResults().getSearchResponse()!=null)
@@ -1418,9 +1452,11 @@ public ModelAndView userprofile(HttpServletRequest request)
 									 searchReq.setLatlang(defaultTeamBoardAroundYouLatLongValue);
 								 }
 								 hubReq.setRequestParam(searchReq);
+								 hubReq.setUserName(username);
+								 logger.info(new JSONObject(hubReq).toString());
 								 String strTeamlist=cricketSocialRestTemplateService.userRegistration(hubReq);
+								 logger.info("The msgtype  :"+hubReq.getMsgType() +" Response---------------->"+strTeamlist);
 								 HubResponse strTeamResponse= GsonConverters.getGsonObject().fromJson(strTeamlist, HubResponse.class); 
-								 
 								 if(strTeamResponse.getResults().getSearchResponse()!=null)
 								 {
 									 model.addObject("TEAMAroundYou", strTeamResponse.getResults().getSearchResponse().getBoardProfileList());
@@ -1441,7 +1477,10 @@ public ModelAndView userprofile(HttpServletRequest request)
 									 searchReq.setLatlang(defaultBuddyAroundYouLatlongValue);
 								 }
 								 hubReq.setRequestParam(searchReq);
+								 hubReq.setUserName(username);
+								 logger.info(new JSONObject(hubReq).toString());
 								 String strbuddyresponse=cricketSocialRestTemplateService.userRegistration(hubReq);
+								 logger.info("The msgtype  :"+hubReq.getMsgType() +" Response---------------->"+strbuddyresponse);
 								 HubResponse buddyResponse= GsonConverters.getGsonObject().fromJson(strbuddyresponse, HubResponse.class); 
 								 if(buddyResponse.getResults().getSearchResponse()!=null)
 								 {
@@ -1466,7 +1505,10 @@ public ModelAndView userprofile(HttpServletRequest request)
 									 searchReq.setLatlang(defaultMerchantAroundYouLatLongValue);
 								 }
 								 hubReq.setRequestParam(searchReq);
+								 hubReq.setUserName(username);
+								 logger.info(new JSONObject(hubReq).toString());
 								 String strMerchandiseAroundYouresponse=cricketSocialRestTemplateService.userRegistration(hubReq);
+								 logger.info("The msgtype  :"+hubReq.getMsgType() +" Response---------------->"+strMerchandiseAroundYouresponse);
 								 HubResponse merchandiseAroundYouResponse= GsonConverters.getGsonObject().fromJson(strMerchandiseAroundYouresponse, HubResponse.class); 
 								 if(merchandiseAroundYouResponse.getResults().getSearchResponse()!=null)
 								 {
@@ -1481,7 +1523,10 @@ public ModelAndView userprofile(HttpServletRequest request)
 								 map.put("startNode", 0);
 								 map.put("endNode", 200);
 								  hubReq.setRequestParam(map);
+								  hubReq.setUserName(username);
+									 logger.info(new JSONObject(hubReq).toString());
 									 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
+									 logger.info("The msgtype  :"+hubReq.getMsgType() +" Response---------------->"+strBoardList);
 									 GsonBuilder builder = new GsonBuilder();
 									 Gson gson = builder.create();
 									 if(strBoardList!=null)
@@ -24567,7 +24612,7 @@ public ModelAndView boardEvents(@PathVariable String bid, HttpServletRequest req
 		}else{
 			model = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		/* logger.error("board event public profile");*/
+		 /*logger.error("board event public profile");*/
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
 		}

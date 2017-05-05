@@ -9,8 +9,18 @@ public class HubRequest {
 
 	private Object requestParam;
 	
+	private String userName;
 	
 	
+	
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
 	public Properties getProperties() {
 		return properties;

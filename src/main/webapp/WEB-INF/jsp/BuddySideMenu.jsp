@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="col-md-2 profileLogo pLUpdated sideMenu">
-                    	<span class="pLUpdatedImg"><img src="${USRIMG}?" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';">
+                    	<span class="pLUpdatedImg"><img src="${USRIMG}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';">
                         	<a href="${pageContext.request.contextPath}/viewProfile"><i class="fa fa-pencil" title="Edit Profile"></i></a>
                         	 ${USRLastName}
                         </span>

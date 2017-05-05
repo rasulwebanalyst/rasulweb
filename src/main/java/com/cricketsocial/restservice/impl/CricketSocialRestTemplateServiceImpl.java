@@ -60,11 +60,12 @@ public class CricketSocialRestTemplateServiceImpl  implements CricketSocialRestT
 			System.out.println("request : --------------------- >userRegistration "+reqString);
 			restTemplate=new RestTemplate();
 			long startdate=new  Date().getTime();
-			logger.info(reqString);
+//			logger.info(reqString);
 			result = restTemplate.postForObject(URL,hubRequest,String.class);
 			long enddate=new  Date().getTime();
-			logger.info(result);
-			logger.info("The msgtype  :"+hubRequest.getMsgType() +" Time taken---------------->"+String.valueOf(enddate-startdate));
+//			logger.info(result);
+//			logger.info("The msgtype  :"+hubRequest.getMsgType() +" Time taken---------------->"+String.valueOf(enddate-startdate));
+			System.out.println("The msgtype  :"+hubRequest.getMsgType() +" Time taken---------------->"+String.valueOf(enddate-startdate));
 			System.out.println("response : =============== > "+result);
 		}catch(Exception e)
 		{
