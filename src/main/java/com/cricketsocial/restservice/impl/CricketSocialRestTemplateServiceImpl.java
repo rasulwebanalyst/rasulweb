@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -60,11 +61,11 @@ public class CricketSocialRestTemplateServiceImpl  implements CricketSocialRestT
 			System.out.println("request : --------------------- >userRegistration "+reqString);
 			restTemplate=new RestTemplate();
 			long startdate=new  Date().getTime();
-//			logger.info(reqString);
+			logger.info(hubRequest.getUserName()+" ------>Request Msg type :"+hubRequest.getMsgType() +" :"+reqString);
 			result = restTemplate.postForObject(URL,hubRequest,String.class);
 			long enddate=new  Date().getTime();
-//			logger.info(result);
-//			logger.info("The msgtype  :"+hubRequest.getMsgType() +" Time taken---------------->"+String.valueOf(enddate-startdate));
+			 logger.info(hubRequest.getUserName()+" =====>Response Msg type :"+hubRequest.getMsgType() +" :"+result+" Time taken :"+(enddate-startdate));
+			
 			System.out.println("The msgtype  :"+hubRequest.getMsgType() +" Time taken---------------->"+String.valueOf(enddate-startdate));
 			System.out.println("response : =============== > "+result);
 		}catch(Exception e)
