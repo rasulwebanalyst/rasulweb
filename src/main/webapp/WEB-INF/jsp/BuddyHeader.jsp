@@ -788,7 +788,7 @@ function buddySearch(ele){
 							                          +'<a href="'+ctx+'/'+boards[j].boardName+'/board/'+boards[j].boardId+'">';
 							                          
 							                          if(boards[j].boardImageURL != null && boards[j].boardImageURL!=""){
-							                        	  htm+='<img src="'+boards[j].boardImageURL+'?" class="nav-avatar" onError=imgError(this)>';
+							                        	  htm+='<img src="'+boards[j].boardImageURL+'" class="nav-avatar" onError=imgError(this)>';
 							                          }else{
 							                        	  htm+='<img src="'+ctx+'/images/boardIcon.png" class="nav-avatar">';
 							                          }

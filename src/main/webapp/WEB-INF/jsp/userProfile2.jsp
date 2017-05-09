@@ -799,7 +799,7 @@ $(document).ready(function(){
 
     </script>
     
-    <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initAutocomplete"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrgGqKmxNG-xG7AstscoIdC7h4vFbUT2s&signed_in=true&libraries=places&callback=initAutocomplete"
         async defer></script>
         	<!--Date picker-->
     <script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>

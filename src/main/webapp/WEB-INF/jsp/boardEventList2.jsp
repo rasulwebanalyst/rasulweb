@@ -640,6 +640,8 @@ overflow-y: auto !important;
 </section>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/cricketSocial/newEvent.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/cricketSocial/event.js"></script>
+<script src="${pageContext.request.contextPath }/js/jspdf.min.js"></script>
+ <script src="${pageContext.request.contextPath }/js/jspdf.plugin.autotable.js"></script>
 <script type="text/javascript">
 
 $(function(){

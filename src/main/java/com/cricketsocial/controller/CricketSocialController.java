@@ -21,10 +21,14 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
+
+
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -51,6 +55,7 @@ import com.cricketsocial.bean.board.BoardDTO;
 import com.cricketsocial.bean.board.BoardFanRequest;
 import com.cricketsocial.bean.board.BoardFormAttributes;
 import com.cricketsocial.bean.board.BoardListFunction;
+import com.cricketsocial.bean.board.BoardMatchSchedule;
 import com.cricketsocial.bean.board.BoardProfile;
 import com.cricketsocial.bean.board.BoardResponse;
 import com.cricketsocial.bean.board.BoardUmpire;
@@ -208,7 +213,11 @@ public class CricketSocialController {
 	@SuppressWarnings("unused")
 	private Gson gsonobj=null;
 	
-	private Logger logger = Logger.getLogger(CricketSocialController.class);
+	/*private Logger logger = Logger.getLogger(CricketSocialController.class);*/
+	
+	/*private static final org.slf4j.Logger logger1=LoggerFactory.getLogger("JsonLogging");*/
+	
+	private static final Logger logger=LoggerFactory.getLogger("JsonLogging");
 	
 	@RequestMapping(value="/healthcheck",method=RequestMethod.GET)
 	public  @ResponseBody String healthcheck(HttpServletRequest request)
@@ -397,6 +406,11 @@ public class CricketSocialController {
 	{
 		UserProfile profile=null;
 		ModelAndView model=null;
+		
+		
+		System.out.println("Print log");
+		
+		
 		try{
 			System.out.println("useremailaddress : "+userProfile.getEmailAddress());
 			System.out.println("password : -------> "+userProfile.getPassword());
@@ -449,7 +463,22 @@ public class CricketSocialController {
 							 session.setAttribute("USRLastName", name);
 							// session.setAttribute("LoginLatLong", arg1);
 							 String userLatLongVal=userProfile.getLatLang();
-							 HubRequest hubReq=new HubRequest(13);
+							 
+							 
+							 
+							 
+							 
+							 if(userLatLongVal==null || userLatLongVal==""){
+				    			 userLatLongVal=profile.getLatLang();
+				    			 session.setAttribute("USRLocationAllowed", "No"); 
+				    		 }else
+				    		 {
+				    			 session.setAttribute("USRLocationAllowed", "Yes"); 
+				    		 }
+							 
+							 
+							 
+							/* HubRequest hubReq=new HubRequest(13);
 							 hubReq.setMsgType(13);				
 							 UserProfile userdetails= new UserProfile();
 							 userdetails.setUserId(profile.getUserId());
@@ -464,8 +493,6 @@ public class CricketSocialController {
 						    if(profile2.getResults().getItemsFound()!=null)
 						    {
 
-							   
-							    	 
 							    	 System.out.println("session valude===============");
 							    	    session.removeAttribute("USRIMG");
 							    	    System.out.println("user image==============="+ session.getAttribute("USRIMG"));
@@ -492,7 +519,8 @@ public class CricketSocialController {
 							    		 }
 							    		 
 							    		 
-						    }
+						    }*/
+						    
 						   
 							 session.setAttribute("USRLocation", userLatLongVal);
 							 
@@ -1213,6 +1241,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 	public ModelAndView buddyhome2(HttpServletRequest request)
 	{
 		ModelAndView model=null;
+		long startdate=new  Date().getTime();
 		try{
 			
 			 String ipAddress = request.getHeader("X-FORWARDED-FOR");
@@ -1224,12 +1253,14 @@ public ModelAndView userprofile(HttpServletRequest request)
 			 {
 				 gsonobj=GsonConverters.getGsonObject();
 				 UUID userid=(UUID) session.getAttribute("USRID");
-					hubReq=new HubRequest(13);
-					 hubReq.setMsgType(13);
+				 String userEmail= (String) session.getAttribute("USREMAIL");
+					hubReq=new HubRequest(280);
+					 hubReq.setMsgType(280);
 					
 					 UserProfile userProfile= new UserProfile();
 					 userProfile.setUserId(userid);
 					 hubReq.setRequestParam(userProfile);
+					 hubReq.setUserName(userEmail);
 					 String result=cricketSocialRestTemplateService.userRegistration(hubReq);
 					  LoginResponse profile=GsonConverters.getGsonObject().fromJson(result, LoginResponse.class);
 					  
@@ -1244,7 +1275,6 @@ public ModelAndView userprofile(HttpServletRequest request)
 							  {
 								
 								//Score Card Redirect
-								System.out.println("Session for score card               "+session.getAttribute("ScoreCardSession"));
 								
 								if(session.getAttribute("ScoreCardSession") != null){
 									 String score=(String) session.getAttribute("ScoreCardSession");
@@ -1263,31 +1293,9 @@ public ModelAndView userprofile(HttpServletRequest request)
 									 }else{
 								
 								
-								//model=new ModelAndView("homepageLatest");
 								model=new ModelAndView("homepageLatestnew");
-								/*hubReq=new HubRequest(53);
-								 hubReq.setMsgType(53);
 								
-								 ModelMap modelmap=new ModelMap();
-								 modelmap.put("invitorId", userid);
-								 hubReq.setRequestParam(modelmap);
-								 String friendRequestCountString=cricketSocialRestTemplateService.userRegistration(hubReq);
-								 
-								 if(friendRequestCountString != null){
-									 HubResponse requestCountResp= GsonConverters.getGsonObject().fromJson(friendRequestCountString, HubResponse.class);
-										
-									 if(requestCountResp != null && requestCountResp.getResults() != null ){
-										 model.addObject("FriendRequestCount", requestCountResp.getResults().getUserConnection());
-
-									 }else{
-										 model.addObject("FriendRequestCount", new BuddyRequestCount());
-									 }
-									
-								 }else{
-									 model.addObject("FriendRequestCount", new BuddyRequestCount());
-								 }
-								*/
-								
+								/*
 								 hubReq=new HubRequest(34);
 								 hubReq.setMsgType(34);
 								 ModelMap map1=new ModelMap();
@@ -1295,9 +1303,9 @@ public ModelAndView userprofile(HttpServletRequest request)
 								 map1.put("startNode", 0);
 								 map1.put("endNode", 100);
 								 hubReq.setRequestParam(map1);
-								 
+								 hubReq.setUserName(userEmail);
 								 String invitaionResponse=cricketSocialRestTemplateService.userRegistration(hubReq);
-								
+								 
 							    SearchMainResponse response2=GsonConverters.getGsonObject().fromJson(invitaionResponse, SearchMainResponse.class);
 								
 							    SearchResults searchResults1=response2.getResults();
@@ -1308,7 +1316,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 							    	
 							    	 model.addObject("MyRequests", invitationUsers);
 									 model.addObject("requestsCount", invitationUsers.size() );
-							    }								 
+							    }					*/			 
 							    
 							   								
 								 hubReq=new HubRequest(8);
@@ -1320,8 +1328,8 @@ public ModelAndView userprofile(HttpServletRequest request)
 								 feed.setUserId(userid.toString());
 								 feed.setFeedHitUserId(userid.toString());
 								 hubReq.setRequestParam(feed);
+								 hubReq.setUserName(userEmail);
 								 String result2=cricketSocialRestTemplateService.userRegistration(hubReq);
-								 
 								 HubResponse resp= GsonConverters.getGsonObject().fromJson(result2, HubResponse.class);
 								 model.addObject("FeedsList", resp.getResults().getFeedResponse().getFeedList());
 								 
@@ -1340,8 +1348,6 @@ public ModelAndView userprofile(HttpServletRequest request)
 										 searchReq.setLatlang(userlocation);
 										 
 									}else{
-										 //searchReq.setLatlang(defaultBuddyAroundYouLatlongValue);
-										// searchReq.setLatlang("13.082680199999999,80.2707184");
 										 searchReq.setLatlang(defaultMatchesAroundYouLatLongValue);
 									}
 								 }else{
@@ -1355,6 +1361,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 								 searchReq.setEndNode("20");
 								 searchReq.setCategory("Matches");
 								 hubReq.setRequestParam(searchReq);
+								 hubReq.setUserName(userEmail);
 							    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
 								 HubResponse strMatchesArrounfYouResponse= GsonConverters.getGsonObject().fromJson(matchesArroundYouList, HubResponse.class); 
 								
@@ -1386,6 +1393,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 								 searchReq.setEndNode("4");
 								 searchReq.setCategory("League");
 								 hubReq.setRequestParam(searchReq);
+								 hubReq.setUserName(userEmail);
 							    String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
 								 HubResponse strsearchResponse= GsonConverters.getGsonObject().fromJson(strboardlist, HubResponse.class); 
 								
@@ -1408,9 +1416,9 @@ public ModelAndView userprofile(HttpServletRequest request)
 									 searchReq.setLatlang(defaultTeamBoardAroundYouLatLongValue);
 								 }
 								 hubReq.setRequestParam(searchReq);
+								 hubReq.setUserName(userEmail);
 								 String strTeamlist=cricketSocialRestTemplateService.userRegistration(hubReq);
 								 HubResponse strTeamResponse= GsonConverters.getGsonObject().fromJson(strTeamlist, HubResponse.class); 
-								 
 								 if(strTeamResponse.getResults().getSearchResponse()!=null)
 								 {
 									 model.addObject("TEAMAroundYou", strTeamResponse.getResults().getSearchResponse().getBoardProfileList());
@@ -1431,6 +1439,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 									 searchReq.setLatlang(defaultBuddyAroundYouLatlongValue);
 								 }
 								 hubReq.setRequestParam(searchReq);
+								 hubReq.setUserName(userEmail);
 								 String strbuddyresponse=cricketSocialRestTemplateService.userRegistration(hubReq);
 								 HubResponse buddyResponse= GsonConverters.getGsonObject().fromJson(strbuddyresponse, HubResponse.class); 
 								 if(buddyResponse.getResults().getSearchResponse()!=null)
@@ -1456,6 +1465,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 									 searchReq.setLatlang(defaultMerchantAroundYouLatLongValue);
 								 }
 								 hubReq.setRequestParam(searchReq);
+								 hubReq.setUserName(userEmail);
 								 String strMerchandiseAroundYouresponse=cricketSocialRestTemplateService.userRegistration(hubReq);
 								 HubResponse merchandiseAroundYouResponse= GsonConverters.getGsonObject().fromJson(strMerchandiseAroundYouresponse, HubResponse.class); 
 								 if(merchandiseAroundYouResponse.getResults().getSearchResponse()!=null)
@@ -1471,6 +1481,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 								 map.put("startNode", 0);
 								 map.put("endNode", 200);
 								  hubReq.setRequestParam(map);
+								  hubReq.setUserName(userEmail);
 									 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
 									 GsonBuilder builder = new GsonBuilder();
 									 Gson gson = builder.create();
@@ -1487,30 +1498,11 @@ public ModelAndView userprofile(HttpServletRequest request)
 										 model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 									 }
 								 
-									 
-									 //userlocation
-									 
-									 //hubReq= new HubRequest();
-									 System.out.println("user latlong location ----------------> "+userlocation);
-									 hubReq.setMsgType(215);
-									 ModelMap bannermap=new ModelMap();
-									 bannermap.put("geolocation", userlocation);
-									 bannermap.put("bannerType", "user");
-									 hubReq.setRequestParam(bannermap);
-								     String strUserBannerList=cricketSocialRestTemplateService.userRegistration(hubReq);
-									if(strUserBannerList!=null){
-										 HubResponse hubResponse= gson.fromJson(strUserBannerList, HubResponse.class);
-										 if(hubResponse!=null && hubResponse.getResults()!=null && hubResponse.getResults().getBannerListByLatLang()!=null){
-											 session.setAttribute("UserBannerList", hubResponse.getResults().getBannerListByLatLang().getBannerList());
-										 }
-										 /*if(hubResponse!=null && hubResponse.getResults()!=null && hubResponse.getResults().getSearchResponse()!=null){
-											 session.setAttribute("UserBannerList", hubResponse.getResults().getSearchResponse().getBannerList());
-											 System.out.println("banner list "+hubResponse.getResults().getSearchResponse().getBannerList().size());
-											 List<BannerInformation> bannlist=(List<BannerInformation>) session.getAttribute("UserBannerList");
-											 System.out.println("bannlist ---------> "+bannlist.size());
-										 }*/
-									}
-							  }	
+									
+							  }
+								long enddate=new  Date().getTime();
+								logger.info(userEmail +" ~~~~~~~~~~ Over all time taken :"+(enddate-startdate));
+								System.out.println("The time taken in :"+(enddate-startdate));
 								 
 							  }else{
 								  model=new ModelAndView("redirect:/userprofile");
@@ -1549,14 +1541,23 @@ public ModelAndView userprofile(HttpServletRequest request)
 			//System.out.println("loginvalidation is   "+loginvalidation.replace("%20", " "));
 			
 			model=new ModelAndView("welcome");
-	    	model.addObject("LGIN", "Login");
+	    	
 	    	if(!loginvalidation.equalsIgnoreCase("Unlock")){
+	    		
+	    		if(loginvalidation.equalsIgnoreCase("InvalidUUID")){
+	    			
+	    			model=new ModelAndView("Errorpage");
+	    			
+	    			model.addObject("InvalidURl", "Sorry, unable to process the request");
+	    		}else{
 	    	if(loginvalidation!=null){
 	    		model.addObject("loginvalidation", loginvalidation.replace("%20", " "));
-	    	}
+	    	}}
+	    		
 	    	}else{
 	    		model.addObject("Unlock", "ScoreCard unlocked successfully");
 	    	}
+	    	model.addObject("LGIN", "Login");
 	    	HttpSession session=request.getSession(true);
 	    	if(session.getAttribute("Schedulemessage") != null){
 	    		System.out.println("Schedulemessage :"+session.getAttribute("Schedulemessage"));
@@ -2440,7 +2441,6 @@ public ModelAndView userprofile(HttpServletRequest request)
 			e.printStackTrace();
 		}
 		return model;
-	//	return null;
 	}
 	@RequestMapping(value="/postFeed", method=RequestMethod.POST)
 	public @ResponseBody List<Feeds> postFeed( HttpServletRequest request,@RequestBody Feeds feeds)
@@ -2472,7 +2472,8 @@ public ModelAndView userprofile(HttpServletRequest request)
 						 
 						 // check for url 
 						 
-						 String contentarray[]=feeds.getContent().split(" ");
+						 //String contentarray[]=feeds.getContent().split(" ");
+						 String contentarray[]=feeds.getContent().replaceAll("\n", " ").split(" ");
 						 String savecontent="";
 						 for(String word : contentarray)
 						 {
@@ -4589,6 +4590,10 @@ public ModelAndView boardFanpublicview(HttpServletRequest request,@PathVariable 
 	
 	ModelAndView model=new ModelAndView("BoardFanPublicView");
 	HttpSession session=request.getSession(true);
+	
+	
+	if(isUUID(bid)){
+	
 	if(session!=null && session.getAttribute("USRID")!=null)
 	{
 		UUID userId=(UUID) session.getAttribute("USRID");
@@ -4888,6 +4893,11 @@ public ModelAndView boardFanpublicview(HttpServletRequest request,@PathVariable 
 	}else{
 		model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 	}
+	}else{
+	
+		model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		
+	}
 
 	return model;
 	
@@ -4900,6 +4910,9 @@ public ModelAndView boardFan(HttpServletRequest request,@RequestParam String bid
 	
 	ModelAndView model=new ModelAndView("Board-Fan");
 	HttpSession session=request.getSession(true);
+	
+	if(isUUID(bid)){
+	
 	if(session!=null && session.getAttribute("USRID")!=null)
 	{
 		UUID userId=(UUID) session.getAttribute("USRID");
@@ -5179,6 +5192,10 @@ public ModelAndView boardFan(HttpServletRequest request,@RequestParam String bid
 	}else{
 		model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 	}
+	
+	}else{
+		model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	}
 
 	return model;
 	
@@ -5189,6 +5206,9 @@ public ModelAndView boardFanOf(HttpServletRequest request,@RequestParam String b
 	
 	ModelAndView model=new ModelAndView("boardFanOf");
 	HttpSession session=request.getSession(true);
+	
+	if(isUUID(bid)){
+	
 	if(session!=null && session.getAttribute("USRID")!=null)
 	{
 		UUID userId=(UUID) session.getAttribute("USRID");
@@ -5452,7 +5472,9 @@ public ModelAndView boardFanOf(HttpServletRequest request,@RequestParam String b
 	}else{
 		model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 	}
-
+	}else{
+		model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
+	}
 	return model;
 	
 }
@@ -5461,6 +5483,9 @@ public ModelAndView boardFanOfpublicprofile(HttpServletRequest request,@PathVari
 	
 	ModelAndView model=new ModelAndView("boardFanOfPublic");
 	HttpSession session=request.getSession(true);
+	
+	if(isUUID(bid)){
+	
 	if(session!=null && session.getAttribute("USRID")!=null)
 	{
 		UUID userId=(UUID) session.getAttribute("USRID");
@@ -5744,7 +5769,9 @@ public ModelAndView boardFanOfpublicprofile(HttpServletRequest request,@PathVari
 	}else{
 		model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 	}
-
+	}else{
+		model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	}
 	return model;
 	
 }
@@ -5858,6 +5885,8 @@ public ModelAndView getboard(@RequestParam String bid, HttpServletRequest reques
 {
 	ModelAndView model=null;
 	try{
+		
+		if(isUUID(bid)){
 		
 		HttpSession session=request.getSession(true);
 		if(session!=null && session.getAttribute("USRID")!=null)
@@ -6260,6 +6289,11 @@ public ModelAndView getboard(@RequestParam String bid, HttpServletRequest reques
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
+		
+		}else{
+			
+				model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -6272,7 +6306,7 @@ public ModelAndView pitch(@RequestParam String bid, HttpServletRequest request) 
 {
 	ModelAndView model=null;
 	try{
-		
+		if(isUUID(bid)){
 		HttpSession session=request.getSession(true);
 		if(session!=null && session.getAttribute("USRID")!=null)
 		{
@@ -6537,6 +6571,11 @@ public ModelAndView pitch(@RequestParam String bid, HttpServletRequest request) 
 			
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
+		}
+		
+		}else{
+			
+				model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
 		}
 	}catch(Exception e)
 	{
@@ -6918,6 +6957,8 @@ public @ResponseBody ModelAndView createRoaster(HttpServletRequest request,@Requ
 {
 	HttpSession session=request.getSession(true);
 	ModelAndView model=null;
+	
+	if(isUUID(bid)){
 	if(session != null){
 		
 		UUID userId=(UUID) session.getAttribute("USRID");
@@ -7175,6 +7216,10 @@ public @ResponseBody ModelAndView createRoaster(HttpServletRequest request,@Requ
 
 	}
 	
+	}else{
+		model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	}
+	
 	return model;
 	
 }
@@ -7185,6 +7230,7 @@ public @ResponseBody ModelAndView getRosterDetails(HttpServletRequest request,@R
 {
 	HttpSession session=request.getSession(true);
 	ModelAndView model=null;
+	if(isUUID(bid)){
 	if(session != null ){
 		
 		UUID userId=(UUID) session.getAttribute("USRID");
@@ -7550,6 +7596,9 @@ public @ResponseBody ModelAndView getRosterDetails(HttpServletRequest request,@R
 	}else{
 		model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 	}
+	}else{
+		model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
+	}
 	
 	return model;
 	
@@ -7767,6 +7816,9 @@ public @ResponseBody ModelAndView deleteRoster(HttpServletRequest request,@Reque
 {
   HttpSession session=request.getSession(true);
   ModelAndView model=null;
+  
+  if(isUUID(bid) && isUUID(rosterId)){
+  
   if(session != null){
       UUID userId=(UUID) session.getAttribute("USRID");
        hubReq=new HubRequest(62);
@@ -7847,7 +7899,9 @@ public @ResponseBody ModelAndView deleteRoster(HttpServletRequest request,@Reque
   }else{
       model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
   }
-  
+  }else{
+	  model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");  
+  }
   return model;
   
 }
@@ -7863,6 +7917,7 @@ public @ResponseBody ModelAndView rosterDetails(HttpServletRequest request,@Requ
 {
 	HttpSession session=request.getSession(true);
 	ModelAndView model=null;
+	if(isUUID(bId) && isUUID(rosterId)){
 	UUID userId=(UUID) session.getAttribute("USRID");
 	if(session != null && userId!=null){
 		
@@ -8184,6 +8239,10 @@ public @ResponseBody ModelAndView rosterDetails(HttpServletRequest request,@Requ
 			 model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 
 		}
+	
+	}else{
+		model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	}
 	return model;
 	
 }
@@ -8281,6 +8340,9 @@ public ModelAndView getBuddyPublicProfile(HttpServletRequest request,@PathVariab
 {
 	ModelAndView model=null;
 	 HttpSession session = request.getSession(true);
+	 
+	 if(isUUID(buddyId)){
+	 
 	 if(session.getAttribute("USRID")!=null)
 	 {
 		 
@@ -8585,6 +8647,9 @@ public ModelAndView getBuddyPublicProfile(HttpServletRequest request,@PathVariab
 		 model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 
 	 }
+	 }else{
+		 model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	 }
 	 return model;
 }
 
@@ -8597,6 +8662,9 @@ public ModelAndView getBuddyFriends(HttpServletRequest request, @PathVariable St
 
 	UUID userId=(UUID) session.getAttribute("USRID");
 	ModelAndView model=null;
+	
+	 if(isUUID(buddyId)){
+	
 	if(userId != null){
 		//model.setViewName("buddies");
 		model=new ModelAndView("BuddyPublicFriends");
@@ -8809,7 +8877,9 @@ public ModelAndView getBuddyFriends(HttpServletRequest request, @PathVariable St
 	}
 
 	
-	
+	 }else{
+		 model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	 }
 	
 	return model;
 	
@@ -8821,6 +8891,7 @@ public ModelAndView editRoster(HttpServletRequest request,@RequestParam String r
 {
 	HttpSession session=request.getSession(true);
 	ModelAndView model=null;
+	if(isUUID(rid)){
 	if(session.getAttribute("USRID")!=null)
 	{
 		UUID userId=(UUID) session.getAttribute("USRID");
@@ -8989,6 +9060,9 @@ public ModelAndView editRoster(HttpServletRequest request,@RequestParam String r
 	}else{
 		 model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 	}
+	}else{
+		model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	}
 	
 	return model;
 }
@@ -9092,6 +9166,7 @@ public ModelAndView boardProfile(@RequestParam String bid, HttpServletRequest re
 {
 	ModelAndView model= null;
 	try{
+		if(isUUID(bid)){
 		HttpSession session=request.getSession(true);	
 		if(session.getAttribute("USRID")!=null)
 		{
@@ -9193,6 +9268,9 @@ public ModelAndView boardProfile(@RequestParam String bid, HttpServletRequest re
 			 
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
+		}
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
 		}
 	}catch(Exception e)
 	{
@@ -9377,6 +9455,8 @@ public ModelAndView buddyBoard(HttpServletRequest request, @PathVariable String 
 	ModelAndView model=new ModelAndView("ListOfBuddyBoards");
 	
 	try {
+		if(isUUID(BuddyId)){
+		
 		HttpSession session=request.getSession(true);
 		if(session!=null && session.getAttribute("USRID")!=null)
 		{
@@ -9443,6 +9523,9 @@ public ModelAndView buddyBoard(HttpServletRequest request, @PathVariable String 
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
@@ -9455,6 +9538,8 @@ public ModelAndView buddyBoard(HttpServletRequest request, @PathVariable String 
 public ModelAndView buddyfans(HttpServletRequest request, @PathVariable String buddyID) throws CSException{
 	HttpSession session=request.getSession(true);
 	ModelAndView model=null;
+	
+	if(isUUID(buddyID)){
 
 	if(session!=null && session.getAttribute("USRID")!=null)
 	{
@@ -9659,6 +9744,9 @@ public ModelAndView buddyfans(HttpServletRequest request, @PathVariable String b
 		model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		
 	}
+	}else{
+		model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	}
 	return model;
 }
 
@@ -9669,7 +9757,7 @@ public ModelAndView buddyfans(HttpServletRequest request, @PathVariable String b
 public ModelAndView buddyfanOfList(HttpServletRequest request, @PathVariable String buddyID) throws CSException{
 	HttpSession session=request.getSession(true);
 	ModelAndView model=null;
-
+	if(isUUID(buddyID)){
 	if(session!=null && session.getAttribute("USRID")!=null)
 	{
 		model=new ModelAndView("buddyFanOfList");
@@ -9878,6 +9966,10 @@ public ModelAndView buddyfanOfList(HttpServletRequest request, @PathVariable Str
 		model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		
 	}
+	
+	}else{
+		model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	}
 	return model;
 }
 
@@ -9886,9 +9978,14 @@ public ModelAndView boardPublicProfile(HttpServletRequest request, @PathVariable
 {
 	HttpSession session=request.getSession(true);
 	ModelAndView model=null;
+	
+	
+	
 	final String context = request.getContextPath();
 	List<Object> upcommingObject=new ArrayList<Object>();
 	try{
+		if(isUUID(boardID)){
+		
 		if(session!=null && session.getAttribute("USRID")!=null)
 		{
 
@@ -10418,7 +10515,9 @@ public ModelAndView boardPublicProfile(HttpServletRequest request, @PathVariable
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
 		
-		
+	}else{
+		model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	}
 		
 	}catch(Exception e)
 	{
@@ -10968,7 +11067,7 @@ public ModelAndView updateUserDetail(@ModelAttribute UserProfileUpdate2 userProf
 		    
 		    
 		    // changed by vignesh for cropimage
-		    System.out.println("The base flag :"+userProfile.getCroppedFlag());
+		   /* System.out.println("The base flag :"+userProfile.getCroppedFlag());
 		    if(userProfile.getCroppedFlag().equalsIgnoreCase("Cropped"))
 		    {
 		    	System.out.println("The base 64 is :"+userProfile.getCroppedBase64());
@@ -10980,7 +11079,7 @@ public ModelAndView updateUserDetail(@ModelAttribute UserProfileUpdate2 userProf
 		    	userProfile.setImageExtension("."+imgextension);
 		    	
 		    }
-		    else if(userProfile.getUserimgfile()!=null)
+		    else */if(userProfile.getUserimgfile()!=null)
 		    {
 		    	userProfile.getUserimgfile().getName();
 		    	ImageDetails imgfile= new ImageDetails();
@@ -11376,6 +11475,9 @@ public ModelAndView createUmpire(@PathVariable String boardId,HttpServletRequest
 	ModelAndView mav = new ModelAndView();
 	HttpSession session=request.getSession(true);
 	try{
+		
+		if(isUUID(boardId)){
+		
 		if(session!=null && session.getAttribute("USRID")!=null)
 		{
 	mav = new ModelAndView("CreateUmpire");
@@ -11442,6 +11544,10 @@ public ModelAndView createUmpire(@PathVariable String boardId,HttpServletRequest
 		}else{
 			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
+		
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -11453,6 +11559,8 @@ public ModelAndView rosterMedia(@PathVariable String rid, @PathVariable String b
 	ModelAndView model=null;
 	model= new ModelAndView("rosterMedia");
 	HttpSession session=request.getSession(true);
+	
+	if(isUUID(rid) && isUUID(bid)){
 	
 	if(session != null && session.getAttribute("USRID")!=null){
 		
@@ -11543,6 +11651,10 @@ public ModelAndView rosterMedia(@PathVariable String rid, @PathVariable String b
 		
 	}else{
 		model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
+	}
+	
+	}else{
+		model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
 	}
 	return model;
 }
@@ -11642,6 +11754,8 @@ public ModelAndView boardEvent(HttpServletRequest request,@PathVariable String b
 
 	ModelAndView model= null;
 	try{
+		if(isUUID(bid)){
+		
 		HttpSession session=request.getSession(true);
 		
 		if(session!=null && session.getAttribute("USRID")!=null)
@@ -11789,7 +11903,9 @@ public ModelAndView boardEvent(HttpServletRequest request,@PathVariable String b
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
+		}
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -11804,6 +11920,8 @@ public ModelAndView boardEvent(HttpServletRequest request,@PathVariable String b
 public ModelAndView umpireList(@PathVariable String boardId, HttpServletRequest req){
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
+		
 		HttpSession session=req.getSession(true);
 		
 			if(session!=null && session.getAttribute("USRID")!=null)
@@ -11900,6 +12018,10 @@ public ModelAndView umpireList(@PathVariable String boardId, HttpServletRequest 
 			}else{
 				mav=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 			}
+			
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 		
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -11956,7 +12078,7 @@ public @ResponseBody List<BoardUmpire> deleteUmpire(@RequestBody BoardUmpire ump
 public ModelAndView createGround(@PathVariable String boardId,HttpServletRequest req){
 	ModelAndView mav = new ModelAndView();
 	try{
-
+		if(isUUID(boardId)){
 		HttpSession session=req.getSession(true);
 		
 		if(session!=null && session.getAttribute("USRID")!=null)
@@ -12034,6 +12156,9 @@ public ModelAndView createGround(@PathVariable String boardId,HttpServletRequest
 			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 
 		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -12045,6 +12170,7 @@ public ModelAndView createGround(@PathVariable String boardId,HttpServletRequest
 public ModelAndView groundList(@PathVariable String boardId,HttpServletRequest req){
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 		HttpSession session=req.getSession(true);
 		
 		if(session!=null && session.getAttribute("USRID")!=null)
@@ -12132,6 +12258,9 @@ public ModelAndView groundList(@PathVariable String boardId,HttpServletRequest r
 			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 
 		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -12144,6 +12273,7 @@ public ModelAndView groundinfoprivate(@PathVariable String groundId,@PathVariabl
 {
 	ModelAndView mav=null;
 	try{
+		if(isUUID(boardId) && isUUID(groundId)){
 		HttpSession session=req.getSession();
 		if(session !=null && session.getAttribute("USRID") != null)
 		{
@@ -12246,9 +12376,9 @@ public ModelAndView groundinfoprivate(@PathVariable String groundId,@PathVariabl
 					}
 				 
 			
-			
-			
-		
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 		
 	}catch(Exception e)
 	{
@@ -12344,6 +12474,7 @@ public @ResponseBody String insertUmpireDetails(@RequestBody BoardUmpire umpire,
 public ModelAndView  editUmpirePage(@PathVariable String umpireId, @PathVariable String boardId,HttpServletRequest req){
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId) && isUUID(umpireId)){
 		HttpSession session=req.getSession(true);
 		
 		if(session!=null && session.getAttribute("USRID")!=null)
@@ -12530,7 +12661,9 @@ public ModelAndView  editUmpirePage(@PathVariable String umpireId, @PathVariable
 			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 
 		}
-		 
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -12543,6 +12676,7 @@ public ModelAndView  editUmpirePage(@PathVariable String umpireId, @PathVariable
 public ModelAndView  coordinatoreditUmpirePage(@PathVariable String umpireId, @PathVariable String boardId,HttpServletRequest req){
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId) && isUUID(umpireId)){
 		HttpSession session=req.getSession(true);
 		
 		if(session!=null && session.getAttribute("USRID")!=null)
@@ -12760,7 +12894,9 @@ public ModelAndView  coordinatoreditUmpirePage(@PathVariable String umpireId, @P
 			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 
 		}
-		 
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -12813,6 +12949,9 @@ public @ResponseBody String updateUmpireDetails(@RequestBody BoardUmpire umpire,
 public ModelAndView  editGround( @PathVariable String groundId,@PathVariable String boardId,HttpServletRequest req){
 	ModelAndView mav = null;
 	try{
+		
+		if(isUUID(boardId) && isUUID(groundId)){
+		
 		HttpSession session=req.getSession(true);
 		
 		if(session!=null && session.getAttribute("USRID")!=null)
@@ -12887,6 +13026,9 @@ public ModelAndView  editGround( @PathVariable String groundId,@PathVariable Str
 			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 
 		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -12899,6 +13041,9 @@ public ModelAndView  editGround( @PathVariable String groundId,@PathVariable Str
 public ModelAndView  CoordinatoreditGround( @PathVariable String groundId,@PathVariable String boardId,HttpServletRequest req){
 	ModelAndView mav = null;
 	try{
+		
+		if(isUUID(boardId) && isUUID(groundId)){
+		
 		HttpSession session=req.getSession(true);
 		
 		if(session!=null && session.getAttribute("USRID")!=null)
@@ -12996,6 +13141,9 @@ public ModelAndView  CoordinatoreditGround( @PathVariable String groundId,@PathV
 		}else{
 			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 
+		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
 		}
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -13135,6 +13283,7 @@ public @ResponseBody String updateGroundDetails(@RequestBody Ground ground,HttpS
 public ModelAndView createSchedule(HttpServletRequest req,@PathVariable String boardId){
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 	HttpSession session = req.getSession(true);
 	if(session != null && session.getAttribute("USRID") != null){
 		mav = new ModelAndView("CreateSchedule");
@@ -13313,6 +13462,10 @@ public ModelAndView createSchedule(HttpServletRequest req,@PathVariable String b
 		mav = new ModelAndView("redirect:/login.htm?loginvalidation = Your session has been expired");
 	}
 	
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
+	
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -13323,6 +13476,7 @@ public ModelAndView createSchedule(HttpServletRequest req,@PathVariable String b
 public ModelAndView createScheduleLanding(HttpServletRequest req,@PathVariable String boardId){
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 	HttpSession session = req.getSession(true);
 	
 	if(session != null && session.getAttribute("USRID") != null){
@@ -13441,7 +13595,7 @@ public ModelAndView createScheduleLanding(HttpServletRequest req,@PathVariable S
 	 
 		}
 		
-		List<UmpireNameList> umpireList = new ArrayList<UmpireNameList>();
+		/*List<UmpireNameList> umpireList = new ArrayList<UmpireNameList>();
 			hubReq = new HubRequest(223);
 			hubReq.setMsgType(223);
 			ModelMap m = new ModelMap();
@@ -13454,7 +13608,7 @@ public ModelAndView createScheduleLanding(HttpServletRequest req,@PathVariable S
 					mav.addObject("tournamentList", hubRes.getResults().getTournamentSchedulerList());
 							}
 		 
-			}	
+			}	*/
 			
 			hubReq = new HubRequest();
 			hubReq.setMsgType(176);
@@ -13497,7 +13651,9 @@ public ModelAndView createScheduleLanding(HttpServletRequest req,@PathVariable S
 	}else{
 		mav = new ModelAndView("redirect:/login.htm?loginvalidation = Your session has been expired");
 	}
-	
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -13705,7 +13861,7 @@ public ModelAndView insertScheduleDetails(HttpServletRequest req, @ModelAttribut
 				HubResponse hubRes = gson.fromJson(schedulerResponse, HubResponse.class);
 				if(hubRes != null && hubRes.getResults() != null){
 					
-					mav = new ModelAndView("ScheduleList");
+					/*mav = new ModelAndView("ScheduleList");
 					mav.addObject("boardId", boardId);
 					
 						 hubReq = new HubRequest(104);
@@ -13718,65 +13874,18 @@ public ModelAndView insertScheduleDetails(HttpServletRequest req, @ModelAttribut
 							String tournamentList = cricketSocialRestTemplateService.userRegistration(hubReq);
 							if(tournamentList !=  null){
 								HubResponse  hubResponse = gson.fromJson(tournamentList, HubResponse.class);
-								if(hubResponse !=  null && hubResponse.getResults() !=  null){
-								/*	mav.addObject("tournamentList", hubResponse.getResults().getTournamentSchedulerList());
-									//String scheduleId=hubResponse.getResults().getTournamentSchedulerList().get(0).getTournamentSchedulerId();
-									mav.addObject("dateString", hubResponse.getResults().getEndDateStr());
-									mav.addObject("startDate", hubResponse.getResults().getStartDateStr());
-									
-									String endDate = hubResponse.getResults().getEndDateStr();
-
-									String startDate = hubResponse.getResults().getStartDateStr();
-									String[] spliteDOB1 = startDate.split("-");
-									
-									 String monthInEditProfile1 = spliteDOB1[0];
-									 String dayInEditProfile1 = spliteDOB1[1];
-									 String yearInEditProfile1 = spliteDOB1[2];
-									
-									 String startDateSet= dayInEditProfile1+'/'+yearInEditProfile1+'/'+monthInEditProfile1;
-									
-									
-										mav.addObject("startDateSet", startDateSet);
-									
-									
-									String[] spliteDOB123 = endDate.split("-");
-									
-									 String monthInEditProfile2 = spliteDOB123[0];
-									 String dayInEditProfile2 = spliteDOB123[1];
-									 String yearInEditProfile2 = spliteDOB123[2];
-									 
-									
-									 String endDateSet= dayInEditProfile2+'/'+yearInEditProfile2+'/'+monthInEditProfile2;
-									
-									 mav.addObject("endDateSet", endDateSet);*/
+								if(hubResponse !=  null && hubResponse.getResults() !=  null){*/
+								
 									
 									session.setAttribute("CreateScheduleLanding", "Created");
 									
 									 mav=new ModelAndView("redirect:/CreateScheduleLanding/boardId/"+boardId);
-									/*mav=new ModelAndView("redirect:/SchedulerList/boardId/"+boardId);*/
-								//	 mav=new ModelAndView("redirect:/SchedulerList/boardId/"+boardId+"/"+scheduleId);
 									 return mav;
 									 
-									 
+							/*		 
 								}
-							}
+							}*/
 					 
-					
-					
-					
-					
-					/*if(hubRes.getResults().getTournamentList() != null){
-						mav.addObject("tournamentDetails", hubRes.getResults().getTournamentList());
-						if(hubRes.getResults().getTournamentList().size() != 0){
-						mav.addObject("teamList", hubRes.getResults().getTournamentList().get(0).getBoardSearchBean());
-						mav.addObject("umpireCheck", hubRes.getResults().getTournamentList().get(0).getUmpireCheck());
-						mav.addObject("tournamentId", hubRes.getResults().getTournamentList().get(0).getTournamentId());
-						System.out.println("teamlistSize : "+hubRes.getResults().getTournamentList().get(0).getBoardSearchBean().size());
-						}
-						}else{
-						
-					}
-					*/
 				}
 			}
 	
@@ -13921,6 +14030,7 @@ public ModelAndView insertScheduleDetails(HttpServletRequest req, @ModelAttribut
 public ModelAndView createTrophy(HttpServletRequest req,@PathVariable String boardId){
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null)  {
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -13974,6 +14084,9 @@ public ModelAndView createTrophy(HttpServletRequest req,@PathVariable String boa
 		}else{
 		 mav = new ModelAndView("redirect:/login.htm?loginvalidation = Your session has been expired");
 		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -13984,6 +14097,7 @@ public ModelAndView createTrophy(HttpServletRequest req,@PathVariable String boa
 public ModelAndView CreateTournament(HttpServletRequest req,@PathVariable String boardId){
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null)  {
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -14038,6 +14152,9 @@ public ModelAndView CreateTournament(HttpServletRequest req,@PathVariable String
 		}else{
 		 mav = new ModelAndView("redirect:/login.htm?loginvalidation = Your session has been expired");
 		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -14055,6 +14172,8 @@ public ModelAndView edittrophy(HttpServletRequest req,@PathVariable String board
 	
 	
 	try{
+		
+		if(isUUID(boardId) && isUUID(tournamentId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null)  {
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -14136,6 +14255,9 @@ public ModelAndView edittrophy(HttpServletRequest req,@PathVariable String board
 		}else{
 		 mav = new ModelAndView("redirect:/login.htm?loginvalidation = Your session has been expired");
 		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -14154,6 +14276,7 @@ public ModelAndView editTrophypublic(HttpServletRequest req,@PathVariable String
 	
 	
 	try{
+		if(isUUID(boardId) && isUUID(tournamentId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null)  {
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -14234,6 +14357,9 @@ public ModelAndView editTrophypublic(HttpServletRequest req,@PathVariable String
 
 		}else{
 		 mav = new ModelAndView("redirect:/login.htm?loginvalidation = Your session has been expired");
+		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
 		}
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -14735,6 +14861,7 @@ public @ResponseBody String deleteScheduler(@RequestBody TournamentScheduler ts,
 public ModelAndView editScheduler(HttpServletRequest req, @PathVariable String boardId, @PathVariable String tournamentSchedulerId,@PathVariable String tournamentId){
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId) && isUUID(tournamentSchedulerId) && isUUID(tournamentId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			 hubReq = new HubRequest();
@@ -14974,7 +15101,9 @@ public ModelAndView editScheduler(HttpServletRequest req, @PathVariable String b
 		}else{
 			mav = new ModelAndView("redirect:/login.htm?loginvalidation = Your session has been expired");
 		}
-		
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 		
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -14987,6 +15116,7 @@ public ModelAndView editScheduler(HttpServletRequest req, @PathVariable String b
 public ModelAndView editSchedulerLanding(HttpServletRequest req, @PathVariable String boardId, @PathVariable String tournamentSchedulerId,@PathVariable String tournamentId){
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId) && isUUID(tournamentSchedulerId) && isUUID(tournamentId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			 hubReq = new HubRequest();
@@ -15232,7 +15362,9 @@ public ModelAndView editSchedulerLanding(HttpServletRequest req, @PathVariable S
 			mav = new ModelAndView("redirect:/login.htm?loginvalidation = Your session has been expired");
 		}
 		
-		
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -15290,12 +15422,12 @@ public SearchResponse umpireCreationNameSearch(HttpServletRequest request,@Reque
 public ModelAndView LeaguePoints(HttpServletRequest request, @PathVariable String bid) throws CSException
 {
 	
-
-	
-	
 	 
 	 	ModelAndView model=null;
 	    HttpSession session = request.getSession(true);	
+	    
+	    if(isUUID(bid)){
+	    
 		if(session!=null && session.getAttribute("USRID")!=null)
 		{
 			
@@ -15386,6 +15518,9 @@ public ModelAndView LeaguePoints(HttpServletRequest request, @PathVariable Strin
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
+	    }else{
+	    	model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	    }
 	return model;
 }
 @RequestMapping(value="/LeaguePointsPage", method=RequestMethod.POST)
@@ -15600,6 +15735,7 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 
 	HttpSession session=request.getSession(true);
 	ModelAndView model=null;
+	if(isUUID(bid)){
 	if(session != null ){
 		
 		UUID userId=(UUID) session.getAttribute("USRID");
@@ -16003,6 +16139,9 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 	}else{
 		model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 	}
+	}else{
+		model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	}
 	
 	return model;
 }
@@ -16015,6 +16154,9 @@ public ModelAndView rosterProfileDetails(@PathVariable String rid, @PathVariable
 	HttpSession session=request.getSession(true);
 	ModelAndView model=null;
 	UUID userId=(UUID) session.getAttribute("USRID");
+	
+	if(isUUID(bId) && isUUID(rid)){
+	
 	if(session != null && userId!=null){
 		
 			 hubReq=new HubRequest(48);
@@ -16365,6 +16507,10 @@ public ModelAndView rosterProfileDetails(@PathVariable String rid, @PathVariable
 			 model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 
 		}
+	
+	}else{
+		model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	}
 	return model;
 	
 
@@ -16377,7 +16523,7 @@ public ModelAndView rosterInfo(@PathVariable String rid, @PathVariable String bi
 	ModelAndView model=null;
 	model= new ModelAndView("rosterInfo");
 	HttpSession session=request.getSession(true);
-	
+	if(isUUID(bid) && isUUID(rid)){
 	if(session != null && session.getAttribute("USRID")!=null){
 		
 		UUID userId= (UUID) session.getAttribute("USRID");
@@ -16494,6 +16640,11 @@ public ModelAndView rosterInfo(@PathVariable String rid, @PathVariable String bi
 	}else{
 		model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 	}
+	
+	}else{
+		model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	}
+	
 	return model;
 
 }
@@ -16507,6 +16658,7 @@ public ModelAndView leaguePointsProfile(HttpServletRequest request, @PathVariabl
 	 
 	 	ModelAndView model=null;
 	    HttpSession session = request.getSession(true);	
+	    if(isUUID(bid)){
 		if(session!=null && session.getAttribute("USRID")!=null)
 		{
 			
@@ -16641,6 +16793,10 @@ public ModelAndView leaguePointsProfile(HttpServletRequest request, @PathVariabl
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
+	    }else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
+		
 	return model;
 }
 
@@ -16723,6 +16879,7 @@ public ModelAndView leaguecenturies(@PathVariable String bid, HttpServletRequest
 {
 	ModelAndView model= null;
 	try{
+		 if(isUUID(bid)){
 			HttpSession session = request.getSession(true);	
 			if(session!=null && session.getAttribute("USRID")!=null)
 			{
@@ -16900,7 +17057,9 @@ public ModelAndView leaguecenturies(@PathVariable String bid, HttpServletRequest
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		 }else{
+			 model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID"); 
+		 }
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -17155,6 +17314,7 @@ public ModelAndView leaguehalfcenturies(@PathVariable String bid, HttpServletReq
 {
 	ModelAndView model= null;
 	try{
+		 if(isUUID(bid)){
 		  HttpSession session = request.getSession(true);	
 			if(session!=null && session.getAttribute("USRID")!=null)
 			{
@@ -17319,6 +17479,9 @@ public ModelAndView leaguehalfcenturies(@PathVariable String bid, HttpServletReq
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
+		 }else{
+			 model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		 }
 		
 	}catch(Exception e)
 	{
@@ -17331,6 +17494,7 @@ public ModelAndView leaguecenturiesProfile(@PathVariable String bid, HttpServlet
 {
 	ModelAndView model= null;
 	try{
+		 if(isUUID(bid)){
 		  HttpSession session = request.getSession(true);	
 			if(session!=null && session.getAttribute("USRID")!=null)
 			{
@@ -17516,6 +17680,9 @@ public ModelAndView leaguecenturiesProfile(@PathVariable String bid, HttpServlet
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
+		 }else{
+			 model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		 }
 		
 	}catch(Exception e)
 	{
@@ -18158,6 +18325,7 @@ public ModelAndView leaguehalfcenturiesprofile(@PathVariable String bid, HttpSer
 {
 	ModelAndView model= null;
 	try{
+		 if(isUUID(bid)){
 		  HttpSession session = request.getSession(true);	
 			if(session!=null && session.getAttribute("USRID")!=null)
 			{
@@ -18353,7 +18521,9 @@ public ModelAndView leaguehalfcenturiesprofile(@PathVariable String bid, HttpSer
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		 }else{
+			 model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID"); 
+		 }
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -18364,6 +18534,7 @@ public ModelAndView leaguehalfcenturiesprofile(@PathVariable String bid, HttpSer
 public ModelAndView umpireProfileList(@PathVariable String boardId, HttpServletRequest req){
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 		HttpSession session=req.getSession(true);
 		
 			if(session!=null && session.getAttribute("USRID")!=null)
@@ -18478,6 +18649,10 @@ public ModelAndView umpireProfileList(@PathVariable String boardId, HttpServletR
 			}else{
 				mav=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 			}
+			
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID"); 
+		 }
 		
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -18489,6 +18664,8 @@ public ModelAndView umpireProfileList(@PathVariable String boardId, HttpServletR
 public ModelAndView groundProfileList(@PathVariable String boardId,HttpServletRequest req){
 	ModelAndView mav = null;
 	try{
+		
+		if(isUUID(boardId)){
 		HttpSession session=req.getSession(true);
 		
 		if(session!=null && session.getAttribute("USRID")!=null)
@@ -18604,6 +18781,9 @@ public ModelAndView groundProfileList(@PathVariable String boardId,HttpServletRe
 			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 
 		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -18616,6 +18796,7 @@ public ModelAndView groundInfopublic(@PathVariable String groundId,@PathVariable
 {
 	ModelAndView mav=null;
 	try{
+		if(isUUID(boardId) && isUUID(groundId)){
 		HttpSession session=req.getSession();
 		if(session != null && session.getAttribute("USRID")!=null)
 		{
@@ -18749,6 +18930,9 @@ public ModelAndView groundInfopublic(@PathVariable String groundId,@PathVariable
 			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 
 		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -18761,7 +18945,7 @@ public ModelAndView groundInfopublic(@PathVariable String groundId,@PathVariable
 public ModelAndView createGroundProfile(@PathVariable String boardId,HttpServletRequest req){
 	ModelAndView mav = new ModelAndView();
 	try{
-
+		if(isUUID(boardId)){
 		HttpSession session=req.getSession(true);
 		
 		if(session!=null && session.getAttribute("USRID")!=null)
@@ -18851,6 +19035,9 @@ public ModelAndView createGroundProfile(@PathVariable String boardId,HttpServlet
 			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 
 		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -18864,6 +19051,7 @@ public ModelAndView fiveWickets(@PathVariable String bid, HttpServletRequest req
 {
 	ModelAndView model= null;
 	try{
+		if(isUUID(bid)){
 		HttpSession session=request.getSession(true);
 		
 		if(session!=null && session.getAttribute("USRID")!=null)
@@ -18991,7 +19179,9 @@ public ModelAndView fiveWickets(@PathVariable String bid, HttpServletRequest req
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -19006,6 +19196,7 @@ public ModelAndView topbatsman(@PathVariable String bid , HttpServletRequest req
 System.out.println("IN CONTROLLER 1");
 	ModelAndView model= null;
 	try{
+		if(isUUID(bid)){
 		HttpSession session=request.getSession(true);
 		
 		if(session!=null && session.getAttribute("USRID")!=null)
@@ -19141,7 +19332,9 @@ System.out.println("IN CONTROLLER 1");
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -19156,6 +19349,7 @@ public ModelAndView topbowler(@PathVariable String bid , HttpServletRequest requ
 
 	ModelAndView model= null;
 	try{
+		if(isUUID(bid)){
 		HttpSession session=request.getSession(true);
 		
 		if(session!=null && session.getAttribute("USRID")!=null)
@@ -19290,7 +19484,9 @@ public ModelAndView topbowler(@PathVariable String bid , HttpServletRequest requ
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -19306,6 +19502,7 @@ public ModelAndView topUmpire(@PathVariable String bid, HttpServletRequest reque
 
 	ModelAndView model= null;
 	try{
+		if(isUUID(bid)){
 		HttpSession session=request.getSession(true);
 		
 		if(session!=null && session.getAttribute("USRID")!=null)
@@ -19375,7 +19572,9 @@ public ModelAndView topUmpire(@PathVariable String bid, HttpServletRequest reque
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -19393,6 +19592,7 @@ public ModelAndView teamdetails(@PathVariable String bid, HttpServletRequest req
 
 	ModelAndView model= null;
 	try{
+		if(isUUID(bid)){
 		HttpSession session=request.getSession(true);
 		
 		if(session!=null && session.getAttribute("USRID")!=null)
@@ -19502,7 +19702,9 @@ public ModelAndView teamdetails(@PathVariable String bid, HttpServletRequest req
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -19519,6 +19721,7 @@ public ModelAndView teamsSearchForm(@PathVariable String tid,@PathVariable Strin
 {
 	ModelAndView model= null;
 	try{
+		if(isUUID(bid) && isUUID(tid)){
 			HttpSession session = request.getSession(true);	
 			if(session!=null && session.getAttribute("USRID")!=null)
 			{
@@ -19635,7 +19838,9 @@ public ModelAndView teamsSearchForm(@PathVariable String tid,@PathVariable Strin
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -19827,6 +20032,7 @@ public ModelAndView teamcontacts(@PathVariable String bid, HttpServletRequest re
 
 	ModelAndView model= null;
 	try{
+		if(isUUID(bid)){
 		HttpSession session=request.getSession(true);
 		
 		if(session!=null && session.getAttribute("USRID")!=null)
@@ -19923,7 +20129,9 @@ public ModelAndView teamcontacts(@PathVariable String bid, HttpServletRequest re
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -19941,6 +20149,7 @@ public ModelAndView createEvent(@PathVariable String bid, HttpServletRequest req
 
 	ModelAndView model= null;
 	try{
+		if(isUUID(bid)){
 		HttpSession session=request.getSession(true);
 		
 		if(session!=null && session.getAttribute("USRID")!=null)
@@ -20025,7 +20234,9 @@ public ModelAndView createEvent(@PathVariable String bid, HttpServletRequest req
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -21273,6 +21484,7 @@ public Object umpireSearchForCreateScheduler(HttpServletRequest request,@Request
 public ModelAndView assignUmpire(HttpServletRequest req, @PathVariable String boardId) throws CSException{
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		
 		if(session != null && session.getAttribute("USRID") != null){
@@ -21383,6 +21595,9 @@ public ModelAndView assignUmpire(HttpServletRequest req, @PathVariable String bo
 			
 		}else{
 		ModelAndView model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
+		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
 		}
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -21549,6 +21764,7 @@ public @ResponseBody List<BoardUmpire> deleteUmpireFromAssignPage(HttpServletReq
 public ModelAndView assignScorer(HttpServletRequest req, @PathVariable String boardId) throws CSException{
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		
 		if(session != null && session.getAttribute("USRID") != null){
@@ -21655,6 +21871,9 @@ public ModelAndView assignScorer(HttpServletRequest req, @PathVariable String bo
 			
 		}else{
 		ModelAndView model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
+		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
 		}
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -21787,6 +22006,7 @@ public @ResponseBody List<ScorerNameList> deleteScorerFromAssignPage(HttpServlet
 public ModelAndView SchedulerList(HttpServletRequest req, @PathVariable String boardId) throws CSException{
 ModelAndView mav = null;
 try{
+	if(isUUID(boardId)){
 	HttpSession session = req.getSession(true);
 	if(session != null && session.getAttribute("USRID") != null){
 		UUID userId = (UUID) session.getAttribute("USRID");
@@ -21896,7 +22116,9 @@ try{
 		mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 	}
 	
-	
+	}else{
+		mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	}
 	
 	
 }catch(Exception ex){
@@ -21910,6 +22132,8 @@ return mav;
 public ModelAndView SchedulerList2(HttpServletRequest req, @PathVariable String boardId,@PathVariable Object scheduleId) throws CSException{
 ModelAndView mav = null;
 try{
+	
+	if(isUUID(boardId)){
 	HttpSession session = req.getSession(true);
 	if(session != null && session.getAttribute("USRID") != null){
 		UUID userId = (UUID) session.getAttribute("USRID");
@@ -22043,7 +22267,9 @@ try{
 		mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 	}
 	
-	
+	}else{
+		mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	}
 	
 	
 }catch(Exception ex){
@@ -22058,6 +22284,7 @@ return mav;
 public ModelAndView AmendSchedule(HttpServletRequest req,@PathVariable String boardId){
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 	HttpSession session = req.getSession(true);
 	if(session != null && session.getAttribute("USRID") != null){
 		mav = new ModelAndView("AmendSchedule");
@@ -22218,7 +22445,9 @@ public ModelAndView AmendSchedule(HttpServletRequest req,@PathVariable String bo
 	}else{
 		mav = new ModelAndView("redirect:/login.htm?loginvalidation = Your session has been expired");
 	}
-	
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -22376,6 +22605,7 @@ public ModelAndView gameSchedule(HttpServletRequest req, @PathVariable String bo
 public ModelAndView gameSchedule(HttpServletRequest req, @PathVariable String boardId) throws CSException{
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -22516,6 +22746,9 @@ public ModelAndView gameSchedule(HttpServletRequest req, @PathVariable String bo
 		}
 		else{
 			mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
+		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
 		}
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -22986,6 +23219,7 @@ public ModelAndView filterScheduleFunction(HttpServletRequest req, @ModelAttribu
 public ModelAndView CancelGameByDate(HttpServletRequest req, @PathVariable String boardId) throws CSException{
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -23114,6 +23348,9 @@ public ModelAndView CancelGameByDate(HttpServletRequest req, @PathVariable Strin
 		else{
 			mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -23125,6 +23362,7 @@ public ModelAndView CancelGameByDate(HttpServletRequest req, @PathVariable Strin
 public ModelAndView DisputeManagement(HttpServletRequest req, @PathVariable String boardId) throws CSException{
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -23201,6 +23439,9 @@ public ModelAndView DisputeManagement(HttpServletRequest req, @PathVariable Stri
 		else{
 			mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -23211,6 +23452,7 @@ public ModelAndView DisputeManagement(HttpServletRequest req, @PathVariable Stri
 public ModelAndView DisputeManagementPublic(HttpServletRequest req, @PathVariable String boardId) throws CSException{
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -23314,6 +23556,9 @@ public ModelAndView DisputeManagementPublic(HttpServletRequest req, @PathVariabl
 		else{
 			mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -23325,6 +23570,9 @@ public ModelAndView DisputeManagementPublic(HttpServletRequest req, @PathVariabl
 public ModelAndView showScoreCard(HttpServletRequest req, @PathVariable String boardId,@PathVariable String matchId) throws CSException{
 	ModelAndView mav = null;
 	try{
+		
+		if(isUUID(boardId) && isUUID(matchId)){
+		
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -23776,7 +24024,9 @@ public ModelAndView showScoreCard(HttpServletRequest req, @PathVariable String b
              /*	mav=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");*/
 		}
 		 
-		 
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
+		}	 
 	 
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -24149,6 +24399,7 @@ public ModelAndView boardEvents(@PathVariable String bid, HttpServletRequest req
 {
 	ModelAndView model= null;
 	try{	
+		if(isUUID(bid)){
 		HttpSession session = request.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -24297,8 +24548,10 @@ public ModelAndView boardEvents(@PathVariable String bid, HttpServletRequest req
 		}else{
 			model = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		 logger.error("board event public profile");
-		
+		 /*logger.error("board event public profile");*/
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -24559,6 +24812,7 @@ public ModelAndView createUmpire2(@PathVariable String boardId,HttpServletReques
 	ModelAndView mav = new ModelAndView();
 	HttpSession session=request.getSession(true);
 	try{
+		if(isUUID(boardId)){
 		if(session!=null && session.getAttribute("USRID")!=null)
 		{
 	mav = new ModelAndView("CreateUmpirepublicprofile");
@@ -24625,6 +24879,9 @@ public ModelAndView createUmpire2(@PathVariable String boardId,HttpServletReques
 		}else{
 			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -24634,6 +24891,7 @@ public ModelAndView createUmpire2(@PathVariable String boardId,HttpServletReques
 public ModelAndView SchedulerList2(HttpServletRequest req, @PathVariable String boardId) throws CSException{
 ModelAndView mav = null;
 try{
+	if(isUUID(boardId)){
 	HttpSession session = req.getSession(true);
 	if(session != null && session.getAttribute("USRID") != null){
 		UUID userId = (UUID) session.getAttribute("USRID");
@@ -24775,7 +25033,9 @@ try{
 	}
 	
 	
-	
+	}else{
+		mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	}
 	
 }catch(Exception ex){
 	ex.printStackTrace();
@@ -24789,6 +25049,7 @@ public ModelAndView editEvent(@PathVariable String eid, HttpServletRequest reque
 	ModelAndView model=null;
 	
 	try {
+		if(isUUID(eid)){
 		HttpSession session = request.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -24873,7 +25134,9 @@ if(streventtype!=null)
 			model = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
 		
-		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
@@ -24886,6 +25149,7 @@ public ModelAndView editBoardEvent(@PathVariable String bid,@PathVariable String
 	ModelAndView model=null;
 	
 	try {
+		if(isUUID(eid) && isUUID(bid)){
 		HttpSession session = request.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -24987,7 +25251,9 @@ if(streventtype!=null)
 		}else{
 			model = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 		
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -25182,6 +25448,7 @@ public @ResponseBody ModelAndView rosterInfo(HttpServletRequest request,@Request
 	HttpSession session=request.getSession(true);
 	ModelAndView model=null;
 	UUID userId=(UUID) session.getAttribute("USRID");
+	if(isUUID(rosterId)){
 	if(session != null && userId!=null){
 		
 			 hubReq=new HubRequest(48);
@@ -25480,6 +25747,9 @@ public @ResponseBody ModelAndView rosterInfo(HttpServletRequest request,@Request
 			 model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 
 		}
+	}else{
+		model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	}
 	return model;
 	
 }
@@ -25488,6 +25758,7 @@ public @ResponseBody ModelAndView rosterInfo(HttpServletRequest request,@Request
 public ModelAndView assignUmpirepublic(HttpServletRequest req, @PathVariable String boardId) throws CSException{
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		
 		if(session != null && session.getAttribute("USRID") != null){
@@ -25599,6 +25870,9 @@ public ModelAndView assignUmpirepublic(HttpServletRequest req, @PathVariable Str
 		}else{
 		 mav =new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -25610,6 +25884,7 @@ public ModelAndView assignUmpirepublic(HttpServletRequest req, @PathVariable Str
 public ModelAndView assignScorerProfile(HttpServletRequest req, @PathVariable String boardId) throws CSException{
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		
 		if(session != null && session.getAttribute("USRID") != null){
@@ -25721,6 +25996,9 @@ public ModelAndView assignScorerProfile(HttpServletRequest req, @PathVariable St
 		}else{
 		ModelAndView model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -25734,6 +26012,7 @@ public ModelAndView getBuddyboardPublicProfile(HttpServletRequest request,@PathV
 {
 	ModelAndView model=null;
 	 HttpSession session = request.getSession(true);
+	 if(isUUID(bid) && isUUID(buddyId)){
 	 if(session.getAttribute("USRID")!=null)
 	 {
 		 UUID userid=(UUID) session.getAttribute("USRID");
@@ -26053,6 +26332,9 @@ public ModelAndView getBuddyboardPublicProfile(HttpServletRequest request,@PathV
 		 model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 
 	 }
+	 }else{
+		 model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	 }
 	 return model;
 }
 
@@ -26065,6 +26347,7 @@ public ModelAndView boardPublicProfileByboard(HttpServletRequest request, @PathV
 	List<Object> upcommingObject=new ArrayList<Object>();
 	
 	try{
+		 if(isUUID(boardID) && isUUID(vid)){
 		if(session!=null && session.getAttribute("USRID")!=null)
 		{
 
@@ -26628,7 +26911,9 @@ public ModelAndView boardPublicProfileByboard(HttpServletRequest request, @PathV
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
 		
-		
+		 }else{
+			 model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID"); 
+		 }
 		
 	}catch(Exception e)
 	{
@@ -26645,6 +26930,7 @@ public ModelAndView boardPublicProfileByboardPitch(HttpServletRequest request, @
 
 	
 	try{
+		 if(isUUID(boardID) && isUUID(vid)){
 		if(session!=null && session.getAttribute("USRID")!=null)
 		{
 
@@ -26998,7 +27284,9 @@ public ModelAndView boardPublicProfileByboardPitch(HttpServletRequest request, @
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
 		
-		
+		 }else{
+			 model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		 }
 		
 	}catch(Exception e)
 	{
@@ -27015,6 +27303,9 @@ public ModelAndView boardPitchfromuser(HttpServletRequest request, @PathVariable
 	final String context = request.getContextPath();
 	
 	try{
+		
+		if(isUUID(boardID) && isUUID(vid)){
+		
 		if(session!=null && session.getAttribute("USRID")!=null)
 		{
 
@@ -27297,7 +27588,10 @@ public ModelAndView boardPitchfromuser(HttpServletRequest request, @PathVariable
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
 		
-		
+
+		 }else{
+			 model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		 }
 		
 	}catch(Exception e)
 	{
@@ -27400,7 +27694,7 @@ public ModelAndView userEventDatepublic(HttpServletRequest request, @PathVariabl
 	ModelAndView model= null;
 	try{
 		HttpSession session=request.getSession(true);
-		
+		if(isUUID(uid)){
 		if(session!=null && session.getAttribute("USRID")!=null)
 		{
 			@SuppressWarnings("unused")
@@ -27473,6 +27767,10 @@ public ModelAndView userEventDatepublic(HttpServletRequest request, @PathVariabl
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
 		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
+		
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -27489,6 +27787,9 @@ public @ResponseBody ModelAndView rosterInfomation(HttpServletRequest request,@R
 	HttpSession session=request.getSession(true);
 	ModelAndView model=null;
 	UUID userId=(UUID) session.getAttribute("USRID");
+	
+	if(isUUID(rosterId) && isUUID(bId)){
+	
 	if(session != null && userId!=null){
 		
 			 hubReq=new HubRequest();
@@ -27754,6 +28055,10 @@ public @ResponseBody ModelAndView rosterInfomation(HttpServletRequest request,@R
 			 model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 
 		}
+	
+	}else{
+		model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	}
 	return model;
 	
 }
@@ -27995,6 +28300,9 @@ public ModelAndView boardEventByDate(HttpServletRequest request,@PathVariable St
 	try{
 		HttpSession session=request.getSession(true);
 		
+		
+		if(isUUID(bid)){
+		
 		if(session!=null && session.getAttribute("USRID")!=null)
 		{
 			@SuppressWarnings("unused")
@@ -28080,6 +28388,10 @@ public ModelAndView boardEventByDate(HttpServletRequest request,@PathVariable St
 			 
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
+		}
+		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
 		}
 		
 	}catch(Exception e)
@@ -29103,6 +29415,9 @@ public @ResponseBody List<TournamentDTO> halfCentrePage( HttpServletRequest requ
 public ModelAndView showScoreCardOfPlayer(HttpServletRequest req,@PathVariable String matchId) throws CSException{
 	ModelAndView mav = null;
 	try{
+		
+		if(isUUID(matchId)){
+		
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			
@@ -29613,7 +29928,9 @@ public ModelAndView showScoreCardOfPlayer(HttpServletRequest req,@PathVariable S
 			// mav=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 		}
 		 
-		 
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
+		} 
 	 
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -29913,7 +30230,7 @@ public @ResponseBody List<UserBattingPerformanceDTO> yearWiseAchievementScorer(@
 public ModelAndView enterScore(HttpServletRequest req, @PathVariable String boardId){
 	ModelAndView mav = null;
 	try{
-		
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			mav = new ModelAndView("EnterScore");
@@ -30010,7 +30327,9 @@ public ModelAndView enterScore(HttpServletRequest req, @PathVariable String boar
 		}else{
 			mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 		
 	}catch(Exception e){
 		e.printStackTrace();
@@ -30021,6 +30340,9 @@ public ModelAndView enterScore(HttpServletRequest req, @PathVariable String boar
 public ModelAndView enterScoreSelectedMatch(HttpServletRequest req, @PathVariable String boardId,@PathVariable String tournamentId,@PathVariable String tournamentSchedulerId, @PathVariable String homeTeamId,@PathVariable String awayTeamId,@PathVariable String matchDate,@PathVariable String leagueCreatedBy){
 	ModelAndView mav = null;
 	try{
+		
+		
+		if(isUUID(boardId) && isUUID(tournamentId) && isUUID(tournamentSchedulerId) && isUUID(homeTeamId) && isUUID(awayTeamId) && isUUID(leagueCreatedBy)){
 		
 		System.out.println("id----->><><>"+boardId+"<><>"+tournamentId+"<><>"+tournamentSchedulerId+"<><>"+homeTeamId+"<><><"+awayTeamId+"<><><"+matchDate+"<><>leagueCreatedBy"+leagueCreatedBy);
 		
@@ -30205,7 +30527,9 @@ public ModelAndView enterScoreSelectedMatch(HttpServletRequest req, @PathVariabl
 		}else{
 			mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 		
 	}catch(Exception e){
 		e.printStackTrace();
@@ -30220,6 +30544,8 @@ public ModelAndView enterScoreSelectedMatchPublicProfile(HttpServletRequest req,
 	
 	
 try{
+	
+	if(isUUID(boardId) && isUUID(tournamentId) && isUUID(tournamentSchedulerId) && isUUID(homeTeamId) && isUUID(awayTeamId) && isUUID(leagueCreatedBy)){
 		
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
@@ -30399,7 +30725,9 @@ try{
 		}else{
 			mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+	}else{
+		mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	}
 		
 	}catch(Exception e){
 		e.printStackTrace();
@@ -30413,7 +30741,7 @@ try{
 public ModelAndView boardAchievements(HttpServletRequest req, @PathVariable String boardId){
 	ModelAndView mav = null;
 	try{
-		
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			mav = new ModelAndView("BoardAchievements");
@@ -30494,6 +30822,9 @@ public ModelAndView boardAchievements(HttpServletRequest req, @PathVariable Stri
 			mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
 		
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 		
 	}catch(Exception e){
 		e.printStackTrace();
@@ -30888,6 +31219,8 @@ public ModelAndView CreateSchedulePublicProfile(HttpServletRequest req,@PathVari
 	ModelAndView mav = null;
 	try{
 	HttpSession session = req.getSession(true);
+	
+	if(isUUID(boardId)){
 	if(session != null && session.getAttribute("USRID") != null){
 		mav = new ModelAndView("CreateSchedulePublicProfile");
 		mav.addObject("boardId", boardId);
@@ -31070,7 +31403,9 @@ public ModelAndView CreateSchedulePublicProfile(HttpServletRequest req,@PathVari
 	}else{
 		mav = new ModelAndView("redirect:/login.htm?loginvalidation = Your session has been expired");
 	}
-	
+	}else{
+		mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -31081,6 +31416,9 @@ public ModelAndView CreateSchedulePublicProfileLanding(HttpServletRequest req,@P
 	ModelAndView mav = null;
 	try{
 	HttpSession session = req.getSession(true);
+	
+	if(isUUID(boardId)){
+	
 	if(session != null && session.getAttribute("USRID") != null){
 		mav = new ModelAndView("CreateSchedulePublicProfileLanding");
 		mav.addObject("boardId", boardId);
@@ -31239,7 +31577,9 @@ public ModelAndView CreateSchedulePublicProfileLanding(HttpServletRequest req,@P
 	}else{
 		mav = new ModelAndView("redirect:/login.htm?loginvalidation = Your session has been expired");
 	}
-	
+	}else{
+		mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -31251,6 +31591,7 @@ public ModelAndView CreateSchedulePublicProfileLanding(HttpServletRequest req,@P
 public ModelAndView AmendSchedulePublicProfile(HttpServletRequest req,@PathVariable String boardId){
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 	HttpSession session = req.getSession(true);
 	if(session != null && session.getAttribute("USRID") != null){
 		mav = new ModelAndView("AmendSchedulePublicProfile");
@@ -31411,7 +31752,9 @@ public ModelAndView AmendSchedulePublicProfile(HttpServletRequest req,@PathVaria
 	}else{
 		mav = new ModelAndView("redirect:/login.htm?loginvalidation = Your session has been expired");
 	}
-	
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -31423,6 +31766,8 @@ public ModelAndView AmendSchedulePublicProfile(HttpServletRequest req,@PathVaria
 public ModelAndView editSchedulerPublicProfile(HttpServletRequest req, @PathVariable String boardId, @PathVariable String tournamentSchedulerId,@PathVariable String tournamentId){
 	ModelAndView mav = null;
 	try{
+		
+		if(isUUID(boardId) && isUUID(tournamentSchedulerId) && isUUID(tournamentId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			 hubReq = new HubRequest();
@@ -31632,7 +31977,9 @@ public ModelAndView editSchedulerPublicProfile(HttpServletRequest req, @PathVari
 		}else{
 			mav = new ModelAndView("redirect:/login.htm?loginvalidation = Your session has been expired");
 		}
-		
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 		
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -31644,6 +31991,7 @@ public ModelAndView editSchedulerPublicProfile(HttpServletRequest req, @PathVari
 public ModelAndView DisputeManagementPublicProfile(HttpServletRequest req, @PathVariable String boardId) throws CSException{
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -31724,6 +32072,9 @@ public ModelAndView DisputeManagementPublicProfile(HttpServletRequest req, @Path
 		}
 		else{
 			mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
+		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
 		}
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -32106,7 +32457,7 @@ public ModelAndView insertScheduleDetailsPublicProfile(HttpServletRequest req, @
 public ModelAndView boardAchievementsPublicProfile(HttpServletRequest req, @PathVariable String boardId){
 	ModelAndView mav = null;
 	try{
-		
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			mav = new ModelAndView("BoardAchievementsPublicProfile");
@@ -32186,7 +32537,9 @@ public ModelAndView boardAchievementsPublicProfile(HttpServletRequest req, @Path
 		}else{
 			mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 		
 	}catch(Exception e){
 		e.printStackTrace();
@@ -32198,7 +32551,7 @@ public ModelAndView boardAchievementsPublicProfile(HttpServletRequest req, @Path
 public ModelAndView EnterScorePublicProfile(HttpServletRequest req, @PathVariable String boardId){
 	ModelAndView mav = null;
 	try{
-		
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			mav = new ModelAndView("EnterScorePublicProfile");
@@ -32293,7 +32646,9 @@ public ModelAndView EnterScorePublicProfile(HttpServletRequest req, @PathVariabl
 		}else{
 			mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 		
 	}catch(Exception e){
 		e.printStackTrace();
@@ -32307,6 +32662,8 @@ public ModelAndView EnterScorePublicProfile(HttpServletRequest req, @PathVariabl
 public ModelAndView showScoreCardForInProgress(HttpServletRequest req, @PathVariable String boardId,@PathVariable String matchId) throws CSException{
 	ModelAndView mav = null;
 	try{
+		
+		if(isUUID(boardId) && isUUID(matchId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -32628,7 +32985,9 @@ public ModelAndView showScoreCardForInProgress(HttpServletRequest req, @PathVari
 			mav=new ModelAndView("redirect:/showScoreCardSessionOut/boardId/"+boardId+"/matchId/"+matchId);
 		}
 		 
-		 
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
+		}
 	 
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -32640,6 +32999,7 @@ public ModelAndView showScoreCardForInProgress(HttpServletRequest req, @PathVari
 public ModelAndView showScoreCardPublicProfile(HttpServletRequest req, @PathVariable String boardId,@PathVariable String matchId) throws CSException{
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId) && isUUID(matchId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -33135,7 +33495,9 @@ public ModelAndView showScoreCardPublicProfile(HttpServletRequest req, @PathVari
 			mav=new ModelAndView("redirect:/showScoreCardSessionOut/boardId/"+boardId+"/matchId/"+matchId);
 		}
 		 
-		 
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
+		} 
 	 
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -33147,6 +33509,7 @@ public ModelAndView showScoreCardPublicProfile(HttpServletRequest req, @PathVari
 public ModelAndView cancelTournament(@PathVariable String boardId, HttpServletRequest req){
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			
@@ -33215,7 +33578,9 @@ public ModelAndView cancelTournament(@PathVariable String boardId, HttpServletRe
 		else{
 			 mav=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 		}
-		
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
+		} 
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -33588,7 +33953,7 @@ public ModelAndView leagueTopFiveWicketsList(CenturiesSerach search , HttpServle
 public ModelAndView inviteBoardPage(HttpServletRequest req, @PathVariable String boardId){
 	ModelAndView mav = null;
 	try{
-		
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			
@@ -33821,7 +34186,9 @@ public ModelAndView inviteBoardPage(HttpServletRequest req, @PathVariable String
 		else{
 			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 		
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -33865,6 +34232,7 @@ public  Map<String,String> inviteBuddyToBoardByMail(HttpServletRequest request,@
 public ModelAndView gameSchedulePublicProfile(HttpServletRequest req, @PathVariable String boardId) throws CSException{
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -34036,13 +34404,13 @@ public ModelAndView gameSchedulePublicProfile(HttpServletRequest req, @PathVaria
 			 else{
 				 
 			 }
-			
-			 
-		 
 		 
 		}
 		else{
 			mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
+		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
 		}
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -34054,6 +34422,7 @@ public ModelAndView gameSchedulePublicProfile(HttpServletRequest req, @PathVaria
 public ModelAndView showScoreCardForInProgressPublicProfile(HttpServletRequest req, @PathVariable String boardId,@PathVariable String matchId) throws CSException{
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId) && isUUID(matchId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -34546,7 +34915,9 @@ public ModelAndView showScoreCardForInProgressPublicProfile(HttpServletRequest r
 			mav=new ModelAndView("redirect:/showScoreCardSessionOut/boardId/"+boardId+"/matchId/"+matchId);
 		}
 		 
-		 
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
+		} 
 	 
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -34841,7 +35212,7 @@ public ModelAndView fivewicketsPublicProfile(@PathVariable String bid, HttpServl
 	ModelAndView model= null;
 	try{
 		HttpSession session=request.getSession(true);
-		
+		if(isUUID(bid)){
 		if(session!=null && session.getAttribute("USRID")!=null)
 		{
 			final String context = request.getContextPath();
@@ -34994,7 +35365,9 @@ public ModelAndView fivewicketsPublicProfile(@PathVariable String bid, HttpServl
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -35131,6 +35504,8 @@ public ModelAndView topbatsmanPublicProfile(@PathVariable String bid , HttpServl
 
 	ModelAndView model= null;
 	try{
+		if(isUUID(bid)){
+		
 		HttpSession session=request.getSession(true);
 		
 		if(session!=null && session.getAttribute("USRID")!=null)
@@ -35296,7 +35671,9 @@ public ModelAndView topbatsmanPublicProfile(@PathVariable String bid , HttpServl
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -35433,6 +35810,9 @@ public ModelAndView topbowlerPublicProfile(@PathVariable String bid , HttpServle
 
 	ModelAndView model= null;
 	try{
+		
+		if(isUUID(bid)){
+		
 		HttpSession session=request.getSession(true);
 		
 		if(session!=null && session.getAttribute("USRID")!=null)
@@ -35601,7 +35981,9 @@ public ModelAndView topbowlerPublicProfile(@PathVariable String bid , HttpServle
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -35747,7 +36129,7 @@ public ModelAndView topUmpirePublicProfile(@PathVariable String bid, HttpServlet
 	ModelAndView model= null;
 	try{
 		HttpSession session=request.getSession(true);
-		
+		if(isUUID(bid)){
 		if(session!=null && session.getAttribute("USRID")!=null)
 		{
 		
@@ -35849,7 +36231,9 @@ public ModelAndView topUmpirePublicProfile(@PathVariable String bid, HttpServlet
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -35867,7 +36251,7 @@ public ModelAndView teamdetailsPublicProfile(@PathVariable String bid, HttpServl
 	ModelAndView model= null;
 	try{
 		HttpSession session=request.getSession(true);
-		
+		if(isUUID(bid)){
 		if(session!=null && session.getAttribute("USRID")!=null)
 		{
 		
@@ -36000,7 +36384,9 @@ public ModelAndView teamdetailsPublicProfile(@PathVariable String bid, HttpServl
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -36179,7 +36565,7 @@ public ModelAndView teamcontactspublic(@PathVariable String bid, HttpServletRequ
 	ModelAndView model= null;
 	try{
 		HttpSession session=request.getSession(true);
-		
+		if(isUUID(bid)){
 		if(session!=null && session.getAttribute("USRID")!=null)
 		{
 		
@@ -36306,7 +36692,9 @@ public ModelAndView teamcontactspublic(@PathVariable String bid, HttpServletRequ
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -36322,7 +36710,8 @@ public ModelAndView teamcontactspublic(@PathVariable String bid, HttpServletRequ
 public ModelAndView myScorePublicProfile(HttpServletRequest request,@PathVariable String uid)throws CSException
 {
 	ModelAndView model=null;
-	HttpSession session=request.getSession(true);		
+	HttpSession session=request.getSession(true);	
+	if(isUUID(uid)){
 	if(session!=null && session.getAttribute("USRID")!=null)
 	{
 		UUID userId = (UUID) session.getAttribute("USRID");			
@@ -36582,6 +36971,9 @@ public ModelAndView myScorePublicProfile(HttpServletRequest request,@PathVariabl
 	}else{
 		model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 	}
+	}else{
+		model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	}
 	return model;
 }
 
@@ -36589,6 +36981,9 @@ public ModelAndView myScorePublicProfile(HttpServletRequest request,@PathVariabl
 public ModelAndView showScoreCardOfPlayerPublicProfile(HttpServletRequest req,@PathVariable String matchId,@PathVariable String uid) throws CSException{
 	ModelAndView mav = null;
 	try{
+		
+		if(isUUID(uid) && isUUID(matchId)){
+		
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -37104,7 +37499,9 @@ public ModelAndView showScoreCardOfPlayerPublicProfile(HttpServletRequest req,@P
 						System.out.println("The myscore dummy Page");
 		}
 		 
-		 
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");		
+		}
 	 
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -37116,7 +37513,7 @@ public ModelAndView showScoreCardOfPlayerPublicProfile(HttpServletRequest req,@P
 public ModelAndView boardScore(HttpServletRequest req, @PathVariable String boardId){
 	ModelAndView mav = null;
 	try{
-		
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			mav = new ModelAndView("BoardScore");
@@ -37266,7 +37663,9 @@ public ModelAndView boardScore(HttpServletRequest req, @PathVariable String boar
 			mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
 		
-		
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");		
+		}
 	}catch(Exception e){
 		e.printStackTrace();
 	}
@@ -37278,7 +37677,7 @@ public ModelAndView boardScore(HttpServletRequest req, @PathVariable String boar
 public ModelAndView boardScorePublicProfile(HttpServletRequest req, @PathVariable String boardId){
 	ModelAndView mav = null;
 	try{
-		
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			mav = new ModelAndView("BoardScorePublicProfile");
@@ -37457,7 +37856,9 @@ public ModelAndView boardScorePublicProfile(HttpServletRequest req, @PathVariabl
 		}else{
 			mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");		
+		}
 		
 	}catch(Exception e){
 		e.printStackTrace();
@@ -37472,7 +37873,7 @@ public ModelAndView boardScorePublicProfile(HttpServletRequest req, @PathVariabl
 public ModelAndView inviteToMergeAccount(HttpServletRequest req, @PathVariable String boardId){
 	ModelAndView mav = null;
 	try{
-		
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			
@@ -37666,7 +38067,9 @@ public ModelAndView inviteToMergeAccount(HttpServletRequest req, @PathVariable S
 		else{
 			mav=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");		
+		}
 		
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -37712,6 +38115,7 @@ public ModelAndView mergeLogin(HttpServletRequest request,@PathVariable String b
 {
 	ModelAndView model=null;
 	try{
+		if(isUUID(bid)){
 		String loginvalidation=(String) request.getParameter("loginvalidation");
 		 //session.setAttribute("USRID", profile.getUserId());
 		System.out.println("inside merge login board ids"+bid);
@@ -37723,7 +38127,9 @@ public ModelAndView mergeLogin(HttpServletRequest request,@PathVariable String b
     	if(loginvalidation!=null){
     		model.addObject("loginvalidation", loginvalidation);
     	}
-		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 		
 	}catch(Exception e)
 	{
@@ -37821,7 +38227,7 @@ public ModelAndView mergeAccount(HttpServletRequest req,@PathVariable String bid
 	ModelAndView mav = null;
 	
 	try{
-		
+		if(isUUID(bid)){
 		HttpSession session = req.getSession(true);
 		if(session !=  null && session.getAttribute("USRID") != null ){
 	
@@ -37878,7 +38284,9 @@ public ModelAndView mergeAccount(HttpServletRequest req,@PathVariable String bid
 		}else{
 			mav=new ModelAndView("redirect:/mergeLogin/"+bid+".htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
+		}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -37920,6 +38328,7 @@ public @ResponseBody String cancelGame(@RequestBody CancelScheduleDTO dto, HttpS
 public ModelAndView CancelGameByDatePublicProfile(HttpServletRequest req, @PathVariable String boardId) throws CSException{
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -38044,6 +38453,9 @@ public ModelAndView CancelGameByDatePublicProfile(HttpServletRequest req, @PathV
 		}
 		else{
 			mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
+		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
 		}
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -38374,6 +38786,7 @@ public @ResponseBody String cancelTournamentFinal(@RequestBody CancelScheduleDTO
 public ModelAndView cancelTournamentPublicProfile(@PathVariable String boardId, HttpServletRequest req){
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			
@@ -38442,7 +38855,9 @@ public ModelAndView cancelTournamentPublicProfile(@PathVariable String boardId, 
 		else{
 			 mav=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 		}
-		
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -38814,6 +39229,7 @@ public ModelAndView getBuddyPublicProfileFromScoreCard(HttpServletRequest reques
 {
 	ModelAndView model=null;
 	 HttpSession session = request.getSession(true);
+	 if(isUUID(buddyId)){
 	 if(session.getAttribute("USRID")!=null)
 	 {
 		 UUID userid=(UUID) session.getAttribute("USRID");
@@ -39101,6 +39517,9 @@ public ModelAndView getBuddyPublicProfileFromScoreCard(HttpServletRequest reques
 		 model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 
 	 }
+	 }else{
+		 model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	 }
 	 return model;
 }
 
@@ -39109,6 +39528,7 @@ public ModelAndView getBuddyPublicProfileFromScoreCard(HttpServletRequest reques
 public ModelAndView RollOverTournament(HttpServletRequest req,@PathVariable String boardId){
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null)  {
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -39177,6 +39597,9 @@ public ModelAndView RollOverTournament(HttpServletRequest req,@PathVariable Stri
 		}else{
 		 mav = new ModelAndView("redirect:/login.htm?loginvalidation = Your session has been expired");
 		}
+		 }else{
+			 mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		 }
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
@@ -39649,6 +40072,7 @@ public ModelAndView filterForScheduleLiast(HttpServletRequest req, @ModelAttribu
 public ModelAndView SchedulerListPubProfWithEdit(HttpServletRequest req, @PathVariable String boardId) throws CSException{
 ModelAndView mav = null;
 try{
+	if(isUUID(boardId)){
 	HttpSession session = req.getSession(true);
 	if(session != null && session.getAttribute("USRID") != null){
 		UUID userId = (UUID) session.getAttribute("USRID");
@@ -39763,7 +40187,9 @@ try{
 	else{
 		mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 	}
-	
+	}else{
+		mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	}
 }catch(Exception ex){
 	ex.printStackTrace();
 }
@@ -39775,6 +40201,8 @@ return mav;
 public ModelAndView editSchedulerPublicProfileScheduleEdit(HttpServletRequest req, @PathVariable String boardId, @PathVariable String tournamentSchedulerId,@PathVariable String tournamentId){
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId) && isUUID(tournamentSchedulerId) && isUUID(tournamentId)){
+		
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			 hubReq = new HubRequest();
@@ -40011,7 +40439,9 @@ public ModelAndView editSchedulerPublicProfileScheduleEdit(HttpServletRequest re
 		}else{
 			mav = new ModelAndView("redirect:/login.htm?loginvalidation = Your session has been expired");
 		}
-		
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 		
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -42214,6 +42644,10 @@ public ModelAndView showScoreCardSessionout(HttpServletRequest req,@PathVariable
 	GsonBuilder builder = new GsonBuilder();
 	 Gson gson = builder.create();
 		 try{
+			 
+			 if(isUUID(boardId) && isUUID(matchId)){
+			 
+			 
 	     mav = new ModelAndView("ScoreCardSessionOut");
 	     
 	     HttpSession session = req.getSession(true);
@@ -42450,6 +42884,10 @@ public ModelAndView showScoreCardSessionout(HttpServletRequest req,@PathVariable
 					 }
 				 }
 			 }
+			 
+			 }else{
+				 mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	 
+			 }
 		 }
 		 catch(Exception e)
 		 {
@@ -42533,12 +42971,14 @@ public @ResponseBody String  clearscore(HttpServletRequest req,@RequestBody Inpr
 public ModelAndView aboutOrganization(HttpServletRequest req,@PathVariable String boardId )
 {
 	ModelAndView mav=null;
+	
 	System.out.println("the board id :"+boardId);
 	OrganizationResponse orgresponse=new OrganizationResponse();
 	long filesize=0;
 	Gson gson=new Gson();
 	HttpSession session = req.getSession(true);
 	try{
+		if(isUUID(boardId)){
 		mav=new ModelAndView("OrgDetails");
 		
 		hubReq= new HubRequest();
@@ -42621,6 +43061,11 @@ public ModelAndView aboutOrganization(HttpServletRequest req,@PathVariable Strin
 			mav.addObject("boardInfoType", "Organization");
 			mav.addObject("OrgResponse", orgresponse);
 			mav.addObject("FileSize", filesize);
+			
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
+			
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -42640,6 +43085,7 @@ public ModelAndView aboutHistory(HttpServletRequest req,@PathVariable String boa
 	Gson gson=new Gson();
 	HttpSession session = req.getSession(true);
 	try{
+		if(isUUID(boardId)){
 		mav=new ModelAndView("OrgDetails");
 		
 		hubReq= new HubRequest();
@@ -42697,6 +43143,11 @@ public ModelAndView aboutHistory(HttpServletRequest req,@PathVariable String boa
 			mav.addObject("boardInfoType", "History");
 			mav.addObject("OrgResponse", orgresponse);
 			mav.addObject("FileSize", filesize);
+			
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
+			
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -42717,6 +43168,9 @@ public ModelAndView aboutRulesRegulation(HttpServletRequest req,@PathVariable St
 	Gson gson=new Gson();
 	HttpSession session = req.getSession(true);
 	try{
+		if(isUUID(boardId)){
+			
+		
 		mav=new ModelAndView("OrgDetails");
 		
 		
@@ -42775,6 +43229,9 @@ public ModelAndView aboutRulesRegulation(HttpServletRequest req,@PathVariable St
 			mav.addObject("boardInfoType", "Rules&Regulations");
 			mav.addObject("OrgResponse", orgresponse);
 			mav.addObject("FileSize", filesize);
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -42794,6 +43251,9 @@ public ModelAndView aboutawardhonor(HttpServletRequest req,@PathVariable String 
 	Gson gson=new Gson();
 	HttpSession session = req.getSession(true);
 	try{
+		
+		if(isUUID(boardId)){
+		
 		mav=new ModelAndView("OrgDetails");
 		
 		
@@ -42852,6 +43312,12 @@ public ModelAndView aboutawardhonor(HttpServletRequest req,@PathVariable String 
 			mav.addObject("boardInfoType", "Awards&Honors");
 			mav.addObject("OrgResponse", orgresponse);
 			mav.addObject("FileSize", filesize);
+			
+			
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
+			
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -42870,6 +43336,9 @@ public ModelAndView aboutFaq(HttpServletRequest req,@PathVariable String boardId
 	Gson gson=new Gson();
 	HttpSession session = req.getSession(true);
 	try{
+		
+		if(isUUID(boardId)){
+		
 		mav=new ModelAndView("OrgDetails");
 		
 		
@@ -42928,6 +43397,11 @@ public ModelAndView aboutFaq(HttpServletRequest req,@PathVariable String boardId
 			mav.addObject("boardInfoType", "FAQ");
 			mav.addObject("OrgResponse", orgresponse);
 			mav.addObject("FileSize", filesize);
+			
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
+			
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -42947,6 +43421,9 @@ public ModelAndView Directors(HttpServletRequest req,@PathVariable String boardI
 	Gson gson=new Gson();
 	HttpSession session = req.getSession(true);
 	try{
+		
+		if(isUUID(boardId)){
+		
 		mav=new ModelAndView("BoardDirectors");
 		
 		
@@ -43034,6 +43511,10 @@ public ModelAndView Directors(HttpServletRequest req,@PathVariable String boardI
 			mav.addObject("boardresponse", boardresponse);
 			mav.addObject("FileSize", filesize);
 			mav.addObject("SponserSize", sponsersize);
+			
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -43055,6 +43536,7 @@ public ModelAndView Sponser(HttpServletRequest req,@PathVariable String boardId 
 	Gson gson=new Gson();
 	HttpSession session = req.getSession(true);
 	try{
+		if(isUUID(boardId)){
 		mav=new ModelAndView("Sponsers");
 		
 		
@@ -43142,6 +43624,11 @@ public ModelAndView Sponser(HttpServletRequest req,@PathVariable String boardId 
 			mav.addObject("spoResponse", sporesponse);
 			mav.addObject("FileSize", filesize);
 			mav.addObject("SponserSize", sponsersize);
+			
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
+			
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -43225,7 +43712,7 @@ public ModelAndView Organizationdetails(HttpServletRequest req, @PathVariable St
 	long filesize=0;
 	Gson gson=new Gson();
 	try{
-		
+		if(isUUID(boardId)){
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			mav = new ModelAndView("OrganizationInfo");
@@ -43357,7 +43844,9 @@ public ModelAndView Organizationdetails(HttpServletRequest req, @PathVariable St
 		}else{
 			mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
 		
 	}catch(Exception e){
 		e.printStackTrace();
@@ -43478,6 +43967,7 @@ public ModelAndView BoardInfoPublic(@PathVariable String bid, HttpServletRequest
 	long filesize=0;
 	Gson gson1=new Gson();
 	try{	
+		if(isUUID(bid)){
 		HttpSession session = request.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			UUID userId = (UUID) session.getAttribute("USRID");
@@ -43633,8 +44123,12 @@ public ModelAndView BoardInfoPublic(@PathVariable String bid, HttpServletRequest
 		}else{
 			model = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
 		}
-		 logger.error("board event public profile");
+		/* logger.error("board event public profile");*/
 		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
+		 
 	}catch(Exception e)
 	{
 		e.printStackTrace();
@@ -44170,6 +44664,9 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 	ModelAndView model=null;
 	try{
 		
+		
+		if(isUUID(bid)){
+		
 		HttpSession session=request.getSession(true);
 		
 			UUID userId=(UUID) session.getAttribute("USRID");
@@ -44203,28 +44700,7 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 					//model=new ModelAndView("BoardLanding");
 					 model.addObject("BoradInfo", hubResponse.getResults().getBoardStatusDetail().get(0));
 					 model.addObject("LeaguManagement","No");
-					 hubReq=new HubRequest();
-					 hubReq.setMsgType(42);
-					 ModelMap map2=new ModelMap();
-					 map2.put("boardId", bid);
-					 map2.put("userId", userId);
-					 map2.put("startNode", 0);
-					 map2.put("endNode", 10);
-					 map2.put("feedHitUserId", userId);
-					 hubReq.setRequestParam(map2);
-					 String strBoardFeedList=cricketSocialRestTemplateService.userRegistration(hubReq);					
-					 if(strBoardFeedList!=null )
-					 {
-						 HubResponse feedlist= gson.fromJson(strBoardFeedList, HubResponse.class);
-						 
-						 if(feedlist!=null && feedlist.getResults().getBoardFeedResponse()!=null && feedlist.getResults().getBoardFeedResponse()!=null)
-						 {
-							 //FeedsList
-							model.addObject("FeedsList", feedlist.getResults().getBoardFeedResponse().getFeedList());
-						 }
-					 }else{
-						 System.out.println("Board feeds not excuted...........");
-					 }
+					
 					 
 					
 					 
@@ -44348,149 +44824,7 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 					 }
 					 
 					 
-					 //*******************************************************   Around you details	 *************************************************
-					 hubReq=new HubRequest();
-					 hubReq.setMsgType(77);
-					 BoardSearchRequest searchReq= new BoardSearchRequest();
-					 String userlocation=(String) session.getAttribute("USRLocation");
-
-					 System.out.println("userlocation"+userlocation);
-					 if(userlocation!=null)
-					 {
-						if(userlocation.length()>3)
-						{
-							 searchReq.setLatlang(userlocation);
-						}else{
-							 searchReq.setLatlang(defaultMatchesAroundYouLatLongValue);
-						}
-					 }else{
-						 searchReq.setLatlang(defaultMatchesAroundYouLatLongValue);
-					 }
 					
-					 
-					 searchReq.setStartNode("0");
-					 searchReq.setEndNode("4");
-					 searchReq.setCategory("Matches");
-					 hubReq.setRequestParam(searchReq);
-				    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
-					 HubResponse strMatchesArrounfYouResponse= GsonConverters.getGsonObject().fromJson(matchesArroundYouList, HubResponse.class); 
-					
-					 if(strMatchesArrounfYouResponse.getResults().getSearchResponse()!=null)
-					 {
-						 model.addObject("MatchesArroundYou", strMatchesArrounfYouResponse.getResults().getSearchResponse().getTournamentScheduler());
-					 }
-					 
-					 
-					 hubReq=new HubRequest();
-					 hubReq.setMsgType(22);
-					 //session.setAttribute("USRLocation", userProfile.getLatLang());
-					 if(userlocation!=null)
-					 {
-						if(userlocation.length()>3)
-						{
-							 searchReq.setLatlang(userlocation);
-							 System.out.println("user location setttt");
-						}else{
-							 searchReq.setLatlang(defaultLeagueBoardAroundYouLatLongValue);
-							 System.out.println("user not getted ------------- default 1");
-						}
-					 }else{
-						 searchReq.setLatlang(defaultLeagueBoardAroundYouLatLongValue);
-						 System.out.println("user not getted ------------- default 2");
-					 }
-					
-					 searchReq.setStartNode("0");
-					 searchReq.setEndNode("4");
-					 searchReq.setCategory("League");
-					 hubReq.setRequestParam(searchReq);
-				     String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
-					 System.out.println("board result : "+strboardlist);
-					 HubResponse strsearchResponse= GsonConverters.getGsonObject().fromJson(strboardlist, HubResponse.class); 
-					 System.out.println("logitude : "+strsearchResponse.getResults().getSearchResponse());
-					
-					 if(strsearchResponse.getResults().getSearchResponse()!=null)
-					 {
-						 System.out.println("board list :---------->" +strsearchResponse.getResults().getSearchResponse().getBoardProfileList().size());
-						 model.addObject("BRDAroundYou", strsearchResponse.getResults().getSearchResponse().getBoardProfileList());
-					 }
-					 
-					 searchReq.setCategory("Team");
-					 //searchReq.setLatlang("17.3700,78.4800");
-					 if(userlocation!=null)
-					 {
-						if(userlocation.length()>3)
-						{
-							 searchReq.setLatlang(userlocation);
-						}else{
-							 searchReq.setLatlang(defaultTeamBoardAroundYouLatLongValue);
-						}
-					 }else{
-						 searchReq.setLatlang(defaultTeamBoardAroundYouLatLongValue);
-					 }
-					 hubReq.setRequestParam(searchReq);
-					 String strTeamlist=cricketSocialRestTemplateService.userRegistration(hubReq);
-					 System.out.println("board result : "+strTeamlist);
-					 HubResponse strTeamResponse= GsonConverters.getGsonObject().fromJson(strTeamlist, HubResponse.class); 
-					 System.out.println("logitude : "+strTeamResponse.getResults().getSearchResponse());
-					 
-					 if(strTeamResponse.getResults().getSearchResponse()!=null)
-					 {
-						 System.out.println("TEam list :---------->" +strTeamResponse.getResults().getSearchResponse().getBoardProfileList().size());
-						 model.addObject("TEAMAroundYou", strTeamResponse.getResults().getSearchResponse().getBoardProfileList());
-					 }
-					 
-					 hubReq.setMsgType(23);
-					 searchReq.setCategory("");
-					 //searchReq.setLatlang("17.3700,78.4800");
-					 if(userlocation!=null)
-					 {
-						if(userlocation.length()>3)
-						{
-							 searchReq.setLatlang(userlocation);
-						}else{
-							 searchReq.setLatlang(defaultBuddyAroundYouLatlongValue);
-						}
-					 }else{
-						 searchReq.setLatlang(defaultBuddyAroundYouLatlongValue);
-					 }
-					 hubReq.setRequestParam(searchReq);
-					 String strbuddyresponse=cricketSocialRestTemplateService.userRegistration(hubReq);
-					 System.out.println("board result : "+strbuddyresponse);
-					 HubResponse buddyResponse= GsonConverters.getGsonObject().fromJson(strbuddyresponse, HubResponse.class); 
-					 System.out.println("userid : "+strTeamResponse.getResults().getSearchResponse());
-					 if(buddyResponse.getResults().getSearchResponse()!=null)
-					 {
-						 System.out.println("user : list :---------->" +buddyResponse.getResults().getSearchResponse().getUserList().size());
-						 model.addObject("BuddyAroundYou", buddyResponse.getResults().getSearchResponse().getUserList());
-					 }
-					 
-					 request.setAttribute("BoardId", bid);
-					 hubReq.setMsgType(79);
-					 searchReq.setCategory("Merchants");
-					 //searchReq.setLatlang("17.3700,78.4800");
-					 if(userlocation!=null)
-					 {
-						if(userlocation.length()>3)
-						{
-							 searchReq.setLatlang(userlocation);
-						}else{
-							 searchReq.setLatlang(defaultMerchantAroundYouLatLongValue);
-						}
-					 }else{
-						 searchReq.setLatlang(defaultMerchantAroundYouLatLongValue);
-					 }
-					 hubReq.setRequestParam(searchReq);
-					 String strMerchandiseAroundYouresponse=cricketSocialRestTemplateService.userRegistration(hubReq);
-					 HubResponse merchandiseAroundYouResponse= GsonConverters.getGsonObject().fromJson(strMerchandiseAroundYouresponse, HubResponse.class); 
-					 if(merchandiseAroundYouResponse.getResults().getSearchResponse()!=null)
-					 {
-						 System.out.println("user : list :---------->" +merchandiseAroundYouResponse.getResults().getSearchResponse().getUserList().size());
-						 model.addObject("Merchants", merchandiseAroundYouResponse.getResults().getSearchResponse().getUserList());
-					 }
-					 
-					 
-					 
-					 
 					 
 					// Sponser image
 					 SponserResponse sporesponse=new SponserResponse();
@@ -44540,7 +44874,10 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 			 }else{
 				 model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 			 }
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
 			
+		}
 		
 	}catch(Exception e)
 	{
@@ -44561,7 +44898,7 @@ public ModelAndView Organizationdetailssite(HttpServletRequest req, @PathVariabl
 	long filesize=0;
 	Gson gson=new Gson();
 	try{
-		
+		if(isUUID(boardId)){
 		
 			mav = new ModelAndView("OrganizationInfosite");
 			mav.addObject("boardId", boardId);
@@ -44625,7 +44962,10 @@ public ModelAndView Organizationdetailssite(HttpServletRequest req, @PathVariabl
 					}
 				 }	
 				
-		
+		}else{
+			
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
+		}
 		
 		
 	}catch(Exception e){
@@ -44647,7 +44987,7 @@ public ModelAndView LeaguePointsProfilesite(HttpServletRequest request, @PathVar
 {
 	
 	 	ModelAndView model=null;
-	    
+	 	if(isUUID(bid)){
 			
 			model= new ModelAndView("PublicPointstablessite");
 			
@@ -44699,6 +45039,10 @@ public ModelAndView LeaguePointsProfilesite(HttpServletRequest request, @PathVar
 						 model=new ModelAndView("redirect:/login.htm?loginvalidation=service not available");
 					 }
 					 
+	 	}else{
+	 		model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
+	 	}
+					 
 	return model;
 }
 
@@ -44707,7 +45051,7 @@ public ModelAndView LeaguePointsProfilesite(HttpServletRequest request, @PathVar
 public ModelAndView UmpireProfilesite(@PathVariable String boardId, HttpServletRequest req){
 	ModelAndView mav = null;
 	try{
-		
+		if(isUUID(boardId)){
 		System.out.println("board id:"+boardId);
 		mav = new ModelAndView("UmpireListsite");
 
@@ -44760,7 +45104,9 @@ public ModelAndView UmpireProfilesite(@PathVariable String boardId, HttpServletR
 				 mav.addObject("BoardUmpireListSize", hubResponse.getResults().getBoardUmpireList().size());
 			 }
 		 
-		 
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
+		} 
 		
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -44772,7 +45118,7 @@ public ModelAndView UmpireProfilesite(@PathVariable String boardId, HttpServletR
 public ModelAndView GroundProfilesite(@PathVariable String boardId,HttpServletRequest req){
 	ModelAndView mav = null;
 	try{
-		
+		if(isUUID(boardId)){
 		
 		mav = new ModelAndView("GroundListSite");
 		mav.addObject("boardId", boardId);
@@ -44823,7 +45169,9 @@ public ModelAndView GroundProfilesite(@PathVariable String boardId,HttpServletRe
 			 }		 
 			 
 			 
-			 
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
+		}	 
 	
 	}catch(Exception ex){
 		ex.printStackTrace();
@@ -44975,7 +45323,8 @@ return response;
 @RequestMapping(value="/SchedulerListSite/{boardId}", method = RequestMethod.GET)
 public ModelAndView SchedulerListSite(HttpServletRequest req, @PathVariable String boardId) throws CSException{
 ModelAndView mav = null;
-try{		
+try{	
+	if(isUUID(boardId)){
 	mav = new ModelAndView("ScheduleListSite");
 	mav.addObject("boardId", boardId);	
 	//*************************** Getting Board info  ***************************************
@@ -45040,7 +45389,9 @@ try{
 					
 				}
 			}
-	
+	}else{
+		mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
+	}
 	}
 	
 catch(Exception ex){
@@ -45230,6 +45581,7 @@ public ModelAndView filterForScheduleListSite(HttpServletRequest req, @ModelAttr
 public ModelAndView gameScheduleSite(HttpServletRequest req, @PathVariable String boardId) throws CSException{
 	ModelAndView mav = null;
 	try{
+		if(isUUID(boardId)){
 		
 		mav = new ModelAndView("GameScheduleSite");
 		mav.addObject("boardId", boardId);
@@ -45343,7 +45695,10 @@ public ModelAndView gameScheduleSite(HttpServletRequest req, @PathVariable Strin
 				 
 			 }
 			 
-		 
+		}else{
+			
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");		
+		}
 		 
 		}
 		catch(Exception ex){
@@ -45698,6 +46053,8 @@ public ModelAndView teamdetailsSite(@PathVariable String bid, HttpServletRequest
 {
 	ModelAndView model= null;
 	try{		
+		
+		if(isUUID(bid)){
 			model= new ModelAndView("TeamDetailsSite");
 			hubReq= new HubRequest();
 			hubReq.setMsgType(170);
@@ -45769,7 +46126,9 @@ public ModelAndView teamdetailsSite(@PathVariable String bid, HttpServletRequest
 					model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 				}
 			 
-		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");		
+		}
 		
 	}catch(Exception e)
 	{
@@ -45786,6 +46145,7 @@ public ModelAndView teamsSearchFormSite1(@PathVariable String tid,@PathVariable 
 {
 	ModelAndView model= null;
 	try{
+		if(isUUID(bid) && isUUID(tid)){
 			
 				model= new ModelAndView("TeamDetailsSite");				
 				hubReq= new HubRequest();
@@ -45870,7 +46230,9 @@ public ModelAndView teamsSearchFormSite1(@PathVariable String tid,@PathVariable 
 				
 				
 			
-				 
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
+		}	 
 		
 		
 	}catch(Exception e)
@@ -45887,6 +46249,8 @@ public ModelAndView leaguecenturiesSite(@PathVariable String bid, HttpServletReq
 {
 	ModelAndView model= null;
 	try{
+		
+		if(isUUID(bid)){
 			
 				model= new ModelAndView("CenturiesSite");
 				model.addObject("boardId", bid);
@@ -45970,7 +46334,9 @@ public ModelAndView leaguecenturiesSite(@PathVariable String bid, HttpServletReq
 					}
 				 }
 				 
-			
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
+		}	
 		
 	}catch(Exception e)
 	{
@@ -46071,6 +46437,8 @@ public ModelAndView leaguehalfcenturiesSite(@PathVariable String bid, HttpServle
 {
 	ModelAndView model= null;
 	try{
+		
+		if(isUUID(bid)){
 		  		model= new ModelAndView("HalfCenturiesSearchSite"); 
 				model.addObject("boardId", bid);				
 				hubReq= new HubRequest();
@@ -46144,7 +46512,9 @@ public ModelAndView leaguehalfcenturiesSite(@PathVariable String bid, HttpServle
 						
 					}
 				 }
-			
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
+		}	
 		
 	}catch(Exception e)
 	{
@@ -46243,6 +46613,9 @@ public ModelAndView fiveWicketsSite(@PathVariable String bid, HttpServletRequest
 {
 	ModelAndView model= null;
 	try{
+		if(isUUID(bid)){
+			
+		
 		model= new ModelAndView("fiveWicketSite");
 		
 			 model.addObject("boardId", bid);
@@ -46321,7 +46694,10 @@ public ModelAndView fiveWicketsSite(@PathVariable String bid, HttpServletRequest
 						model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 					}
 				 
-		
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");		
+			
+		}
 		
 	}catch(Exception e)
 	{
@@ -46427,6 +46803,8 @@ public ModelAndView topbatsmanSite(@PathVariable String bid , HttpServletRequest
 	ModelAndView model= null;
 	try{
 		
+		if(isUUID(bid)){
+		
 			model= new ModelAndView("TopBatsmanSite");
 			model.addObject("boardId", bid);
 			
@@ -46500,7 +46878,10 @@ public ModelAndView topbatsmanSite(@PathVariable String bid , HttpServletRequest
 						model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 					}
 				 
-				
+		}else{
+			
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
+		}	
 		
 	}catch(Exception e)
 	{
@@ -46596,6 +46977,8 @@ public ModelAndView topbowlerSite(@PathVariable String bid , HttpServletRequest 
 	ModelAndView model= null;
 	try{
 		
+		if(isUUID(bid)){
+		
 			model= new ModelAndView("TopBowlerSite");
 			model.addObject("boardId", bid);
 			
@@ -46674,7 +47057,9 @@ public ModelAndView topbowlerSite(@PathVariable String bid , HttpServletRequest 
 					}
 				 
 				 
-			
+		}else{
+			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
+		}
 		
 	}catch(Exception e)
 	{
@@ -46879,6 +47264,98 @@ public @ResponseBody  String saveBannerImage(HttpServletRequest request,@Request
 	return result1;
 }
 
+@RequestMapping(value="/matchPeopleList", method=RequestMethod.POST)
+public @ResponseBody BoardMatchSchedule matchPeopleList(@RequestBody AcceptEventInfo event,HttpServletRequest request)
+{
+	BoardMatchSchedule boardResult=new BoardMatchSchedule();
+	List<UserProfile> acceptEventList=null;
+	List<UserProfile> maybeEventList=null;
+	List<UserProfile> rejectEventList=null;
+	try{			
+			hubReq = new HubRequest();
+			hubReq.setMsgType(200);		
+			ModelMap map = new ModelMap();
+			map.put("rosterId", event.getRosterId());	
+			map.put("matchId", event.getMatchid());	
+			hubReq.setRequestParam(map);
+			String strSearchResponse   = cricketSocialRestTemplateService.userRegistration(hubReq);
+			
+			if(strSearchResponse!=null )
+			{
+				HubResponse response= GsonConverters.getGsonObject().fromJson(strSearchResponse, HubResponse.class);
+				
+				if(response!=null && response.getResults()!=null)				
+				{
+					acceptEventList=response.getResults().getRosterMatchAcceptedPlayerList();					
+					boardResult.setAcceptEventList(acceptEventList);
+					System.out.println("==accept==>"+new JSONArray(acceptEventList));
+				}				
+			}			
+			hubReq = new HubRequest();
+			hubReq.setMsgType(201);		
+			ModelMap map1 = new ModelMap();
+			map1.put("rosterId", event.getRosterId());	
+			map1.put("matchId", event.getMatchid());	
+			hubReq.setRequestParam(map1);
+			String strSearchResponse1   = cricketSocialRestTemplateService.userRegistration(hubReq);
+			
+			if(strSearchResponse1!=null )
+			{
+				HubResponse response1= GsonConverters.getGsonObject().fromJson(strSearchResponse1, HubResponse.class);
+				
+				if(response1!=null && response1.getResults()!=null)				
+				{
+					rejectEventList=response1.getResults().getRosterMatchRejectedPlayerList();					
+					boardResult.setRejectEventList(rejectEventList);
+					System.out.println("==reject==>"+new JSONArray(rejectEventList));
+				}				
+			}
+			hubReq = new HubRequest();
+			hubReq.setMsgType(202);		
+			ModelMap map2 = new ModelMap();
+			map2.put("rosterId", event.getRosterId());	
+			map2.put("matchId", event.getMatchid());	
+			hubReq.setRequestParam(map2);
+			String strSearchResponse2   = cricketSocialRestTemplateService.userRegistration(hubReq);
+			if(strSearchResponse2!=null )
+			{
+				HubResponse response2= GsonConverters.getGsonObject().fromJson(strSearchResponse2, HubResponse.class);
+				if(response2!=null && response2.getResults()!=null)				
+				{
+					maybeEventList=response2.getResults().getRosterMatchMayBePlayerList();	
+					boardResult.setMaybeEventList(maybeEventList);
+					System.out.println("==maybe==>"+new JSONArray(maybeEventList));
+				}				
+			}		
+	}catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return boardResult;
+}
+
+@RequestMapping(value="/errorPage",  method=RequestMethod.GET)
+public ModelAndView errorPage(HttpServletRequest request){
+	ModelAndView mav=null;
+	mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+	System.out.println("Inside error page");
+	return mav;
+	
+}
+
+
+
+public boolean isUUID(String string) {
+    try {
+        UUID.fromString(string);
+        if (string.matches("[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}")) 
+        	return true;
+        else
+        	return false;
+    } catch (Exception ex) {
+        return false;
+    }
+}
 
 
 
@@ -46918,3 +47395,7 @@ class UpcommingComprator implements Comparator<Object>
 	}
 	
 }
+
+
+
+

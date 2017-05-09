@@ -117,6 +117,231 @@ function gettingmatchAcceptedPeopleList(eid,matchid,rosterid,display,serviceId)
 	});
 }
 
+
+
+
+function gettingmatchAcceptedPeopleList1(matchid,rosterid)
+{
+	alert("result =======>");
+	$('.eventoption').hide();
+	var datainfo={
+			matchid : matchid,	
+			rosterId : rosterid 	
+	};
+	var postinfo=JSON.stringify(datainfo);	
+	$.ajax({
+		type : "POST",
+		url :ctx+"/matchPeopleList",
+		dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data : postinfo,
+		success : function(res) {
+			alert("result");			
+			console.log(' value------> '+JSON.stringify(res));
+			console.log("result========================================>"+res);
+			
+			
+			var doc = new jsPDF('p', 'pt','a4');
+	 		doc.setProperties({
+	    	title: 'Cricket Social',
+	    	subject: 'Buddy Score Card',
+	    	author: 'Vignesh Ranganathan',
+	    	keywords: 'Batting, Bowling',
+	    	creator: 'Cricket Social'			    	
+	 		});
+	 		
+	 	 var tournamentname=$('#tourname_'+matchid).val();
+	 	 var hometeam=$('#hometeamname_'+matchid).val();
+	 	 var awayteam=$('#awayteamname_'+matchid).val();
+	 	 var ground=$('#groundName_'+matchid).val();
+	 	var date=$('#date_'+matchid).val();
+	 	var acceptevent=[];
+	 	var rejectevent=[];
+	 	var maybeevent=[];
+	 	 alert(tournamentname);
+		//Header
+	 		doc.setFontSize(20);
+	 		doc.setFont("helvetica");
+	 		doc.setFontType("bold");
+	 		doc.setTextColor(50,83,168);
+	 		doc.text(220,30,"Match Availability Details");
+	 	//	 	
+	 		
+	 		doc.setFontSize(12);
+	 	    doc.setFontType("normal");
+	 	    doc.setTextColor(0,0,0);
+	 	    doc.text(10,70,"Tournament Name ");
+	 	    doc.text(110,70,": "+tournamentname);
+	 	    doc.text(10,100,"Teams ");
+	 	    doc.text(110,100,": "+hometeam+"  vs  "+awayteam);
+	 	   /* doc.text(10,130,"Against Team ");
+	 	    doc.text(110,130,": "+awayteam);
+	 	     doc.text(10,160,"Roster Created Date  "); */
+	 	    doc.text(10,130,"Ground Name ");
+	 	    doc.text(110,130,": "+ground);	 	    
+	 	    doc.text(10,160,"Game Date  ");
+	 	    doc.text(110,160,": "+date);
+	 	    
+	 	    //accepted
+	 	    
+	 			doc.setFontSize(16);
+			    doc.setFont("helvetica");
+			    doc.setFontType("bold");
+			    doc.setTextColor(50,83,168);
+			    doc.text(10,200,"Status : Accepted ");
+			    doc.setTextColor(0,0,0);
+			    
+			    
+			    
+			    
+             	  for(var i in res.acceptEventList)
+             		  {
+             	acceptevent.push({
+             		serialno : parseInt(i)+1,
+             		firstName : res.acceptEventList[i].fullName,         		
+             		
+             	});
+             		  }
+			    var columns = [
+			                   {title: "S.No", dataKey: "serialno"},
+			                   {title: "Name", dataKey: "firstName"},			                   
+			               ];
+			 		
+			    var yHeight=190;
+		 			if(acceptevent.length>0)
+		 				{		 					
+		 					  doc.autoTable(columns,acceptevent, {
+		 		 			        theme: 'grid',
+		 		 			        startY: parseInt(yHeight)+parseInt(20),
+		 		 			        margin: {horizontal: 10},
+		 		 			        styles: {overflow: 'linebreak'},
+		 		 			        bodyStyles: {valign: 'top'},
+		 		 			        alternateRowStyles: {fillColor: [253, 254, 257]},
+		 		 			        columnStyles: {email: {columnWidth: 'wrap'}},
+		 		 			        headerStyles: {fillColor: [99, 184, 275]}
+		 		 			    });		 					  
+		 					  if(acceptevent.length<3)
+		 						  {
+									    yHeight=parseInt(acceptevent.length)*50+yHeight;
+		 						  }else if(acceptevent.length>=3)
+		 							  {
+		 							 	yHeight=parseInt(acceptevent.length)*20+yHeight;
+		 							  }
+		 					  
+		 					
+		 				}
+		   
+		 			    
+              //rejected
+                   	                	
+               	  for(var i in res.rejectEventList)
+               		  {                   	                             	
+               		rejectevent.push({
+               		serialno : parseInt(i)+1,
+               		firstName : res.rejectEventList[i].fullName,         		
+               		
+               	});
+              
+               		  }
+                   	  
+                   	doc.setFontSize(16);
+    			    doc.setFont("helvetica");
+    			    doc.setFontType("bold");
+    			    doc.setTextColor(50,83,168);
+    			    doc.text(10,yHeight+10,"Status : Rejected ");
+    			    doc.setTextColor(0,0,0);
+			    
+    			    var columns = [
+    			                   {title: "S.No", dataKey: "serialno"},
+    			                   {title: "Name", dataKey: "firstName"},			                   
+    			               ];
+    			    
+		 			if(rejectevent.length>0)
+		 				{
+		 					
+		 					  doc.autoTable(columns,rejectevent, {
+		 		 			        theme: 'grid',
+		 		 			        startY: parseInt(yHeight)+parseInt(20),
+		 		 			        margin: {horizontal: 10},
+		 		 			        styles: {overflow: 'linebreak'},
+		 		 			        bodyStyles: {valign: 'top'},
+		 		 			        alternateRowStyles: {fillColor: [253, 254, 257]},
+		 		 			        columnStyles: {email: {columnWidth: 'wrap'}},
+		 		 			        headerStyles: {fillColor: [99, 184, 275]}
+		 		 			    });	
+		 				
+		 					  
+		 					  if(rejectevent.length<3)
+		 						  {
+									    yHeight=parseInt(rejectevent.length)*50+yHeight;
+		 						  }else if(rejectevent.length>=3)
+		 							  {
+		 							 	yHeight=parseInt(rejectevent.length)*20+yHeight;
+		 							  } 					
+		 				}
+		 			
+                 	  
+                 	  
+                 //may be
+		 			 for(var i in res.maybeEventList)
+             		  {	
+             	console.log("=================>i"+i);
+             	maybeevent.push({
+             		serialno : parseInt(i)+1,
+             		firstName : res.maybeEventList[i].fullName,    		
+             		});
+                    } 
+                 	  
+                 	 doc.setFontSize(16);
+     			    doc.setFont("helvetica");
+     			    doc.setFontType("bold");
+     			    doc.setTextColor(50,83,168);
+     			    doc.text(10,yHeight+10,"Status : May Be ");
+     			    doc.setTextColor(0,0,0);
+ 			    
+     			    var columns = [
+     			                   {title: "S.No", dataKey: "serialno"},
+     			                   {title: "Name", dataKey: "firstName"},			                   
+     			               ];
+     			
+ 		 			if(maybeevent.length>0)
+ 		 				{
+ 		 					
+ 		 					  doc.autoTable(columns,maybeevent, {
+ 		 		 			        theme: 'grid',
+ 		 		 			        startY: parseInt(yHeight)+parseInt(20),
+ 		 		 			        margin: {horizontal: 10},
+ 		 		 			        styles: {overflow: 'linebreak'},
+ 		 		 			        bodyStyles: {valign: 'top'},
+ 		 		 			        alternateRowStyles: {fillColor: [253, 254, 257]},
+ 		 		 			        columnStyles: {email: {columnWidth: 'wrap'}},
+ 		 		 			        headerStyles: {fillColor: [99, 184, 275]}
+ 		 		 			    });	
+ 		 				
+ 		 					  
+ 		 					  if(maybeevent.length<3)
+ 		 						  {
+ 									    yHeight=parseInt(maybeevent.length)*50+yHeight;
+ 		 						  }else if(maybeevent.length>=3)
+ 		 							  {
+ 		 							 	yHeight=parseInt(maybeevent.length)*20+yHeight;
+ 		 							  } 					
+ 		 				}
+ 		 		                  	
+                  	 
+			    
+			    doc.save('1.pdf');	
+					},
+		error:function(response){
+			console.log("Your request failed due to some service problem"+JSON.stringify(response));
+		},
+	
+	});
+}
+
+
+
+
 function eventoption(eid,aid,ele)
 {
 	

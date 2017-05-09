@@ -511,7 +511,7 @@ var formatAMPMTime = function(date) {
 										<div id="error1" class="createschedulError"></div>
 	
 									</div>
-										
+										<input type="hidden" id="gameDateforMail" name="gameDateforMail">
 										<input type="hidden" name="createdBy" value="${boardId}">
 										<%-- <input type="hidden"  name="tournamentId" value="${tournamentId}"> --%>
 
@@ -1147,6 +1147,19 @@ function addFunction1(){
            var dateString=returndate.getFullYear()+"-"+formattime(returndate.getMonth()+1)+"-"+formattime(returndate.getDate())+" "+formattime(returndate.getHours())+":"+formattime(returndate.getMinutes())+":"+formattime(returndate.getSeconds());
            $("#scheduleCreatedDate").val(dateString);
            console.log(dateString);
+           
+           
+           
+           /* To set time With Zone */
+           
+           var selectedtime=$("#time").val();
+           $("#time").val(selectedtime+" ("+newYork+")");
+           var dateformail=new Date(selecteddate);
+           
+           var dateString1=dateformail.getFullYear()+"-"+formattime(dateformail.getMonth()+1)+"-"+formattime(dateformail.getDate())+" "+formattime(dateformail.getHours())+":"+formattime(dateformail.getMinutes())+":"+formattime(dateformail.getSeconds());
+           console.log("Jithin doubt :"+dateformail);
+           $("#gameDateforMail").val(dateString1);
+           
            
            afterValidation();
            
