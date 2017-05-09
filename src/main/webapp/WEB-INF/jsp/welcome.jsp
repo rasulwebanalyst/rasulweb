@@ -465,12 +465,12 @@ var fbURL='110086556012641'; // QA
 	       </div><!-- col end -->
 	       <div class="col-md-4 no-padding-res no-padding">
 	       <label class="log-dt-lab" for=""> <span style="color:red"></span></label>
-            <input class="log-dt-holder" type="text" style="margin-top: 4px;" value="" placeholder="date" id="dobDate" onfocus="numberCheckDobDate(this)" onblur="numberCheckDobDate(this)" onkeyup="dateOfBirthValidation1()">
+            <input class="log-dt-holder" type="text" style="margin-top: 4px;" value="" placeholder="dd" id="dobDate" onfocus="numberCheckDobDate(this)" onblur="numberCheckDobDate(this)" onkeyup="dateOfBirthValidation1()">
 	             
 	       </div>
 	       <div class="col-md-4 padding-right no-padding-res">
 	       <label class="log-dt-lab" for=""><span style="color:red"></span></label>
-            <input class="log-dt-holder" style="margin-top: 4px;" type="text" value="" placeholder="year" id="dobYear" onfocus="numberCheckDobYear(this)" onblur="numberCheckDobYear(this)" onkeyup="dateOfBirthValidation1()">	            
+            <input class="log-dt-holder" style="margin-top: 4px;" type="text" value="" placeholder="yyyy" id="dobYear" onfocus="numberCheckDobYear(this)" onblur="numberCheckDobYear(this)" onkeyup="dateOfBirthValidation1()">	            
 	       </div>
 	      
 	       <input type="hidden" class="form-control datepicker" id="dateOfBirth" name="dateOfBirth" readonly value="<fmt:formatDate pattern="MM/dd/yyyy" value="${User.dateOfBirth }" />">
