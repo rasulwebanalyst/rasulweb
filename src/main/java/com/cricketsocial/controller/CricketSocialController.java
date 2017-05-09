@@ -2472,7 +2472,8 @@ public ModelAndView userprofile(HttpServletRequest request)
 						 
 						 // check for url 
 						 
-						 String contentarray[]=feeds.getContent().split(" ");
+						 //String contentarray[]=feeds.getContent().split(" ");
+						 String contentarray[]=feeds.getContent().replaceAll("\n", " ").split(" ");
 						 String savecontent="";
 						 for(String word : contentarray)
 						 {
