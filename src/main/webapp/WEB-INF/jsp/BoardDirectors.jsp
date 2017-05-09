@@ -82,15 +82,19 @@ var deletedarray=[];
 			                     <tr>
 			                    <!--  <td><label>Name<span class="req-star">*</span></label><input type='text' class='form-control' placeholder="Search" id="addMemberName" onkeyup="getBuddiesAutoComplete(this,'addMemberautoCompleteDIV','addMemberIDDIV')"></td> -->
 			                    <td><label>Position<span class="req-star">*</span></label><span>:</span><input type='text' class='form-control' id="addMemberPosition1" ></td> 
-			                     <td class="bd-txt-holder" rowspan="3"><label>Summary</label><textarea type='text' class='form-control' id='addMembercomment1'></textarea></td></tr>
+			                     </tr>
 			                     </tr>
 			                     <tr><td><label>Year<span class="req-star">*</span></label><span>:</span><input type='text' class='form-control' style="width: 60px; display: inline-block;" id="addMemberFromyear1" onkeypress="return isNumber(event)">
 			                     <span style="float: none; display: inline-block; padding: 0 5px;">-</span><input type='text' class='form-control' style="width: 60px; display: inline-block;" id="addMemberToyear1" onkeypress="return isNumber(event)"></td></tr>
 			                     <tr><td colspan="2"><label style="width: 100%;">Social Media</label>
-			                     <div class="bd-soc-holder"><img src="${pageContext.request.contextPath}/images/facebook.png"><input type="text" id='addMemberfaceboof1'></div>
-			                     <div class="bd-soc-holder"><img src="${pageContext.request.contextPath}/images/twitter.png"><input type="text" id='addMembertwitter1'></div>
-			                     <div class="bd-soc-holder"><img src="${pageContext.request.contextPath}/images/linkedin.png"><input type="text" id='addMemberlinkedin1'></div>
-			                     </td></tr>
+			                     <div class="bd-soc-holder"><img src="${pageContext.request.contextPath}/images/facebook.png"><input type="text" id='addMemberfaceboof1' style="width: 240px;"></div>
+			                     <div class="bd-soc-holder"><img src="${pageContext.request.contextPath}/images/twitter.png"><input type="text" id='addMembertwitter1' style="width: 240px;"></div>
+			                     <div class="bd-soc-holder"><img src="${pageContext.request.contextPath}/images/linkedin.png"><input type="text" id='addMemberlinkedin1' style="width: 240px;"></div>
+			                     </td>
+			                     
+			                     <td class="bd-txt-holder" rowspan="3"><label>Summary</label><textarea type='text' class='form-control' id='addMembercomment1'></textarea></td>
+			                     
+			                     </tr>
 			                     </table>
       <div class="modal-footer action">
       <input type="hidden" id="Editmemberid"> 
