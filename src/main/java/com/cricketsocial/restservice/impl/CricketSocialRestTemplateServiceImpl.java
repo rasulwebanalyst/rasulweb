@@ -3,7 +3,9 @@ package com.cricketsocial.restservice.impl;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
+import org.apache.logging.log4j.ThreadContext;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,9 +63,12 @@ public class CricketSocialRestTemplateServiceImpl  implements CricketSocialRestT
 			System.out.println("request : --------------------- >userRegistration "+reqString);
 			restTemplate=new RestTemplate();
 			long startdate=new  Date().getTime();
+			String uid=UUID.randomUUID().toString();
+			ThreadContext.put("REQ_ID", uid);
 			logger.info(hubRequest.getUserName()+" ------>Request Msg type :"+hubRequest.getMsgType() +" :"+reqString);
 			result = restTemplate.postForObject(URL,hubRequest,String.class);
 			long enddate=new  Date().getTime();
+			ThreadContext.put("REQ_ID", uid);
 			 logger.info(hubRequest.getUserName()+" =====>Response Msg type :"+hubRequest.getMsgType() +" :"+result+" Time taken :"+(enddate-startdate));
 			
 			System.out.println("The msgtype  :"+hubRequest.getMsgType() +" Time taken---------------->"+String.valueOf(enddate-startdate));

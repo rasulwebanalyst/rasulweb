@@ -1003,6 +1003,9 @@ function afterValidation(){
 	success: function(res){
 		if(res == 'success'){
 			window.location.href = "${pageContext.request.contextPath}/Scheduler-List/boardId/"+boardId;
+		}else{
+			$("#loading").hide();
+			displaynotification('Something went wrong, Please try again later.',2000);
 		}
 	}, 
 	error:function(err){
