@@ -1391,7 +1391,10 @@ function afterValidation(){
 				window.location.href = "${pageContext.request.contextPath}/CreateScheduleLanding/boardId/"+boardId;
 				}else{
 			window.location.href = "${pageContext.request.contextPath}/SchedulerList/boardId/"+boardId;
-		}}
+		}}else{
+			$("#loading").hide();
+			displaynotification('Something went wrong, Please try again later.',2000);
+		}
 	}, 
 	error:function(err){
 		alert(err);
