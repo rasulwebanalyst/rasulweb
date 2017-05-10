@@ -209,6 +209,7 @@ public class CricketSocialController {
 	private static String defaultMatchesAroundYouLatLongValue="";
 	private static String defaultLeagueBoardAroundYouLatLongValue="";
 	private static String defaultMerchantAroundYouLatLongValue="";
+	public static String loginUserMail="";
 
 	@SuppressWarnings("unused")
 	private Gson gsonobj=null;
@@ -476,7 +477,7 @@ public class CricketSocialController {
 				    			 session.setAttribute("USRLocationAllowed", "Yes"); 
 				    		 }
 							 
-							 
+							 loginUserMail=profile.getEmailAddress();
 							 
 							/* HubRequest hubReq=new HubRequest(13);
 							 hubReq.setMsgType(13);				
@@ -2472,7 +2473,6 @@ public ModelAndView userprofile(HttpServletRequest request)
 						 
 						 // check for url 
 						 
-						 //String contentarray[]=feeds.getContent().split(" ");
 						 String contentarray[]=feeds.getContent().replaceAll("\n", " ").split(" ");
 						 String savecontent="";
 						 for(String word : contentarray)
@@ -13861,31 +13861,14 @@ public ModelAndView insertScheduleDetails(HttpServletRequest req, @ModelAttribut
 				HubResponse hubRes = gson.fromJson(schedulerResponse, HubResponse.class);
 				if(hubRes != null && hubRes.getResults() != null){
 					
-					/*mav = new ModelAndView("ScheduleList");
-					mav.addObject("boardId", boardId);
 					
-						 hubReq = new HubRequest(104);
-							hubReq.setMsgType(104);
-							ModelMap m = new ModelMap();
-							m.put("createdBy", boardId);
-							m.put("previousNextFlag", "current");
-							
-							hubReq.setRequestParam(m);
-							String tournamentList = cricketSocialRestTemplateService.userRegistration(hubReq);
-							if(tournamentList !=  null){
-								HubResponse  hubResponse = gson.fromJson(tournamentList, HubResponse.class);
-								if(hubResponse !=  null && hubResponse.getResults() !=  null){*/
-								
 									
 									session.setAttribute("CreateScheduleLanding", "Created");
 									
 									 mav=new ModelAndView("redirect:/CreateScheduleLanding/boardId/"+boardId);
 									 return mav;
 									 
-							/*		 
-								}
-							}*/
-					 
+						
 				}
 			}
 	

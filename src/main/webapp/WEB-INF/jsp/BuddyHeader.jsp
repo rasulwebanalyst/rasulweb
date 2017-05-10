@@ -12,7 +12,7 @@
 <title></title>
 
  
-  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+  <link rel="icon" type="image/png" href="http://cdn.cricketsocial.com/images/Faveicon.png" />
  
     <!-- Bootstrap Core CSS -->
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
@@ -27,29 +27,29 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
   
   <!--Date picker-->
-    <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
+    <link href="http://cdn.cricketsocial.com/css/datepicker.css" rel="stylesheet">
   
   
   <script>var ctx="${pageContext.request.contextPath}";</script>
   
   
     <!-- jQuery -->
-    <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
+    <script src="http://cdn.cricketsocial.com/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="http://cdn.cricketsocial.com/js/bootstrap.min.js"></script>
     
     <!--Date picker-->
     <%-- <script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script> --%>
     
     
       <!--Date picker-->
-    <script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>
+    <script src="http://cdn.cricketsocial.com/js/bootstrap-datepicker.js"></script>
     
-     <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
+     <script src="http://cdn.cricketsocial.com/js/bootstrap-datetimepicker.min.js"></script>
     
     
-  <script src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
+  <script src="http://cdn.cricketsocial.com/js/jquery.validate.min.js"></script>
     
   <script src="${pageContext.request.contextPath}/js/cricketSocial/rosterFeeds.js"></script>
   
@@ -62,7 +62,7 @@
 <!--  <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject'
 
-</script> --> 
+</script> -->
 
 
 
@@ -390,11 +390,11 @@ overflow: auto;
                 </a> --%>
                 
                 <a class="navbar-brand Logo" href="${pageContext.request.contextPath}/">
-                   <img src="${pageContext.request.contextPath}/images/Logo.png">
+                   <img src="http://cdn.cricketsocial.com/images/Logo.png">
                 </a>
                 
                 <a class="navbar-brand LogoSmall" href="${pageContext.request.contextPath}/">
-                   <img src="${pageContext.request.contextPath}/images/LogoSmall.png">
+                   <img src="http://cdn.cricketsocial.com/images/LogoSmall.png">
                 </a>
                 
                 
@@ -527,7 +527,7 @@ overflow: auto;
                     <li>
                        <a href="#" onclick="showFriendREquDiv('friendRequestHeaderDiv')" id="showFriendRequesDIV" title="Buddy Request"> 
                        	<i class="fa fa-userIcon">
-                       		<img src="${pageContext.request.contextPath}/images/usersIcon.png" >
+                       		<img src="http://cdn.cricketsocial.com/images/usersIcon.png" >
                        	</i>
                        	<c:choose>
                        		<c:when test="${requestsCount > 0}">
@@ -551,7 +551,7 @@ overflow: auto;
                     <li>
                     <span class="buddyheaderName">${USRLastName}</span>
                     
-                        <img src="${USRIMG}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';" class="nav-avatar dropdown-toggle" data-toggle="dropdown"  aria-expanded="false">
+                        <img src="${USRIMG}" onError="this.onerror=null;this.src='http://cdn.cricketsocial.com/images/profileIcon.png';" class="nav-avatar dropdown-toggle" data-toggle="dropdown"  aria-expanded="false">
                         
                         
                         
@@ -1061,7 +1061,7 @@ function popup(id)
 </script>
 
 <!--Custom smooth Scroll-->                 
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/CustomScrollbar.min.js"></script>
+    <script type="text/javascript" src="http://cdn.cricketsocial.com/js/CustomScrollbar.min.js"></script>
 
 <script>
   (function($){

@@ -19,6 +19,7 @@ import com.cricketsocial.bean.response.LoginResponse;
 import com.cricketsocial.common.CSException;
 import com.cricketsocial.common.GsonConverters;
 import com.cricketsocial.common.Util;
+import com.cricketsocial.controller.CricketSocialController;
 import com.cricketsocial.restservice.CricketSocialRestTemplateService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -65,11 +66,13 @@ public class CricketSocialRestTemplateServiceImpl  implements CricketSocialRestT
 			long startdate=new  Date().getTime();
 			String uid=UUID.randomUUID().toString();
 			ThreadContext.put("REQ_ID", uid);
-			logger.info(hubRequest.getUserName()+" ------>Request Msg type :"+hubRequest.getMsgType() +" :"+reqString);
+			String mailAddress=CricketSocialController.loginUserMail;
+			ThreadContext.put("User_Mail", mailAddress);
+			logger.info(reqString);
 			result = restTemplate.postForObject(URL,hubRequest,String.class);
 			long enddate=new  Date().getTime();
 			ThreadContext.put("REQ_ID", uid);
-			 logger.info(hubRequest.getUserName()+" =====>Response Msg type :"+hubRequest.getMsgType() +" :"+result+" Time taken :"+(enddate-startdate));
+			 logger.info(result);
 			
 			System.out.println("The msgtype  :"+hubRequest.getMsgType() +" Time taken---------------->"+String.valueOf(enddate-startdate));
 			System.out.println("response : =============== > "+result);

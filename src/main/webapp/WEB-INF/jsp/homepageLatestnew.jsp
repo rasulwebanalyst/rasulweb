@@ -5,13 +5,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
- <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+ <link rel="icon" type="image/png" href="http://cdn.cricketsocial.com/images/Faveicon.png" />
  <!-- responsive css -->
  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cricket Social</title>
     <!-- responsive css -->
- <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">   
+ <%-- <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet"> --%>   
 <script>var ctx="${pageContext.request.contextPath}";</script>
 <script type="text/javascript">
 var pageNum=50;
@@ -272,10 +272,10 @@ return result;
 	                                  <div class="media-left">
 	                                  <c:choose>
 	                                  	<c:when test="${not empty feed.boardName}">
-	                                  			<img src="${feed.boardImageurl}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" class="nav-avatar">
+	                                  			<img src="${feed.boardImageurl}" onError="this.onerror=null;this.src='http://cdn.cricketsocial.com/images/boardIcon.png';" class="nav-avatar">
 	                                  	</c:when>
 	                                  	<c:otherwise>
-	                                  		<img src="${feed.userImageurl}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';" class="nav-avatar">                                  	
+	                                  		<img src="${feed.userImageurl}" onError="this.onerror=null;this.src='http://cdn.cricketsocial.com/images/profileIcon.png';" class="nav-avatar">                                  	
 	                                  	</c:otherwise>
 	                                  </c:choose>
 	                                    <a href="#">
@@ -397,7 +397,7 @@ return result;
                                             <label for="buddyOption${feed.feedId}"><span></span>Buddy</label>                                          
                                        </span>
 	                                    <div class="postBlock commentBlock" id="feedContenDIVt${feed.feedId}" style="display: none;">
-                                            <img src="${USRIMG}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';" class="nav-avatar">
+                                            <img src="${USRIMG}" onError="this.onerror=null;this.src='http://cdn.cricketsocial.com/images/profileIcon.png';" class="nav-avatar">
                                             <textarea class="form-control" id="feedcontent${feed.feedId}" placeholder="Write a Comment"></textarea>
                                             <a href="javascript:" class=""><button type="button" class="pull-right btn blueBtn" style="margin-top: 6px;" name="feedcommentbtn"  onclick="sendFeedComments(this)" value="${feed.feedId}">BOWL</button></a>
                                             <div style="color: red; margin-left: 54px;" id="feedcmderrorDiv${feed.feedId}"></div>
