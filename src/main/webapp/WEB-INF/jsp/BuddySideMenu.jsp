@@ -8,21 +8,21 @@
 </head>
 <body>
 <div class="col-md-2 profileLogo pLUpdated sideMenu">
-                    	<span class="pLUpdatedImg"><img src="${USRIMG}" onError="this.onerror=null;this.src='http://cdn.cricketsocial.com/images/profileIcon.png';">
+                    	<span class="pLUpdatedImg"><img src="${USRIMG}" onError="this.onerror=null;this.src='https://cdn.cricketsocial.com/images/profileIcon.png';">
                         	<a href="${pageContext.request.contextPath}/viewProfile"><i class="fa fa-pencil" title="Edit Profile"></i></a>
                         	 ${USRLastName}
                         </span>
                         <input type="hidden" value="${USRIMG}" id="userImageId">
                         
                      		<ul class="leftMenu" id="mainMenu">
-                            	<li><a href="${pageContext.request.contextPath}/MyScore"><i class="fa imgIcon"><img src="http://cdn.cricketsocial.com/images/MyScore.png"></i>My Score</a></li>
-                            	<li><a href="${pageContext.request.contextPath}/userEvent"><i class="fa imgIcon"><img src="http://cdn.cricketsocial.com/images/MyEvents.png"></i>My Events</a></li>
-                            	<li><a href="${pageContext.request.contextPath}/myfans"><i class="fa imgIcon"><img src="http://cdn.cricketsocial.com/images/MyFans.png"></i>My Fans</a></li>
-                            	<li><a href="${pageContext.request.contextPath}/fanOf"><i class="fa imgIcon"><img src="http://cdn.cricketsocial.com/images/IAmFanOf.png"></i>I Am Fan Of</a></li>                            	
-                            	<li><a href="${pageContext.request.contextPath}/My Boards"><i class="fa imgIcon"><img src="http://cdn.cricketsocial.com/images/IAmFanOf.png"></i>My Board</a></li>
-                            	<li><a href="${pageContext.request.contextPath}/buddies"><i class="fa imgIcon"><img src="http://cdn.cricketsocial.com/images/MyBuddyList.png"></i>My Buddies</a></li>
-                            	<li><a href="${pageContext.request.contextPath}/playerCompare#"><i class="fa imgIcon"><img src="http://cdn.cricketsocial.com/images/PlayerCompare.png"></i>Player Compare</a></li>
-                            	<li><a href="${pageContext.request.contextPath}/MyCricketBook"><i class="fa imgIcon"><img src="http://cdn.cricketsocial.com/images/CricketBook.png"></i>Cricket Book</a></li>
+                            	<li><a href="${pageContext.request.contextPath}/MyScore"><i class="fa imgIcon"><img src="https://cdn.cricketsocial.com/images/MyScore.png"></i>My Score</a></li>
+                            	<li><a href="${pageContext.request.contextPath}/userEvent"><i class="fa imgIcon"><img src="https://cdn.cricketsocial.com/images/MyEvents.png"></i>My Events</a></li>
+                            	<li><a href="${pageContext.request.contextPath}/myfans"><i class="fa imgIcon"><img src="https://cdn.cricketsocial.com/images/MyFans.png"></i>My Fans</a></li>
+                            	<li><a href="${pageContext.request.contextPath}/fanOf"><i class="fa imgIcon"><img src="https://cdn.cricketsocial.com/images/IAmFanOf.png"></i>I Am Fan Of</a></li>                            	
+                            	<li><a href="${pageContext.request.contextPath}/My Boards"><i class="fa imgIcon"><img src="https://cdn.cricketsocial.com/images/IAmFanOf.png"></i>My Board</a></li>
+                            	<li><a href="${pageContext.request.contextPath}/buddies"><i class="fa imgIcon"><img src="https://cdn.cricketsocial.com/images/MyBuddyList.png"></i>My Buddies</a></li>
+                            	<li><a href="${pageContext.request.contextPath}/playerCompare#"><i class="fa imgIcon"><img src="https://cdn.cricketsocial.com/images/PlayerCompare.png"></i>Player Compare</a></li>
+                            	<li><a href="${pageContext.request.contextPath}/MyCricketBook"><i class="fa imgIcon"><img src="https://cdn.cricketsocial.com/images/CricketBook.png"></i>Cricket Book</a></li>
                         </ul>
                         
                         
