@@ -349,7 +349,7 @@ var teamdeletearray=[];
                               <div style="float: left;" class="PhoneNumberT">
                               <%-- <input type="text" class="form-control" placeholder="" id="phoneNumber" name="phoneNumber" value="${UserProfileOBJ.phoneNumber}"> --%>
                              <select name="countryCode" id="countryCode" class="form-control tcol1 number" style="width: 46%; font-size: 10px; padding: 6px 5px;">
-                             <c:if test="${empty UserProfileOBJ.phoneNumber}">
+                             <c:if test="${empty UserProfileOBJ.phoneNumber || UserProfileOBJ.countryCode eq ''}">
                                 <option value="">Country Code</option>
                               </c:if>
                              
