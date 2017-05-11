@@ -299,6 +299,7 @@ var fbURL='110086556012641'; // QA
 <body class="loginBody">
 
  <%@ include file="CSCommon.jsp" %>
+ <%@ include file="GoogleAnalytical.jsp" %>
 <div
   class="fb-like"
   data-share="true"
