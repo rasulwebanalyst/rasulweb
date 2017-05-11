@@ -329,6 +329,7 @@ overflow: auto;
 </div>
 </head>
 <body>
+<%@ include file="GoogleAnalytical.jsp" %>
 
 <!-- popup -->
 <div>

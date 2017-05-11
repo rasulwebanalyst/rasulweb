@@ -463,7 +463,8 @@ public class CricketSocialController {
 							 if(profile.getLastName()!=null){
 								 name=name+" "+profile.getLastName();
 							 }
-							 session.setAttribute("USRLastName", userProfile.getEmailAddress());
+							 session.setAttribute("USRLastName", name);
+							 session.setAttribute("USREmail", profile.getEmailAddress());
 							// session.setAttribute("LoginLatLong", arg1);
 							 String userLatLongVal=userProfile.getLatLang();
 							 
@@ -28861,8 +28862,7 @@ public @ResponseBody List<Feeds>  boardFeedsSearch(HttpServletRequest request,@R
 		 String strBoardFeedList=cricketSocialRestTemplateService.userRegistration(hubReq);					
 		 if(strBoardFeedList!=null )
 		 {
-			 HubResponse feedlist= GsonConverters.getGsonObject().fromJson(strBoardFeedList, HubResponse.class);
-			 
+			 HubResponse feedlist= GsonConverters.getGsonObject().fromJson(strBoardFeedList, HubResponse.class);			 
 			 if(feedlist!=null && feedlist.getResults().getBoardFeedResponse()!=null && feedlist.getResults().getBoardFeedResponse()!=null)
 			 {
 				 //FeedsList

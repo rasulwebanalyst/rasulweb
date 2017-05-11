@@ -44,6 +44,6 @@
 
 <script>
 
-var HeaderName = '${USRLastName}';
+var HeaderName = '${USREmail}';
 
 </script>
