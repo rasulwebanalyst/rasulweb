@@ -1111,6 +1111,7 @@ function addFunction1(){
 	 var url = "https://maps.googleapis.com/maps/api/timezone/json?location="+latlong+"&timestamp=" + timestamp + "&sensor=false";
 	    $.ajax({
 	      url: url,
+	      headers : {'Name' : HeaderName},
 	      async: false,
 	    }).done(function(response) {
 	      console.log(JSON.stringify(response));

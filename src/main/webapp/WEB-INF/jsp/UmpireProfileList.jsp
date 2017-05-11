@@ -270,6 +270,7 @@
 	   $.ajax({
 		 type:"post",
 		 url:"${pageContext.request.contextPath}/deleteUmpireList",
+		 headers : {'Name' : HeaderName},
 		 data:JSON.stringify(umpire),
 		 contentType:"application/json",
 		 success:function(res){
@@ -347,6 +348,7 @@
 	   $.ajax({
 		   type:"post",
 		   url:"${pageContext.request.contextPath}/loadMoreUmpires",
+		   headers : {'Name' : HeaderName},
 		   data:JSON.stringify(boardUmpire),
 		   contentType:"application/json",
 		   success:function(res){

@@ -66,8 +66,6 @@ public class CricketSocialRestTemplateServiceImpl  implements CricketSocialRestT
 			long startdate=new  Date().getTime();
 			String uid=UUID.randomUUID().toString();
 			ThreadContext.put("REQ_ID", uid);
-			String mailAddress=CricketSocialController.loginUserMail;
-			ThreadContext.put("User_Mail", mailAddress);
 			logger.info(reqString);
 			result = restTemplate.postForObject(URL,hubRequest,String.class);
 			long enddate=new  Date().getTime();

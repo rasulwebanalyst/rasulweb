@@ -126,6 +126,7 @@ $(function(){
 				 
 				type : "POST",
 				url : "${pageContext.request.contextPath}/leagueMatchesaaroundyou", 
+				headers : {'Name' : HeaderName},
 				data : JSON.stringify(request),
 				contentType : "application/json; charset=utf-8",
 				success : function(res)
@@ -819,6 +820,7 @@ function registration()
        $.ajax({
 					type : "POST",
 					url : "${pageContext.request.contextPath}/registration.htm",
+					headers : {'Name' : HeaderName},
 					dataType: "json",
 		            contentType: "application/json; charset=utf-8",
 		            data:logininfo,

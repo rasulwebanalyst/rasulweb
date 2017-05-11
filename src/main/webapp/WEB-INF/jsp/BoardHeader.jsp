@@ -559,6 +559,7 @@ viewFlag=1;
     			    $.ajax({
     						type : "POST",
     						url : ctx+"/boardSearch",
+    						headers : {'Name' : HeaderName},
     						dataType: "json",
     			        contentType: "application/json; charset=utf-8",
     			        data : key,			            
@@ -760,6 +761,7 @@ viewFlag=1;
         $.ajax({
     		type : "GET",
     		url :ctx+"/getMyBuddyRequestsAjax",
+    		headers : {'Name' : HeaderName},
     		dataType: "json",
             contentType: "application/json; charset=utf-8",
     		success : function(res) {

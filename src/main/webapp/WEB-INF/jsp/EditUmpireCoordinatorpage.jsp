@@ -450,6 +450,7 @@
 		  $.ajax({
 			type:"post",
 			url:"${pageContext.request.contextPath}/updateUmpireDetails",
+			headers : {'Name' : HeaderName},
 			data:JSON.stringify(Umpirebean),
 			contentType :"application/json; charset=utf-8",
 			success:function(res){
@@ -566,6 +567,7 @@
 	 			    $.ajax({
 	 						type : "POST",
 	 						url : "${pageContext.request.contextPath}/UmpireCreationNameSearch",
+	 						headers : {'Name' : HeaderName},
 	 						dataType: "json",
 	 			        contentType: "application/json; charset=utf-8",
 	 			        data : key,					            

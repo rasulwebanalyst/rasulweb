@@ -18,6 +18,7 @@
 		   $.ajax({
 	    		type : "POST",
 	    		url :ctx+"/searchtournamentInLeaug",
+	    		headers : {'Name' : HeaderName},
 	    		dataType: "json",
 	            contentType: "application/json; charset=utf-8",
 	            data :postinfo,
@@ -80,6 +81,7 @@
 		   $.ajax({
 	    		type : "GET",
 	    		url :ctx+"/boardSearchInCreateTournament?term="+searchkey,
+	    		headers : {'Name' : HeaderName},
 	    		dataType: "json",
 	            contentType: "application/json; charset=utf-8",
 	           // data :searchkey,
@@ -163,6 +165,7 @@
 		   $.ajax({
 	    		type : "GET",
 	    		url :ctx+"/boardSearchInCreateTournament?term="+searchkey,
+	    		headers : {'Name' : HeaderName},
 	    		dataType: "json",
 	            contentType: "application/json; charset=utf-8",
 	           // data :searchkey,

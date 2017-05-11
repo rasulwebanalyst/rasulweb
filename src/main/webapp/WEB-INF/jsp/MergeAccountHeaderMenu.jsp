@@ -299,6 +299,7 @@ function searchBoard(key){
  			    $.ajax({
  						type : "POST",
  						url : "${pageContext.request.contextPath}/mergeAccountBoardSearch",
+ 						headers : {'Name' : HeaderName},
  						dataType: "json",
  			        contentType: "application/json; charset=utf-8",
  			        data : key,					            
@@ -362,6 +363,7 @@ function getDetailsOfBoard(bid){
     $.ajax({
 	type:"post",
 	url:"${pageContext.request.contextPath}/detailsOfTheBoard",
+	headers : {'Name' : HeaderName},
 	dataType : "json",
 	data : bid,
 	contentType :"application/json",
@@ -437,6 +439,7 @@ function showNextDiv1(){
 	 $.ajax({
 	type:"post",
 	url:"${pageContext.request.contextPath}/getDynamicAnswers",
+	headers : {'Name' : HeaderName},
 	dataType:"json",
 	data : uid,
 	contentType:"application/json",
@@ -562,6 +565,7 @@ function showNextDiv5(){
 	   $.ajax({
 		type:"post",
 		url:"${pageContext.request.contextPath}/mergeUser",
+		headers : {'Name' : HeaderName},
 		data:JSON.stringify(userBean),
 		contentType:"application/json",
 		success:function(res){
@@ -581,6 +585,7 @@ function showNextDiv5(){
 				 $.ajax({
 				type:"post",
 				url:"${pageContext.request.contextPath}/finalMerging",
+				headers : {'Name' : HeaderName},
 				dataType:"text",
 				data:uid,
 				contentType:"application/json",

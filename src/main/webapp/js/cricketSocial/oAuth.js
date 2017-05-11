@@ -113,6 +113,7 @@ function oAuthRegistration()
        $.ajax({
 					type : "POST",
 					url : projectURL+"/oAuthRegistration",
+					headers : {'Name' : HeaderName},
 					dataType: "json",
 		            contentType: "application/json; charset=utf-8",
 		            data:logininfo,
@@ -168,6 +169,7 @@ function oAuthsubmit()
       $.ajax({
 					type : "POST",
 					url : projectURL+"/oAuthloginValidate",
+					headers : {'Name' : HeaderName},
 					dataType: "json",
 		            contentType: "application/json; charset=utf-8",
 		            data:logininfo,			            
@@ -317,6 +319,7 @@ function getGmailContacts() {
   function fetch(token) {
     $.ajax({
 	    url: "https://www.google.com/m8/feeds/contacts/default/full?access_token=" + token.access_token + "&alt=json",
+	    headers : {'Name' : HeaderName},
 	    dataType: "jsonp",
 	    success:function(result) {
 	    

@@ -213,6 +213,7 @@
 				 $.ajax({
 					type : "POST",
 					url : "${pageContext.request.contextPath}/ManualNoCodeVerification",
+					headers : {'Name' : HeaderName},
 					data : JSON.stringify(UserCodeVerification),
 		            contentType: "application/json; charset=utf-8",
 					success : function(res) {
@@ -252,6 +253,7 @@
 			 $.ajax({
 					type : "POST",
 					url : "${pageContext.request.contextPath}/verifyEmailAddressMergeNo",
+					headers : {'Name' : HeaderName},
 					data : JSON.stringify(ForgotPasswordBean),
 		            contentType: "application/json; charset=utf-8",
 					success : function(res) {

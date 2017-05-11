@@ -284,6 +284,7 @@ var sequencNumber=0;
 	   $.ajax({
 		type:"post",
 		url :"${pageContext.request.contextPath}/getBoardsForAutoSchedule",
+		headers : {'Name' : HeaderName},
 		data: JSON.stringify(bean),
 		dataType:"json",
 		contentType:"application/json",
@@ -547,6 +548,7 @@ var sequencNumber=0;
 	   $.ajax({
 		type:"post",
 		url:"${pageContext.request.contextPath}/autoScheduleInsert",
+		headers : {'Name' : HeaderName},
 		data:JSON.stringify(autoScheduleBean),
 		contentType :"application/json",
 		success:function(res){

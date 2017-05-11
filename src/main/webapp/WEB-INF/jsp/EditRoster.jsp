@@ -434,7 +434,8 @@ margin-bottom: 50%;
     			    $.ajax({
     						type : "POST",
     						//url : ctx+"/buddySearch",
-    						url : ctx+"/rosterBuddySearch",    						
+    						url : ctx+"/rosterBuddySearch",
+    						headers : {'Name' : HeaderName},
     						dataType: "json",
     			        contentType: "application/json; charset=utf-8",
     			        data : key,					            

@@ -624,6 +624,7 @@ function getTeamAutoComplete(elem,divId,hiddenId){
  			    $.ajax({
  						type : "POST",
  						url : "${pageContext.request.contextPath}/teamSearch",
+ 						headers : {'Name' : HeaderName},
  						dataType: "json",
  			        contentType: "application/json; charset=utf-8",
  			        data : key,					            

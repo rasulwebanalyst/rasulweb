@@ -301,6 +301,7 @@ var formatAMPMTime = function(date) {
 		 $.ajax({
 			type:"Post",
 			url:"${pageContext.request.contextPath}/showScorerListInAssignUmpire",
+			headers : {'Name' : HeaderName},
 			data:JSON.stringify(bean),
 			contentType :"application/json;charset=utf-8",
 			success :function(res){
@@ -383,6 +384,7 @@ var formatAMPMTime = function(date) {
 		
 			 type:"post",
 			 url:"${pageContext.request.contextPath}/deleteScorerFromAssignPage",
+			 headers : {'Name' : HeaderName},
 			 data:JSON.stringify(bean),
 			 contentType:"application/json; charset=utf-8",
 			 success : function(res){
@@ -453,6 +455,7 @@ var formatAMPMTime = function(date) {
 				
 			 type:"post",
 			 url:"${pageContext.request.contextPath}/addScorerFromAssignPage",
+			 headers : {'Name' : HeaderName},
 			 data:JSON.stringify(bean),
 			 contentType:"application/json; charset=utf-8",
 			 success : function(res){
@@ -509,6 +512,7 @@ var formatAMPMTime = function(date) {
 		 			    $.ajax({
 		 						type : "POST",
 		 						url : "${pageContext.request.contextPath}/UmpireCreationNameSearch",
+		 						headers : {'Name' : HeaderName},
 		 						dataType: "json",
 		 			        contentType: "application/json; charset=utf-8",
 		 			        data : key,					            

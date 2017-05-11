@@ -589,6 +589,7 @@ function buddySearch(ele){
 			    $.ajax({
 						type : "POST",
 						url : ctx+"/buddySearch",
+						headers : {'Name' : HeaderName},
 						dataType: "json",
 			        contentType: "application/json; charset=utf-8",
 			        data : key,			            
@@ -924,6 +925,7 @@ function popup(id)
 			    $.ajax({
 						type : "GET",
 						url : ctx+"/boardSearchInUserProfile",
+						headers : {'Name' : HeaderName},
 						dataType: "json",
 			        	contentType: "application/json; charset=utf-8",
 			        	data : {

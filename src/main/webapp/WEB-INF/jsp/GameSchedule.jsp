@@ -1232,6 +1232,7 @@ date.add(java.util.Calendar.DATE, +6);
 	 $.ajax({
 		type:"Post",
 		url:"${pageContext.request.contextPath}/cancelSchedule",
+		headers : {'Name' : HeaderName},
 		data : JSON.stringify(scheduler),
 		contentType :"application/json",
 		success : function(res){
@@ -1260,6 +1261,7 @@ date.add(java.util.Calendar.DATE, +6);
 	 			    $.ajax({
 	 						type : "POST",
 	 						url : "${pageContext.request.contextPath}/TournamentNameSearchForFilter",
+	 						headers : {'Name' : HeaderName},
 	 						/* dataType: "json", */
 	 			        contentType: "application/json; charset=utf-8",
 	 			        data :JSON.stringify(bean),		            
@@ -1914,6 +1916,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
                 			  $.ajax({
                 				type :"Post",
                 				url:"${pageContext.request.contextPath}/getScheduleHomeAwayName",
+                				headers : {'Name' : HeaderName},
                 				data:JSON.stringify(tournamentBean),
                 				contentType:"application/json",
                 				success:function(response){
@@ -2016,6 +2019,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
                 			  $.ajax({
                 				type :"Post",
                 				url:"${pageContext.request.contextPath}/getScheduleHomeAwayName",
+                				headers : {'Name' : HeaderName},
                 				data:JSON.stringify(tournamentBean),
                 				contentType:"application/json",
                 				success:function(response){

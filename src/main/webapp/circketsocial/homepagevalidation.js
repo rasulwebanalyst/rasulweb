@@ -62,6 +62,7 @@ messages :
      $.ajax({
 			type : "POST",
 			url : projectURL+"/postFeed",
+			headers : {'Name' : HeaderName},
 			dataType: "json",
          contentType: "application/json; charset=utf-8",
          data:postinfo,			            
@@ -310,6 +311,7 @@ messages :
 			 $.ajax({
 					type : "POST",
 					url : projectURL+"/postFeedComment",
+					headers : {'Name' : HeaderName},
 					dataType: "json",
 		      contentType: "application/json; charset=utf-8",
 		      data:postinfo,			            
@@ -363,6 +365,7 @@ messages :
 		 $.ajax({
 				type : "POST",
 				url : projectURL+"/ViewFeedComment",
+				headers : {'Name' : HeaderName},
 				dataType: "json",
 	   contentType: "application/json; charset=utf-8",
 	   data:postinfo,			            
@@ -466,10 +469,11 @@ messages :
 	     };
 		 
 		 var postinfo=JSON.stringify(postHitparams);
-		 
+		
 		 $.ajax({
 				type : "POST",
 				url : projectURL+"/FeedHitByBuddy",
+				headers : {'Name' : HeaderName},
 				dataType: "json",
 	   contentType: "application/json; charset=utf-8",
 	   data:postinfo,			            
@@ -519,6 +523,7 @@ messages :
 		 $.ajax({
 				type : "POST",
 				url : ctx+"/shareFeed",
+				headers : {'Name' : HeaderName},
 				dataType: "json",
 				  contentType: "application/json; charset=utf-8",
 	   data:postinfo,			            
@@ -568,6 +573,7 @@ messages :
 		 $.ajax({
 				type : "POST",
 				url : ctx+"/shareFeed",
+				headers : {'Name' : HeaderName},
 				dataType: "json",
 				  contentType: "application/json; charset=utf-8",
 	   data:postinfo,			            
@@ -615,6 +621,7 @@ messages :
 	 $.ajax({
 			type : "POST",
 			url : ctx+"/shareFeed",
+			headers : {'Name' : HeaderName},
 			dataType: "json",
 contentType: "application/json; charset=utf-8",
 data:postinfo,			            
@@ -659,10 +666,11 @@ data:postinfo,
 		     };
 			 
 			 var postinfo=JSON.stringify(postHitparams);
-			 
+			
 			 $.ajax({
 					type : "POST",
 					url : projectURL+"/FeedHitByBuddy",
+					headers : {'Name' : HeaderName},
 					dataType: "json",
 		   contentType: "application/json; charset=utf-8",
 		   data:postinfo,			            
@@ -717,6 +725,7 @@ data:postinfo,
 		 $.ajax({
 				type : "POST",
 				url : ctx+"/shareFeed",
+				headers : {'Name' : HeaderName},
 				dataType: "json",
 				  contentType: "application/json; charset=utf-8",
 	   data:postinfo,			            

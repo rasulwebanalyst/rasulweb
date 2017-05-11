@@ -427,6 +427,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
        $.ajax({
    		type : "POST",
    		url :ctx+"/boardFeedsSearch",
+   		headers : {'Name' : HeaderName},
    		dataType: "json",
            contentType: "application/json; charset=utf-8",
            data : postinfo,	
@@ -773,6 +774,7 @@ function getHitList(fid)
 	 $.ajax({
 		 type : "post",
 		 url : "${pageContext.request.contextPath}/hitList",
+		 headers : {'Name' : HeaderName},
 		 data : JSON.stringify(request),
 		 contentType : "application/json",
 		 success : function(res)
@@ -823,6 +825,7 @@ function gitHitedList(fid)
 	 $.ajax({
 		 type : "post",
 		 url : "${pageContext.request.contextPath}/hitList",
+		 headers : {'Name' : HeaderName},
 		 data : JSON.stringify(request),
 		 contentType : "application/json",
 		 success : function(res)

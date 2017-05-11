@@ -223,6 +223,7 @@ if(type == 'no')
 	   $.ajax({
 		   type:"post",
 			url:"${pageContext.request.contextPath}/cancelTournamentFinal",
+			headers : {'Name' : HeaderName},
 			data:JSON.stringify(bean),
 			contentType :"application/json",
 			success : function(res){
@@ -272,6 +273,7 @@ if(type == 'no')
 	   $.ajax({
 		   type:"post",
 		   url:"${pageContext.request.contextPath}/loadMoreTournaments",
+		   headers : {'Name' : HeaderName},
 		   data:JSON.stringify(tournament),
 		   contentType:"application/json",
 		   success:function(res){

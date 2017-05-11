@@ -24,11 +24,13 @@ import javax.servlet.http.HttpSession;
 
 
 
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -461,7 +463,7 @@ public class CricketSocialController {
 							 if(profile.getLastName()!=null){
 								 name=name+" "+profile.getLastName();
 							 }
-							 session.setAttribute("USRLastName", name);
+							 session.setAttribute("USRLastName", userProfile.getEmailAddress());
 							// session.setAttribute("LoginLatLong", arg1);
 							 String userLatLongVal=userProfile.getLatLang();
 							 
@@ -478,6 +480,7 @@ public class CricketSocialController {
 				    		 }
 							 
 							 loginUserMail=profile.getEmailAddress();
+							 MDC.put("User_Mail", profile.getEmailAddress());
 							 
 							/* HubRequest hubReq=new HubRequest(13);
 							 hubReq.setMsgType(13);				
