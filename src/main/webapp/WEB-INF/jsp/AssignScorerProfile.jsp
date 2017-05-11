@@ -218,8 +218,7 @@ var formatAMPMTime = function(date) {
           </div>    
       </div>
           <input type="hidden" id="hiddenSchedulerId">
-          
-          <input type="hidden" id="hiddenDate" value="${dateString}"> 
+            <input type="hidden" id="hiddenDate" value="${dateString}"> 
 		 	<input type="hidden" id="hiddenDateStart" value="${startDate}"> 
           
     </div>

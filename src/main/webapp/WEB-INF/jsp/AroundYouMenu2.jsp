@@ -9,6 +9,7 @@
 </head>
 <body>
 <!--Right Block-->
+
                      	<div class="col-md-3 pull-right noPadding pageRightBlock">
                           
                           <div class="box-inner">

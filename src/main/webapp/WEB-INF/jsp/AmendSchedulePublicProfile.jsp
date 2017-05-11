@@ -61,7 +61,6 @@
 </head>
 <body>
 
-
 	<%@ include file="BoardHeader.jsp"%>
 
 	<section class="middleContentBlock">

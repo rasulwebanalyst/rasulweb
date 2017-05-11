@@ -27,7 +27,7 @@
     </div>
 </div>
 	<%@ include file="BuddyHeader.jsp" %>
-<section class="middleContentBlock">
+	<section class="middleContentBlock">
     <div class="container">
 
         <div class="row">

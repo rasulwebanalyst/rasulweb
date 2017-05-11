@@ -10,7 +10,6 @@
  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 <title>Cricket Social</title>
 <%@ include file="BoardHeader.jsp" %>
-
  <section class="middleContentBlock">
 <div class="profileBanner"> <img src="${pageContext.request.contextPath}/images/innerBanner.png"> </div>
 <div class="container">

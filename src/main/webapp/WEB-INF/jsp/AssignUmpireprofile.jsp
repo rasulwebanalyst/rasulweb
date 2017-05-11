@@ -94,6 +94,7 @@ var formatAMPMTime = function(date) {
 
 <%@ include file="publicLeaugeManagementSideMenu.jsp" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
       
      <div class="col-md-10">
       		<div class="col-md-12 whiteBox">
