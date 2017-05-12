@@ -70,6 +70,12 @@
         
 <script type="text/javascript">
 
+
+
+var HeaderName = '${USREmail}';
+
+
+
 function hide_notificationpoup(sec)
 {
 		 setTimeout(function() {$("#notificationPopupDiv").fadeOut(sec); }, sec);

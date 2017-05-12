@@ -211,7 +211,6 @@ public class CricketSocialController {
 	private static String defaultMatchesAroundYouLatLongValue="";
 	private static String defaultLeagueBoardAroundYouLatLongValue="";
 	private static String defaultMerchantAroundYouLatLongValue="";
-	public static String loginUserMail="";
 
 	@SuppressWarnings("unused")
 	private Gson gsonobj=null;
@@ -464,7 +463,6 @@ public class CricketSocialController {
 								 name=name+" "+profile.getLastName();
 							 }
 							 session.setAttribute("USRLastName", name);
-							 session.setAttribute("USREmail", profile.getEmailAddress());
 							// session.setAttribute("LoginLatLong", arg1);
 							 String userLatLongVal=userProfile.getLatLang();
 							 
@@ -480,7 +478,6 @@ public class CricketSocialController {
 				    			 session.setAttribute("USRLocationAllowed", "Yes"); 
 				    		 }
 							 
-							 loginUserMail=profile.getEmailAddress();
 							 MDC.put("User_Mail", profile.getEmailAddress());
 							 
 							/* HubRequest hubReq=new HubRequest(13);
@@ -1256,6 +1253,10 @@ public ModelAndView userprofile(HttpServletRequest request)
 			 HttpSession session = request.getSession(true);
 			 if(session.getAttribute("USRID")!=null)
 			 {
+				 
+				 MDC.put("User_Mail", (String)session.getAttribute("USREMAIL"));
+				 
+				 
 				 gsonobj=GsonConverters.getGsonObject();
 				 UUID userid=(UUID) session.getAttribute("USRID");
 				 String userEmail= (String) session.getAttribute("USREMAIL");
@@ -28862,7 +28863,8 @@ public @ResponseBody List<Feeds>  boardFeedsSearch(HttpServletRequest request,@R
 		 String strBoardFeedList=cricketSocialRestTemplateService.userRegistration(hubReq);					
 		 if(strBoardFeedList!=null )
 		 {
-			 HubResponse feedlist= GsonConverters.getGsonObject().fromJson(strBoardFeedList, HubResponse.class);			 
+			 HubResponse feedlist= GsonConverters.getGsonObject().fromJson(strBoardFeedList, HubResponse.class);
+			 
 			 if(feedlist!=null && feedlist.getResults().getBoardFeedResponse()!=null && feedlist.getResults().getBoardFeedResponse()!=null)
 			 {
 				 //FeedsList

@@ -213,7 +213,6 @@
 				 $.ajax({
 					type : "POST",
 					url : "${pageContext.request.contextPath}/ManualNoCodeVerification",
-					headers : {'Name' : HeaderName},
 					data : JSON.stringify(UserCodeVerification),
 		            contentType: "application/json; charset=utf-8",
 					success : function(res) {

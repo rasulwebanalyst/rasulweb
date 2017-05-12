@@ -465,7 +465,6 @@ function registration()
        $.ajax({
 					type : "POST",
 					url : "${pageContext.request.contextPath}/registration.htm",
-					headers : {'Name' : HeaderName},
 					dataType: "json",
 		            contentType: "application/json; charset=utf-8",
 		            data:logininfo,

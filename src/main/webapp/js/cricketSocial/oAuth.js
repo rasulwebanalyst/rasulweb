@@ -113,7 +113,6 @@ function oAuthRegistration()
        $.ajax({
 					type : "POST",
 					url : projectURL+"/oAuthRegistration",
-					headers : {'Name' : HeaderName},
 					dataType: "json",
 		            contentType: "application/json; charset=utf-8",
 		            data:logininfo,
@@ -169,7 +168,6 @@ function oAuthsubmit()
       $.ajax({
 					type : "POST",
 					url : projectURL+"/oAuthloginValidate",
-					headers : {'Name' : HeaderName},
 					dataType: "json",
 		            contentType: "application/json; charset=utf-8",
 		            data:logininfo,			            
@@ -232,7 +230,7 @@ function googleLogin()
 			    'scope' : 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.google.com/m8/feeds/ https://www.googleapis.com/auth/contacts.readonly',
 			  };
 			  gapi.auth.signIn(myParams);
-}*/  // Production Environment
+} */ // Production Environment
 	 
 function loginCallback(result)
 {
@@ -286,7 +284,7 @@ function loginCallback(result)
 function onLoadCallback()
 {
   // gapi.client.setApiKey("AIzaSyA0fVf7zr2HemJ5ItsizriAF2Vxvf9k-28");//FOR  QA AIzaSyBkJTuE1F2YOwLGOzHqNx5Q9beqbQdZW_8
-	 gapi.client.setApiKey("AIzaSyA9laDOXif5a3Cd4Ha03JXC77vXnfFZu0g"); // For Dev  Qa
+	 gapi.client.setApiKey("AIzaSyA9laDOXif5a3Cd4Ha03JXC77vXnfFZu0g"); // For Dev 
 	//gapi.client.setApiKey("AIzaSyBzCBzUjAh3MCIMyL74VKzDvRxR91XCZHQ"); // Production Environment 
   
 	
@@ -319,7 +317,6 @@ function getGmailContacts() {
   function fetch(token) {
     $.ajax({
 	    url: "https://www.google.com/m8/feeds/contacts/default/full?access_token=" + token.access_token + "&alt=json",
-	    headers : {'Name' : HeaderName},
 	    dataType: "jsonp",
 	    success:function(result) {
 	    
@@ -345,7 +342,7 @@ function getGmailContacts() {
 }	
 
   
-   
+  
   function checkAllGmailContascts(elem){
 		 //alert(elem.checked);
 		 if(elem.checked){

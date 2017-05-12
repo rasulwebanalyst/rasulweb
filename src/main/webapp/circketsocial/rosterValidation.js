@@ -27,6 +27,7 @@
  					$.ajax({
  						type :"post",
  						url :ctx+"/updateroastercheck",
+ 						headers : {'Name' : HeaderName},
  						data:JSON.stringify(roaster),
  						/*async:false,*/
  	 					 contentType:"application/json",

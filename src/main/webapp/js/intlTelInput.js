@@ -1057,7 +1057,6 @@
             // dont use $.getScript as it prevents caching
             $.ajax({
                 url: path,
-                headers : {'Name' : HeaderName},
                 complete: function() {
                     // tell all instances that the utils request is complete
                     $(".intl-tel-input input").intlTelInput("handleUtils");

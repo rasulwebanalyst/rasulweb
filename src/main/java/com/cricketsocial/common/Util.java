@@ -306,8 +306,8 @@ public class Util {
 			Properties prop = new Properties();		
 			InputStream input = null;
 			File file= null;
-			//String propertyFilePath = "/home/kladmin/Documents/opt/cricket_social/Config_properties";	//AWS
-			String propertyFilePath = "/opt/cricket_social/Config_properties";	//AWS
+			//String propertyFilePath = "/home/vignesh/opt/cricket_social/Config_properties";	//AWS
+		    String propertyFilePath = "/opt/cricket_social/Config_properties";	//AWS
 			String path=propertyFilePath;
 			file= new File(path);
 			if(!file.exists())
