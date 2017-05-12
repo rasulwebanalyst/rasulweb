@@ -2718,6 +2718,7 @@ function boardMatchEvent_Page(startNode,display,pageCall){
 	var pageCall2="'"+pageCall+"'";
 		var board={
 			userId : eventLogUserId,
+			boardId : eventboardId,
 			startNode : startNode,
 			endNode : 10
 			

@@ -78,6 +78,6 @@
 </div>
 </section>
 
-<%@ include file="Footer" %>
+<%@ include file="Footer.jsp" %>
 </body>
 </html>

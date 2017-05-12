@@ -1478,6 +1478,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    				//App Scorer
    				htmlco+="<td> <div >";
    				var upcommingscorer=upcomminglist[i].scorerNamesList;
+   				if(upcommingscorer !=null){
    				if(upcommingscorer.length > 0){
    				for(var j=0; j < upcommingscorer.length;j++)
    				{
@@ -1493,11 +1494,17 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    					{
    					htmlco+="<span>-</span>";
    					}
+   				}
+   				else
+					{
+					htmlco+="<span>-</span>";
+					}   				
    				htmlco+="</div></td>";
    				
    				//Portal Scorer
    				htmlco+="<td> <div >";
    				var Portalscorer=upcomminglist[i].portalScorerList;
+   				if(Portalscorer != null){
    				if(Portalscorer.length > 0){
    				for(var j=0; j < Portalscorer.length;j++)
    				{
@@ -1513,6 +1520,11 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    					{
    					htmlco+="<span>-</span>";
    					}
+   				}else
+					{
+					htmlco+="<span>-</span>";
+					}
+   				
    				
    				htmlco+="</div></td>";
    				htmlco+="<td>"+upcomminglist[i].tournamentName+"</td>";
@@ -1595,6 +1607,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    	   				//Portal Scorer
    	   				htmlco1+="<td> <div >";
    	   				var Portalscorer=incomepltelist[i].portalScorerList;
+   	   				if(Portalscorer != null){
    	   				if(Portalscorer.length > 0){
    	   				for(var j=0; j < Portalscorer.length;j++)
    	   				{
@@ -1610,6 +1623,10 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    	   					{
    	   					htmlco1+="<span>-</span>";
    	   					}
+   				}else
+  					{
+  					htmlco1+="<span>-</span>";
+  					}
    	   				
    	   				htmlco1+="</div></td>";
    				    
@@ -1671,6 +1688,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				    htmlco2+="</div></td> ";
 				    htmlco2+="<td class='tdAlignLeft'> <div>";
 				    var inprogressscorer=inprogresslist[i].scorerNamesList;
+				    if(inprogressscorer != null){
 				    if(inprogressscorer.length > 0){
 				    for(var j=0;j<inprogressscorer.length;j++){
 				    htmlco2+="<span><a href='${pageContext.request.contextPath}/buddy/"+inprogressscorer[j].scorerName+"/"+inprogressscorer[j].scorerId+"'>"+inprogressscorer[j].scorerName+"</a>";
@@ -1679,11 +1697,13 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 			        	htmlco2 += ',</span>';
 			        } 
 				    }}else{htmlco2+="<span>-</span>";}
+				    }else{htmlco2+="<span>-</span>";}
 				    htmlco2+="</div></td> ";
 				    
 				  //Portal Scorer
    	   				htmlco2+="<td> <div >";
    	   				var Portalscorer=inprogresslist[i].portalScorerList;
+   	   				if(Portalscorer != null){
    	   				if(Portalscorer.length > 0){
    	   				for(var j=0; j < Portalscorer.length;j++)
    	   				{
@@ -1699,6 +1719,10 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    	   					{
    	   					htmlco2+="<span>-</span>";
    	   					}
+   	   			}else
+  					{
+  					htmlco2+="<span>-</span>";
+  					}
    	   				
    	   				htmlco2+="</div></td>";
 				    
@@ -1782,6 +1806,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				    //Portal Scorer
    	   				htmlco3+="<td> <div >";
    	   				var Portalscorer=completedlist[i].portalScorerList;
+   	   				if(Portalscorer != null){
    	   				if(Portalscorer.length > 0){
    	   				for(var j=0; j < Portalscorer.length;j++)
    	   				{
@@ -1797,6 +1822,10 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    	   					{
    	   					htmlco3+="<span>-</span>";
    	   					}
+   	   			}else
+  					{
+  					htmlco3+="<span>-</span>";
+  					}
    	   				
    	   				htmlco3+="</div></td>";
 				    
