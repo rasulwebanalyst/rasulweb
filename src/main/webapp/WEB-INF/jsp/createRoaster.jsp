@@ -42,7 +42,7 @@
     <section class="middleContentBlock">
     
     <div class="profileBanner">
-    	<img src="images/innerBanner.png">
+    	<img src="https://cdn.cricketsocial.com/images/innerBanner.png">
     </div>
     
     <div class="container">

@@ -205,7 +205,7 @@ margin-bottom: 50%;
           </div>
           
           
-    	<img src="images/innerBanner.png">
+    	<img src="https://cdn.cricketsocial.com/images/innerBanner.png">
         
     </div>
     

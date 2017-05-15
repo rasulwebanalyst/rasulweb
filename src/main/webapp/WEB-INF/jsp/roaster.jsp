@@ -306,7 +306,7 @@ function checkbbi(bbi)
          </div>   
         </div>-->
         
-    	<img src="images/innerBanner.png">
+    	<img src="https://cdn.cricketsocial.com/images/innerBanner.png">
         
     </div>
     
