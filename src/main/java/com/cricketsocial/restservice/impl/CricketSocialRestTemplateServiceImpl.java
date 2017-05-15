@@ -30,13 +30,14 @@ public class CricketSocialRestTemplateServiceImpl  implements CricketSocialRestT
     //  private static String domain="http://172.16.19.27:8068/cricketsocialwebservices/"; // kiran
    // private static String domain="http://172.16.19.16:8068/cricketsocialwebservices/"; // Hyderali
   // private static String domain="http://172.16.19.103:8068/cricketsocialwebservices/"; //Bavitra
+	private static String domain="http://172.16.19.59:8068/cricketsocialwebservices/";
 //	 private static String domain="http://localhost:8068/cricketsocialwebservices/";  // local   
    //private static String domain="http://52.4.189.30:8068/cricketsocialwebservices/";//public machine
  
      //private static String domain="http://172.16.19.30:8068/cricketsocialwebservices/"; // kalpana dev system ip
      //private static String domain="http://52.73.86.69:8068/cricketsocialwebservices/";//QA
 	//private static String domain="http://52.73.236.168:8068/cricketsocialwebservices/";// PROD
-                   private static String domain=Util.webServiceDomainName("Web_Service_URL");
+                   //private static String domain=Util.webServiceDomainName("Web_Service_URL");
      //private static String domain="http://192.168.0.52:8068/cricketsocialwebservices/"; // Hyderali(temp)
      //private static String domain="http://172.16.19.30:8068/cricketsocialwebservices/"; // kalpana   
      // private static String domain="http://172.16.19.27:8068/cricketsocialwebservices/";

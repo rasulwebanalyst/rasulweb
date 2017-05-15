@@ -55,7 +55,7 @@
          </div>   
         </div>-->
         
-    	<img src="${pageContext.request.contextPath}/images/innerBanner.png">
+    	<img src="https://cdn.cricketsocial.com/images/innerBanner.png">
         
     </div>
     

@@ -5,15 +5,16 @@
 
     <!-- Custom CSS -->
     <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
+    
+    <!--Font-Awesome Icons-->
+    <link href="${pageContext.request.contextPath}/icons/css/font-awesome.min.css" rel="stylesheet">
 
 	<!--Date picker-->
-    <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
+    <link href="https://cdn.cricketsocial.com/css/datepicker.css" rel="stylesheet">
 
-<!--Font-Awesome Icons-->
-    <link href="${pageContext.request.contextPath}/icons/css/font-awesome.min.css" rel="stylesheet">
     
     <!--Gallery-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slider.css" />
+    <link rel="stylesheet" href="https://cdn.cricketsocial.com/css/slider.css" />
     
     <!--Google Default Fonts-->
 	<link href='https://fonts.googleapis.com/css?family=Cabin:400,500,600,700,400italic,600italic' rel='stylesheet' type='text/css'>
@@ -27,21 +28,21 @@
     <script>var ctx="${pageContext.request.contextPath}";</script>
 
         <!-- jQuery -->
-    <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
+    <script src="https://cdn.cricketsocial.com/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="https://cdn.cricketsocial.com/js/bootstrap.min.js"></script>
     
     <!--Date picker-->
-    <script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>
+    <script src="https://cdn.cricketsocial.com/js/bootstrap-datepicker.js"></script>
     
-     <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
+     <script src="https://cdn.cricketsocial.com/js/bootstrap-datetimepicker.min.js"></script>
     
     
-<script src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
+<script src="https://cdn.cricketsocial.com/js/jquery.validate.min.js"></script>
 
-<script src="${pageContext.request.contextPath}/js/jquery.plugin.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery.realperson.js"></script>
+<script src="https://cdn.cricketsocial.com/js/jquery.plugin.js"></script>
+<script src="https://cdn.cricketsocial.com/js/jquery.realperson.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/circketsocial/commentfunctions.js"></script>
  <script type="text/javascript" src="${pageContext.request.contextPath}/js/cricketSocial/loadfunction.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/cricketSocial/boardfunction.js"></script>
@@ -361,11 +362,11 @@ overflow: auto;
                 
                 
                 <a class="navbar-brand Logo" href="${pageContext.request.contextPath}/">
-                   <img src="${pageContext.request.contextPath}/images/Logo.png">
+                   <img src="https://cdn.cricketsocial.com/images/Logo.png">
                 </a>
                 
                 <a class="navbar-brand LogoSmall" href="${pageContext.request.contextPath}/">
-                   <img src="${pageContext.request.contextPath}/images/LogoSmall.png">
+                   <img src="https://cdn.cricketsocial.com/images/LogoSmall.png">
                 </a>
                 
                 
@@ -486,7 +487,7 @@ overflow: auto;
                     <li>
                        <a href="#" onclick="showFriendREquDiv('friendRequestHeaderDiv')" id="showFriendRequesDIV" title="Buddy Request"> 
                        	<i class="fa fa-userIcon">
-                       		<img src="${pageContext.request.contextPath}/images/usersIcon.png" >
+                       		<img src="https://cdn.cricketsocial.com/images/usersIcon.png" >
                        	</i>
                        	<c:choose>
                        		<c:when test="${requestsCount > 0}">
@@ -508,7 +509,7 @@ overflow: auto;
                     </li>
                     <li>
                     <span class="buddyheaderName">${USRLastName}</span>
-                        <img src="${USRIMG}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';" class="nav-avatar dropdown-toggle" data-toggle="dropdown"  aria-expanded="false">
+                        <img src="${USRIMG}" onError="this.onerror=null;this.src='https://cdn.cricketsocial.com/images/profileIcon.png';" class="nav-avatar dropdown-toggle" data-toggle="dropdown"  aria-expanded="false">
                         <ul class="dropdown-menu logMenus userAcc" role="menu"> 
                          <li><a href="${pageContext.request.contextPath}/viewProfile">My Profile</a></li>
                            <%-- <li><a href="${pageContext.request.contextPath}/mergeAccountHeader">Merge Account</a></li> --%>                        
@@ -736,7 +737,7 @@ overflow: auto;
 
     </script>
             
-    <script>
+   <!--  <script>
     $(document).ready(function () {
         $('#loading').hide();
         $.ajax({
@@ -789,7 +790,7 @@ overflow: auto;
     
     
    
-    </script>
+    </script> -->
     
     
     <script type="text/javascript">
@@ -854,7 +855,7 @@ $(window).on('resize', function(event){
 	});
 </script>
     <!--Custom smooth Scroll-->                 
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/CustomScrollbar.min.js"></script>
+    <script type="text/javascript" src="https://cdn.cricketsocial.com/js/CustomScrollbar.min.js"></script>
 
 <script>
   (function($){
