@@ -1282,7 +1282,11 @@ public ModelAndView userprofile(HttpServletRequest request)
 								
 								//Score Card Redirect
 								
-								if(session.getAttribute("ScoreCardSession") != null){
+								if(session.getAttribute("DummyBoard") != null){
+									String DummyBoard=(String) session.getAttribute("DummyBoard");
+									model=new ModelAndView("redirect:/board/board/"+DummyBoard);
+								}
+								else if(session.getAttribute("ScoreCardSession") != null){
 									 String score=(String) session.getAttribute("ScoreCardSession");
 									 String boardId=(String) session.getAttribute("ScoreCardBoardId");
 									 String matchId=(String) session.getAttribute("ScoreCardSessionMatchId");
@@ -1296,7 +1300,8 @@ public ModelAndView userprofile(HttpServletRequest request)
 										 model=new ModelAndView("redirect:/showScoreCard/matchId/"+matchId);										 
 										 
 									 }
-									 }else{
+									 }
+								else{
 								
 								
 								model=new ModelAndView("homepageLatestnew");
@@ -9983,7 +9988,7 @@ public ModelAndView boardPublicProfile(HttpServletRequest request, @PathVariable
 	HttpSession session=request.getSession(true);
 	ModelAndView model=null;
 	
-	
+	session.removeAttribute("DummyBoard");
 	
 	final String context = request.getContextPath();
 	List<Object> upcommingObject=new ArrayList<Object>();
@@ -32990,58 +32995,6 @@ public ModelAndView showScoreCardPublicProfile(HttpServletRequest req, @PathVari
 			 }
 			 
 			 
-			/* hubReq = new HubRequest();
-			 hubReq.setMsgType(13);
-			 ModelMap map3 = new ModelMap();
-			 map3.put("matchId", matchId);
-			 hubReq.setRequestParam(map3);
-			 
-			 String returnResponse = cricketSocialRestTemplateService.userRegistration1(hubReq);
-			 
-			 if(returnResponse != null){
-				 NewResponse res = gson.fromJson(returnResponse, NewResponse.class);
-				 if(res != null && res.getResults() != null){
-					//mav.addObject("scoreCardList", res.getResults());
-					 mav.addObject("getSecondInnings", res.getResults().getSecondInnings());
-						mav.addObject("getFirstInnings", res.getResults().getFirstInnings());
-					mav.addObject("firstInningsBattingPlayer", res.getResults().getFirstInnings().getBattingPlayer());
-					mav.addObject("SecondInningsBattingPlayer", res.getResults().getSecondInnings().getBattingPlayer());
-					mav.addObject("firstInningsBowlingPlayer", res.getResults().getFirstInnings().getBowlingPlayer());
-					mav.addObject("SecondInningsBowlingPlayer", res.getResults().getSecondInnings().getBowlingPlayer());
-					mav.addObject("fallOfWicketsFirstInnings", res.getResults().getFirstInnings().getFollowOfWickets());
-					mav.addObject("fallOfWicketsSecondInnings", res.getResults().getSecondInnings().getFollowOfWickets());
-					
-					if(res.getResults().getFirstInnings().getBattingPlayer() == null ){
-						mav.addObject("firstInningsBattingPlayerSize", 0);
-					}else{
-						mav.addObject("firstInningsBattingPlayerSize", res.getResults().getFirstInnings().getBattingPlayer().size());
-					}
-					if(res.getResults().getSecondInnings().getBattingPlayer() == null){
-						mav.addObject("SecondInningsBattingPlayerSize", 0);
-					}else{
-						mav.addObject("SecondInningsBattingPlayerSize", res.getResults().getSecondInnings().getBattingPlayer().size());
-					}
-					if(res.getResults().getFirstInnings().getBowlingPlayer() == null){
-						mav.addObject("firstInningsBowlingPlayerSize", 0);
-					}else{
-						mav.addObject("firstInningsBowlingPlayerSize", res.getResults().getFirstInnings().getBowlingPlayer().size());
-					}
-					if(res.getResults().getSecondInnings().getBowlingPlayer() == null){
-						mav.addObject("SecondInningsBowlingPlayerSize", 0);
-					}else{
-						mav.addObject("SecondInningsBowlingPlayerSize", res.getResults().getSecondInnings().getBowlingPlayer().size());
-					}
-					
-					
-					
-				 }else{
-					System.out.println("null condition"); 
-				 }
-			 }
-			 else{
-				 
-			 }*/
-			 
 
 				hubReq= new HubRequest();
 			 hubReq.setMsgType(243);
@@ -44603,6 +44556,7 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 		if(isUUID(bid)){
 		
 		HttpSession session=request.getSession(true);
+		session.setAttribute("DummyBoard",bid);
 		
 			UUID userId=(UUID) session.getAttribute("USRID");
 			List<Object> upcommingObject=new ArrayList<Object>();
