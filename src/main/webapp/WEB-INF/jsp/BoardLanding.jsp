@@ -501,7 +501,7 @@ var formatAMPMTime = function(date) {
                           
                             <div class="sidebar-container widget-MAU">
                             <div class="sidebar-content">
-                              <div class="sidebar-header"> <a href="">Frequently Used Menus</a></div>
+                              <div class="sidebar-header"> <a href="javascript:void(0);">Frequently Used Menus</a></div>
                               
                             
                              		<div class="sidebar-list">

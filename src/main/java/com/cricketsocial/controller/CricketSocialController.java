@@ -1284,7 +1284,8 @@ public ModelAndView userprofile(HttpServletRequest request)
 								
 								if(session.getAttribute("DummyBoard") != null){
 									String DummyBoard=(String) session.getAttribute("DummyBoard");
-									model=new ModelAndView("redirect:/board/board/"+DummyBoard);
+									String DummyBoardName=(String) session.getAttribute("DummyBoardName");
+									model=new ModelAndView("redirect:/"+DummyBoardName.replace(" ", "%20")+"/board/"+DummyBoard);
 								}
 								else if(session.getAttribute("ScoreCardSession") != null){
 									 String score=(String) session.getAttribute("ScoreCardSession");
@@ -9989,6 +9990,7 @@ public ModelAndView boardPublicProfile(HttpServletRequest request, @PathVariable
 	ModelAndView model=null;
 	
 	session.removeAttribute("DummyBoard");
+	session.removeAttribute("DummyBoardName");
 	
 	final String context = request.getContextPath();
 	List<Object> upcommingObject=new ArrayList<Object>();
@@ -44556,6 +44558,11 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 		if(isUUID(bid)){
 		
 		HttpSession session=request.getSession(true);
+		
+		
+		 if(session.getAttribute("USRID")==null)
+		 {
+		
 		session.setAttribute("DummyBoard",bid);
 		
 			UUID userId=(UUID) session.getAttribute("USRID");
@@ -44575,6 +44582,8 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 				 HubResponse hubResponse= gson.fromJson(strBoarddetail, HubResponse.class);
 				if(hubResponse!=null && hubResponse.getResults().getBoardStatusDetail()!=null && hubResponse.getResults().getBoardStatusDetail().size()>0)
 				{
+					
+					session.setAttribute("DummyBoardName",hubResponse.getResults().getBoardStatusDetail().get(0).getBoardName());
 					 //model= new ModelAndView("boards");
 					//model= new ModelAndView("boardsnew");
 					if(hubResponse.getResults().getBoardStatusDetail().get(0).getCategory().equalsIgnoreCase("Team"))
@@ -44759,10 +44768,14 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 					 model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 				}
 				 
-				 
 			 }else{
 				 model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
 			 }
+			 
+		 }else{
+			 model=new ModelAndView("redirect:/directView/board/"+bid);
+		 }
+		 
 		}else{
 			model=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");	
 			
