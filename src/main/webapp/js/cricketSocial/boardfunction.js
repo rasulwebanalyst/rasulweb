@@ -43,6 +43,7 @@ $('#postfrom').validate({
 	     $.ajax({
 				type : "POST",
 				url : projectURL+"/postFeed",
+				headers : {'Name' : HeaderName},
 				dataType: "json",
 	         contentType: "application/json; charset=utf-8",
 	         data:postinfo,			            
@@ -246,6 +247,7 @@ $('#postfrom').validate({
 			 $.ajax({
 					type : "POST",
 					url : ctx+"/postFeedComment",
+					headers : {'Name' : HeaderName},
 					dataType: "json",
 		      contentType: "application/json; charset=utf-8",
 		      data:postinfo,			            
@@ -297,6 +299,7 @@ $('#postfrom').validate({
 		 $.ajax({
 				type : "POST",
 				url : projectURL+"/ViewFeedComment",
+				headers : {'Name' : HeaderName},
 				dataType: "json",
 	   contentType: "application/json; charset=utf-8",
 	   data:postinfo,			            
@@ -415,6 +418,7 @@ $('#postfrom').validate({
 	 $.ajax({
 			type : "POST",
 			url : ctx+"/feedCommentDelete",
+			headers : {'Name' : HeaderName},
 			dataType : "json",
 			contentType : "application/json; charset=utf-8",
 			data : postinfo,			            
@@ -449,6 +453,7 @@ $('#postfrom').validate({
 	 $.ajax({
 			type : "POST",
 			url : ctx+"/feedCommentSpam",
+			headers : {'Name' : HeaderName},
 			dataType : "json",
 			contentType : "application/json; charset=utf-8",
 			data : postinfo,			            
@@ -514,6 +519,7 @@ $('#postfrom').validate({
 		 $.ajax({
 				type : "POST",
 				url : projectURL+"/FeedHitByBuddy",
+				headers : {'Name' : HeaderName},
 				dataType: "json",
 	   contentType: "application/json; charset=utf-8",
 	   data:postinfo,			            
@@ -561,10 +567,11 @@ $('#postfrom').validate({
 	     };
 		 
 		 var postinfo=JSON.stringify(postHitparams);
-		 
+		
 		 $.ajax({
 				type : "POST",
 				url : projectURL+"/FeedHitByBuddy",
+				headers : {'Name' : HeaderName},
 				dataType: "json",
 	   contentType: "application/json; charset=utf-8",
 	   data:postinfo,			            
@@ -600,6 +607,7 @@ $('#postfrom').validate({
 	  $.ajax({
 			type : "GET",
 			url : ctx+"/fanActions",
+			headers : {'Name' : HeaderName},
 			dataType: "json",
        contentType: "application/json; charset=utf-8",
        data:{			            
@@ -755,10 +763,11 @@ $('#postfrom').validate({
 		     };
 			 
 			 var postinfo=JSON.stringify(postHitparams);
-			 
+			
 			$.ajax({
 					type : "POST",
 					url : projectURL+"/FeedHitByBuddy",
+					headers : {'Name' : HeaderName},
 					dataType: "json",
 		   contentType: "application/json; charset=utf-8",
 		   data:postinfo,			            

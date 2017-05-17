@@ -893,6 +893,7 @@ $(document).ready(function () {
 	  $.ajax({
 		  type : "Get",
 		  url :"${pageContext.request.contextPath}/weatherApi/"+latlong.split(",")[0]+"/"+latlong.split(",")[1],
+		  headers : {'Name' : HeaderName},
 		  success:function(res)
 		  {
 			  if(res !=null)
@@ -965,6 +966,7 @@ function loadMoreGround(){
 	   $.ajax({
 		   type:"post",
 		   url:"${pageContext.request.contextPath}/loadMoreGrounds",
+		   headers : {'Name' : HeaderName},
 		   data:JSON.stringify(ground),
 		   contentType:"application/json",
 		   success:function(res){

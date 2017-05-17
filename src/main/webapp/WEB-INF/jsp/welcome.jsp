@@ -126,6 +126,7 @@ $(function(){
 				 
 				type : "POST",
 				url : "${pageContext.request.contextPath}/leagueMatchesaaroundyou", 
+				headers : {'Name' : HeaderName},
 				data : JSON.stringify(request),
 				contentType : "application/json; charset=utf-8",
 				success : function(res)
@@ -298,6 +299,7 @@ var fbURL='110086556012641'; // QA
 <body class="loginBody">
 
  <%@ include file="CSCommon.jsp" %>
+ <%@ include file="GoogleAnalytical.jsp" %>
 <div
   class="fb-like"
   data-share="true"
@@ -819,6 +821,7 @@ function registration()
        $.ajax({
 					type : "POST",
 					url : "${pageContext.request.contextPath}/registration.htm",
+					headers : {'Name' : HeaderName},
 					dataType: "json",
 		            contentType: "application/json; charset=utf-8",
 		            data:logininfo,

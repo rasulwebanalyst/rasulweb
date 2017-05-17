@@ -252,6 +252,7 @@
 			 $.ajax({
 					type : "POST",
 					url : "${pageContext.request.contextPath}/verifyEmailAddressMergeNo",
+					headers : {'Name' : HeaderName},
 					data : JSON.stringify(ForgotPasswordBean),
 		            contentType: "application/json; charset=utf-8",
 					success : function(res) {

@@ -329,6 +329,7 @@ var formatAMPMTime = function(date) {
 		 $.ajax({
 			type:"Post",
 			url:"${pageContext.request.contextPath}/cancelSchedule",
+			headers : {'Name' : HeaderName},
 			data : JSON.stringify(scheduler),
 			contentType :"application/json",
 			success : function(res){
@@ -357,6 +358,7 @@ var formatAMPMTime = function(date) {
 		 			    $.ajax({
 		 						type : "POST",
 		 						url : "${pageContext.request.contextPath}/TournamentNameSearchForFilter",
+		 						headers : {'Name' : HeaderName},
 		 						/* dataType: "json", */
 		 			        contentType: "application/json; charset=utf-8",
 		 			        data :JSON.stringify(bean),		            

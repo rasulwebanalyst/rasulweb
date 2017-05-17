@@ -678,6 +678,7 @@ function showAssignScorerForm(id)
 	 $.ajax({
 		type:"Post",
 		url:ctx+"/showScorerListInAssignUmpire",
+		headers : {'Name' : HeaderName},
 		data:JSON.stringify(bean),
 		contentType :"application/json;charset=utf-8",
 		success :function(res){
@@ -743,6 +744,7 @@ function getBuddiesAutoComplete(elem,divId,hiddenId){
  			    $.ajax({
  						type : "POST",
  						url : ctx+"/UmpireCreationNameSearch",
+ 						headers : {'Name' : HeaderName},
  						dataType: "json",
  			        contentType: "application/json; charset=utf-8",
  			        data : key,					            
@@ -814,6 +816,7 @@ function getBuddiesAutoComplete2(elem,divId,hiddenId){
    						type : "GET",
    					//	url : ctx+"/buddySearch",
    					    url : ctx+"/boardSearchInCreateTournament?term="+team,
+   					 headers : {'Name' : HeaderName},
    						dataType: "json",
    			        contentType: "application/json; charset=utf-8",
    			      /*   data :{
@@ -908,6 +911,7 @@ function addScorer(){
 			
 		 type:"post",
 		 url:ctx+"/addScorerFromAssignPage",
+		 headers : {'Name' : HeaderName},
 		 data:JSON.stringify(bean),
 		 contentType:"application/json; charset=utf-8",
 		 success : function(res){

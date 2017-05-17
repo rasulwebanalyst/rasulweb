@@ -289,6 +289,7 @@ var formatAMPMTime = function(date) {
 	  $.ajax({
 		 type : "post",
 		 url:"${pageContext.request.contextPath}/loadMoreDisputeManagement",
+		 headers : {'Name' : HeaderName},
 		 data:JSON.stringify(request),
 		 contentType:"application/json",
 		 success:function(res)

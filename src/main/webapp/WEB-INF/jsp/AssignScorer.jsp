@@ -10,7 +10,6 @@
  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
 <title>Cricket Social</title>
 <%@ include file="BoardHeader.jsp" %>
-
  <section class="middleContentBlock">
 <div class="profileBanner"> <img src="${pageContext.request.contextPath}/images/innerBanner.png"> </div>
 <div class="container">
@@ -301,6 +300,7 @@ var formatAMPMTime = function(date) {
 		 $.ajax({
 			type:"Post",
 			url:"${pageContext.request.contextPath}/showScorerListInAssignUmpire",
+			headers : {'Name' : HeaderName},
 			data:JSON.stringify(bean),
 			contentType :"application/json;charset=utf-8",
 			success :function(res){
@@ -383,6 +383,7 @@ var formatAMPMTime = function(date) {
 		
 			 type:"post",
 			 url:"${pageContext.request.contextPath}/deleteScorerFromAssignPage",
+			 headers : {'Name' : HeaderName},
 			 data:JSON.stringify(bean),
 			 contentType:"application/json; charset=utf-8",
 			 success : function(res){
@@ -453,6 +454,7 @@ var formatAMPMTime = function(date) {
 				
 			 type:"post",
 			 url:"${pageContext.request.contextPath}/addScorerFromAssignPage",
+			 headers : {'Name' : HeaderName},
 			 data:JSON.stringify(bean),
 			 contentType:"application/json; charset=utf-8",
 			 success : function(res){
@@ -509,6 +511,7 @@ var formatAMPMTime = function(date) {
 		 			    $.ajax({
 		 						type : "POST",
 		 						url : "${pageContext.request.contextPath}/UmpireCreationNameSearch",
+		 						headers : {'Name' : HeaderName},
 		 						dataType: "json",
 		 			        contentType: "application/json; charset=utf-8",
 		 			        data : key,					            

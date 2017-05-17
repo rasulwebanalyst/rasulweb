@@ -292,6 +292,7 @@ function sendFeedComments2(elem,mesgid){
 		 $.ajax({
 				type : "POST",
 				url : projectURL+"/postFeedComment",
+				headers : {'Name' : HeaderName},
 				dataType: "json",
 	      contentType: "application/json; charset=utf-8",
 	      data:postinfo,			            
@@ -484,6 +485,7 @@ $(document).ready(function () {
     $.ajax({
 		type : "GET",
 		url :ctx+"/getMyBuddyRequestsAjax",
+		headers : {'Name' : HeaderName},
 		dataType: "json",
         contentType: "application/json; charset=utf-8",
 		success : function(res) {
@@ -820,6 +822,7 @@ var formatAMPM = function(date) {
 		 $.ajax({
 				type : "POST",
 				url : ctx+"/feedSpam",
+				headers : {'Name' : HeaderName},
 				dataType: "json",
 	      contentType: "application/json; charset=utf-8",
 	      data:postinfo,			            
@@ -855,6 +858,7 @@ var formatAMPM = function(date) {
 		 $.ajax({
 				type : "POST",
 				url : ctx+"/feedDelete",
+				headers : {'Name' : HeaderName},
 				dataType: "json",
 	      contentType: "application/json; charset=utf-8",
 	      data:postinfo,			            

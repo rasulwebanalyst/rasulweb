@@ -9,6 +9,7 @@
 </head>
 <body>
 <!--Right Block-->
+
                      	<div class="col-md-3 pull-right noPadding pageRightBlock">
                           
                           <div class="box-inner">
@@ -41,7 +42,7 @@
 	                              			</c:choose>
 	                                   		 
 	                                   		 <span class="teamLogos">
-	                                			<a href="${pageContext.request.contextPath}/${board.boardName }/board/${board.boardId}"><img src="${board.boardImageURL }?" class="teamLogo" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" ></a> <b>VS</b> <a href="${pageContext.request.contextPath}/${board1.boardName }/board/${board1.boardId}"><img src="${board1.boardImageURL }" class="teamLogo"></a>
+	                                			<a href="${pageContext.request.contextPath}/${board.boardName }/board/${board.boardId}"><img src="${board.boardImageURL }?" class="teamLogo" onError="this.onerror=null;this.src='https://cdn.cricketsocial.com/images/boardIcon.png';" ></a> <b>VS</b> <a href="${pageContext.request.contextPath}/${board1.boardName }/board/${board1.boardId}"><img src="${board1.boardImageURL }" class="teamLogo"></a>
 	                                		</span>
 	                             		 </div>
 		                              		
@@ -69,7 +70,7 @@
 	                              		<div class="sidebar-list">
 			                              		<a href="${pageContext.request.contextPath}/${brd.boardName }/board/${brd.boardId}">${brd.boardName}</a>  <br> <strong><fmt:formatDate value="${brd.createdDate}" pattern="MMM dd, YYYY"/></strong>
 			                                    <div class="teamLogos">
-			                                		<a href="${pageContext.request.contextPath}/${brd.boardName }/board/${brd.boardId}"><img src="${brd.boardImageURL}?" class="teamLogo" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';"  ></a>
+			                                		<a href="${pageContext.request.contextPath}/${brd.boardName }/board/${brd.boardId}"><img src="${brd.boardImageURL}?" class="teamLogo" onError="this.onerror=null;this.src='https://cdn.cricketsocial.com/images/boardIcon.png';"  ></a>
 			                                	</div>
 	                             			 </div>
 	                              </c:forEach>
@@ -160,7 +161,7 @@
 			                              <div class="sidebar-list" >
 			                                    <div class="teamLogos">
 			                             <a href="${pageContext.request.contextPath}/${merchant.boardName}/board/${merchant.boardId}">
-			                                	<img src="${merchant.boardImageURL}?" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" class="teamLogo" >
+			                                	<img src="${merchant.boardImageURL}?" onError="this.onerror=null;this.src='https://cdn.cricketsocial.com/images/boardIcon.png';" class="teamLogo" >
 			                                	</a>
                           	</div>
 			                                     <a href="${pageContext.request.contextPath}/${merchant.boardName}/board/${merchant.boardId}">

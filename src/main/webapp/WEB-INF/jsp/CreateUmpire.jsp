@@ -443,6 +443,7 @@
 		  $.ajax({
 			type:"post",
 			url:"${pageContext.request.contextPath}/insertUmpireDetails",
+			headers : {'Name' : HeaderName},
 			data:JSON.stringify(Umpirebean),
 			contentType :"application/json; charset=utf-8",
 			success:function(res){
@@ -564,6 +565,7 @@
 	 			    $.ajax({
 	 						type : "POST",
 	 						url : "${pageContext.request.contextPath}/UmpireCreationNameSearch",
+	 						headers : {'Name' : HeaderName},
 	 						dataType: "json",
 	 			        contentType: "application/json; charset=utf-8",
 	 			        data : key,					            
@@ -722,6 +724,7 @@
 	 $.ajax({
 		type:"post",
 		url:"${pageContext.request.contextPath}/checkUmpireValidation",
+		headers : {'Name' : HeaderName},
 		data : JSON.stringify(umpireBean),
 		contentType : "application/json",
 		success : function(res){

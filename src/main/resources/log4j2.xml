@@ -3,7 +3,7 @@
 <Appenders>
 <RollingFile name="jsonAppenderAllAsync" fileName="${sys:LogFilePath}/cricketSocial/cs_reports.log" filePattern="${sys:LogFilePath}/cricketSocial/cs_reports-%d{MM-dd-yyyy}.log" append="true">
              <PatternLayout>
-           <Pattern>{"traceId":"%X{REQ_ID}","timestamp":"%d{dd-MMM-yyy HH:mm:ss:SSS}","message":%m,"priority":"%p","class":"%c|%M|%L"}%n</Pattern>
+           <Pattern>{"traceId":"%X{REQ_ID}","timestamp":"%d{dd-MMM-yyy HH:mm:ss:SSS}","message":%m,"priority":"%p","class":"%c|%M|%L","username":"%X{User_Mail}"}%n</Pattern>
            </PatternLayout>
 			<TimeBasedTriggeringPolicy/>
         </RollingFile>

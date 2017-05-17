@@ -326,6 +326,7 @@ var sequencNumber=0;
 			   $.ajax({
 				   type : "POST",
 				   url  : "${pageContext.request.contextPath}/EditTournamentDetails",
+				   headers : {'Name' : HeaderName},
 				   contentType : "application/json; charset=utf-8",
 				   data : JSON.stringify(request),
 				   success : function(response)
@@ -399,6 +400,7 @@ var sequencNumber=0;
    						type : "GET",
    					//	url : ctx+"/buddySearch",
    					    url : ctx+"/boardSearchInCreateTournament?term="+team,
+   					 headers : {'Name' : HeaderName},
    						dataType: "json",
    			        contentType: "application/json; charset=utf-8",
    			      /*   data :{
@@ -612,6 +614,7 @@ var sequencNumber=0;
 
 		   type:"post",
 		   url:"${pageContext.request.contextPath}/tournamentNameValidation",
+		   headers : {'Name' : HeaderName},
 		   data:JSON.stringify(checkNameBean),
 		   contentType : "application/json",
 		   success : function(res){

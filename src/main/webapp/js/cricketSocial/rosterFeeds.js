@@ -49,6 +49,7 @@ $('#rosterFeedPostfrom').validate({
 	     $.ajax({
 				type : "POST",
 				url : ctx+"/postFeed",
+				headers : {'Name' : HeaderName},
 				dataType: "json",
 	         contentType: "application/json; charset=utf-8",
 	         data:postinfo,			            
@@ -262,6 +263,7 @@ $('#rosterFeedPostfrom').validate({
 			 $.ajax({
 					type : "POST",
 					url : ctx+"/postFeedComment",
+					headers : {'Name' : HeaderName},
 					dataType: "json",
 		      contentType: "application/json; charset=utf-8",
 		      data:postinfo,			            
@@ -310,6 +312,7 @@ $('#rosterFeedPostfrom').validate({
 		 $.ajax({
 				type : "POST",
 				url : ctx+"/ViewFeedComment",
+				headers : {'Name' : HeaderName},
 				dataType: "json",
 	   contentType: "application/json; charset=utf-8",
 	   data:postinfo,			            
@@ -404,6 +407,7 @@ $('#rosterFeedPostfrom').validate({
 	 $.ajax({
 			type : "POST",
 			url : ctx+"/feedCommentDelete",
+			headers : {'Name' : HeaderName},
 			dataType : "json",
 			contentType : "application/json; charset=utf-8",
 			data : postinfo,			            
@@ -448,6 +452,7 @@ $('#rosterFeedPostfrom').validate({
 	 $.ajax({
 			type : "POST",
 			url : ctx+"/feedCommentSpam",
+			headers : {'Name' : HeaderName},
 			dataType : "json",
 			contentType : "application/json; charset=utf-8",
 			data : postinfo,			            
@@ -514,6 +519,7 @@ $('#rosterFeedPostfrom').validate({
 		 $.ajax({
 				type : "POST",
 				url : projectURL+"/FeedHitByBuddy",
+				headers : {'Name' : HeaderName},
 				dataType: "json",
 	   contentType: "application/json; charset=utf-8",
 	   data:postinfo,			            
@@ -548,6 +554,7 @@ $('#rosterFeedPostfrom').validate({
 	  $.ajax({
 			type : "GET",
 			url : ctx+"/fanActions",
+			headers : {'Name' : HeaderName},
 			dataType: "json",
        contentType: "application/json; charset=utf-8",
        data:{			            
@@ -625,6 +632,7 @@ $('#rosterFeedPostfrom').validate({
 		 $.ajax({
 				type : "POST",
 				url : ctx+"/shareFeed",
+				headers : {'Name' : HeaderName},
 				dataType: "json",
 				  contentType: "application/json; charset=utf-8",
 	   data:postinfo,			            

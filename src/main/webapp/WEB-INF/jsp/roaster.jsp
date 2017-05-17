@@ -306,7 +306,7 @@ function checkbbi(bbi)
          </div>   
         </div>-->
         
-    	<img src="images/innerBanner.png">
+    	<img src="https://cdn.cricketsocial.com/images/innerBanner.png">
         
     </div>
     
@@ -1351,6 +1351,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
        $.ajax({
    		type : "POST",
    		url :ctx+"/boardFeedsSearch",
+   		headers : {'Name' : HeaderName},
    		dataType: "json",
            contentType: "application/json; charset=utf-8",
            data : postinfo,	
@@ -1524,6 +1525,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
         				    $.ajax({
         							type : "GET",
         							url : ctx+"/boardSearchInUserProfile",
+        							headers : {'Name' : HeaderName},
         							dataType: "json",
         				        	contentType: "application/json; charset=utf-8",
         				        	data : {
@@ -1588,6 +1590,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
         		   $.ajax({
 						type : "GET",
 						url : ctx+"/affiliateRoster",
+						headers : {'Name' : HeaderName},
 						dataType: "json",
 			        	contentType: "application/json; charset=utf-8",
 			        	data : {
@@ -1911,6 +1914,7 @@ var request={
 		 $.ajax({
 			 type : "post",
 			 url : "${pageContext.request.contextPath}/hitList",
+			 headers : {'Name' : HeaderName},
 			 data : JSON.stringify(request),
 			 contentType : "application/json",
 			 success : function(res)
@@ -1963,6 +1967,7 @@ if(res.length > 5){
 		 $.ajax({
 			 type : "post",
 			 url : "${pageContext.request.contextPath}/hitList",
+			 headers : {'Name' : HeaderName},
 			 data : JSON.stringify(request),
 			 contentType : "application/json",
 			 success : function(res)
