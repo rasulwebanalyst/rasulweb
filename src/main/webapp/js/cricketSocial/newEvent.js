@@ -2787,7 +2787,10 @@ function boardMatchEvent_Page(startNode,display,pageCall){
 				
 				var mat3=res.upcomingTeamBoardMatchList;
 				for(var k in mat3){
-						var event=mat3[k].tournamentSchedulerObj;
+						var event=mat3[k];
+						
+						console.log(JSON.stringify(event));
+						
 					//var dateObj=getDateInObjectFormate_withTimeStampInput(event.gameDate);
 						 var dateObj=dateFunction(event.gameDate);	
 					var dateNewObject = getDateInObjectUTCFormate_withTimeStampInput(event.gameDate);
