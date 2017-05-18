@@ -989,8 +989,12 @@ function buddyMatchInviation_page(pageNumber,display, pageCall){
 		                htm+='</div>';		                         
 		                htm+='<div class="col-md-6 Leag-Img">';
 		               // if(res.buddyMatchInvitationList[i].tournamentName!=null){
-		                if(event.tournamentName!=null){
+		               /* if(event.tournamentName!=null){
 		                	  htm+='<h4>'+event.tournamentName+'</h4>';
+		                }*/
+		                
+		                if(event.tournamentInfo!=null){
+		                	  htm+='<h4>'+event.tournamentInfo.tournamentName+'</h4>';
 		                }
 		              
 		                //htm +='<p>'+dateObj.date+' '+dateObj.time+'</p>';
