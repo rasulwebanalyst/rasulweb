@@ -350,7 +350,7 @@ var fbURL='110086556012641'; // QA
                <ul class="login-txt">
                	<li>A Social  and Analytics platform with anchoring tools for Cricket.</li>
                	<li>One stop solution for - Players, Fans, Umpires, Coaches, Merchants, League Boards, Team Boards, Academies, Cricket Administrative Bodies and Talent Acquisition.</li>
-               	<li>Players, Fans, Umpires, Coaches, Merchants, League Boards, Team Boards, Academies, Cricket Administrative Bodies and Talent Acquisition</li>
+              <!--  	<li>Players, Fans, Umpires, Coaches, Merchants, League Boards, Team Boards, Academies, Cricket Administrative Bodies and Talent Acquisition</li> -->
                	<li>Manage Social and club Cricket professionally.</li>
                	<li>Follow live scores anywhere.</li>
                	<li>Capture all your  Cricketing Moments.</li>
