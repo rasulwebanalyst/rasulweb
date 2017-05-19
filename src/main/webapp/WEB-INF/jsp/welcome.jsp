@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
- <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+ <link rel="icon" type="image/png" href="https://cdn.cricketsocial.com/images/Faveicon.png" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,10 +20,10 @@
 
     <!-- Custom CSS -->
     <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
-     <link href="${pageContext.request.contextPath}/css/jquery.realperson.css" rel="stylesheet">
+     <link href="https://cdn.cricketsocial.com/css/jquery.realperson.css" rel="stylesheet">
 
    <!-- Custom CSS -->
-    <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
+   <%--  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet"> --%>
    <%--  <link href="${pageContext.request.contextPath}/css/jquery.bxslider.css" rel="stylesheet"> --%>
 
 	<!--Font-Awesome Icons-->
@@ -38,18 +38,18 @@
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
  
     <!-- Bootstrap Core JavaScript -->
-    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+    <script src="https://cdn.cricketsocial.com/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdn.cricketsocial.com/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="https://cdn.cricketsocial.com/js/bootstrap.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/circketsocial/validationfunction.js"></script>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/cricketSocial/oAuth.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.newsTicker.js"></script>
+<script type="text/javascript" src="https://cdn.cricketsocial.com/js/jquery.newsTicker.js"></script>
 
 
-<script src="${pageContext.request.contextPath}/js/jquery.plugin.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery.realperson.js"></script>
- <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
+<script src="https://cdn.cricketsocial.com/js/jquery.plugin.js"></script>
+<script src="https://cdn.cricketsocial.com/js/jquery.realperson.js"></script>
+ <link href="https://cdn.cricketsocial.com/css/datepicker.css" rel="stylesheet">
 
 
  <!-- <script src="http://maps.googleapis.com/maps/api/js?sensor=true" type="text/javascript"></script> -->
@@ -120,7 +120,7 @@ $(function(){
 		if(lat != '' && lang != ''){
 			
 			 var request= position.coords.latitude+","+position.coords.longitude;
-			 $('#loading').show();
+			// $('#loading').show();
 			
 			 $.ajax({
 				 
@@ -315,7 +315,7 @@ var fbURL='110086556012641'; // QA
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/">
-                   <img src="${pageContext.request.contextPath}/images/Logo.png">
+                   <img src="https://cdn.cricketsocial.com/images/Logo.png">
                 </a>
             </div>
             
@@ -342,7 +342,7 @@ var fbURL='110086556012641'; // QA
                      
                      
                      
-               <div id="contentdiv" style="display: none;">      
+               <div id="contentdiv" >      
                      
             <h1>Welcome to CricketSocial</h1>
                <div id="homeContent">
@@ -628,7 +628,7 @@ var fbURL='110086556012641'; // QA
     </div>
     <!-- /.container -->
 
-    <script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>
+    <script src="https://cdn.cricketsocial.com/js/bootstrap-datepicker.js"></script>
 </body>
 <script>
 var nt_example1 = $('#nt-example1').newsTicker({
