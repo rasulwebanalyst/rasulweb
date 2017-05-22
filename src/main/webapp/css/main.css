@@ -20,7 +20,9 @@ a{
     background: -moz-linear-gradient(0deg, #989d9c, #d8c0af, #fedfb5); 
     background: linear-gradient(0deg, #989d9c, #d8c0af, #fedfb5);  */
     position: relative;
- 	background: #e4e4e5 url(../images/bg.png) no-repeat center 40px;
+ /* 	background: #e4e4e5 url(../images/bg.png) no-repeat center 40px; */
+        background: #e4e4e5 url(https://cdn.cricketsocial.com/images/bg.png) no-repeat center 40px;
+ 
 	width: 100%;
 /* 	font-family: 'Bree Serif', serif; */
 }

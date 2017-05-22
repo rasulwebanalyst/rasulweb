@@ -109,6 +109,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
        $.ajax({
    		type : "POST",
    		url :ctx+"/teamAroundYouSearch",
+   		headers : {'Name' : HeaderName},
    		dataType: "json",
            contentType: "application/json; charset=utf-8",
            data : postinfo,	

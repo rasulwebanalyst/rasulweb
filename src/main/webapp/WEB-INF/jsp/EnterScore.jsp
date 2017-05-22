@@ -929,6 +929,7 @@ $(document).ready(function(){
 		  $.ajax({
 			type :"Post",
 			url:"${pageContext.request.contextPath}/getScheduleHomeAwayName",
+			headers : {'Name' : HeaderName},
 			data:JSON.stringify(tournamentBean),
 			contentType:"application/json",
 			success:function(response){
@@ -1679,6 +1680,7 @@ $(document).ready(function(){
 	 			    $.ajax({
 	 						type : "POST",
 	 						url : "${pageContext.request.contextPath}/playerSearchOfBoard",
+	 						headers : {'Name' : HeaderName},
 	 						dataType: "json",
 	 			        contentType: "application/json; charset=utf-8",
 	 			        data : JSON.stringify(searchBean),					            
@@ -1757,6 +1759,7 @@ $(document).ready(function(){
 			    $.ajax({
 						type : "POST",
 						url : "${pageContext.request.contextPath}/playerSearchOfBoard",
+						headers : {'Name' : HeaderName},
 						dataType: "json",
 			        contentType: "application/json; charset=utf-8",
 			        data : JSON.stringify(searchBean),					            
@@ -1829,6 +1832,7 @@ $(document).ready(function(){
 	 			    $.ajax({
 	 						type : "POST",
 	 						url : "${pageContext.request.contextPath}/UmpireCreationNameSearch",
+	 						headers : {'Name' : HeaderName},
 	 						dataType: "json",
 	 			        contentType: "application/json; charset=utf-8",
 	 			        data : key,					            
@@ -2548,6 +2552,7 @@ var SecondInningsScore = $("#secondInnigsScore").val();
 		type:"post",
 		
 		url:"${pageContext.request.contextPath}/enterScoreInsert",
+		headers : {'Name' : HeaderName},
 		data:JSON.stringify(scorerBean),
 		contentType :"application/json",
 		success : function(res){

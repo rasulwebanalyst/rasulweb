@@ -34,7 +34,7 @@
          </div>   
         </div>-->
         
-    	<img src="images/innerBanner.png">
+    	<img src="https://cdn.cricketsocial.com/images/innerBanner.png">
         
     </div>
     
@@ -47,6 +47,7 @@
    	 $.ajax({
    			type : "POST",
    			url : ctx+"/becomeAFanCount",
+   			headers : {'Name' : HeaderName},
    			dataType: "json",
    			contentType: "application/json; charset=utf-8",
    		    data:JSON.stringify(boardProfile),

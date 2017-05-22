@@ -290,6 +290,7 @@
 
 				type : "Post",
 				url : "${pageContext.request.contextPath}/yearWiseTeamdetails",
+				headers : {'Name' : HeaderName},
 				data : JSON.stringify(year),
 				contentType : "application/json",
 				success : function(res) {
@@ -374,6 +375,7 @@
 		   $.ajax({
 	    		type : "POST",
 	    		url :ctx+"/searchtournamentInLeaug",
+	    		headers : {'Name' : HeaderName},
 	    		dataType: "json",
 	            contentType: "application/json; charset=utf-8",
 	            data :postinfo,

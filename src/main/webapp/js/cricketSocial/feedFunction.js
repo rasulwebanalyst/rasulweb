@@ -24,6 +24,7 @@
 		 $.ajax({
 				type : "POST",
 				url : projectURL+"/ViewFeedComment",
+				headers : {'Name' : HeaderName},
 				dataType: "json",
 	   contentType: "application/json; charset=utf-8",
 	   data:postinfo,			            
@@ -102,10 +103,11 @@
 		     };
 			 
 			 var postinfo=JSON.stringify(postHitparams);
-			 
+			
 			 $.ajax({
 					type : "POST",
-					url : projectURL+"/FeedHitByBuddy",
+					url : projectURL+"/FeedHitByBuddy",					
+					headers : {'Name' : HeaderName},
 					dataType: "json",
 		   contentType: "application/json; charset=utf-8",
 		   data:postinfo,			            
@@ -177,10 +179,11 @@
 		     };
 			 
 			 var postinfo=JSON.stringify(postHitparams);
-			 
+			
 			$.ajax({
 					type : "POST",
 					url : projectURL+"/FeedHitByBuddy",
+					headers : {'Name' : HeaderName},
 					dataType: "json",
 		   contentType: "application/json; charset=utf-8",
 		   data:postinfo,			            

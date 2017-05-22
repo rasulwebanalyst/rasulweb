@@ -4,7 +4,7 @@
 
 //var fbURL='1037086509684954'; // local
    var fbURL='480457342143824'; // Production
- //var fbURL='110086556012641'; // QA
+// var fbURL='110086556012641'; // QA
   window.fbAsyncInit = function() {
     FB.init({
       appId      :fbURL ,
@@ -206,7 +206,7 @@ function oAuthsubmit()
 			    'scope' : 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.google.com/m8/feeds/ https://www.googleapis.com/auth/contacts.readonly',
 			  };
 			  gapi.auth.signIn(myParams);
-} // Dev Environment             (Not Working)
+} */// Dev Environment             (Not Working)
 
 /*function googleLogin()
 {
@@ -218,9 +218,7 @@ function oAuthsubmit()
 			    'scope' : 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.google.com/m8/feeds/ https://www.googleapis.com/auth/contacts.readonly',
 			  };
 			  gapi.auth.signIn(myParams);
-
 }*/  // QA Environment                (Working for both dev & qa)
-
 
 function googleLogin()
 {
@@ -286,7 +284,7 @@ function loginCallback(result)
 function onLoadCallback()
 {
   // gapi.client.setApiKey("AIzaSyA0fVf7zr2HemJ5ItsizriAF2Vxvf9k-28");//FOR  QA AIzaSyBkJTuE1F2YOwLGOzHqNx5Q9beqbQdZW_8
-	// gapi.client.setApiKey("AIzaSyA9laDOXif5a3Cd4Ha03JXC77vXnfFZu0g"); // For Dev  Qa
+	// gapi.client.setApiKey("AIzaSyA9laDOXif5a3Cd4Ha03JXC77vXnfFZu0g"); // For Dev 
 	gapi.client.setApiKey("AIzaSyBzCBzUjAh3MCIMyL74VKzDvRxR91XCZHQ"); // Production Environment 
   
 	
@@ -304,8 +302,7 @@ function onLoadCallback()
 
 function getGmailContacts() {
     var config = {
-
-    //  'client_id': '199727375065-10dcv13ql2vkdijvfrl6q1ifnruld40n.apps.googleusercontent.com', // Dev 
+     //'client_id': '199727375065-10dcv13ql2vkdijvfrl6q1ifnruld40n.apps.googleusercontent.com', // Dev 
     	//	'client_id': '1077808914943-6qc5il3h9odjpnna5j1qsmh7i81pg4d6.apps.googleusercontent.com',  // QA
     		'client_id': '575004365806-sbdnc074cvqg3bqioomamtoirfnl2789.apps.googleusercontent.com',  // Prod
     		
@@ -345,7 +342,7 @@ function getGmailContacts() {
 }	
 
   
-   
+  
   function checkAllGmailContascts(elem){
 		 //alert(elem.checked);
 		 if(elem.checked){

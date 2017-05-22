@@ -21,6 +21,7 @@ function getUmpireList(elem,divId,hiddenId){
 	 						type : "POST",
 	 						//url : ctx+"/umpireCheckList?term="+key,
 	 						url : ctx+"/umpireCheckListWithLeauge",
+	 						headers : {'Name' : HeaderName},
 	 						dataType: "json",
 	 			        contentType: "application/json; charset=utf-8",
 	 			        data : postinfo,					            

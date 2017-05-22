@@ -19,6 +19,7 @@ import com.cricketsocial.bean.response.LoginResponse;
 import com.cricketsocial.common.CSException;
 import com.cricketsocial.common.GsonConverters;
 import com.cricketsocial.common.Util;
+import com.cricketsocial.controller.CricketSocialController;
 import com.cricketsocial.restservice.CricketSocialRestTemplateService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -29,13 +30,14 @@ public class CricketSocialRestTemplateServiceImpl  implements CricketSocialRestT
     //  private static String domain="http://172.16.19.27:8068/cricketsocialwebservices/"; // kiran
    // private static String domain="http://172.16.19.16:8068/cricketsocialwebservices/"; // Hyderali
   // private static String domain="http://172.16.19.103:8068/cricketsocialwebservices/"; //Bavitra
+	//private static String domain="http://172.16.19.59:8068/cricketsocialwebservices/";
 //	 private static String domain="http://localhost:8068/cricketsocialwebservices/";  // local   
    //private static String domain="http://52.4.189.30:8068/cricketsocialwebservices/";//public machine
  
      //private static String domain="http://172.16.19.30:8068/cricketsocialwebservices/"; // kalpana dev system ip
      //private static String domain="http://52.73.86.69:8068/cricketsocialwebservices/";//QA
 	//private static String domain="http://52.73.236.168:8068/cricketsocialwebservices/";// PROD
-                   private static String domain=Util.webServiceDomainName("Web_Service_URL");
+                       private static String domain=Util.webServiceDomainName("Web_Service_URL"); 
      //private static String domain="http://192.168.0.52:8068/cricketsocialwebservices/"; // Hyderali(temp)
      //private static String domain="http://172.16.19.30:8068/cricketsocialwebservices/"; // kalpana   
      // private static String domain="http://172.16.19.27:8068/cricketsocialwebservices/";
@@ -65,11 +67,11 @@ public class CricketSocialRestTemplateServiceImpl  implements CricketSocialRestT
 			long startdate=new  Date().getTime();
 			String uid=UUID.randomUUID().toString();
 			ThreadContext.put("REQ_ID", uid);
-			logger.info(hubRequest.getUserName()+" ------>Request Msg type :"+hubRequest.getMsgType() +" :"+reqString);
+			logger.info(reqString);
 			result = restTemplate.postForObject(URL,hubRequest,String.class);
 			long enddate=new  Date().getTime();
 			ThreadContext.put("REQ_ID", uid);
-			 logger.info(hubRequest.getUserName()+" =====>Response Msg type :"+hubRequest.getMsgType() +" :"+result+" Time taken :"+(enddate-startdate));
+			 logger.info(result);
 			
 			System.out.println("The msgtype  :"+hubRequest.getMsgType() +" Time taken---------------->"+String.valueOf(enddate-startdate));
 			System.out.println("response : =============== > "+result);

@@ -44,7 +44,7 @@
 </nav> -->
 
 
-<div class="profileBanner"> <img src="images/innerBanner.png"> </div>
+<div class="profileBanner"> <img src="https://cdn.cricketsocial.com/images/innerBanner.png"> </div>
 <div class="container">
   <div class="row">
     <!--Content Block-->

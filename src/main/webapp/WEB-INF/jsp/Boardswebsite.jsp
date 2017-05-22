@@ -452,7 +452,7 @@ var formatAMPMTime = function(date) {
                           
                             <div class="sidebar-container widget-MAU">
                             <div class="sidebar-content">
-                              <div class="sidebar-header"> <a href="">Frequently Used Menus</a></div>
+                              <div class="sidebar-header"> <a href="javascript:void(0);">Frequently Used Menus</a></div>
                               
                             
                              		<div class="sidebar-list">
@@ -901,6 +901,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
        $.ajax({
    		type : "POST",
    		url :ctx+"/boardFeedsSearch",
+   		headers : {'Name' : HeaderName},
    		dataType: "json",
            contentType: "application/json; charset=utf-8",
            data : postinfo,	
@@ -1310,6 +1311,7 @@ var request={
 		 $.ajax({
 			 type : "post",
 			 url : "${pageContext.request.contextPath}/hitList",
+			 headers : {'Name' : HeaderName},
 			 data : JSON.stringify(request),
 			 contentType : "application/json",
 			 success : function(res)
@@ -1360,6 +1362,7 @@ if(res.length > 5){
 		 $.ajax({
 			 type : "post",
 			 url : "${pageContext.request.contextPath}/hitList",
+			 headers : {'Name' : HeaderName},
 			 data : JSON.stringify(request),
 			 contentType : "application/json",
 			 success : function(res)

@@ -3,7 +3,7 @@
   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
- <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+ <link rel="icon" type="image/png" href="https://cdn.cricketsocial.com/images/Faveicon.png" />
   <!-- responsive css -->
  <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
     <meta charset="utf-8">
@@ -310,7 +310,7 @@ return result;
                                 <div class="media feedDiv${feed.feedId}">
 	                                  <div class="media-left">
 	                                    <a href="#">
-	                                      <img src="${feed.userImageurl}" class="nav-avatar" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';">
+	                                      <img src="${feed.userImageurl}" class="nav-avatar" onError="this.onerror=null;this.src='https://cdn.cricketsocial.com/images/profileIcon.png';">
 	                                      
 	                                    </a>
 	                                  </div>
@@ -324,7 +324,7 @@ return result;
 		                                    	
 		                                    
 		                                    <div class="dropdown">
-		                                    	<p id="HitCountDIv${index.count}" onmouseout="removeHitList('${feed.feedId}')" onmouseover="getHitList('${feed.feedId}')" onclick="gitHitedList('${feed.feedId}')" class="trash-holder"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" >${feed.feedHitCount}</p>
+		                                    	<p id="HitCountDIv${index.count}" onmouseout="removeHitList('${feed.feedId}')" onmouseover="getHitList('${feed.feedId}')" onclick="gitHitedList('${feed.feedId}')" class="trash-holder"><img src="https://cdn.cricketsocial.com/images/hitIcon1.png" width="18" class="hitIcon1" >${feed.feedHitCount}</p>
 		                                    	<div id="Hitlist_${feed.feedId}"></div>
 		                                    
 		                                    </div>
@@ -386,7 +386,7 @@ return result;
 	                                    		
 	                                    		
 	                                    		            <div class="hitIconDiv" id="hittDiv${index.count}" style="display: none;"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" id="feed${index.count}"><i class="fa hitIcon"></i> Hit</a></div>
-	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" style="color: #4c9fe1;"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" > Unhit</a></div>
+	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" style="color: #4c9fe1;"><img src="https://cdn.cricketsocial.com/images/hitIcon1.png" width="18" class="hitIcon1" > Unhit</a></div>
 	                                    		
 	                                    		
 	                                    		
@@ -400,7 +400,7 @@ return result;
 	                                    		
 	                                    		
 	                                    		            <div class="hitIconDiv" id="hittDiv${index.count}"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" id="feed${index.count}"><i class="fa hitIcon"></i> Hit</a></div>
-	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}" style="display: none;"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" style="color: #4c9fe1;"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" > Unhit</a></div>
+	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}" style="display: none;"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" style="color: #4c9fe1;"><img src="https://cdn.cricketsocial.com/images/hitIcon1.png" width="18" class="hitIcon1" > Unhit</a></div>
 	                                    		
 	                                    		</c:otherwise>
 	                                    </c:choose>
@@ -410,7 +410,7 @@ return result;
 	                                    <a href="javascript:shareFeed('${feed.feedId}')" class="shareLink" ><i class="fa fa-share"></i> Share</a>
 	                                    
 	                                    <div class="postBlock commentBlock" id="feedContenDIVt${feed.feedId}" style="display: none;">
-                                            <img src="${USRIMG}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';" class="nav-avatar">
+                                            <img src="${USRIMG}" onError="this.onerror=null;this.src='https://cdn.cricketsocial.com/images/profileIcon.png';" class="nav-avatar">
                                             <textarea class="form-control" id="feedcontent${feed.feedId}" placeholder="Write a Comment"></textarea>
                                             <a href="javascript:" class=""><button type="button" class="pull-right btn blueBtn" name="feedcommentbtn" style="margin-top: 6px;" onclick="sendFeedComments(this)" value="${feed.feedId}">BOWL</button></a>
                                             <div style="color: red; margin-left: 54px;" id="feedcmderrorDiv${feed.feedId}"></div>
@@ -612,6 +612,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
        $.ajax({
    		type : "POST",
    		url :ctx+"/boardFeedsSearch",
+   		headers : {'Name' : HeaderName},
    		dataType: "json",
            contentType: "application/json; charset=utf-8",
            data : postinfo,	
@@ -989,6 +990,7 @@ function getHitList(fid)
 	 $.ajax({
 		 type : "post",
 		 url : "${pageContext.request.contextPath}/hitList",
+		 headers : {'Name' : HeaderName},
 		 data : JSON.stringify(request),
 		 contentType : "application/json",
 		 success : function(res)
@@ -1039,6 +1041,7 @@ function gitHitedList(fid)
 	 $.ajax({
 		 type : "post",
 		 url : "${pageContext.request.contextPath}/hitList",
+		 headers : {'Name' : HeaderName},
 		 data : JSON.stringify(request),
 		 contentType : "application/json",
 		 success : function(res)

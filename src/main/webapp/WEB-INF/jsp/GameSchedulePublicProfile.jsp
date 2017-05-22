@@ -81,6 +81,7 @@ var formatAMPMTime = function(date) {
 		  $.ajax({
 			type :"Post",
 			url:"${pageContext.request.contextPath}/getScheduleHomeAwayName",
+			headers : {'Name' : HeaderName},
 			data:JSON.stringify(tournamentBean),
 			contentType:"application/json",
 			success:function(response){
@@ -1134,6 +1135,7 @@ function cancelSchedule(id){
 	 $.ajax({
 		type:"Post",
 		url:"${pageContext.request.contextPath}/cancelSchedule",
+		headers : {'Name' : HeaderName},
 		data : JSON.stringify(scheduler),
 		contentType :"application/json",
 		success : function(res){
@@ -1162,6 +1164,7 @@ function cancelSchedule(id){
 	 			    $.ajax({
 	 						type : "POST",
 	 						url : "${pageContext.request.contextPath}/TournamentNameSearchForFilter",
+	 						headers : {'Name' : HeaderName},
 	 						/* dataType: "json", */
 	 			        contentType: "application/json; charset=utf-8",
 	 			        data :JSON.stringify(bean),		            
@@ -1377,6 +1380,7 @@ var dateString = null;
    			//App Scorer
    				htmlco+="<td> <div >";
    				var upcommingscorer=upcomminglist[i].scorerNamesList;
+   				if(upcommingscorer != null){
    				if(upcommingscorer.length > 0){
    				for(var j=0; j < upcommingscorer.length;j++)
    				{
@@ -1392,11 +1396,16 @@ var dateString = null;
    					{
    					htmlco+="<span>-</span>";
    					}
+   				}else
+					{
+					htmlco+="<span>-</span>";
+					}
    				htmlco+="</div></td>";
    				
    				//Portal Scorer
    				htmlco+="<td> <div >";
    				var Portalscorer=upcomminglist[i].portalScorerList;
+   				if(Portalscorer != null){
    				if(Portalscorer.length > 0){
    				for(var j=0; j < Portalscorer.length;j++)
    				{
@@ -1412,6 +1421,10 @@ var dateString = null;
    					{
    					htmlco+="<span>-</span>";
    					}
+   				}else
+					{
+					htmlco+="<span>-</span>";
+					}
    				
    				htmlco+="</div></td>";
    				
@@ -1469,6 +1482,7 @@ var dateString = null;
    				//App Scorer
    	   				htmlco1+="<td> <div >";
    	   				var upcommingscorer=incomepltelist[i].scorerNamesList;
+   	   				if(upcommingscorer != null){
    	   				if(upcommingscorer.length > 0){
    	   				for(var j=0; j < upcommingscorer.length;j++)
    	   				{
@@ -1484,11 +1498,16 @@ var dateString = null;
    	   					{
    	   					htmlco1+="<span>-</span>";
    	   					}
+   	   			}else
+  					{
+  					htmlco1+="<span>-</span>";
+  					}
    	   				htmlco1+="</div></td>";
    	   				
    	   				//Portal Scorer
    	   				htmlco1+="<td> <div >";
    	   				var Portalscorer=incomepltelist[i].portalScorerList;
+   	   				if(Portalscorer != null){
    	   				if(Portalscorer.length > 0){
    	   				for(var j=0; j < Portalscorer.length;j++)
    	   				{
@@ -1504,6 +1523,10 @@ var dateString = null;
    	   					{
    	   					htmlco1+="<span>-</span>";
    	   					}
+   	   			}else
+  					{
+  					htmlco1+="<span>-</span>";
+  					}
    	   				
    	   				htmlco1+="</div></td>";
    				    
@@ -1562,6 +1585,7 @@ var dateString = null;
 				    htmlco2+="</div></td> ";
 				    htmlco2+="<td class='tdAlignLeft'> <div>";
 				    var inprogressscorer=inprogresslist[i].scorerNamesList;
+				    if(inprogressscorer != null){
 				    if(inprogressscorer.length > 0){
 				    for(var j=0;j<inprogressscorer.length;j++){
 				    htmlco2+="<span><a href='${pageContext.request.contextPath}/buddy/"+inprogressscorer[j].scorerName+"/"+inprogressscorer[j].scorerId+"'>"+inprogressscorer[j].scorerName+"</a>";
@@ -1570,11 +1594,13 @@ var dateString = null;
 			        	htmlco2 += ',</span>';
 			        } 
 				    }}else{htmlco2+="<span>-</span>";}
+				    }else{htmlco2+="<span>-</span>";}
 				    htmlco2+="</div></td> ";
 				    
 				    //Portal Scorer
    	   				htmlco2+="<td> <div >";
    	   				var Portalscorer=inprogresslist[i].portalScorerList;
+   	   				if(Portalscorer != null){
    	   				if(Portalscorer.length > 0){
    	   				for(var j=0; j < Portalscorer.length;j++)
    	   				{
@@ -1590,7 +1616,10 @@ var dateString = null;
    	   					{
    	   					htmlco2+="<span>-</span>";
    	   					}
-   	   				
+   	   			}else
+  					{
+  					htmlco2+="<span>-</span>";
+  					}
    	   				htmlco2+="</div></td>";
 				    
 				   /*  htmlco2+="<td><span class='text-success'>Active</span></td>"; */
@@ -1649,6 +1678,7 @@ var dateString = null;
 				    htmlco3+="</div></td> ";
 				    htmlco3+="<td class='tdAlignLeft'> <div>";
 				    var completescorer=completedlist[i].scorerNamesList;
+				    if(completescorer != null){
 				    if(completescorer.length > 0)
 			    	{
 				    for(var j=0;j<completescorer.length;j++){
@@ -1661,6 +1691,10 @@ var dateString = null;
 		    		{
 			    		htmlco3+="<span>-</span>";
 			    		}
+				    }else
+		    		{
+			    		htmlco3+="<span>-</span>";
+			    		}
 				    htmlco3+="</div></td> ";
 				    
 				    
@@ -1668,6 +1702,7 @@ var dateString = null;
 				  //Portal Scorer
    	   				htmlco3+="<td> <div >";
    	   				var Portalscorer=completedlist[i].portalScorerList;
+   	   				if(Portalscorer != null){
    	   				if(Portalscorer.length > 0){
    	   				for(var j=0; j < Portalscorer.length;j++)
    	   				{
@@ -1683,6 +1718,10 @@ var dateString = null;
    	   					{
    	   					htmlco3+="<span>-</span>";
    	   					}
+   	   			}else
+  					{
+  					htmlco3+="<span>-</span>";
+  					}
    	   				
    	   				htmlco3+="</div></td>";
 				    
@@ -1798,6 +1837,7 @@ var dateString = null;
                			  $.ajax({
                				type :"Post",
                				url:"${pageContext.request.contextPath}/getScheduleHomeAwayName",
+               				headers : {'Name' : HeaderName},
                				data:JSON.stringify(tournamentBean),
                				contentType:"application/json",
                				success:function(response){
@@ -1889,6 +1929,7 @@ var dateString = null;
                 			  $.ajax({
                 				type :"Post",
                 				url:"${pageContext.request.contextPath}/getScheduleHomeAwayName",
+                				headers : {'Name' : HeaderName},
                 				data:JSON.stringify(tournamentBean),
                 				contentType:"application/json",
                 				success:function(response){
@@ -1989,6 +2030,7 @@ var dateString = null;
          			  $.ajax({
          				type :"Post",
          				url:"${pageContext.request.contextPath}/getScheduleHomeAwayName",
+         				headers : {'Name' : HeaderName},
          				data:JSON.stringify(tournamentBean),
          				contentType:"application/json",
          				success:function(response){

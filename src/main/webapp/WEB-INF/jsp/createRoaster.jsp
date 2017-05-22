@@ -42,7 +42,7 @@
     <section class="middleContentBlock">
     
     <div class="profileBanner">
-    	<img src="images/innerBanner.png">
+    	<img src="https://cdn.cricketsocial.com/images/innerBanner.png">
     </div>
     
     <div class="container">
@@ -264,6 +264,7 @@
         			    $.ajax({
         						type : "POST",
         						url : ctx+"/buddySearch",
+        						headers : {'Name' : HeaderName},
         						dataType: "json",
         			        contentType: "application/json; charset=utf-8",
         			        data : key,					            

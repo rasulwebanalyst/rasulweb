@@ -989,8 +989,12 @@ function buddyMatchInviation_page(pageNumber,display, pageCall){
 		                htm+='</div>';		                         
 		                htm+='<div class="col-md-6 Leag-Img">';
 		               // if(res.buddyMatchInvitationList[i].tournamentName!=null){
-		                if(event.tournamentName!=null){
+		               /* if(event.tournamentName!=null){
 		                	  htm+='<h4>'+event.tournamentName+'</h4>';
+		                }*/
+		                
+		                if(event.tournamentInfo!=null){
+		                	  htm+='<h4>'+event.tournamentInfo.tournamentName+'</h4>';
 		                }
 		              
 		                //htm +='<p>'+dateObj.date+' '+dateObj.time+'</p>';
@@ -2718,6 +2722,7 @@ function boardMatchEvent_Page(startNode,display,pageCall){
 	var pageCall2="'"+pageCall+"'";
 		var board={
 			userId : eventLogUserId,
+			boardId : eventboardId,
 			startNode : startNode,
 			endNode : 10
 			
@@ -2742,10 +2747,10 @@ function boardMatchEvent_Page(startNode,display,pageCall){
 				for(var i in mat){
 				
 				var event=mat[i].tournamentSchedulerObj;
-				for(var j in event){
+//				for(var j in event){
 					//var dateObj=getDateInObjectFormate_withTimeStampInput(event[j].gameDate);
-					 var dateObj=dateFunction(event[j].gameDate);	
-					var dateNewObject = getDateInObjectUTCFormate_withTimeStampInput(event[j].gameDate);
+					 var dateObj=dateFunction(event.gameDate);	
+					var dateNewObject = getDateInObjectUTCFormate_withTimeStampInput(event.gameDate);
 					
 					htm+='<div class="col-md-12 noPadding leag-Acc">';
                     htm+='<div class="col-md-1 noPadding N-btn">';		                        
@@ -2753,9 +2758,9 @@ function boardMatchEvent_Page(startNode,display,pageCall){
 	 				htm+='</div>';		                    
                 	htm+='<div class="col-md-11 borderleft">';		                         
                     htm+='<div class="col-md-12 noPadding eventUserDetails">';
-                    htm+='<a href="'+ctx+'/'+event[j].boardInfo.boardName+'/board/'+event[j].boardInfo.boardId+'"><img src="'+event[j].boardInfo.boardImageURL+'" class="nav-avatar">'+event[j].boardInfo.boardName+'</a>';	                            
+                    htm+='<a href="'+ctx+'/'+event.boardInfo.boardName+'/board/'+event.boardInfo.boardId+'"><img src="'+event.boardInfo.boardImageURL+'" class="nav-avatar">'+event.boardInfo.boardName+'</a>';	                            
                     htm+='<div class="teamLogos">';
-                    htm+='<a href="'+ctx+'/'+event[j].homeTeamInfo.boardName+'/board/'+event[j].homeTeamInfo.boardId+'"><img src="'+event[j].homeTeamInfo.boardImageURL+'" class="teamLogo" onError=imgError(this)></a> <b>VS</b> <a href="'+ctx+'/'+event[j].awayTeamInfo.boardName+'/board/'+event[j].awayTeamInfo.boardId+'"><img src="'+event[j].awayTeamInfo.boardImageURL+'" class="teamLogo" onError=imgError(this)></a>';
+                    htm+='<a href="'+ctx+'/'+event.homeTeamInfo.boardName+'/board/'+event.homeTeamInfo.boardId+'"><img src="'+event.homeTeamInfo.boardImageURL+'" class="teamLogo" onError=imgError(this)></a> <b>VS</b> <a href="'+ctx+'/'+event.awayTeamInfo.boardName+'/board/'+event.awayTeamInfo.boardId+'"><img src="'+event.awayTeamInfo.boardImageURL+'" class="teamLogo" onError=imgError(this)></a>';
                     htm+='</div>';		                            
                     htm+='</div>';		                         
                     htm+='<div class="col-md-6 Leag-Img">';
@@ -2764,29 +2769,32 @@ function boardMatchEvent_Page(startNode,display,pageCall){
                    // htm +='<p>'+dateObj.date+' '+dateObj.time+'</p>';
                     
                     if(event.status == 'Upcoming'){
-                        htm+="<a class='vw-score' href=javascript:void(0); onclick=showScoreCardInProgress('"+event[j].tournamentSchedulerId+"','no')>View Score</a>";
+                        htm+="<a class='vw-score' href=javascript:void(0); onclick=showScoreCardInProgress('"+event.tournamentSchedulerId+"','no')>View Score</a>";
                         }else{
-                        	htm+="<a class='vw-score' href=javascript:void(0); onclick=showScoreCardInProgress('"+event[j].tournamentSchedulerId+"','"+event[j].boardInfo.boardId+"')>View Score</a>";
+                        	htm+="<a class='vw-score' href=javascript:void(0); onclick=showScoreCardInProgress('"+event.tournamentSchedulerId+"','"+event.boardInfo.boardId+"')>View Score</a>";
                         }
                     
-                    htm+='</p><h4><a href="'+ctx+'/'+event[j].homeTeamInfo.boardName+'/board/'+event[j].homeTeamInfo.boardId+'">'+event[j].homeTeamInfo.boardName+'</a> Vs <a href="'+ctx+'/'+event[j].awayTeamInfo.boardName+'/board/'+event[j].awayTeamInfo.boardId+'">'+event[j].awayTeamInfo.boardName+'</a></h4>';//<br>';
-                   if(event[j].groundDetails){
-	                        htm+='<p>'+event[j].groundDetails.groundName+'<br>';
-	                        htm+=''+event[j].groundDetails.address1+','+event[j].groundDetails.city+'';
+                    htm+='</p><h4><a href="'+ctx+'/'+event.homeTeamInfo.boardName+'/board/'+event.homeTeamInfo.boardId+'">'+event.homeTeamInfo.boardName+'</a> Vs <a href="'+ctx+'/'+event.awayTeamInfo.boardName+'/board/'+event.awayTeamInfo.boardId+'">'+event.awayTeamInfo.boardName+'</a></h4>';//<br>';
+                   if(event.groundDetails){
+	                        htm+='<p>'+event.groundDetails.groundName+'<br>';
+	                        htm+=''+event.groundDetails.address1+','+event.groundDetails.city+'';
 	                        htm+='</p>';
                    }
                     htm+='</div>';		                       
                     htm+='</div>';
                     htm+='</div>';
                     nextindicate= parseInt(nextindicate)+parseInt(1);
-				}
+//				}
 			}				
 					
 			
 				
 				var mat3=res.upcomingTeamBoardMatchList;
 				for(var k in mat3){
-						var event=mat3[k].tournamentSchedulerObj;
+						var event=mat3[k];
+						
+						console.log(JSON.stringify(event));
+						
 					//var dateObj=getDateInObjectFormate_withTimeStampInput(event.gameDate);
 						 var dateObj=dateFunction(event.gameDate);	
 					var dateNewObject = getDateInObjectUTCFormate_withTimeStampInput(event.gameDate);

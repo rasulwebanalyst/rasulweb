@@ -79,7 +79,7 @@ text-overflow: ellipsis;
 <body>
 <div class="col-md-2 profileLogo pLUpdated">
                     	<span class="pLUpdatedImg"><a href="${pageContext.request.contextPath}/board?bid=${BoradInfo.boardId}">
-                    	<img src="${BoradInfo.boardImageURL}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';">
+                    	<img src="${BoradInfo.boardImageURL}" onError="this.onerror=null;this.src='https://cdn.cricketsocial.com/images/boardIcon.png';">
                         	</a>
                         	<a href="${pageContext.request.contextPath}/boardProfile?bid=${BoradInfo.boardId}"><i class="fa fa-pencil" title="Edit Profile"></i></a>
                         	 ${BoradInfo.boardName} <br>
@@ -97,27 +97,27 @@ text-overflow: ellipsis;
                         
                         
                      		<ul class="leftMenu">
-                     		<li><a href="${pageContext.request.contextPath}/Organizationdetails/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/board-icon.png"></i>Board Info</a></li>
-                     		<li><a href="${pageContext.request.contextPath}/Pitch?bid=${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/pitch-icon.png"></i>Pitch</a></li>
-                            	<li><a href="${pageContext.request.contextPath}/Boardscore/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyScore.png"></i>Score</a></li>
+                     		<li><a href="${pageContext.request.contextPath}/Organizationdetails/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="https://cdn.cricketsocial.com/images/board-icon.png"></i>Board Info</a></li>
+                     		<li><a href="${pageContext.request.contextPath}/Pitch?bid=${BoradInfo.boardId}"><i class="fa imgIcon"><img src="https://cdn.cricketsocial.com/images/pitch-icon.png"></i>Pitch</a></li>
+                            	<li><a href="${pageContext.request.contextPath}/Boardscore/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="https://cdn.cricketsocial.com/images/MyScore.png"></i>Score</a></li>
                             	<%-- <li><a href="#"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyScore.png"></i>Edit Profile</a></li> --%>
-                            	<li><a href="${pageContext.request.contextPath}/boardEvent/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyEvents.png"></i>Events</a></li>
-                            	<li><a href="${pageContext.request.contextPath}/Board-Fan?bid=${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyFans.png"></i>Fans</a></li>
-                            	<li><a href="${pageContext.request.contextPath}/boardFanOf?bid=${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/IAmFanOf.png"></i>Fan Of</a></li>
+                            	<li><a href="${pageContext.request.contextPath}/boardEvent/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="https://cdn.cricketsocial.com/images/MyEvents.png"></i>Events</a></li>
+                            	<li><a href="${pageContext.request.contextPath}/Board-Fan?bid=${BoradInfo.boardId}"><i class="fa imgIcon"><img src="https://cdn.cricketsocial.com/images/MyFans.png"></i>Fans</a></li>
+                            	<li><a href="${pageContext.request.contextPath}/boardFanOf?bid=${BoradInfo.boardId}"><i class="fa imgIcon"><img src="https://cdn.cricketsocial.com/images/IAmFanOf.png"></i>Fan Of</a></li>
                             	
 <%--                             	<li><a href="${pageContext.request.contextPath}/createRoaster?bid=${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyBuddyList.png"></i>Roster</a></li>
  --%>
                            <c:choose>
                         	  	<c:when test="${BoradInfo.statusId==19}">	
                         	  	 	
-                        	  		 <li><a href="javascript:"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyBuddyList.png"></i>Squad</a></li>
+                        	  		 <li><a href="javascript:"><i class="fa imgIcon"><img src="https://cdn.cricketsocial.com/images/MyBuddyList.png"></i>Squad</a></li>
                         	  	</c:when>
                         	  	<c:otherwise>
-                     				 <li><a href="${pageContext.request.contextPath}/roster?bid=${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/MyBuddyList.png"></i>Squad</a></li>
+                     				 <li><a href="${pageContext.request.contextPath}/roster?bid=${BoradInfo.boardId}"><i class="fa imgIcon"><img src="https://cdn.cricketsocial.com/images/MyBuddyList.png"></i>Squad</a></li>
                      			</c:otherwise>
                         	  </c:choose>
    
- <li><a href="${pageContext.request.contextPath}/inviteBoardPage/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="${pageContext.request.contextPath}/images/inviteIcon.png"></i>Invite</a></li>     
+ <li><a href="${pageContext.request.contextPath}/inviteBoardPage/boardId/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="https://cdn.cricketsocial.com/images/inviteIcon.png"></i>Invite</a></li>     
  
  <c:if test="${LeaguManagement ne 'No'}">
  
@@ -180,7 +180,7 @@ text-overflow: ellipsis;
 		
 		<c:forEach var="sponser" items="${spoResponse.boardSponsorsList}">
 		    <div>
-		      <li style="text-align: center;"><img style=" margin-bottom: 9px;"  src="${sponser.imageUrl}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/boardIcon.png';" /><span class="sponser-Flow" title="${sponser.sponsorName}">${sponser.sponsorName}</span></li>
+		      <li style="text-align: center;"><img style=" margin-bottom: 9px;"  src="${sponser.imageUrl}" onError="this.onerror=null;this.src='https://cdn.cricketsocial.com/images/boardIcon.png';" /><span class="sponser-Flow" title="${sponser.sponsorName}">${sponser.sponsorName}</span></li>
 		   </div>
 		 
 		</c:forEach>

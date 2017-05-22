@@ -4,7 +4,7 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <head>
- <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
+ <link rel="icon" type="image/png" href="https://cdn.cricketsocial.com/images/Faveicon.png" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -220,7 +220,7 @@ var formatAMPMTime = function(date) {
                         	<c:choose>
                         	<c:when test="${!empty StarBatsman}">
                         	<c:forEach items="${StarBatsman}" var="Batsman">
-                        	<li><img src="${Batsman.userImageUrl}" onerror="this.src='${pageContext.request.contextPath}/images/profileIcon.png'">
+                        	<li><img src="${Batsman.userImageUrl}" onerror="this.src='https://cdn.cricketsocial.com/images/profileIcon.png'">
                         	<div class="cs-list-holder" style="width: 75%;">
                         	<div class="list-holder-txt">
                         	
@@ -288,7 +288,7 @@ var formatAMPMTime = function(date) {
                         	<c:choose>
                         	<c:when test="${!empty StarBowler}">
                         	<c:forEach items="${StarBowler}" var="Bowler">
-                        	<li><img src="${Bowler.userImageUrl}" onerror="this.src='${pageContext.request.contextPath}/images/profileIcon.png'">
+                        	<li><img src="${Bowler.userImageUrl}" onerror="this.src='https://cdn.cricketsocial.com/images/profileIcon.png'">
                         	
                         	<div class="cs-list-holder" style="width: 75%;">
                         	<div class="list-holder-txt">
@@ -493,7 +493,7 @@ var formatAMPMTime = function(date) {
                           
                             <div class="sidebar-container widget-MAU">
                             <div class="sidebar-content">
-                              <div class="sidebar-header"> <a href="">Frequently Used Menus</a></div>
+                              <div class="sidebar-header"> <a href="javascript:void(0);">Frequently Used Menus</a></div>
                               
                             
                              		<div class="sidebar-list">
@@ -914,7 +914,7 @@ var formatAMPMTime = function(date) {
 	                                  <!-- <div class="media-left"> -->
 	                                  <div class="feed-left">
 	                                    <a href="#">
-	                                      <img src="${feed.userImageurl}" class="nav-avatar" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';">
+	                                      <img src="${feed.userImageurl}" class="nav-avatar" onError="this.onerror=null;this.src='https://cdn.cricketsocial.com/images/profileIcon.png';">
 	                                      
 	                                    </a>
 	                                     <h4 class="media-heading">${feed.postedByName}</h4>
@@ -927,7 +927,7 @@ var formatAMPMTime = function(date) {
 		                                    	
 		                                    	
 		                                    	<div class="dropdown">
-		                                    	<p id="HitCountDIv${index.count}" onmouseout="removeHitList('${feed.feedId}')" onmouseover="getHitList('${feed.feedId}')" onclick="gitHitedList('${feed.feedId}')" class="trash-holder"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" >${feed.feedHitCount}</p>
+		                                    	<p id="HitCountDIv${index.count}" onmouseout="removeHitList('${feed.feedId}')" onmouseover="getHitList('${feed.feedId}')" onclick="gitHitedList('${feed.feedId}')" class="trash-holder"><img src="https://cdn.cricketsocial.com/images/hitIcon1.png" width="18" class="hitIcon1" >${feed.feedHitCount}</p>
 		                                    	<div id="Hitlist_${feed.feedId}"></div>
 		                                    
 		                                    </div>
@@ -996,12 +996,12 @@ var formatAMPMTime = function(date) {
 	                                    		<c:when test="${feed.userFeedHit}">
 	                                    					<%-- <a href="javascript:" class="shareLink" id="hitAchor${feed.feedId}"><i class="fa hitIcon"></i> Hit</a> --%>	
 	                                    					<div class="hitIconDiv" id="hittDiv${index.count}" style="display: none;"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" id="feed${index.count}"><i class="fa hitIcon"></i> Hit</a></div>
-	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" style="color: #4c9fe1;"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" > Unhit</a></div>
+	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" style="color: #4c9fe1;"><img src="https://cdn.cricketsocial.com/images/hitIcon1.png" width="18" class="hitIcon1" > Unhit</a></div>
 	                                    		</c:when>
 	                                    		<c:otherwise>
 	                                    					
 	                                    					<div class="hitIconDiv" id="hittDiv${index.count}"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" id="feed${index.count}"><i class="fa hitIcon"></i> Hit</a></div>
-	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}" style="display: none;"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" style="color: #4c9fe1;"><img src="${pageContext.request.contextPath}/images/hitIcon1.png" width="18" class="hitIcon1" > Unhit</a></div>
+	                                    					<div class="hitIconDiv" id="hittedDiv${index.count}" style="display: none;"><a href="javascript:userHitBtn('${feed.feedId}',${index.count})" class="shareLink" style="color: #4c9fe1;"><img src="https://cdn.cricketsocial.com/images/hitIcon1.png" width="18" class="hitIcon1" > Unhit</a></div>
 	                                    		</c:otherwise>
 	                                    </c:choose>
 	                                    
@@ -1012,7 +1012,7 @@ var formatAMPMTime = function(date) {
 	                                    <a href="javascript:shareFeed('${feed.feedId}')" class="shareLink" ><i class="fa fa-share"></i> Share</a>
 	                                    
 	                                    <div class="postBlock commentBlock" id="feedContenDIVt${feed.feedId}" style="display: none;">
-                                            <img src="${USRIMG}" onError="this.onerror=null;this.src='${pageContext.request.contextPath}/images/profileIcon.png';" class="nav-avatar">
+                                            <img src="${USRIMG}" onError="this.onerror=null;this.src='https://cdn.cricketsocial.com/images/profileIcon.png';" class="nav-avatar">
                                             <textarea class="form-control" id="feedcontent${feed.feedId}" placeholder="Write a Comment"></textarea>
                                             <a href="javascript:" class=""><button type="button" class="pull-right btn blueBtn" name="feedcommentbtn" style="margin-top: 6px;" onclick="sendFeedComments(this)" value="${feed.feedId}">BOWL</button></a>
                                             <div style="color: red; margin-left: 54px;" id="feedcmderrorDiv${feed.feedId}"></div>
@@ -1216,6 +1216,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
        $.ajax({
    		type : "POST",
    		url :ctx+"/boardFeedsSearch",
+   		headers : {'Name' : HeaderName},
    		dataType: "json",
            contentType: "application/json; charset=utf-8",
            data : postinfo,	
@@ -1342,7 +1343,7 @@ function getTeamAroundYou(pageNum, numberOFRecords){
 				}
 			
 			$("#feedMainDIV").append(htm);
-			document.getElementById('content').value='';
+		//	document.getElementById('content').value='';
    		},
    		error:function(response){
    			console.log("Your request failed due to some service problem"+JSON.stringify(response));
@@ -1625,6 +1626,7 @@ var request={
 		 $.ajax({
 			 type : "post",
 			 url : "${pageContext.request.contextPath}/hitList",
+			 headers : {'Name' : HeaderName},
 			 data : JSON.stringify(request),
 			 contentType : "application/json",
 			 success : function(res)
@@ -1675,6 +1677,7 @@ if(res.length > 5){
 		 $.ajax({
 			 type : "post",
 			 url : "${pageContext.request.contextPath}/hitList",
+			 headers : {'Name' : HeaderName},
 			 data : JSON.stringify(request),
 			 contentType : "application/json",
 			 success : function(res)

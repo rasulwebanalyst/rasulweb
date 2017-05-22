@@ -320,6 +320,7 @@ var deletedarray=[];
         			    $.ajax({
         						type : "POST",
         						url : ctx+"/rosterBuddySearch",
+        						headers : {'Name' : HeaderName},
         						dataType: "json",
         			        contentType: "application/json; charset=utf-8",
         			        data : key,					            
@@ -390,6 +391,7 @@ var deletedarray=[];
         			    $.ajax({
         						type : "POST",
         						url : ctx+"/rosterBuddySearch",
+        						headers : {'Name' : HeaderName},
         						dataType: "json",
         			        contentType: "application/json; charset=utf-8",
         			        data : key,					            
@@ -1092,6 +1094,7 @@ var deletedarray=[];
     	 $.ajax({
 			type :"POST",
 			url : "${pageContext.request.contextPath}/SponserDetails",
+			headers : {'Name' : HeaderName},
 			data : JSON.stringify(request),
 			contentType : "application/json;charset=utf-8",
 			success : function(res)

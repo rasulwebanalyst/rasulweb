@@ -228,6 +228,7 @@ function deleteGround(id){
 		   $.ajax({
 			 type:"post",
 			 url:"${pageContext.request.contextPath}/deleteGround",
+			 headers : {'Name' : HeaderName},
 			 data:JSON.stringify(groundBean),
 			 contentType:"application/json",
 			 success:function(res){
@@ -256,6 +257,7 @@ function loadMoreGround(){
 	   $.ajax({
 		   type:"post",
 		   url:"${pageContext.request.contextPath}/loadMoreGrounds",
+		   headers : {'Name' : HeaderName},
 		   data:JSON.stringify(ground),
 		   contentType:"application/json",
 		   success:function(res){

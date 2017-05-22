@@ -1680,6 +1680,7 @@ function yearWiseBowling(val){
 	   $.ajax({
 			type : "POST",
 			url :ctx+"/getMatchDetailsInfo",
+			headers : {'Name' : HeaderName},
 			dataType: "json",
 	        contentType: "application/json; charset=utf-8",
 	        data : postinfo,
