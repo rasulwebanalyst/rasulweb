@@ -989,8 +989,12 @@ function buddyMatchInviation_page(pageNumber,display, pageCall){
 		                htm+='</div>';		                         
 		                htm+='<div class="col-md-6 Leag-Img">';
 		               // if(res.buddyMatchInvitationList[i].tournamentName!=null){
-		                if(event.tournamentName!=null){
+		               /* if(event.tournamentName!=null){
 		                	  htm+='<h4>'+event.tournamentName+'</h4>';
+		                }*/
+		                
+		                if(event.tournamentInfo!=null){
+		                	  htm+='<h4>'+event.tournamentInfo.tournamentName+'</h4>';
 		                }
 		              
 		                //htm +='<p>'+dateObj.date+' '+dateObj.time+'</p>';
@@ -2787,7 +2791,10 @@ function boardMatchEvent_Page(startNode,display,pageCall){
 				
 				var mat3=res.upcomingTeamBoardMatchList;
 				for(var k in mat3){
-						var event=mat3[k].tournamentSchedulerObj;
+						var event=mat3[k];
+						
+						console.log(JSON.stringify(event));
+						
 					//var dateObj=getDateInObjectFormate_withTimeStampInput(event.gameDate);
 						 var dateObj=dateFunction(event.gameDate);	
 					var dateNewObject = getDateInObjectUTCFormate_withTimeStampInput(event.gameDate);
