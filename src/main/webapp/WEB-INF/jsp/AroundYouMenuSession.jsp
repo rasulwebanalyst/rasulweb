@@ -20,7 +20,7 @@
 	                               <c:choose>
 	                             	<c:when test="${empty MatchesArroundYou}">
 	                             		<div class="sidebar-list noContentDiv">
-	                             			No Matches around you.
+	                             			No Match around you.
 	                             		</div>
 	                             	</c:when>
 	                             	<c:otherwise>
@@ -60,7 +60,7 @@
                                <c:choose>
                              	<c:when test="${empty BRDAroundYou}">
                              		<div class="sidebar-list noContentDiv">
-                             			No leagues around you.
+                             			No league around you.
                              		</div>
                              	</c:when>
                              	<c:otherwise>
@@ -84,7 +84,7 @@
                                <c:choose>
                              	<c:when test="${empty BuddyAroundYou}">
                  		<div class="sidebar-list noContentDiv">
-                             			No buddies around you.
+                             			No buddy around you.
                              		</div>
                              	</c:when>
                              	<c:otherwise>
@@ -124,7 +124,7 @@
                               <c:choose>
                               	<c:when test="${empty TEAMAroundYou}">
                               		<div class="sidebar-list noContentDiv">
-                             			No teams around you.
+                             			No team around you.
                              		</div>
                               	</c:when>
                               	<c:otherwise>
@@ -153,7 +153,7 @@
                                <c:choose>
                              	<c:when test="${empty Merchants}">
                  		<div class="sidebar-list noContentDiv">
-                             			No Merchants around you.
+                             			No Merchant around you.
                              		</div>
                              	</c:when>
                              	<c:otherwise>

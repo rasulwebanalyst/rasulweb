@@ -126,7 +126,7 @@ text-overflow: ellipsis;
 		                        	  		<li><a href="javascript:"><i class="fa imgIcon"><img src="https://cdn.cricketsocial.com/images/MyBuddyList.png"></i>Squad</a></li>
 		                        	  	</c:when>
 		                        	  	<c:otherwise>
-		                     				<li><a href="${pageContext.request.contextPath}/rosterProfile/ ${BoradInfo.boardId}"><i class="fa imgIcon"><img src="https://cdn.cricketsocial.com/images/MyBuddyList.png"></i>Squad</a></li>
+		                     				<li><a href="${pageContext.request.contextPath}/rosterProfile/${BoradInfo.boardId}"><i class="fa imgIcon"><img src="https://cdn.cricketsocial.com/images/MyBuddyList.png"></i>Squad</a></li>
 		                     			</c:otherwise>
 		                        	  </c:choose>
 		                        	  <c:if test="${LeaguManagement ne 'No'}">

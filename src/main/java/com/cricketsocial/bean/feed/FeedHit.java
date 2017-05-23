@@ -15,10 +15,18 @@ public class FeedHit {
 	private String sharedTo;
 	private String hitFlag;
 	
+	private String userImageUrl;
 	
 	
 	
 	
+	
+	public String getUserImageUrl() {
+		return userImageUrl;
+	}
+	public void setUserImageUrl(String userImageUrl) {
+		this.userImageUrl = userImageUrl;
+	}
 	public String getHitFlag() {
 		return hitFlag;
 	}

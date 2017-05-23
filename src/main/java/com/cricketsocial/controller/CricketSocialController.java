@@ -25,6 +25,7 @@ import javax.servlet.http.HttpSession;
 
 
 
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -1370,7 +1371,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 								
 								 
 								 searchReq.setStartNode("0");
-								 searchReq.setEndNode("20");
+								 searchReq.setEndNode("6");
 								 searchReq.setCategory("Matches");
 								 hubReq.setRequestParam(searchReq);
 								 hubReq.setUserName(userEmail);
@@ -1542,6 +1543,49 @@ public ModelAndView userprofile(HttpServletRequest request)
 		return model;
 		//return null;
 	}
+	
+	
+	
+	@RequestMapping(value="/Merchants",method=RequestMethod.GET)
+	public @ResponseBody Object merchants(HttpServletRequest req){
+		HttpSession session=req.getSession(true);
+		Object obj = null;
+		 if(session.getAttribute("USRID")!=null)
+		 {
+			 String userlocation=(String) session.getAttribute("USRLocation"); 
+			 MDC.put("User_Mail", (String)session.getAttribute("USREMAIL"));
+			 BoardSearchRequest searchReq= new BoardSearchRequest();
+			 try{
+		     hubReq.setMsgType(79);
+		 searchReq.setCategory("Merchants");
+		 if(userlocation!=null)
+		 {
+			if(userlocation.length()>3)
+			{
+				 searchReq.setLatlang(userlocation);
+			}else{
+				 searchReq.setLatlang(defaultMerchantAroundYouLatLongValue);
+			}
+		 }else{
+			 searchReq.setLatlang(defaultMerchantAroundYouLatLongValue);
+		 }
+		 hubReq.setRequestParam(searchReq);
+		 String strMerchandiseAroundYouresponse=cricketSocialRestTemplateService.userRegistration(hubReq);
+		 HubResponse merchandiseAroundYouResponse= GsonConverters.getGsonObject().fromJson(strMerchandiseAroundYouresponse, HubResponse.class); 
+		 if(merchandiseAroundYouResponse.getResults().getSearchResponse()!=null)
+		 {
+			 System.out.println("user : list :---------->" +merchandiseAroundYouResponse.getResults().getSearchResponse().getUserList().size());
+			 obj= merchandiseAroundYouResponse.getResults().getSearchResponse().getBoardProfileList();
+		 }
+			 }catch(Exception e){
+				 e.printStackTrace();
+			 }
+		 }
+		
+		return obj;
+	}
+	
+	
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public ModelAndView buddylogin(HttpServletRequest request)
 	{
@@ -1697,7 +1741,19 @@ public ModelAndView userprofile(HttpServletRequest request)
 							// session.setAttribute("USRLocation", userProfile.getLatLang());
 							 
 							 String userLatLongVal=userProfile.getLatLang();
-							 HubRequest hubReq=new HubRequest(13);
+							 
+							 
+							 if(userLatLongVal==null || userLatLongVal==""){
+				    			 userLatLongVal=profile.getLatLang();
+				    			 session.setAttribute("USRLocationAllowed", "No"); 
+				    		 }else
+				    		 {
+				    			 session.setAttribute("USRLocationAllowed", "Yes"); 
+				    		 }
+							 
+							 MDC.put("User_Mail", profile.getEmailAddress());
+							 
+							/* HubRequest hubReq=new HubRequest(13);
 							 hubReq.setMsgType(13);				
 							 UserProfile userdetails= new UserProfile();
 							 userdetails.setUserId(profile.getUserId());
@@ -1738,7 +1794,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 							    		 }
 							    		 
 							    		 
-						    }
+						    }*/
 						   
 							 session.setAttribute("USRLocation", userLatLongVal);
 							 
@@ -3018,7 +3074,7 @@ System.out.println("keyToFindAccount-----> "+keyToFindAccount);
 		
 		 
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("40");
+		 searchReq.setEndNode("250");
 		 searchReq.setCategory("Matches");
 		 hubReq.setRequestParam(searchReq);
 	     String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -3681,7 +3737,7 @@ System.out.println("keyToFindAccount-----> "+keyToFindAccount);
 			
 			 
 			 searchReq.setStartNode("0");
-			 searchReq.setEndNode("4");
+			 searchReq.setEndNode("6");
 			 searchReq.setCategory("Matches");
 			 hubReq.setRequestParam(searchReq);
 		    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -4235,7 +4291,7 @@ public ModelAndView myfans(HttpServletRequest request) throws CSException{
 		
 		 
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("Matches");
 		 hubReq.setRequestParam(searchReq);
 	    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -4442,7 +4498,7 @@ public ModelAndView fanOfList(HttpServletRequest request) throws CSException{
 		
 		 
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("Matches");
 		 hubReq.setRequestParam(searchReq);
 	    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -4656,7 +4712,7 @@ public ModelAndView boardFanpublicview(HttpServletRequest request,@PathVariable 
 		
 		 
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("Matches");
 		 hubReq.setRequestParam(searchReq);
 	    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -4975,7 +5031,7 @@ public ModelAndView boardFan(HttpServletRequest request,@RequestParam String bid
 		
 		 
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("Matches");
 		 hubReq.setRequestParam(searchReq);
 	    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -5270,7 +5326,7 @@ public ModelAndView boardFanOf(HttpServletRequest request,@RequestParam String b
 		
 		 
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("Matches");
 		 hubReq.setRequestParam(searchReq);
 	    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -5547,7 +5603,7 @@ public ModelAndView boardFanOfpublicprofile(HttpServletRequest request,@PathVari
 		
 		 
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("Matches");
 		 hubReq.setRequestParam(searchReq);
 	    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -5951,7 +6007,7 @@ public ModelAndView getboard(@RequestParam String bid, HttpServletRequest reques
 						
 						 
 						 searchReq.setStartNode("0");
-						 searchReq.setEndNode("4");
+						 searchReq.setEndNode("6");
 						 searchReq.setCategory("Matches");
 						 hubReq.setRequestParam(searchReq);
 					    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -6081,7 +6137,7 @@ public ModelAndView getboard(@RequestParam String bid, HttpServletRequest reques
 						//*************************************************  Upcomming details  **********************//
 						 
 						 
-						 hubReq =new HubRequest();
+						/* hubReq =new HubRequest();
 						 hubReq.setMsgType(133);
 						 ModelMap map5=new ModelMap();
 						 map5.put("userId", userId);
@@ -6147,7 +6203,93 @@ public ModelAndView getboard(@RequestParam String bid, HttpServletRequest reques
 							 }else{
 								System.out.println("null condition"); 
 							 }
-						 }
+						 }*/
+						
+						
+						//************************************************* Api changed Upcomming/inprogress/completed details  **********************//
+						 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						 Date date = new Date();
+						 
+						 long DAY_IN_MS = 1000 * 60 * 60 * 24;
+						 
+							 hubReq =new HubRequest();
+							 hubReq.setMsgType(281);
+							 ModelMap map5=new ModelMap();
+							 map5.put("userId",userId );
+							 map5.put("boardId", bid);
+							 map5.put("fromDateString",dateFormat.format(date));
+							 map5.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (7 * DAY_IN_MS))));
+							 map5.put("status", "Upcoming");
+							 hubReq.setRequestParam(map5);
+
+							 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+							 if(strGameScheduleList != null){
+								 HubResponse hubResponse1 = gson.fromJson(strGameScheduleList, HubResponse.class);
+								 if(hubResponse1 != null && hubResponse1.getResults() != null){
+									 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null)
+									 {
+									 upcommingObject.addAll(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
+									 
+									 }
+								 }else{
+									System.out.println("null condition"); 
+								 }
+							 }
+							 
+								 hubReq =new HubRequest();
+								 hubReq.setMsgType(281);
+								 ModelMap map9=new ModelMap();
+								 map9.put("userId",userId );
+								 map9.put("boardId", bid);
+								 map9.put("fromDateString",dateFormat.format(date));
+								 map9.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (7 * DAY_IN_MS))));
+								 map9.put("status", "InProgress");
+								 hubReq.setRequestParam(map9);
+
+								 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+								 if(strGameScheduleListInprogress != null){
+									 HubResponse hubResponse1 = gson.fromJson(strGameScheduleListInprogress, HubResponse.class);
+									 if(hubResponse1 != null && hubResponse1.getResults() != null){
+										 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+										 {
+										 upcommingObject.addAll(hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+										 }
+									 }else{
+										System.out.println("null condition"); 
+									 }
+								 }
+								 
+								 Collections.sort(upcommingObject, Collections.reverseOrder(new UpcommingComprator()));
+								 
+								 System.out.println("The Upcomming object list size :"+upcommingObject.size());
+								 model.addObject("upcomingMatchesList",upcommingObject );
+							 
+							 
+							 
+							 hubReq =new HubRequest();
+							 hubReq.setMsgType(281);
+							 ModelMap map8=new ModelMap();
+							 map8.put("userId",userId );
+							 map8.put("boardId", bid);
+							 map8.put("toDateString",dateFormat.format(date));
+							 map8.put("fromDateString",dateFormat.format(new Date(System.currentTimeMillis() - (7 * DAY_IN_MS))));
+							 map8.put("status", "Completed");
+							 hubReq.setRequestParam(map8);
+
+							 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+							 
+							
+							 if(strGameScheduleList1 != null){
+								 HubResponse hubResponse2 = gson.fromJson(strGameScheduleList1, HubResponse.class);
+								 if(hubResponse2 != null && hubResponse2.getResults() != null){
+									 model.addObject("completedMatchesList", hubResponse2.getResults().getGameSchedule().getCompletedMatchesList());
+									 
+								 }else{
+									System.out.println("null condition"); 
+								 }
+							 }
+						
+						
 						 
 						 
 						 // TopBowler TopBatsman details
@@ -6408,7 +6550,7 @@ public ModelAndView pitch(@RequestParam String bid, HttpServletRequest request) 
 					
 					 
 					 searchReq.setStartNode("0");
-					 searchReq.setEndNode("4");
+					 searchReq.setEndNode("6");
 					 searchReq.setCategory("Matches");
 					 hubReq.setRequestParam(searchReq);
 				    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -7033,7 +7175,7 @@ public @ResponseBody ModelAndView createRoaster(HttpServletRequest request,@Requ
 				
 				 
 				 searchReq.setStartNode("0");
-				 searchReq.setEndNode("4");
+				 searchReq.setEndNode("6");
 				 searchReq.setCategory("Matches");
 				 hubReq.setRequestParam(searchReq);
 			    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -8509,7 +8651,7 @@ public ModelAndView getBuddyPublicProfile(HttpServletRequest request,@PathVariab
 						
 						 
 						 searchReq.setStartNode("0");
-						 searchReq.setEndNode("4");
+						 searchReq.setEndNode("6");
 						 searchReq.setCategory("Matches");
 						 hubReq.setRequestParam(searchReq);
 					    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -8742,7 +8884,7 @@ public ModelAndView getBuddyFriends(HttpServletRequest request, @PathVariable St
 		
 		 
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("Matches");
 		 hubReq.setRequestParam(searchReq);
 	    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -9601,7 +9743,7 @@ public ModelAndView buddyfans(HttpServletRequest request, @PathVariable String b
 		
 		 
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("Matches");
 		 hubReq.setRequestParam(searchReq);
 	    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -9816,7 +9958,7 @@ public ModelAndView buddyfanOfList(HttpServletRequest request, @PathVariable Str
 		
 		 
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("Matches");
 		 hubReq.setRequestParam(searchReq);
 	    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -10059,7 +10201,7 @@ public ModelAndView boardPublicProfile(HttpServletRequest request, @PathVariable
 							
 							 
 							 searchReq.setStartNode("0");
-							 searchReq.setEndNode("4");
+							 searchReq.setEndNode("6");
 							 searchReq.setCategory("Matches");
 							 hubReq.setRequestParam(searchReq);
 						    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -10197,7 +10339,7 @@ public ModelAndView boardPublicProfile(HttpServletRequest request, @PathVariable
 							//*************************************************  Upcomming details  **********************//
 							 
 							 
-							 hubReq =new HubRequest();
+							/* hubReq =new HubRequest();
 							 hubReq.setMsgType(133);
 							 ModelMap map5=new ModelMap();
 							 map5.put("userId",userId );
@@ -10261,7 +10403,90 @@ public ModelAndView boardPublicProfile(HttpServletRequest request, @PathVariable
 								 }else{
 									System.out.println("null condition"); 
 								 }
-							 }
+							 }*/
+							 
+							//************************************************* Api changed Upcomming/inprogress/completed details  **********************//
+							 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+							 Date date = new Date();
+							 
+							 long DAY_IN_MS = 1000 * 60 * 60 * 24;
+							 
+								 hubReq =new HubRequest();
+								 hubReq.setMsgType(281);
+								 ModelMap map5=new ModelMap();
+								 map5.put("userId",userId );
+								 map5.put("boardId", boardID);
+								 map5.put("fromDateString",dateFormat.format(date));
+								 map5.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (7 * DAY_IN_MS))));
+								 map5.put("status", "Upcoming");
+								 hubReq.setRequestParam(map5);
+
+								 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+								 if(strGameScheduleList != null){
+									 HubResponse hubResponse1 = gson.fromJson(strGameScheduleList, HubResponse.class);
+									 if(hubResponse1 != null && hubResponse1.getResults() != null){
+										 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null)
+										 {
+										 upcommingObject.addAll(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
+										 
+										 }
+									 }else{
+										System.out.println("null condition"); 
+									 }
+								 }
+								 
+									 hubReq =new HubRequest();
+									 hubReq.setMsgType(281);
+									 ModelMap map9=new ModelMap();
+									 map9.put("userId",userId );
+									 map9.put("boardId", boardID);
+									 map9.put("fromDateString",dateFormat.format(date));
+									 map9.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (7 * DAY_IN_MS))));
+									 map9.put("status", "InProgress");
+									 hubReq.setRequestParam(map9);
+
+									 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+									 if(strGameScheduleListInprogress != null){
+										 HubResponse hubResponse1 = gson.fromJson(strGameScheduleListInprogress, HubResponse.class);
+										 if(hubResponse1 != null && hubResponse1.getResults() != null){
+											 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+											 {
+											 upcommingObject.addAll(hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+											 }
+										 }else{
+											System.out.println("null condition"); 
+										 }
+									 }
+									 
+									 Collections.sort(upcommingObject, Collections.reverseOrder(new UpcommingComprator()));
+									 
+									 System.out.println("The Upcomming object list size :"+upcommingObject.size());
+									 model.addObject("upcomingMatchesList",upcommingObject );
+								 
+								 
+								 
+								 hubReq =new HubRequest();
+								 hubReq.setMsgType(281);
+								 ModelMap map8=new ModelMap();
+								 map8.put("userId",userId );
+								 map8.put("boardId", boardID);
+								 map8.put("toDateString",dateFormat.format(date));
+								 map8.put("fromDateString",dateFormat.format(new Date(System.currentTimeMillis() - (7 * DAY_IN_MS))));
+								 map8.put("status", "Completed");
+								 hubReq.setRequestParam(map8);
+
+								 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+								 
+								
+								 if(strGameScheduleList1 != null){
+									 HubResponse hubResponse2 = gson.fromJson(strGameScheduleList1, HubResponse.class);
+									 if(hubResponse2 != null && hubResponse2.getResults() != null){
+										 model.addObject("completedMatchesList", hubResponse2.getResults().getGameSchedule().getCompletedMatchesList());
+										 
+									 }else{
+										System.out.println("null condition"); 
+									 }
+								 }
 							 
 							 
 							// TopBowler TopBatsman details
@@ -23867,7 +24092,7 @@ public ModelAndView showScoreCard(HttpServletRequest req, @PathVariable String b
 			
 			 
 			 searchReq.setStartNode("0");
-			 searchReq.setEndNode("4");
+			 searchReq.setEndNode("6");
 			 searchReq.setCategory("Matches");
 			 hubReq.setRequestParam(searchReq);
 		    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -26131,7 +26356,7 @@ public ModelAndView getBuddyboardPublicProfile(HttpServletRequest request,@PathV
 						
 						 
 						 searchReq.setStartNode("0");
-						 searchReq.setEndNode("4");
+						 searchReq.setEndNode("6");
 						 searchReq.setCategory("Matches");
 						 hubReq.setRequestParam(searchReq);
 					    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -26382,7 +26607,7 @@ public ModelAndView boardPublicProfileByboard(HttpServletRequest request, @PathV
 							
 							 
 							 searchReq.setStartNode("0");
-							 searchReq.setEndNode("4");
+							 searchReq.setEndNode("6");
 							 searchReq.setCategory("Matches");
 							 hubReq.setRequestParam(searchReq);
 						    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -27032,7 +27257,7 @@ public ModelAndView boardPublicProfileByboardPitch(HttpServletRequest request, @
 					
 					 
 					 searchReq.setStartNode("0");
-					 searchReq.setEndNode("4");
+					 searchReq.setEndNode("6");
 					 searchReq.setCategory("Matches");
 					 hubReq.setRequestParam(searchReq);
 				    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -27397,7 +27622,7 @@ public ModelAndView boardPitchfromuser(HttpServletRequest request, @PathVariable
 					
 					 
 					 searchReq.setStartNode("0");
-					 searchReq.setEndNode("4");
+					 searchReq.setEndNode("6");
 					 searchReq.setCategory("Matches");
 					 hubReq.setRequestParam(searchReq);
 				    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -29735,7 +29960,7 @@ public ModelAndView showScoreCardOfPlayer(HttpServletRequest req,@PathVariable S
 			
 			 
 			 searchReq.setStartNode("0");
-			 searchReq.setEndNode("4");
+			 searchReq.setEndNode("6");
 			 searchReq.setCategory("Matches");
 			 hubReq.setRequestParam(searchReq);
 		    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -32796,7 +33021,7 @@ public ModelAndView showScoreCardForInProgress(HttpServletRequest req, @PathVari
 			
 			 
 			 searchReq.setStartNode("0");
-			 searchReq.setEndNode("4");
+			 searchReq.setEndNode("6");
 			 searchReq.setCategory("Matches");
 			 hubReq.setRequestParam(searchReq);
 		    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -33257,7 +33482,7 @@ public ModelAndView showScoreCardPublicProfile(HttpServletRequest req, @PathVari
 			
 			 
 			 searchReq.setStartNode("0");
-			 searchReq.setEndNode("4");
+			 searchReq.setEndNode("6");
 			 searchReq.setCategory("Matches");
 			 hubReq.setRequestParam(searchReq);
 		    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -33912,7 +34137,7 @@ public ModelAndView inviteBoardPage(HttpServletRequest req, @PathVariable String
 			
 			 
 			 searchReq.setStartNode("0");
-			 searchReq.setEndNode("4");
+			 searchReq.setEndNode("6");
 			 searchReq.setCategory("Matches");
 			 hubReq.setRequestParam(searchReq);
 		    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -34675,7 +34900,7 @@ public ModelAndView showScoreCardForInProgressPublicProfile(HttpServletRequest r
 			
 			 
 			 searchReq.setStartNode("0");
-			 searchReq.setEndNode("4");
+			 searchReq.setEndNode("6");
 			 searchReq.setCategory("Matches");
 			 hubReq.setRequestParam(searchReq);
 		    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -37257,7 +37482,7 @@ public ModelAndView showScoreCardOfPlayerPublicProfile(HttpServletRequest req,@P
 			
 			 
 			 searchReq.setStartNode("0");
-			 searchReq.setEndNode("4");
+			 searchReq.setEndNode("6");
 			 searchReq.setCategory("Matches");
 			 hubReq.setRequestParam(searchReq);
 		    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -37832,7 +38057,7 @@ public ModelAndView inviteToMergeAccount(HttpServletRequest req, @PathVariable S
 			
 			 
 			 searchReq.setStartNode("0");
-			 searchReq.setEndNode("4");
+			 searchReq.setEndNode("6");
 			 searchReq.setCategory("Matches");
 			 hubReq.setRequestParam(searchReq);
 		    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -44042,7 +44267,7 @@ public @ResponseBody List<MatchesAroundYouResponse> matchesaround(HttpServletReq
 		ModelMap map=new ModelMap();
 		map.put("latlang", latlang);
 		map.put("startNode", "0");
-		map.put("endNode", "20");
+		map.put("endNode", "250");
 		map.put("category", "Matches");
 		
 		hubReq.setRequestParam(map);
@@ -44554,7 +44779,6 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 	ModelAndView model=null;
 	try{
 		
-		
 		if(isUUID(bid)){
 		
 		HttpSession session=request.getSession(true);
@@ -44601,57 +44825,88 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 					
 					 
 					
+					 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					 Date date = new Date();
 					 
+					 long DAY_IN_MS = 1000 * 60 * 60 * 24;
 					 
 					 //*************************************************  Upcomming details  **********************//
 					 
 					 
-					 hubReq =new HubRequest();
+					/* hubReq =new HubRequest();
 					 hubReq.setMsgType(133);
 					 ModelMap map5=new ModelMap();
 					 map5.put("userId",userId );
 					 map5.put("boardId", bid);
 					 map5.put("previousNextFlag","current");
 					 map5.put("endNode", 10);
+					 hubReq.setRequestParam(map5);*/
+					 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(281);
+					 ModelMap map5=new ModelMap();
+					 map5.put("userId",userId );
+					 map5.put("boardId", bid);
+					 map5.put("fromDateString",dateFormat.format(date));
+					 map5.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (7 * DAY_IN_MS))));
+					 map5.put("status", "Upcoming");
 					 hubReq.setRequestParam(map5);
 
 					 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
-					 
-					
 					 if(strGameScheduleList != null){
 						 HubResponse hubResponse1 = gson.fromJson(strGameScheduleList, HubResponse.class);
 						 if(hubResponse1 != null && hubResponse1.getResults() != null){
-							 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null || hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+							 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null)
 							 {
 							 upcommingObject.addAll(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
-							 upcommingObject.addAll(hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
 							 
-							 Collections.sort(upcommingObject, Collections.reverseOrder(new UpcommingComprator()));
-							 
-							 System.out.println("The Upcomming object list size :"+upcommingObject.size());
-							 
-							// model.addObject("upcomingMatchesList", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
-							 model.addObject("upcomingMatchesList",upcommingObject );
-						 
 							 }
-						 
 						 }else{
 							System.out.println("null condition"); 
 						 }
 					 }
 					 
+					 
+					 //*************************************************  Inprogress details  **********************//
+					 
+						 
+						 hubReq =new HubRequest();
+						 hubReq.setMsgType(281);
+						 ModelMap map9=new ModelMap();
+						 map9.put("userId",userId );
+						 map9.put("boardId", bid);
+						 map9.put("fromDateString",dateFormat.format(date));
+						 map9.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (7 * DAY_IN_MS))));
+						 map9.put("status", "InProgress");
+						 hubReq.setRequestParam(map9);
+
+						 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+						 if(strGameScheduleListInprogress != null){
+							 HubResponse hubResponse1 = gson.fromJson(strGameScheduleListInprogress, HubResponse.class);
+							 if(hubResponse1 != null && hubResponse1.getResults() != null){
+								 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+								 {
+								 upcommingObject.addAll(hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+								 }
+							 }else{
+								System.out.println("null condition"); 
+							 }
+						 }
+						 
+						 Collections.sort(upcommingObject, Collections.reverseOrder(new UpcommingComprator()));
+						 
+						 System.out.println("The Upcomming object list size :"+upcommingObject.size());
+						 model.addObject("upcomingMatchesList",upcommingObject );
+					 
 					 //Completed phone
 					 
 					 
-					 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					 Date date = new Date();
 					 
-					 long DAY_IN_MS = 1000 * 60 * 60 * 24;
 					 System.out.println(new Date(System.currentTimeMillis() - (7 * DAY_IN_MS)));
 					 
 					 System.out.println(dateFormat.format(date));
 					 
-					 hubReq =new HubRequest();
+					/* hubReq =new HubRequest();
 					 hubReq.setMsgType(133);
 					 ModelMap map8=new ModelMap();
 					 map8.put("userId",userId );
@@ -44659,6 +44914,16 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 					 map8.put("toDateString",dateFormat.format(date));
 					 map8.put("fromDateString",dateFormat.format(new Date(System.currentTimeMillis() - (7 * DAY_IN_MS))));
 					 map8.put("endNode", 100);
+					 hubReq.setRequestParam(map8);*/
+					 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(281);
+					 ModelMap map8=new ModelMap();
+					 map8.put("userId",userId );
+					 map8.put("boardId", bid);
+					 map8.put("toDateString",dateFormat.format(date));
+					 map8.put("fromDateString",dateFormat.format(new Date(System.currentTimeMillis() - (7 * DAY_IN_MS))));
+					 map8.put("status", "Completed");
 					 hubReq.setRequestParam(map8);
 
 					 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -45882,12 +46147,13 @@ public ModelAndView filterScheduleFunctionSite(HttpServletRequest req, @ModelAtt
 public @ResponseBody ResponseTypeSchedule gameScheduletPreNextsite(HttpServletRequest req,@RequestBody GameScheduleFilter gamescheduler )
 {
 	//ResponseType returnList=null;
-	ResponseTypeSchedule returnList=null;
+	ResponseTypeSchedule returnList=new ResponseTypeSchedule();
+	GameSchedule schedule=new GameSchedule();
 	try{
 		HttpSession session=req.getSession(true);
 		
 			UUID userId=(UUID) session.getAttribute("USRID");
-			 hubReq = new HubRequest(133);
+			/* hubReq = new HubRequest(133);
 				ModelMap m = new ModelMap();
 				m.put("userId",userId );
 				m.put("boardId", gamescheduler.getBoardId());
@@ -45939,7 +46205,116 @@ public @ResponseBody ResponseTypeSchedule gameScheduletPreNextsite(HttpServletRe
 			
 				
 				}
+			}*/
+				
+			String StartDate;
+			String EndDate;
+			
+			if(gamescheduler.getPreviousNextFlag().equalsIgnoreCase("Previous")){
+				
+				Calendar now = Calendar.getInstance(); 
+			       SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+					String comingDateString = gamescheduler.getDateString();
+					 now.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(comingDateString));
+					 System.out.println("Previous :"+sdf1.format(now.getTime()));
+					 now.add(Calendar.DATE, -1);  // number of days to add
+					 String afterAddedOne = sdf1.format(now.getTime());
+					
+					System.out.println("Previousssssssssssss =============="+afterAddedOne);
+					EndDate=afterAddedOne;
+					now.add(Calendar.DATE, -6);
+					StartDate=sdf1.format(now.getTime());
+				
+			}else{
+				Calendar now = Calendar.getInstance(); 
+			       SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+					String comingDateString = gamescheduler.getDateString();
+					 now.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(comingDateString));
+					 System.out.println("Next :"+sdf1.format(now.getTime()));
+					now.add(Calendar.DATE, 1);  // number of days to add
+					String afterAddedOne = sdf1.format(now.getTime());
+					
+					System.out.println("Nextttttttttttttttttttttttt =============="+afterAddedOne);
+					StartDate=afterAddedOne;
+					now.add(Calendar.DATE, 6);
+					EndDate=sdf1.format(now.getTime());
 			}
+			
+			
+			 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map5=new ModelMap();
+				 map5.put("userId",userId );
+				 map5.put("boardId", gamescheduler.getBoardId());
+				 map5.put("fromDateString",StartDate);
+				 map5.put("toDateString",EndDate);
+				 map5.put("status", "Upcoming");
+				 hubReq.setRequestParam(map5);
+
+				 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 if(strGameScheduleList != null){
+					 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleList, HubResponse.class);
+					 if(hubResponse1 != null && hubResponse1.getResults() != null){
+						 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null )
+						 {
+							 schedule.setUpComingMatchesList(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
+							 schedule.setIncompleteMatchesList(hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList());
+						 }
+					 }else{
+						System.out.println("null condition"); 
+					 }
+				 }
+				 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(281);
+					 ModelMap map9=new ModelMap();
+					 map9.put("userId",userId );
+					 map9.put("boardId", gamescheduler.getBoardId());
+					 map9.put("fromDateString",StartDate);
+					 map9.put("toDateString",EndDate);
+					 map9.put("status", "InProgress");
+					 hubReq.setRequestParam(map9);
+
+					 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+					 if(strGameScheduleListInprogress != null){
+						 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleListInprogress, HubResponse.class);
+						 if(hubResponse1 != null && hubResponse1.getResults() != null){
+							 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+							 {
+								 schedule.setInprogressMatchesList(hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+							 
+							 }
+						 }else{
+							System.out.println("null condition"); 
+						 }
+					 }
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map8=new ModelMap();
+				 map8.put("userId",userId );
+				 map8.put("boardId", gamescheduler.getBoardId());
+				 map8.put("fromDateString",StartDate);
+				 map8.put("toDateString",EndDate);
+				 map8.put("status", "Completed");
+				 hubReq.setRequestParam(map8);
+
+				 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 
+				
+				 if(strGameScheduleList1 != null){
+					 HubResponse hubResponse2 = GsonConverters.getGsonObject().fromJson(strGameScheduleList1, HubResponse.class);
+					 if(hubResponse2 != null && hubResponse2.getResults() != null){
+						 schedule.setCompletedMatchesList(hubResponse2.getResults().getGameSchedule().getCompletedMatchesList()); 
+					
+						 returnList.setStartDateStr(hubResponse2.getResults().getStartDateStr());
+						 returnList.setEndDateStr(hubResponse2.getResults().getEndDateStr());
+					 }else{
+						System.out.println("null condition"); 
+					 }
+				 }
+				 returnList.setGameSchedule(schedule);
 			
 	}catch(Exception e)
 	{

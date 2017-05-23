@@ -359,14 +359,14 @@ $('#postfrom').validate({
 									}// for
 								
 						}else{
-							htm +='<div class="media">No Records are found</div>';
+							htm +='<div class="media">No Record are found</div>';
 						}
 						var counin=res.length;
 							//$('#commentCount').Text('');
 						$('#commentCount'+id).html('<i class="fa fa-commenting"></i>'+counin);
 								
 						}else{
-							htm +='<div class="media">No Records are found</div>';
+							htm +='<div class="media">No Record are found</div>';
 							$('#commentCount'+id).html('<i class="fa fa-commenting"></i>0');
 						}
 					$('#commentListDivPopup').html(htm);

@@ -374,7 +374,7 @@ var secondInninBowlingArrayObjectList=[];
    <div><a class="enterScoreAddMore" href="javascript:void(0)" onclick="addFirstInningBowling()">Add More</a></div>
   
                 </div>
-                <div class="cslide-slide">
+                <div id="SecondSlide" class="cslide-slide">
                     
                     <p> 2nd Innings <span id="secondInningsId" style="width: 80%;"></span><div id="inningsDropdown1" style="display:none"><!-- <select id="awayTeamName"  onchange="checkInnings(this.value,this)"></select> --></div></p>
 
@@ -409,7 +409,7 @@ var secondInninBowlingArrayObjectList=[];
 											</select>
 											<div  class="out"></div>
 										</div>  -->  
-								<select style="width:100px" id="secInnPlayerName" name="secInnPlayerName" onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIVPlayer','SecondInningBatting')">
+								<select style="width:100px" id="secInnPlayerName" name="secInnPlayerName" onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIVPlayer','SecondInningBatting')" >
 								                 <option value="0">Select Player</option>
 											</select>		                  
                                   <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVPlayer" name="addMemberIDDIVPlayer">
@@ -2869,6 +2869,30 @@ firstInninBowlingArrayList = [];
 			   }
 		   });
 }
+
+
+/* function changesecondinningstab(){
+	//alert("changes");
+	console.log("Changes");
+	}
+$( "#secInnPlayerName" ).focusin(function() {
+	//  $( this ).find( "span" ).css( "display", "inline" ).fadeOut( 1000 );
+	console.log("Changes1");
+	
+	//alert("Changes");
+	
+	
+	//$(".cslide-next").click();
+	
+	var contains=$('#SecondSlide').hasClass('cslide-active');
+	console.log(contains);
+	
+	if(contains ==  false){
+		//$(".cslide-next").click();
+	}
+	return
+	}); */
+
 </script>	
 </body>
 </html>

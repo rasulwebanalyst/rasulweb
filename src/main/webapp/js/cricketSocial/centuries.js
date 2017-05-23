@@ -80,7 +80,7 @@ $(function(){
 	    					
 	    				}else{
 	    					//displaynotification('No responses yet',3000);
-	    					htm +="<li>No Records are found</li>";
+	    					htm +="<li>No Record are found</li>";
 	    				}
 	    			
 	    			$('#tournmentSearchResultDIV').html(html);
@@ -155,7 +155,7 @@ $(function(){
 	    					
 	    				}else{
 	    					//displaynotification('No responses yet',3000);
-	    					htm +="<li>No Records are found</li>";
+	    					htm +="<li>No Record are found</li>";
 	    				}
 	    		
 	    			$('#searchTeamBoardList').html(htm);
@@ -235,7 +235,7 @@ $(function(){
 	    					
 	    				}else{
 	    					//displaynotification('No responses yet',3000);
-	    					htm +="<li>No Records are found</li>";
+	    					htm +="<li>No Record are found</li>";
 	    				}
 	    		
 	    			$('#searchAgainestTeamBoardList').html(htm);

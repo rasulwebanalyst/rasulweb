@@ -90,7 +90,7 @@ function playersearch(elem,divId,hiddenId){
 								//	html+="<ul style='width: 210px;' >";
 								//	html+="<li></li>";
 								///	html+="<li></li>";
-									html+="<li>No matches found...</li>";
+									html+="<li>No match found...</li>";
 									//	html+="</ul>";
      							
  							}	
