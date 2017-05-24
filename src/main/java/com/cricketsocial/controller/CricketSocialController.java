@@ -43753,7 +43753,7 @@ public ModelAndView mailEventNotification(HttpServletRequest req,@PathVariable U
 public @ResponseBody ResponseTypeSchedule gameSchedulePreNext(HttpServletRequest req,@RequestBody GameScheduleFilter gamescheduler )
 {
 	//ResponseType returnList=null;
-	ResponseTypeSchedule returnList=null;
+	ResponseTypeSchedule returnList=new ResponseTypeSchedule();
 	GameScheduleFilter schedule=new GameScheduleFilter();
 	try{
 		HttpSession session=req.getSession(true);
