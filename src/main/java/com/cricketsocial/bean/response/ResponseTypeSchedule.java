@@ -11,7 +11,7 @@ public class ResponseTypeSchedule {
 	private List<ScheduleResponse> tournamentSchedulerList;
 	private String startDateStr;
 	private String endDateStr;
-	private GameSchedule gameSchedule;
+	private GameScheduleFilter gameSchedule;
 	
 	
 	public List<ScheduleResponse> getTournamentSchedulerList() {
@@ -33,12 +33,13 @@ public class ResponseTypeSchedule {
 	public void setEndDateStr(String endDateStr) {
 		this.endDateStr = endDateStr;
 	}
-	public GameSchedule getGameSchedule() {
+	public GameScheduleFilter getGameSchedule() {
 		return gameSchedule;
 	}
-	public void setGameSchedule(GameSchedule gameSchedule) {
+	public void setGameSchedule(GameScheduleFilter gameSchedule) {
 		this.gameSchedule = gameSchedule;
 	}
+	
 	
 	
 
