@@ -35761,6 +35761,7 @@ public ModelAndView filterScheduleFunctionPublicProfile(HttpServletRequest req, 
 			
 		mav = new ModelAndView("GameSchedulePublicProfile");
 		mav.addObject("boardId", gs.getBoardId());
+		mav.addObject("GameFilter", gs);
 		//*************************** Getting Board info  ***************************************
 		 HubRequest hubReq1=new HubRequest();
 		 hubReq1.setMsgType(40);

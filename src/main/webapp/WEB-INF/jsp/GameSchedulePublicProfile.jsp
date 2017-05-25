@@ -1815,8 +1815,11 @@ var dateString = null;
                			var endstr= "${endDateSet}";
                			var startstr="${startDateSet}";
                			//alert(endstr);
+               			if(endstr != ''){
+               				console.log("endstr :"+endstr);
                			$('#fromDate').datepicker('update',startstr);
        					$("#toDate").datepicker("update", endstr);
+       					}
                			
                		})
                 	
