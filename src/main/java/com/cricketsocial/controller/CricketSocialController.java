@@ -6232,7 +6232,7 @@ public ModelAndView getboard(@RequestParam String bid, HttpServletRequest reques
 							 map5.put("userId",userId );
 							 map5.put("boardId", bid);
 							 map5.put("fromDateString",dateFormat.format(date));
-							 map5.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (7 * DAY_IN_MS))));
+							 map5.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (6 * DAY_IN_MS))));
 							 map5.put("status", "Upcoming");
 							 hubReq.setRequestParam(map5);
 
@@ -6256,7 +6256,7 @@ public ModelAndView getboard(@RequestParam String bid, HttpServletRequest reques
 								 map9.put("userId",userId );
 								 map9.put("boardId", bid);
 								 map9.put("fromDateString",dateFormat.format(date));
-								 map9.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (7 * DAY_IN_MS))));
+								 map9.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (6 * DAY_IN_MS))));
 								 map9.put("status", "InProgress");
 								 hubReq.setRequestParam(map9);
 
@@ -6286,7 +6286,7 @@ public ModelAndView getboard(@RequestParam String bid, HttpServletRequest reques
 							 map8.put("userId",userId );
 							 map8.put("boardId", bid);
 							 map8.put("toDateString",dateFormat.format(date));
-							 map8.put("fromDateString",dateFormat.format(new Date(System.currentTimeMillis() - (7 * DAY_IN_MS))));
+							 map8.put("fromDateString",dateFormat.format(new Date(System.currentTimeMillis() - (6 * DAY_IN_MS))));
 							 map8.put("status", "Completed");
 							 hubReq.setRequestParam(map8);
 
@@ -7438,9 +7438,9 @@ public @ResponseBody ModelAndView getRosterDetails(HttpServletRequest request,@R
 							
 							request.setAttribute("RoasterResponseById", roasterResponseById);
 							
-							
+							request.setAttribute("RoasterMemberList", roasterResponseById); //changed by vignesh
 							 
-							 hubReq=new HubRequest();
+							/* hubReq=new HubRequest();
 							 //hubReq.setMsgType(48);
 							 hubReq.setMsgType(188);// roster details based uisng cassandra
 							 ModelMap rosterMap2=new ModelMap();
@@ -7462,7 +7462,7 @@ public @ResponseBody ModelAndView getRosterDetails(HttpServletRequest request,@R
 										
 								 }
 									
-							 }
+							 }*/
 							
 							 
 							 
@@ -7649,7 +7649,7 @@ public @ResponseBody ModelAndView getRosterDetails(HttpServletRequest request,@R
 					 model.addObject("UserCompleteEvent", eventCompleteResponse.getResults().getEventDetails());
 				 }*/
 				 
-				 hubReq=new HubRequest();
+				/* hubReq=new HubRequest();
 				 hubReq.setMsgType(70);
 				 ModelMap modelMap4=new ModelMap();
 				 modelMap4.put("userId", userId);
@@ -7660,7 +7660,7 @@ public @ResponseBody ModelAndView getRosterDetails(HttpServletRequest request,@R
 				 if(usercancelEventResponse!=null && usercancelEventResponse.getResults()!=null)
 				 {
 					 model.addObject("UserCancelEvent", usercancelEventResponse.getResults().getEventDetails());
-				 }
+				 }*/
 				 
 				 
 				 	 ModelMap neweventmap=new ModelMap();
@@ -8358,7 +8358,7 @@ public @ResponseBody ModelAndView rosterDetails(HttpServletRequest request,@Requ
 						 
 						 
 						 
-				 hubReq=new HubRequest();
+				/* hubReq=new HubRequest();
 				 hubReq.setMsgType(70);
 				 ModelMap modelMap4=new ModelMap();
 				 modelMap4.put("userId", userId);
@@ -8369,7 +8369,7 @@ public @ResponseBody ModelAndView rosterDetails(HttpServletRequest request,@Requ
 				 if(usercancelEventResponse!=null && usercancelEventResponse.getResults()!=null)
 				 {
 					 model.addObject("UserCancelEvent", usercancelEventResponse.getResults().getEventDetails());
-				 }
+				 }*/
 				 
 				 
 				 
@@ -10432,7 +10432,7 @@ public ModelAndView boardPublicProfile(HttpServletRequest request, @PathVariable
 								 map5.put("userId",userId );
 								 map5.put("boardId", boardID);
 								 map5.put("fromDateString",dateFormat.format(date));
-								 map5.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (7 * DAY_IN_MS))));
+								 map5.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (6 * DAY_IN_MS))));
 								 map5.put("status", "Upcoming");
 								 hubReq.setRequestParam(map5);
 
@@ -10456,7 +10456,7 @@ public ModelAndView boardPublicProfile(HttpServletRequest request, @PathVariable
 									 map9.put("userId",userId );
 									 map9.put("boardId", boardID);
 									 map9.put("fromDateString",dateFormat.format(date));
-									 map9.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (7 * DAY_IN_MS))));
+									 map9.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (6 * DAY_IN_MS))));
 									 map9.put("status", "InProgress");
 									 hubReq.setRequestParam(map9);
 
@@ -10486,7 +10486,7 @@ public ModelAndView boardPublicProfile(HttpServletRequest request, @PathVariable
 								 map8.put("userId",userId );
 								 map8.put("boardId", boardID);
 								 map8.put("toDateString",dateFormat.format(date));
-								 map8.put("fromDateString",dateFormat.format(new Date(System.currentTimeMillis() - (7 * DAY_IN_MS))));
+								 map8.put("fromDateString",dateFormat.format(new Date(System.currentTimeMillis() - (6 * DAY_IN_MS))));
 								 map8.put("status", "Completed");
 								 hubReq.setRequestParam(map8);
 
@@ -15991,9 +15991,21 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 							RoasterResponseById roasterResponseById=results1.getRosterInfo();
 							
 							request.setAttribute("RoasterResponseById", roasterResponseById);
+							request.setAttribute("RoasterMemberList", roasterResponseById); // changed by vignesh
 							
+							int userExit=5;
+							if(roasterResponseById.getRosterMembers() !=null){
+							for(RoasterMemembers rrb : roasterResponseById.getRosterMembers()){
+								
+								if(rrb.getUserId().equalsIgnoreCase(userId.toString())){
+									userExit=4;
+									break;
+								}
+							}
+							}
+							model.addObject("memberExists", userExit); // changed by vignesh
 							
-							 hubReq = new HubRequest();
+							/* hubReq = new HubRequest();           
 							 hubReq.setMsgType(190);
 							 ModelMap memberMap = new ModelMap();
 							 memberMap.put("userId", userId);
@@ -16009,11 +16021,11 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 									 model.addObject("memberExists", hubRes.getRequestStatus());
 								 }
 								 
-							 }
+							 }*/
 							
 						 }
 					 }
-					 hubReq=new HubRequest();
+					/* hubReq=new HubRequest();
 					 
 					 hubReq.setMsgType(188);// roster details based uisng cassandra
 					 ModelMap rosterMap2=new ModelMap();
@@ -16035,7 +16047,7 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 								
 						 }
 							
-					 }
+					 }*/
 					 
 					 
 					 // Print details
@@ -16159,16 +16171,8 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 									model.addObject("tournamentlist", listresponse.getResults().getTournamentList());
 								}
 							}
-							 
-							 
-							 
-							 
-					 
 					 
 			 	}
-				 
-				 
-				 
 				 
 				 System.out.println("board details"+userId);
 				 HubRequest hubReq1=new HubRequest(40);
@@ -16187,9 +16191,54 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 					{
 						model.addObject("BoardId", bid);
 						 model.addObject("BoradInfo", hubResponse1.getResults().getBoardStatusDetail().get(0));
+						 
+						 if(!hubResponse1.getResults().getBoardStatusDetail().get(0).getCategory().equalsIgnoreCase("Team")){
+							 
+							 
+							 
+							 
+							// Sponser image   // changed by vignesh
+							 SponserResponse sporesponse=new SponserResponse();
+							 long sponsersize=0;
+							 UUID uid1=UUID.fromString(bid);
+								HubRequest hubreq11=new HubRequest(263);
+								OrganizationDetails orgdetails1=new OrganizationDetails();
+								orgdetails1.setBoardId(uid1);
+								 hubreq11.setRequestParam(orgdetails1);
+								 String response11=cricketSocialRestTemplateService.userRegistration(hubreq11);
+								 if(response11 != null){
+								 JSONObject jobj=new JSONObject(response11);
+								 JSONObject jresult=jobj.getJSONObject("results");
+								 JSONObject jboardobj=jresult.getJSONObject("boardSponsersResponse");
+								  
+								 if(jboardobj.length() !=0)
+								 {
+									 sporesponse= gson.fromJson(jboardobj.toString(), SponserResponse.class);
+									  
+									  if(sporesponse.getBoardSponsorsList().size() > 0)
+									  {
+										  sponsersize=sporesponse.getBoardSponsorsList().size();
+									  }
+									  
+								 }
+								  
+								 }else{
+									 model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
+										 }
+								 model.addObject("spoResponse", sporesponse);
+								 model.addObject("SponserSize", sponsersize);
+								 System.out.println("The sponser size  :"+sponsersize);
+								 model.addObject("showsponsers", "YES");
+							 
+							 
+							 
+							 
+						 }
 						
 					}
-				 }	
+				 }
+				 
+				 
 				 
 			/*	 
 				 hubReq=new HubRequest();
@@ -16205,18 +16254,7 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 					 model.addObject("UserUpComingEvent", eventResponse.getResults().getEventDetails());
 				 }
 				 
-				 hubReq=new HubRequest();
-				 hubReq.setMsgType(70);
-				 ModelMap modelMap3=new ModelMap();
-				 modelMap3.put("userId", userId);
-				 modelMap3.put("statusId", "23");				
-				 hubReq.setRequestParam(modelMap3);
-				 String usercompleteEvent=cricketSocialRestTemplateService.userRegistration(hubReq);
-				 HubResponse eventCompleteResponse= GsonConverters.getGsonObject().fromJson(usercompleteEvent, HubResponse.class);
-				 if(eventCompleteResponse!=null && eventCompleteResponse.getResults()!=null)
-				 {
-					 model.addObject("UserCompleteEvent", eventCompleteResponse.getResults().getEventDetails());
-				 }
+				 
 				 */
 				 
 				 ModelMap neweventmap=new ModelMap();
@@ -16238,7 +16276,7 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 					 }
 				 }
 				 
-				 hubReq=new HubRequest();
+				/* hubReq=new HubRequest();
 				 hubReq.setMsgType(70);
 				 ModelMap modelMap4=new ModelMap();
 				 modelMap4.put("userId", userId);
@@ -16250,7 +16288,7 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 				 {
 					 model.addObject("UserCancelEvent", usercancelEventResponse.getResults().getEventDetails());
 				 }
-				 
+				 */
 				
 				
 
@@ -16307,17 +16345,15 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 				 
 					 
 					 
-					// Sponser image
+					/*// Sponser image
 					 SponserResponse sporesponse=new SponserResponse();
 					 long sponsersize=0;
-					 
 					 UUID uid1=UUID.fromString(bid);
 						HubRequest hubreq11=new HubRequest(263);
 						OrganizationDetails orgdetails1=new OrganizationDetails();
 						orgdetails1.setBoardId(uid1);
 						 hubreq11.setRequestParam(orgdetails1);
 						 String response11=cricketSocialRestTemplateService.userRegistration(hubreq11);
-						 System.out.println("the 263 response is :"+response11);
 						 if(response11 != null){
 						 JSONObject jobj=new JSONObject(response11);
 						 JSONObject jresult=jobj.getJSONObject("results");
@@ -16340,7 +16376,7 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 						 model.addObject("spoResponse", sporesponse);
 						 model.addObject("SponserSize", sponsersize);
 						 System.out.println("The sponser size  :"+sponsersize);
-						 model.addObject("showsponsers", "YES");
+						 model.addObject("showsponsers", "YES");*/
 					 
 				 
 				 
@@ -27325,7 +27361,7 @@ public ModelAndView boardPublicProfileByboard(HttpServletRequest request, @PathV
 								 map5.put("userId",userId );
 								 map5.put("boardId", boardID);
 								 map5.put("fromDateString",dateFormat.format(date));
-								 map5.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (7 * DAY_IN_MS))));
+								 map5.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (6 * DAY_IN_MS))));
 								 map5.put("status", "Upcoming");
 								 hubReq.setRequestParam(map5);
 
@@ -27349,7 +27385,7 @@ public ModelAndView boardPublicProfileByboard(HttpServletRequest request, @PathV
 									 map9.put("userId",userId );
 									 map9.put("boardId", boardID);
 									 map9.put("fromDateString",dateFormat.format(date));
-									 map9.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (7 * DAY_IN_MS))));
+									 map9.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (6 * DAY_IN_MS))));
 									 map9.put("status", "InProgress");
 									 hubReq.setRequestParam(map9);
 
@@ -27379,7 +27415,7 @@ public ModelAndView boardPublicProfileByboard(HttpServletRequest request, @PathV
 								 map8.put("userId",userId );
 								 map8.put("boardId", boardID);
 								 map8.put("toDateString",dateFormat.format(date));
-								 map8.put("fromDateString",dateFormat.format(new Date(System.currentTimeMillis() - (7 * DAY_IN_MS))));
+								 map8.put("fromDateString",dateFormat.format(new Date(System.currentTimeMillis() - (6 * DAY_IN_MS))));
 								 map8.put("status", "Completed");
 								 hubReq.setRequestParam(map8);
 
@@ -46058,7 +46094,7 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 					 map5.put("userId",userId );
 					 map5.put("boardId", bid);
 					 map5.put("fromDateString",dateFormat.format(date));
-					 map5.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (7 * DAY_IN_MS))));
+					 map5.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (6 * DAY_IN_MS))));
 					 map5.put("status", "Upcoming");
 					 hubReq.setRequestParam(map5);
 
@@ -46086,7 +46122,7 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 						 map9.put("userId",userId );
 						 map9.put("boardId", bid);
 						 map9.put("fromDateString",dateFormat.format(date));
-						 map9.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (7 * DAY_IN_MS))));
+						 map9.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (6 * DAY_IN_MS))));
 						 map9.put("status", "InProgress");
 						 hubReq.setRequestParam(map9);
 
@@ -46132,7 +46168,7 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 					 map8.put("userId",userId );
 					 map8.put("boardId", bid);
 					 map8.put("toDateString",dateFormat.format(date));
-					 map8.put("fromDateString",dateFormat.format(new Date(System.currentTimeMillis() - (7 * DAY_IN_MS))));
+					 map8.put("fromDateString",dateFormat.format(new Date(System.currentTimeMillis() - (6 * DAY_IN_MS))));
 					 map8.put("status", "Completed");
 					 hubReq.setRequestParam(map8);
 
