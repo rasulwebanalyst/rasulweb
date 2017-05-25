@@ -43917,7 +43917,7 @@ public @ResponseBody ResponseTypeSchedule gameSchedulePreNext(HttpServletRequest
 					 HubResponse hubResponse2 = GsonConverters.getGsonObject().fromJson(strGameScheduleList1, HubResponse.class);
 					 if(hubResponse2 != null && hubResponse2.getResults() != null){
 						 
-						 ResponseTypeSchedule responsetype=GsonConverters.getGsonObject().fromJson(new JSONObject(strGameScheduleListInprogress).getJSONObject("results").toString() , ResponseTypeSchedule.class);
+						 ResponseTypeSchedule responsetype=GsonConverters.getGsonObject().fromJson(new JSONObject(strGameScheduleList1).getJSONObject("results").toString() , ResponseTypeSchedule.class);
 						 schedule.setCompletedMatchesList(responsetype.getGameSchedule().getCompletedMatchesList()); 
 					
 						 returnList.setStartDateStr(hubResponse2.getResults().getStartDateStr());
@@ -47981,7 +47981,7 @@ public @ResponseBody ResponseTypeSchedule gameScheduletPreNextsite(HttpServletRe
 					 HubResponse hubResponse2 = GsonConverters.getGsonObject().fromJson(strGameScheduleList1, HubResponse.class);
 					 if(hubResponse2 != null && hubResponse2.getResults() != null){
 						 
-						 ResponseTypeSchedule responsetype=GsonConverters.getGsonObject().fromJson(new JSONObject(strGameScheduleListInprogress).getJSONObject("results").toString() , ResponseTypeSchedule.class);
+						 ResponseTypeSchedule responsetype=GsonConverters.getGsonObject().fromJson(new JSONObject(strGameScheduleList1).getJSONObject("results").toString() , ResponseTypeSchedule.class);
 						 schedule.setCompletedMatchesList(responsetype.getGameSchedule().getCompletedMatchesList()); 
 					
 						 returnList.setStartDateStr(hubResponse2.getResults().getStartDateStr());
