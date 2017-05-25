@@ -202,7 +202,7 @@
                      
                      
                      
-                      $(document).ready(function(){
+                     /*  $(document).ready(function(){
                     	 $.ajax({
                     		 type : "GET",
                     		 url : "${pageContext.request.contextPath}/Merchants",
@@ -212,7 +212,7 @@
                     			 console.log(JSON.stringify(res));
                     		 }
                     	 })
-                     }) 
+                     })  */
                      
                      </script>
 </body>

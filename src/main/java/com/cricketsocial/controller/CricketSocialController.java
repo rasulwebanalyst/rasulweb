@@ -27,6 +27,7 @@ import javax.servlet.http.HttpSession;
 
 
 
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -460,6 +461,7 @@ public class CricketSocialController {
 							 session.setAttribute("USREMAIL", profile.getEmailAddress());			 
 							// System.out.println("session id : "+session.getAttribute("USRID"));
 							 session.setAttribute("USRIMG", profile.getUserImageUrl());
+							 session.setAttribute("ZipCode", profile.getZipcode());
 							// USRLastName
 							 String name=profile.getFirstName();
 							 if(profile.getLastName()!=null){
@@ -1263,7 +1265,8 @@ public ModelAndView userprofile(HttpServletRequest request)
 				 gsonobj=GsonConverters.getGsonObject();
 				 UUID userid=(UUID) session.getAttribute("USRID");
 				 String userEmail= (String) session.getAttribute("USREMAIL");
-					hubReq=new HubRequest(280);
+                 String zipcode=(String) session.getAttribute("ZipCode");
+					/*hubReq=new HubRequest(280);
 					 hubReq.setMsgType(280);
 					
 					 UserProfile userProfile= new UserProfile();
@@ -1271,16 +1274,18 @@ public ModelAndView userprofile(HttpServletRequest request)
 					 hubReq.setRequestParam(userProfile);
 					 hubReq.setUserName(userEmail);
 					 String result=cricketSocialRestTemplateService.userRegistration(hubReq);
-					  LoginResponse profile=GsonConverters.getGsonObject().fromJson(result, LoginResponse.class);
+					  LoginResponse profile=GsonConverters.getGsonObject().fromJson(result, LoginResponse.class);*/
 					  
-					 if(profile!= null &&  profile.getResults()!=null)
+					/* if(profile!= null &&  profile.getResults()!=null)
 					 {
 						 
 						if(profile.getResults().getItemsFound()!=null)
-						{
+						{*/
 							
 							
-							if(profile.getResults().getItemsFound()[0].getZipcode().length()>2)
+							//if(profile.getResults().getItemsFound()[0].getZipcode().length()>2)
+                              System.out.println("Zipcode :"+zipcode);
+                              if(zipcode.length()>2)
 							  {
 								
 								//Score Card Redirect
@@ -1524,15 +1529,15 @@ public ModelAndView userprofile(HttpServletRequest request)
 							  }
 							 
 							 
-						}else{
+						/*}else{
 							 model=new ModelAndView("welcome");
-						} 
+						} */
 						 
 						 
 						 
-					 }else{
+					/* }else{
 						 model=new ModelAndView("welcome");
-					 }
+					 }*/
 					 
 				 
 			 }else{
@@ -1586,6 +1591,8 @@ public ModelAndView userprofile(HttpServletRequest request)
 		
 		return obj;
 	}
+	
+	
 	
 	
 	@RequestMapping(value="/login",method=RequestMethod.GET)
@@ -1739,6 +1746,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 							 session.setAttribute("USRLastName", name);
 							 session.setAttribute("USREMAIL", profile.getEmailAddress());	
 							 session.setAttribute("USRIMG", profile.getUserImageUrl());
+							 session.setAttribute("ZipCode", profile.getZipcode());
 							 System.out.println("session id : "+session.getAttribute("USRID"));		
 							// session.setAttribute("USRLocation", userProfile.getLatLang());
 							 
@@ -2212,6 +2220,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 				    		  System.out.println("user image===============11  "+session.getAttribute("USRIMG"));
 				    		 session.removeAttribute("USRFNA");
 				    		 session.setAttribute("USRFNA",profile.getResults().getItemsFound()[0].getFirstName());
+				    		 session.setAttribute("ZipCode", profile.getResults().getItemsFound()[0].getZipcode());
 				    		 
 				    		 //userprofileupdate
 				    	 
@@ -2498,6 +2507,8 @@ public ModelAndView userprofile(HttpServletRequest request)
 				    		  System.out.println("user image===============11  "+session.getAttribute("USRIMG"));
 				    		 session.removeAttribute("USRFNA");
 				    		 session.setAttribute("USRFNA",profile.getResults().getItemsFound()[0].getFirstName());
+				    		 session.setAttribute("ZipCode", profile.getResults().getItemsFound()[0].getZipcode());
+
 				    		 
 				    		 //userprofileupdate
 				    	 
@@ -6209,7 +6220,8 @@ public ModelAndView getboard(@RequestParam String bid, HttpServletRequest reques
 						
 						
 						//************************************************* Api changed Upcomming/inprogress/completed details  **********************//
-						 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						// DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 						 Date date = new Date();
 						 
 						 long DAY_IN_MS = 1000 * 60 * 60 * 24;
@@ -10408,7 +10420,8 @@ public ModelAndView boardPublicProfile(HttpServletRequest request, @PathVariable
 							 }*/
 							 
 							//************************************************* Api changed Upcomming/inprogress/completed details  **********************//
-							 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+							// DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+							 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 							 Date date = new Date();
 							 
 							 long DAY_IN_MS = 1000 * 60 * 60 * 24;
@@ -11643,6 +11656,8 @@ public ModelAndView updateUserDetail(@ModelAttribute UserProfileUpdate2 userProf
 			    		  System.out.println("user image===============12  "+session.getAttribute("USRIMG"));
 			    		 session.removeAttribute("USRFNA");
 			    		 session.setAttribute("USRFNA",profile.getResults().getItemsFound()[0].getFirstName());
+			    		 session.setAttribute("ZipCode", profile.getResults().getItemsFound()[0].getZipcode());
+
 			    		/* session.removeAttribute("USRLocation");
 			    		 session.setAttribute("USRLocation", profile.getResults().getItemsFound()[0].getLatLang());*/
 			    		 
@@ -27298,7 +27313,8 @@ public ModelAndView boardPublicProfileByboard(HttpServletRequest request, @PathV
 							
 							
 							//************************************************* Api changed Upcomming/inprogress/completed details  **********************//
-							 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						//	 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+							DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 							 Date date = new Date();
 							 
 							 long DAY_IN_MS = 1000 * 60 * 60 * 24;
@@ -39372,7 +39388,8 @@ public ModelAndView mergeLoginValidate(HttpServletRequest request,UserProfile us
 						// System.out.println("session id : "+session.getAttribute("USRID"));
 						 session.setAttribute("USRIMG", profile.getUserImageUrl());
 						 session.setAttribute("USRLocation", userProfile.getLatLang());
-						
+			    		 session.setAttribute("ZipCode", profile.getZipcode());
+
 						 
 
 			    		 String name2=profile.getFirstName();
@@ -46017,7 +46034,8 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 					
 					 
 					
-					 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					// DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 					 Date date = new Date();
 					 
 					 long DAY_IN_MS = 1000 * 60 * 60 * 24;
