@@ -56,7 +56,7 @@
                             <div class="sidebar-content">
                               <div class="sidebar-header"> <a href="${pageContext.request.contextPath}/LeaguesAroundYou">Leagues Around You</a></div>
                               
-                              
+                              <div id="BoardNear">
                                <c:choose>
                              	<c:when test="${empty BRDAroundYou}">
                              		<div class="sidebar-list noContentDiv">
@@ -74,6 +74,7 @@
 	                              </c:forEach>
                              	</c:otherwise>
                              </c:choose> 
+                             </div>
                             </div>
                           </div>
                           
@@ -121,7 +122,7 @@
                             <div class="sidebar-content">
                               <div class="sidebar-header"><a href="${pageContext.request.contextPath}/TeamAroundYou">Teams Around You</a></div>
                               
-                              
+                              <div id="TeamNear">
                               
                               <c:choose>
                               	<c:when test="${empty TEAMAroundYou}">
@@ -144,7 +145,7 @@
                               	</c:otherwise>
                               </c:choose>
                              	
-                            
+                            </div>
                               
                             </div>
                           </div>
@@ -246,9 +247,7 @@
         	                                 html1+="<img src="+res[i].boardImageURL+" onerror='merchantimgError(this);'  class='teamLogo' ></a></div>";}
         	                                 html1+="<a href='${pageContext.request.contextPath}/"+res[i].boardName+"/board/"+res[i].boardId+"'>"+res[i].boardName+" </a><br>"+res[i].city+"</div>";
                             				 }	 
-                    					 
                     				 }
-                    				 
                     				 }
                     			 else{
                     				html1+="<div class='sidebar-list noContentDiv'>No Merchant around you.</div>"; 
@@ -286,7 +285,7 @@
                     				 }else{
                     					 
                     					 
-                    					 for(var i=0 ; i<=6 ; i++){
+                    					 for(var i=0 ; i<6 ; i++){
                     						 if(res1[i].firstName != "" && res1[i].firstName != null && res1[i].userId !=LoggedUserid)
                     						 {
                     							 html2+="<div class='sidebar-list'>"; 
@@ -317,43 +316,62 @@
                     		 }
                     	 })
                     	 
-                    	 
-                    	// BuddiesNear();
-                    	 
                      })
                      
-                     
-                        /*  function BuddiesNear(){
                     	   
-                     $(function() {
+                   /*    $(function() {
   
                     	 $.ajax({
                     		 type : "POST",
                     		 url : "${pageContext.request.contextPath}/BoardNear",
                     		 headers : {'Name' : HeaderName},
-                    		 success : function(res){
+                    		 success : function(response){
+                    			 console.log("!!!!!!!!!!!!!!!!!!!!!!!!111"+response.length);
+                    			 var res=response.TEAMAroundYou;
                     			 console.log("!!!!!!!!!!!!!!!!!!!!!!!!111"+res.length);
-                    			 console.log(JSON.stringify(res));
-                    			 var html1="";
+                    			 var htm="";
                     			 if(res !=null){
-                    				 console.log(res.length);
-                    				 var LoggedUserid = '${USRID}';
-                    				 console.log(LoggedUserid)
-                    				 
                     				
+                                  if(res.length <= 6){
+                                   for(var i in res)
+                    				 {
+                                	   htm+="<a href='${pageContext.request.contextPath}/"+res[i].boardName+"/board/"+res[i].boardId+"'>";
+                      				 htm+="<div class='sidebar-list'>"; 
+                      				 if(res[i].boardImageURL == ""){
+                      					 htm+="<img src='https://cdn.cricketsocial.com/images/profileIcon.png' title="+res[i].boardName+" alt="+res[i].boardName+" class='teamLogo' >";
+                      				 }else{
+  	                                 htm+="<img src="+res[i].boardImageURL+" onerror='buddyError(this);' title="+res[i].boardName+" alt="+res[i].boardName+" class='teamLogo' >";
+  	                                 }
+                      				 htm+="<span>"+res[i].boardName+"</span></div></a>";
+                    				 }
+                                         }else{
+                                        	 
+                                        	 for(var i=0 ; i<6 ; i++)
+                                				 
+                            				 {
+                                        	   htm+="<a href='${pageContext.request.contextPath}/"+res[i].boardName+"/board/"+res[i].boardId+"'>";
+                              				 htm+="<div class='sidebar-list'>"; 
+                              				 if(res[i].boardImageURL == ""){
+                              					 htm+="<img src='https://cdn.cricketsocial.com/images/profileIcon.png' title="+res[i].boardName+" alt="+res[i].boardName+" class='teamLogo' >";
+                              				 }else{
+          	                                 htm+="<img src="+res[i].boardImageURL+" onerror='buddyError(this);' title="+res[i].boardName+" alt="+res[i].boardName+" class='teamLogo' >";
+          	                                 }
+                              				 htm+="<span>"+res[i].boardName+"</span></div></a>";
+                            				 }
+                                        	 
+                                         }
                     				 
                     				 }else{
-                    				html1+="<div class='sidebar-list noContentDiv'>No buddy around you.</div>"; 
+                    				htm+="<div class='sidebar-list noContentDiv'>No team around you.</div>"; 
                     			 }
                     			 
-                    			 $("#Buddyiesnear").html(html1).trigger('create');
+                    			 $("#TeamNear").html(htm).trigger('create');
+                    			 
                     			 
                     		 }
                     	 })
-                     })
+                     })  */
                       
-                       }   */
-                     
                      
                      
                      

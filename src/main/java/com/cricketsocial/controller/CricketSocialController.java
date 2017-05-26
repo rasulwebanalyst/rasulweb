@@ -1153,7 +1153,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 							 BoardSearchRequest searchReq= new BoardSearchRequest();
 							 //searchReq.setLatlang("13.082680199999999,80.2707184");
 							 searchReq.setStartNode("0");
-							 searchReq.setEndNode("40");
+							 searchReq.setEndNode("6");
 							 searchReq.setCategory("League");
 							 searchReq.setLatlang("");
 							 hubReq.setRequestParam(searchReq);
@@ -1410,7 +1410,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 								
 								 
 								 searchReq.setStartNode("0");
-								 searchReq.setEndNode("4");
+								 searchReq.setEndNode("6");
 								 searchReq.setCategory("League");
 								 hubReq.setRequestParam(searchReq);
 								 hubReq.setUserName(userEmail);
@@ -1421,8 +1421,8 @@ public ModelAndView userprofile(HttpServletRequest request)
 								 {
 									 model.addObject("BRDAroundYou", strsearchResponse.getResults().getSearchResponse().getBoardProfileList());
 								 }
-								 
-								 searchReq.setCategory("Team");
+								// calling in ajax
+								/* searchReq.setCategory("Team");
 								 //searchReq.setLatlang("17.3700,78.4800");
 								 if(userlocation!=null)
 								 {
@@ -1442,7 +1442,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 								 if(strTeamResponse.getResults().getSearchResponse()!=null)
 								 {
 									 model.addObject("TEAMAroundYou", strTeamResponse.getResults().getSearchResponse().getBoardProfileList());
-								 }
+								 }*/
 								 // calling in ajax
 								/* hubReq.setMsgType(23);
 								 searchReq.setCategory("");
@@ -1566,6 +1566,8 @@ public ModelAndView userprofile(HttpServletRequest request)
 				 Map map1=new HashMap();
 				     hubReq.setMsgType(79);
 				 searchReq.setCategory("Merchants");
+				 searchReq.setStartNode("0");
+				 searchReq.setEndNode("6");
 				 if(userlocation!=null)
 				 {
 					if(userlocation.length()>3)
@@ -1590,6 +1592,8 @@ public ModelAndView userprofile(HttpServletRequest request)
 				 
 				 hubReq.setMsgType(23);
 				 searchReq.setCategory("");
+				 searchReq.setStartNode("0");
+				 searchReq.setEndNode("6");
 				 if(userlocation!=null)
 				 {
 					if(userlocation.length()>3)
@@ -1636,34 +1640,9 @@ public ModelAndView userprofile(HttpServletRequest request)
 				 
 				 hubReq=new HubRequest();
 				 hubReq.setMsgType(22);
-				
-				
-				 if(userlocation!=null)
-				 {
-					if(userlocation.length()>3)
-					{
-						 searchReq.setLatlang(userlocation);
-					}else{
-						 searchReq.setLatlang(defaultLeagueBoardAroundYouLatLongValue);
-					}
-				 }else{
-					 searchReq.setLatlang(defaultLeagueBoardAroundYouLatLongValue);
-				 }
-				
-				 
-				 searchReq.setStartNode("0");
-				 searchReq.setEndNode("4");
-				 searchReq.setCategory("League");
-				 hubReq.setRequestParam(searchReq);
-			    String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
-				 HubResponse strsearchResponse= GsonConverters.getGsonObject().fromJson(strboardlist, HubResponse.class); 
-				
-				 if(strsearchResponse.getResults().getSearchResponse()!=null)
-				 {
-					 map1.put("BRDAroundYou", strsearchResponse.getResults().getSearchResponse().getBoardProfileList());
-				 }
-				 
 				 searchReq.setCategory("Team");
+				 searchReq.setStartNode("0");
+				 searchReq.setEndNode("6");
 				 if(userlocation!=null)
 				 {
 					if(userlocation.length()>3)
@@ -1680,7 +1659,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 				 HubResponse strTeamResponse= GsonConverters.getGsonObject().fromJson(strTeamlist, HubResponse.class); 
 				 if(strTeamResponse.getResults().getSearchResponse()!=null)
 				 {
-					 map1.put("TEAMAroundYou", strsearchResponse.getResults().getSearchResponse().getBoardProfileList());
+					 map1.put("TEAMAroundYou", strTeamResponse.getResults().getSearchResponse().getBoardProfileList());
 				 }
 				 
 				 obj=map1;
@@ -3878,7 +3857,7 @@ System.out.println("keyToFindAccount-----> "+keyToFindAccount);
 				 searchReq.setLatlang(defaultLeagueBoardAroundYouLatLongValue);
 			 }
 			 searchReq.setStartNode("0");
-			 searchReq.setEndNode("4");
+			 searchReq.setEndNode("6");
 			 searchReq.setCategory("League");
 			 hubReq.setRequestParam(searchReq);
 		    String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -4436,7 +4415,7 @@ public ModelAndView myfans(HttpServletRequest request) throws CSException{
 		 }
 		
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("League");
 		 hubReq.setRequestParam(searchReq);
 	    String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -4643,7 +4622,7 @@ public ModelAndView fanOfList(HttpServletRequest request) throws CSException{
 		 }
 		
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("League");
 		 hubReq.setRequestParam(searchReq);
 	    String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -4857,7 +4836,7 @@ public ModelAndView boardFanpublicview(HttpServletRequest request,@PathVariable 
 		 }
 		
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("League");
 		 hubReq.setRequestParam(searchReq);
 	    String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -5176,7 +5155,7 @@ public ModelAndView boardFan(HttpServletRequest request,@RequestParam String bid
 		 }
 		
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("League");
 		 hubReq.setRequestParam(searchReq);
 	    String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -5471,7 +5450,7 @@ public ModelAndView boardFanOf(HttpServletRequest request,@RequestParam String b
 		 }
 		
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("league");
 		 hubReq.setRequestParam(searchReq);
 	    String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -5748,7 +5727,7 @@ public ModelAndView boardFanOfpublicprofile(HttpServletRequest request,@PathVari
 		 }
 		
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("League");
 		 hubReq.setRequestParam(searchReq);
 	    String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -6153,7 +6132,7 @@ public ModelAndView getboard(@RequestParam String bid, HttpServletRequest reques
 						 }
 						
 						 searchReq.setStartNode("0");
-						 searchReq.setEndNode("4");
+						 searchReq.setEndNode("6");
 						 searchReq.setCategory("League");
 						 hubReq.setRequestParam(searchReq);
 					     String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -6697,7 +6676,7 @@ public ModelAndView pitch(@RequestParam String bid, HttpServletRequest request) 
 					 }
 					
 					 searchReq.setStartNode("0");
-					 searchReq.setEndNode("4");
+					 searchReq.setEndNode("6");
 					 searchReq.setCategory("League");
 					 hubReq.setRequestParam(searchReq);
 				     String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -7321,7 +7300,7 @@ public @ResponseBody ModelAndView createRoaster(HttpServletRequest request,@Requ
 				 }
 				
 				 searchReq.setStartNode("0");
-				 searchReq.setEndNode("4");
+				 searchReq.setEndNode("6");
 				 searchReq.setCategory("League");
 				 hubReq.setRequestParam(searchReq);
 			    String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
