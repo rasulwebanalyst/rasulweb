@@ -1285,7 +1285,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 							
 							//if(profile.getResults().getItemsFound()[0].getZipcode().length()>2)
                               System.out.println("Zipcode :"+zipcode);
-                              if(zipcode.length()>2)
+                              if(zipcode.length() > 2)
 							  {
 								
 								//Score Card Redirect
@@ -1443,8 +1443,8 @@ public ModelAndView userprofile(HttpServletRequest request)
 								 {
 									 model.addObject("TEAMAroundYou", strTeamResponse.getResults().getSearchResponse().getBoardProfileList());
 								 }
-								 
-								 hubReq.setMsgType(23);
+								 // calling in ajax
+								/* hubReq.setMsgType(23);
 								 searchReq.setCategory("");
 								 //searchReq.setLatlang("17.3700,78.4800");
 								 if(userlocation!=null)
@@ -1466,11 +1466,11 @@ public ModelAndView userprofile(HttpServletRequest request)
 								 {
 									 System.out.println("user : list :---------->" +buddyResponse.getResults().getSearchResponse().getUserList().size());
 									 model.addObject("BuddyAroundYou", buddyResponse.getResults().getSearchResponse().getUserList());
-								 }
+								 }*/
 								 
 								 
-								 
-								 hubReq.setMsgType(79);
+								 // calling in ajax
+								/* hubReq.setMsgType(79);
 								 searchReq.setCategory("Merchants");
 								 //searchReq.setLatlang("17.3700,78.4800");
 								 if(userlocation!=null)
@@ -1492,7 +1492,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 								 {
 									 System.out.println("user : list :---------->" +merchandiseAroundYouResponse.getResults().getSearchResponse().getUserList().size());
 									 model.addObject("Merchants", merchandiseAroundYouResponse.getResults().getSearchResponse().getBoardProfileList());
-								 }
+								 }*/
 								
 								 hubReq= new HubRequest();
 								 hubReq.setMsgType(41);
@@ -1553,7 +1553,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 	
 	
 	
-	@RequestMapping(value="/Merchants",method=RequestMethod.GET)
+	@RequestMapping(value="/MerchantsNear",method=RequestMethod.GET)
 	public @ResponseBody Object merchants(HttpServletRequest req){
 		HttpSession session=req.getSession(true);
 		Object obj = null;
@@ -1563,27 +1563,129 @@ public ModelAndView userprofile(HttpServletRequest request)
 			 MDC.put("User_Mail", (String)session.getAttribute("USREMAIL"));
 			 BoardSearchRequest searchReq= new BoardSearchRequest();
 			 try{
-		     hubReq.setMsgType(79);
-		 searchReq.setCategory("Merchants");
-		 if(userlocation!=null)
-		 {
-			if(userlocation.length()>3)
-			{
-				 searchReq.setLatlang(userlocation);
-			}else{
-				 searchReq.setLatlang(defaultMerchantAroundYouLatLongValue);
-			}
-		 }else{
-			 searchReq.setLatlang(defaultMerchantAroundYouLatLongValue);
+				 Map map1=new HashMap();
+				     hubReq.setMsgType(79);
+				 searchReq.setCategory("Merchants");
+				 if(userlocation!=null)
+				 {
+					if(userlocation.length()>3)
+					{
+						 searchReq.setLatlang(userlocation);
+					}else{
+						 searchReq.setLatlang(defaultMerchantAroundYouLatLongValue);
+					}
+				 }else{
+					 searchReq.setLatlang(defaultMerchantAroundYouLatLongValue);
+				 }
+				 hubReq.setRequestParam(searchReq);
+				 String strMerchandiseAroundYouresponse=cricketSocialRestTemplateService.userRegistration(hubReq);
+				 HubResponse merchandiseAroundYouResponse= GsonConverters.getGsonObject().fromJson(strMerchandiseAroundYouresponse, HubResponse.class); 
+				 if(merchandiseAroundYouResponse.getResults().getSearchResponse()!=null)
+				 {
+					 System.out.println("user : list :---------->" +merchandiseAroundYouResponse.getResults().getSearchResponse().getUserList().size());
+					 map1.put("Merchants", merchandiseAroundYouResponse.getResults().getSearchResponse().getBoardProfileList());
+				 }
+				 
+				 
+				 
+				 hubReq.setMsgType(23);
+				 searchReq.setCategory("");
+				 if(userlocation!=null)
+				 {
+					if(userlocation.length()>3)
+					{
+						 searchReq.setLatlang(userlocation);
+					}else{
+						 searchReq.setLatlang(defaultBuddyAroundYouLatlongValue);
+					}
+				 }else{
+					 searchReq.setLatlang(defaultBuddyAroundYouLatlongValue);
+				 }
+				 hubReq.setRequestParam(searchReq);
+				 String strbuddyresponse=cricketSocialRestTemplateService.userRegistration(hubReq);
+				 HubResponse buddyResponse= GsonConverters.getGsonObject().fromJson(strbuddyresponse, HubResponse.class); 
+				 if(buddyResponse.getResults().getSearchResponse()!=null)
+				 {
+					 System.out.println("user : list :---------->" +buddyResponse.getResults().getSearchResponse().getUserList().size());
+					 map1.put("BuddyNear", buddyResponse.getResults().getSearchResponse().getUserList());
+				 }
+				 
+				 obj=map1; 
+				 
+				 
+			 }catch(Exception e){
+				 e.printStackTrace();
+			 }
 		 }
-		 hubReq.setRequestParam(searchReq);
-		 String strMerchandiseAroundYouresponse=cricketSocialRestTemplateService.userRegistration(hubReq);
-		 HubResponse merchandiseAroundYouResponse= GsonConverters.getGsonObject().fromJson(strMerchandiseAroundYouresponse, HubResponse.class); 
-		 if(merchandiseAroundYouResponse.getResults().getSearchResponse()!=null)
+		
+		return obj;
+	}
+	
+	@RequestMapping(value="/BoardNear",method=RequestMethod.POST)
+	public @ResponseBody Object BoardNear(HttpServletRequest req){
+		HttpSession session=req.getSession(true);
+		Object obj = null;
+		 if(session.getAttribute("USRID")!=null)
 		 {
-			 System.out.println("user : list :---------->" +merchandiseAroundYouResponse.getResults().getSearchResponse().getUserList().size());
-			 obj= merchandiseAroundYouResponse.getResults().getSearchResponse().getBoardProfileList();
-		 }
+			 String userlocation=(String) session.getAttribute("USRLocation"); 
+			 MDC.put("User_Mail", (String)session.getAttribute("USREMAIL"));
+			 BoardSearchRequest searchReq= new BoardSearchRequest();
+			 try{
+				   
+				 Map map1=new HashMap();
+				 
+				 hubReq=new HubRequest();
+				 hubReq.setMsgType(22);
+				
+				
+				 if(userlocation!=null)
+				 {
+					if(userlocation.length()>3)
+					{
+						 searchReq.setLatlang(userlocation);
+					}else{
+						 searchReq.setLatlang(defaultLeagueBoardAroundYouLatLongValue);
+					}
+				 }else{
+					 searchReq.setLatlang(defaultLeagueBoardAroundYouLatLongValue);
+				 }
+				
+				 
+				 searchReq.setStartNode("0");
+				 searchReq.setEndNode("4");
+				 searchReq.setCategory("League");
+				 hubReq.setRequestParam(searchReq);
+			    String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
+				 HubResponse strsearchResponse= GsonConverters.getGsonObject().fromJson(strboardlist, HubResponse.class); 
+				
+				 if(strsearchResponse.getResults().getSearchResponse()!=null)
+				 {
+					 map1.put("BRDAroundYou", strsearchResponse.getResults().getSearchResponse().getBoardProfileList());
+				 }
+				 
+				 searchReq.setCategory("Team");
+				 if(userlocation!=null)
+				 {
+					if(userlocation.length()>3)
+					{
+						 searchReq.setLatlang(userlocation);
+					}else{
+						 searchReq.setLatlang(defaultTeamBoardAroundYouLatLongValue);
+					}
+				 }else{
+					 searchReq.setLatlang(defaultTeamBoardAroundYouLatLongValue);
+				 }
+				 hubReq.setRequestParam(searchReq);
+				 String strTeamlist=cricketSocialRestTemplateService.userRegistration(hubReq);
+				 HubResponse strTeamResponse= GsonConverters.getGsonObject().fromJson(strTeamlist, HubResponse.class); 
+				 if(strTeamResponse.getResults().getSearchResponse()!=null)
+				 {
+					 map1.put("TEAMAroundYou", strsearchResponse.getResults().getSearchResponse().getBoardProfileList());
+				 }
+				 
+				 obj=map1;
+				 
+				 
 			 }catch(Exception e){
 				 e.printStackTrace();
 			 }
@@ -15993,19 +16095,18 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 							request.setAttribute("RoasterResponseById", roasterResponseById);
 							request.setAttribute("RoasterMemberList", roasterResponseById); // changed by vignesh
 							
-							int userExit=5;
+							/*int userExit=5;
 							if(roasterResponseById.getRosterMembers() !=null){
 							for(RoasterMemembers rrb : roasterResponseById.getRosterMembers()){
-								
 								if(rrb.getUserId().equalsIgnoreCase(userId.toString())){
 									userExit=4;
 									break;
 								}
 							}
 							}
-							model.addObject("memberExists", userExit); // changed by vignesh
+							model.addObject("memberExists", userExit); */// changed by vignesh
 							
-							/* hubReq = new HubRequest();           
+							 hubReq = new HubRequest();           
 							 hubReq.setMsgType(190);
 							 ModelMap memberMap = new ModelMap();
 							 memberMap.put("userId", userId);
@@ -16021,7 +16122,7 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 									 model.addObject("memberExists", hubRes.getRequestStatus());
 								 }
 								 
-							 }*/
+							 }
 							
 						 }
 					 }
@@ -16431,11 +16532,29 @@ public ModelAndView rosterProfileDetails(@PathVariable String rid, @PathVariable
 				 if(results1 != null){
 					RoasterResponseById roasterResponseById=results1.getRosterInfo();
 					request.setAttribute("RoasterResponseById", roasterResponseById);
+					request.setAttribute("RoasterMemberList", roasterResponseById);
+					
+					
+					
+					
+					/*int userExit=5;
+					if(roasterResponseById.getRosterMembers() !=null){
+					for(RoasterMemembers rrb : roasterResponseById.getRosterMembers()){
+						
+						if(rrb.getUserId().equalsIgnoreCase(userId.toString())){
+							userExit=4;
+							break;
+						}
+					}
+					}
+					model.addObject("memberExists", userExit);*/ // changed by vignesh
+					
+					
 				 }
 				 
 				 
 				 
-				 hubReq=new HubRequest();
+				/* hubReq=new HubRequest();
 				 
 				 hubReq.setMsgType(188);// roster details based uisng cassandra
 				 ModelMap rosterMap2=new ModelMap();
@@ -16458,7 +16577,7 @@ public ModelAndView rosterProfileDetails(@PathVariable String rid, @PathVariable
 					 }
 						
 				 }
-				 
+				 */
 				// Print details
 				 
                  hubReq=new HubRequest();
@@ -16668,7 +16787,7 @@ public ModelAndView rosterProfileDetails(@PathVariable String rid, @PathVariable
 								 model.addObject("UserCompleteEvent", hubResponse2.getResults().getCreatedEventList().getCompletedCreatedEventList());	
 							 }
 						 }
-				 
+				/* 
 				 hubReq=new HubRequest();
 				 hubReq.setMsgType(70);
 				 ModelMap modelMap4=new ModelMap();
@@ -16680,10 +16799,10 @@ public ModelAndView rosterProfileDetails(@PathVariable String rid, @PathVariable
 				 if(usercancelEventResponse!=null && usercancelEventResponse.getResults()!=null)
 				 {
 					 model.addObject("UserCancelEvent", usercancelEventResponse.getResults().getEventDetails());
-				 }
+				 }*/
 				 
 				 
-				 hubReq = new HubRequest();
+				hubReq = new HubRequest();
 				 hubReq.setMsgType(190);
 				 ModelMap memberMap = new ModelMap();
 				 memberMap.put("userId", userId);
