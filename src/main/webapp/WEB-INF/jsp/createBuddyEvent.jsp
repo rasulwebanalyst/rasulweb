@@ -188,8 +188,8 @@
 	               
 	                venue : {
 	                    required: "Please enter event venue",   	                 	                     
-	                    minlength :"Type lastName at least 2 character",
-	            		 maxlength : "Venue details should be below 100 character's"
+	                    minlength :"Please enter minimum two characters",
+	            		 maxlength : "Venue details should be below 100 characters"
 	                },
 	                createdBycheck: {
 		                     required: "Please choose event invitees"   	                 	                     
@@ -604,8 +604,8 @@ $(function(){
                
                 venue : {
                     required: "Please enter event venue",   	                 	                     
-                    minlength :"Type lastName at least 2 character",
-            		 maxlength : "Venue details should be below 100 character's"
+                    minlength :"Please enter minimum two characters",
+            		 maxlength : "Venue details should be below 100 characters"
                 },
                 createdBycheck: {
 	                     required: "Please choose event invitees"   	                 	                     

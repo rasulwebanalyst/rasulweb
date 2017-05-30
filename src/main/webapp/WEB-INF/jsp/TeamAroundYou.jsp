@@ -40,7 +40,7 @@ var pageNum=40;
           			    <c:choose>
           			    <c:when test="${empty TEAMAroundYou}">
                               		<div style="margin-left: 45px; margin-bottom: 15px;" class="sidebar-list">
-                             			No teams around you
+                             			No team around you
                              		</div>
                               	</c:when>
                               		<c:otherwise>

@@ -241,7 +241,7 @@ var formatAMPMTime = function(date) {
                         	</c:forEach>
                         	</c:when>
                         	<c:otherwise>
-                        	<li style="font-size: 13px; color: #FF5722">No Star Batsman for the week</li>
+                        	<li style="font-size: 13px; color: #FF5722">No Star Batsmen for the week</li>
                         	</c:otherwise>
                         	</c:choose>
                         	
@@ -258,7 +258,7 @@ var formatAMPMTime = function(date) {
                         	</c:forEach>
                         	</c:when>
                         	<c:otherwise>
-                        	<li  style="font-size: 13px; color: #FF5722">No Star Batsman for the week</li>
+                        	<li  style="font-size: 13px; color: #FF5722">No Star Batsmen for the week</li>
                         	</c:otherwise>
                         	</c:choose> --%>
                         	
@@ -1694,8 +1694,10 @@ if(res.length > 5){
                         htm+='<div class="media">'
                         +'<div class="media-left">'
                       
-                  	
-                  		htm +='<img src="'+ctx+'/images/profileIcon.png" class="nav-avatar">'
+                        
+                  		//htm +='<img src='+res[i].userImageUrl+'  class="nav-avatar">'
+                  		htm +='<img src='+res[i].userImageUrl+'  onerror="imgError(this);" class="nav-avatar">'
+                  		
                     +'</div>'
                     +'<div class="media-body">'
                     +'<a href="'+ctx+'/buddy/'+res[i].hittedByName+'/'+res[i].hittedBy+'">'
@@ -1722,7 +1724,11 @@ if(res.length > 5){
 		 })
 		
 	 }
-	 
+	 function imgError(image) {
+		    image.onerror = "";
+		    image.src = "https://cdn.cricketsocial.com/images/profileIcon.png";
+		    return true;
+		}
 	
 </script>
 

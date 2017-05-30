@@ -38,7 +38,7 @@
  					<c:choose>
                     <c:when test="${empty BRDlist}"> 
                    					 <div style="margin-left: 45px; margin-bottom: 15px;" class="sidebar-list">
-                             			No leagues around you.
+                             			No league around you.
                              		</div>
                     </c:when>
                         	<c:otherwise>  

@@ -454,7 +454,7 @@ overflow: auto;
                 	  
                 	  <li>Buddy Requests</li>
                 	
-                    	<li><div style="color: red;margin-left: 14px;margin-top: 13px;">You have no requests at this moment</div></li>
+                    	<li><div style="color: red;margin-left: 14px;margin-top: 13px;">You have no request at this moment</div></li>
                     	
                     	
                     </ul>

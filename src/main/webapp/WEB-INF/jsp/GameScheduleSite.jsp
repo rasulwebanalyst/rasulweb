@@ -437,10 +437,10 @@ date.add(java.util.Calendar.DATE, +6);
                         <input type="hidden" value="${boardId}" name="boardId">
                         
                         <div class="col-md-3 noLeftPad">
-                       <label for="">Tournament</label> <input type="text" placeholder="" class="form-control tbox" id="torunament" name="tournament" onkeyup='getTournamentAutoComplete(this,"addMemberautoCompleteDIV","addMemberIDDIV")' value="${GameFilter.tournament}">
+                       <label for="">Tournament</label> <input type="text" placeholder="" class="form-control tbox" id="torunament" name="tournament" onkeyup='getTournamentAutoComplete(this,"addMemberautoCompleteDIV","addMemberIDDIV")' value="">
                      	<div class='autoComplete' id='addMemberautoCompleteDIV' style='display:none;'>
                                         <ul><li></li></ul>
-                                        </div><input type='hidden' class='form-control' placeholder='' id='addMemberIDDIV' name="tournamentHiddenId" value="${GameFilter.tournamentHiddenId}">
+                                        </div><input type='hidden' class='form-control' placeholder='' id='addMemberIDDIV' name="tournamentHiddenId" value="">
                      	<span id="error2" style="color:red"></span></div>
                            </form>
                         <div class="col-md-5 noLeftPad">
@@ -1503,6 +1503,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    				//Portal Scorer
    				htmlco+="<td> <div >";
    				var Portalscorer=upcomminglist[i].portalScorerList;
+   				if(Portalscorer != null){
    				if(Portalscorer.length > 0){
    				for(var j=0; j < Portalscorer.length;j++)
    				{
@@ -1518,6 +1519,10 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    					{
    					htmlco+="<span>-</span>";
    					}
+   				}else
+					{
+					htmlco+="<span>-</span>";
+					}
    				
    				htmlco+="</div></td>";
    				htmlco+="<td>"+upcomminglist[i].tournamentName+"</td>";
@@ -1595,6 +1600,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    	   				//Portal Scorer
    	   				htmlco1+="<td> <div >";
    	   				var Portalscorer=incomepltelist[i].portalScorerList;
+   	   			if(Portalscorer != null){
    	   				if(Portalscorer.length > 0){
    	   				for(var j=0; j < Portalscorer.length;j++)
    	   				{
@@ -1610,7 +1616,10 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    	   					{
    	   					htmlco1+="<span>-</span>";
    	   					}
-   	   				
+   	   		    }else
+					{
+					htmlco1+="<span>-</span>";
+					}
    	   				htmlco1+="</div></td>";
    				    
    				     htmlco1+="<td>"+incomepltelist[i].tournamentName+"</td>";
@@ -1683,6 +1692,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				  //Portal Scorer
    	   				htmlco2+="<td> <div >";
    	   				var Portalscorer=inprogresslist[i].portalScorerList;
+   	   			if(Portalscorer != null){
    	   				if(Portalscorer.length > 0){
    	   				for(var j=0; j < Portalscorer.length;j++)
    	   				{
@@ -1698,6 +1708,10 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    	   					{
    	   					htmlco2+="<span>-</span>";
    	   					}
+   	   				}else
+   	   					{
+   	   	   					htmlco2+="<span>-</span>";
+   	   	   					}
    	   				
    	   				htmlco2+="</div></td>";
 				    
@@ -1778,6 +1792,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				    //Portal Scorer
    	   				htmlco3+="<td> <div >";
    	   				var Portalscorer=completedlist[i].portalScorerList;
+   	   			if(Portalscorer != null){
    	   				if(Portalscorer.length > 0){
    	   				for(var j=0; j < Portalscorer.length;j++)
    	   				{
@@ -1793,7 +1808,10 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    	   					{
    	   					htmlco3+="<span>-</span>";
    	   					}
-   	   				
+   	   		         }else
+					{
+					htmlco3+="<span>-</span>";
+					}
    	   				htmlco3+="</div></td>";
 				    
 				    
@@ -1890,8 +1908,11 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
                			var endstr= "${endDateSet}";
                			var startstr="${startDateSet}";
                			//alert(endstr);
+               			if(endstr != ''){
+               				console.log("endstr :"+endstr);
                			$('#fromDate').datepicker('update',startstr);
        					$("#toDate").datepicker("update", endstr);
+               			}
                			
                		})
                 	</script>

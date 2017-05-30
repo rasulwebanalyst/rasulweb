@@ -25,6 +25,9 @@ import javax.servlet.http.HttpSession;
 
 
 
+
+
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -86,6 +89,7 @@ import com.cricketsocial.bean.board.Tournament;
 import com.cricketsocial.bean.board.TournamentScheduler;
 import com.cricketsocial.bean.board.UmpireIds;
 import com.cricketsocial.bean.board.UmpireNameList;
+import com.cricketsocial.bean.board.UpcomingMatchesSchedule;
 import com.cricketsocial.bean.buddy.CountryCodes;
 import com.cricketsocial.bean.buddy.ImageDetails;
 import com.cricketsocial.bean.buddy.PlayerComparisionPerformanceList;
@@ -457,6 +461,7 @@ public class CricketSocialController {
 							 session.setAttribute("USREMAIL", profile.getEmailAddress());			 
 							// System.out.println("session id : "+session.getAttribute("USRID"));
 							 session.setAttribute("USRIMG", profile.getUserImageUrl());
+							 session.setAttribute("ZipCode", profile.getZipcode());
 							// USRLastName
 							 String name=profile.getFirstName();
 							 if(profile.getLastName()!=null){
@@ -1148,7 +1153,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 							 BoardSearchRequest searchReq= new BoardSearchRequest();
 							 //searchReq.setLatlang("13.082680199999999,80.2707184");
 							 searchReq.setStartNode("0");
-							 searchReq.setEndNode("40");
+							 searchReq.setEndNode("6");
 							 searchReq.setCategory("League");
 							 searchReq.setLatlang("");
 							 hubReq.setRequestParam(searchReq);
@@ -1260,7 +1265,8 @@ public ModelAndView userprofile(HttpServletRequest request)
 				 gsonobj=GsonConverters.getGsonObject();
 				 UUID userid=(UUID) session.getAttribute("USRID");
 				 String userEmail= (String) session.getAttribute("USREMAIL");
-					hubReq=new HubRequest(280);
+                 String zipcode=(String) session.getAttribute("ZipCode");
+					/*hubReq=new HubRequest(280);
 					 hubReq.setMsgType(280);
 					
 					 UserProfile userProfile= new UserProfile();
@@ -1268,16 +1274,18 @@ public ModelAndView userprofile(HttpServletRequest request)
 					 hubReq.setRequestParam(userProfile);
 					 hubReq.setUserName(userEmail);
 					 String result=cricketSocialRestTemplateService.userRegistration(hubReq);
-					  LoginResponse profile=GsonConverters.getGsonObject().fromJson(result, LoginResponse.class);
+					  LoginResponse profile=GsonConverters.getGsonObject().fromJson(result, LoginResponse.class);*/
 					  
-					 if(profile!= null &&  profile.getResults()!=null)
+					/* if(profile!= null &&  profile.getResults()!=null)
 					 {
 						 
 						if(profile.getResults().getItemsFound()!=null)
-						{
+						{*/
 							
 							
-							if(profile.getResults().getItemsFound()[0].getZipcode().length()>2)
+							//if(profile.getResults().getItemsFound()[0].getZipcode().length()>2)
+                              System.out.println("Zipcode :"+zipcode);
+                              if(zipcode.length() > 2)
 							  {
 								
 								//Score Card Redirect
@@ -1370,7 +1378,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 								
 								 
 								 searchReq.setStartNode("0");
-								 searchReq.setEndNode("20");
+								 searchReq.setEndNode("6");
 								 searchReq.setCategory("Matches");
 								 hubReq.setRequestParam(searchReq);
 								 hubReq.setUserName(userEmail);
@@ -1402,7 +1410,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 								
 								 
 								 searchReq.setStartNode("0");
-								 searchReq.setEndNode("4");
+								 searchReq.setEndNode("6");
 								 searchReq.setCategory("League");
 								 hubReq.setRequestParam(searchReq);
 								 hubReq.setUserName(userEmail);
@@ -1413,8 +1421,8 @@ public ModelAndView userprofile(HttpServletRequest request)
 								 {
 									 model.addObject("BRDAroundYou", strsearchResponse.getResults().getSearchResponse().getBoardProfileList());
 								 }
-								 
-								 searchReq.setCategory("Team");
+								// calling in ajax
+								/* searchReq.setCategory("Team");
 								 //searchReq.setLatlang("17.3700,78.4800");
 								 if(userlocation!=null)
 								 {
@@ -1434,9 +1442,9 @@ public ModelAndView userprofile(HttpServletRequest request)
 								 if(strTeamResponse.getResults().getSearchResponse()!=null)
 								 {
 									 model.addObject("TEAMAroundYou", strTeamResponse.getResults().getSearchResponse().getBoardProfileList());
-								 }
-								 
-								 hubReq.setMsgType(23);
+								 }*/
+								 // calling in ajax
+								/* hubReq.setMsgType(23);
 								 searchReq.setCategory("");
 								 //searchReq.setLatlang("17.3700,78.4800");
 								 if(userlocation!=null)
@@ -1458,11 +1466,11 @@ public ModelAndView userprofile(HttpServletRequest request)
 								 {
 									 System.out.println("user : list :---------->" +buddyResponse.getResults().getSearchResponse().getUserList().size());
 									 model.addObject("BuddyAroundYou", buddyResponse.getResults().getSearchResponse().getUserList());
-								 }
+								 }*/
 								 
 								 
-								 
-								 hubReq.setMsgType(79);
+								 // calling in ajax
+								/* hubReq.setMsgType(79);
 								 searchReq.setCategory("Merchants");
 								 //searchReq.setLatlang("17.3700,78.4800");
 								 if(userlocation!=null)
@@ -1484,7 +1492,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 								 {
 									 System.out.println("user : list :---------->" +merchandiseAroundYouResponse.getResults().getSearchResponse().getUserList().size());
 									 model.addObject("Merchants", merchandiseAroundYouResponse.getResults().getSearchResponse().getBoardProfileList());
-								 }
+								 }*/
 								
 								 hubReq= new HubRequest();
 								 hubReq.setMsgType(41);
@@ -1521,15 +1529,15 @@ public ModelAndView userprofile(HttpServletRequest request)
 							  }
 							 
 							 
-						}else{
+						/*}else{
 							 model=new ModelAndView("welcome");
-						} 
+						} */
 						 
 						 
 						 
-					 }else{
+					/* }else{
 						 model=new ModelAndView("welcome");
-					 }
+					 }*/
 					 
 				 
 			 }else{
@@ -1542,6 +1550,132 @@ public ModelAndView userprofile(HttpServletRequest request)
 		return model;
 		//return null;
 	}
+	
+	
+	
+	@RequestMapping(value="/MerchantsNear",method=RequestMethod.GET)
+	public @ResponseBody Object merchants(HttpServletRequest req){
+		HttpSession session=req.getSession(true);
+		Object obj = null;
+		 if(session.getAttribute("USRID")!=null)
+		 {
+			 String userlocation=(String) session.getAttribute("USRLocation"); 
+			 MDC.put("User_Mail", (String)session.getAttribute("USREMAIL"));
+			 BoardSearchRequest searchReq= new BoardSearchRequest();
+			 try{
+				 Map map1=new HashMap();
+				     hubReq.setMsgType(79);
+				 searchReq.setCategory("Merchants");
+				 searchReq.setStartNode("0");
+				 searchReq.setEndNode("6");
+				 if(userlocation!=null)
+				 {
+					if(userlocation.length()>3)
+					{
+						 searchReq.setLatlang(userlocation);
+					}else{
+						 searchReq.setLatlang(defaultMerchantAroundYouLatLongValue);
+					}
+				 }else{
+					 searchReq.setLatlang(defaultMerchantAroundYouLatLongValue);
+				 }
+				 hubReq.setRequestParam(searchReq);
+				 String strMerchandiseAroundYouresponse=cricketSocialRestTemplateService.userRegistration(hubReq);
+				 HubResponse merchandiseAroundYouResponse= GsonConverters.getGsonObject().fromJson(strMerchandiseAroundYouresponse, HubResponse.class); 
+				 if(merchandiseAroundYouResponse.getResults().getSearchResponse()!=null)
+				 {
+					 System.out.println("user : list :---------->" +merchandiseAroundYouResponse.getResults().getSearchResponse().getUserList().size());
+					 map1.put("Merchants", merchandiseAroundYouResponse.getResults().getSearchResponse().getBoardProfileList());
+				 }
+				 
+				 
+				 
+				 hubReq.setMsgType(23);
+				 searchReq.setCategory("");
+				 searchReq.setStartNode("0");
+				 searchReq.setEndNode("6");
+				 if(userlocation!=null)
+				 {
+					if(userlocation.length()>3)
+					{
+						 searchReq.setLatlang(userlocation);
+					}else{
+						 searchReq.setLatlang(defaultBuddyAroundYouLatlongValue);
+					}
+				 }else{
+					 searchReq.setLatlang(defaultBuddyAroundYouLatlongValue);
+				 }
+				 hubReq.setRequestParam(searchReq);
+				 String strbuddyresponse=cricketSocialRestTemplateService.userRegistration(hubReq);
+				 HubResponse buddyResponse= GsonConverters.getGsonObject().fromJson(strbuddyresponse, HubResponse.class); 
+				 if(buddyResponse.getResults().getSearchResponse()!=null)
+				 {
+					 System.out.println("user : list :---------->" +buddyResponse.getResults().getSearchResponse().getUserList().size());
+					 map1.put("BuddyNear", buddyResponse.getResults().getSearchResponse().getUserList());
+				 }
+				 
+				 obj=map1; 
+				 
+				 
+			 }catch(Exception e){
+				 e.printStackTrace();
+			 }
+		 }
+		
+		return obj;
+	}
+	
+	@RequestMapping(value="/BoardNear",method=RequestMethod.POST)
+	public @ResponseBody Object BoardNear(HttpServletRequest req){
+		HttpSession session=req.getSession(true);
+		Object obj = null;
+		 if(session.getAttribute("USRID")!=null)
+		 {
+			 String userlocation=(String) session.getAttribute("USRLocation"); 
+			 MDC.put("User_Mail", (String)session.getAttribute("USREMAIL"));
+			 BoardSearchRequest searchReq= new BoardSearchRequest();
+			 try{
+				   
+				 Map map1=new HashMap();
+				 
+				 hubReq=new HubRequest();
+				 hubReq.setMsgType(22);
+				 searchReq.setCategory("Team");
+				 searchReq.setStartNode("0");
+				 searchReq.setEndNode("6");
+				 if(userlocation!=null)
+				 {
+					if(userlocation.length()>3)
+					{
+						 searchReq.setLatlang(userlocation);
+					}else{
+						 searchReq.setLatlang(defaultTeamBoardAroundYouLatLongValue);
+					}
+				 }else{
+					 searchReq.setLatlang(defaultTeamBoardAroundYouLatLongValue);
+				 }
+				 hubReq.setRequestParam(searchReq);
+				 String strTeamlist=cricketSocialRestTemplateService.userRegistration(hubReq);
+				 HubResponse strTeamResponse= GsonConverters.getGsonObject().fromJson(strTeamlist, HubResponse.class); 
+				 if(strTeamResponse.getResults().getSearchResponse()!=null)
+				 {
+					 map1.put("TEAMAroundYou", strTeamResponse.getResults().getSearchResponse().getBoardProfileList());
+				 }
+				 
+				 obj=map1;
+				 
+				 
+			 }catch(Exception e){
+				 e.printStackTrace();
+			 }
+		 }
+		
+		return obj;
+	}
+	
+	
+	
+	
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public ModelAndView buddylogin(HttpServletRequest request)
 	{
@@ -1693,11 +1827,24 @@ public ModelAndView userprofile(HttpServletRequest request)
 							 session.setAttribute("USRLastName", name);
 							 session.setAttribute("USREMAIL", profile.getEmailAddress());	
 							 session.setAttribute("USRIMG", profile.getUserImageUrl());
+							 session.setAttribute("ZipCode", profile.getZipcode());
 							 System.out.println("session id : "+session.getAttribute("USRID"));		
 							// session.setAttribute("USRLocation", userProfile.getLatLang());
 							 
 							 String userLatLongVal=userProfile.getLatLang();
-							 HubRequest hubReq=new HubRequest(13);
+							 
+							 
+							 if(userLatLongVal==null || userLatLongVal==""){
+				    			 userLatLongVal=profile.getLatLang();
+				    			 session.setAttribute("USRLocationAllowed", "No"); 
+				    		 }else
+				    		 {
+				    			 session.setAttribute("USRLocationAllowed", "Yes"); 
+				    		 }
+							 
+							 MDC.put("User_Mail", profile.getEmailAddress());
+							 
+							/* HubRequest hubReq=new HubRequest(13);
 							 hubReq.setMsgType(13);				
 							 UserProfile userdetails= new UserProfile();
 							 userdetails.setUserId(profile.getUserId());
@@ -1738,7 +1885,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 							    		 }
 							    		 
 							    		 
-						    }
+						    }*/
 						   
 							 session.setAttribute("USRLocation", userLatLongVal);
 							 
@@ -2154,6 +2301,7 @@ public ModelAndView userprofile(HttpServletRequest request)
 				    		  System.out.println("user image===============11  "+session.getAttribute("USRIMG"));
 				    		 session.removeAttribute("USRFNA");
 				    		 session.setAttribute("USRFNA",profile.getResults().getItemsFound()[0].getFirstName());
+				    		 session.setAttribute("ZipCode", profile.getResults().getItemsFound()[0].getZipcode());
 				    		 
 				    		 //userprofileupdate
 				    	 
@@ -2440,6 +2588,8 @@ public ModelAndView userprofile(HttpServletRequest request)
 				    		  System.out.println("user image===============11  "+session.getAttribute("USRIMG"));
 				    		 session.removeAttribute("USRFNA");
 				    		 session.setAttribute("USRFNA",profile.getResults().getItemsFound()[0].getFirstName());
+				    		 session.setAttribute("ZipCode", profile.getResults().getItemsFound()[0].getZipcode());
+
 				    		 
 				    		 //userprofileupdate
 				    	 
@@ -3018,7 +3168,7 @@ System.out.println("keyToFindAccount-----> "+keyToFindAccount);
 		
 		 
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("40");
+		 searchReq.setEndNode("250");
 		 searchReq.setCategory("Matches");
 		 hubReq.setRequestParam(searchReq);
 	     String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -3681,7 +3831,7 @@ System.out.println("keyToFindAccount-----> "+keyToFindAccount);
 			
 			 
 			 searchReq.setStartNode("0");
-			 searchReq.setEndNode("4");
+			 searchReq.setEndNode("6");
 			 searchReq.setCategory("Matches");
 			 hubReq.setRequestParam(searchReq);
 		    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -3707,7 +3857,7 @@ System.out.println("keyToFindAccount-----> "+keyToFindAccount);
 				 searchReq.setLatlang(defaultLeagueBoardAroundYouLatLongValue);
 			 }
 			 searchReq.setStartNode("0");
-			 searchReq.setEndNode("4");
+			 searchReq.setEndNode("6");
 			 searchReq.setCategory("League");
 			 hubReq.setRequestParam(searchReq);
 		    String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -4235,7 +4385,7 @@ public ModelAndView myfans(HttpServletRequest request) throws CSException{
 		
 		 
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("Matches");
 		 hubReq.setRequestParam(searchReq);
 	    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -4265,7 +4415,7 @@ public ModelAndView myfans(HttpServletRequest request) throws CSException{
 		 }
 		
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("League");
 		 hubReq.setRequestParam(searchReq);
 	    String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -4442,7 +4592,7 @@ public ModelAndView fanOfList(HttpServletRequest request) throws CSException{
 		
 		 
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("Matches");
 		 hubReq.setRequestParam(searchReq);
 	    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -4472,7 +4622,7 @@ public ModelAndView fanOfList(HttpServletRequest request) throws CSException{
 		 }
 		
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("League");
 		 hubReq.setRequestParam(searchReq);
 	    String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -4656,7 +4806,7 @@ public ModelAndView boardFanpublicview(HttpServletRequest request,@PathVariable 
 		
 		 
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("Matches");
 		 hubReq.setRequestParam(searchReq);
 	    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -4686,7 +4836,7 @@ public ModelAndView boardFanpublicview(HttpServletRequest request,@PathVariable 
 		 }
 		
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("League");
 		 hubReq.setRequestParam(searchReq);
 	    String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -4975,7 +5125,7 @@ public ModelAndView boardFan(HttpServletRequest request,@RequestParam String bid
 		
 		 
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("Matches");
 		 hubReq.setRequestParam(searchReq);
 	    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -5005,7 +5155,7 @@ public ModelAndView boardFan(HttpServletRequest request,@RequestParam String bid
 		 }
 		
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("League");
 		 hubReq.setRequestParam(searchReq);
 	    String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -5270,7 +5420,7 @@ public ModelAndView boardFanOf(HttpServletRequest request,@RequestParam String b
 		
 		 
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("Matches");
 		 hubReq.setRequestParam(searchReq);
 	    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -5300,7 +5450,7 @@ public ModelAndView boardFanOf(HttpServletRequest request,@RequestParam String b
 		 }
 		
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("league");
 		 hubReq.setRequestParam(searchReq);
 	    String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -5547,7 +5697,7 @@ public ModelAndView boardFanOfpublicprofile(HttpServletRequest request,@PathVari
 		
 		 
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("Matches");
 		 hubReq.setRequestParam(searchReq);
 	    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -5577,7 +5727,7 @@ public ModelAndView boardFanOfpublicprofile(HttpServletRequest request,@PathVari
 		 }
 		
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("League");
 		 hubReq.setRequestParam(searchReq);
 	    String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -5951,7 +6101,7 @@ public ModelAndView getboard(@RequestParam String bid, HttpServletRequest reques
 						
 						 
 						 searchReq.setStartNode("0");
-						 searchReq.setEndNode("4");
+						 searchReq.setEndNode("6");
 						 searchReq.setCategory("Matches");
 						 hubReq.setRequestParam(searchReq);
 					    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -5982,7 +6132,7 @@ public ModelAndView getboard(@RequestParam String bid, HttpServletRequest reques
 						 }
 						
 						 searchReq.setStartNode("0");
-						 searchReq.setEndNode("4");
+						 searchReq.setEndNode("6");
 						 searchReq.setCategory("League");
 						 hubReq.setRequestParam(searchReq);
 					     String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -6081,7 +6231,7 @@ public ModelAndView getboard(@RequestParam String bid, HttpServletRequest reques
 						//*************************************************  Upcomming details  **********************//
 						 
 						 
-						 hubReq =new HubRequest();
+						/* hubReq =new HubRequest();
 						 hubReq.setMsgType(133);
 						 ModelMap map5=new ModelMap();
 						 map5.put("userId", userId);
@@ -6147,7 +6297,94 @@ public ModelAndView getboard(@RequestParam String bid, HttpServletRequest reques
 							 }else{
 								System.out.println("null condition"); 
 							 }
-						 }
+						 }*/
+						
+						
+						//************************************************* Api changed Upcomming/inprogress/completed details  **********************//
+						// DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						 Date date = new Date();
+						 
+						 long DAY_IN_MS = 1000 * 60 * 60 * 24;
+						 
+							 hubReq =new HubRequest();
+							 hubReq.setMsgType(281);
+							 ModelMap map5=new ModelMap();
+							 map5.put("userId",userId );
+							 map5.put("boardId", bid);
+							 map5.put("fromDateString",dateFormat.format(date));
+							 map5.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (6 * DAY_IN_MS))));
+							 map5.put("status", "Upcoming");
+							 hubReq.setRequestParam(map5);
+
+							 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+							 if(strGameScheduleList != null){
+								 HubResponse hubResponse1 = gson.fromJson(strGameScheduleList, HubResponse.class);
+								 if(hubResponse1 != null && hubResponse1.getResults() != null){
+									 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null)
+									 {
+									 upcommingObject.addAll(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
+									 
+									 }
+								 }else{
+									System.out.println("null condition"); 
+								 }
+							 }
+							 
+								 hubReq =new HubRequest();
+								 hubReq.setMsgType(281);
+								 ModelMap map9=new ModelMap();
+								 map9.put("userId",userId );
+								 map9.put("boardId", bid);
+								 map9.put("fromDateString",dateFormat.format(date));
+								 map9.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (6 * DAY_IN_MS))));
+								 map9.put("status", "InProgress");
+								 hubReq.setRequestParam(map9);
+
+								 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+								 if(strGameScheduleListInprogress != null){
+									 HubResponse hubResponse1 = gson.fromJson(strGameScheduleListInprogress, HubResponse.class);
+									 if(hubResponse1 != null && hubResponse1.getResults() != null){
+										 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+										 {
+										 upcommingObject.addAll(hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+										 }
+									 }else{
+										System.out.println("null condition"); 
+									 }
+								 }
+								 
+								 Collections.sort(upcommingObject, Collections.reverseOrder(new UpcommingComprator()));
+								 
+								 System.out.println("The Upcomming object list size :"+upcommingObject.size());
+								 model.addObject("upcomingMatchesList",upcommingObject );
+							 
+							 
+							 
+							 hubReq =new HubRequest();
+							 hubReq.setMsgType(281);
+							 ModelMap map8=new ModelMap();
+							 map8.put("userId",userId );
+							 map8.put("boardId", bid);
+							 map8.put("toDateString",dateFormat.format(date));
+							 map8.put("fromDateString",dateFormat.format(new Date(System.currentTimeMillis() - (6 * DAY_IN_MS))));
+							 map8.put("status", "Completed");
+							 hubReq.setRequestParam(map8);
+
+							 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+							 
+							
+							 if(strGameScheduleList1 != null){
+								 HubResponse hubResponse2 = gson.fromJson(strGameScheduleList1, HubResponse.class);
+								 if(hubResponse2 != null && hubResponse2.getResults() != null){
+									 model.addObject("completedMatchesList", hubResponse2.getResults().getGameSchedule().getCompletedMatchesList());
+									 
+								 }else{
+									System.out.println("null condition"); 
+								 }
+							 }
+						
+						
 						 
 						 
 						 // TopBowler TopBatsman details
@@ -6408,7 +6645,7 @@ public ModelAndView pitch(@RequestParam String bid, HttpServletRequest request) 
 					
 					 
 					 searchReq.setStartNode("0");
-					 searchReq.setEndNode("4");
+					 searchReq.setEndNode("6");
 					 searchReq.setCategory("Matches");
 					 hubReq.setRequestParam(searchReq);
 				    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -6439,7 +6676,7 @@ public ModelAndView pitch(@RequestParam String bid, HttpServletRequest request) 
 					 }
 					
 					 searchReq.setStartNode("0");
-					 searchReq.setEndNode("4");
+					 searchReq.setEndNode("6");
 					 searchReq.setCategory("League");
 					 hubReq.setRequestParam(searchReq);
 				     String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -7033,7 +7270,7 @@ public @ResponseBody ModelAndView createRoaster(HttpServletRequest request,@Requ
 				
 				 
 				 searchReq.setStartNode("0");
-				 searchReq.setEndNode("4");
+				 searchReq.setEndNode("6");
 				 searchReq.setCategory("Matches");
 				 hubReq.setRequestParam(searchReq);
 			    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -7063,7 +7300,7 @@ public @ResponseBody ModelAndView createRoaster(HttpServletRequest request,@Requ
 				 }
 				
 				 searchReq.setStartNode("0");
-				 searchReq.setEndNode("4");
+				 searchReq.setEndNode("6");
 				 searchReq.setCategory("League");
 				 hubReq.setRequestParam(searchReq);
 			    String strboardlist=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -7282,9 +7519,9 @@ public @ResponseBody ModelAndView getRosterDetails(HttpServletRequest request,@R
 							
 							request.setAttribute("RoasterResponseById", roasterResponseById);
 							
-							
+							request.setAttribute("RoasterMemberList", roasterResponseById); //changed by vignesh
 							 
-							 hubReq=new HubRequest();
+							/* hubReq=new HubRequest();
 							 //hubReq.setMsgType(48);
 							 hubReq.setMsgType(188);// roster details based uisng cassandra
 							 ModelMap rosterMap2=new ModelMap();
@@ -7306,7 +7543,7 @@ public @ResponseBody ModelAndView getRosterDetails(HttpServletRequest request,@R
 										
 								 }
 									
-							 }
+							 }*/
 							
 							 
 							 
@@ -7493,7 +7730,7 @@ public @ResponseBody ModelAndView getRosterDetails(HttpServletRequest request,@R
 					 model.addObject("UserCompleteEvent", eventCompleteResponse.getResults().getEventDetails());
 				 }*/
 				 
-				 hubReq=new HubRequest();
+				/* hubReq=new HubRequest();
 				 hubReq.setMsgType(70);
 				 ModelMap modelMap4=new ModelMap();
 				 modelMap4.put("userId", userId);
@@ -7504,7 +7741,7 @@ public @ResponseBody ModelAndView getRosterDetails(HttpServletRequest request,@R
 				 if(usercancelEventResponse!=null && usercancelEventResponse.getResults()!=null)
 				 {
 					 model.addObject("UserCancelEvent", usercancelEventResponse.getResults().getEventDetails());
-				 }
+				 }*/
 				 
 				 
 				 	 ModelMap neweventmap=new ModelMap();
@@ -8202,7 +8439,7 @@ public @ResponseBody ModelAndView rosterDetails(HttpServletRequest request,@Requ
 						 
 						 
 						 
-				 hubReq=new HubRequest();
+				/* hubReq=new HubRequest();
 				 hubReq.setMsgType(70);
 				 ModelMap modelMap4=new ModelMap();
 				 modelMap4.put("userId", userId);
@@ -8213,7 +8450,7 @@ public @ResponseBody ModelAndView rosterDetails(HttpServletRequest request,@Requ
 				 if(usercancelEventResponse!=null && usercancelEventResponse.getResults()!=null)
 				 {
 					 model.addObject("UserCancelEvent", usercancelEventResponse.getResults().getEventDetails());
-				 }
+				 }*/
 				 
 				 
 				 
@@ -8509,7 +8746,7 @@ public ModelAndView getBuddyPublicProfile(HttpServletRequest request,@PathVariab
 						
 						 
 						 searchReq.setStartNode("0");
-						 searchReq.setEndNode("4");
+						 searchReq.setEndNode("6");
 						 searchReq.setCategory("Matches");
 						 hubReq.setRequestParam(searchReq);
 					    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -8742,7 +8979,7 @@ public ModelAndView getBuddyFriends(HttpServletRequest request, @PathVariable St
 		
 		 
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("Matches");
 		 hubReq.setRequestParam(searchReq);
 	    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -9601,7 +9838,7 @@ public ModelAndView buddyfans(HttpServletRequest request, @PathVariable String b
 		
 		 
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("Matches");
 		 hubReq.setRequestParam(searchReq);
 	    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -9816,7 +10053,7 @@ public ModelAndView buddyfanOfList(HttpServletRequest request, @PathVariable Str
 		
 		 
 		 searchReq.setStartNode("0");
-		 searchReq.setEndNode("4");
+		 searchReq.setEndNode("6");
 		 searchReq.setCategory("Matches");
 		 hubReq.setRequestParam(searchReq);
 	    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -10059,7 +10296,7 @@ public ModelAndView boardPublicProfile(HttpServletRequest request, @PathVariable
 							
 							 
 							 searchReq.setStartNode("0");
-							 searchReq.setEndNode("4");
+							 searchReq.setEndNode("6");
 							 searchReq.setCategory("Matches");
 							 hubReq.setRequestParam(searchReq);
 						    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -10197,7 +10434,7 @@ public ModelAndView boardPublicProfile(HttpServletRequest request, @PathVariable
 							//*************************************************  Upcomming details  **********************//
 							 
 							 
-							 hubReq =new HubRequest();
+							/* hubReq =new HubRequest();
 							 hubReq.setMsgType(133);
 							 ModelMap map5=new ModelMap();
 							 map5.put("userId",userId );
@@ -10261,7 +10498,91 @@ public ModelAndView boardPublicProfile(HttpServletRequest request, @PathVariable
 								 }else{
 									System.out.println("null condition"); 
 								 }
-							 }
+							 }*/
+							 
+							//************************************************* Api changed Upcomming/inprogress/completed details  **********************//
+							// DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+							 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+							 Date date = new Date();
+							 
+							 long DAY_IN_MS = 1000 * 60 * 60 * 24;
+							 
+								 hubReq =new HubRequest();
+								 hubReq.setMsgType(281);
+								 ModelMap map5=new ModelMap();
+								 map5.put("userId",userId );
+								 map5.put("boardId", boardID);
+								 map5.put("fromDateString",dateFormat.format(date));
+								 map5.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (6 * DAY_IN_MS))));
+								 map5.put("status", "Upcoming");
+								 hubReq.setRequestParam(map5);
+
+								 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+								 if(strGameScheduleList != null){
+									 HubResponse hubResponse1 = gson.fromJson(strGameScheduleList, HubResponse.class);
+									 if(hubResponse1 != null && hubResponse1.getResults() != null){
+										 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null)
+										 {
+										 upcommingObject.addAll(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
+										 
+										 }
+									 }else{
+										System.out.println("null condition"); 
+									 }
+								 }
+								 
+									 hubReq =new HubRequest();
+									 hubReq.setMsgType(281);
+									 ModelMap map9=new ModelMap();
+									 map9.put("userId",userId );
+									 map9.put("boardId", boardID);
+									 map9.put("fromDateString",dateFormat.format(date));
+									 map9.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (6 * DAY_IN_MS))));
+									 map9.put("status", "InProgress");
+									 hubReq.setRequestParam(map9);
+
+									 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+									 if(strGameScheduleListInprogress != null){
+										 HubResponse hubResponse1 = gson.fromJson(strGameScheduleListInprogress, HubResponse.class);
+										 if(hubResponse1 != null && hubResponse1.getResults() != null){
+											 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+											 {
+											 upcommingObject.addAll(hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+											 }
+										 }else{
+											System.out.println("null condition"); 
+										 }
+									 }
+									 
+									 Collections.sort(upcommingObject, Collections.reverseOrder(new UpcommingComprator()));
+									 
+									 System.out.println("The Upcomming object list size :"+upcommingObject.size());
+									 model.addObject("upcomingMatchesList",upcommingObject );
+								 
+								 
+								 
+								 hubReq =new HubRequest();
+								 hubReq.setMsgType(281);
+								 ModelMap map8=new ModelMap();
+								 map8.put("userId",userId );
+								 map8.put("boardId", boardID);
+								 map8.put("toDateString",dateFormat.format(date));
+								 map8.put("fromDateString",dateFormat.format(new Date(System.currentTimeMillis() - (6 * DAY_IN_MS))));
+								 map8.put("status", "Completed");
+								 hubReq.setRequestParam(map8);
+
+								 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+								 
+								
+								 if(strGameScheduleList1 != null){
+									 HubResponse hubResponse2 = gson.fromJson(strGameScheduleList1, HubResponse.class);
+									 if(hubResponse2 != null && hubResponse2.getResults() != null){
+										 model.addObject("completedMatchesList", hubResponse2.getResults().getGameSchedule().getCompletedMatchesList());
+										 
+									 }else{
+										System.out.println("null condition"); 
+									 }
+								 }
 							 
 							 
 							// TopBowler TopBatsman details
@@ -11416,6 +11737,8 @@ public ModelAndView updateUserDetail(@ModelAttribute UserProfileUpdate2 userProf
 			    		  System.out.println("user image===============12  "+session.getAttribute("USRIMG"));
 			    		 session.removeAttribute("USRFNA");
 			    		 session.setAttribute("USRFNA",profile.getResults().getItemsFound()[0].getFirstName());
+			    		 session.setAttribute("ZipCode", profile.getResults().getItemsFound()[0].getZipcode());
+
 			    		/* session.removeAttribute("USRLocation");
 			    		 session.setAttribute("USRLocation", profile.getResults().getItemsFound()[0].getLatLang());*/
 			    		 
@@ -15749,9 +16072,20 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 							RoasterResponseById roasterResponseById=results1.getRosterInfo();
 							
 							request.setAttribute("RoasterResponseById", roasterResponseById);
+							request.setAttribute("RoasterMemberList", roasterResponseById); // changed by vignesh
 							
+							/*int userExit=5;
+							if(roasterResponseById.getRosterMembers() !=null){
+							for(RoasterMemembers rrb : roasterResponseById.getRosterMembers()){
+								if(rrb.getUserId().equalsIgnoreCase(userId.toString())){
+									userExit=4;
+									break;
+								}
+							}
+							}
+							model.addObject("memberExists", userExit); */// changed by vignesh
 							
-							 hubReq = new HubRequest();
+							 hubReq = new HubRequest();           
 							 hubReq.setMsgType(190);
 							 ModelMap memberMap = new ModelMap();
 							 memberMap.put("userId", userId);
@@ -15771,7 +16105,7 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 							
 						 }
 					 }
-					 hubReq=new HubRequest();
+					/* hubReq=new HubRequest();
 					 
 					 hubReq.setMsgType(188);// roster details based uisng cassandra
 					 ModelMap rosterMap2=new ModelMap();
@@ -15793,7 +16127,7 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 								
 						 }
 							
-					 }
+					 }*/
 					 
 					 
 					 // Print details
@@ -15917,16 +16251,8 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 									model.addObject("tournamentlist", listresponse.getResults().getTournamentList());
 								}
 							}
-							 
-							 
-							 
-							 
-					 
 					 
 			 	}
-				 
-				 
-				 
 				 
 				 System.out.println("board details"+userId);
 				 HubRequest hubReq1=new HubRequest(40);
@@ -15945,9 +16271,54 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 					{
 						model.addObject("BoardId", bid);
 						 model.addObject("BoradInfo", hubResponse1.getResults().getBoardStatusDetail().get(0));
+						 
+						 if(!hubResponse1.getResults().getBoardStatusDetail().get(0).getCategory().equalsIgnoreCase("Team")){
+							 
+							 
+							 
+							 
+							// Sponser image   // changed by vignesh
+							 SponserResponse sporesponse=new SponserResponse();
+							 long sponsersize=0;
+							 UUID uid1=UUID.fromString(bid);
+								HubRequest hubreq11=new HubRequest(263);
+								OrganizationDetails orgdetails1=new OrganizationDetails();
+								orgdetails1.setBoardId(uid1);
+								 hubreq11.setRequestParam(orgdetails1);
+								 String response11=cricketSocialRestTemplateService.userRegistration(hubreq11);
+								 if(response11 != null){
+								 JSONObject jobj=new JSONObject(response11);
+								 JSONObject jresult=jobj.getJSONObject("results");
+								 JSONObject jboardobj=jresult.getJSONObject("boardSponsersResponse");
+								  
+								 if(jboardobj.length() !=0)
+								 {
+									 sporesponse= gson.fromJson(jboardobj.toString(), SponserResponse.class);
+									  
+									  if(sporesponse.getBoardSponsorsList().size() > 0)
+									  {
+										  sponsersize=sporesponse.getBoardSponsorsList().size();
+									  }
+									  
+								 }
+								  
+								 }else{
+									 model=new ModelAndView("redirect:/login.htm?loginvalidation=Service unavailable");
+										 }
+								 model.addObject("spoResponse", sporesponse);
+								 model.addObject("SponserSize", sponsersize);
+								 System.out.println("The sponser size  :"+sponsersize);
+								 model.addObject("showsponsers", "YES");
+							 
+							 
+							 
+							 
+						 }
 						
 					}
-				 }	
+				 }
+				 
+				 
 				 
 			/*	 
 				 hubReq=new HubRequest();
@@ -15963,18 +16334,7 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 					 model.addObject("UserUpComingEvent", eventResponse.getResults().getEventDetails());
 				 }
 				 
-				 hubReq=new HubRequest();
-				 hubReq.setMsgType(70);
-				 ModelMap modelMap3=new ModelMap();
-				 modelMap3.put("userId", userId);
-				 modelMap3.put("statusId", "23");				
-				 hubReq.setRequestParam(modelMap3);
-				 String usercompleteEvent=cricketSocialRestTemplateService.userRegistration(hubReq);
-				 HubResponse eventCompleteResponse= GsonConverters.getGsonObject().fromJson(usercompleteEvent, HubResponse.class);
-				 if(eventCompleteResponse!=null && eventCompleteResponse.getResults()!=null)
-				 {
-					 model.addObject("UserCompleteEvent", eventCompleteResponse.getResults().getEventDetails());
-				 }
+				 
 				 */
 				 
 				 ModelMap neweventmap=new ModelMap();
@@ -15996,7 +16356,7 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 					 }
 				 }
 				 
-				 hubReq=new HubRequest();
+				/* hubReq=new HubRequest();
 				 hubReq.setMsgType(70);
 				 ModelMap modelMap4=new ModelMap();
 				 modelMap4.put("userId", userId);
@@ -16008,7 +16368,7 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 				 {
 					 model.addObject("UserCancelEvent", usercancelEventResponse.getResults().getEventDetails());
 				 }
-				 
+				 */
 				
 				
 
@@ -16065,17 +16425,15 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 				 
 					 
 					 
-					// Sponser image
+					/*// Sponser image
 					 SponserResponse sporesponse=new SponserResponse();
 					 long sponsersize=0;
-					 
 					 UUID uid1=UUID.fromString(bid);
 						HubRequest hubreq11=new HubRequest(263);
 						OrganizationDetails orgdetails1=new OrganizationDetails();
 						orgdetails1.setBoardId(uid1);
 						 hubreq11.setRequestParam(orgdetails1);
 						 String response11=cricketSocialRestTemplateService.userRegistration(hubreq11);
-						 System.out.println("the 263 response is :"+response11);
 						 if(response11 != null){
 						 JSONObject jobj=new JSONObject(response11);
 						 JSONObject jresult=jobj.getJSONObject("results");
@@ -16098,7 +16456,7 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 						 model.addObject("spoResponse", sporesponse);
 						 model.addObject("SponserSize", sponsersize);
 						 System.out.println("The sponser size  :"+sponsersize);
-						 model.addObject("showsponsers", "YES");
+						 model.addObject("showsponsers", "YES");*/
 					 
 				 
 				 
@@ -16153,11 +16511,29 @@ public ModelAndView rosterProfileDetails(@PathVariable String rid, @PathVariable
 				 if(results1 != null){
 					RoasterResponseById roasterResponseById=results1.getRosterInfo();
 					request.setAttribute("RoasterResponseById", roasterResponseById);
+					request.setAttribute("RoasterMemberList", roasterResponseById);
+					
+					
+					
+					
+					/*int userExit=5;
+					if(roasterResponseById.getRosterMembers() !=null){
+					for(RoasterMemembers rrb : roasterResponseById.getRosterMembers()){
+						
+						if(rrb.getUserId().equalsIgnoreCase(userId.toString())){
+							userExit=4;
+							break;
+						}
+					}
+					}
+					model.addObject("memberExists", userExit);*/ // changed by vignesh
+					
+					
 				 }
 				 
 				 
 				 
-				 hubReq=new HubRequest();
+				/* hubReq=new HubRequest();
 				 
 				 hubReq.setMsgType(188);// roster details based uisng cassandra
 				 ModelMap rosterMap2=new ModelMap();
@@ -16180,7 +16556,7 @@ public ModelAndView rosterProfileDetails(@PathVariable String rid, @PathVariable
 					 }
 						
 				 }
-				 
+				 */
 				// Print details
 				 
                  hubReq=new HubRequest();
@@ -16390,7 +16766,7 @@ public ModelAndView rosterProfileDetails(@PathVariable String rid, @PathVariable
 								 model.addObject("UserCompleteEvent", hubResponse2.getResults().getCreatedEventList().getCompletedCreatedEventList());	
 							 }
 						 }
-				 
+				/* 
 				 hubReq=new HubRequest();
 				 hubReq.setMsgType(70);
 				 ModelMap modelMap4=new ModelMap();
@@ -16402,10 +16778,10 @@ public ModelAndView rosterProfileDetails(@PathVariable String rid, @PathVariable
 				 if(usercancelEventResponse!=null && usercancelEventResponse.getResults()!=null)
 				 {
 					 model.addObject("UserCancelEvent", usercancelEventResponse.getResults().getEventDetails());
-				 }
+				 }*/
 				 
 				 
-				 hubReq = new HubRequest();
+				hubReq = new HubRequest();
 				 hubReq.setMsgType(190);
 				 ModelMap memberMap = new ModelMap();
 				 memberMap.put("userId", userId);
@@ -22622,7 +22998,7 @@ public ModelAndView gameSchedule(HttpServletRequest req, @PathVariable String bo
 			 }
 			 
 			 
-			 hubReq =new HubRequest();
+			/* hubReq =new HubRequest();
 			 hubReq.setMsgType(133);
 			 ModelMap map3=new ModelMap();
 			 map3.put("userId", userId);
@@ -22680,8 +23056,6 @@ public ModelAndView gameSchedule(HttpServletRequest req, @PathVariable String bo
 					 
 					 mav.addObject("inCompletedMatches", hubResponse.getResults().getGameSchedule().getIncompleteMatchesList());
 					 
-					 //System.out.println("sysout for completed matches size:"+ hubResponse.getResults().getGameSchedule().getCompletedMatchesList().size());
-					 //System.out.println("sysout for upcoming matches size:"+ hubResponse.getResults().getGameSchedule().getUpComingMatchesList().size());
 					 if(hubResponse.getResults().getGameSchedule().getUpComingMatchesList() != null){
 						 mav.addObject("upcomingMatchesListSize", hubResponse.getResults().getGameSchedule().getUpComingMatchesList().size());
 						 }else{
@@ -22712,7 +23086,137 @@ public ModelAndView gameSchedule(HttpServletRequest req, @PathVariable String bo
 			 }
 			 else{
 				 
-			 }
+			 }*/
+			 
+			 
+			 String StartDate;
+				String EndDate;
+				
+					Calendar now = Calendar.getInstance(); 
+				       SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+						String comingDateString = sdf1.format(now.getTime());
+						 now.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(comingDateString));
+						 System.out.println("Next :"+sdf1.format(now.getTime()));
+						now.add(Calendar.DATE, 0);  // number of days to add
+						String afterAddedOne = sdf1.format(now.getTime());
+						
+						System.out.println("Nextttttttttttttttttttttttt =============="+afterAddedOne);
+						StartDate=afterAddedOne;
+						now.add(Calendar.DATE, 6);
+						EndDate=sdf1.format(now.getTime());
+				
+				
+				 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(281);
+					 ModelMap map5=new ModelMap();
+					 map5.put("userId", userId);
+					 map5.put("boardId", boardId);
+					 map5.put("fromDateString",StartDate);
+					 map5.put("toDateString",EndDate);
+					 map5.put("status", "Upcoming");
+					 hubReq.setRequestParam(map5);
+
+					 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+					 if(strGameScheduleList != null){
+						 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleList, HubResponse.class);
+						 if(hubResponse1 != null && hubResponse1.getResults() != null){
+							 
+							 
+							    mav.addObject("dateString", hubResponse1.getResults().getEndDateStr());
+								mav.addObject("startDate", hubResponse1.getResults().getStartDateStr());
+								String endDate = hubResponse1.getResults().getEndDateStr();
+
+								String startDate = hubResponse1.getResults().getStartDateStr();
+								String[] spliteDOB1 = startDate.split("-");
+								 String monthInEditProfile1 = spliteDOB1[0];
+								 String dayInEditProfile1 = spliteDOB1[1];
+								 String yearInEditProfile1 = spliteDOB1[2];
+								 String startDateSet= dayInEditProfile1+'/'+yearInEditProfile1+'/'+monthInEditProfile1;
+									mav.addObject("startDateSet", startDateSet);
+								
+								
+								String[] spliteDOB = endDate.split("-");
+								 String monthInEditProfile = spliteDOB[0];
+								 String dayInEditProfile = spliteDOB[1];
+								 String yearInEditProfile = spliteDOB[2];
+								 String endDateSet= dayInEditProfile+'/'+yearInEditProfile+'/'+monthInEditProfile;
+								 mav.addObject("endDateSet", endDateSet);
+							 
+							 
+							 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null ){
+								 mav.addObject("upcomingMatchesList", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
+								 mav.addObject("upcomingMatchesListSize", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList().size());
+							 }else{
+								 mav.addObject("upcomingMatchesListSize", 0);
+							 }
+							 
+							 if(hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList() != null){
+								 mav.addObject("inCompletedMatches", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList());
+								 mav.addObject("inCompletedMatchesListSize", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList().size());
+								}else{
+									mav.addObject("inCompletedMatchesListSize", 0);
+								}
+							 
+							 
+							 
+						 }else{
+							System.out.println("null condition"); 
+						 }
+					 }
+					 
+						 hubReq =new HubRequest();
+						 hubReq.setMsgType(281);
+						 ModelMap map9=new ModelMap();
+						 map9.put("userId", userId);
+						 map9.put("boardId", boardId);
+						 map9.put("fromDateString",StartDate);
+						 map9.put("toDateString",EndDate);
+						 map9.put("status", "InProgress");
+						 hubReq.setRequestParam(map9);
+
+						 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+						 if(strGameScheduleListInprogress != null){
+							 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleListInprogress, HubResponse.class);
+							 if(hubResponse1 != null && hubResponse1.getResults() != null){
+								 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+								 {
+									 mav.addObject("inprogressMatchesList", hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+									mav.addObject("inprogressMatchesListSize",hubResponse1.getResults().getGameSchedule().getInprogressMatchesList().size() ); 
+								 }else{
+									 mav.addObject("inprogressMatchesListSize",0);
+								 }
+							 }else{
+								System.out.println("null condition"); 
+							 }
+						 }
+					 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(281);
+					 ModelMap map8=new ModelMap();
+					 map8.put("userId", userId);
+					 map8.put("boardId", boardId);
+					 map8.put("fromDateString",StartDate);
+					 map8.put("toDateString",EndDate);
+					 map8.put("status", "Completed");
+					 hubReq.setRequestParam(map8);
+
+					 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+					 
+					
+					 if(strGameScheduleList1 != null){
+						 HubResponse hubResponse2 = GsonConverters.getGsonObject().fromJson(strGameScheduleList1, HubResponse.class);
+						 if(hubResponse2 != null && hubResponse2.getResults() != null){
+							 if(hubResponse2.getResults().getGameSchedule().getCompletedMatchesList() != null){
+								 mav.addObject("completedMatchesList", hubResponse2.getResults().getGameSchedule().getCompletedMatchesList());
+								 mav.addObject("completedMatchesListSize",hubResponse2.getResults().getGameSchedule().getCompletedMatchesList().size() );
+								 }else{
+									 mav.addObject("completedMatchesListSize",0);
+								 }
+						 }else{
+							System.out.println("null condition"); 
+						 }
+					 }
 			 
 		 
 		 
@@ -22976,12 +23480,11 @@ public ModelAndView filterScheduleFunction(HttpServletRequest req, @ModelAttribu
 			 if(fromDateString != null && fromDateString != "" && toDateString != null && toDateString != "" && tournamentId == null || tournamentId == ""){
 				System.out.println("inside if");
 				 
-				 hubReq = new HubRequest();
+				/* hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
 				 map3.put("userId", userId);
 				 map3.put("boardId", gs.getBoardId());
-				 //map3.put("tournamentId", tournamentId);
 				 map3.put("fromDateString", fromDateString);
 				 map3.put("toDateString", toDateString);
 				 map3.put("endNode", 10);
@@ -23002,8 +23505,6 @@ public ModelAndView filterScheduleFunction(HttpServletRequest req, @ModelAttribu
 						 
 						 mav.addObject("inCompletedMatches", hubResponse.getResults().getGameSchedule().getIncompleteMatchesList());
 						 
-					//	 System.out.println("sysout for completed matches size:"+ hubResponse.getResults().getGameSchedule().getCompletedMatchesList().size());
-					//	 System.out.println("sysout for upcoming matches size:"+ hubResponse.getResults().getGameSchedule().getUpComingMatchesList().size());
 					if(hubResponse.getResults().getGameSchedule().getUpComingMatchesList() != null){
 						 mav.addObject("upcomingMatchesListSize", hubResponse.getResults().getGameSchedule().getUpComingMatchesList().size());
 					}else{
@@ -23034,10 +23535,105 @@ public ModelAndView filterScheduleFunction(HttpServletRequest req, @ModelAttribu
 				 }
 				 else{
 					 
+				 }*/
+
+				
+				hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map5=new ModelMap();
+				 map5.put("userId", userId);
+				 map5.put("boardId", gs.getBoardId());
+				 map5.put("fromDateString",fromDateString);
+				 map5.put("toDateString",toDateString);
+				 map5.put("status", "Upcoming");
+				 hubReq.setRequestParam(map5);
+
+				 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 if(strGameScheduleList != null){
+					 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleList, HubResponse.class);
+					 if(hubResponse1 != null && hubResponse1.getResults() != null){
+						 
+						 
+						    mav.addObject("dateString", hubResponse1.getResults().getEndDateStr());
+							mav.addObject("startDate", hubResponse1.getResults().getStartDateStr());
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null ){
+							 mav.addObject("upcomingMatchesList", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
+							 mav.addObject("upcomingMatchesListSize", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList().size());
+						 }else{
+							 mav.addObject("upcomingMatchesListSize", 0);
+						 }
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList() != null){
+							 mav.addObject("inCompletedMatches", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList());
+							 mav.addObject("inCompletedMatchesListSize", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList().size());
+							}else{
+								mav.addObject("inCompletedMatchesListSize", 0);
+							}
+						 
+					 }else{
+						System.out.println("null condition"); 
+					 }
 				 }
+				 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(281);
+					 ModelMap map9=new ModelMap();
+					 map9.put("userId", userId);
+					 map9.put("boardId", gs.getBoardId());
+					 map9.put("fromDateString",fromDateString);
+					 map9.put("toDateString",toDateString);
+					 map9.put("status", "InProgress");
+					 hubReq.setRequestParam(map9);
+
+					 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+					 if(strGameScheduleListInprogress != null){
+						 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleListInprogress, HubResponse.class);
+						 if(hubResponse1 != null && hubResponse1.getResults() != null){
+							 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+							 {
+								 mav.addObject("inprogressMatchesList", hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+								mav.addObject("inprogressMatchesListSize",hubResponse1.getResults().getGameSchedule().getInprogressMatchesList().size() ); 
+							 }else{
+								 mav.addObject("inprogressMatchesListSize",0);
+							 }
+						 }else{
+							System.out.println("null condition"); 
+						 }
+					 }
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map8=new ModelMap();
+				 map8.put("userId", userId);
+				 map8.put("boardId", gs.getBoardId());
+				 map8.put("fromDateString",fromDateString);
+				 map8.put("toDateString",toDateString);
+				 map8.put("status", "Completed");
+				 hubReq.setRequestParam(map8);
+
+				 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 
+				
+				 if(strGameScheduleList1 != null){
+					 HubResponse hubResponse2 = GsonConverters.getGsonObject().fromJson(strGameScheduleList1, HubResponse.class);
+					 if(hubResponse2 != null && hubResponse2.getResults() != null){
+						 if(hubResponse2.getResults().getGameSchedule().getCompletedMatchesList() != null){
+							 mav.addObject("completedMatchesList", hubResponse2.getResults().getGameSchedule().getCompletedMatchesList());
+							 mav.addObject("completedMatchesListSize",hubResponse2.getResults().getGameSchedule().getCompletedMatchesList().size() );
+							 }else{
+								 mav.addObject("completedMatchesListSize",0);
+							 }
+					 }else{
+						System.out.println("null condition"); 
+					 }
+				 }
+				
+				
+				
 			 }else if(tournamentId != null && tournamentId != "" && fromDateString == null || fromDateString == "" && toDateString == null || toDateString == ""){
 				 
-				 System.out.println("inside else if");
+				/* System.out.println("inside else if");
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
@@ -23057,9 +23653,6 @@ public ModelAndView filterScheduleFunction(HttpServletRequest req, @ModelAttribu
 						 mav.addObject("gameScheduleList", hubResponse.getResults().getGameSchedule());
 						 mav.addObject("upcomingMatchesList", hubResponse.getResults().getGameSchedule().getUpComingMatchesList());
 						 mav.addObject("completedMatchesList", hubResponse.getResults().getGameSchedule().getCompletedMatchesList());
-					//	 System.out.println("sysout for completed matches size:"+ hubResponse.getResults().getGameSchedule().getCompletedMatchesList().size());
-					//	 System.out.println("sysout for upcoming matches size:"+ hubResponse.getResults().getGameSchedule().getUpComingMatchesList().size());
-						 
 						 mav.addObject("inprogressMatchesList", hubResponse.getResults().getGameSchedule().getInprogressMatchesList());
 						 mav.addObject("inCompletedMatches", hubResponse.getResults().getGameSchedule().getIncompleteMatchesList());
 					 mav.addObject("upcomingMatchesListSize", hubResponse.getResults().getGameSchedule().getUpComingMatchesList().size());
@@ -23078,10 +23671,108 @@ public ModelAndView filterScheduleFunction(HttpServletRequest req, @ModelAttribu
 				 }
 				 else{
 					 
+				 }*/
+				 
+				 
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map5=new ModelMap();
+				 map5.put("userId", userId);
+				 map5.put("boardId", gs.getBoardId());
+				 map5.put("tournamentId", tournamentId);
+				 map5.put("status", "Upcoming");
+				 hubReq.setRequestParam(map5);
+
+				 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 if(strGameScheduleList != null){
+					 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleList, HubResponse.class);
+					 if(hubResponse1 != null && hubResponse1.getResults() != null){
+						 
+						 
+						    mav.addObject("dateString", hubResponse1.getResults().getEndDateStr());
+							mav.addObject("startDate", hubResponse1.getResults().getStartDateStr());
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null ){
+							 mav.addObject("upcomingMatchesList", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
+							 mav.addObject("upcomingMatchesListSize", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList().size());
+						 }else{
+							 mav.addObject("upcomingMatchesListSize", 0);
+						 }
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList() != null){
+							 mav.addObject("inCompletedMatches", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList());
+							 mav.addObject("inCompletedMatchesListSize", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList().size());
+							}else{
+								mav.addObject("inCompletedMatchesListSize", 0);
+							}
+						 
+					 }else{
+						System.out.println("null condition"); 
+					 }
 				 }
 				 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(281);
+					 ModelMap map9=new ModelMap();
+					 map9.put("userId", userId);
+					 map9.put("boardId", gs.getBoardId());
+					 map9.put("fromDateString",fromDateString);
+					 map9.put("toDateString",toDateString);
+					 map9.put("status", "InProgress");
+					 hubReq.setRequestParam(map9);
+
+					 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+					 if(strGameScheduleListInprogress != null){
+						 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleListInprogress, HubResponse.class);
+						 if(hubResponse1 != null && hubResponse1.getResults() != null){
+							 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+							 {
+								 mav.addObject("inprogressMatchesList", hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+								mav.addObject("inprogressMatchesListSize",hubResponse1.getResults().getGameSchedule().getInprogressMatchesList().size() ); 
+							 }else{
+								 mav.addObject("inprogressMatchesListSize",0);
+							 }
+						 }else{
+							System.out.println("null condition"); 
+						 }
+					 }
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map8=new ModelMap();
+				 map8.put("userId", userId);
+				 map8.put("boardId", gs.getBoardId());
+				 map8.put("tournamentId", tournamentId);
+				 map8.put("status", "Completed");
+				 hubReq.setRequestParam(map8);
+
+				 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 
+				
+				 if(strGameScheduleList1 != null){
+					 HubResponse hubResponse2 = GsonConverters.getGsonObject().fromJson(strGameScheduleList1, HubResponse.class);
+					 if(hubResponse2 != null && hubResponse2.getResults() != null){
+						 if(hubResponse2.getResults().getGameSchedule().getCompletedMatchesList() != null){
+							 mav.addObject("completedMatchesList", hubResponse2.getResults().getGameSchedule().getCompletedMatchesList());
+							 mav.addObject("completedMatchesListSize",hubResponse2.getResults().getGameSchedule().getCompletedMatchesList().size() );
+							 }else{
+								 mav.addObject("completedMatchesListSize",0);
+							 }
+					 }else{
+						System.out.println("null condition"); 
+					 }
+				 }
+				
+				
+				
+				 
+				 
+				 
+				 
+				 
 			 }else if(fromDateString != null && fromDateString != "" && toDateString != null && toDateString != "" && tournamentId != null && tournamentId != ""){
-				 hubReq = new HubRequest();
+				 /*hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
 				 map3.put("userId", userId);
@@ -23123,11 +23814,107 @@ public ModelAndView filterScheduleFunction(HttpServletRequest req, @ModelAttribu
 				 }
 				 else{
 					 
+				 }*/
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map5=new ModelMap();
+				 map5.put("userId", userId);
+				 map5.put("boardId", gs.getBoardId());
+				 map5.put("tournamentId", tournamentId);
+				 map5.put("fromDateString",fromDateString);
+				 map5.put("toDateString",toDateString);
+				 map5.put("status", "Upcoming");
+				 hubReq.setRequestParam(map5);
+
+				 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 if(strGameScheduleList != null){
+					 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleList, HubResponse.class);
+					 if(hubResponse1 != null && hubResponse1.getResults() != null){
+						 
+						 
+						    mav.addObject("dateString", hubResponse1.getResults().getEndDateStr());
+							mav.addObject("startDate", hubResponse1.getResults().getStartDateStr());
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null ){
+							 mav.addObject("upcomingMatchesList", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
+							 mav.addObject("upcomingMatchesListSize", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList().size());
+						 }else{
+							 mav.addObject("upcomingMatchesListSize", 0);
+						 }
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList() != null){
+							 mav.addObject("inCompletedMatches", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList());
+							 mav.addObject("inCompletedMatchesListSize", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList().size());
+							}else{
+								mav.addObject("inCompletedMatchesListSize", 0);
+							}
+						 
+					 }else{
+						System.out.println("null condition"); 
+					 }
 				 }
+				 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(281);
+					 ModelMap map9=new ModelMap();
+					 map9.put("userId", userId);
+					 map9.put("boardId", gs.getBoardId());
+					 map9.put("tournamentId", tournamentId);
+					 map9.put("fromDateString",fromDateString);
+					 map9.put("toDateString",toDateString);
+					 map9.put("status", "InProgress");
+					 hubReq.setRequestParam(map9);
+
+					 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+					 if(strGameScheduleListInprogress != null){
+						 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleListInprogress, HubResponse.class);
+						 if(hubResponse1 != null && hubResponse1.getResults() != null){
+							 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+							 {
+								 mav.addObject("inprogressMatchesList", hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+								mav.addObject("inprogressMatchesListSize",hubResponse1.getResults().getGameSchedule().getInprogressMatchesList().size() ); 
+							 }else{
+								 mav.addObject("inprogressMatchesListSize",0);
+							 }
+						 }else{
+							System.out.println("null condition"); 
+						 }
+					 }
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map8=new ModelMap();
+				 map8.put("userId", userId);
+				 map8.put("boardId", gs.getBoardId());
+				 map8.put("tournamentId", tournamentId);
+				 map8.put("fromDateString",fromDateString);
+				 map8.put("toDateString",toDateString);
+				 map8.put("status", "Completed");
+				 hubReq.setRequestParam(map8);
+
+				 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 
+				
+				 if(strGameScheduleList1 != null){
+					 HubResponse hubResponse2 = GsonConverters.getGsonObject().fromJson(strGameScheduleList1, HubResponse.class);
+					 if(hubResponse2 != null && hubResponse2.getResults() != null){
+						 if(hubResponse2.getResults().getGameSchedule().getCompletedMatchesList() != null){
+							 mav.addObject("completedMatchesList", hubResponse2.getResults().getGameSchedule().getCompletedMatchesList());
+							 mav.addObject("completedMatchesListSize",hubResponse2.getResults().getGameSchedule().getCompletedMatchesList().size() );
+							 }else{
+								 mav.addObject("completedMatchesListSize",0);
+							 }
+					 }else{
+						System.out.println("null condition"); 
+					 }
+				 }
+				 
+				 
 			 }
 			 else{
 				 
-				 System.out.println("inside else");
+				/* System.out.println("inside else");
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
@@ -23146,8 +23933,6 @@ public ModelAndView filterScheduleFunction(HttpServletRequest req, @ModelAttribu
 						 mav.addObject("gameScheduleList", hubResponse.getResults().getGameSchedule());
 						 mav.addObject("upcomingMatchesList", hubResponse.getResults().getGameSchedule().getUpComingMatchesList());
 						 mav.addObject("completedMatchesList", hubResponse.getResults().getGameSchedule().getCompletedMatchesList());
-					//	 System.out.println("sysout for completed matches size:"+ hubResponse.getResults().getGameSchedule().getCompletedMatchesList().size());
-						// System.out.println("sysout for upcoming matches size:"+ hubResponse.getResults().getGameSchedule().getUpComingMatchesList().size());
 						 mav.addObject("inCompletedMatches", hubResponse.getResults().getGameSchedule().getIncompleteMatchesList());
 						 mav.addObject("inprogressMatchesList", hubResponse.getResults().getGameSchedule().getInprogressMatchesList());
 						 
@@ -23168,14 +23953,96 @@ public ModelAndView filterScheduleFunction(HttpServletRequest req, @ModelAttribu
 				 }
 				 else{
 					 
+				 }*/
+				 
+				 
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map5=new ModelMap();
+				 map5.put("userId", userId);
+				 map5.put("boardId", gs.getBoardId());
+				 map5.put("status", "Upcoming");
+				 hubReq.setRequestParam(map5);
+
+				 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 if(strGameScheduleList != null){
+					 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleList, HubResponse.class);
+					 if(hubResponse1 != null && hubResponse1.getResults() != null){
+						 
+						 
+						    mav.addObject("dateString", hubResponse1.getResults().getEndDateStr());
+							mav.addObject("startDate", hubResponse1.getResults().getStartDateStr());
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null ){
+							 mav.addObject("upcomingMatchesList", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
+							 mav.addObject("upcomingMatchesListSize", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList().size());
+						 }else{
+							 mav.addObject("upcomingMatchesListSize", 0);
+						 }
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList() != null){
+							 mav.addObject("inCompletedMatches", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList());
+							 mav.addObject("inCompletedMatchesListSize", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList().size());
+							}else{
+								mav.addObject("inCompletedMatchesListSize", 0);
+							}
+						 
+					 }else{
+						System.out.println("null condition"); 
+					 }
+				 }
+				 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(281);
+					 ModelMap map9=new ModelMap();
+					 map9.put("userId", userId);
+					 map9.put("boardId", gs.getBoardId());
+					 map9.put("status", "InProgress");
+					 hubReq.setRequestParam(map9);
+
+					 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+					 if(strGameScheduleListInprogress != null){
+						 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleListInprogress, HubResponse.class);
+						 if(hubResponse1 != null && hubResponse1.getResults() != null){
+							 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+							 {
+								 mav.addObject("inprogressMatchesList", hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+								mav.addObject("inprogressMatchesListSize",hubResponse1.getResults().getGameSchedule().getInprogressMatchesList().size() ); 
+							 }else{
+								 mav.addObject("inprogressMatchesListSize",0);
+							 }
+						 }else{
+							System.out.println("null condition"); 
+						 }
+					 }
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map8=new ModelMap();
+				 map8.put("userId", userId);
+				 map8.put("boardId", gs.getBoardId());
+				 map8.put("status", "Completed");
+				 hubReq.setRequestParam(map8);
+
+				 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 
+				
+				 if(strGameScheduleList1 != null){
+					 HubResponse hubResponse2 = GsonConverters.getGsonObject().fromJson(strGameScheduleList1, HubResponse.class);
+					 if(hubResponse2 != null && hubResponse2.getResults() != null){
+						 if(hubResponse2.getResults().getGameSchedule().getCompletedMatchesList() != null){
+							 mav.addObject("completedMatchesList", hubResponse2.getResults().getGameSchedule().getCompletedMatchesList());
+							 mav.addObject("completedMatchesListSize",hubResponse2.getResults().getGameSchedule().getCompletedMatchesList().size() );
+							 }else{
+								 mav.addObject("completedMatchesListSize",0);
+							 }
+					 }else{
+						System.out.println("null condition"); 
+					 }
 				 }
 				
 			 } 
-			 
-			 
-			
-			 
-		 
 		 
 		}
 		else{
@@ -23867,7 +24734,7 @@ public ModelAndView showScoreCard(HttpServletRequest req, @PathVariable String b
 			
 			 
 			 searchReq.setStartNode("0");
-			 searchReq.setEndNode("4");
+			 searchReq.setEndNode("6");
 			 searchReq.setCategory("Matches");
 			 hubReq.setRequestParam(searchReq);
 		    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -26131,7 +26998,7 @@ public ModelAndView getBuddyboardPublicProfile(HttpServletRequest request,@PathV
 						
 						 
 						 searchReq.setStartNode("0");
-						 searchReq.setEndNode("4");
+						 searchReq.setEndNode("6");
 						 searchReq.setCategory("Matches");
 						 hubReq.setRequestParam(searchReq);
 					    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -26382,7 +27249,7 @@ public ModelAndView boardPublicProfileByboard(HttpServletRequest request, @PathV
 							
 							 
 							 searchReq.setStartNode("0");
-							 searchReq.setEndNode("4");
+							 searchReq.setEndNode("6");
 							 searchReq.setCategory("Matches");
 							 hubReq.setRequestParam(searchReq);
 						    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -26511,7 +27378,7 @@ public ModelAndView boardPublicProfileByboard(HttpServletRequest request, @PathV
 							//*************************************************  Upcomming details  **********************//
 							 
 							 
-							 hubReq =new HubRequest();
+							/* hubReq =new HubRequest();
 							 hubReq.setMsgType(133);
 							 ModelMap map5=new ModelMap();
 							 map5.put("userId",userId );
@@ -26576,7 +27443,93 @@ public ModelAndView boardPublicProfileByboard(HttpServletRequest request, @PathV
 								 }else{
 									System.out.println("null condition"); 
 								 }
-							 }
+							 }*/
+							
+							
+							//************************************************* Api changed Upcomming/inprogress/completed details  **********************//
+						//	 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+							DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+							 Date date = new Date();
+							 
+							 long DAY_IN_MS = 1000 * 60 * 60 * 24;
+							 
+								 hubReq =new HubRequest();
+								 hubReq.setMsgType(281);
+								 ModelMap map5=new ModelMap();
+								 map5.put("userId",userId );
+								 map5.put("boardId", boardID);
+								 map5.put("fromDateString",dateFormat.format(date));
+								 map5.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (6 * DAY_IN_MS))));
+								 map5.put("status", "Upcoming");
+								 hubReq.setRequestParam(map5);
+
+								 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+								 if(strGameScheduleList != null){
+									 HubResponse hubResponse1 = gson.fromJson(strGameScheduleList, HubResponse.class);
+									 if(hubResponse1 != null && hubResponse1.getResults() != null){
+										 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null)
+										 {
+										 upcommingObject.addAll(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
+										 
+										 }
+									 }else{
+										System.out.println("null condition"); 
+									 }
+								 }
+								 
+									 hubReq =new HubRequest();
+									 hubReq.setMsgType(281);
+									 ModelMap map9=new ModelMap();
+									 map9.put("userId",userId );
+									 map9.put("boardId", boardID);
+									 map9.put("fromDateString",dateFormat.format(date));
+									 map9.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (6 * DAY_IN_MS))));
+									 map9.put("status", "InProgress");
+									 hubReq.setRequestParam(map9);
+
+									 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+									 if(strGameScheduleListInprogress != null){
+										 HubResponse hubResponse1 = gson.fromJson(strGameScheduleListInprogress, HubResponse.class);
+										 if(hubResponse1 != null && hubResponse1.getResults() != null){
+											 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+											 {
+											 upcommingObject.addAll(hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+											 }
+										 }else{
+											System.out.println("null condition"); 
+										 }
+									 }
+									 
+									 Collections.sort(upcommingObject, Collections.reverseOrder(new UpcommingComprator()));
+									 
+									 System.out.println("The Upcomming object list size :"+upcommingObject.size());
+									 model.addObject("upcomingMatchesList",upcommingObject );
+								 
+								 
+								 
+								 hubReq =new HubRequest();
+								 hubReq.setMsgType(281);
+								 ModelMap map8=new ModelMap();
+								 map8.put("userId",userId );
+								 map8.put("boardId", boardID);
+								 map8.put("toDateString",dateFormat.format(date));
+								 map8.put("fromDateString",dateFormat.format(new Date(System.currentTimeMillis() - (6 * DAY_IN_MS))));
+								 map8.put("status", "Completed");
+								 hubReq.setRequestParam(map8);
+
+								 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+								 
+								
+								 if(strGameScheduleList1 != null){
+									 HubResponse hubResponse2 = gson.fromJson(strGameScheduleList1, HubResponse.class);
+									 if(hubResponse2 != null && hubResponse2.getResults() != null){
+										 model.addObject("completedMatchesList", hubResponse2.getResults().getGameSchedule().getCompletedMatchesList());
+										 
+									 }else{
+										System.out.println("null condition"); 
+									 }
+								 }
+							
 							 
 							 
 		                  // TopBowler TopBatsman details
@@ -27032,7 +27985,7 @@ public ModelAndView boardPublicProfileByboardPitch(HttpServletRequest request, @
 					
 					 
 					 searchReq.setStartNode("0");
-					 searchReq.setEndNode("4");
+					 searchReq.setEndNode("6");
 					 searchReq.setCategory("Matches");
 					 hubReq.setRequestParam(searchReq);
 				    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -27397,7 +28350,7 @@ public ModelAndView boardPitchfromuser(HttpServletRequest request, @PathVariable
 					
 					 
 					 searchReq.setStartNode("0");
-					 searchReq.setEndNode("4");
+					 searchReq.setEndNode("6");
 					 searchReq.setCategory("Matches");
 					 hubReq.setRequestParam(searchReq);
 				    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -29735,7 +30688,7 @@ public ModelAndView showScoreCardOfPlayer(HttpServletRequest req,@PathVariable S
 			
 			 
 			 searchReq.setStartNode("0");
-			 searchReq.setEndNode("4");
+			 searchReq.setEndNode("6");
 			 searchReq.setCategory("Matches");
 			 hubReq.setRequestParam(searchReq);
 		    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -32796,7 +33749,7 @@ public ModelAndView showScoreCardForInProgress(HttpServletRequest req, @PathVari
 			
 			 
 			 searchReq.setStartNode("0");
-			 searchReq.setEndNode("4");
+			 searchReq.setEndNode("6");
 			 searchReq.setCategory("Matches");
 			 hubReq.setRequestParam(searchReq);
 		    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -33257,7 +34210,7 @@ public ModelAndView showScoreCardPublicProfile(HttpServletRequest req, @PathVari
 			
 			 
 			 searchReq.setStartNode("0");
-			 searchReq.setEndNode("4");
+			 searchReq.setEndNode("6");
 			 searchReq.setCategory("Matches");
 			 hubReq.setRequestParam(searchReq);
 		    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -33912,7 +34865,7 @@ public ModelAndView inviteBoardPage(HttpServletRequest req, @PathVariable String
 			
 			 
 			 searchReq.setStartNode("0");
-			 searchReq.setEndNode("4");
+			 searchReq.setEndNode("6");
 			 searchReq.setCategory("Matches");
 			 hubReq.setRequestParam(searchReq);
 		    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -34213,7 +35166,7 @@ public ModelAndView gameSchedulePublicProfile(HttpServletRequest req, @PathVaria
 					 mav.addObject("BoardFanReq", buddyFan);
 					 
 			 
-			 hubReq = new HubRequest();
+			/* hubReq = new HubRequest();
 			 hubReq.setMsgType(133);
 			 ModelMap map3 = new ModelMap();
 			 map3.put("userId",userId );
@@ -34293,7 +35246,139 @@ public ModelAndView gameSchedulePublicProfile(HttpServletRequest req, @PathVaria
 			 }
 			 else{
 				 
-			 }
+			 }*/
+					 
+					 
+					 String StartDate;
+						String EndDate;
+						
+							Calendar now = Calendar.getInstance(); 
+						       SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+								String comingDateString = sdf1.format(now.getTime());
+								 now.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(comingDateString));
+								 System.out.println("Next :"+sdf1.format(now.getTime()));
+								now.add(Calendar.DATE, 0);  // number of days to add
+								String afterAddedOne = sdf1.format(now.getTime());
+								
+								System.out.println("Nextttttttttttttttttttttttt =============="+afterAddedOne);
+								StartDate=afterAddedOne;
+								now.add(Calendar.DATE, 6);
+								EndDate=sdf1.format(now.getTime());
+						
+						
+						 
+							 hubReq =new HubRequest();
+							 hubReq.setMsgType(281);
+							 ModelMap map5=new ModelMap();
+							 map5.put("userId", userId);
+							 map5.put("boardId", boardId);
+							 map5.put("fromDateString",StartDate);
+							 map5.put("toDateString",EndDate);
+							 map5.put("status", "Upcoming");
+							 hubReq.setRequestParam(map5);
+
+							 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+							 if(strGameScheduleList != null){
+								 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleList, HubResponse.class);
+								 if(hubResponse1 != null && hubResponse1.getResults() != null){
+									 
+									 
+									    mav.addObject("dateString", hubResponse1.getResults().getEndDateStr());
+										mav.addObject("startDate", hubResponse1.getResults().getStartDateStr());
+										String endDate = hubResponse1.getResults().getEndDateStr();
+
+										String startDate = hubResponse1.getResults().getStartDateStr();
+										String[] spliteDOB1 = startDate.split("-");
+										 String monthInEditProfile1 = spliteDOB1[0];
+										 String dayInEditProfile1 = spliteDOB1[1];
+										 String yearInEditProfile1 = spliteDOB1[2];
+										 String startDateSet= dayInEditProfile1+'/'+yearInEditProfile1+'/'+monthInEditProfile1;
+											mav.addObject("startDateSet", startDateSet);
+										
+										
+										String[] spliteDOB = endDate.split("-");
+										 String monthInEditProfile = spliteDOB[0];
+										 String dayInEditProfile = spliteDOB[1];
+										 String yearInEditProfile = spliteDOB[2];
+										 String endDateSet= dayInEditProfile+'/'+yearInEditProfile+'/'+monthInEditProfile;
+										 mav.addObject("endDateSet", endDateSet);
+									 
+									 
+									 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null ){
+										 mav.addObject("upcomingMatchesList", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
+										 mav.addObject("upcomingMatchesListSize", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList().size());
+									 }else{
+										 mav.addObject("upcomingMatchesListSize", 0);
+									 }
+									 
+									 if(hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList() != null){
+										 mav.addObject("inCompletedMatches", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList());
+										 mav.addObject("inCompletedMatchesListSize", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList().size());
+										}else{
+											mav.addObject("inCompletedMatchesListSize", 0);
+										}
+									 
+									 
+									 
+								 }else{
+									System.out.println("null condition"); 
+								 }
+							 }
+							 
+								 hubReq =new HubRequest();
+								 hubReq.setMsgType(281);
+								 ModelMap map9=new ModelMap();
+								 map9.put("userId", userId);
+								 map9.put("boardId", boardId);
+								 map9.put("fromDateString",StartDate);
+								 map9.put("toDateString",EndDate);
+								 map9.put("status", "InProgress");
+								 hubReq.setRequestParam(map9);
+
+								 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+								 if(strGameScheduleListInprogress != null){
+									 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleListInprogress, HubResponse.class);
+									 if(hubResponse1 != null && hubResponse1.getResults() != null){
+										 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+										 {
+											 mav.addObject("inprogressMatchesList", hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+											mav.addObject("inprogressMatchesListSize",hubResponse1.getResults().getGameSchedule().getInprogressMatchesList().size() ); 
+										 }else{
+											 mav.addObject("inprogressMatchesListSize",0);
+										 }
+									 }else{
+										System.out.println("null condition"); 
+									 }
+								 }
+							 
+							 hubReq =new HubRequest();
+							 hubReq.setMsgType(281);
+							 ModelMap map8=new ModelMap();
+							 map8.put("userId", userId);
+							 map8.put("boardId", boardId);
+							 map8.put("fromDateString",StartDate);
+							 map8.put("toDateString",EndDate);
+							 map8.put("status", "Completed");
+							 hubReq.setRequestParam(map8);
+
+							 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+							 
+							
+							 if(strGameScheduleList1 != null){
+								 HubResponse hubResponse2 = GsonConverters.getGsonObject().fromJson(strGameScheduleList1, HubResponse.class);
+								 if(hubResponse2 != null && hubResponse2.getResults() != null){
+									 if(hubResponse2.getResults().getGameSchedule().getCompletedMatchesList() != null){
+										 mav.addObject("completedMatchesList", hubResponse2.getResults().getGameSchedule().getCompletedMatchesList());
+										 mav.addObject("completedMatchesListSize",hubResponse2.getResults().getGameSchedule().getCompletedMatchesList().size() );
+										 }else{
+											 mav.addObject("completedMatchesListSize",0);
+										 }
+								 }else{
+									System.out.println("null condition"); 
+								 }
+							 }
+					 
+					 
 		 
 		}
 		else{
@@ -34675,7 +35760,7 @@ public ModelAndView showScoreCardForInProgressPublicProfile(HttpServletRequest r
 			
 			 
 			 searchReq.setStartNode("0");
-			 searchReq.setEndNode("4");
+			 searchReq.setEndNode("6");
 			 searchReq.setCategory("Matches");
 			 hubReq.setRequestParam(searchReq);
 		    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -34826,6 +35911,7 @@ public ModelAndView filterScheduleFunctionPublicProfile(HttpServletRequest req, 
 			
 		mav = new ModelAndView("GameSchedulePublicProfile");
 		mav.addObject("boardId", gs.getBoardId());
+		mav.addObject("GameFilter", gs);
 		//*************************** Getting Board info  ***************************************
 		 HubRequest hubReq1=new HubRequest();
 		 hubReq1.setMsgType(40);
@@ -34906,12 +35992,11 @@ public ModelAndView filterScheduleFunctionPublicProfile(HttpServletRequest req, 
 			 if(fromDateString != null && fromDateString != "" && toDateString != null && toDateString != "" && tournamentId == null || tournamentId == ""){
 				System.out.println("inside if");
 				 
-				 hubReq = new HubRequest();
+				/* hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
 				 map3.put("userId",userId );
 				 map3.put("boardId", gs.getBoardId());
-				 //map3.put("tournamentId", tournamentId);
 				 map3.put("fromDateString", fromDateString);
 				 map3.put("toDateString", toDateString);
 				 map3.put("endNode", 10);
@@ -34947,10 +36032,106 @@ public ModelAndView filterScheduleFunctionPublicProfile(HttpServletRequest req, 
 				 }
 				 else{
 					 
+				 }*/
+				
+				
+				hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map5=new ModelMap();
+				 map5.put("userId", userId);
+				 map5.put("boardId", gs.getBoardId());
+				 map5.put("fromDateString",fromDateString);
+				 map5.put("toDateString",toDateString);
+				 map5.put("status", "Upcoming");
+				 hubReq.setRequestParam(map5);
+
+				 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 if(strGameScheduleList != null){
+					 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleList, HubResponse.class);
+					 if(hubResponse1 != null && hubResponse1.getResults() != null){
+						 
+						 
+						    mav.addObject("dateString", hubResponse1.getResults().getEndDateStr());
+							mav.addObject("startDate", hubResponse1.getResults().getStartDateStr());
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null ){
+							 mav.addObject("upcomingMatchesList", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
+							 mav.addObject("upcomingMatchesListSize", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList().size());
+						 }else{
+							 mav.addObject("upcomingMatchesListSize", 0);
+						 }
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList() != null){
+							 mav.addObject("inCompletedMatches", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList());
+							 mav.addObject("inCompletedMatchesListSize", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList().size());
+							}else{
+								mav.addObject("inCompletedMatchesListSize", 0);
+							}
+						 
+					 }else{
+						System.out.println("null condition"); 
+					 }
 				 }
+				 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(281);
+					 ModelMap map9=new ModelMap();
+					 map9.put("userId", userId);
+					 map9.put("boardId", gs.getBoardId());
+					 map9.put("fromDateString",fromDateString);
+					 map9.put("toDateString",toDateString);
+					 map9.put("status", "InProgress");
+					 hubReq.setRequestParam(map9);
+
+					 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+					 if(strGameScheduleListInprogress != null){
+						 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleListInprogress, HubResponse.class);
+						 if(hubResponse1 != null && hubResponse1.getResults() != null){
+							 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+							 {
+								 mav.addObject("inprogressMatchesList", hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+								mav.addObject("inprogressMatchesListSize",hubResponse1.getResults().getGameSchedule().getInprogressMatchesList().size() ); 
+							 }else{
+								 mav.addObject("inprogressMatchesListSize",0);
+							 }
+						 }else{
+							System.out.println("null condition"); 
+						 }
+					 }
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map8=new ModelMap();
+				 map8.put("userId", userId);
+				 map8.put("boardId", gs.getBoardId());
+				 map8.put("fromDateString",fromDateString);
+				 map8.put("toDateString",toDateString);
+				 map8.put("status", "Completed");
+				 hubReq.setRequestParam(map8);
+
+				 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 
+				
+				 if(strGameScheduleList1 != null){
+					 HubResponse hubResponse2 = GsonConverters.getGsonObject().fromJson(strGameScheduleList1, HubResponse.class);
+					 if(hubResponse2 != null && hubResponse2.getResults() != null){
+						 if(hubResponse2.getResults().getGameSchedule().getCompletedMatchesList() != null){
+							 mav.addObject("completedMatchesList", hubResponse2.getResults().getGameSchedule().getCompletedMatchesList());
+							 mav.addObject("completedMatchesListSize",hubResponse2.getResults().getGameSchedule().getCompletedMatchesList().size() );
+							 }else{
+								 mav.addObject("completedMatchesListSize",0);
+							 }
+					 }else{
+						System.out.println("null condition"); 
+					 }
+				 }
+				
+				
+				
+				
 			 }else if(tournamentId != null && tournamentId != "" && fromDateString == null || fromDateString == "" && toDateString == null || toDateString == ""){
 				 
-				 System.out.println("inside else if");
+				/* System.out.println("inside else if");
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
@@ -34990,10 +36171,100 @@ public ModelAndView filterScheduleFunctionPublicProfile(HttpServletRequest req, 
 				 }
 				 else{
 					 
+				 }*/
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map5=new ModelMap();
+				 map5.put("userId", userId);
+				 map5.put("boardId", gs.getBoardId());
+				 map5.put("tournamentId", tournamentId);
+				 map5.put("status", "Upcoming");
+				 hubReq.setRequestParam(map5);
+
+				 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 if(strGameScheduleList != null){
+					 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleList, HubResponse.class);
+					 if(hubResponse1 != null && hubResponse1.getResults() != null){
+						 
+						 
+						    mav.addObject("dateString", hubResponse1.getResults().getEndDateStr());
+							mav.addObject("startDate", hubResponse1.getResults().getStartDateStr());
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null ){
+							 mav.addObject("upcomingMatchesList", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
+							 mav.addObject("upcomingMatchesListSize", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList().size());
+						 }else{
+							 mav.addObject("upcomingMatchesListSize", 0);
+						 }
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList() != null){
+							 mav.addObject("inCompletedMatches", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList());
+							 mav.addObject("inCompletedMatchesListSize", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList().size());
+							}else{
+								mav.addObject("inCompletedMatchesListSize", 0);
+							}
+						 
+					 }else{
+						System.out.println("null condition"); 
+					 }
 				 }
 				 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(281);
+					 ModelMap map9=new ModelMap();
+					 map9.put("userId", userId);
+					 map9.put("boardId", gs.getBoardId());
+					 map9.put("tournamentId", tournamentId);
+					 map9.put("status", "InProgress");
+					 hubReq.setRequestParam(map9);
+
+					 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+					 if(strGameScheduleListInprogress != null){
+						 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleListInprogress, HubResponse.class);
+						 if(hubResponse1 != null && hubResponse1.getResults() != null){
+							 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+							 {
+								 mav.addObject("inprogressMatchesList", hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+								mav.addObject("inprogressMatchesListSize",hubResponse1.getResults().getGameSchedule().getInprogressMatchesList().size() ); 
+							 }else{
+								 mav.addObject("inprogressMatchesListSize",0);
+							 }
+						 }else{
+							System.out.println("null condition"); 
+						 }
+					 }
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map8=new ModelMap();
+				 map8.put("userId", userId);
+				 map8.put("boardId", gs.getBoardId());
+				 map8.put("tournamentId", tournamentId);
+				 map8.put("status", "Completed");
+				 hubReq.setRequestParam(map8);
+
+				 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 
+				
+				 if(strGameScheduleList1 != null){
+					 HubResponse hubResponse2 = GsonConverters.getGsonObject().fromJson(strGameScheduleList1, HubResponse.class);
+					 if(hubResponse2 != null && hubResponse2.getResults() != null){
+						 if(hubResponse2.getResults().getGameSchedule().getCompletedMatchesList() != null){
+							 mav.addObject("completedMatchesList", hubResponse2.getResults().getGameSchedule().getCompletedMatchesList());
+							 mav.addObject("completedMatchesListSize",hubResponse2.getResults().getGameSchedule().getCompletedMatchesList().size() );
+							 }else{
+								 mav.addObject("completedMatchesListSize",0);
+							 }
+					 }else{
+						System.out.println("null condition"); 
+					 }
+				 }
+				
+				 
+				 
 			 }else if(fromDateString != null && fromDateString != "" && toDateString != null && toDateString != "" && tournamentId != null && tournamentId != ""){
-				 hubReq = new HubRequest();
+				 /*hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
 				 map3.put("userId",userId );
@@ -35033,11 +36304,109 @@ public ModelAndView filterScheduleFunctionPublicProfile(HttpServletRequest req, 
 				 }
 				 else{
 					 
+				 }*/
+				 
+				 
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map5=new ModelMap();
+				 map5.put("userId", userId);
+				 map5.put("boardId", gs.getBoardId());
+				 map5.put("tournamentId", tournamentId);
+				 map5.put("fromDateString",fromDateString);
+				 map5.put("toDateString",toDateString);
+				 map5.put("status", "Upcoming");
+				 hubReq.setRequestParam(map5);
+
+				 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 if(strGameScheduleList != null){
+					 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleList, HubResponse.class);
+					 if(hubResponse1 != null && hubResponse1.getResults() != null){
+						 
+						 
+						    mav.addObject("dateString", hubResponse1.getResults().getEndDateStr());
+							mav.addObject("startDate", hubResponse1.getResults().getStartDateStr());
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null ){
+							 mav.addObject("upcomingMatchesList", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
+							 mav.addObject("upcomingMatchesListSize", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList().size());
+						 }else{
+							 mav.addObject("upcomingMatchesListSize", 0);
+						 }
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList() != null){
+							 mav.addObject("inCompletedMatches", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList());
+							 mav.addObject("inCompletedMatchesListSize", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList().size());
+							}else{
+								mav.addObject("inCompletedMatchesListSize", 0);
+							}
+						 
+					 }else{
+						System.out.println("null condition"); 
+					 }
 				 }
+				 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(281);
+					 ModelMap map9=new ModelMap();
+					 map9.put("userId", userId);
+					 map9.put("boardId", gs.getBoardId());
+					 map9.put("tournamentId", tournamentId);
+					 map9.put("fromDateString",fromDateString);
+					 map9.put("toDateString",toDateString);
+					 map9.put("status", "InProgress");
+					 hubReq.setRequestParam(map9);
+
+					 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+					 if(strGameScheduleListInprogress != null){
+						 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleListInprogress, HubResponse.class);
+						 if(hubResponse1 != null && hubResponse1.getResults() != null){
+							 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+							 {
+								 mav.addObject("inprogressMatchesList", hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+								mav.addObject("inprogressMatchesListSize",hubResponse1.getResults().getGameSchedule().getInprogressMatchesList().size() ); 
+							 }else{
+								 mav.addObject("inprogressMatchesListSize",0);
+							 }
+						 }else{
+							System.out.println("null condition"); 
+						 }
+					 }
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map8=new ModelMap();
+				 map8.put("userId", userId);
+				 map8.put("boardId", gs.getBoardId());
+				 map8.put("tournamentId", tournamentId);
+				 map8.put("fromDateString",fromDateString);
+				 map8.put("toDateString",toDateString);
+				 map8.put("status", "Completed");
+				 hubReq.setRequestParam(map8);
+
+				 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 
+				
+				 if(strGameScheduleList1 != null){
+					 HubResponse hubResponse2 = GsonConverters.getGsonObject().fromJson(strGameScheduleList1, HubResponse.class);
+					 if(hubResponse2 != null && hubResponse2.getResults() != null){
+						 if(hubResponse2.getResults().getGameSchedule().getCompletedMatchesList() != null){
+							 mav.addObject("completedMatchesList", hubResponse2.getResults().getGameSchedule().getCompletedMatchesList());
+							 mav.addObject("completedMatchesListSize",hubResponse2.getResults().getGameSchedule().getCompletedMatchesList().size() );
+							 }else{
+								 mav.addObject("completedMatchesListSize",0);
+							 }
+					 }else{
+						System.out.println("null condition"); 
+					 }
+				 }
+				 
+				 
 			 }
 			 else{
 				 
-				 System.out.println("inside else");
+				/* System.out.println("inside else");
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
@@ -35076,14 +36445,96 @@ public ModelAndView filterScheduleFunctionPublicProfile(HttpServletRequest req, 
 				 }
 				 else{
 					 
+				 }*/
+				 
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map5=new ModelMap();
+				 map5.put("userId", userId);
+				 map5.put("boardId", gs.getBoardId());
+				 map5.put("status", "Upcoming");
+				 hubReq.setRequestParam(map5);
+
+				 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 if(strGameScheduleList != null){
+					 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleList, HubResponse.class);
+					 if(hubResponse1 != null && hubResponse1.getResults() != null){
+						 
+						 
+						    mav.addObject("dateString", hubResponse1.getResults().getEndDateStr());
+							mav.addObject("startDate", hubResponse1.getResults().getStartDateStr());
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null ){
+							 mav.addObject("upcomingMatchesList", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
+							 mav.addObject("upcomingMatchesListSize", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList().size());
+						 }else{
+							 mav.addObject("upcomingMatchesListSize", 0);
+						 }
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList() != null){
+							 mav.addObject("inCompletedMatches", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList());
+							 mav.addObject("inCompletedMatchesListSize", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList().size());
+							}else{
+								mav.addObject("inCompletedMatchesListSize", 0);
+							}
+						 
+					 }else{
+						System.out.println("null condition"); 
+					 }
 				 }
+				 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(281);
+					 ModelMap map9=new ModelMap();
+					 map9.put("userId", userId);
+					 map9.put("boardId", gs.getBoardId());
+					 map9.put("status", "InProgress");
+					 hubReq.setRequestParam(map9);
+
+					 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+					 if(strGameScheduleListInprogress != null){
+						 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleListInprogress, HubResponse.class);
+						 if(hubResponse1 != null && hubResponse1.getResults() != null){
+							 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+							 {
+								 mav.addObject("inprogressMatchesList", hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+								mav.addObject("inprogressMatchesListSize",hubResponse1.getResults().getGameSchedule().getInprogressMatchesList().size() ); 
+							 }else{
+								 mav.addObject("inprogressMatchesListSize",0);
+							 }
+						 }else{
+							System.out.println("null condition"); 
+						 }
+					 }
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map8=new ModelMap();
+				 map8.put("userId", userId);
+				 map8.put("boardId", gs.getBoardId());
+				 map8.put("status", "Completed");
+				 hubReq.setRequestParam(map8);
+
+				 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 
+				
+				 if(strGameScheduleList1 != null){
+					 HubResponse hubResponse2 = GsonConverters.getGsonObject().fromJson(strGameScheduleList1, HubResponse.class);
+					 if(hubResponse2 != null && hubResponse2.getResults() != null){
+						 if(hubResponse2.getResults().getGameSchedule().getCompletedMatchesList() != null){
+							 mav.addObject("completedMatchesList", hubResponse2.getResults().getGameSchedule().getCompletedMatchesList());
+							 mav.addObject("completedMatchesListSize",hubResponse2.getResults().getGameSchedule().getCompletedMatchesList().size() );
+							 }else{
+								 mav.addObject("completedMatchesListSize",0);
+							 }
+					 }else{
+						System.out.println("null condition"); 
+					 }
+				 }
+				 
 				
 			 } 
-			 
-			 
-			
-			 
-		 
 		 
 		}
 		else{
@@ -37257,7 +38708,7 @@ public ModelAndView showScoreCardOfPlayerPublicProfile(HttpServletRequest req,@P
 			
 			 
 			 searchReq.setStartNode("0");
-			 searchReq.setEndNode("4");
+			 searchReq.setEndNode("6");
 			 searchReq.setCategory("Matches");
 			 hubReq.setRequestParam(searchReq);
 		    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -37832,7 +39283,7 @@ public ModelAndView inviteToMergeAccount(HttpServletRequest req, @PathVariable S
 			
 			 
 			 searchReq.setStartNode("0");
-			 searchReq.setEndNode("4");
+			 searchReq.setEndNode("6");
 			 searchReq.setCategory("Matches");
 			 hubReq.setRequestParam(searchReq);
 		    String matchesArroundYouList=cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -38071,7 +39522,8 @@ public ModelAndView mergeLoginValidate(HttpServletRequest request,UserProfile us
 						// System.out.println("session id : "+session.getAttribute("USRID"));
 						 session.setAttribute("USRIMG", profile.getUserImageUrl());
 						 session.setAttribute("USRLocation", userProfile.getLatLang());
-						
+			    		 session.setAttribute("ZipCode", profile.getZipcode());
+
 						 
 
 			    		 String name2=profile.getFirstName();
@@ -42453,12 +43905,13 @@ public ModelAndView mailEventNotification(HttpServletRequest req,@PathVariable U
 public @ResponseBody ResponseTypeSchedule gameSchedulePreNext(HttpServletRequest req,@RequestBody GameScheduleFilter gamescheduler )
 {
 	//ResponseType returnList=null;
-	ResponseTypeSchedule returnList=null;
+	ResponseTypeSchedule returnList=new ResponseTypeSchedule();
+	GameScheduleFilter schedule=new GameScheduleFilter();
 	try{
 		HttpSession session=req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
 			UUID userId=(UUID) session.getAttribute("USRID");
-			 hubReq = new HubRequest(133);
+			/* hubReq = new HubRequest(133);
 				ModelMap m = new ModelMap();
 				m.put("userId",userId );
 				m.put("boardId", gamescheduler.getBoardId());
@@ -42510,7 +43963,122 @@ public @ResponseBody ResponseTypeSchedule gameSchedulePreNext(HttpServletRequest
 			
 				
 				}
+			}*/
+			
+			
+			String StartDate;
+			String EndDate;
+			
+			if(gamescheduler.getPreviousNextFlag().equalsIgnoreCase("Previous")){
+				
+				Calendar now = Calendar.getInstance(); 
+			       SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+					String comingDateString = gamescheduler.getDateString();
+					 now.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(comingDateString));
+					 System.out.println("Previous :"+sdf1.format(now.getTime()));
+					 now.add(Calendar.DATE, -1);  // number of days to add
+					 String afterAddedOne = sdf1.format(now.getTime());
+					
+					System.out.println("Previousssssssssssss =============="+afterAddedOne);
+					EndDate=afterAddedOne;
+					now.add(Calendar.DATE, -6);
+					StartDate=sdf1.format(now.getTime());
+				
+			}else{
+				Calendar now = Calendar.getInstance(); 
+			       SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+					String comingDateString = gamescheduler.getDateString();
+					 now.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(comingDateString));
+					 System.out.println("Next :"+sdf1.format(now.getTime()));
+					now.add(Calendar.DATE, 1);  // number of days to add
+					String afterAddedOne = sdf1.format(now.getTime());
+					
+					System.out.println("Nextttttttttttttttttttttttt =============="+afterAddedOne);
+					StartDate=afterAddedOne;
+					now.add(Calendar.DATE, 6);
+					EndDate=sdf1.format(now.getTime());
 			}
+			
+			
+			 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map5=new ModelMap();
+				 map5.put("userId",userId );
+				 map5.put("boardId", gamescheduler.getBoardId());
+				 map5.put("fromDateString",StartDate);
+				 map5.put("toDateString",EndDate);
+				 map5.put("status", "Upcoming");
+				 hubReq.setRequestParam(map5);
+
+				 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 if(strGameScheduleList != null){
+					 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleList, HubResponse.class);
+					 if(hubResponse1 != null && hubResponse1.getResults() != null){
+						 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null )
+						 {
+							 ResponseTypeSchedule responsetype=GsonConverters.getGsonObject().fromJson(new JSONObject(strGameScheduleList).getJSONObject("results").toString() , ResponseTypeSchedule.class);
+							 schedule.setUpComingMatchesList(responsetype.getGameSchedule().getUpComingMatchesList());
+							 schedule.setIncompleteMatchesList(responsetype.getGameSchedule().getIncompleteMatchesList());
+						 }
+					 }else{
+						System.out.println("null condition"); 
+					 }
+				 }
+				 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(281);
+					 ModelMap map9=new ModelMap();
+					 map9.put("userId",userId );
+					 map9.put("boardId", gamescheduler.getBoardId());
+					 map9.put("fromDateString",StartDate);
+					 map9.put("toDateString",EndDate);
+					 map9.put("status", "InProgress");
+					 hubReq.setRequestParam(map9);
+
+					 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+					 if(strGameScheduleListInprogress != null){
+						 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleListInprogress, HubResponse.class);
+						 if(hubResponse1 != null && hubResponse1.getResults() != null){
+							 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+							 {
+								 ResponseTypeSchedule responsetype=GsonConverters.getGsonObject().fromJson(new JSONObject(strGameScheduleListInprogress).getJSONObject("results").toString() , ResponseTypeSchedule.class);
+								 schedule.setInprogressMatchesList(responsetype.getGameSchedule().getInprogressMatchesList());
+							 
+							 }
+						 }else{
+							System.out.println("null condition"); 
+						 }
+					 }
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map8=new ModelMap();
+				 map8.put("userId",userId );
+				 map8.put("boardId", gamescheduler.getBoardId());
+				 map8.put("fromDateString",StartDate);
+				 map8.put("toDateString",EndDate);
+				 map8.put("status", "Completed");
+				 hubReq.setRequestParam(map8);
+
+				 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 
+				
+				 if(strGameScheduleList1 != null){
+					 HubResponse hubResponse2 = GsonConverters.getGsonObject().fromJson(strGameScheduleList1, HubResponse.class);
+					 if(hubResponse2 != null && hubResponse2.getResults() != null){
+						 
+						 ResponseTypeSchedule responsetype=GsonConverters.getGsonObject().fromJson(new JSONObject(strGameScheduleList1).getJSONObject("results").toString() , ResponseTypeSchedule.class);
+						 schedule.setCompletedMatchesList(responsetype.getGameSchedule().getCompletedMatchesList()); 
+					
+						 returnList.setStartDateStr(hubResponse2.getResults().getStartDateStr());
+						 returnList.setEndDateStr(hubResponse2.getResults().getEndDateStr());
+					 }else{
+						System.out.println("null condition"); 
+					 }
+				 }
+			
+				 returnList.setGameSchedule(schedule);
 			
 		}else{
 			
@@ -44042,7 +45610,7 @@ public @ResponseBody List<MatchesAroundYouResponse> matchesaround(HttpServletReq
 		ModelMap map=new ModelMap();
 		map.put("latlang", latlang);
 		map.put("startNode", "0");
-		map.put("endNode", "20");
+		map.put("endNode", "250");
 		map.put("category", "Matches");
 		
 		hubReq.setRequestParam(map);
@@ -44554,7 +46122,6 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 	ModelAndView model=null;
 	try{
 		
-		
 		if(isUUID(bid)){
 		
 		HttpSession session=request.getSession(true);
@@ -44601,57 +46168,89 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 					
 					 
 					
+					// DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					 Date date = new Date();
 					 
+					 long DAY_IN_MS = 1000 * 60 * 60 * 24;
 					 
 					 //*************************************************  Upcomming details  **********************//
 					 
 					 
-					 hubReq =new HubRequest();
+					/* hubReq =new HubRequest();
 					 hubReq.setMsgType(133);
 					 ModelMap map5=new ModelMap();
 					 map5.put("userId",userId );
 					 map5.put("boardId", bid);
 					 map5.put("previousNextFlag","current");
 					 map5.put("endNode", 10);
+					 hubReq.setRequestParam(map5);*/
+					 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(281);
+					 ModelMap map5=new ModelMap();
+					 map5.put("userId",userId );
+					 map5.put("boardId", bid);
+					 map5.put("fromDateString",dateFormat.format(date));
+					 map5.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (6 * DAY_IN_MS))));
+					 map5.put("status", "Upcoming");
 					 hubReq.setRequestParam(map5);
 
 					 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
-					 
-					
 					 if(strGameScheduleList != null){
 						 HubResponse hubResponse1 = gson.fromJson(strGameScheduleList, HubResponse.class);
 						 if(hubResponse1 != null && hubResponse1.getResults() != null){
-							 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null || hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+							 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null)
 							 {
 							 upcommingObject.addAll(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
-							 upcommingObject.addAll(hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
 							 
-							 Collections.sort(upcommingObject, Collections.reverseOrder(new UpcommingComprator()));
-							 
-							 System.out.println("The Upcomming object list size :"+upcommingObject.size());
-							 
-							// model.addObject("upcomingMatchesList", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
-							 model.addObject("upcomingMatchesList",upcommingObject );
-						 
 							 }
-						 
 						 }else{
 							System.out.println("null condition"); 
 						 }
 					 }
 					 
+					 
+					 //*************************************************  Inprogress details  **********************//
+					 
+						 
+						 hubReq =new HubRequest();
+						 hubReq.setMsgType(281);
+						 ModelMap map9=new ModelMap();
+						 map9.put("userId",userId );
+						 map9.put("boardId", bid);
+						 map9.put("fromDateString",dateFormat.format(date));
+						 map9.put("toDateString",dateFormat.format(new Date(System.currentTimeMillis() + (6 * DAY_IN_MS))));
+						 map9.put("status", "InProgress");
+						 hubReq.setRequestParam(map9);
+
+						 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+						 if(strGameScheduleListInprogress != null){
+							 HubResponse hubResponse1 = gson.fromJson(strGameScheduleListInprogress, HubResponse.class);
+							 if(hubResponse1 != null && hubResponse1.getResults() != null){
+								 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+								 {
+								 upcommingObject.addAll(hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+								 }
+							 }else{
+								System.out.println("null condition"); 
+							 }
+						 }
+						 
+						 Collections.sort(upcommingObject, Collections.reverseOrder(new UpcommingComprator()));
+						 
+						 System.out.println("The Upcomming object list size :"+upcommingObject.size());
+						 model.addObject("upcomingMatchesList",upcommingObject );
+					 
 					 //Completed phone
 					 
 					 
-					 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					 Date date = new Date();
 					 
-					 long DAY_IN_MS = 1000 * 60 * 60 * 24;
 					 System.out.println(new Date(System.currentTimeMillis() - (7 * DAY_IN_MS)));
 					 
 					 System.out.println(dateFormat.format(date));
 					 
-					 hubReq =new HubRequest();
+					/* hubReq =new HubRequest();
 					 hubReq.setMsgType(133);
 					 ModelMap map8=new ModelMap();
 					 map8.put("userId",userId );
@@ -44659,6 +46258,16 @@ public ModelAndView boardSite(@RequestParam String bid, HttpServletRequest reque
 					 map8.put("toDateString",dateFormat.format(date));
 					 map8.put("fromDateString",dateFormat.format(new Date(System.currentTimeMillis() - (7 * DAY_IN_MS))));
 					 map8.put("endNode", 100);
+					 hubReq.setRequestParam(map8);*/
+					 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(281);
+					 ModelMap map8=new ModelMap();
+					 map8.put("userId",userId );
+					 map8.put("boardId", bid);
+					 map8.put("toDateString",dateFormat.format(date));
+					 map8.put("fromDateString",dateFormat.format(new Date(System.currentTimeMillis() - (6 * DAY_IN_MS))));
+					 map8.put("status", "Completed");
 					 hubReq.setRequestParam(map8);
 
 					 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -45506,10 +47115,9 @@ public ModelAndView gameScheduleSite(HttpServletRequest req, @PathVariable Strin
 		 
 		 
 		
-			 hubReq =new HubRequest();
+			/* hubReq =new HubRequest();
 			 hubReq.setMsgType(133);
 			 ModelMap map3=new ModelMap();
-			 //map3.put("userId", userId);
 			 map3.put("boardId", boardId);
 			 map3.put("previousNextFlag","current");
 			 map3.put("endNode", 10);
@@ -45524,7 +47132,7 @@ public ModelAndView gameScheduleSite(HttpServletRequest req, @PathVariable Strin
 					 
 					 
 					 
-					 mav.addObject("dateString", hubResponse.getResults().getEndDateStr());
+					    mav.addObject("dateString", hubResponse.getResults().getEndDateStr());
 						mav.addObject("startDate", hubResponse.getResults().getStartDateStr());
 						
 						String endDate = hubResponse.getResults().getEndDateStr();
@@ -45556,13 +47164,13 @@ public ModelAndView gameScheduleSite(HttpServletRequest req, @PathVariable Strin
 					 
 					 
 					 mav.addObject("gameSchedule", hubResponse.getResults().getGameSchedule());
-					 mav.addObject("upcomingMatchesList", hubResponse.getResults().getGameSchedule().getUpComingMatchesList());		
+			//		 mav.addObject("upcomingMatchesList", hubResponse.getResults().getGameSchedule().getUpComingMatchesList());		
 					 System.out.println("upcoming matches ->>>>>>>>>>>>>>>>>"+boardId);
-					 mav.addObject("boardId",boardId);
-					 mav.addObject("completedMatchesList", hubResponse.getResults().getGameSchedule().getCompletedMatchesList());
-					 mav.addObject("inprogressMatchesList", hubResponse.getResults().getGameSchedule().getInprogressMatchesList());
+			//		 mav.addObject("boardId",boardId);
+			//		 mav.addObject("completedMatchesList", hubResponse.getResults().getGameSchedule().getCompletedMatchesList());
+			//		 mav.addObject("inprogressMatchesList", hubResponse.getResults().getGameSchedule().getInprogressMatchesList());
 					 
-					 mav.addObject("inCompletedMatches", hubResponse.getResults().getGameSchedule().getIncompleteMatchesList());
+			//		 mav.addObject("inCompletedMatches", hubResponse.getResults().getGameSchedule().getIncompleteMatchesList());
 					 
 					 
 					 if(hubResponse.getResults().getGameSchedule().getUpComingMatchesList() != null){
@@ -45592,10 +47200,135 @@ public ModelAndView gameScheduleSite(HttpServletRequest req, @PathVariable Strin
 				 }else{
 					System.out.println("null condition"); 
 				 }
-			 }
-			 else{
+			 }*/
+		 
+		 
+		 
+		 String StartDate;
+			String EndDate;
+			
+				Calendar now = Calendar.getInstance(); 
+			       SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+					String comingDateString = sdf1.format(now.getTime());
+					 now.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(comingDateString));
+					 System.out.println("Next :"+sdf1.format(now.getTime()));
+					now.add(Calendar.DATE, 0);  // number of days to add
+					String afterAddedOne = sdf1.format(now.getTime());
+					
+					System.out.println("Nextttttttttttttttttttttttt =============="+afterAddedOne);
+					StartDate=afterAddedOne;
+					now.add(Calendar.DATE, 6);
+					EndDate=sdf1.format(now.getTime());
+			
+			
+			 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map5=new ModelMap();
+				 map5.put("boardId", boardId);
+				 map5.put("fromDateString",StartDate);
+				 map5.put("toDateString",EndDate);
+				 map5.put("status", "Upcoming");
+				 hubReq.setRequestParam(map5);
+
+				 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 if(strGameScheduleList != null){
+					 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleList, HubResponse.class);
+					 if(hubResponse1 != null && hubResponse1.getResults() != null){
+						 
+						 
+						    mav.addObject("dateString", hubResponse1.getResults().getEndDateStr());
+							mav.addObject("startDate", hubResponse1.getResults().getStartDateStr());
+							String endDate = hubResponse1.getResults().getEndDateStr();
+
+							String startDate = hubResponse1.getResults().getStartDateStr();
+							String[] spliteDOB1 = startDate.split("-");
+							 String monthInEditProfile1 = spliteDOB1[0];
+							 String dayInEditProfile1 = spliteDOB1[1];
+							 String yearInEditProfile1 = spliteDOB1[2];
+							 String startDateSet= dayInEditProfile1+'/'+yearInEditProfile1+'/'+monthInEditProfile1;
+								mav.addObject("startDateSet", startDateSet);
+							
+							
+							String[] spliteDOB = endDate.split("-");
+							 String monthInEditProfile = spliteDOB[0];
+							 String dayInEditProfile = spliteDOB[1];
+							 String yearInEditProfile = spliteDOB[2];
+							 String endDateSet= dayInEditProfile+'/'+yearInEditProfile+'/'+monthInEditProfile;
+							 mav.addObject("endDateSet", endDateSet);
+						 
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null ){
+							 mav.addObject("upcomingMatchesList", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
+							 mav.addObject("upcomingMatchesListSize", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList().size());
+						 }else{
+							 mav.addObject("upcomingMatchesListSize", 0);
+						 }
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList() != null){
+							 mav.addObject("inCompletedMatches", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList());
+							 mav.addObject("inCompletedMatchesListSize", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList().size());
+							}else{
+								mav.addObject("inCompletedMatchesListSize", 0);
+							}
+						 
+						 
+						 
+					 }else{
+						System.out.println("null condition"); 
+					 }
+				 }
 				 
-			 }
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(281);
+					 ModelMap map9=new ModelMap();
+					 map9.put("boardId", boardId);
+					 map9.put("fromDateString",StartDate);
+					 map9.put("toDateString",EndDate);
+					 map9.put("status", "InProgress");
+					 hubReq.setRequestParam(map9);
+
+					 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+					 if(strGameScheduleListInprogress != null){
+						 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleListInprogress, HubResponse.class);
+						 if(hubResponse1 != null && hubResponse1.getResults() != null){
+							 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+							 {
+								 mav.addObject("inprogressMatchesList", hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+								mav.addObject("inprogressMatchesListSize",hubResponse1.getResults().getGameSchedule().getInprogressMatchesList().size() ); 
+							 }else{
+								 mav.addObject("inprogressMatchesListSize",0);
+							 }
+						 }else{
+							System.out.println("null condition"); 
+						 }
+					 }
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map8=new ModelMap();
+				 map8.put("boardId", boardId);
+				 map8.put("fromDateString",StartDate);
+				 map8.put("toDateString",EndDate);
+				 map8.put("status", "Completed");
+				 hubReq.setRequestParam(map8);
+
+				 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 
+				
+				 if(strGameScheduleList1 != null){
+					 HubResponse hubResponse2 = GsonConverters.getGsonObject().fromJson(strGameScheduleList1, HubResponse.class);
+					 if(hubResponse2 != null && hubResponse2.getResults() != null){
+						 if(hubResponse2.getResults().getGameSchedule().getCompletedMatchesList() != null){
+							 mav.addObject("completedMatchesList", hubResponse2.getResults().getGameSchedule().getCompletedMatchesList());
+							 mav.addObject("completedMatchesListSize",hubResponse2.getResults().getGameSchedule().getCompletedMatchesList().size() );
+							 }else{
+								 mav.addObject("completedMatchesListSize",0);
+							 }
+					 }else{
+						System.out.println("null condition"); 
+					 }
+				 }
 			 
 		}else{
 			
@@ -45675,12 +47408,10 @@ public ModelAndView filterScheduleFunctionSite(HttpServletRequest req, @ModelAtt
 			 if(fromDateString != null && fromDateString != "" && toDateString != null && toDateString != "" && tournamentId == null || tournamentId == ""){
 				System.out.println("inside if");
 				 
-				 hubReq = new HubRequest();
+				 /*hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
-				 //map3.put("userId", userId);
 				 map3.put("boardId", gs.getBoardId());
-				 //map3.put("tournamentId", tournamentId);
 				 map3.put("fromDateString", fromDateString);
 				 map3.put("toDateString", toDateString);
 				 map3.put("endNode", 10);
@@ -45733,10 +47464,103 @@ public ModelAndView filterScheduleFunctionSite(HttpServletRequest req, @ModelAtt
 				 }
 				 else{
 					 
+				 }*/
+				
+				
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map5=new ModelMap();
+				 map5.put("boardId", gs.getBoardId());
+ 				 map5.put("fromDateString",fromDateString);
+				 map5.put("toDateString",toDateString);
+				 map5.put("status", "Upcoming");
+				 hubReq.setRequestParam(map5);
+
+				 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 if(strGameScheduleList != null){
+					 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleList, HubResponse.class);
+					 if(hubResponse1 != null && hubResponse1.getResults() != null){
+						 
+						 
+						    mav.addObject("dateString", hubResponse1.getResults().getEndDateStr());
+							mav.addObject("startDate", hubResponse1.getResults().getStartDateStr());
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null ){
+							 mav.addObject("upcomingMatchesList", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
+							 mav.addObject("upcomingMatchesListSize", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList().size());
+						 }else{
+							 mav.addObject("upcomingMatchesListSize", 0);
+						 }
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList() != null){
+							 mav.addObject("inCompletedMatches", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList());
+							 mav.addObject("inCompletedMatchesListSize", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList().size());
+							}else{
+								mav.addObject("inCompletedMatchesListSize", 0);
+							}
+						 
+					 }else{
+						System.out.println("null condition"); 
+					 }
 				 }
+				 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(281);
+					 ModelMap map9=new ModelMap();
+					 map9.put("boardId", gs.getBoardId());
+					 map9.put("tournamentId", tournamentId);
+					 map9.put("fromDateString",fromDateString);
+					 map9.put("toDateString",toDateString);
+					 map9.put("status", "InProgress");
+					 hubReq.setRequestParam(map9);
+
+					 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+					 if(strGameScheduleListInprogress != null){
+						 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleListInprogress, HubResponse.class);
+						 if(hubResponse1 != null && hubResponse1.getResults() != null){
+							 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+							 {
+								 mav.addObject("inprogressMatchesList", hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+								mav.addObject("inprogressMatchesListSize",hubResponse1.getResults().getGameSchedule().getInprogressMatchesList().size() ); 
+							 }else{
+								 mav.addObject("inprogressMatchesListSize",0);
+							 }
+						 }else{
+							System.out.println("null condition"); 
+						 }
+					 }
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map8=new ModelMap();
+				 map8.put("boardId", gs.getBoardId());
+				 map8.put("tournamentId", tournamentId);
+				 map8.put("fromDateString",fromDateString);
+				 map8.put("toDateString",toDateString);
+				 map8.put("status", "Completed");
+				 hubReq.setRequestParam(map8);
+
+				 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 
+				
+				 if(strGameScheduleList1 != null){
+					 HubResponse hubResponse2 = GsonConverters.getGsonObject().fromJson(strGameScheduleList1, HubResponse.class);
+					 if(hubResponse2 != null && hubResponse2.getResults() != null){
+						 if(hubResponse2.getResults().getGameSchedule().getCompletedMatchesList() != null){
+							 mav.addObject("completedMatchesList", hubResponse2.getResults().getGameSchedule().getCompletedMatchesList());
+							 mav.addObject("completedMatchesListSize",hubResponse2.getResults().getGameSchedule().getCompletedMatchesList().size() );
+							 }else{
+								 mav.addObject("completedMatchesListSize",0);
+							 }
+					 }else{
+						System.out.println("null condition"); 
+					 }
+				 }
+				
+				
 			 }else if(tournamentId != null && tournamentId != "" && fromDateString == null || fromDateString == "" && toDateString == null || toDateString == ""){
 				 
-				 System.out.println("inside else if");
+				/* System.out.println("inside else if");
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
@@ -45777,10 +47601,97 @@ public ModelAndView filterScheduleFunctionSite(HttpServletRequest req, @ModelAtt
 				 }
 				 else{
 					 
+				 }*/
+				 
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map5=new ModelMap();
+				 map5.put("boardId", gs.getBoardId());
+				 map5.put("tournamentId", tournamentId);
+				 map5.put("status", "Upcoming");
+				 hubReq.setRequestParam(map5);
+
+				 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 if(strGameScheduleList != null){
+					 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleList, HubResponse.class);
+					 if(hubResponse1 != null && hubResponse1.getResults() != null){
+						 
+						 
+						    mav.addObject("dateString", hubResponse1.getResults().getEndDateStr());
+							mav.addObject("startDate", hubResponse1.getResults().getStartDateStr());
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null ){
+							 mav.addObject("upcomingMatchesList", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
+							 mav.addObject("upcomingMatchesListSize", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList().size());
+						 }else{
+							 mav.addObject("upcomingMatchesListSize", 0);
+						 }
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList() != null){
+							 mav.addObject("inCompletedMatches", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList());
+							 mav.addObject("inCompletedMatchesListSize", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList().size());
+							}else{
+								mav.addObject("inCompletedMatchesListSize", 0);
+							}
+						 
+					 }else{
+						System.out.println("null condition"); 
+					 }
 				 }
 				 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(281);
+					 ModelMap map9=new ModelMap();
+					 map9.put("boardId", gs.getBoardId());
+					 map9.put("tournamentId", tournamentId);
+					 map9.put("status", "InProgress");
+					 hubReq.setRequestParam(map9);
+
+					 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+					 if(strGameScheduleListInprogress != null){
+						 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleListInprogress, HubResponse.class);
+						 if(hubResponse1 != null && hubResponse1.getResults() != null){
+							 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+							 {
+								 mav.addObject("inprogressMatchesList", hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+								mav.addObject("inprogressMatchesListSize",hubResponse1.getResults().getGameSchedule().getInprogressMatchesList().size() ); 
+							 }else{
+								 mav.addObject("inprogressMatchesListSize",0);
+							 }
+						 }else{
+							System.out.println("null condition"); 
+						 }
+					 }
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map8=new ModelMap();
+				 map8.put("boardId", gs.getBoardId());
+				 map8.put("tournamentId", tournamentId);
+				 map8.put("status", "Completed");
+				 hubReq.setRequestParam(map8);
+
+				 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 
+				
+				 if(strGameScheduleList1 != null){
+					 HubResponse hubResponse2 = GsonConverters.getGsonObject().fromJson(strGameScheduleList1, HubResponse.class);
+					 if(hubResponse2 != null && hubResponse2.getResults() != null){
+						 if(hubResponse2.getResults().getGameSchedule().getCompletedMatchesList() != null){
+							 mav.addObject("completedMatchesList", hubResponse2.getResults().getGameSchedule().getCompletedMatchesList());
+							 mav.addObject("completedMatchesListSize",hubResponse2.getResults().getGameSchedule().getCompletedMatchesList().size() );
+							 }else{
+								 mav.addObject("completedMatchesListSize",0);
+							 }
+					 }else{
+						System.out.println("null condition"); 
+					 }
+				 }
+				 
+				 
 			 }else if(fromDateString != null && fromDateString != "" && toDateString != null && toDateString != "" && tournamentId != null && tournamentId != ""){
-				 hubReq = new HubRequest();
+				 /*hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
 				// map3.put("userId", userId);
@@ -45822,11 +47733,104 @@ public ModelAndView filterScheduleFunctionSite(HttpServletRequest req, @ModelAtt
 				 }
 				 else{
 					 
+				 }*/
+				 
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map5=new ModelMap();
+				 map5.put("boardId", gs.getBoardId());
+				 map5.put("tournamentId", tournamentId);
+				 map5.put("fromDateString",fromDateString);
+				 map5.put("toDateString",toDateString);
+				 map5.put("status", "Upcoming");
+				 hubReq.setRequestParam(map5);
+
+				 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 if(strGameScheduleList != null){
+					 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleList, HubResponse.class);
+					 if(hubResponse1 != null && hubResponse1.getResults() != null){
+						 
+						 
+						    mav.addObject("dateString", hubResponse1.getResults().getEndDateStr());
+							mav.addObject("startDate", hubResponse1.getResults().getStartDateStr());
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null ){
+							 mav.addObject("upcomingMatchesList", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
+							 mav.addObject("upcomingMatchesListSize", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList().size());
+						 }else{
+							 mav.addObject("upcomingMatchesListSize", 0);
+						 }
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList() != null){
+							 mav.addObject("inCompletedMatches", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList());
+							 mav.addObject("inCompletedMatchesListSize", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList().size());
+							}else{
+								mav.addObject("inCompletedMatchesListSize", 0);
+							}
+						 
+					 }else{
+						System.out.println("null condition"); 
+					 }
 				 }
+				 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(281);
+					 ModelMap map9=new ModelMap();
+					 map9.put("boardId", gs.getBoardId());
+					 map9.put("tournamentId", tournamentId);
+					 map9.put("fromDateString",fromDateString);
+					 map9.put("toDateString",toDateString);
+					 map9.put("status", "InProgress");
+					 hubReq.setRequestParam(map9);
+
+					 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+					 if(strGameScheduleListInprogress != null){
+						 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleListInprogress, HubResponse.class);
+						 if(hubResponse1 != null && hubResponse1.getResults() != null){
+							 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+							 {
+								 mav.addObject("inprogressMatchesList", hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+								mav.addObject("inprogressMatchesListSize",hubResponse1.getResults().getGameSchedule().getInprogressMatchesList().size() ); 
+							 }else{
+								 mav.addObject("inprogressMatchesListSize",0);
+							 }
+						 }else{
+							System.out.println("null condition"); 
+						 }
+					 }
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map8=new ModelMap();
+				 map8.put("boardId", gs.getBoardId());
+				 map8.put("tournamentId", tournamentId);
+				 map8.put("fromDateString",fromDateString);
+				 map8.put("toDateString",toDateString);
+				 map8.put("status", "Completed");
+				 hubReq.setRequestParam(map8);
+
+				 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 
+				
+				 if(strGameScheduleList1 != null){
+					 HubResponse hubResponse2 = GsonConverters.getGsonObject().fromJson(strGameScheduleList1, HubResponse.class);
+					 if(hubResponse2 != null && hubResponse2.getResults() != null){
+						 if(hubResponse2.getResults().getGameSchedule().getCompletedMatchesList() != null){
+							 mav.addObject("completedMatchesList", hubResponse2.getResults().getGameSchedule().getCompletedMatchesList());
+							 mav.addObject("completedMatchesListSize",hubResponse2.getResults().getGameSchedule().getCompletedMatchesList().size() );
+							 }else{
+								 mav.addObject("completedMatchesListSize",0);
+							 }
+					 }else{
+						System.out.println("null condition"); 
+					 }
+				 }
+				 
 			 }
 			 else{
 				 
-				 System.out.println("inside else");
+				/* System.out.println("inside else");
 				 hubReq = new HubRequest();
 				 hubReq.setMsgType(133);
 				 ModelMap map3 = new ModelMap();
@@ -45867,7 +47871,92 @@ public ModelAndView filterScheduleFunctionSite(HttpServletRequest req, @ModelAtt
 				 }
 				 else{
 					 
+				 }*/
+				 
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map5=new ModelMap();
+				 map5.put("boardId", gs.getBoardId());
+				 map5.put("status", "Upcoming");
+				 hubReq.setRequestParam(map5);
+
+				 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 if(strGameScheduleList != null){
+					 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleList, HubResponse.class);
+					 if(hubResponse1 != null && hubResponse1.getResults() != null){
+						 
+						 
+						    mav.addObject("dateString", hubResponse1.getResults().getEndDateStr());
+							mav.addObject("startDate", hubResponse1.getResults().getStartDateStr());
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null ){
+							 mav.addObject("upcomingMatchesList", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList());
+							 mav.addObject("upcomingMatchesListSize", hubResponse1.getResults().getGameSchedule().getUpComingMatchesList().size());
+						 }else{
+							 mav.addObject("upcomingMatchesListSize", 0);
+						 }
+						 
+						 if(hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList() != null){
+							 mav.addObject("inCompletedMatches", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList());
+							 mav.addObject("inCompletedMatchesListSize", hubResponse1.getResults().getGameSchedule().getIncompleteMatchesList().size());
+							}else{
+								mav.addObject("inCompletedMatchesListSize", 0);
+							}
+						 
+					 }else{
+						System.out.println("null condition"); 
+					 }
 				 }
+				 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(281);
+					 ModelMap map9=new ModelMap();
+					 map9.put("boardId", gs.getBoardId());
+					 map9.put("status", "InProgress");
+					 hubReq.setRequestParam(map9);
+
+					 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+					 if(strGameScheduleListInprogress != null){
+						 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleListInprogress, HubResponse.class);
+						 if(hubResponse1 != null && hubResponse1.getResults() != null){
+							 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+							 {
+								 mav.addObject("inprogressMatchesList", hubResponse1.getResults().getGameSchedule().getInprogressMatchesList());
+								mav.addObject("inprogressMatchesListSize",hubResponse1.getResults().getGameSchedule().getInprogressMatchesList().size() ); 
+							 }else{
+								 mav.addObject("inprogressMatchesListSize",0);
+							 }
+						 }else{
+							System.out.println("null condition"); 
+						 }
+					 }
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map8=new ModelMap();
+				 map8.put("boardId", gs.getBoardId());
+				 map8.put("status", "Completed");
+				 hubReq.setRequestParam(map8);
+
+				 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 
+				
+				 if(strGameScheduleList1 != null){
+					 HubResponse hubResponse2 = GsonConverters.getGsonObject().fromJson(strGameScheduleList1, HubResponse.class);
+					 if(hubResponse2 != null && hubResponse2.getResults() != null){
+						 if(hubResponse2.getResults().getGameSchedule().getCompletedMatchesList() != null){
+							 mav.addObject("completedMatchesList", hubResponse2.getResults().getGameSchedule().getCompletedMatchesList());
+							 mav.addObject("completedMatchesListSize",hubResponse2.getResults().getGameSchedule().getCompletedMatchesList().size() );
+							 }else{
+								 mav.addObject("completedMatchesListSize",0);
+							 }
+					 }else{
+						System.out.println("null condition"); 
+					 }
+				 }
+				 
+				 
 				
 			 } 
 			 
@@ -45882,12 +47971,13 @@ public ModelAndView filterScheduleFunctionSite(HttpServletRequest req, @ModelAtt
 public @ResponseBody ResponseTypeSchedule gameScheduletPreNextsite(HttpServletRequest req,@RequestBody GameScheduleFilter gamescheduler )
 {
 	//ResponseType returnList=null;
-	ResponseTypeSchedule returnList=null;
+	ResponseTypeSchedule returnList=new ResponseTypeSchedule();
+	GameScheduleFilter schedule=new GameScheduleFilter();
 	try{
 		HttpSession session=req.getSession(true);
 		
 			UUID userId=(UUID) session.getAttribute("USRID");
-			 hubReq = new HubRequest(133);
+			/* hubReq = new HubRequest(133);
 				ModelMap m = new ModelMap();
 				m.put("userId",userId );
 				m.put("boardId", gamescheduler.getBoardId());
@@ -45939,7 +48029,120 @@ public @ResponseBody ResponseTypeSchedule gameScheduletPreNextsite(HttpServletRe
 			
 				
 				}
+			}*/
+				
+			String StartDate;
+			String EndDate;
+			
+			if(gamescheduler.getPreviousNextFlag().equalsIgnoreCase("Previous")){
+				
+				Calendar now = Calendar.getInstance(); 
+			       SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+					String comingDateString = gamescheduler.getDateString();
+					 now.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(comingDateString));
+					 System.out.println("Previous :"+sdf1.format(now.getTime()));
+					 now.add(Calendar.DATE, -1);  // number of days to add
+					 String afterAddedOne = sdf1.format(now.getTime());
+					
+					System.out.println("Previousssssssssssss =============="+afterAddedOne);
+					EndDate=afterAddedOne;
+					now.add(Calendar.DATE, -6);
+					StartDate=sdf1.format(now.getTime());
+				
+			}else{
+				Calendar now = Calendar.getInstance(); 
+			       SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+					String comingDateString = gamescheduler.getDateString();
+					 now.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(comingDateString));
+					 System.out.println("Next :"+sdf1.format(now.getTime()));
+					now.add(Calendar.DATE, 1);  // number of days to add
+					String afterAddedOne = sdf1.format(now.getTime());
+					
+					System.out.println("Nextttttttttttttttttttttttt =============="+afterAddedOne);
+					StartDate=afterAddedOne;
+					now.add(Calendar.DATE, 6);
+					EndDate=sdf1.format(now.getTime());
 			}
+			
+			
+			 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map5=new ModelMap();
+				 map5.put("userId",userId );
+				 map5.put("boardId", gamescheduler.getBoardId());
+				 map5.put("fromDateString",StartDate);
+				 map5.put("toDateString",EndDate);
+				 map5.put("status", "Upcoming");
+				 hubReq.setRequestParam(map5);
+
+				 String strGameScheduleList = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 if(strGameScheduleList != null){
+					 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleList, HubResponse.class);
+					 if(hubResponse1 != null && hubResponse1.getResults() != null){
+						 if(hubResponse1.getResults().getGameSchedule().getUpComingMatchesList() !=null )
+						 {
+							 ResponseTypeSchedule responsetype=GsonConverters.getGsonObject().fromJson(new JSONObject(strGameScheduleList).getJSONObject("results").toString() , ResponseTypeSchedule.class);
+							 schedule.setUpComingMatchesList(responsetype.getGameSchedule().getUpComingMatchesList());
+							 schedule.setIncompleteMatchesList(responsetype.getGameSchedule().getIncompleteMatchesList());
+						 }
+					 }else{
+						System.out.println("null condition"); 
+					 }
+				 }
+				 
+					 hubReq =new HubRequest();
+					 hubReq.setMsgType(281);
+					 ModelMap map9=new ModelMap();
+					 map9.put("userId",userId );
+					 map9.put("boardId", gamescheduler.getBoardId());
+					 map9.put("fromDateString",StartDate);
+					 map9.put("toDateString",EndDate);
+					 map9.put("status", "InProgress");
+					 hubReq.setRequestParam(map9);
+
+					 String strGameScheduleListInprogress = cricketSocialRestTemplateService.userRegistration(hubReq);
+					 if(strGameScheduleListInprogress != null){
+						 HubResponse hubResponse1 = GsonConverters.getGsonObject().fromJson(strGameScheduleListInprogress, HubResponse.class);
+						 if(hubResponse1 != null && hubResponse1.getResults() != null){
+							 if( hubResponse1.getResults().getGameSchedule().getInprogressMatchesList() != null)
+							 {
+								 ResponseTypeSchedule responsetype=GsonConverters.getGsonObject().fromJson(new JSONObject(strGameScheduleListInprogress).getJSONObject("results").toString() , ResponseTypeSchedule.class);
+								 schedule.setInprogressMatchesList(responsetype.getGameSchedule().getInprogressMatchesList());
+							 
+							 }
+						 }else{
+							System.out.println("null condition"); 
+						 }
+					 }
+				 
+				 hubReq =new HubRequest();
+				 hubReq.setMsgType(281);
+				 ModelMap map8=new ModelMap();
+				 map8.put("userId",userId );
+				 map8.put("boardId", gamescheduler.getBoardId());
+				 map8.put("fromDateString",StartDate);
+				 map8.put("toDateString",EndDate);
+				 map8.put("status", "Completed");
+				 hubReq.setRequestParam(map8);
+
+				 String strGameScheduleList1 = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 
+				
+				 if(strGameScheduleList1 != null){
+					 HubResponse hubResponse2 = GsonConverters.getGsonObject().fromJson(strGameScheduleList1, HubResponse.class);
+					 if(hubResponse2 != null && hubResponse2.getResults() != null){
+						 
+						 ResponseTypeSchedule responsetype=GsonConverters.getGsonObject().fromJson(new JSONObject(strGameScheduleList1).getJSONObject("results").toString() , ResponseTypeSchedule.class);
+						 schedule.setCompletedMatchesList(responsetype.getGameSchedule().getCompletedMatchesList()); 
+					
+						 returnList.setStartDateStr(hubResponse2.getResults().getStartDateStr());
+						 returnList.setEndDateStr(hubResponse2.getResults().getEndDateStr());
+					 }else{
+						System.out.println("null condition"); 
+					 }
+				 }
+				 returnList.setGameSchedule(schedule);
 			
 	}catch(Exception e)
 	{

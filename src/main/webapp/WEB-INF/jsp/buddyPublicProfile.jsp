@@ -932,8 +932,11 @@ function gitHitedList(fid)
                    htm+='<div class="media">'
                    +'<div class="media-left">'
                  
-             	
-             		htm +='<img src="'+ctx+'/images/profileIcon.png" class="nav-avatar">'
+                  
+                   
+             		//htm +='<img src='+res[i].userImageUrl+' class="nav-avatar">'
+             		htm +='<img src='+res[i].userImageUrl+'  onerror="imgError(this);" class="nav-avatar">'
+             		
                +'</div>'
                +'<div class="media-body">'
                +'<a href="'+ctx+'/buddy/'+res[i].hittedByName+'/'+res[i].hittedBy+'">'
@@ -960,7 +963,11 @@ function gitHitedList(fid)
 	
 }
 	
-
+function imgError(image) {
+    image.onerror = "";
+    image.src = "https://cdn.cricketsocial.com/images/profileIcon.png";
+    return true;
+}
 </script>
 
 </body>

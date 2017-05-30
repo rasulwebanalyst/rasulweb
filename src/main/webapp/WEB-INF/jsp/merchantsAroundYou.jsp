@@ -88,7 +88,7 @@
 			             
 					</c:when>
 					<c:otherwise>
-						 No merchants around you.
+						 No merchant around you.
 					</c:otherwise>
 				</c:choose>	
                    </c:forEach>

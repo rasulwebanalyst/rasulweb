@@ -40,5 +40,7 @@ public class ResponseTypeSchedule {
 		this.gameSchedule = gameSchedule;
 	}
 	
+	
+	
 
 }

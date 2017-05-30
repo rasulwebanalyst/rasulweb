@@ -116,7 +116,7 @@
                                         <th>Score card</th>
                                     </tr>
                                 </thead></table>
-                         	<span id="noMatchData" class="noContentDivRed">No Matches available</span>
+                         	<span id="noMatchData" class="noContentDivRed">No Match available</span>
                          	
                          	</c:when>
                          	<c:otherwise>
@@ -294,7 +294,7 @@
                                     
                                 	</c:when>
                                 	<c:otherwise>
-                                	<div style = "color:red">No Matches Played</div>
+                                	<div style = "color:red">No Match Played</div>
                                 	</c:otherwise>
                                 	</c:choose>
                                 	
