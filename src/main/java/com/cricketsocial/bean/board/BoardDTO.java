@@ -10,7 +10,6 @@ public class BoardDTO {
 	
 	
 	
-	
 	public String getMatchStatus() {
 		return matchStatus;
 	}

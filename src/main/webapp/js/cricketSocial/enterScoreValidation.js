@@ -214,6 +214,93 @@ function matchStart(homeTeamId,awayTeamId){
 	}
 	
 }
+
+
+
+
+function matchEdit(homeTeamId,awayTeamId){
+	//alert("result======================>"+homeTeamId);	
+		$("#enterscoreStartbtn").prop('disabled', 'disabled');
+		$("#firstInningsId").html($("#homeTeamName option:selected").text());
+		$("#secondInningsId").html($("#awayTeamName option:selected").text());
+		$('#entescoreMainDIV').show();		
+			//alert("val"+firstTeamPlayersId[0].boardId);		
+		if(	$("#awayTeamName").val() == firstTeamPlayersId[0].boardId){
+			//alert("if");
+			var htmlContent='';
+			var htmlContent1='';
+			htmlContent +='<option value="0">Select Player</option>';
+			htmlContent1 +='<option value="0">Select Player</option>';
+			for(var i =0;i<firstTeamPlayersId.length;i++ ){
+				console.log("asa"+firstTeamPlayersId[i]);
+				htmlContent += '<option value="'+firstTeamPlayersId[i].userId+'">'+firstTeamPlayersId[i].userProfile.fullName+'</option>';
+			}			
+			for(var i =0;i<sceondTeamPlayersId.length;i++ ){
+				htmlContent1 += '<option value="'+sceondTeamPlayersId[i].userId+'">'+sceondTeamPlayersId[i].userProfile.fullName+'</option>';
+			}
+			// first innings
+			//$("#firInnPlayerName").html(htmlContent1).trigger('create');
+			//$("#firInnBowlerName").html(htmlContent).trigger('create');						
+			//$("#firInnFielderName").html(htmlContent).trigger('create');
+			//$("#firInnBowlingName").html(htmlContent).trigger('create');			
+			// second innings 
+			//$("#secInnPlayerName").html(htmlContent).trigger('create');			
+			//$("#secInnBowlerName").html(htmlContent1).trigger('create');
+			//$("#secInnFielderName").html(htmlContent1).trigger('create');
+			//$("#secInnBowlingName").html(htmlContent1).trigger('create');			
+		}else{
+			//alert("else");
+			var htmlContent='';
+			var htmlContent1='';
+			htmlContent +='<option value="0">Select Player</option>';
+			htmlContent1 +='<option value="0">Select Player</option>';
+			for(var i =0;i<firstTeamPlayersId.length;i++ ){
+				console.log("asa"+firstTeamPlayersId[i]);
+				console.log("asa"+JSON.stringify(firstTeamPlayersId[i]));
+				htmlContent += '<option value="'+firstTeamPlayersId[i].userId+'">'+firstTeamPlayersId[i].userProfile.fullName+'</option>';
+			}
+			for(var i =0;i<sceondTeamPlayersId.length;i++ ){
+				htmlContent1 += '<option value="'+sceondTeamPlayersId[i].userId+'">'+sceondTeamPlayersId[i].userProfile.fullName+'</option>';
+			}
+			//first innings
+			//$("#firInnPlayerName").html(htmlContent).trigger('create');
+			//$("#firInnBowlerName").html(htmlContent1).trigger('create');						
+			//$("#firInnFielderName").html(htmlContent1).trigger('create');
+			//$("#firInnBowlingName").html(htmlContent1).trigger('create');			
+			// second innings
+			//$("#secInnPlayerName").html(htmlContent1).trigger('create');			
+			//$("#secInnBowlerName").html(htmlContent).trigger('create');
+			//$("#secInnFielderName").html(htmlContent).trigger('create');
+			//$("#secInnBowlingName").html(htmlContent).trigger('create');
+		}	     	
+		var playerOftheMatch = '';
+		playerOftheMatch +='<option value="0">Select Man Of the Match Player</option>';
+		for(var i =0;i<firstTeamPlayersId.length;i++ ){
+			//console.log("asa"+firstTeamPlayersId[i]);
+			playerOftheMatch += '<option value="'+firstTeamPlayersId[i].userId+'">'+firstTeamPlayersId[i].userProfile.fullName+'</option>';
+		}		
+		for(var i =0;i<sceondTeamPlayersId.length;i++ ){
+			playerOftheMatch += '<option value="'+sceondTeamPlayersId[i].userId+'">'+sceondTeamPlayersId[i].userProfile.fullName+'</option>';
+		}
+		$("#PlayerOfTheMatch").html(playerOftheMatch).trigger('create');
+		
+		
+		firstInningsDob=1;
+		secondInningsDob=1;
+				setDonotBatPlayersFirstInnings();
+		setDonotBatPlayersSecondInnings();	
+		
+		
+		var totalover=$("#totalOver").val();
+		$("#totalOver").val(totalover.split(".")[0]);
+}
+
+
+
+
+
+
+
 function manOfTheMatchPlayerSelection(){
 	
 	if($("#PlayerOfTheMatch").val() != 0){
@@ -225,6 +312,7 @@ function manOfTheMatchPlayerSelection(){
 function firstIningsbattingPlayerOnchange(elem,hiddenId,action){
 	
 	 var slectedPlayerId=$(elem).val();
+	 console.log("The value : : :"+slectedPlayerId)
 	     if(slectedPlayerId != 0){
 	     $("#"+hiddenId).val(slectedPlayerId);
 	     var str = "";

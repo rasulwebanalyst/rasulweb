@@ -25,7 +25,7 @@ public class Roaster {
 	private String affiliateto;
 	private List<UserProfile> playerList;
 	
-private String designation;
+	private String designation;
 	
 	private String teamBoardName;
 	
@@ -35,18 +35,17 @@ private String designation;
 	
 	
 	
-	
-	public String getDesignation() {
-		return designation;
-	}
-	public void setDesignation(String designation) {
-		this.designation = designation;
-	}
 	public String getTeamBoardName() {
 		return teamBoardName;
 	}
 	public void setTeamBoardName(String teamBoardName) {
 		this.teamBoardName = teamBoardName;
+	}
+	public String getDesignation() {
+		return designation;
+	}
+	public void setDesignation(String designation) {
+		this.designation = designation;
 	}
 	public String getRosterCreatedDate() {
 		return rosterCreatedDate;

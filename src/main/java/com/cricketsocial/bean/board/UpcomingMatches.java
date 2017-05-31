@@ -48,14 +48,15 @@ public class UpcomingMatches {
 	private UUID tournamentSchedulerId;
 	private List<ScorerNameList> portalScorerList;
 	
+	
+	
+	
 	public List<ScorerNameList> getPortalScorerList() {
 		return portalScorerList;
 	}
 	public void setPortalScorerList(List<ScorerNameList> portalScorerList) {
 		this.portalScorerList = portalScorerList;
 	}
-	
-	
 	public UUID getTournamentSchedulerId() {
 		return tournamentSchedulerId;
 	}

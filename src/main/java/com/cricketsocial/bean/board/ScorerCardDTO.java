@@ -3,6 +3,7 @@ package com.cricketsocial.bean.board;
 import java.util.List;
 import java.util.UUID;
 
+import com.cricketsocial.bean.leauge.PlayerDTO;
 import com.cricketsocial.bean.roaster.Commentary;
 import com.cricketsocial.bean.roaster.CommentaryDetails;
 import com.cricketsocial.bean.roaster.FollowOfWickets;
@@ -25,10 +26,37 @@ public class ScorerCardDTO {
 	private String totalNumExtras;
 	private CommentaryDetails commentary;
 	private String isInningsCompleted;
+	private int firstInningsTotalRuns;
+	private int secondInningsTotalRuns;
+	private List<ExtrasDTO> extrasvalue;
+    private List<PlayerDTO> doNotBatPlayersList;
 	
 	
 	
-	
+	public List<PlayerDTO> getDoNotBatPlayersList() {
+		return doNotBatPlayersList;
+	}
+	public void setDoNotBatPlayersList(List<PlayerDTO> doNotBatPlayersList) {
+		this.doNotBatPlayersList = doNotBatPlayersList;
+	}
+	public List<ExtrasDTO> getExtrasvalue() {
+		return extrasvalue;
+	}
+	public void setExtrasvalue(List<ExtrasDTO> extrasvalue) {
+		this.extrasvalue = extrasvalue;
+	}
+	public int getSecondInningsTotalRuns() {
+		return secondInningsTotalRuns;
+	}
+	public void setSecondInningsTotalRuns(int secondInningsTotalRuns) {
+		this.secondInningsTotalRuns = secondInningsTotalRuns;
+	}
+	public int getFirstInningsTotalRuns() {
+		return firstInningsTotalRuns;
+	}
+	public void setFirstInningsTotalRuns(int firstInningsTotalRuns) {
+		this.firstInningsTotalRuns = firstInningsTotalRuns;
+	}
 	public String getIsInningsCompleted() {
 		return isInningsCompleted;
 	}

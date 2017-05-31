@@ -174,7 +174,21 @@ margin: 0;
 
 <body>
 
-
+<div id="scoringPopUp" class="modal" role="dialog"
+		style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<p style="text-align:center;">This score card can't Editable </p>
+					<br>
+				</div>
+				<div class="modal-footer action">
+					<button type="button" onclick="Requestpopup()"
+						class="btn btn-default ok">OK</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 <div id="Requestpopup" class="modal" role="dialog" style="display: none;">
   <div class="modal-dialog">
@@ -2134,11 +2148,52 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
                  		$("#EditSCoreCard1").show();
                  		}else{
                  			$("#EditSCoreCard").hide();
-                 			$("#editScoreCardPopUp").show();
-                 			
+                 			// $("#editScoreCardPopUp").show();
+                 			EditScoreCardPage();
                  		}
                  	}
                 	</script>
+                	
+                	
+                	<script type="text/javascript">
+                	function EditScoreCardPage()
+                	 {
+                		    
+                		    var boardid=$("#ScoreCardBoardId").val();
+                     		var tournametid=$("#ScoreCardTournamentId").val();
+                     		var tournamentschedulerid=$("#ScoreCardtournmentShudulorId").val();
+                     	    var homeid=$("#ScoreCardhomeId").val();
+                     	    var awayteamid= $("#ScoreCardawayTeamId").val();
+                     	    var date=$("#ScoreCarddate").val();
+                     	    var createdby=$("#ScoreCardcreatedBy").val();
+                     	    
+                     	    
+                     	    
+                     	    
+                     	    
+                     	   $.ajax({
+           					type : "GET",
+           					url : "${pageContext.request.contextPath}/matchType/MatchId/"+tournamentschedulerid,
+           					headers : {'Name' : HeaderName},
+           					success : function(res) {
+           					if(res == "4")
+            					{
+           						window.location.href = "${pageContext.request.contextPath}/editscore/boardId/"+boardid+"/"+tournametid+"/"+tournamentschedulerid+"/"+homeid+"/"+awayteamid+"/"+date+"/"+createdby;            					}
+            					else
+            					{
+            					$("#scoringPopUp").show();
+            					} 
+           					}
+            					});
+                		   
+                	 }
+                	
+                	</script>
+                	
+                	
+                	
+                	
+                	
                 	
                 	<script type="text/javascript">
                 	
@@ -2268,6 +2323,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
                 	
                 	function Requestpopup(){
                 		$("#Requestpopup").hide();
+                		$("#scoringPopUp").hide();
                 	}
                 	
                 	

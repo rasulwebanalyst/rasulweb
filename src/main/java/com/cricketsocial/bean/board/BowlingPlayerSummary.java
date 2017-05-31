@@ -22,9 +22,57 @@ public class BowlingPlayerSummary {
 	private int bowlingZeros;
 	
 	private List<String> extras;
-
-	
-	
+    private int bowlingRuns;
+	private double maidenOvers;
+	private int bowlingBallNumber;
+	private double bowlingEconomyRate;
+	private int bowlingFours;
+    private int bowlingSix;
+    private int bowlerPosOrder;
+    
+    
+	public double getMaidenOvers() {
+		return maidenOvers;
+	}
+	public void setMaidenOvers(double maidenOvers) {
+		this.maidenOvers = maidenOvers;
+	}
+	public int getBowlingBallNumber() {
+		return bowlingBallNumber;
+	}
+	public void setBowlingBallNumber(int bowlingBallNumber) {
+		this.bowlingBallNumber = bowlingBallNumber;
+	}
+	public double getBowlingEconomyRate() {
+		return bowlingEconomyRate;
+	}
+	public void setBowlingEconomyRate(double bowlingEconomyRate) {
+		this.bowlingEconomyRate = bowlingEconomyRate;
+	}
+	public int getBowlingFours() {
+		return bowlingFours;
+	}
+	public void setBowlingFours(int bowlingFours) {
+		this.bowlingFours = bowlingFours;
+	}
+	public int getBowlingSix() {
+		return bowlingSix;
+	}
+	public void setBowlingSix(int bowlingSix) {
+		this.bowlingSix = bowlingSix;
+	}
+	public int getBowlerPosOrder() {
+		return bowlerPosOrder;
+	}
+	public void setBowlerPosOrder(int bowlerPosOrder) {
+		this.bowlerPosOrder = bowlerPosOrder;
+	}
+	public int getBowlingRuns() {
+		return bowlingRuns;
+	}
+	public void setBowlingRuns(int bowlingRuns) {
+		this.bowlingRuns = bowlingRuns;
+	}
 	public int getZeroRuns() {
 		return zeroRuns;
 	}
