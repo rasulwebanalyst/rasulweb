@@ -215,7 +215,7 @@ var secondInningsBowling="${SecondInningsBowlingPlayer}";
                                   <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVBow${loop.index}" name="addMemberIDDIVBowName" > 
               
 								<select style="width:100px" id="firInnBowlerName_${loop.index}" name="firInnBowlerName_${loop.index}" onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVBow${loop.index}')">
-													<%-- <option value="0">${firstBatting.bowlerName}</option> --%>
+													<option value="0">Select Player</option>
 													
 													
 					<c:forEach var="bowlinglist" items="${awayTeamRosterList1}" >
@@ -413,7 +413,7 @@ var secondInningsBowling="${SecondInningsBowlingPlayer}";
             	</td>
                 <td><input type="text" value="${firstInnBowling.bowlingOvers}" class="wid" id="firInnOvers_${loop.index}" onfocus = "numberCheck(this)" onblur="oversVal(this);calculateBowlingEconamic('firInnBowRuns_${loop.index}','firInnOvers_${loop.index}','firInnEco_${loop.index}','firInnBowBalls_${loop.index}')" name="firInnOvers" ></td>
                 <td><input type="text" value="${firstInnBowling.bowlingRuns}" class="wid OnlyNumber" id="firInnBowRuns_${loop.index}" onfocus = "numberCheck(this)" name="firInnBowRuns" onblur="calculateBowlingEconamic('firInnBowRuns_${loop.index}','firInnOvers_${loop.index}','firInnEco_${loop.index}','firInnBowBalls_${loop.index}')"></td>
-				<td><input type="text" value="" class="wid OnlyNumber" id="firInnMaiden_${loop.index}" onfocus = "numberCheck(this)" name="firInnMaiden"></td>
+				<td><input type="text" value="${firstInnBowling.maidenOvers}" class="wid OnlyNumber" id="firInnMaiden_${loop.index}" onfocus = "numberCheck(this)" name="firInnMaiden"></td>
                 <td><input type="text" value="${firstInnBowling.wickets}" class="wid OnlyNumber" id="firInnWickets_${loop.index}" onfocus = "numberCheck(this)" name="firInnWickets"></td>
                 <td><input type="text" value="${firstInnBowling.bowlingEconomyRate}" class="wid" id="firInnEco_${loop.index}" onfocus = "numberCheck(this)" name="firInnEco" readonly="readonly"></td>
                 <td><input type="text" value="${firstInnBowling.bowlingZeros}" class="wid OnlyNumber" id="firInnZeros_${loop.index}" onfocus = "numberCheck(this)" name="firInnZeros"></td>
@@ -476,7 +476,7 @@ var secondInningsBowling="${SecondInningsBowlingPlayer}";
                 <td>
 			      
 								<select style="width:100px" id="secInnBowlerName_${loop.index}" name="secInnBowlerName_${loop.index}" onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVBowlerSec${loop.index}')">
-											
+									<option value="0">Select Player</option>		
 					<c:forEach var="bowlinglist" items="${homeTeamRosterList1}" >
 					  <c:choose>
 					  <c:when test="${secondBatting.battingWicketTakenBy eq bowlinglist.userId}">
@@ -640,7 +640,7 @@ var secondInningsBowling="${SecondInningsBowlingPlayer}";
             <c:forEach var="secondBowling" items="${SecondInningsBowlingPlayer}" varStatus="loop">
             <tr>
             	<td>
-							<select style="width:120px" id="secInnBowlingName_${loop.index}" name="secInnBowlingName_${loop.index}" onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIVBowlingSec${loop.index}','SecondInningBowling')">
+							<select id="secInnBowlingName_${loop.index}" name="secInnBowlingName_${loop.index}" onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIVBowlingSec${loop.index}','SecondInningBowling')">
 								               
 								               <c:forEach var="bowlinglist" items="${homeTeamRosterList1}" >
 					  <c:choose>
@@ -1163,7 +1163,7 @@ $(document).ready(function(){
 		html += '</select>';
 		html += '<div  class="out"></div>'; */
 		html += '<select  id="result" style="width: 100%;" name="result" onchange="winpointAutoPopulate();">';
-		html += '<option value="00" selected>Select Win Team</option>';
+		// html += '<option value="00" selected>Select Win Team</option>';
 		
 		var matchstatus="${MatchStatus}";
 		

@@ -49646,8 +49646,8 @@ public ModelAndView editscore(HttpServletRequest req, @PathVariable String board
 							 mav.addObject("awayTeamRosterList1",awayList1);
 							 
 							 
-							 mav.addObject("homeTeamRosterList", homeList);
-							 mav.addObject("awayTeamRosterList",awayList);
+							/* mav.addObject("homeTeamRosterList", homeList);
+							 mav.addObject("awayTeamRosterList",awayList);*/
 							 
 						}else{
 							
@@ -49655,8 +49655,8 @@ public ModelAndView editscore(HttpServletRequest req, @PathVariable String board
 							 mav.addObject("awayTeamRosterList1",homeList1);
 							 
 							 
-							 mav.addObject("homeTeamRosterList", awayList);
-							 mav.addObject("awayTeamRosterList",homeList);
+							/* mav.addObject("homeTeamRosterList", awayList);
+							 mav.addObject("awayTeamRosterList",homeList);*/
 						}
 						
 						mav.addObject("firstInningsextras", res.getResults().getFirstInnings().getExtrasvalue());

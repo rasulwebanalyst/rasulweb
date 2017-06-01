@@ -179,7 +179,7 @@ margin: 0;
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-body">
-					<p style="text-align:center;">This score card can't Editable </p>
+					<p style="text-align:center;">Sorry unable edit the scorecard, Scored by scoring application </p>
 					<br>
 				</div>
 				<div class="modal-footer action">
