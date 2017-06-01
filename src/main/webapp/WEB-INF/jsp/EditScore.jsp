@@ -174,7 +174,7 @@ var secondInningsBowling="${SecondInningsBowlingPlayer}";
  		 <table class = "firInnBatting" id="firInnBattingTable">
   			<thead>
         	<tr>
-            	<th><sup>*</sup>Player Names</th>
+            	<th><sup>*</sup>Batsmen</th>
                 <th>Bowler</th>
                 <th>Fielder</th>
                 <th><sup>*</sup>Dismissal Type</th>
@@ -192,6 +192,8 @@ var secondInningsBowling="${SecondInningsBowlingPlayer}";
             <tr>
 					<td>					
 					<select style="width:100px" id="firInnPlayerName_${loop.index}" name="firInnPlayerName_${loop.index}" onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIV${loop.index}','FistInningBatting')">
+					  
+					  <option value="0">Select Player</option>	
 					  <c:forEach var="battinglist" items="${homeTeamRosterList1}" >
 					  <c:choose>
 					  <c:when test="${firstBatting.playerId eq battinglist.userId}">
@@ -254,7 +256,57 @@ var secondInningsBowling="${SecondInningsBowlingPlayer}";
                            <div class="selectdiv" style="width:121px">
 											<select class="selectboxdiv" id="dissmissalType${loop.index}" name="dismissalType" onchange="selectDismissal(this,'firInnDismissal_${loop.index}')">
 												
-												
+								
+								
+								
+								<c:choose>
+								<c:when test="${firstBatting.dismissalType eq 'RunOut'}">
+								<c:forEach var="dismissal" items="${dismissalTypeList}">
+								<c:choose>
+								<c:when test="${'Run Out' eq dismissal.dismissalTypeName}">
+								<option selected="selected" value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
+								</c:when>
+								<c:otherwise>
+								<option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
+								</c:otherwise>
+								</c:choose>
+								</c:forEach> 
+								</c:when>
+								
+								<c:otherwise>
+								
+								<c:choose>
+								<c:when test="${firstBatting.dismissalType eq 'TimedOut'}">
+								<c:forEach var="dismissal" items="${dismissalTypeList}">
+								<c:choose>
+								<c:when test="${'Timed Out' eq dismissal.dismissalTypeName}">
+								<option selected="selected" value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
+								</c:when>
+								<c:otherwise>
+								<option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
+								</c:otherwise>
+								</c:choose>
+								</c:forEach> 
+								</c:when>
+								
+								<c:otherwise>
+								
+								<c:choose>
+								<c:when test="${firstBatting.dismissalType eq 'DoubleHit'}">
+								<c:forEach var="dismissal" items="${dismissalTypeList}">
+								<c:choose>
+								<c:when test="${'Double Hit' eq dismissal.dismissalTypeName}">
+								<option selected="selected" value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
+								</c:when>
+								<c:otherwise>
+								<option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
+								</c:otherwise>
+								</c:choose>
+								</c:forEach> 
+								</c:when>
+								
+								<c:otherwise>
+								
 								<c:forEach var="dismissal" items="${dismissalTypeList}">
 								<c:choose>
 								<c:when test="${firstBatting.dismissalType eq dismissal.dismissalTypeName}">
@@ -264,7 +316,41 @@ var secondInningsBowling="${SecondInningsBowlingPlayer}";
 								<option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
 								</c:otherwise>
 								</c:choose>
-								</c:forEach>  				
+								</c:forEach> 
+								
+								</c:otherwise>
+								</c:choose>
+								
+								
+								</c:otherwise>
+								</c:choose>
+								
+								</c:otherwise>
+								</c:choose>
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+												
+								<%-- <c:forEach var="dismissal" items="${dismissalTypeList}">
+								<c:choose>
+								<c:when test="${firstBatting.dismissalType eq dismissal.dismissalTypeName}">
+								<option selected="selected" value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
+								</c:when>
+								<c:otherwise>
+								<option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
+								</c:otherwise>
+								</c:choose>
+								</c:forEach>  --%>
+								
+								
+								 				
 								</select>
 											<div  class="out"></div>
 										</div>
@@ -436,7 +522,7 @@ var secondInningsBowling="${SecondInningsBowlingPlayer}";
  		 <table id="secInnBattingTable">
   			<thead>
         	<tr>
-                <th><sup>*</sup>Player Names</th>
+                <th><sup>*</sup>Batsmen</th>
                 <th>Bowler</th>
                 <th>Fielder</th>
                 <th><sup>*</sup>Dismissal Type</th>
@@ -455,7 +541,7 @@ var secondInningsBowling="${SecondInningsBowlingPlayer}";
 			 <tr>
             	<td>
 								<select style="width:100px" id="secInnPlayerName_${loop.index}" name="secInnPlayerName_${loop.index}" onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIVPlayer${loop.index}','SecondInningBatting')" >
-											
+									<option value="0">Select Player</option>			
 					<c:forEach var="battinglist" items="${awayTeamRosterList1}" >
 					  <c:choose>
 					  <c:when test="${secondBatting.playerId eq battinglist.userId}">
@@ -521,6 +607,61 @@ var secondInningsBowling="${SecondInningsBowlingPlayer}";
 												
 												
 												<c:forEach var="dismissal" items="${dismissalTypeList}">
+												
+									
+									
+									
+									
+									
+									<c:choose>
+								<c:when test="${secondBatting.dismissalType eq 'RunOut'}">
+								<c:forEach var="dismissal" items="${dismissalTypeList}">
+								<c:choose>
+								<c:when test="${'Run Out' eq dismissal.dismissalTypeName}">
+								<option selected="selected" value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
+								</c:when>
+								<c:otherwise>
+								<option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
+								</c:otherwise>
+								</c:choose>
+								</c:forEach> 
+								</c:when>
+								
+								<c:otherwise>
+								
+								<c:choose>
+								<c:when test="${secondBatting.dismissalType eq 'TimedOut'}">
+								<c:forEach var="dismissal" items="${dismissalTypeList}">
+								<c:choose>
+								<c:when test="${'Timed Out' eq dismissal.dismissalTypeName}">
+								<option selected="selected" value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
+								</c:when>
+								<c:otherwise>
+								<option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
+								</c:otherwise>
+								</c:choose>
+								</c:forEach> 
+								</c:when>
+								
+								<c:otherwise>
+								
+								<c:choose>
+								<c:when test="${secondBatting.dismissalType eq 'DoubleHit'}">
+								<c:forEach var="dismissal" items="${dismissalTypeList}">
+								<c:choose>
+								<c:when test="${'Double Hit' eq dismissal.dismissalTypeName}">
+								<option selected="selected" value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
+								</c:when>
+								<c:otherwise>
+								<option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
+								</c:otherwise>
+								</c:choose>
+								</c:forEach> 
+								</c:when>
+								
+								<c:otherwise>
+								
+								<c:forEach var="dismissal" items="${dismissalTypeList}">
 								<c:choose>
 								<c:when test="${secondBatting.dismissalType eq dismissal.dismissalTypeName}">
 								<option selected="selected" value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
@@ -529,6 +670,31 @@ var secondInningsBowling="${SecondInningsBowlingPlayer}";
 								<option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
 								</c:otherwise>
 								</c:choose>
+								</c:forEach> 
+								
+								</c:otherwise>
+								</c:choose>
+								
+								
+								</c:otherwise>
+								</c:choose>
+								
+								</c:otherwise>
+								</c:choose>
+									
+												
+								<%-- <c:choose>
+								<c:when test="${secondBatting.dismissalType eq dismissal.dismissalTypeName}">
+								<option selected="selected" value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
+								</c:when>
+								<c:otherwise>
+								<option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
+								</c:otherwise>
+								</c:choose> --%>
+								
+								
+								
+								
 								</c:forEach>  
 												
 											</select>
@@ -865,7 +1031,7 @@ var secondInningsBowling="${SecondInningsBowlingPlayer}";
 				            <label class="fomlabel" for="r1" id="awayTeamWickets">Overs Per Side</label>
 				            </div>
 				             <div class="sfRight">
-                            <input type="text" placeholder="" value="${scoreCardList.homeTeamOvers}" class="form-control tbox fomtexbox OnlyNumber" id="totalOver" onfocus = "numberCheck(this)" name="totalOver"  />
+                            <input type="text" placeholder="" value="${scoreCardList.totalOvers}" class="form-control tbox fomtexbox OnlyNumber" id="totalOver" onfocus = "numberCheck(this)" name="totalOver"  />
                           </div></div>
                           
                           <div class="form-group">

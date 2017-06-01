@@ -572,7 +572,7 @@ function setValueToTextBoxVal(elem,textBox,userId,hiddenId, location){
 				var str = "";
 	            str = $(elem).find(":selected").text();
 	            $(elem).next(".out").text(str);
-	            $(elem).val(0);
+	           // $(elem).val(0);
 				$('#'+hiddenId).val(userId);
 				setDonotBatPlayersSecondInnings();
 			}else {

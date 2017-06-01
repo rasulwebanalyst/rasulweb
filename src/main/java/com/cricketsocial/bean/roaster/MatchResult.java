@@ -43,11 +43,17 @@ public class MatchResult {
 	private UUID awayTeamCoachId;
 	private List<PlayerDTO> manoftheMaTchList;
 	private String wonTeam;
+	private double totalOvers;
 	
 	
 	
 	
-	
+	public double getTotalOvers() {
+		return totalOvers;
+	}
+	public void setTotalOvers(double totalOvers) {
+		this.totalOvers = totalOvers;
+	}
 	public String getWonTeam() {
 		return wonTeam;
 	}
