@@ -606,11 +606,6 @@ var secondInningsBowling="${SecondInningsBowlingPlayer}";
 											<select class="selectboxdiv" id="dissmissalTypeSec${loop.index}" name="dismissalType" onchange="selectDismissal(this,'secInnDismissal_${loop.index}')">
 												
 												
-												<c:forEach var="dismissal" items="${dismissalTypeList}">
-												
-									
-									
-									
 									
 									
 									<c:choose>
@@ -695,7 +690,6 @@ var secondInningsBowling="${SecondInningsBowlingPlayer}";
 								
 								
 								
-								</c:forEach>  
 												
 											</select>
 											<div  class="out"></div>

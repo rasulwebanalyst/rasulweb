@@ -16517,7 +16517,7 @@ public ModelAndView rosterProfileDetails(@PathVariable String rid, @PathVariable
 				 if(results1 != null){
 					RoasterResponseById roasterResponseById=results1.getRosterInfo();
 					request.setAttribute("RoasterResponseById", roasterResponseById);
-					request.setAttribute("RoasterMemberList", roasterResponseById);
+					//request.setAttribute("RoasterMemberList", roasterResponseById);
 					
 					
 					
@@ -16539,7 +16539,7 @@ public ModelAndView rosterProfileDetails(@PathVariable String rid, @PathVariable
 				 
 				 
 				 
-				/* hubReq=new HubRequest();
+				 hubReq=new HubRequest();
 				 
 				 hubReq.setMsgType(188);// roster details based uisng cassandra
 				 ModelMap rosterMap2=new ModelMap();
@@ -16562,7 +16562,7 @@ public ModelAndView rosterProfileDetails(@PathVariable String rid, @PathVariable
 					 }
 						
 				 }
-				 */
+				 
 				// Print details
 				 
                  hubReq=new HubRequest();

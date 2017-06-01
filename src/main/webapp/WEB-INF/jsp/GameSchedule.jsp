@@ -174,6 +174,36 @@ margin: 0;
 
 <body>
 
+
+
+<div id="cancelMatchSchedule" class="modal" role="dialog" style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">			
+				<div class="modal-body">
+					<p style="text-align:left;">Please choose options.</p>
+				</div>
+				<div class="modal-footer action" style="text-align:center;">
+                   <div style="text-align:left !important;">
+					<input type="radio" id="Male" name="gender" value="1"> 
+					<label for="Male"><span></span>Cancel the Matches</label> 
+					<br>
+					<input type="radio" id="female" name="gender" value="2"> <label
+						for="female"><span></span>No Result and Abandoned</label>						
+				   </div>			   		
+					<button type="button" onclick="cancelPage()"
+						class="btn btn-default ok">OK</button>
+					<button type="button" onclick="okFun()"
+						class="btn btn-default ok">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
 <div id="scoringPopUp" class="modal" role="dialog"
 		style="display: none;">
 		<div class="modal-dialog">
@@ -1222,14 +1252,18 @@ date.add(java.util.Calendar.DATE, +6);
  }
  function cancelSchedule(id){
 	 
-	 document.getElementById("hiddenIdForCancel").value= id;
+	 /* document.getElementById("hiddenIdForCancel").value= id;
+	 $("#popupDiv").show(); */
 	 
-	 $("#popupDiv").show();
+	 document.getElementById("hiddenIdForCancel").value= id;	 
+	 $("#cancelMatchSchedule").show();
  }
  
 	 
 	 function okFun(){
 		 $("#popupDiv").hide();
+		 $("#cancelMatchSchedule").hide();
+		 
 	 }
 	 
 	 function cancelFunction(){
@@ -1241,7 +1275,8 @@ date.add(java.util.Calendar.DATE, +6);
 	 
 	 var scheduler = {
 			 tournamentSchedulerId : id,
-			 scheduleCancelReason : reason
+			 scheduleCancelReason : reason,
+			 statusType:"Cancel"
 	 }
 	 $.ajax({
 		type:"Post",
@@ -1259,6 +1294,13 @@ date.add(java.util.Calendar.DATE, +6);
 	 })
 	 
  }	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
  
  function getTournamentAutoComplete(elem,divId,hiddenId){
 		var boardId = "${boardId}";
@@ -2457,6 +2499,49 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
                 		
                 		
                 	}
+                	
+                	
+                	</script>
+                	
+                	<script type="text/javascript">
+                	
+                	function cancelPage(){	
+                		  var completedPop = $("input[name='gender']:checked").val();	
+                		    if(completedPop=='2'){
+                		    	$("#cancelMatchSchedule").hide();
+                		    	
+                		    	
+                		    	var boardId = "${boardId}";
+                		   	 var id = $("#hiddenIdForCancel").val();
+                		   	 var reason = $("#reason").val();
+                		   	 
+                		   	 var scheduler = {
+                		   			 tournamentSchedulerId : id,
+                		   			 scheduleCancelReason : reason,
+                		   			 statusType:"NoResult"
+                		   	 }
+                		   	 $.ajax({
+                		   		type:"Post",
+                		   		url:"${pageContext.request.contextPath}/cancelSchedule",
+                		   		data : JSON.stringify(scheduler),
+                		   		contentType :"application/json",
+                		   		success : function(res){
+                		   			window.location.href = "${pageContext.request.contextPath}/GameSchedule/boardId/"+boardId;
+                		   		},
+                		   		error:function(err){
+                		   			console.log(err);
+                		   		}
+                		   		 
+                		   	 })
+                		    	
+                		    	
+                		    }
+                		    else
+                		    	{	   
+                		    	$("#cancelMatchSchedule").hide();
+                			   $("#popupDiv").show();	 
+                		    	}
+                	 }	
                 	
                 	
                 	</script>

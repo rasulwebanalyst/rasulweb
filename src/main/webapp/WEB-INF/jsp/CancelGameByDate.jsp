@@ -82,6 +82,33 @@ var formatAMPMTime = function(date) {
 </script>
         
          <%@ include file="LeaugeManagementSideMenu.jsp" %>
+         
+         
+         
+         
+         <div id="cancelMatchSchedule" class="modal" role="dialog" style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">			
+				<div class="modal-body">
+					<p style="text-align:left;">Please choose options.</p>
+				</div>
+				<div class="modal-footer action" style="text-align:center;">
+                   <div style="text-align:left !important;">
+					<input type="radio" id="Male" name="gender" value="1"> 
+					<label for="Male"><span></span>Cancel the Matches</label> 
+					<br>
+					<input type="radio" id="female" name="gender" value="2"> 
+					<label for="female"><span></span>No Result and Abandoned</label>						
+				   </div>			   		
+					<button type="button" onclick="cancelPage()" class="btn btn-default ok">OK</button>
+					<button type="button" onclick="okFun()"	class="btn btn-default ok">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+         
+         
+         
 
 
 <div id="popupDiv" class="popupDiv" style="display: none;">
@@ -440,7 +467,8 @@ var formatAMPMTime = function(date) {
 		   }); 
 		 
 		   if(check != ""){
-			   $("#popupDiv").show();
+			  // $("#popupDiv").show();
+			   $("#cancelMatchSchedule").show();
 		   }
 		   else{
 			   displaynotification("Please choose game to cancel",2000);
@@ -450,6 +478,7 @@ var formatAMPMTime = function(date) {
 	 
 	 function okFun(){
 		 $("#popupDiv").hide();
+		 $("#cancelMatchSchedule").hide();
 	 }
 	 
 	 function cancelFunction(){
@@ -471,6 +500,7 @@ var formatAMPMTime = function(date) {
 					boardId : boardId,
 					shedulerArray : check,
 					scheduleCancelReason : reason,
+					statusType:"Cancel",
 			}
 			
 			$.ajax({
@@ -501,7 +531,71 @@ var formatAMPMTime = function(date) {
 	 }
 	 
   </script> 
+  
+  <script type="text/javascript">
+  
+  function cancelPage(){		 
+		 var completedPop = $("input[name='gender']:checked").val(); 
+		    if(completedPop=='2'){
+		    	$("#cancelMatchSchedule").hide();		    	
+		    	var boardId = "${boardId}";
+				 var check = [];
+				   $('input[name=rr]:checked').map(function() {
+					   check.push($(this).val());
+				   });		 
+				   var reason = $("#reason").val();		   
+					var bean = {
+							boardId : boardId,
+							shedulerArray : check,
+							scheduleCancelReason : reason,
+							statusType:"NoResult",
+					}			
+		    	
+		    	$.ajax({
+					type:"post",
+					url:"${pageContext.request.contextPath}/cancelGame",
+					data:JSON.stringify(bean),
+					contentType :"application/json",
+					success : function(res){
+						if(res == "Schedule cancelled"){
+						displaynotification("Game Cancelled successfully",2000);
+						window.location.href = "${pageContext.request.contextPath}/CancelGameByDate/boardId/"+boardId;
+
+						}
+						else{
+							displaynotification("Something went wrong. Try again later",2000);
+							window.location.href = "${pageContext.request.contextPath}/CancelGameByDate/boardId/"+boardId;
+						}
+					},
+					error : function(err){
+						console.log("err");
+					}
+						
+					})		    	
+		    	
+		    	
+		    }
+		    else
+		    	{	
+		    	$("#cancelMatchSchedule").hide();		  	
+		 var check = [];
+		   $('input[name=rr]:checked').map(function() {
+			   check.push($(this).val());
+		   }); 
+		   if(check != ""){
+			   $("#popupDiv").show();
+		   }	
+		    	}
+	 }	
+  
+  
+  </script>
+   <script type="text/javascript">
    
+   
+  
+   
+   </script>
    
 </body>
 </html>
