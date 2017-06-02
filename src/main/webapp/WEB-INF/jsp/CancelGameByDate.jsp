@@ -563,7 +563,7 @@ var formatAMPMTime = function(date) {
 
 						}
 						else{
-							displaynotification("Something went wrong. Try again later",2000);
+							displaynotification("match is NoResult or Abbounde",2000);
 							window.location.href = "${pageContext.request.contextPath}/CancelGameByDate/boardId/"+boardId;
 						}
 					},

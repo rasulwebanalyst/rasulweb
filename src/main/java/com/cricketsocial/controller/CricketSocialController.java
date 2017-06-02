@@ -7525,9 +7525,9 @@ public @ResponseBody ModelAndView getRosterDetails(HttpServletRequest request,@R
 							
 							request.setAttribute("RoasterResponseById", roasterResponseById);
 							
-							request.setAttribute("RoasterMemberList", roasterResponseById); //changed by vignesh
+						//	request.setAttribute("RoasterMemberList", roasterResponseById); //changed by vignesh
 							 
-							/* hubReq=new HubRequest();
+							 hubReq=new HubRequest();
 							 //hubReq.setMsgType(48);
 							 hubReq.setMsgType(188);// roster details based uisng cassandra
 							 ModelMap rosterMap2=new ModelMap();
@@ -7549,7 +7549,7 @@ public @ResponseBody ModelAndView getRosterDetails(HttpServletRequest request,@R
 										
 								 }
 									
-							 }*/
+							 }
 							
 							 
 							 
@@ -16078,7 +16078,7 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 							RoasterResponseById roasterResponseById=results1.getRosterInfo();
 							
 							request.setAttribute("RoasterResponseById", roasterResponseById);
-							request.setAttribute("RoasterMemberList", roasterResponseById); // changed by vignesh
+						//	request.setAttribute("RoasterMemberList", roasterResponseById); // changed by vignesh
 							
 							/*int userExit=5;
 							if(roasterResponseById.getRosterMembers() !=null){
@@ -16111,7 +16111,7 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 							
 						 }
 					 }
-					/* hubReq=new HubRequest();
+					 hubReq=new HubRequest();
 					 
 					 hubReq.setMsgType(188);// roster details based uisng cassandra
 					 ModelMap rosterMap2=new ModelMap();
@@ -16133,7 +16133,7 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 								
 						 }
 							
-					 }*/
+					 }
 					 
 					 
 					 // Print details
@@ -23402,6 +23402,10 @@ public @ResponseBody String cancelSchedule(@RequestBody TournamentScheduler sche
 	}
 	return returnResponse;
 }
+
+
+
+
 
 
 

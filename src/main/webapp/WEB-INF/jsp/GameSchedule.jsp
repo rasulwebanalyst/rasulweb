@@ -1545,6 +1545,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    				htmlco+="<td> <div >";
    				
    				var upcommingumpire=upcomminglist[i].umpireNamesList;
+   				if(upcommingumpire != null){
    				if(upcommingumpire.length > 0){
    				for(var j=0; j < upcommingumpire.length;j++)
    				{
@@ -1560,6 +1561,10 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    					{
    					htmlco+="<span>-</span>";
    					}
+   				}else
+					{
+					htmlco+="<span>-</span>";
+					}
    				htmlco+="</div></td>";
    				
    				//App Scorer
@@ -1656,7 +1661,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    					htmlco1+="<td>"+incomepltelist[i].groundName+"</td>";}
    				    htmlco1+="<td> <div>";
    				    var incompleteumpire=incomepltelist[i].umpireNamesList;
-   				    
+   				    if(incompleteumpire != null){
    				    if(incompleteumpire.length > 0){
    				    for(var j=0;j<incompleteumpire.length;j++){
    				    htmlco1+="<span><a href='${pageContext.request.contextPath}/buddy/"+incompleteumpire[j].umpireName+"/"+incompleteumpire[j].umpireId+"'>"+incompleteumpire[j].umpireName+"</a>";
@@ -1665,6 +1670,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
   			        	htmlco1 += ',</span>';
   			        } 
    				    }}else{ htmlco1+="<span>-</span>";}
+   				 }else{ htmlco1+="<span>-</span>";}
    				    htmlco1+="</div></td> ";
    				    
    				//App Scorer
@@ -1762,6 +1768,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				    htmlco2+="<td class='tdAlignLeft'>"+inprogresslist[i].tournamentName+"</td>";
 				    htmlco2+="<td class='tdAlignLeft'> <div>";
 				    var inprogressumpire=inprogresslist[i].umpireNamesList;
+				    if(inprogressumpire != null){
 				    if(inprogressumpire.length > 0){
 				    for(var j=0;j<inprogressumpire.length;j++){
 				    htmlco2+="<span><a href='${pageContext.request.contextPath}/buddy/"+inprogressumpire[j].umpireName+"/"+inprogressumpire[j].umpireId+"'>"+inprogressumpire[j].umpireName+"</a>";
@@ -1770,6 +1777,9 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 			        	htmlco2 += ',</span>';
 			        } 
 				    }}else{
+				    	htmlco2+="<span>-</span>";
+				    }
+				    }else{
 				    	htmlco2+="<span>-</span>";
 				    }
 				    htmlco2+="</div></td> ";
@@ -1859,6 +1869,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				    htmlco3+="<td class='tdAlignLeft'>"+completedlist[i].tournamentName+"</td>";
 				    htmlco3+="<td class='tdAlignLeft'> <div>";
 				    var completeumpire=completedlist[i].umpireNamesList;
+				    if(completeumpire != null){
 				    if(completeumpire.length > 0){
 				    for(var j=0;j<completeumpire.length;j++){
 				    htmlco3+="<span><a href='${pageContext.request.contextPath}/buddy/"+completeumpire[j].umpireName+"/"+completeumpire[j].umpireId+"'>"+completeumpire[j].umpireName+"</a>";
@@ -1867,6 +1878,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 			        	htmlco3 += ',</span>';
 			        } 
 				    }}else{htmlco3+="<span>-</span>";}
+				    }else{htmlco3+="<span>-</span>";}
 				    htmlco3+="</div></td> ";
 				    htmlco3+="<td class='tdAlignLeft'> <div>";
 				    var completescorer=completedlist[i].scorerNamesList;
@@ -2618,14 +2630,32 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
                 		   		data : JSON.stringify(scheduler),
                 		   		contentType :"application/json",
                 		   		success : function(res){
+                		   			if(res == "Schedule cancelled"){
+                            		   	displaynotification("Game Cancelled successfully",2000);
                 		   			window.location.href = "${pageContext.request.contextPath}/GameSchedule/boardId/"+boardId;
-                		   		},
+                		   			}
+                        		   	else{
+                        		   	displaynotification("match is NoResult or Abbounde",2000);
+                        		   	window.location.href = "${pageContext.request.contextPath}/CancelGameByDate/boardId/"+boardId;
+                        		   	}
+                		   			
+                		   			
+                		   			},
                 		   		error:function(err){
                 		   			console.log(err);
                 		   		}
                 		   		 
                 		   	 })
-                		    	
+                		    /*if(res == "Schedule cancelled"){
+                		   	displaynotification("Game Cancelled successfully",2000);
+                		   	window.location.href = "${pageContext.request.contextPath}/CancelGameByDate/boardId/"+boardId;
+
+                		   	}
+                		   	else{
+                		   	displaynotification("match is NoResult or Abbounde",2000);
+                		   	window.location.href = "${pageContext.request.contextPath}/CancelGameByDate/boardId/"+boardId;
+                		   	}
+                		    */
                 		    	
                 		    }
                 		    else

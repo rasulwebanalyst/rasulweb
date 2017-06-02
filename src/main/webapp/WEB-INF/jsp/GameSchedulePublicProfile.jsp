@@ -1392,6 +1392,7 @@ var dateString = null;
    				htmlco+="<td> <div >";
    				
    				var upcommingumpire=upcomminglist[i].umpireNamesList;
+   				if(upcommingumpire != null){
    				if(upcommingumpire.length > 0){
    				for(var j=0; j < upcommingumpire.length;j++)
    				{
@@ -1406,6 +1407,10 @@ var dateString = null;
    					{
    					htmlco+="<span>-</span>";
    					}
+   				}else
+					{
+					htmlco+="<span>-</span>";
+					}
    				htmlco+="</div></td>";
    				
    			//App Scorer
@@ -1499,6 +1504,7 @@ var dateString = null;
    					htmlco1+="<td>"+incomepltelist[i].groundName+"</td>";}
    				    htmlco1+="<td> <div>";
    				    var incompleteumpire=incomepltelist[i].umpireNamesList;
+   				    if(incompleteumpire != null){
    				 if(incompleteumpire.length > 0){
    				    for(var j=0;j<incompleteumpire.length;j++){
    				    htmlco1+="<span><a href='${pageContext.request.contextPath}/buddy/"+incompleteumpire[j].umpireName+"/"+incompleteumpire[j].umpireId+"'>"+incompleteumpire[j].umpireName+"</a>";
@@ -1507,6 +1513,7 @@ var dateString = null;
   			        	htmlco1 += ',</span>';
   			        } 
    				    }}else{ htmlco1+="<span>-</span>";}
+   				 }else{ htmlco1+="<span>-</span>";}
    				    htmlco1+="</div></td> ";
    				    
    				    
@@ -1603,6 +1610,8 @@ var dateString = null;
 				    htmlco2+="<td class='tdAlignLeft'>"+inprogresslist[i].tournamentName+"</td>";
 				    htmlco2+="<td class='tdAlignLeft'> <div>";
 				    var inprogressumpire=inprogresslist[i].umpireNamesList;
+				    
+				    if(inprogressumpire != null){
 				    if(inprogressumpire.length > 0){
 				    for(var j=0;j<inprogressumpire.length;j++){
 				    htmlco2+="<span><a href='${pageContext.request.contextPath}/buddy/"+inprogressumpire[j].umpireName+"/"+inprogressumpire[j].umpireId+"'>"+inprogressumpire[j].umpireName+"</a>";
@@ -1611,6 +1620,9 @@ var dateString = null;
 			        	htmlco2 += ',</span>';
 			        } 
 				    }}else{
+				    	htmlco2+="<span>-</span>";
+				    }
+				    }else{
 				    	htmlco2+="<span>-</span>";
 				    }
 				    htmlco2+="</div></td> ";
@@ -1698,6 +1710,7 @@ var dateString = null;
 				    htmlco3+="<td class='tdAlignLeft'>"+completedlist[i].tournamentName+"</td>";
 				    htmlco3+="<td class='tdAlignLeft'> <div>";
 				    var completeumpire=completedlist[i].umpireNamesList;
+				    if(completeumpire != null){
 				    if(completeumpire.length > 0){
 				    for(var j=0;j<completeumpire.length;j++){
 				    htmlco3+="<span><a href='${pageContext.request.contextPath}/buddy/"+completeumpire[j].umpireName+"/"+completeumpire[j].umpireId+"'>"+completeumpire[j].umpireName+"</a>";
@@ -1706,6 +1719,7 @@ var dateString = null;
 			        	htmlco3 += ',</span>';
 			        } 
 				    }}else{htmlco3+="<span>-</span>";}
+				    }else{htmlco3+="<span>-</span>";}
 				    htmlco3+="</div></td> ";
 				    htmlco3+="<td class='tdAlignLeft'> <div>";
 				    var completescorer=completedlist[i].scorerNamesList;
@@ -1774,7 +1788,6 @@ var dateString = null;
 				    htmlco3+=""+completedlist[i].winTeamName+": "+completedlist[i].winTeamRuns+"/"+completedlist[i].winTeamWickets+" in "+completedlist[i].winTeamOvers+"<br>";
 				    htmlco3+=""+completedlist[i].loseTeamName+" : "+completedlist[i].loseTeamRuns+"/"+completedlist[i].loseTeamWickets+" in "+completedlist[i].loseTeamOvers+"</td>"; */
 				    
-   	   			
    	   			 
 				    if(completedlist[i].statusOfMatch == 'tie'){
 					    htmlco3+="<td align='center'><span class='text-danger'>Match Tied</span><br>";
