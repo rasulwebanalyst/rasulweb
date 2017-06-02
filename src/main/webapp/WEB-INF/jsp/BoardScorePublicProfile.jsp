@@ -156,6 +156,11 @@
                         
                         
                         </c:when>
+                         <c:when test="${completed.statusOfMatch eq 'Noresult' }">
+                        	<td align="center"><span class="text-danger">Match Abandoned</span><br></td>
+                        
+                        
+                        </c:when>
                         <c:otherwise>
                         
                         <td align="center"><span class="text-danger">${completed.winTeamName} won</span><br>
@@ -525,6 +530,12 @@
 				if(res[i].statusOfMatch == 'tie'){
 					html += '<td align="center"><span class="text-danger">Match Tied</span><br> <a href="${pageContext.request.contextPath}/'+res[i].winTeamName+'/board/'+res[i].winTeamId+'">'+res[i].winTeamName+' </a>: '+res[i].winTeamRuns+'/'+res[i].winTeamWickets+' in '+res[i].winTeamOvers+' <br> <a href="${pageContext.request.contextPath}/'+res[i].loseTeamName+'/board/'+res[i].loseTeamId+'"> '+res[i].loseTeamName+'</a> : '+res[i].loseTeamRuns+'/'+res[i].loseTeamWickets+' in'+ res[i].loseTeamOvers+'</td>';
 					
+				}else if(res[i].statusOfMatch == 'draw'){
+					html += '<td align="center"><span class="text-danger">Match Drawn</span><br> <a href="${pageContext.request.contextPath}/'+res[i].winTeamName+'/board/'+res[i].winTeamId+'">'+res[i].winTeamName+' </a>: '+res[i].winTeamRuns+'/'+res[i].winTeamWickets+' in '+res[i].winTeamOvers+' <br> <a href="${pageContext.request.contextPath}/'+res[i].loseTeamName+'/board/'+res[i].loseTeamId+'"> '+res[i].loseTeamName+'</a> : '+res[i].loseTeamRuns+'/'+res[i].loseTeamWickets+' in'+ res[i].loseTeamOvers+'</td>';
+					
+				}else if(res[i].statusOfMatch == 'Noresult'){
+					html += '<td align="center"><span class="text-danger">Match Abandoned</span><br></td>';
+					
 				}else{
 					html += '<td align="center"><span class="text-danger">'+res[i].winTeamName+' won</span><br><a href="${pageContext.request.contextPath}/'+res[i].winTeamName+'/board/'+res[i].winTeamId+'"> '+res[i].winTeamName+'</a> : '+res[i].winTeamRuns+'/'+res[i].winTeamWickets+' in '+res[i].winTeamOvers+' <br>  <a href="${pageContext.request.contextPath}/'+res[i].loseTeamName+'/board/'+res[i].loseTeamId+'">'+res[i].loseTeamName+'</a> : '+res[i].loseTeamRuns+'/'+res[i].loseTeamWickets+' in'+ res[i].loseTeamOvers+'';
 				}
@@ -637,7 +648,10 @@ function yearWiseMatches(val) {
 				        }else if (res[i].statusOfMatch == 'draw') {
 				            html += '<td align="center"><span class="text-danger">Match Drawn</span><br> <a href="${pageContext.request.contextPath}/' + res[i].winTeamName + '/board/' + res[i].winTeamId + '">' + res[i].winTeamName + ' </a>: ' + res[i].winTeamRuns + '/' + res[i].winTeamWickets + ' in ' + res[i].winTeamOvers + ' <br> <a href="${pageContext.request.contextPath}/' + res[i].loseTeamName + '/board/' + res[i].loseTeamId + '"> ' + res[i].loseTeamName + '</a> : ' + res[i].loseTeamRuns + '/' + res[i].loseTeamWickets + ' in' + res[i].loseTeamOvers + '</td>';
 
-				        } else {
+				        }else if (res[i].statusOfMatch == 'Noresult') {
+				            html += '<td align="center"><span class="text-danger">Match Abandoned</span><br></td>';
+
+				        }  else {
 				            html += '<td align="center"><span class="text-danger">' + res[i].winTeamName + ' won</span><br><a href="${pageContext.request.contextPath}/' + res[i].winTeamName + '/board/' + res[i].winTeamId + '"> ' + res[i].winTeamName + '</a> : ' + res[i].winTeamRuns + '/' + res[i].winTeamWickets + ' in ' + res[i].winTeamOvers + ' <br>  <a href="${pageContext.request.contextPath}/' + res[i].loseTeamName + '/board/' + res[i].loseTeamId + '">' + res[i].loseTeamName + '</a> : ' + res[i].loseTeamRuns + '/' + res[i].loseTeamWickets + ' in' + res[i].loseTeamOvers + '';
 				        }
 				        if (res[i].manOfTheMatch == "") {
