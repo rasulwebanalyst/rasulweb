@@ -342,6 +342,53 @@ margin: 0;
   </div>
 </div>
 
+
+
+
+<div id="cancelMatchSchedule" class="modal" role="dialog" style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">			
+				<div class="modal-body">
+					<p style="text-align:left;">Please choose options.</p>
+				</div>
+				<div class="modal-footer action" style="text-align:center;">
+                   <div style="text-align:left !important;">
+					<input type="radio" id="Male1" name="gender" value="1"> 
+					<label for="Male1"><span></span>Cancel the Matches</label> 
+					<br>
+					<input type="radio" id="female1" name="gender" value="2"> <label
+						for="female1"><span></span>No Result and Abandoned</label>						
+				   </div>			   		
+					<button type="button" onclick="cancelPage()"
+						class="btn btn-default ok">OK</button>
+					<button type="button" onclick="okFun()"
+						class="btn btn-default ok">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+ <div id="popupDiv" class="popupDiv" style="display: none;">
+
+           <div class="box">
+                <span class="head">Reason</span>
+                <span class="close_btn" > <i class="fa fa-close" onclick="okFun()"></i> </span>
+
+                <div class="popupContentDiv">
+                
+                		
+                        	<textarea class="form-control" id="reason" rows="5" placeholder=""></textarea>
+                          
+                          <div class="centerbtns"><button type="button" class="btn btn-default blueBtn" onclick="cancelFunction()">OK</button></div>
+                       
+                </div>
+            </div>
+ 
+ 	</div>
+
+
+
 <input type="hidden" id="Logeduserid" value='<%=session.getAttribute("USRID")%>'>
 
 	<input type="hidden" id="hiddenDate" value="${dateString}"> 
@@ -369,23 +416,7 @@ date.add(java.util.Calendar.DATE, +6);
   <%@ include file="LeaugeManagementSideMenu.jsp" %>
       
       
-      <div id="popupDiv" class="popupDiv" style="display: none;">
-
-           <div class="box">
-                <span class="head">Reason</span>
-                <span class="close_btn" > <i class="fa fa-close" onclick="okFun()"></i> </span>
-
-                <div class="popupContentDiv">
-                
-                		
-                        	<textarea class="form-control" id="reason" rows="5" placeholder=""></textarea>
-                          
-                          <div class="centerbtns"><button type="button" class="btn btn-default blueBtn" onclick="cancelFunction()">OK</button></div>
-                       
-                </div>
-            </div>
- 
- 	</div>
+     
       
       
       <div class="col-md-10">
@@ -1025,7 +1056,7 @@ date.add(java.util.Calendar.DATE, +6);
 												</td> 	
 						
                           
-                           <td align="center">
+                          <%--  <td align="center">
                            <c:choose>
                            <c:when test="${completed.statusOfMatch eq 'tie'}">
                            <span class="text-danger">Match Tied</span>
@@ -1043,7 +1074,39 @@ date.add(java.util.Calendar.DATE, +6);
                            
                            <br>
 							  ${completed.winTeamName} : ${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}<br>
-							  ${completed.loseTeamName} : ${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers}</td>
+							  ${completed.loseTeamName} : ${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers}
+							  </td> --%>
+							  
+							  
+							  
+							  <td align="center">
+                           <c:choose>
+                           <c:when test="${completed.statusOfMatch eq 'tie'}">
+                           <span class="text-danger">Match Tied</span>
+                           </c:when>
+                           <c:when test="${completed.statusOfMatch eq 'draw'}">
+                           <span class="text-danger">Match Drawn</span>
+                           </c:when> 
+                           <c:otherwise>                       
+                           <c:choose>
+                           <c:when test="${completed.statusOfMatch ne 'Noresult'}"> 
+                           <span class="text-danger">${completed.winTeamName} won</span>     
+							  ${completed.winTeamName} : ${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}<br>
+							  ${completed.loseTeamName} : ${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers}
+							 </c:when>
+							 <c:otherwise>
+							 <span class="text-danger">Match Abandoned</span>							 
+							 </c:otherwise> 
+							 </c:choose>
+                        </c:otherwise>   
+                           </c:choose>
+                           <br>
+                           
+							 </td>
+							  
+							  
+							  
+							  
 							  <td> 
 							  
 							  
@@ -1224,24 +1287,30 @@ date.add(java.util.Calendar.DATE, +6);
 	 
 	 document.getElementById("hiddenIdForCancel").value= id;
 	 
-	 $("#popupDiv").show();
+	// $("#popupDiv").show();
+	 $("#cancelMatchSchedule").show();
  }
  
 	 
 	 function okFun(){
 		 $("#popupDiv").hide();
+		 $("#cancelMatchSchedule").hide();
 	 }
 	 
 	 function cancelFunction(){
-		 $("#popupDiv").hide();
+		
 	
 	 var boardId = "${boardId}";
 	 var id = $("#hiddenIdForCancel").val();
 	 var reason = $("#reason").val();
-	 
+	 if(reason != ''){
+		 
+		 $("#popupDiv").hide();
+		 
 	 var scheduler = {
 			 tournamentSchedulerId : id,
-			 scheduleCancelReason : reason
+			 scheduleCancelReason : reason,
+			 statusType:"Cancel"
 	 }
 	 $.ajax({
 		type:"Post",
@@ -1257,6 +1326,9 @@ date.add(java.util.Calendar.DATE, +6);
 		}
 		 
 	 })
+	 }else{
+		 displaynotification("Please give reason to cancel game",2000);
+	 }
 	 
  }	 
  
@@ -1845,7 +1917,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				    
 				    
 				   // htmlco3+="<td><span class='text-success'>Active</span></td>";
-				   if(completedlist[i].statusOfMatch == 'tie'){
+				   /* if(completedlist[i].statusOfMatch == 'tie'){
 				    htmlco3+="<td align='center'><span class='text-danger'>Match Tied</span><br>";
 				    }else if(completedlist[i].statusOfMatch == 'draw'){
 						   htmlco3+="<td align='center'><span class='text-danger'>Match Drawn</span><br>";
@@ -1853,7 +1925,25 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 					   htmlco3+="<td align='center'><span class='text-danger'>"+completedlist[i].winTeamName+" won</span><br>";}
 				   
 				    htmlco3+=""+completedlist[i].winTeamName+": "+completedlist[i].winTeamRuns+"/"+completedlist[i].winTeamWickets+" in "+completedlist[i].winTeamOvers+"<br>";
+				    htmlco3+=""+completedlist[i].loseTeamName+" : "+completedlist[i].loseTeamRuns+"/"+completedlist[i].loseTeamWickets+" in "+completedlist[i].loseTeamOvers+"</td>"; */
+				    
+   	   			if(completedlist[i].statusOfMatch == 'tie'){
+				    htmlco3+="<td align='center'><span class='text-danger'>Match Tied</span><br>";
+				    }
+				   if(completedlist[i].statusOfMatch == 'draw'){
+					htmlco3+="<td align='center'><span class='text-danger'>Match Drawn</span><br>";
+					}
+				   if(completedlist[i].statusOfMatch != 'Noresult'){
+					   htmlco3+="<td align='center'><span class='text-danger'>"+completedlist[i].winTeamName+" won</span><br>";				   
+				    htmlco3+=""+completedlist[i].winTeamName+": "+completedlist[i].winTeamRuns+"/"+completedlist[i].winTeamWickets+" in "+completedlist[i].winTeamOvers+"<br>";
 				    htmlco3+=""+completedlist[i].loseTeamName+" : "+completedlist[i].loseTeamRuns+"/"+completedlist[i].loseTeamWickets+" in "+completedlist[i].loseTeamOvers+"</td>";
+				   }
+				   else{
+					   htmlco3+="<td align='center'><span class='text-danger'>Match Abandoned</span><br>";
+				   } 
+				    
+				    
+				    
 				    htmlco3+="<input type='hidden' id='locktype_"+completedlist[i].tournamentSchedulerId+"' value='"+completedlist[i].scorecardLock+"'>";
 				    htmlco3+="<td><a href=javascript:void(0); onclick=EDITSCORECARD('${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')><i class='fa fa-pencil' title='Edit Profile'></i></a><a href=javascript:void(0); onclick=EDITSCORECARD('${boardId}','"+completedlist[i].tournamentId+"','"+completedlist[i].tournamentSchedulerId+"','"+completedlist[i].homeTeamId+"','"+completedlist[i].awayTeamId+"','"+completedlist[i].dateString+"','"+completedlist[i].leagueCreatedBy+"')>Edit Scorecard</a></td>";
 				    htmlco3+="<td align='center' >";
@@ -2458,6 +2548,83 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
                 		
                 	}
                 	
+                	
+                	</script>
+                	
+                	
+                	<script type="text/javascript">
+                	function EditScoreCardPage()
+                	 {
+                		    
+                		    var boardid=$("#ScoreCardBoardId").val();
+                     		var tournametid=$("#ScoreCardTournamentId").val();
+                     		var tournamentschedulerid=$("#ScoreCardtournmentShudulorId").val();
+                     	    var homeid=$("#ScoreCardhomeId").val();
+                     	    var awayteamid= $("#ScoreCardawayTeamId").val();
+                     	    var date=$("#ScoreCarddate").val();
+                     	    var createdby=$("#ScoreCardcreatedBy").val();
+                     	    
+                     	    
+                     	    
+                     	    
+                     	    
+                     	   $.ajax({
+           					type : "GET",
+           					url : "${pageContext.request.contextPath}/matchType/MatchId/"+tournamentschedulerid,
+           					headers : {'Name' : HeaderName},
+           					success : function(res) {
+           					if(res == "4")
+            					{
+           						window.location.href = "${pageContext.request.contextPath}/editscore/boardId/"+boardid+"/"+tournametid+"/"+tournamentschedulerid+"/"+homeid+"/"+awayteamid+"/"+date+"/"+createdby;            					}
+            					else
+            					{
+            					$("#scoringPopUp").show();
+            					} 
+           					}
+            					});
+                		   
+                	 }
+                	
+                	
+                	
+                	
+                	function cancelPage(){	
+                		  var completedPop = $("input[name='gender']:checked").val();	
+                		    if(completedPop=='2'){
+                		    	$("#cancelMatchSchedule").hide();
+                		    	
+                		    	
+                		    	var boardId = "${boardId}";
+                		   	 var id = $("#hiddenIdForCancel").val();
+                		   	 var reason = $("#reason").val();
+                		   	 
+                		   	 var scheduler = {
+                		   			 tournamentSchedulerId : id,
+                		   			 scheduleCancelReason : reason,
+                		   			 statusType:"NoResult"
+                		   	 }
+                		   	 $.ajax({
+                		   		type:"Post",
+                		   		url:"${pageContext.request.contextPath}/cancelSchedule",
+                		   		data : JSON.stringify(scheduler),
+                		   		contentType :"application/json",
+                		   		success : function(res){
+                		   			window.location.href = "${pageContext.request.contextPath}/GameSchedule/boardId/"+boardId;
+                		   		},
+                		   		error:function(err){
+                		   			console.log(err);
+                		   		}
+                		   		 
+                		   	 })
+                		    	
+                		    	
+                		    }
+                		    else
+                		    	{	   
+                		    	$("#cancelMatchSchedule").hide();
+                			   $("#popupDiv").show();	 
+                		    	}
+                	 }	
                 	
                 	</script>
    

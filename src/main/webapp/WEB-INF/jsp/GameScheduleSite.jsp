@@ -1019,7 +1019,7 @@ date.add(java.util.Calendar.DATE, +6);
 												</td> 	
 						
                           
-                           <td align="center">
+                           <%-- <td align="center">
                            <c:choose>
                            <c:when test="${completed.statusOfMatch eq 'tie'}">
                            <span class="text-danger">Match Tied</span>
@@ -1037,7 +1037,36 @@ date.add(java.util.Calendar.DATE, +6);
                            
                            <br>
 							  ${completed.winTeamName} : ${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}<br>
-							  ${completed.loseTeamName} : ${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers}</td>
+							  ${completed.loseTeamName} : ${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers}
+							  </td> --%>
+							  
+							  
+							  <td align="center">
+                           <c:choose>
+                           <c:when test="${completed.statusOfMatch eq 'tie'}">
+                           <span class="text-danger">Match Tied</span>
+                           </c:when>
+                           <c:when test="${completed.statusOfMatch eq 'draw'}">
+                           <span class="text-danger">Match Drawn</span>
+                           </c:when> 
+                           <c:otherwise>                       
+                           <c:choose>
+                           <c:when test="${completed.statusOfMatch ne 'Noresult'}"> 
+                           <span class="text-danger">${completed.winTeamName} won</span>     
+							  ${completed.winTeamName} : ${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}<br>
+							  ${completed.loseTeamName} : ${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers}
+							 </c:when>
+							 <c:otherwise>
+							 <span class="text-danger">Match Abandoned</span>							 
+							 </c:otherwise> 
+							 </c:choose>
+                        </c:otherwise>   
+                           </c:choose>
+                           <br>
+                           
+							 </td>
+							  
+							  
 							  <td> 
                              <a href="javascript:void(0)" onclick="PleaseLogin()"><i class="fa fa-pencil" title="Edit Profile"></i></a>
                         	 <a href="javascript:void(0)" onclick="PleaseLogin()">Edit Scorecard</a>
@@ -1816,7 +1845,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				    
 				    
 				   // htmlco3+="<td><span class='text-success'>Active</span></td>";
-				   if(completedlist[i].statusOfMatch == 'tie'){
+				  /*  if(completedlist[i].statusOfMatch == 'tie'){
 				    htmlco3+="<td align='center'><span class='text-danger'>Match Tied</span><br>";
 				    }else if(completedlist[i].statusOfMatch == 'draw'){
 						   htmlco3+="<td align='center'><span class='text-danger'>Match Drawn</span><br>";
@@ -1825,6 +1854,25 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				   
 				    htmlco3+=""+completedlist[i].winTeamName+": "+completedlist[i].winTeamRuns+"/"+completedlist[i].winTeamWickets+" in "+completedlist[i].winTeamOvers+"<br>";
 				    htmlco3+=""+completedlist[i].loseTeamName+" : "+completedlist[i].loseTeamRuns+"/"+completedlist[i].loseTeamWickets+" in "+completedlist[i].loseTeamOvers+"</td>";
+				     */
+				    
+   	   			if(completedlist[i].statusOfMatch == 'tie'){
+				    htmlco3+="<td align='center'><span class='text-danger'>Match Tied</span><br>";
+				    }
+				   if(completedlist[i].statusOfMatch == 'draw'){
+					htmlco3+="<td align='center'><span class='text-danger'>Match Drawn</span><br>";
+					}
+				   if(completedlist[i].statusOfMatch != 'Noresult'){
+					   htmlco3+="<td align='center'><span class='text-danger'>"+completedlist[i].winTeamName+" won</span><br>";				   
+				    htmlco3+=""+completedlist[i].winTeamName+": "+completedlist[i].winTeamRuns+"/"+completedlist[i].winTeamWickets+" in "+completedlist[i].winTeamOvers+"<br>";
+				    htmlco3+=""+completedlist[i].loseTeamName+" : "+completedlist[i].loseTeamRuns+"/"+completedlist[i].loseTeamWickets+" in "+completedlist[i].loseTeamOvers+"</td>";
+				   }
+				   else{
+					   htmlco3+="<td align='center'><span class='text-danger'>Match Abandoned</span><br>";
+				   }
+				    
+				    
+				    
 				    htmlco3+="<td><a href=javascript:void(0); onclick='PleaseLogin()'><i class='fa fa-pencil' title='Edit Profile'></i></a><a href=javascript:void(0); onclick='PleaseLogin()'>Edit Scorecard</a></td>";
 				    htmlco3+="<td align='center' >";
 				    

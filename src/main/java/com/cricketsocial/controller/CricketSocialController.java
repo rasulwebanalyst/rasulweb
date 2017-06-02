@@ -23342,7 +23342,7 @@ public @ResponseBody String cancelSchedule(@RequestBody TournamentScheduler sche
 	try{
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
-			
+			UUID palyerId=(UUID) session.getAttribute("USRID");
 			/*hubReq = new HubRequest();
 			hubReq.setMsgType(139);
 			ModelMap map = new ModelMap();
@@ -23371,13 +23371,17 @@ public @ResponseBody String cancelSchedule(@RequestBody TournamentScheduler sche
 			dto.setBoardId("");
 			dto.setShedulerArray(shedulerArray);
 			dto.setScheduleCancelReason(scheduler.getScheduleCancelReason());
-			
+			dto.setStatusType(scheduler.getStatusType());
+			dto.setPlayerId(palyerId);
 			hubReq = new HubRequest();
 			hubReq.setMsgType(203);
 			ModelMap map = new ModelMap();
 			map.put("boardId", dto.getBoardId());
 			map.put("schedulerArray", dto.getShedulerArray());
 			map.put("scheduleCancelReason", dto.getScheduleCancelReason());
+			map.put("statusType", dto.getStatusType());
+			map.put("playerId", palyerId);
+
 			hubReq.setRequestParam(map);
 			
 			String returnRes = cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -39647,13 +39651,16 @@ public @ResponseBody String cancelGame(@RequestBody CancelScheduleDTO dto, HttpS
 
 	String response = null;
 	try{
-		
+		HttpSession session = req.getSession(true);
+		UUID playerId=(UUID) session.getAttribute("USRID");
 		hubReq = new HubRequest();
 		hubReq.setMsgType(203);
 		ModelMap map = new ModelMap();
 		map.put("boardId", dto.getBoardId());
 		map.put("schedulerArray", dto.getShedulerArray());
 		map.put("scheduleCancelReason", dto.getScheduleCancelReason());
+		map.put("playerId", playerId);
+		map.put("statusType", dto.getStatusType());
 		hubReq.setRequestParam(map);
 		
 		String returnRes = cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -39671,6 +39678,8 @@ public @ResponseBody String cancelGame(@RequestBody CancelScheduleDTO dto, HttpS
 	return response;
 	
 }
+		
+
 
 @RequestMapping(value="/CancelGameByDatePublicProfile/boardId/{boardId}", method = RequestMethod.GET)
 public ModelAndView CancelGameByDatePublicProfile(HttpServletRequest req, @PathVariable String boardId) throws CSException{
@@ -50119,7 +50128,6 @@ public @ResponseBody  String matchType(HttpServletRequest request,@PathVariable 
 	 }
 	return value;
 }
-
 
 
 

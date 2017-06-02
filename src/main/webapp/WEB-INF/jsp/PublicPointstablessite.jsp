@@ -141,6 +141,8 @@
                         <th>Lost</th>
                         <th>Adj</th>
                         <th>Pts</th>
+                        <th>Tie</th>
+                        <th>No Results</th>
                         <th>Net RR</th>
                         <th class="alignCenter">For</th>
                         <th>Against</th>
@@ -171,6 +173,8 @@
                             </c:choose> --%>
                             
                             <td>${team.points}</td>
+                            <td>${team.tie}</td>
+                            <td>${team.abandoned}</td>
                             <td>
                                 <fmt:formatNumber type="number" pattern="##########.##" value="${team.netRunRate}" />
                             </td>
