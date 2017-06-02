@@ -2635,7 +2635,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
                 		   			window.location.href = "${pageContext.request.contextPath}/GameSchedule/boardId/"+boardId;
                 		   			}
                         		   	else{
-                        		   	displaynotification("match is NoResult or Abbounde",2000);
+                        		   	displaynotification("Match has been Abandoned / No result",2000);
                         		   	window.location.href = "${pageContext.request.contextPath}/CancelGameByDate/boardId/"+boardId;
                         		   	}
                 		   			
@@ -2652,7 +2652,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 
                 		   	}
                 		   	else{
-                		   	displaynotification("match is NoResult or Abbounde",2000);
+                		   	displaynotification("Match has been Abandoned / No result",2000);
                 		   	window.location.href = "${pageContext.request.contextPath}/CancelGameByDate/boardId/"+boardId;
                 		   	}
                 		    */

@@ -2076,7 +2076,8 @@ var dateString = null;
                  		$("#EditSCoreCard1").show();
                  		}else{
                  			$("#EditSCoreCard").hide();
-                 			$("#editScoreCardPopUp").show();
+                 			//$("#editScoreCardPopUp").show();
+                 			EditScoreCardPage();
                  			
                  		}
                  	}
@@ -2205,6 +2206,42 @@ var dateString = null;
                  	
                  	
                 	</script>
+                	
+                	<script type="text/javascript">
+                	function EditScoreCardPage()
+                	 {
+                		    
+                		    var boardid=$("#ScoreCardBoardId").val();
+                     		var tournametid=$("#ScoreCardTournamentId").val();
+                     		var tournamentschedulerid=$("#ScoreCardtournmentShudulorId").val();
+                     	    var homeid=$("#ScoreCardhomeId").val();
+                     	    var awayteamid= $("#ScoreCardawayTeamId").val();
+                     	    var date=$("#ScoreCarddate").val();
+                     	    var createdby=$("#ScoreCardcreatedBy").val();
+                     	    
+                     	    
+                    	
+                     	    
+                     	   $.ajax({
+           					type : "GET",
+           					url : "${pageContext.request.contextPath}/matchType/MatchId/"+tournamentschedulerid,
+           					headers : {'Name' : HeaderName},
+           					success : function(res) {
+           					if(res == "4")
+            					{
+           						window.location.href = "${pageContext.request.contextPath}/editscorepublic/boardId/"+boardid+"/"+tournametid+"/"+tournamentschedulerid+"/"+homeid+"/"+awayteamid+"/"+date+"/"+createdby;      
+           						}
+            					else
+            					{
+            					$("#scoringPopUp").show();
+            					} 
+           					}
+            					});
+                		   
+                	 }
+                	
+                	</script>
+                	
    
 </body>
 </html>

@@ -2066,8 +2066,16 @@ function saveFunction(){
             if(i==2){
             	firstInningsBattingObj.fielderId=this.value;
             }
-            if(i==3){
+            /* if(i==3){
             	firstInningsBattingObj.dismissalType=this.value;
+            } */
+            if(i==3){
+                if(this.value == 'Run Out' || this.value == 'Timed Out' || this.value == 'Double Hit'){
+                	var dismissalType = this.value;
+                	firstInningsBattingObj.dismissalType=dismissalType.replace(/ /g, "");
+                }else{
+            	 firstInningsBattingObj.dismissalType=this.value;
+                };            
             }
             if(i==4){
             	firstInningsBattingObj.battingRuns = this.value;
@@ -2116,8 +2124,16 @@ function saveFunction(){
             if(i==2){
             	secondInningsBattingObj.fielderId=this.value;
             }
-            if(i==3){
+           /*  if(i==3){
             	secondInningsBattingObj.dismissalType=this.value;
+            } */
+            if(i==3){
+            	 if(this.value == 'Run Out' || this.value == 'Timed Out' || this.value == 'Double Hit'){
+                	var dismissalType = this.value;
+                	secondInningsBattingObj.dismissalType=dismissalType.replace(/ /g, "");
+                }else{
+            	secondInningsBattingObj.dismissalType=this.value;
+            	};
             }
             if(i==4){
             	secondInningsBattingObj.battingRuns = this.value;

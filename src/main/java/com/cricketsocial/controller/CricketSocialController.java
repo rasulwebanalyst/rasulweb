@@ -50108,6 +50108,492 @@ public @ResponseBody String editScoreInsert(@RequestBody ScoreBean scorer, HttpS
 	
 }
 
+
+
+@RequestMapping(value="/editscorepublic/boardId/{boardId}/{tournamentId}/{tournamentSchedulerId}/{homeTeamId}/{awayTeamId}/{matchDate}/{leagueCreatedBy}", method = RequestMethod.GET)
+public ModelAndView editscorepublic(HttpServletRequest req, @PathVariable String boardId,@PathVariable String tournamentId,@PathVariable String tournamentSchedulerId, @PathVariable String homeTeamId,@PathVariable String awayTeamId,@PathVariable String matchDate,@PathVariable String leagueCreatedBy){
+	ModelAndView mav = null;
+	try{
+		//EnterScoreSelectedMatch1/boardId/"+boardid+"/"+tournametid+"/"+tournamentschedulerid+"/"+homeid+"/"+awayteamid+"/"+date+"/"+createdby
+		
+		if(isUUID(boardId) && isUUID(tournamentId) && isUUID(tournamentSchedulerId) && isUUID(homeTeamId) && isUUID(awayTeamId) && isUUID(leagueCreatedBy)){
+		
+		System.out.println("id----->><><>"+boardId+"<><>"+tournamentId+"<><>"+tournamentSchedulerId+"<><>"+homeTeamId+"<><><"+awayTeamId+"<><><"+matchDate+"<><>leagueCreatedBy"+leagueCreatedBy);
+		
+		HttpSession session = req.getSession(true);
+		if(session != null && session.getAttribute("USRID") != null){
+			mav = new ModelAndView("EditScorePublic");
+		//	mav = new ModelAndView("enterscore2");
+			mav.addObject("boardId", boardId);		
+			UUID userId = (UUID) session.getAttribute("USRID");			
+			hubReq= new HubRequest();
+			 hubReq.setMsgType(41);
+			 ModelMap map=new ModelMap();
+			 map.put("userId", userId);
+			 map.put("startNode", 0);
+			 map.put("endNode", 200);
+			  hubReq.setRequestParam(map);
+				 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
+				 GsonBuilder builder = new GsonBuilder();
+				 Gson gson = builder.create();
+				 if(strBoardList!=null)
+				 {
+					 HubResponse hubResponse= gson.fromJson(strBoardList, HubResponse.class);
+					 if(hubResponse!=null && hubResponse.getResults()!=null)
+					 {
+						 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
+					 }
+				 }				 
+				 hubReq = new HubRequest(161);
+					hubReq.setMsgType(161);					
+					ModelMap mod= new ModelMap();
+					mod.put("createdBy", boardId);
+					hubReq.setRequestParam(mod);
+					String tournamentListOfTheBoard = cricketSocialRestTemplateService.userRegistration(hubReq);
+					if(tournamentListOfTheBoard !=  null){
+						HubResponse  hubRes = gson.fromJson(tournamentListOfTheBoard, HubResponse.class);
+						if(hubRes !=  null && hubRes.getResults() !=  null && hubRes.getResults().getTournamentNamestList() != null){
+							mav.addObject("tournamentOfTheBoard", hubRes.getResults().getTournamentNamestList());
+							System.out.println("value============>"+new JSONArray(hubRes.getResults().getTournamentNamestList()));
+							//mav.addObject("groundListSize",hubRes.getResults().getGroundList().size());
+						}
+				 
+					}
+					
+					
+					
+
+					hubReq = new HubRequest();
+					hubReq.setMsgType(176);
+					ModelMap gameTypeMap = new ModelMap();
+					hubReq.setRequestParam(gameTypeMap);
+					String gameResponse = cricketSocialRestTemplateService.userRegistration(hubReq);
+					if(gameResponse != null){
+						HubResponse hubRes = GsonConverters.getGsonObject().fromJson(gameResponse, HubResponse.class);
+						if(hubRes != null && hubRes.getResults() != null){
+							mav.addObject("gameTypeList", hubRes.getResults().getGameList());
+							
+						}
+					}
+					
+
+					hubReq = new HubRequest();
+					hubReq.setMsgType(213);
+					ModelMap dismissalMap = new ModelMap();
+					hubReq.setRequestParam(dismissalMap);
+					String dismissalResponse = cricketSocialRestTemplateService.userRegistration(hubReq);
+					if(dismissalResponse != null){
+						HubResponse hubRes = GsonConverters.getGsonObject().fromJson(dismissalResponse, HubResponse.class);
+						if(hubRes != null && hubRes.getResults() != null && hubRes.getResults().getDismissalTypeList() != null){
+							mav.addObject("dismissalTypeList", hubRes.getResults().getDismissalTypeList());
+							
+						}
+					}
+				 
+				//*************************** Getting Board info  ***************************************
+				 HubRequest hubReq1=new HubRequest();
+				 hubReq1.setMsgType(40);
+				 ModelMap map11=new ModelMap();			
+				 map11.put("userId", session.getAttribute("USRID"));			 
+				 map11.put("boardId", boardId);
+				 hubReq1.setRequestParam(map11);
+				 String strBoarddetail=cricketSocialRestTemplateService.userRegistration(hubReq1);		
+				 if(strBoarddetail!=null)
+				 {
+					 HubResponse hubResponse1= gson.fromJson(strBoarddetail, HubResponse.class);
+					if(hubResponse1!=null && hubResponse1.getResults().getBoardStatusDetail()!=null && hubResponse1.getResults().getBoardStatusDetail().size()>0)
+					{
+						 mav.addObject("BoradInfo", hubResponse1.getResults().getBoardStatusDetail().get(0));
+						 final String context = req.getContextPath();
+						 MenuList menuList= Util.leaugeMenuList(hubResponse1.getResults().getBoardStatusDetail().get(0), session.getAttribute("USRID")+"", context);						
+						 mav.addObject("LeaugeMenuList", menuList);				
+					}
+				 }	
+			
+			
+				// response[i].homeTeamId+","+response[i].awayTeamId+","+response[i].tournamentSchedulerId+","+response[i].dateString;
+				 mav.addObject("selectedTournamentId",tournamentId);
+				 mav.addObject("selectedTeam", homeTeamId+","+awayTeamId+","+tournamentSchedulerId+","+matchDate);
+				 mav.addObject("homeTeamId", homeTeamId);
+				 mav.addObject("awayTeamId", awayTeamId);
+				 
+			//*************************************** Get Roaster Team Details ******************************//
+				 List<RosterUserMap> homeList1=new ArrayList<RosterUserMap>();
+				 List<RosterUserMap> awayList1=new ArrayList<RosterUserMap>();
+				 JSONArray homeList=new JSONArray();
+				 JSONArray awayList=new JSONArray();
+				 
+				 HubRequest hubReq2=new HubRequest();	 
+				 hubReq2.setMsgType(31);
+				 ModelMap map12=new ModelMap();			
+				 map12.put("leagueCreatedBy", leagueCreatedBy);			 
+				 map12.put("tournamentSchedulerId", tournamentSchedulerId);
+				 map12.put("boardId", homeTeamId);
+		
+				 hubReq2.setRequestParam(map12);
+				 String homeTeamRosterDetails=cricketSocialRestTemplateService.userRegistration1(hubReq2);	
+				 if(homeTeamRosterDetails != null){
+					 HubResponse hubResponse= gson.fromJson(homeTeamRosterDetails, HubResponse.class);
+					 System.out.println("roster Details---"+hubResponse.getResults().getRosterDetails().size());
+					 if(hubResponse.getResults().getRosterDetails().size() > 0){
+						  homeList = new JSONArray(hubResponse.getResults().getRosterDetails().get(0).getRosterUserMapList());
+						 System.out.println("----------------------"+homeList);
+						 homeList1=hubResponse.getResults().getRosterDetails().get(0).getRosterUserMapList();
+					 mav.addObject("homeTeamRosterList", homeList);
+					 }
+				 }
+				 
+				 HubRequest hubReq3=new HubRequest();	 
+				 hubReq3.setMsgType(31);
+				 ModelMap map13=new ModelMap();			
+				 map13.put("leagueCreatedBy", leagueCreatedBy);			 
+				 map13.put("tournamentSchedulerId", tournamentSchedulerId);
+				 map13.put("boardId", awayTeamId);
+		
+				 hubReq3.setRequestParam(map13);
+				 String awayTeamRosterDetails=cricketSocialRestTemplateService.userRegistration1(hubReq3);	
+				 if(awayTeamRosterDetails != null){
+					 HubResponse hubResponse= gson.fromJson(awayTeamRosterDetails, HubResponse.class);
+					 System.out.println("roster Details---12121"+hubResponse.getResults().getRosterDetails().size());
+					 if(hubResponse.getResults().getRosterDetails().size() > 0){
+						  awayList = new JSONArray(hubResponse.getResults().getRosterDetails().get(0).getRosterUserMapList());
+						 awayList1 = hubResponse.getResults().getRosterDetails().get(0).getRosterUserMapList();
+					 mav.addObject("awayTeamRosterList",awayList );
+					 }
+				 }
+				 
+				 
+				 
+				 mav.addObject("tournamentSchedulerid", tournamentSchedulerId);
+				 
+				
+				 
+				 hubReq = new HubRequest();
+				 hubReq.setMsgType(282);
+				 ModelMap map3 = new ModelMap();
+				 map3.put("matchId", tournamentSchedulerId);
+				 hubReq.setRequestParam(map3);
+				  
+				 String returnResponse = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 
+				 if(returnResponse != null){
+					 NewResponse res = gson.fromJson(returnResponse, NewResponse.class);
+					 if(res != null && res.getResults() != null){
+						mav.addObject("scoreCardList", res.getResults().getMatchResult());
+						mav.addObject("secondInnings", res.getResults().getSecondInnings());
+						mav.addObject("firstInnings", res.getResults().getFirstInnings());
+						mav.addObject("firstInningsBattingPlayer", res.getResults().getFirstInnings().getBattingPlayer());
+						mav.addObject("SecondInningsBattingPlayer", res.getResults().getSecondInnings().getBattingPlayer());
+						mav.addObject("firstInningsBowlingPlayer", res.getResults().getFirstInnings().getBowlingPlayer());
+						mav.addObject("SecondInningsBowlingPlayer", res.getResults().getSecondInnings().getBowlingPlayer());
+                        mav.addObject("fallOfWicketsFirstInningsWebPortal", res.getResults().getFirstInnings().getFallOfWickets());
+						mav.addObject("fallOfWicketsSecondInningsWebPortal", res.getResults().getSecondInnings().getFallOfWickets());
+						mav.addObject("firstInnfallowOfWicketsSize",res.getResults().getFirstInnings().getFallOfWickets().size());
+						mav.addObject("secondInnfallowOfWicketsSize",res.getResults().getSecondInnings().getFallOfWickets().size());
+						mav.addObject("MatchStatus", res.getResults().getMatchResult().getWonTeam());
+						
+						
+						if(res.getResults().getFirstInnings().getBattingTeamId().toString().equals(homeList1.get(0).getBoardId()))
+						{
+							
+							mav.addObject("homeTeamRosterList1", homeList1);
+							 mav.addObject("awayTeamRosterList1",awayList1);
+							 
+							 
+							/* mav.addObject("homeTeamRosterList", homeList);
+							 mav.addObject("awayTeamRosterList",awayList);*/
+							 
+						}else{
+							
+							 mav.addObject("homeTeamRosterList1", awayList1);
+							 mav.addObject("awayTeamRosterList1",homeList1);
+							 
+							 
+							/* mav.addObject("homeTeamRosterList", awayList);
+							 mav.addObject("awayTeamRosterList",homeList);*/
+						}
+						
+						mav.addObject("firstInningsextras", res.getResults().getFirstInnings().getExtrasvalue());
+						mav.addObject("SecondInningsextras", res.getResults().getSecondInnings().getExtrasvalue());
+						mav.addObject("firstInningsDNB",new JSONArray(res.getResults().getFirstInnings().getDoNotBatPlayersList()));
+						mav.addObject("SecondInningsDNB", new JSONArray(res.getResults().getSecondInnings().getDoNotBatPlayersList()));
+						
+						
+						//                Extras
+						
+						List<ExtrasDTO> firstExtrasList=res.getResults().getFirstInnings().getExtrasvalue();
+						String wide="",noBalls="",legByes="",byes="",penalties="";
+						for(int i=0; i<firstExtrasList.size();i++)
+						{							
+							if(firstExtrasList.get(i).getExtraType().equalsIgnoreCase("Wide"))
+							{
+								wide=Integer.toString(firstExtrasList.get(i).getCount());
+							}
+							if(firstExtrasList.get(i).getExtraType().equalsIgnoreCase("Byes"))
+							{
+								byes=Integer.toString(firstExtrasList.get(i).getCount());
+							}
+							if(firstExtrasList.get(i).getExtraType().equalsIgnoreCase("Noball"))
+							{
+								noBalls=Integer.toString(firstExtrasList.get(i).getCount());
+							}
+							if(firstExtrasList.get(i).getExtraType().equalsIgnoreCase("LegByes"))
+							{
+								legByes=Integer.toString(firstExtrasList.get(i).getCount());
+							}
+							if(firstExtrasList.get(i).getExtraType().equalsIgnoreCase("Penalties"))
+							{
+								penalties=Integer.toString(firstExtrasList.get(i).getCount());
+							}
+						}
+						mav.addObject("firstInnwide",wide);
+						mav.addObject("firstInnbyes",byes);
+						mav.addObject("firstInnnoBalls",noBalls);
+						mav.addObject("firstInnlegByes",legByes);
+						mav.addObject("firstInnpenalties",penalties);
+						
+						
+                        List<ExtrasDTO> secondExtrasList=res.getResults().getSecondInnings().getExtrasvalue();
+						String wide1="",noBalls1="",legByes1="",byes1="",penalties1="";
+						for(int i=0; i<secondExtrasList.size();i++)
+						{							
+							if(secondExtrasList.get(i).getExtraType().equalsIgnoreCase("Wide"))
+							{
+								wide1=Integer.toString(secondExtrasList.get(i).getCount());
+							}
+							if(secondExtrasList.get(i).getExtraType().equalsIgnoreCase("Byes"))
+							{
+								byes1=Integer.toString(secondExtrasList.get(i).getCount());
+							}
+							if(secondExtrasList.get(i).getExtraType().equalsIgnoreCase("Noball"))
+							{
+								noBalls1=Integer.toString(secondExtrasList.get(i).getCount());
+							}
+							if(secondExtrasList.get(i).getExtraType().equalsIgnoreCase("LegByes"))
+							{
+								legByes1=Integer.toString(secondExtrasList.get(i).getCount());
+							}
+							if(secondExtrasList.get(i).getExtraType().equalsIgnoreCase("Penalties"))
+							{
+								penalties1=Integer.toString(secondExtrasList.get(i).getCount());
+							}
+						}
+						mav.addObject("secondInnwide",wide1);
+						mav.addObject("secondInnbyes",byes1);
+						mav.addObject("secondInnnoBalls",noBalls1);
+						mav.addObject("secondInnlegByes",legByes1);
+						mav.addObject("secondInnpenalties",penalties1);
+						
+						
+						//               Followofwickets
+						
+						String f1st="",f2nd="",f3rd="",f4th="",f5th="",f6th="",f7th="",f8th="",f9th="",f10th="";
+						List<FollowOfWickets> firstInnWickets=res.getResults().getFirstInnings().getFallOfWickets();
+						for(int i=0;i<firstInnWickets.size();i++)
+						{
+							if(firstInnWickets.get(i).getWicketNumber() ==1)
+							{
+								f1st=Integer.toString(firstInnWickets.get(i).getRuns());
+								}
+							if(firstInnWickets.get(i).getWicketNumber() == 2)
+							{
+								f2nd=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							if(firstInnWickets.get(i).getWicketNumber() == 3)
+							{
+								f3rd=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							if(firstInnWickets.get(i).getWicketNumber() == 4)
+							{
+								f4th=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							if(firstInnWickets.get(i).getWicketNumber() == 5)
+							{
+								f5th=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							if(firstInnWickets.get(i).getWicketNumber() == 6)
+							{
+								f6th=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							if(firstInnWickets.get(i).getWicketNumber() == 7)
+							{
+								f7th=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							if(firstInnWickets.get(i).getWicketNumber() == 8)
+							{
+								f8th=Integer.toString(firstInnWickets.get(i).getRuns());
+							}if(firstInnWickets.get(i).getWicketNumber() == 9)
+							{
+								f9th=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							if(firstInnWickets.get(i).getWicketNumber() == 10)
+							{
+								f10th=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							
+						}
+						mav.addObject("firstInn1stWicket", f1st);
+						mav.addObject("firstInn2ndWicket", f2nd);
+						mav.addObject("firstInn3rdWicket", f3rd);
+						mav.addObject("firstInn4thWicket", f4th);
+						mav.addObject("firstInn5thWicket", f5th);
+						mav.addObject("firstInn6thWicket", f6th);
+						mav.addObject("firstInn7thWicket", f7th);
+						mav.addObject("firstInn8thWicket", f8th);
+						mav.addObject("firstInn9thWicket", f9th);
+						mav.addObject("firstInn10thWicket", f10th);
+						
+						
+						String s1st="",s2nd="",s3rd="",s4th="",s5th="",s6th="",s7th="",s8th="",s9th="",s10th="";
+						List<FollowOfWickets> secondInnWickets=res.getResults().getSecondInnings().getFallOfWickets();
+						for(int i=0;i<secondInnWickets.size();i++)
+						{
+							if(secondInnWickets.get(i).getWicketNumber() ==1)
+							{
+								s1st=Integer.toString(secondInnWickets.get(i).getRuns());
+								}
+							if(secondInnWickets.get(i).getWicketNumber() == 2)
+							{
+								s2nd=Integer.toString(secondInnWickets.get(i).getRuns());
+							}
+							if(secondInnWickets.get(i).getWicketNumber() == 3)
+							{
+								s3rd=Integer.toString(secondInnWickets.get(i).getRuns());
+							}
+							if(secondInnWickets.get(i).getWicketNumber() == 4)
+							{
+								s4th=Integer.toString(secondInnWickets.get(i).getRuns());
+							}
+							if(secondInnWickets.get(i).getWicketNumber() == 5)
+							{
+								s5th=Integer.toString(secondInnWickets.get(i).getRuns());
+							}
+							if(secondInnWickets.get(i).getWicketNumber() == 6)
+							{
+								s6th=Integer.toString(secondInnWickets.get(i).getRuns());
+							}
+							if(secondInnWickets.get(i).getWicketNumber() == 7)
+							{
+								s7th=Integer.toString(secondInnWickets.get(i).getRuns());
+							}
+							if(secondInnWickets.get(i).getWicketNumber() == 8)
+							{
+								s8th=Integer.toString(secondInnWickets.get(i).getRuns());
+							}if(secondInnWickets.get(i).getWicketNumber() == 9)
+							{
+								s9th=Integer.toString(secondInnWickets.get(i).getRuns());
+							}
+							if(secondInnWickets.get(i).getWicketNumber() == 10)
+							{
+								s10th=Integer.toString(secondInnWickets.get(i).getRuns());
+							}							
+						}
+						mav.addObject("secondInn1stWicket", s1st);
+						mav.addObject("secondInn2ndWicket", s2nd);
+						mav.addObject("secondInn3rdWicket", s3rd);
+						mav.addObject("secondInn4thWicket", s4th);
+						mav.addObject("secondInn5thWicket", s5th);
+						mav.addObject("secondInn6thWicket", s6th);
+						mav.addObject("secondInn7thWicket", s7th);
+						mav.addObject("secondInn8thWicket", s8th);
+						mav.addObject("secondInn9thWicket", s9th);
+						mav.addObject("secondInn10thWicket",s10th);
+						
+						String manOfTheMatch = "";
+						if(res.getResults().getMatchResult().getManoftheMaTchList() != null){
+						if(res.getResults().getMatchResult().getManoftheMaTchList().size() > 0){
+							mav.addObject("PlayerOfTheMatch", res.getResults().getMatchResult().getManoftheMaTchList().get(0));
+						}
+						}
+						
+						if(res.getResults().getMatchResult() == null ){
+							mav.addObject("scoreCardListSize", 0);
+						}else{
+							mav.addObject("scoreCardListSize", res.getResults().getMatchResult().toString().length());
+						}
+
+						if(res.getResults().getFirstInnings().getBattingPlayer() == null ){
+							mav.addObject("firstInningsBattingPlayerSize", 0);
+						}else{
+							mav.addObject("firstInningsBattingPlayerSize", res.getResults().getFirstInnings().getBattingPlayer().size());
+						}
+						if(res.getResults().getSecondInnings().getBattingPlayer() == null){
+							mav.addObject("SecondInningsBattingPlayerSize", 0);
+						}else{
+							mav.addObject("SecondInningsBattingPlayerSize", res.getResults().getSecondInnings().getBattingPlayer().size());
+						}
+						if(res.getResults().getFirstInnings().getBowlingPlayer() == null){
+							mav.addObject("firstInningsBowlingPlayerSize", 0);
+						}else{
+							mav.addObject("firstInningsBowlingPlayerSize", res.getResults().getFirstInnings().getBowlingPlayer().size());
+						}
+						if(res.getResults().getSecondInnings().getBowlingPlayer() == null){
+							mav.addObject("SecondInningsBowlingPlayerSize", 0);
+						}else{
+							mav.addObject("SecondInningsBowlingPlayerSize", res.getResults().getSecondInnings().getBowlingPlayer().size());
+						}						
+					 }else{
+						System.out.println("null condition"); 
+					 }
+				 }
+				 else{
+					 
+				 }
+				 
+				 // get Umpire and Scrorer details
+				 HubRequest hubReq4=new HubRequest();	 
+				 hubReq4.setMsgType(250);
+				 ModelMap map14=new ModelMap();			
+				 map14.put("tournamentSchedulerId", tournamentSchedulerId);
+		
+				 hubReq4.setRequestParam(map14);
+				 String umpireAndScorerDetails=cricketSocialRestTemplateService.userRegistration(hubReq4);
+				 if(umpireAndScorerDetails != null){
+					 HubResponse hubResponse = gson.fromJson(umpireAndScorerDetails, HubResponse.class);
+					 mav.addObject("umpireAndScorerDetails", hubResponse.getResults().getUmpireAndScorerDetails());
+					 mav.addObject("GroundId", hubResponse.getResults().getUmpireAndScorerDetails().getGroundId());
+					
+					 if(hubResponse.getResults().getUmpireAndScorerDetails().getUmpireNamesList().size() > 0){
+					 List<UmpireNameList> listOfUmpires = hubResponse.getResults().getUmpireAndScorerDetails().getUmpireNamesList();
+					 List<UserSearchVO> umpireNameList = new ArrayList<UserSearchVO>();
+					
+					 for(int k=0; k<listOfUmpires.size(); k++){
+						 String name = listOfUmpires.get(k).getUmpireName();
+						 UserSearchVO user = new UserSearchVO();
+						 user.setFullName(name);
+						 user.setId(listOfUmpires.get(k).getUmpireId());
+						 umpireNameList.add(user);
+						 					
+					 }
+					 JSONArray arr1 = new JSONArray(umpireNameList);
+					 mav.addObject("umpireNameList", arr1);
+					 mav.addObject("winPoint",hubResponse.getResults().getUmpireAndScorerDetails().getWinPoints());
+					 }else
+					 {
+						 JsonArray arr=new JsonArray();
+						 mav.addObject("umpireNameList",arr);
+						 mav.addObject("winPoint",hubResponse.getResults().getUmpireAndScorerDetails().getWinPoints());
+					 }
+					 
+				 }
+				 
+		}else{
+			mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
+		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
+		
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+	return mav;
+}
+
+
+
+
+
 @RequestMapping(value="/matchType/MatchId/{matchId}",method=RequestMethod.GET)
 public @ResponseBody  String matchType(HttpServletRequest request,@PathVariable String matchId) throws Exception
 {
