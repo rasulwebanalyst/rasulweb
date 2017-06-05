@@ -2842,7 +2842,7 @@ var SecondInningsScore = $("#secondInnigsScore").val();
 }
 function cancelValues(){
 	//window.location.reload();
-	window.location.href="${pageContext.request.contextPath}/GameSchedule/boardId/${boardId}";
+	window.location.href="${pageContext.request.contextPath}/GameSchedulePublicProfile/boardId/${boardId}";
 }
 
 function checkFunction(){

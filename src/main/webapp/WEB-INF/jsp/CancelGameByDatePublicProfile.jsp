@@ -90,10 +90,10 @@ var formatAMPMTime = function(date) {
 				<div class="modal-footer action" style="text-align:center;">
                    <div style="text-align:left !important;">
 					<input type="radio" id="Male" name="gender" value="1"> 
-					<label for="Male"><span></span>Cancel the Matches</label> 
+					<label for="Male"><span></span>Cancel (Points will not be shared)</label> 
 					<br>
 					<input type="radio" id="female" name="gender" value="2"> 
-					<label for="female"><span></span>No Result and Abandoned</label>						
+					<label for="female"><span></span>Abandoned/No result (Points will be shared)</label>						
 				   </div>			   		
 					<button type="button" onclick="cancelPage()" class="btn btn-default ok">OK</button>
 					<button type="button" onclick="okFun()"	class="btn btn-default ok">Cancel</button>
@@ -545,7 +545,7 @@ var formatAMPMTime = function(date) {
 
 						}
 						else{
-							displaynotification("Match has been Abandoned / No result",2000);
+							displaynotification("Match has been abandoned",2000);
 							window.location.href = "${pageContext.request.contextPath}/CancelGameByDate/boardId/"+boardId;
 						}
 					},
