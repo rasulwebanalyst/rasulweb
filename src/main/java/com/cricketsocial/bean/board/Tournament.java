@@ -19,14 +19,11 @@ public class Tournament {
 	private String gameId;
 	private String gameName;
 	private String gameType;
-	
-	private TournamentScheduler tournamentSchedulerObj;
-	
 	private String tournamentSchedulerId;
-	
 	private String gametypeinTour;
 	private String modifiedBy;
 	private String rosterId;
+	
 	
 	
 	
@@ -40,17 +37,17 @@ public class Tournament {
 	public void setRosterId(String rosterId) {
 		this.rosterId = rosterId;
 	}
-	public String getGametypeinTour() {
-		return gametypeinTour;
-	}
-	public void setGametypeinTour(String gametypeinTour) {
-		this.gametypeinTour = gametypeinTour;
-	}
 	public String getModifiedBy() {
 		return modifiedBy;
 	}
 	public void setModifiedBy(String modifiedBy) {
 		this.modifiedBy = modifiedBy;
+	}
+	public String getGametypeinTour() {
+		return gametypeinTour;
+	}
+	public void setGametypeinTour(String gametypeinTour) {
+		this.gametypeinTour = gametypeinTour;
 	}
 	public String getTournamentSchedulerId() {
 		return tournamentSchedulerId;
@@ -58,6 +55,9 @@ public class Tournament {
 	public void setTournamentSchedulerId(String tournamentSchedulerId) {
 		this.tournamentSchedulerId = tournamentSchedulerId;
 	}
+	private TournamentScheduler tournamentSchedulerObj;
+	
+	
 	public String getTournamentName() {
 		return tournamentName;
 	}

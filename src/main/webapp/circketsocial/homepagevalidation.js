@@ -401,12 +401,12 @@ messages :
 									}// for
 								
 						}else{
-							htm +='<div class="media">No Records are found</div>';
+							htm +='<div class="media">No Record are found</div>';
 						}
 								
 								
 						}else{
-							htm +='<div class="media">No Records are found</div>';
+							htm +='<div class="media">No Record are found</div>';
 						}
 					$('#commentListDivPopup').html(htm);
 					showViewfeedCommentPopuDiv();

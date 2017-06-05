@@ -176,12 +176,12 @@ $(function(){
 							}else
 								{
 								empty = 1;
-								htmlco+="<div class='sidebar-list noContentDiv'>No Matches around you.</div>";		
+								htmlco+="<div class='sidebar-list noContentDiv'>No Match around you.</div>";		
 								}
 						}else
 							{
 							empty =1;
-						htmlco+="<div class='sidebar-list noContentDiv'>No Matches around you.</div>";	
+						htmlco+="<div class='sidebar-list noContentDiv'>No Match around you.</div>";	
 							}
 					
 					$("#nt-example1").html(htmlco).trigger('create');

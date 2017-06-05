@@ -70,13 +70,13 @@ function getNotification(){
 function imgError(ele)
 {
 	   ele.onerror=null;
-	   ele.src=ctx+'/images/boardIcon.png';	 
+	   ele.src='https://cdn.cricketsocial.com/images/boardIcon.png';	 
 }
 
 function userErrorDefaultImg(ele)
 {
 	  ele.onerror=null;
-	   ele.src=ctx+'/images/profileIcon.png';	
+	   ele.src='https://cdn.cricketsocial.com/images/profileIcon.png';	
 	
 	
 }
@@ -651,11 +651,11 @@ function getMyBuddyRequestsAjax(){
 					   htm2 +='';
 				   }
 				}else{
-					html+="<div class='media'><b>You have no requests at this moment.</b></div>";
+					html+="<div class='media'><b>You have no request at this moment.</b></div>";
 				}	
 				
 			}else{
-				html+="<div class='media'><b>You have no requests at this moment..</b></div>";	
+				html+="<div class='media'><b>You have no request at this moment..</b></div>";	
 
 			}
 			document.getElementById('RequestsDiv').innerHTML=html;

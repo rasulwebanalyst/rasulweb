@@ -136,7 +136,7 @@
       				   <c:choose>
                            	<c:when test="${empty MatchesArroundYou}">
                            		<div style="margin-left: 50%; margin-bottom: 15px;" class="sidebar-list">
-                           			No Matches around you.
+                           			No Match around you.
                            		</div>
                            	</c:when>
                            	<c:otherwise>

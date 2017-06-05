@@ -19,7 +19,40 @@ public class GameSchedule {
 	private String filterByYear;
 	private String userId;
 	private String flag;
+	private String fromDate;
+	private String toDate;
 	
+	private String tournament;
+	private String tournamentHiddenId;
+	
+	
+	
+	
+	
+	public String getTournamentHiddenId() {
+		return tournamentHiddenId;
+	}
+	public void setTournamentHiddenId(String tournamentHiddenId) {
+		this.tournamentHiddenId = tournamentHiddenId;
+	}
+	public String getTournament() {
+		return tournament;
+	}
+	public void setTournament(String tournament) {
+		this.tournament = tournament;
+	}
+	public String getFromDate() {
+		return fromDate;
+	}
+	public void setFromDate(String fromDate) {
+		this.fromDate = fromDate;
+	}
+	public String getToDate() {
+		return toDate;
+	}
+	public void setToDate(String toDate) {
+		this.toDate = toDate;
+	}
 	public List<UpcomingMatches> getUpComingMatchesList() {
 		return upComingMatchesList;
 	}

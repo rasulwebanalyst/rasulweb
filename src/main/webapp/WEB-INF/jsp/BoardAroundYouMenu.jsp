@@ -20,7 +20,7 @@
 	                               <c:choose>
 	                             	<c:when test="${empty MatchesArroundYou}">
 	                             		<div style="margin-left: 45px; margin-bottom: 15px;" class="sidebar-list">
-	                             			No Matches around you.
+	                             			No Match around you.
 	                             		</div>
 	                             	</c:when>
 	                             	<c:otherwise>
@@ -60,7 +60,7 @@
                                <c:choose>
                              	<c:when test="${empty BRDAroundYou}">
                              		<div style="margin-left: 45px; margin-bottom: 15px;" class="sidebar-list">
-                             			No leagues around you.
+                             			No league around you.
                              		</div>
                              	</c:when>
                              	<c:otherwise>
@@ -84,7 +84,7 @@
                                <c:choose>
                              	<c:when test="${empty BuddyAroundYou}">
                  		<div style="margin-left:45px; margin-bottom: 15px;" class="sidebar-list">
-                             			No buddies around you.
+                             			No buddy around you.
                              		</div>
                              	</c:when>
                              	<c:otherwise>
@@ -120,7 +120,7 @@
                               <c:choose>
                               	<c:when test="${empty TEAMAroundYou}">
                               		<div style="margin-left: 45px; margin-bottom: 15px;" class="sidebar-list">
-                             			No teams around you.
+                             			No team around you.
                              		</div>
                               	</c:when>
                               	<c:otherwise>
@@ -149,7 +149,7 @@
                                <c:choose>
                              	<c:when test="${empty Merchants}">
                  		<div style="margin-left:45px; margin-bottom: 15px;" class="sidebar-list">
-                             			No Merchants around you.
+                             			No Merchant around you.
                              		</div>
                              	</c:when>
                              	<c:otherwise>

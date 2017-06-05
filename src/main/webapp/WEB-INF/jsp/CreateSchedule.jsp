@@ -107,7 +107,7 @@ border-radius: 0px;
 padding: 0;
 position: absolute;
 z-index: 1;
-right: -177px;
+right: -200px;
 margin-top: -10px;
 opacity: 0;
 transition: opacity 1s;

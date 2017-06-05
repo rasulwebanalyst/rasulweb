@@ -15,7 +15,7 @@ public class BowlingBean {
 	private double bowlingEconomyRate;
 	private String bowlerId;
 	private int bowlingZeros;
-	private int maidenOvers;
+	private double maidenOvers;
 	private int wickets;
 	private int innings;
 	
@@ -70,14 +70,23 @@ public class BowlingBean {
 	public void setBowlingZeros(int bowlingZeros) {
 		this.bowlingZeros = bowlingZeros;
 	}
-	public int getMaidenOvers() {
+	/*public int getMaidenOvers() {
 		return maidenOvers;
 	}
 	public void setMaidenOvers(int maidenOvers) {
 		this.maidenOvers = maidenOvers;
-	}
+	}*/
+	
+	
+	
 	public int getWickets() {
 		return wickets;
+	}
+	public double getMaidenOvers() {
+		return maidenOvers;
+	}
+	public void setMaidenOvers(double maidenOvers) {
+		this.maidenOvers = maidenOvers;
 	}
 	public void setWickets(int wickets) {
 		this.wickets = wickets;

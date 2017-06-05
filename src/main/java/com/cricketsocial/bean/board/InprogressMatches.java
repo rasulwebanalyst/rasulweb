@@ -9,6 +9,7 @@ import java.util.UUID;
 
 
 
+
 import com.cricketsocial.bean.board.BoardProfile;
 
 public class InprogressMatches {
@@ -57,7 +58,7 @@ public class InprogressMatches {
 	private String leagueCreatedBy;
 	private String boardId;
 	
-private List<ScorerNameList> portalScorerList;
+	private List<ScorerNameList> portalScorerList;
 	
 	
 	
@@ -67,7 +68,6 @@ private List<ScorerNameList> portalScorerList;
 	public void setPortalScorerList(List<ScorerNameList> portalScorerList) {
 		this.portalScorerList = portalScorerList;
 	}
-	
 	public String getBoardId() {
 		return boardId;
 	}
