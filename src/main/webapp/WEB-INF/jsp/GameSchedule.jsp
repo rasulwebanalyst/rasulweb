@@ -179,7 +179,7 @@ margin: 0;
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-body">
-					<p style="text-align:center;">Sorry unable edit the scorecard, Scored by scoring application </p>
+					<p style="text-align:center;">Sorry unable to edit the scorecard, Scored by scoring application </p>
 					<br>
 				</div>
 				<div class="modal-footer action">
@@ -1068,6 +1068,11 @@ date.add(java.util.Calendar.DATE, +6);
                            <span class="text-danger">Match Abandoned</span>
                            <input type="hidden" id="status_${completed.tournamentSchedulerId }" value="Abandoned"> 
                            </c:when>
+                           
+                           <c:when test="${completed.statusOfMatch eq 'Abandoned'}">
+                           <span class="text-danger">Match Abandoned</span>
+                           </c:when>
+                           
                            <c:otherwise>
                            <span class="text-danger">${completed.winTeamName} won</span>
                            </c:otherwise>
@@ -1953,6 +1958,9 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 					    
 							   htmlco3+="<td align='center'><span class='text-danger'>Match Abandoned</span><br>";
 							   htmlco3+="<input type='hidden' id='status_"+completedlist[i].tournamentSchedulerId+"' value='Abandoned'>";    
+						   }else if(completedlist[i].statusOfMatch == 'Abandoned'){
+					    
+							   htmlco3+="<td align='center'><span class='text-danger'>Match Abandoned</span><br>";
 						   }
 					    else{
 						   htmlco3+="<td align='center'><span class='text-danger'>"+completedlist[i].winTeamName+" won</span><br>";}

@@ -30,11 +30,10 @@ function winpointAutoPopulate(){
 	if($("#result").val() == "00"){
 		$("#winTeamPoints").val(0);	
 		$("#loseTeamPoints").val(0);
-	}else if($("#result").val() == "tie"){
+	}else if($("#result").val() == "tie" || $("#result").val() == "Abandoned"){
 		var tiepoint = winTeamPoint/2;
 		$("#winTeamPoints").val(tiepoint);	
 		$("#loseTeamPoints").val(tiepoint);
-		
 		//vignesh changes
 		 console.log("First innings :"+$("#homeTeamName").val() +" hometeam "+homeTeamId);
 		 console.log($("#homeTeamName").val() == homeTeamId);
@@ -61,7 +60,7 @@ function winpointAutoPopulate(){
 	
 	
 	
-	if($("#result").val() == "tie"){
+	if($("#result").val() == "tie" || $("#result").val() == "Abandoned"){
 	
 	if($("#homeTeamName").val() == homeTeamId)
 	{

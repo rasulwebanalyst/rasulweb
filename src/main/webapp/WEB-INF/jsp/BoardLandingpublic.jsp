@@ -378,7 +378,7 @@ var formatAMPMTime = function(date) {
                            <c:when test="${completed.statusOfMatch eq 'walkover'}">
                            		<span >${completed.winTeamName} won the match by walkover</span>
                            </c:when>
-                           <c:when test="${completed.statusOfMatch eq 'Noresult'}">
+                           <c:when test="${completed.statusOfMatch eq 'Noresult' || completed.statusOfMatch eq 'Abandoned'}">
                            <span >Match Abandoned/No result</span>
                            </c:when>
                            <c:otherwise>
@@ -388,7 +388,21 @@ var formatAMPMTime = function(date) {
                            
                         	 
                         	 </c:otherwise> 
-                        	 </c:choose> (<a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName}</a>:${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}, <a href="${pageContext.request.contextPath}/${completed.loseTeamName}/board/${completed.awayTeamId}">${completed.loseTeamName}</a>:${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers})  </span><a class="vw-score" href="javascript:void(0);" onclick="showScoreCard('${completed.tournamentSchedulerId}','${completed.leagueCreatedBy}')">View Score</a></li>
+                        	 </c:choose> 
+                        	 
+                        	<c:choose>
+                        	 <c:when test="${completed.statusOfMatch ne 'Noresult'}">
+                        	 
+                        	 (<a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName}</a>:${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}, <a href="${pageContext.request.contextPath}/${completed.loseTeamName}/board/${completed.awayTeamId}">${completed.loseTeamName}</a>:${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers}) 
+                        	 
+                        	</c:when> 
+                              <c:otherwise>
+                              
+                              (<a href="${pageContext.request.contextPath}/${completed.homeTeamName}/board/${completed.homeTeamId}">${completed.homeTeamName}</a>:${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}, <a href="${pageContext.request.contextPath}/${completed.awayTeamName}/board/${completed.awayTeamId}">${completed.awayTeamName}</a>:${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers})
+                              
+                              </c:otherwise>          
+                              </c:choose>
+                        	  </span><a class="vw-score" href="javascript:void(0);" onclick="showScoreCard('${completed.tournamentSchedulerId}','${completed.leagueCreatedBy}')">View Score</a></li>
                         	</c:when>
                         	<c:otherwise>
                         	<li><span class="txt-flow"> <%--  <a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName} </a> ${completed.statusOfMatch} --%>
@@ -409,7 +423,7 @@ var formatAMPMTime = function(date) {
                            <c:when test="${completed.statusOfMatch eq 'walkover'}">
                            		<span >${completed.winTeamName} won the match by walkover</span>
                            </c:when>
-                           <c:when test="${completed.statusOfMatch eq 'Noresult'}">
+                           <c:when test="${completed.statusOfMatch eq 'Noresult' || completed.statusOfMatch eq 'Abandoned'}">
                            <span >Match Abandoned/No result</span>
                            </c:when>
                            <c:otherwise>
@@ -418,7 +432,18 @@ var formatAMPMTime = function(date) {
                            </c:choose>
                         	 </c:otherwise>
                         	 </c:choose>
-                        	 (<a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName}</a>:${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}, <a href="${pageContext.request.contextPath}/${completed.loseTeamName}/board/${completed.homeTeamId}">${completed.loseTeamName}</a>:${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers})   </span><a class="vw-score" href="javascript:void(0);" onclick="showScoreCard('${completed.tournamentSchedulerId}','${completed.leagueCreatedBy}')">View Score</a></li>
+                        	 <c:choose>
+                        	 <c:when test="${completed.statusOfMatch ne 'Noresult'}">
+                        	 (<a href="${pageContext.request.contextPath}/${completed.winTeamName}/board/${completed.matchWonBy}">${completed.winTeamName}</a>:${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}, <a href="${pageContext.request.contextPath}/${completed.loseTeamName}/board/${completed.homeTeamId}">${completed.loseTeamName}</a>:${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers}) 
+                        	 
+                        	</c:when> 
+                              <c:otherwise>
+                              
+                              (<a href="${pageContext.request.contextPath}/${completed.homeTeamName}/board/${completed.homeTeamId}">${completed.homeTeamName}</a>:${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}, <a href="${pageContext.request.contextPath}/${completed.awayTeamName}/board/${completed.awayTeamId}">${completed.awayTeamName}</a>:${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers})
+                              
+                              </c:otherwise>          
+                              </c:choose>
+                        	   </span><a class="vw-score" href="javascript:void(0);" onclick="showScoreCard('${completed.tournamentSchedulerId}','${completed.leagueCreatedBy}')">View Score</a></li>
                         	</c:otherwise>
                         	</c:choose>
                         	

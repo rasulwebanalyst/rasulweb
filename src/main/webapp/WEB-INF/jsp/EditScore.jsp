@@ -1338,12 +1338,12 @@ $(document).ready(function(){
 		
 
 		if(matchstatus == 'Match Tied'){
-			html += '<option selected="selected" value="tie" >Tie</option>';
+			html += '<option selected="selected" value="tie" >Match Tie</option>';
 		}else{
-		html += '<option value="tie" >Tie</option>';}
+		html += '<option value="tie" >Match Tie</option>';}
 		
 
-		if(matchstatus == 'Abandoned'){
+		if(matchstatus == 'Match Abandoned'){
 			html += '<option selected="selected" value="Abandoned" >Abandoned/NoResult</option>';
 		}else{
 		html += '<option value="Abandoned" >Abandoned/NoResult</option>';}

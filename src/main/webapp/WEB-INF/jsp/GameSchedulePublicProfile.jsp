@@ -208,7 +208,21 @@ var formatAMPMTime = function(date) {
 		</div>
 	</div>
 
-
+<div id="scoringPopUp" class="modal" role="dialog"
+		style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<p style="text-align:center;">Sorry unable to edit the scorecard, Scored by scoring application </p>
+					<br>
+				</div>
+				<div class="modal-footer action">
+					<button type="button" onclick="Requestpopup()"
+						class="btn btn-default ok">OK</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div id="editScoreCardPopUp" class="modal" role="dialog"
 		style="display: none;">
@@ -919,6 +933,9 @@ var formatAMPMTime = function(date) {
                             <c:when test="${completed.statusOfMatch eq 'Noresult'}">
                            <span class="text-danger">Match Abandoned</span>
                            <input type="hidden" id="status_${completed.tournamentSchedulerId }" value="Abandoned"> 
+                           </c:when>
+                           <c:when test="${completed.statusOfMatch eq 'Abandoned'}">
+                           <span class="text-danger">Match Abandoned</span>
                            </c:when>
                            <c:otherwise>
                            <span class="text-danger">${completed.winTeamName} won</span>
@@ -1799,6 +1816,9 @@ var dateString = null;
 					    
 							   htmlco3+="<td align='center'><span class='text-danger'>Match Abandoned</span><br>";
 							   htmlco3+="<input type='hidden' id='status_"+completedlist[i].tournamentSchedulerId+"' value='Abandoned'>";   
+						   }else if(completedlist[i].statusOfMatch == 'Abandoned'){
+					    
+							   htmlco3+="<td align='center'><span class='text-danger'>Match Abandoned</span><br>";
 						   }
 					    else{
 						   htmlco3+="<td align='center'><span class='text-danger'>"+completedlist[i].winTeamName+" won</span><br>";}
@@ -2254,6 +2274,10 @@ var dateString = null;
                 		   
                 	 }
                 	
+                	
+                	function Requestpopup(){
+                		$("#scoringPopUp").hide();
+                	}
                 	</script>
                 	
    

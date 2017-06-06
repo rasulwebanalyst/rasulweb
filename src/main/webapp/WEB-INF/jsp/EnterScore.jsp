@@ -1092,7 +1092,7 @@ $(document).ready(function(){
 	html += '<option value="00" selected>Select Win Team</option>';
 	html += '<option value="'+homeTeamId+'">'+homeTeam+'</option>';
 	html += '<option value="'+awayTeamId+'">'+awayTeam+'</option>';
-	html += '<option value="tie" >Tie</option>';
+	html += '<option value="tie" >Match Tie</option>';
 	html += '<option value="Abandoned" >Abandoned/NoResult</option>';
 	html += '</select>';
 	$("#result").html(html).trigger('create');
