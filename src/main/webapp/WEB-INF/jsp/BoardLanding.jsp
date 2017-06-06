@@ -359,7 +359,7 @@ var formatAMPMTime = function(date) {
                            		<span >${completed.winTeamName} won the match by walkover</span>
                            </c:when>
                            <c:when test="${completed.statusOfMatch eq 'Noresult'}">
-                          <span >Match Abandoned/NoResult</span>
+                          <span >Match Abandoned/No result</span>
                           </c:when>
                            <c:otherwise>
                            <span >${completed.winTeamName} won the match</span>
@@ -390,7 +390,7 @@ var formatAMPMTime = function(date) {
                            		<span >${completed.winTeamName} won the match by walkover</span>
                            </c:when>
                            <c:when test="${completed.statusOfMatch eq 'Noresult'}">
-                          <span >Match Abandoned/NoResult</span>
+                          <span >Match Abandoned/No result</span>
                           </c:when>
                            <c:otherwise>
                            <span >${completed.winTeamName} won the match</span>

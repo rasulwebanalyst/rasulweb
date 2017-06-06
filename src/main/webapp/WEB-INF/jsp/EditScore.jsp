@@ -1327,11 +1327,6 @@ $(document).ready(function(){
 		
 		var matchstatus="${MatchStatus}";
 		
-		if(matchstatus == 'Match Tied'){
-			html += '<option selected="selected" value="tie" >Tie</option>';
-		}else{
-		html += '<option value="tie" >Tie</option>';}
-		
 		if(matchstatus == homeTeam){
 		html += '<option selected="selected" value="'+homeTeamId+'">'+homeTeam+'</option>';}else{
 			html += '<option value="'+homeTeamId+'">'+homeTeam+'</option>';
@@ -1340,6 +1335,20 @@ $(document).ready(function(){
 		html += '<option selected="selected" value="'+awayTeamId+'">'+awayTeam+'</option>';}else{
 			html += '<option value="'+awayTeamId+'">'+awayTeam+'</option>';
 		}
+		
+
+		if(matchstatus == 'Match Tied'){
+			html += '<option selected="selected" value="tie" >Tie</option>';
+		}else{
+		html += '<option value="tie" >Tie</option>';}
+		
+
+		if(matchstatus == 'Abandoned'){
+			html += '<option selected="selected" value="Abandoned" >Abandoned/NoResult</option>';
+		}else{
+		html += '<option value="Abandoned" >Abandoned/NoResult</option>';}
+		
+		
 		html += '</select>';
 		$("#result").html(html).trigger('create');
 		

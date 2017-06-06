@@ -1080,9 +1080,11 @@ $(document).ready(function(){
 	html += '<div  class="out"></div>'; */
 	html += '<select  id="result" style="width: 100%;" name="result" onchange="winpointAutoPopulate();">';
 	html += '<option value="00" selected>Select Win Team</option>';
-	html += '<option value="tie" >Tie</option>';
 	html += '<option value="'+homeTeamId+'">'+homeTeam+'</option>';
 	html += '<option value="'+awayTeamId+'">'+awayTeam+'</option>';
+	html += '<option value="tie" >Tie</option>';
+	html += '<option value="Abandoned" >Abandoned/NoResult</option>';
+	
 	html += '</select>';
 
 	$("#result").html(html).trigger('create');
