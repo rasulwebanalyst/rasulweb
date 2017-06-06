@@ -81,7 +81,7 @@
                                             <li><a href="${pageContext.request.contextPath}/CreateSchedule/boardId/${boardId}"><i class="fa fa-angle-right"></i> Create Schedule</a></li>
                                             <li><a href="#"><i class="fa fa-angle-right"></i> Amend Schedule</a></li>
                                             <li><a href="#"><i class="fa fa-angle-right"></i> Assign Umpire to Schedule </a></li>
-                                            <li><a href="#"><i class="fa fa-angle-right"></i> Assign Scorer to Schedule</a></li>
+                                            <li><a href="#"><i class="fa fa-angle-right"></i> Assign App Scorer to schedule</a></li>
                                             <li><a href="#"><i class="fa fa-angle-right"></i> Schedule List</a></li>
                                             <li><a href="#"><i class="fa fa-angle-right"></i> Cancel Game by date</a></li>
                                             <li><a href="#"><i class="fa fa-angle-right"></i> Cancel Tournment</a></li>
