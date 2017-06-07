@@ -1030,6 +1030,9 @@ date.add(java.util.Calendar.DATE, +6);
                             <c:when test="${completed.statusOfMatch eq 'Noresult'}">
                            <span class="text-danger">Match Abandoned</span>
                            </c:when>
+                           <c:when test="${completed.statusOfMatch eq 'Abandoned'}">
+                           <span class="text-danger">Match Abandoned</span>
+                           </c:when>
                            <c:otherwise>
                            <span class="text-danger">${completed.winTeamName} won</span>
                            </c:otherwise>
@@ -1878,6 +1881,10 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 						   }else if(completedlist[i].statusOfMatch == 'Noresult'){
 					    
 							   htmlco3+="<td align='center'><span class='text-danger'>Match Abandoned</span><br>";}
+						   else if(completedlist[i].statusOfMatch == 'Abandoned'){
+							    
+							   htmlco3+="<td align='center'><span class='text-danger'>Match Abandoned</span><br>";
+						   }
 					    else{
 						   htmlco3+="<td align='center'><span class='text-danger'>"+completedlist[i].winTeamName+" won</span><br>";}
 				    

@@ -192,7 +192,7 @@ var formatAMPMTime = function(date) {
 				</div>
 				<div class="modal-footer action" style="text-align:center;">
                    <div style="text-align:left !important;">
-					<input type="radio" id="Male" name="gender" value="1"> <label
+					<input type="radio" id="Male" name="gender" value="1"> <label id="editRadiobutton"
 						for="Male"><span></span>Do you want to edit Scorecard?</label> <input
 						type="radio" id="female" name="gender" value="2"> <label
 						for="female"><span></span>Do you want to enter Scorecard?</label>
@@ -208,7 +208,21 @@ var formatAMPMTime = function(date) {
 		</div>
 	</div>
 
-
+<div id="scoringPopUp" class="modal" role="dialog"
+		style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<p style="text-align:center;">Sorry unable to edit the scorecard, Scored by scoring application </p>
+					<br>
+				</div>
+				<div class="modal-footer action">
+					<button type="button" onclick="Requestpopup()"
+						class="btn btn-default ok">OK</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div id="editScoreCardPopUp" class="modal" role="dialog"
 		style="display: none;">
@@ -918,6 +932,10 @@ var formatAMPMTime = function(date) {
                            </c:when>
                             <c:when test="${completed.statusOfMatch eq 'Noresult'}">
                            <span class="text-danger">Match Abandoned</span>
+                           <input type="hidden" id="status_${completed.tournamentSchedulerId }" value="Abandoned"> 
+                           </c:when>
+                           <c:when test="${completed.statusOfMatch eq 'Abandoned'}">
+                           <span class="text-danger">Match Abandoned</span>
                            </c:when>
                            <c:otherwise>
                            <span class="text-danger">${completed.winTeamName} won</span>
@@ -926,6 +944,7 @@ var formatAMPMTime = function(date) {
                            <br>
                            
                            <c:if test="${completed.statusOfMatch ne 'Noresult'}">
+                           <input type="hidden" id="status_${completed.tournamentSchedulerId }" value="not"> 
 							  ${completed.winTeamName} : ${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}<br>
 							  ${completed.loseTeamName} : ${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers}
 							  </c:if>
@@ -1795,11 +1814,17 @@ var dateString = null;
 							   htmlco3+="<td align='center'><span class='text-danger'>Match Drawn</span><br>";
 						   }else if(completedlist[i].statusOfMatch == 'Noresult'){
 					    
-							   htmlco3+="<td align='center'><span class='text-danger'>Match Abandoned</span><br>";}
+							   htmlco3+="<td align='center'><span class='text-danger'>Match Abandoned</span><br>";
+							   htmlco3+="<input type='hidden' id='status_"+completedlist[i].tournamentSchedulerId+"' value='Abandoned'>";   
+						   }else if(completedlist[i].statusOfMatch == 'Abandoned'){
+					    
+							   htmlco3+="<td align='center'><span class='text-danger'>Match Abandoned</span><br>";
+						   }
 					    else{
 						   htmlco3+="<td align='center'><span class='text-danger'>"+completedlist[i].winTeamName+" won</span><br>";}
 				    
 				    if(completedlist[i].statusOfMatch != 'Noresult'){
+				    	htmlco3+="<input type='hidden' id='status_"+completedlist[i].tournamentSchedulerId+"' value='not'>";
 					    htmlco3+=""+completedlist[i].winTeamName+": "+completedlist[i].winTeamRuns+"/"+completedlist[i].winTeamWickets+" in "+completedlist[i].winTeamOvers+"<br>";
 					    htmlco3+=""+completedlist[i].loseTeamName+" : "+completedlist[i].loseTeamRuns+"/"+completedlist[i].loseTeamWickets+" in "+completedlist[i].loseTeamOvers+"</td>"; 
 					    
@@ -2001,6 +2026,15 @@ var dateString = null;
                 				success:function(response){
                 					
                 					 if(response.length > 0){	  
+                						 
+                						 
+                                         var status=$("#status_"+tournmentShudulorId).val();
+                						 
+                						 if(status == 'Abandoned'){
+                							 $("#editRadiobutton").hide();
+                						 }
+                						 else{$("#editRadiobutton").show();}
+                						 
                 					 		$("#ScoreCardBoardId").val(id);
                 	                		$("#ScoreCardTournamentId").val(tournmentId);
                 	                		$("#ScoreCardtournmentShudulorId").val(tournmentShudulorId);
@@ -2240,6 +2274,10 @@ var dateString = null;
                 		   
                 	 }
                 	
+                	
+                	function Requestpopup(){
+                		$("#scoringPopUp").hide();
+                	}
                 	</script>
                 	
    

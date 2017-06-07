@@ -179,7 +179,7 @@ margin: 0;
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-body">
-					<p style="text-align:center;">Sorry unable edit the scorecard, Scored by scoring application </p>
+					<p style="text-align:center;">Sorry unable to edit the scorecard, Scored by scoring application </p>
 					<br>
 				</div>
 				<div class="modal-footer action">
@@ -277,7 +277,7 @@ margin: 0;
 				</div>
 				<div class="modal-footer action" style="text-align:center;">
                    <div style="text-align:left !important;">
-					<input type="radio" id="Male" name="gender" value="1"> <label
+					<input type="radio" id="Male" name="gender" value="1"> <label id="editRadiobutton"
 						for="Male"><span></span>Do you want to edit Scorecard?</label> <input
 						type="radio" id="female" name="gender" value="2"> <label
 						for="female"><span></span>Do you want to enter Scorecard?</label>
@@ -354,10 +354,10 @@ margin: 0;
 				<div class="modal-footer action" style="text-align:center;">
                    <div style="text-align:left !important;">
 					<input type="radio" id="Male1" name="gender" value="1"> 
-					<label for="Male1"><span></span>Cancel the Matches</label> 
+					<label for="Male1"><span></span>Cancel (Points will not be shared)</label> 
 					<br>
 					<input type="radio" id="female1" name="gender" value="2"> <label
-						for="female1"><span></span>No Result and Abandoned</label>						
+						for="female1"><span></span>Abandoned/No result (Points will be shared)</label>						
 				   </div>			   		
 					<button type="button" onclick="cancelPage()"
 						class="btn btn-default ok">OK</button>
@@ -1066,7 +1066,13 @@ date.add(java.util.Calendar.DATE, +6);
                            </c:when>
                             <c:when test="${completed.statusOfMatch eq 'Noresult'}">
                            <span class="text-danger">Match Abandoned</span>
+                           <input type="hidden" id="status_${completed.tournamentSchedulerId }" value="Abandoned"> 
                            </c:when>
+                           
+                           <c:when test="${completed.statusOfMatch eq 'Abandoned'}">
+                           <span class="text-danger">Match Abandoned</span>
+                           </c:when>
+                           
                            <c:otherwise>
                            <span class="text-danger">${completed.winTeamName} won</span>
                            </c:otherwise>
@@ -1074,6 +1080,7 @@ date.add(java.util.Calendar.DATE, +6);
                            <br>
                            
                            <c:if test="${completed.statusOfMatch ne 'Noresult'}">
+                           <input type="hidden" id="status_${completed.tournamentSchedulerId }" value="not"> 
 							  ${completed.winTeamName} : ${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}<br>
 							  ${completed.loseTeamName} : ${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers}
 							  </c:if>
@@ -1949,11 +1956,17 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 							   htmlco3+="<td align='center'><span class='text-danger'>Match Drawn</span><br>";
 						   }else if(completedlist[i].statusOfMatch == 'Noresult'){
 					    
-							   htmlco3+="<td align='center'><span class='text-danger'>Match Abandoned</span><br>";}
+							   htmlco3+="<td align='center'><span class='text-danger'>Match Abandoned</span><br>";
+							   htmlco3+="<input type='hidden' id='status_"+completedlist[i].tournamentSchedulerId+"' value='Abandoned'>";    
+						   }else if(completedlist[i].statusOfMatch == 'Abandoned'){
+					    
+							   htmlco3+="<td align='center'><span class='text-danger'>Match Abandoned</span><br>";
+						   }
 					    else{
 						   htmlco3+="<td align='center'><span class='text-danger'>"+completedlist[i].winTeamName+" won</span><br>";}
 				    
 				    if(completedlist[i].statusOfMatch != 'Noresult'){
+				    	htmlco3+="<input type='hidden' id='status_"+completedlist[i].tournamentSchedulerId+"' value='not'>";
 					    htmlco3+=""+completedlist[i].winTeamName+": "+completedlist[i].winTeamRuns+"/"+completedlist[i].winTeamWickets+" in "+completedlist[i].winTeamOvers+"<br>";
 					    htmlco3+=""+completedlist[i].loseTeamName+" : "+completedlist[i].loseTeamRuns+"/"+completedlist[i].loseTeamWickets+" in "+completedlist[i].loseTeamOvers+"</td>"; 
 					    
@@ -2181,7 +2194,16 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
                 				contentType:"application/json",
                 				success:function(response){
                 					
-                					 if(response.length > 0){	  
+                					 if(response.length > 0){
+                						 
+                						 
+                						 var status=$("#status_"+tournmentShudulorId).val();
+                						 
+                						 if(status == 'Abandoned'){
+                							 $("#editRadiobutton").hide();
+                						 }
+                						 else{$("#editRadiobutton").show();}
+                						 
                 					 		$("#ScoreCardBoardId").val(id);
                 	                		$("#ScoreCardTournamentId").val(tournmentId);
                 	                		$("#ScoreCardtournmentShudulorId").val(tournmentShudulorId);
@@ -2635,7 +2657,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
                 		   			window.location.href = "${pageContext.request.contextPath}/GameSchedule/boardId/"+boardId;
                 		   			}
                         		   	else{
-                        		   	displaynotification("Match has been Abandoned / No result",2000);
+                        		   	displaynotification("Match has been abandoned",2000);
                         		   	window.location.href = "${pageContext.request.contextPath}/CancelGameByDate/boardId/"+boardId;
                         		   	}
                 		   			

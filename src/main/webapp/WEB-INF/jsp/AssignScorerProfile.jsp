@@ -50,7 +50,7 @@ var formatAMPMTime = function(date) {
 
 				<div class="col-md-10">
       		<div class="col-md-12 whiteBox">
-		          <h1 class="">Assign scorer to a schedule</h1>
+		          <h1 class="">Assign App Scorer to schedule</h1>
                   <form id="filterForm" method="POST" action="${pageContext.request.contextPath}/filterForScheduleListAssignScorerPubProf.htm">
                   <div class="col-md-12 noPadding">
                      	

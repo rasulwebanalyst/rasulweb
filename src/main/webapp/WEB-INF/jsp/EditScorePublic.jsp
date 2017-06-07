@@ -163,7 +163,7 @@ var secondInningsBowling="${SecondInningsBowlingPlayer}";
         <section id="cslide-slides" class="cslide-slides-master clearfix">
             <div class="cslide-prev-next clearfix">
                 <span class="cslide-prev">Prev</span>
-                <span class="cslide-next">Next</span>
+                <span id="Nextslidecaller" class="cslide-next">Next</span>
             </div>
             <div class="cslide-slides-container clearfix">
                 <div class="cslide-slide">
@@ -512,7 +512,14 @@ var secondInningsBowling="${SecondInningsBowlingPlayer}";
             </tbody>
   </table><br>
   
-   <div><a class="enterScoreAddMore" href="javascript:void(0)" onclick="addFirstInningBowling()">Add More</a></div>
+   <div><a class="enterScoreAddMore" href="javascript:void(0)" onclick="addFirstInningBowling()">Add More</a>
+   
+   
+   
+   <input type="text"  id="secslideshowdiv" readonly="readonly" style="height: 0; width: 0; opacity : 0;">
+   <input type="text"  id="" readonly="readonly" style="height: 0; width: 0; opacity : 0;">
+   
+   </div>
   
                 </div>
                 <div class="cslide-slide">
@@ -830,7 +837,12 @@ var secondInningsBowling="${SecondInningsBowlingPlayer}";
                 </c:forEach>
             </tbody>
   </table><br>
-                  <div><a class="enterScoreAddMore" href="javascript:void(0)" onclick="addSecondInningBowling()">Add More</a></div>   
+                  <div><a class="enterScoreAddMore" href="javascript:void(0)" onclick="addSecondInningBowling()">Add More</a>
+                  
+                  
+                  
+                  
+                  <input type="text"  id="secslideshowdiv1" readonly="readonly" style="height: 0; width: 0; opacity : 0;"></div>   
                 </div>
                 <div class="cslide-slide">
                     
@@ -1327,10 +1339,6 @@ $(document).ready(function(){
 		
 		var matchstatus="${MatchStatus}";
 		
-		if(matchstatus == 'Match Tied'){
-			html += '<option selected="selected" value="tie" >Tie</option>';
-		}else{
-		html += '<option value="tie" >Tie</option>';}
 		
 		if(matchstatus == homeTeam){
 		html += '<option selected="selected" value="'+homeTeamId+'">'+homeTeam+'</option>';}else{
@@ -1340,6 +1348,18 @@ $(document).ready(function(){
 		html += '<option selected="selected" value="'+awayTeamId+'">'+awayTeam+'</option>';}else{
 			html += '<option value="'+awayTeamId+'">'+awayTeam+'</option>';
 		}
+		
+		if(matchstatus == 'Match Tied'){
+			html += '<option selected="selected" value="tie" >Match Tie</option>';
+		}else{
+		html += '<option value="tie" >Match Tie</option>';}
+		
+		if(matchstatus == 'Match Abandoned'){
+			html += '<option selected="selected" value="Abandoned" >Abandoned/NoResult</option>';
+		}else{
+		html += '<option value="Abandoned" >Abandoned/NoResult</option>';}
+		
+		
 		html += '</select>';
 		$("#result").html(html).trigger('create');
 		
@@ -2842,7 +2862,7 @@ var SecondInningsScore = $("#secondInnigsScore").val();
 }
 function cancelValues(){
 	//window.location.reload();
-	window.location.href="${pageContext.request.contextPath}/GameSchedule/boardId/${boardId}";
+	window.location.href="${pageContext.request.contextPath}/GameSchedulePublicProfile/boardId/${boardId}";
 }
 
 function checkFunction(){
@@ -3222,12 +3242,34 @@ $("#hiddenAwayId").val(secInnId);
 </script>
 <script type="text/javascript">
 
-
+/* 
 function changenumber(val){
 	alert(val);
-}
+} */
 
-
+$( "#secslideshowdiv" ).focusin(function() {
+	console.log("Changes1");
+	
+	var contains=$('#SecondSlide').hasClass('cslide-active');
+	console.log(contains);
+	
+	if(contains ==  false){
+		$("#Nextslidecaller").click();
+	}
+	return
+	}); 
+	
+$( "#secslideshowdiv1" ).focusin(function() {
+	console.log("Changes1");
+	
+	var contains=$('#ThirdSlide').hasClass('cslide-active');
+	console.log(contains);
+	
+	if(contains ==  false){
+		$("#Nextslidecaller").click();
+	}
+	return
+	});
 </script>
 </body>
 </html>
