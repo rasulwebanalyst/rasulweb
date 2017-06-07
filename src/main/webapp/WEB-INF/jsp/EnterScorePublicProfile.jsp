@@ -380,6 +380,7 @@ table sup{
    <div><a class="enterScoreAddMore" href="javascript:void(0)" onclick="addFirstInningBowling()">Add More</a>
    
    <input type="text"  id="secslideshowdiv" readonly="readonly" style="height: 0; width: 0; opacity : 0;">
+   <input type="text"  id="" readonly="readonly" style="height: 0; width: 0; opacity : 0;">
    
    </div>
   

@@ -516,6 +516,7 @@ var secondInningsBowling="${SecondInningsBowlingPlayer}";
    
    
    <input type="text"  id="secslideshowdiv" readonly="readonly" style="height: 0; width: 0; opacity : 0;">
+   <input type="text"  id="" readonly="readonly" style="height: 0; width: 0; opacity : 0;">
    
    </div>
   
