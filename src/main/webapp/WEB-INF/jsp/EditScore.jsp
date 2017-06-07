@@ -512,7 +512,12 @@ var secondInningsBowling="${SecondInningsBowlingPlayer}";
             </tbody>
   </table><br>
   
-   <div><a class="enterScoreAddMore" href="javascript:void(0)" onclick="addFirstInningBowling()">Add More</a></div>
+   <div><a class="enterScoreAddMore" href="javascript:void(0)" onclick="addFirstInningBowling()">Add More</a>
+   
+   
+   <input type="text"  id="secslideshowdiv" readonly="readonly" style="height: 0; width: 0; opacity : 0;">
+   
+   </div>
   
                 </div>
                 <div class="cslide-slide">
@@ -830,7 +835,13 @@ var secondInningsBowling="${SecondInningsBowlingPlayer}";
                 </c:forEach>
             </tbody>
   </table><br>
-                  <div><a class="enterScoreAddMore" href="javascript:void(0)" onclick="addSecondInningBowling()">Add More</a></div>   
+                  <div><a class="enterScoreAddMore" href="javascript:void(0)" onclick="addSecondInningBowling()">Add More</a>
+                  
+                  
+                  <input type="text"  id="secslideshowdiv1" readonly="readonly" style="height: 0; width: 0; opacity : 0;">
+                  
+                  
+                  </div>   
                 </div>
                 <div class="cslide-slide">
                     
@@ -3232,11 +3243,34 @@ $("#hiddenAwayId").val(secInnId);
 <script type="text/javascript">
 
 
-function changenumber(val){
+/* function changenumber(val){
 	alert(val);
 }
+ */
 
-
+$( "#secslideshowdiv" ).focusin(function() {
+	console.log("Changes1");
+	
+	var contains=$('#SecondSlide').hasClass('cslide-active');
+	console.log(contains);
+	
+	if(contains ==  false){
+		$("#Nextslidecaller").click();
+	}
+	return
+	}); 
+	
+$( "#secslideshowdiv1" ).focusin(function() {
+	console.log("Changes1");
+	
+	var contains=$('#ThirdSlide').hasClass('cslide-active');
+	console.log(contains);
+	
+	if(contains ==  false){
+		$("#Nextslidecaller").click();
+	}
+	return
+	});
 </script>
 </body>
 </html>

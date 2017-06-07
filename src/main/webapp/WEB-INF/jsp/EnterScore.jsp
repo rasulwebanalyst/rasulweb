@@ -158,7 +158,7 @@ var secondInninBowlingArrayObjectList=[];
         <section id="cslide-slides" class="cslide-slides-master clearfix">
             <div class="cslide-prev-next clearfix">
                 <span class="cslide-prev">Prev</span>
-                <span class="cslide-next">Next</span>
+                <span id="Nextslidecaller" class="cslide-next">Next</span>
             </div>
             <div class="cslide-slides-container clearfix">
                 <div class="cslide-slide">
@@ -371,7 +371,13 @@ var secondInninBowlingArrayObjectList=[];
                 
             </tbody>
   </table><br>
-   <div><a class="enterScoreAddMore" href="javascript:void(0)" onclick="addFirstInningBowling()">Add More</a></div>
+   <div><a class="enterScoreAddMore" href="javascript:void(0)" onclick="addFirstInningBowling()">Add More</a>
+   
+   
+   <input type="text"  id="secslideshowdiv" readonly="readonly" style="height: 0; width: 0; opacity : 0;">
+   
+   
+   </div>
   
                 </div>
                 <div id="SecondSlide" class="cslide-slide">
@@ -594,8 +600,12 @@ var secondInninBowlingArrayObjectList=[];
             </tbody>
   </table><br>
                   <div><a class="enterScoreAddMore" href="javascript:void(0)" onclick="addSecondInningBowling()">Add More</a></div>   
+                
+                
+                <input type="text"  id="secslideshowdiv1" readonly="readonly" style="height: 0; width: 0; opacity : 0;">
+                
                 </div>
-                <div class="cslide-slide">
+                <div id="ThirdSlide" class="cslide-slide">
                     
                     
                     
@@ -2872,27 +2882,29 @@ firstInninBowlingArrayList = [];
 }
 
 
-/* function changesecondinningstab(){
-	//alert("changes");
-	console.log("Changes");
-	}
-$( "#secInnPlayerName" ).focusin(function() {
-	//  $( this ).find( "span" ).css( "display", "inline" ).fadeOut( 1000 );
+$( "#secslideshowdiv" ).focusin(function() {
 	console.log("Changes1");
-	
-	//alert("Changes");
-	
-	
-	//$(".cslide-next").click();
 	
 	var contains=$('#SecondSlide').hasClass('cslide-active');
 	console.log(contains);
 	
 	if(contains ==  false){
-		//$(".cslide-next").click();
+		$("#Nextslidecaller").click();
 	}
 	return
-	}); */
+	}); 
+	
+$( "#secslideshowdiv1" ).focusin(function() {
+	console.log("Changes1");
+	
+	var contains=$('#ThirdSlide').hasClass('cslide-active');
+	console.log(contains);
+	
+	if(contains ==  false){
+		$("#Nextslidecaller").click();
+	}
+	return
+	});
 
 </script>	
 </body>

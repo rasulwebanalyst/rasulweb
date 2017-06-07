@@ -192,7 +192,7 @@ var formatAMPMTime = function(date) {
 				</div>
 				<div class="modal-footer action" style="text-align:center;">
                    <div style="text-align:left !important;">
-					<input type="radio" id="Male" name="gender" value="1"> <label
+					<input type="radio" id="Male" name="gender" value="1"> <label id="editRadiobutton"
 						for="Male"><span></span>Do you want to edit Scorecard?</label> <input
 						type="radio" id="female" name="gender" value="2"> <label
 						for="female"><span></span>Do you want to enter Scorecard?</label>
