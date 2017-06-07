@@ -204,7 +204,7 @@ table sup{
 											</select>
 											<div  class="out"></div>
 										</div> --> 
-								<select style="width: 100;" id="firInnPlayerName" name="firInnPlayerName" onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIV','FistInningBatting')">
+								<select style="width: 100px;" id="firInnPlayerName" name="firInnPlayerName" onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIV','FistInningBatting')">
 													<option value="0">Select Player</option>
 											</select>		           
                                   <input type="hidden" class="addMemberIDDIV" class="form-control" placeholder="" id="addMemberIDDIV" name="addMemberIDDIVName" >
