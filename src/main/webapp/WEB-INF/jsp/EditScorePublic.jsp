@@ -163,7 +163,7 @@ var secondInningsBowling="${SecondInningsBowlingPlayer}";
         <section id="cslide-slides" class="cslide-slides-master clearfix">
             <div class="cslide-prev-next clearfix">
                 <span class="cslide-prev">Prev</span>
-                <span class="cslide-next">Next</span>
+                <span id="Nextslidecaller" class="cslide-next">Next</span>
             </div>
             <div class="cslide-slides-container clearfix">
                 <div class="cslide-slide">
