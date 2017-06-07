@@ -14869,7 +14869,7 @@ public ModelAndView insertTournamentDetails(@ModelAttribute Tournament tournamen
 			
 			
 				 
-				hubReq = new HubRequest(104);
+				/*hubReq = new HubRequest(104);
 				hubReq.setMsgType(104);
 				ModelMap m = new ModelMap();
 				m.put("createdBy",boardId);
@@ -14880,7 +14880,7 @@ public ModelAndView insertTournamentDetails(@ModelAttribute Tournament tournamen
 					if(hubRes !=  null && hubRes.getResults() !=  null){
 						mav.addObject("tournamentList", hubRes.getResults().getTournamentSchedulerList());
 						//System.out.println("scorer list size :"+ hubRes.getResults().getTournamentSchedulerList().get(0).getScorerNamesList().size());
-						/*if(hubRes.getResults().getTournamentsList().size() != 0)
+						if(hubRes.getResults().getTournamentsList().size() != 0)
 						{
 							List<TournamentScheduler> list = hubRes.getResults().getTournamentsList();
 							if(list.size() != 0){
@@ -14900,10 +14900,10 @@ public ModelAndView insertTournamentDetails(@ModelAttribute Tournament tournamen
 						//mav.addObject("groundListSize",hubRes.getResults().getGroundList().size());
 					
 							}
-							}*/
+							}
 					}
 			 
-				}	
+				}*/	
 			
 			
 			}
@@ -24118,7 +24118,7 @@ public ModelAndView CancelGameByDate(HttpServletRequest req, @PathVariable Strin
 			 
 			 
 			
-			Date date=new Date();
+			/*Date date=new Date();
 		    Calendar cal = Calendar.getInstance();
 		    cal.setTime(date);
 		    int year = cal.get(Calendar.YEAR);
@@ -24141,7 +24141,25 @@ public ModelAndView CancelGameByDate(HttpServletRequest req, @PathVariable Strin
 				now.add(Calendar.DATE, 6);  // number of days to add
 				String nextDate = sdf1.format(now.getTime());
 				
-				System.out.println("Next date : :"+nextDate);
+				System.out.println("Next date : :"+nextDate);*/
+			 
+			 
+			 String todayDate;
+				String nextDate;
+				
+					Calendar now = Calendar.getInstance(); 
+				       SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+						String comingDateString = sdf1.format(now.getTime());
+						 now.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(comingDateString));
+						 System.out.println("Next :"+sdf1.format(now.getTime()));
+						now.add(Calendar.DATE, 0);  // number of days to add
+						String afterAddedOne = sdf1.format(now.getTime());
+						
+						System.out.println("Nextttttttttttttttttttttttt =============="+afterAddedOne);
+						todayDate=afterAddedOne;
+						now.add(Calendar.DATE, 6);
+						nextDate=sdf1.format(now.getTime());
+				
 				
 			 
 			 
@@ -24164,6 +24182,28 @@ public ModelAndView CancelGameByDate(HttpServletRequest req, @PathVariable Strin
 			 if(strGameScheduleList != null){
 				 HubResponse hubResponse = gson.fromJson(strGameScheduleList, HubResponse.class);
 				 if(hubResponse != null && hubResponse.getResults() != null){
+					 
+					 
+					 
+					 String endDate = hubResponse.getResults().getEndDateStr();
+					 String startDate = hubResponse.getResults().getStartDateStr();
+						String[] spliteDOB1 = startDate.split("-");
+						 String monthInEditProfile1 = spliteDOB1[0];
+						 String dayInEditProfile1 = spliteDOB1[1];
+						 String yearInEditProfile1 = spliteDOB1[2];
+						 String startDateSet= dayInEditProfile1+'/'+yearInEditProfile1+'/'+monthInEditProfile1;
+							mav.addObject("startDateSet", startDateSet);
+						
+						
+						String[] spliteDOB = endDate.split("-");
+						 String monthInEditProfile = spliteDOB[0];
+						 String dayInEditProfile = spliteDOB[1];
+						 String yearInEditProfile = spliteDOB[2];
+						 String endDateSet= dayInEditProfile+'/'+yearInEditProfile+'/'+monthInEditProfile;
+						 mav.addObject("endDateSet", endDateSet);
+					 
+					 
+					 
 					 mav.addObject("gameScheduleList", hubResponse.getResults().getGameSchedule());
 					 mav.addObject("upcomingMatchesList", hubResponse.getResults().getGameSchedule().getUpComingMatchesList());
 					 mav.addObject("completedMatchesList", hubResponse.getResults().getGameSchedule().getCompletedMatchesList());
@@ -25055,6 +25095,29 @@ public ModelAndView filterScheduleFunctionForUpcoming(HttpServletRequest req, @M
 				 if(strGameScheduleList != null){
 					 HubResponse hubResponse = gson.fromJson(strGameScheduleList, HubResponse.class);
 					 if(hubResponse != null && hubResponse.getResults().getGameSchedule().getUpComingMatchesList() != null){
+						 
+						 
+						 
+						 String endDate = hubResponse.getResults().getEndDateStr();
+						 String startDate = hubResponse.getResults().getStartDateStr();
+							String[] spliteDOB1 = startDate.split("-");
+							 String monthInEditProfile1 = spliteDOB1[0];
+							 String dayInEditProfile1 = spliteDOB1[1];
+							 String yearInEditProfile1 = spliteDOB1[2];
+							 String startDateSet= dayInEditProfile1+'/'+yearInEditProfile1+'/'+monthInEditProfile1;
+								mav.addObject("startDateSet", startDateSet);
+							
+							
+							String[] spliteDOB = endDate.split("-");
+							 String monthInEditProfile = spliteDOB[0];
+							 String dayInEditProfile = spliteDOB[1];
+							 String yearInEditProfile = spliteDOB[2];
+							 String endDateSet= dayInEditProfile+'/'+yearInEditProfile+'/'+monthInEditProfile;
+							 mav.addObject("endDateSet", endDateSet);
+							 
+							 
+						 
+						 
 						 mav.addObject("gameScheduleList", hubResponse.getResults().getGameSchedule());
 						 mav.addObject("upcomingMatchesList", hubResponse.getResults().getGameSchedule().getUpComingMatchesList());
 						 mav.addObject("completedMatchesList", hubResponse.getResults().getGameSchedule().getCompletedMatchesList());
@@ -25154,6 +25217,30 @@ public ModelAndView filterScheduleFunctionForUpcoming(HttpServletRequest req, @M
 				 if(strGameScheduleList != null){
 					 HubResponse hubResponse = gson.fromJson(strGameScheduleList, HubResponse.class);
 					 if(hubResponse != null && hubResponse.getResults().getGameSchedule().getUpComingMatchesList() != null){
+						 
+						 
+						 
+						 
+						 String endDate = hubResponse.getResults().getEndDateStr();
+						 String startDate = hubResponse.getResults().getStartDateStr();
+							String[] spliteDOB1 = startDate.split("-");
+							 String monthInEditProfile1 = spliteDOB1[0];
+							 String dayInEditProfile1 = spliteDOB1[1];
+							 String yearInEditProfile1 = spliteDOB1[2];
+							 String startDateSet= dayInEditProfile1+'/'+yearInEditProfile1+'/'+monthInEditProfile1;
+								mav.addObject("startDateSet", startDateSet);
+							
+							
+							String[] spliteDOB = endDate.split("-");
+							 String monthInEditProfile = spliteDOB[0];
+							 String dayInEditProfile = spliteDOB[1];
+							 String yearInEditProfile = spliteDOB[2];
+							 String endDateSet= dayInEditProfile+'/'+yearInEditProfile+'/'+monthInEditProfile;
+							 mav.addObject("endDateSet", endDateSet);
+							 
+							 
+						 
+						 
 						 mav.addObject("gameScheduleList", hubResponse.getResults().getGameSchedule());
 						 mav.addObject("upcomingMatchesList", hubResponse.getResults().getGameSchedule().getUpComingMatchesList());
 						 mav.addObject("completedMatchesList", hubResponse.getResults().getGameSchedule().getCompletedMatchesList());
@@ -39739,7 +39826,7 @@ public ModelAndView CancelGameByDatePublicProfile(HttpServletRequest req, @PathV
 			 
 			 
 			 
-			 Date date=new Date();
+			 /*Date date=new Date();
 			    Calendar cal = Calendar.getInstance();
 			    cal.setTime(date);
 			    int year = cal.get(Calendar.YEAR);
@@ -39762,7 +39849,23 @@ public ModelAndView CancelGameByDatePublicProfile(HttpServletRequest req, @PathV
 					now.add(Calendar.DATE, 6);  // number of days to add
 					String nextDate = sdf1.format(now.getTime());
 					
-					System.out.println("Next date : :"+nextDate);
+					System.out.println("Next date : :"+nextDate);*/
+			 
+			 String todayDate;
+				String nextDate;
+				
+					Calendar now = Calendar.getInstance(); 
+				       SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+						String comingDateString = sdf1.format(now.getTime());
+						 now.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(comingDateString));
+						 System.out.println("Next :"+sdf1.format(now.getTime()));
+						now.add(Calendar.DATE, 0);  // number of days to add
+						String afterAddedOne = sdf1.format(now.getTime());
+						
+						System.out.println("Nextttttttttttttttttttttttt =============="+afterAddedOne);
+						todayDate=afterAddedOne;
+						now.add(Calendar.DATE, 6);
+						nextDate=sdf1.format(now.getTime());
 					
 			 
 			 
@@ -39782,6 +39885,29 @@ public ModelAndView CancelGameByDatePublicProfile(HttpServletRequest req, @PathV
 			 if(strGameScheduleList != null){
 				 HubResponse hubResponse = gson.fromJson(strGameScheduleList, HubResponse.class);
 				 if(hubResponse != null && hubResponse.getResults() != null){
+					 
+					 
+					 
+					 
+					 String endDate = hubResponse.getResults().getEndDateStr();
+					 String startDate = hubResponse.getResults().getStartDateStr();
+						String[] spliteDOB1 = startDate.split("-");
+						 String monthInEditProfile1 = spliteDOB1[0];
+						 String dayInEditProfile1 = spliteDOB1[1];
+						 String yearInEditProfile1 = spliteDOB1[2];
+						 String startDateSet= dayInEditProfile1+'/'+yearInEditProfile1+'/'+monthInEditProfile1;
+							mav.addObject("startDateSet", startDateSet);
+						
+						
+						String[] spliteDOB = endDate.split("-");
+						 String monthInEditProfile = spliteDOB[0];
+						 String dayInEditProfile = spliteDOB[1];
+						 String yearInEditProfile = spliteDOB[2];
+						 String endDateSet= dayInEditProfile+'/'+yearInEditProfile+'/'+monthInEditProfile;
+						 mav.addObject("endDateSet", endDateSet);
+					 
+					 
+					 
 					 mav.addObject("gameScheduleList", hubResponse.getResults().getGameSchedule());
 					 mav.addObject("upcomingMatchesList", hubResponse.getResults().getGameSchedule().getUpComingMatchesList());
 					 mav.addObject("completedMatchesList", hubResponse.getResults().getGameSchedule().getCompletedMatchesList());
@@ -39929,6 +40055,26 @@ public ModelAndView filterScheduleFunctionForUpcomingPublicProfile(HttpServletRe
 				 if(strGameScheduleList != null){
 					 HubResponse hubResponse = gson.fromJson(strGameScheduleList, HubResponse.class);
 					 if(hubResponse != null && hubResponse.getResults().getGameSchedule().getUpComingMatchesList() != null){
+						 
+						 
+						 
+						 String endDate = hubResponse.getResults().getEndDateStr();
+						 String startDate = hubResponse.getResults().getStartDateStr();
+							String[] spliteDOB1 = startDate.split("-");
+							 String monthInEditProfile1 = spliteDOB1[0];
+							 String dayInEditProfile1 = spliteDOB1[1];
+							 String yearInEditProfile1 = spliteDOB1[2];
+							 String startDateSet= dayInEditProfile1+'/'+yearInEditProfile1+'/'+monthInEditProfile1;
+								mav.addObject("startDateSet", startDateSet);
+							
+							
+							String[] spliteDOB = endDate.split("-");
+							 String monthInEditProfile = spliteDOB[0];
+							 String dayInEditProfile = spliteDOB[1];
+							 String yearInEditProfile = spliteDOB[2];
+							 String endDateSet= dayInEditProfile+'/'+yearInEditProfile+'/'+monthInEditProfile;
+							 mav.addObject("endDateSet", endDateSet);
+						 
 						 mav.addObject("gameScheduleList", hubResponse.getResults().getGameSchedule());
 						 mav.addObject("upcomingMatchesList", hubResponse.getResults().getGameSchedule().getUpComingMatchesList());
 						 mav.addObject("completedMatchesList", hubResponse.getResults().getGameSchedule().getCompletedMatchesList());
@@ -40024,6 +40170,27 @@ public ModelAndView filterScheduleFunctionForUpcomingPublicProfile(HttpServletRe
 				 if(strGameScheduleList != null){
 					 HubResponse hubResponse = gson.fromJson(strGameScheduleList, HubResponse.class);
 					 if(hubResponse != null && hubResponse.getResults().getGameSchedule().getUpComingMatchesList() != null){
+						 
+						 
+						 
+						 String endDate = hubResponse.getResults().getEndDateStr();
+						 String startDate = hubResponse.getResults().getStartDateStr();
+							String[] spliteDOB1 = startDate.split("-");
+							 String monthInEditProfile1 = spliteDOB1[0];
+							 String dayInEditProfile1 = spliteDOB1[1];
+							 String yearInEditProfile1 = spliteDOB1[2];
+							 String startDateSet= dayInEditProfile1+'/'+yearInEditProfile1+'/'+monthInEditProfile1;
+								mav.addObject("startDateSet", startDateSet);
+							
+							
+							String[] spliteDOB = endDate.split("-");
+							 String monthInEditProfile = spliteDOB[0];
+							 String dayInEditProfile = spliteDOB[1];
+							 String yearInEditProfile = spliteDOB[2];
+							 String endDateSet= dayInEditProfile+'/'+yearInEditProfile+'/'+monthInEditProfile;
+							 mav.addObject("endDateSet", endDateSet);
+						 
+						 
 						 mav.addObject("gameScheduleList", hubResponse.getResults().getGameSchedule());
 						 mav.addObject("upcomingMatchesList", hubResponse.getResults().getGameSchedule().getUpComingMatchesList());
 						 mav.addObject("completedMatchesList", hubResponse.getResults().getGameSchedule().getCompletedMatchesList());

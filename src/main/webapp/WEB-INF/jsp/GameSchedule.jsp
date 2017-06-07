@@ -2690,7 +2690,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
             		   			}
                     		   	else{
                     		   	displaynotification("Match has been abandoned",2000);
-                    		   	window.location.href = "${pageContext.request.contextPath}/CancelGameByDate/boardId/"+boardId;
+                    		   	window.location.href = "${pageContext.request.contextPath}/GameSchedule/boardId/"+boardId;
                     		   	}
             		   			
             		   			
