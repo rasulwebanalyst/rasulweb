@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 
+
 import org.apache.log4j.Logger;
 import org.jsoup.helper.StringUtil;
 import org.springframework.security.core.userdetails.User;
@@ -24,6 +25,7 @@ import org.springframework.security.core.userdetails.User;
 import com.cricketsocial.bean.board.BoardCoordinatorMap;
 import com.cricketsocial.bean.board.BoardProfile;
 import com.cricketsocial.bean.board.CoOrdinator;
+import com.cricketsocial.bean.board.ExtrasDTO;
 import com.cricketsocial.bean.leauge.MenuList;
 import com.cricketsocial.bean.leauge.MenuURL;
 
@@ -58,6 +60,11 @@ public class Util {
 		}
 		
 		return result;
+	 }
+	 
+	 public static int extras(String value, List<ExtrasDTO> extra){
+		 System.out.println("Insiddddddddddddddddddddddde uttttttttttttttttttttttil");
+		 return 100;
 	 }
 	 
 	 public static List<String> gettingCoordinaterList(BoardProfile boardProfile, String userId)
@@ -150,6 +157,7 @@ public class Util {
 							 /*menu.put(6, "<a href='"+domain+"/AmendSchedulePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Amend Schedule</a>");*/
 							 menu.put(7, "<a href='"+domain+"/AssignUmpire/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Assign Umpire to Schedule </span></a>");
 							 menu.put(8, "<a href='"+domain+"/AssignScorer/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Assign App Scorer to schedule</span></a>");
+							 menu.put(15, "<a href='"+domain+"/AssignPortalScorer/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Assign Portal Scorer to Schedule</span></a>");
 							 menu.put(9, "<a href='"+domain+"/ScheduleListPubProfWithEdit/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Schedule List</span></a>");
 							 menu.put(10, "<a href='"+domain+"/CancelGameByDatePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Cancel Game by date</span></a>");
 							 menu.put(11, "<a href='"+domain+"/CancelTournamentPublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Edit/Cancel Tournament</span></a>");
@@ -182,6 +190,8 @@ public class Util {
 						/* menu.put(6, "<a href='"+domain+"/AmendSchedulePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Amend Schedule</a>");*/
 						 menu.put(7, "<a href='"+domain+"/AssignUmpire/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Assign Umpire to Schedule </span></a>");
 						 menu.put(8, "<a href='"+domain+"/AssignScorer/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Assign App Scorer to schedule</span></a>");
+						 menu.put(15, "<a href='"+domain+"/AssignPortalScorer/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Assign Portal Scorer to Schedule</span></a>");
+
 						 menu.put(9, "<a href='"+domain+"/ScheduleListPubProfWithEdit/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Schedule List</span></a>");
 						 menu.put(10, "<a href='"+domain+"/CancelGameByDatePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Cancel Game by date</span></a>");
 						 menu.put(11, "<a href='"+domain+"/CancelTournamentPublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Edit/Cancel Tournament</span></a>");
@@ -203,6 +213,8 @@ public class Util {
 				 /*menu.put(6, "<a href='"+domain+"/AmendSchedulePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i> Amend Schedule</a>");*/
 				 menu.put(7, "<a href='"+domain+"/AssignUmpire/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Assign Umpire to Schedule </span></a>");
 				 menu.put(8, "<a href='"+domain+"/AssignScorer/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Assign App Scorer to schedule</span></a>");
+				 menu.put(15, "<a href='"+domain+"/AssignPortalScorer/profile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Assign Portal Scorer to Schedule</span></a>");
+
 				 menu.put(9, "<a href='"+domain+"/ScheduleListPubProfWithEdit/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Schedule List</span></a>");
 				 menu.put(10, "<a href='"+domain+"/CancelGameByDatePublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Cancel Game by date</span></a>");
 				 menu.put(11, "<a href='"+domain+"/CancelTournamentPublicProfile/boardId/"+boardProfile.getBoardId()+"'><i class='fa fa-angle-right'></i><span> Edit/Cancel Tournament</span></a>");
@@ -244,7 +256,7 @@ public class Util {
 						 ground.add(url);
 					 }
 					 
-					 if(key.equals(5) || key.equals(6)|| key.equals(7)||key.equals(8)||key.equals(9)||key.equals(10)||key.equals(11)||key.equals(13) )
+					 if(key.equals(5) || key.equals(6)|| key.equals(7)||key.equals(8)||key.equals(9)||key.equals(10)||key.equals(11)||key.equals(13)||key.equals(15) )
 					 {
 						// schedule.add(menu.get(key).toString());
 						 MenuURL url= new MenuURL();
@@ -265,7 +277,10 @@ public class Util {
 						 contacts.add(url);
 					 }
 				 }
-				 
+				 if(schedule.size() >= 8){
+					 schedule.add(3, schedule.get(schedule.size()-1));
+					 schedule.remove(schedule.size()-1);
+				  }
 				 
 				 menuList= new MenuList();
 				 menuList.setUmpireList(umpire);

@@ -28,7 +28,7 @@ var formatAMPMTime = function(date) {
 	  hours = hours ? hours : 12; // the hour '0' should be '12'
 	  minutes = minutes < 10 ? '0'+minutes : minutes;
 	  hours = hours < 10 ? '0'+hours : hours ;
-	  var strTime = (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear();
+	  var strTime = (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear()+" "+ hours + ':' + minutes + ' ' + ampm;
 	  return strTime;
 	}
 	function test(id){
@@ -39,16 +39,35 @@ var formatAMPMTime = function(date) {
 	return formatAMPMTime(gettingFromServer); 
 	
 	}
-	function getDateInObject(timestamp)
-	{
 		
+	 /* function getDateInObject(timestamp)
+	{		
 		var date = new Date(timestamp);
 		var dateNew = new Date(date.getTime() + date.getTimezoneOffset()*60000);
 		var offset = new Date().getTimezoneOffset() * 60 * 1000;
 		var gettingFromServer= new Date(dateNew);
 		gettingFromServer = new Date(gettingFromServer.valueOf() - offset);
 		return formatAMPMTime(gettingFromServer); 
-	}
+	}  */
+	function formatDateValue(date1) {     		 
+ 		 
+        var date = date1;
+		    var offset = new Date().getTimezoneOffset() * 60 * 1000;
+		var gettingFromServer= new Date(date);
+		gettingFromServer = new Date(gettingFromServer.valueOf() - offset);
+		 
+		  var hours = gettingFromServer.getHours();
+		  console.log(hours)
+		  var minutes = gettingFromServer.getMinutes();
+		  var ampm = hours >= 12 ? 'PM' : 'AM';
+		  hours = hours % 12;
+		  hours = hours ? hours : 12; // the hour '0' should be '12'
+		  minutes = minutes < 10 ? '0'+minutes : minutes;
+		  hours = hours < 10 ? '0'+hours : hours ;
+		  var strTimeHours = hours + ':' + minutes + ampm;
+		  var strTime = (gettingFromServer.getMonth()+1)+"/"+gettingFromServer.getDate()+"/"+gettingFromServer.getFullYear()+" "+strTimeHours;
+		  return strTime;
+		};
 	
 	
 	 
@@ -60,7 +79,7 @@ var formatAMPMTime = function(date) {
 
 <div class="col-md-10">
       		<div class="col-md-12 whiteBox">
-		          <h1 class="">Assign App Scorer to schedule</h1>
+		          <h1 class="">Assign App scorer to a schedule</h1>
                   <form id="filterForm" method="POST" action="${pageContext.request.contextPath}/filterForScheduleListAssignScorer.htm">
                   <div class="col-md-12 noPadding">
                      	
@@ -142,6 +161,7 @@ var formatAMPMTime = function(date) {
                                     
                                     <tbody style="cursor:pointer">
                                     <c:forEach var="tourDetails" items="${tournamentList}" varStatus="loop">
+                                   <c:if test="${tourDetails.status eq 'Upcoming'}">
                                     <tr id="trid_${loop.count}" onclick="showScorerList('${tourDetails.tournamentSchedulerId}','${loop.count}')">
                                     	
                                       <td>${tourDetails.tournamentName}</td>
@@ -155,7 +175,7 @@ var formatAMPMTime = function(date) {
                                        
                                   
                                    </tr>
-                                   
+                                   </c:if>
                   </c:forEach>
                               </tbody>
                             </table>
@@ -170,7 +190,7 @@ var formatAMPMTime = function(date) {
                             <table>
                             	<thead>
                                 <tr>
-                                	<th>Scorer</th>
+                                	<th>App Scorer</th>
                                     <th style="text-align:center;">Action</th>
 
                                     </tr>
@@ -282,7 +302,7 @@ var formatAMPMTime = function(date) {
    var scorerArray = [];
    
    function showScorerList(schedulerId, id){
-	   
+	   scorerArray = [];
 	   $("#myTableAssign").click(function(e) {
 		    if(e.target.tagName == "TD"){
 		        $("#myTableAssign tr").css("color","");
@@ -309,7 +329,7 @@ var formatAMPMTime = function(date) {
 				var htmlContent = '';
 				//htmlContent += '<div class="col-md-6 smallTable" id="scorerTableId">' ;
 				htmlContent += '<table id="myTable"><thead><tr>' ;
-				htmlContent += '<th>Scorer</th>' ;
+				htmlContent += '<th>App Scorer</th>' ;
 				htmlContent += '<th style="text-align:center;">Action</th>' ;
 				htmlContent += ' </tr></thead><tbody style="cursor:pointer">' ;
 				for(var i=0 ; i <res.length; i++){
@@ -364,7 +384,7 @@ var formatAMPMTime = function(date) {
 	     console.log(diff);
 		 
 		 if(diff == 1 ){
-			 document.getElementById("error").innerHTML = "Can't be delete all the scorers";
+			 document.getElementById("error").innerHTML = "Can't be delete all the app scorers";
 			// $("#error").fadeOut(3000);
 		 }else{
 			 
@@ -378,7 +398,8 @@ var formatAMPMTime = function(date) {
 		 var bean = {
 				 userId : scorerId,
 				 tournamentSchedulerId:schedulerId,
-		 }
+		 };
+		 scorerArray=[];
 		 $.ajax({
 		
 			 type:"post",
@@ -391,7 +412,7 @@ var formatAMPMTime = function(date) {
 				 var htmlContent = '';
 					//htmlContent += '<div class="col-md-6 smallTable" id="scorerTableId">' ;
 					htmlContent += '<table id="myTable"><thead><tr>' ;
-					htmlContent += '<th>Scorer</th>' ;
+					htmlContent += '<th>App Scorer</th>' ;
 					htmlContent += '<th style="text-align:center;">Action</th>' ;
 					htmlContent += ' </tr></thead><tbody style="cursor:pointer">' ;
 					for(var i=0 ; i <res.length; i++){
@@ -433,7 +454,7 @@ var formatAMPMTime = function(date) {
 			
 			 if(scorerId == scorerArray[i])
 				 {
-					$("#error").html("This user already assigned as scorer for this schedule");
+					$("#error").html("This user already assigned as app scorer for this schedule");
 				 return false;
 				 }else{
 					 
@@ -443,7 +464,7 @@ var formatAMPMTime = function(date) {
 		 var schedulerId = $("#hiddenSchedulerId").val();
 		 
 		 if(scorerId == 0){
-			 $("#error").html("Please choose scorer name");
+			 $("#error").html("Please choose app scorer name");
 			// $("#error").fadeOut(3000);
 		 }else{
 		 var bean = {
@@ -462,7 +483,7 @@ var formatAMPMTime = function(date) {
 				 var htmlContent = '';
 					//htmlContent += '<div class="col-md-6 smallTable" id="scorerTableId">' ;
 					htmlContent += '<table id="myTable"><thead><tr>' ;
-					htmlContent += '<th>Scorer</th>' ;
+					htmlContent += '<th>App Scorer</th>' ;
 					htmlContent += '<th style="text-align:center;">Action</th>' ;
 					htmlContent += ' </tr></thead><tbody style="cursor:pointer">' ;
 					for(var i=0 ; i <res.length; i++){
@@ -644,7 +665,11 @@ var formatAMPMTime = function(date) {
 	 			
 	 			 var startGameDate  = new Date(response.startDateStr);
 	 			 var endGameDate  = new Date(response.endDateStr);
-	 					
+	 			 console.log(JSON.stringify(response));   			 
+   			     var fromStart = response.startDateStr.split("-");   		
+   			     var fromDateToDatePicker = fromStart[1]+"/"+fromStart[2]+"/"+fromStart[0];   			
+   			     var toEnd = response.endDateStr.split("-");
+   			     var toDateToDatePicker = toEnd[1]+"/"+toEnd[2]+"/"+toEnd[0];		
 	 			
 
 				 if(text =='previous'){
@@ -655,8 +680,8 @@ var formatAMPMTime = function(date) {
 						//document.getElementById("showTo").innerHTML = startGameDate.toLocaleDateString();
 						
 						
-						$('#toDate').datepicker('update',endGameDate.toLocaleDateString());
-						$("#fromDate").datepicker("update", startGameDate.toLocaleDateString());
+						$('#toDate').datepicker('update',toDateToDatePicker);
+						$("#fromDate").datepicker("update", fromDateToDatePicker);
 					
 					}
 					else{
@@ -670,8 +695,8 @@ var formatAMPMTime = function(date) {
 						document.getElementById("fromDate").value = startGameDate.toLocaleDateString();
 						
 						
-						$('#fromDate').datepicker('update',startGameDate.toLocaleDateString());
-						$("#toDate").datepicker("update", endGameDate.toLocaleDateString());
+						$('#fromDate').datepicker('update',fromDateToDatePicker);
+						$("#toDate").datepicker("update", toDateToDatePicker);
 					
 					}
 				
@@ -715,7 +740,7 @@ var formatAMPMTime = function(date) {
 	 			
 	 				for(var i=0; i<res.length; i++){
 	 					
-	 					var dateNewObject = getDateInObject(res[i].gameDate);
+	 					var dateNewObject = formatDateValue(res[i].gameDate);
 	 					
 	 					 console.log(res[i].gameDate);
 	 				//	var endDate = new Date(res[i].endDateString);
@@ -728,7 +753,7 @@ var formatAMPMTime = function(date) {
 	 				
 	 					 console.log("date ======="+date.toLocaleDateString());
 	 					 var dateChange = date.toLocaleDateString();
-	 			
+	 					if(res[i].status == "Upcoming"){
 	 					
 	 					
 	 					html += "<tr id='trid_"+count+"' onclick='showScorerList(\""+res[i].tournamentSchedulerId+"\")'>";
@@ -742,6 +767,7 @@ var formatAMPMTime = function(date) {
 	 					html += '</tr>';
 	 				
 	 					count++;
+	 				}
 	 				}
 	 				
 	 				html += '</tbody></table>';
