@@ -267,10 +267,10 @@ var formatAMPMTime = function(date) {
 						autoclose:true
 					});
 					
-					$(".datepicker").each(function() {    
+				/* 	$(".datepicker").each(function() {    
 					
 					    $(this).datepicker('setDate', $(this).val());
-					});
+					}); */
 					
 					
 					$('.datepicker').on('changeDate', function(ev){
@@ -436,7 +436,7 @@ var formatAMPMTime = function(date) {
 			
 			 if(scorerId == scorerArray[i])
 				 {
-				$("#error").html("This user already assigned as scorer for this schedule");
+				$("#error").html("This user already assigned as app scorer for this schedule");
 				 return false;
 				 }else{
 					 
@@ -533,7 +533,7 @@ var formatAMPMTime = function(date) {
 		 										if(users[i].fullName != null){
 		 											 name=users[i].fullName;
 		 										}
-		 								
+		 								/* 
 		 								html +="<li onclick=setValueToTextBox(this,'"+textBoxId+"','"+divId+"','"+users[i].id+"','"+hiddenId+"')><div class='media'><div class='media-left'>";
 				                            
 				                          
@@ -549,7 +549,32 @@ var formatAMPMTime = function(date) {
 				                       	 +'</div>'
 				              			+'</li>';
 		 									}
+		 								} */
+		 								
+		 								
+		 								
+		 										html +="<li class='selection-item' onclick=setValueToTextBox('"+name.replace(/ /g,"-")+"','"+textBoxId+"','"+divId+"','"+users[i].id+"','"+hiddenId+"')><div class='media'><div class='media-left'><a>";
+
+		 				                          
+		 				                      	if(users[i].userImageUrl != null && users[i].userImageUrl != ""){
+		 			                          		html +='<img onError="userErrorDefaultImg(this)" src="'+users[i].userImageUrl+'"  class="nav-avatar">';
+
+		 			                          	}else{
+		 			                          		html +='<img src="'+ctx+'/images/profileIcon.png" class="nav-avatar">';
+		 			                          	}
+		 				                      	html += "</a></div><div class='media-body'><a class='auto-blue'><h4 class='media-heading'> ";
+		 				                      	html+=""+name+"<br></a>";
+		 				                          if(users[i].city=="UNKNOWN"&&users[i].state=="UNKNOWN"||users[i].city==""&&users[i].state==""||users[i].city=="null"&&users[i].state=="null"||users[i].city==null&&users[i].state==null){
+		 				                        		html += '<span class="auto-black">'+users[i].city+'</span>';
+		 				                        	}else{
+		 				                        		html += '<span class="auto-black">'+users[i].city+','+users[i].state+'</span>'; 
+		 				                        	}
+
+		 				              			html+='</h4><div class="headRight" ></div></div></div></li>';
+		 									}
 		 								}
+		 								
+		 								
 		 								
 		 								
 												html+="</ul>";
@@ -581,7 +606,11 @@ var formatAMPMTime = function(date) {
 		 } 
 	 
 	 function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
-			$('#'+textBox).val($(elem).text());
+			/* $('#'+textBox).val($(elem).text());
+			$('#'+divId).hide();	
+			$('#'+hiddenId).val(userId);	 */
+		 var name=elem.replace(/-/g," ");
+		    $('#'+textBox).val(name);
 			$('#'+divId).hide();	
 			$('#'+hiddenId).val(userId);	
 			
@@ -732,6 +761,10 @@ var formatAMPMTime = function(date) {
 	 				}
 	 				
 	 				html += '</tbody></table>';
+	 				
+	 				if(count == 1){
+	 					html += '<span id="errorSpan" class="noContentDivRed">No more '+text+' schedules available for this week</span>';
+	 				}
 	 			
 	 	
 	 				 $("#myTableAssign").html(html).trigger('create');

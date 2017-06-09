@@ -302,10 +302,10 @@ var formatAMPMTime = function(date) {
 						autoclose:true
 					});
 					
-					$(".datepicker").each(function() {    
+					/* $(".datepicker").each(function() {    
 					
 					    $(this).datepicker('setDate', $(this).val());
-					});
+					}); */
 					
 					
 					$('.datepicker').on('changeDate', function(ev){
@@ -397,7 +397,7 @@ var formatAMPMTime = function(date) {
 	     message += "\nRow Count: " + rowCount;
 	     console.log(diff);		 
 		 if(diff == 1 ){
-			 document.getElementById("error").innerHTML = "Can't be delete all the app scorers";
+			 document.getElementById("error").innerHTML = "Can't be delete all the portal scorers";
 			// $("#error").fadeOut(3000);
 		 }else{			 
 			 var index = scorerArray.indexOf(scorerId);
@@ -749,7 +749,10 @@ var formatAMPMTime = function(date) {
 	 				
 	 				html += '</tbody></table>';
 	 			
-	 	
+	 				if(count == 1){
+	 					html += '<span id="errorSpan" class="noContentDivRed">No more '+text+' schedules available for this week</span>';
+	 				}
+	 				
 	 				 $("#myTableAssign").html(html).trigger('create');
 	 			
 	 				 $("#scorerTableId").hide();

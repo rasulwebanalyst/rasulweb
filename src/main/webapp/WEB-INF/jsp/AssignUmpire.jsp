@@ -337,9 +337,9 @@ var formatAMPMTime = function(date) {
 					}); */
 					
 					
-				/* 	$('.datepicker').on('changeDate', function(ev){
+				 	$('.datepicker').on('changeDate', function(ev){
 						$(this).datepicker('hide');
-					}); */
+					}); 
 					//$( ".datepicker" ).datepicker({ dateFormat: 'yyyy-MM-dd' });
 					});
 		</script>
@@ -876,6 +876,10 @@ function loadPrev(text){
 					count++;
 				}
 				}
+				
+				if(count == 1){
+ 					html += '<span id="errorSpan" class="noContentDivRed">No more '+text+' schedules available for this week</span>';
+ 				}
 				
 				html += '</tbody></table>';
 			

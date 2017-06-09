@@ -389,10 +389,10 @@ var formatAMPMTime = function(date) {
 			autoclose:true
 		});
 		
-		$(".datepicker").each(function() {    
+		/* $(".datepicker").each(function() {    
 			
 		    $(this).datepicker('setDate', $(this).val());
-		});
+		}); */
 		
 		$('.datepicker').on('changeDate', function(ev){
 			$(this).datepicker('hide');

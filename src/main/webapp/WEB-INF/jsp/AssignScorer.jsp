@@ -285,10 +285,10 @@ var formatAMPMTime = function(date) {
 						autoclose:true
 					});
 					
-					$(".datepicker").each(function() {    
+					/* $(".datepicker").each(function() {    
 					
 					    $(this).datepicker('setDate', $(this).val());
-					});
+					}); */
 					
 					
 					$('.datepicker').on('changeDate', function(ev){
@@ -772,7 +772,10 @@ var formatAMPMTime = function(date) {
 	 				
 	 				html += '</tbody></table>';
 	 			
-	 	
+	 				if(count == 1){
+	 					html += '<span id="errorSpan" class="noContentDivRed">No more '+text+' schedules available for this week</span>';
+	 				}
+	 				
 	 				 $("#myTableAssign").html(html).trigger('create');
 	 			
 	 				 $("#scorerTableId").hide();
