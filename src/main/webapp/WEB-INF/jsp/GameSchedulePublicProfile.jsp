@@ -192,7 +192,7 @@ var formatAMPMTime = function(date) {
 				</div>
 				<div class="modal-footer action" style="text-align:center;">
                    <div style="text-align:left !important;">
-					<input type="radio" id="Male" name="gender" value="1"> <label
+					<input type="radio" id="Male" name="gender" value="1"> <label id="editRadiobutton"
 						for="Male"><span></span>Do you want to edit Scorecard?</label> <input
 						type="radio" id="female" name="gender" value="2"> <label
 						for="female"><span></span>Do you want to enter Scorecard?</label>
@@ -208,7 +208,21 @@ var formatAMPMTime = function(date) {
 		</div>
 	</div>
 
-
+<div id="scoringPopUp" class="modal" role="dialog"
+		style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<p style="text-align:center;">Sorry unable to edit the scorecard, Scored by scoring application </p>
+					<br>
+				</div>
+				<div class="modal-footer action">
+					<button type="button" onclick="Requestpopup()"
+						class="btn btn-default ok">OK</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div id="editScoreCardPopUp" class="modal" role="dialog"
 		style="display: none;">
@@ -907,25 +921,61 @@ var formatAMPMTime = function(date) {
 											
 												</td> 	
                           
+                          
                            <td align="center">
-                           
                            <c:choose>
                            <c:when test="${completed.statusOfMatch eq 'tie'}">
-                           		<span class="text-danger">Match Tied</span>
+                           <span class="text-danger">Match Tied</span>
                            </c:when>
                            <c:when test="${completed.statusOfMatch eq 'draw'}">
-                           		<span class="text-danger">Match Drawn</span>
+                           <span class="text-danger">Match Drawn</span>
+                           </c:when>
+                            <c:when test="${completed.statusOfMatch eq 'Noresult'}">
+                           <span class="text-danger">Match Abandoned</span>
+                           <input type="hidden" id="status_${completed.tournamentSchedulerId }" value="Abandoned"> 
+                           </c:when>
+                           <c:when test="${completed.statusOfMatch eq 'Abandoned'}">
+                           <span class="text-danger">Match Abandoned</span>
                            </c:when>
                            <c:otherwise>
                            <span class="text-danger">${completed.winTeamName} won</span>
                            </c:otherwise>
                            </c:choose>
-                           
-                          <%--  <span class="text-danger">${completed.winTeamName} won</span> --%>
-                           
                            <br>
+                           
+                           <c:if test="${completed.statusOfMatch ne 'Noresult'}">
+                           <input type="hidden" id="status_${completed.tournamentSchedulerId }" value="not"> 
 							  ${completed.winTeamName} : ${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}<br>
-							  ${completed.loseTeamName} : ${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers}</td>
+							  ${completed.loseTeamName} : ${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers}
+							  </c:if>
+							  </td> 
+                          
+							  
+							  <%-- <td align="center">
+                           <c:choose>
+                           <c:when test="${completed.statusOfMatch eq 'tie'}">
+                           <span class="text-danger">Match Tied</span>
+                           </c:when>
+                           <c:when test="${completed.statusOfMatch eq 'draw'}">
+                           <span class="text-danger">Match Drawn</span>
+                           </c:when> 
+                           <c:otherwise>                       
+                           <c:choose>
+                           <c:when test="${completed.statusOfMatch ne 'Noresult'}"> 
+                           <span class="text-danger">${completed.winTeamName} won</span>     
+							  ${completed.winTeamName} : ${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}<br>
+							  ${completed.loseTeamName} : ${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers}
+							 </c:when>
+							 <c:otherwise>
+							 <span class="text-danger">Match Abandoned</span>							 
+							 </c:otherwise> 
+							 </c:choose>
+                        </c:otherwise>   
+                           </c:choose>
+                           <br>
+                           
+							 </td> --%>
+							  
                          <td> 
                              <%-- <a href="javascript:void(0)" onclick="EDITSCORECARD('${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')"><i class="fa fa-pencil" title="Edit Profile"></i></a>
                         	 <a href="javascript:void(0)" onclick="EDITSCORECARD('${boardId}','${completed.tournamentId}','${completed.tournamentSchedulerId }','${completed.homeTeamId}','${completed.awayTeamId }','${completed.dateString }','${completed.leagueCreatedBy}')">Edit Scorecard</a> --%>
@@ -1361,6 +1411,7 @@ var dateString = null;
    				htmlco+="<td> <div >";
    				
    				var upcommingumpire=upcomminglist[i].umpireNamesList;
+   				if(upcommingumpire != null){
    				if(upcommingumpire.length > 0){
    				for(var j=0; j < upcommingumpire.length;j++)
    				{
@@ -1375,6 +1426,10 @@ var dateString = null;
    					{
    					htmlco+="<span>-</span>";
    					}
+   				}else
+					{
+					htmlco+="<span>-</span>";
+					}
    				htmlco+="</div></td>";
    				
    			//App Scorer
@@ -1468,6 +1523,7 @@ var dateString = null;
    					htmlco1+="<td>"+incomepltelist[i].groundName+"</td>";}
    				    htmlco1+="<td> <div>";
    				    var incompleteumpire=incomepltelist[i].umpireNamesList;
+   				    if(incompleteumpire != null){
    				 if(incompleteumpire.length > 0){
    				    for(var j=0;j<incompleteumpire.length;j++){
    				    htmlco1+="<span><a href='${pageContext.request.contextPath}/buddy/"+incompleteumpire[j].umpireName+"/"+incompleteumpire[j].umpireId+"'>"+incompleteumpire[j].umpireName+"</a>";
@@ -1476,6 +1532,7 @@ var dateString = null;
   			        	htmlco1 += ',</span>';
   			        } 
    				    }}else{ htmlco1+="<span>-</span>";}
+   				 }else{ htmlco1+="<span>-</span>";}
    				    htmlco1+="</div></td> ";
    				    
    				    
@@ -1572,6 +1629,8 @@ var dateString = null;
 				    htmlco2+="<td class='tdAlignLeft'>"+inprogresslist[i].tournamentName+"</td>";
 				    htmlco2+="<td class='tdAlignLeft'> <div>";
 				    var inprogressumpire=inprogresslist[i].umpireNamesList;
+				    
+				    if(inprogressumpire != null){
 				    if(inprogressumpire.length > 0){
 				    for(var j=0;j<inprogressumpire.length;j++){
 				    htmlco2+="<span><a href='${pageContext.request.contextPath}/buddy/"+inprogressumpire[j].umpireName+"/"+inprogressumpire[j].umpireId+"'>"+inprogressumpire[j].umpireName+"</a>";
@@ -1580,6 +1639,9 @@ var dateString = null;
 			        	htmlco2 += ',</span>';
 			        } 
 				    }}else{
+				    	htmlco2+="<span>-</span>";
+				    }
+				    }else{
 				    	htmlco2+="<span>-</span>";
 				    }
 				    htmlco2+="</div></td> ";
@@ -1667,6 +1729,7 @@ var dateString = null;
 				    htmlco3+="<td class='tdAlignLeft'>"+completedlist[i].tournamentName+"</td>";
 				    htmlco3+="<td class='tdAlignLeft'> <div>";
 				    var completeumpire=completedlist[i].umpireNamesList;
+				    if(completeumpire != null){
 				    if(completeumpire.length > 0){
 				    for(var j=0;j<completeumpire.length;j++){
 				    htmlco3+="<span><a href='${pageContext.request.contextPath}/buddy/"+completeumpire[j].umpireName+"/"+completeumpire[j].umpireId+"'>"+completeumpire[j].umpireName+"</a>";
@@ -1675,6 +1738,7 @@ var dateString = null;
 			        	htmlco3 += ',</span>';
 			        } 
 				    }}else{htmlco3+="<span>-</span>";}
+				    }else{htmlco3+="<span>-</span>";}
 				    htmlco3+="</div></td> ";
 				    htmlco3+="<td class='tdAlignLeft'> <div>";
 				    var completescorer=completedlist[i].scorerNamesList;
@@ -1730,7 +1794,7 @@ var dateString = null;
 				  //  htmlco3+="<td align='center'><span class='text-danger'>"+completedlist[i].winTeamName+" won</span><br>";
 				    
 				    
-				    if(completedlist[i].statusOfMatch == 'tie'){
+				   /*  if(completedlist[i].statusOfMatch == 'tie'){
 				    	
 					    htmlco3+="<td align='center'><span class='text-danger'>Match Tied</span><br>";}
 					   else if(completedlist[i].statusOfMatch == 'draw'){
@@ -1741,7 +1805,31 @@ var dateString = null;
 				    
 				    
 				    htmlco3+=""+completedlist[i].winTeamName+": "+completedlist[i].winTeamRuns+"/"+completedlist[i].winTeamWickets+" in "+completedlist[i].winTeamOvers+"<br>";
-				    htmlco3+=""+completedlist[i].loseTeamName+" : "+completedlist[i].loseTeamRuns+"/"+completedlist[i].loseTeamWickets+" in "+completedlist[i].loseTeamOvers+"</td>";
+				    htmlco3+=""+completedlist[i].loseTeamName+" : "+completedlist[i].loseTeamRuns+"/"+completedlist[i].loseTeamWickets+" in "+completedlist[i].loseTeamOvers+"</td>"; */
+				    
+   	   			 
+				    if(completedlist[i].statusOfMatch == 'tie'){
+					    htmlco3+="<td align='center'><span class='text-danger'>Match Tied</span><br>";
+					    }else if(completedlist[i].statusOfMatch == 'draw'){
+							   htmlco3+="<td align='center'><span class='text-danger'>Match Drawn</span><br>";
+						   }else if(completedlist[i].statusOfMatch == 'Noresult'){
+					    
+							   htmlco3+="<td align='center'><span class='text-danger'>Match Abandoned</span><br>";
+							   htmlco3+="<input type='hidden' id='status_"+completedlist[i].tournamentSchedulerId+"' value='Abandoned'>";   
+						   }else if(completedlist[i].statusOfMatch == 'Abandoned'){
+					    
+							   htmlco3+="<td align='center'><span class='text-danger'>Match Abandoned</span><br>";
+						   }
+					    else{
+						   htmlco3+="<td align='center'><span class='text-danger'>"+completedlist[i].winTeamName+" won</span><br>";}
+				    
+				    if(completedlist[i].statusOfMatch != 'Noresult'){
+				    	htmlco3+="<input type='hidden' id='status_"+completedlist[i].tournamentSchedulerId+"' value='not'>";
+					    htmlco3+=""+completedlist[i].winTeamName+": "+completedlist[i].winTeamRuns+"/"+completedlist[i].winTeamWickets+" in "+completedlist[i].winTeamOvers+"<br>";
+					    htmlco3+=""+completedlist[i].loseTeamName+" : "+completedlist[i].loseTeamRuns+"/"+completedlist[i].loseTeamWickets+" in "+completedlist[i].loseTeamOvers+"</td>"; 
+					    
+				    }
+				    
 
 				    
 				    if(completedlist[i].scorecardLock == "OFF"){
@@ -1938,6 +2026,15 @@ var dateString = null;
                 				success:function(response){
                 					
                 					 if(response.length > 0){	  
+                						 
+                						 
+                                         var status=$("#status_"+tournmentShudulorId).val();
+                						 
+                						 if(status == 'Abandoned'){
+                							 $("#editRadiobutton").hide();
+                						 }
+                						 else{$("#editRadiobutton").show();}
+                						 
                 					 		$("#ScoreCardBoardId").val(id);
                 	                		$("#ScoreCardTournamentId").val(tournmentId);
                 	                		$("#ScoreCardtournmentShudulorId").val(tournmentShudulorId);
@@ -2013,7 +2110,8 @@ var dateString = null;
                  		$("#EditSCoreCard1").show();
                  		}else{
                  			$("#EditSCoreCard").hide();
-                 			$("#editScoreCardPopUp").show();
+                 			//$("#editScoreCardPopUp").show();
+                 			EditScoreCardPage();
                  			
                  		}
                  	}
@@ -2142,6 +2240,46 @@ var dateString = null;
                  	
                  	
                 	</script>
+                	
+                	<script type="text/javascript">
+                	function EditScoreCardPage()
+                	 {
+                		    
+                		    var boardid=$("#ScoreCardBoardId").val();
+                     		var tournametid=$("#ScoreCardTournamentId").val();
+                     		var tournamentschedulerid=$("#ScoreCardtournmentShudulorId").val();
+                     	    var homeid=$("#ScoreCardhomeId").val();
+                     	    var awayteamid= $("#ScoreCardawayTeamId").val();
+                     	    var date=$("#ScoreCarddate").val();
+                     	    var createdby=$("#ScoreCardcreatedBy").val();
+                     	    
+                     	    
+                    	
+                     	    
+                     	   $.ajax({
+           					type : "GET",
+           					url : "${pageContext.request.contextPath}/matchType/MatchId/"+tournamentschedulerid,
+           					headers : {'Name' : HeaderName},
+           					success : function(res) {
+           					if(res == "4")
+            					{
+           						window.location.href = "${pageContext.request.contextPath}/editscorepublic/boardId/"+boardid+"/"+tournametid+"/"+tournamentschedulerid+"/"+homeid+"/"+awayteamid+"/"+date+"/"+createdby;      
+           						}
+            					else
+            					{
+            					$("#scoringPopUp").show();
+            					} 
+           					}
+            					});
+                		   
+                	 }
+                	
+                	
+                	function Requestpopup(){
+                		$("#scoringPopUp").hide();
+                	}
+                	</script>
+                	
    
 </body>
 </html>

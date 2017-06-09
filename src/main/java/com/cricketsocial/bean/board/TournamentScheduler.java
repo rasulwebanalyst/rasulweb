@@ -133,6 +133,7 @@ public class TournamentScheduler {
 	
 	private String scorerId;
 	
+	private String statusType;
 	
 	
 	
@@ -140,7 +141,12 @@ public class TournamentScheduler {
 	
 	
 	
-	
+	public String getStatusType() {
+		return statusType;
+	}
+	public void setStatusType(String statusType) {
+		this.statusType = statusType;
+	}
 	public String getScorerId() {
 		return scorerId;
 	}

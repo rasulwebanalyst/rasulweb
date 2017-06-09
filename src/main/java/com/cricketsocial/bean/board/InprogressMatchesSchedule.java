@@ -49,7 +49,7 @@ public class InprogressMatchesSchedule {
 	private String leagueCreatedBy;
 	private String dateString;
 	
-private List<ScorerNameList> portalScorerList;
+	private List<ScorerNameList> portalScorerList;
 
 	
 	
@@ -61,8 +61,6 @@ private List<ScorerNameList> portalScorerList;
 	public void setPortalScorerList(List<ScorerNameList> portalScorerList) {
 		this.portalScorerList = portalScorerList;
 	}
-	
-	
 	public String getDateString() {
 		return dateString;
 	}

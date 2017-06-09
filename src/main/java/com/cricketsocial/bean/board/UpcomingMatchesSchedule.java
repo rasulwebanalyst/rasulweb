@@ -43,7 +43,7 @@ public class UpcomingMatchesSchedule {
 	
 	private UUID tournamentSchedulerId;
 	
-private List<ScorerNameList> portalScorerList;
+	private List<ScorerNameList> portalScorerList;
 	
 	
 

@@ -9,8 +9,6 @@ private int totalMatches;
 private int wonmatches;
 private int lostmatches;
 /*private int adj;*/
-
-private String adj;
 private int points;
 private double netRunRate;
 private String for1;
@@ -32,6 +30,8 @@ private String teamBoardId;
 
 private String tie;
 
+private String adj;
+private int abandoned;
 
 
 /*
@@ -42,8 +42,15 @@ private String tie;
 
 
 
+
 public String getTeamName() {
 	return teamName;
+}
+public int getAbandoned() {
+	return abandoned;
+}
+public void setAbandoned(int abandoned) {
+	this.abandoned = abandoned;
 }
 public String getAdj() {
 	return adj;

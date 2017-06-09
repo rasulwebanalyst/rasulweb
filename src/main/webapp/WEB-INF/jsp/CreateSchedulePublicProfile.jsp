@@ -561,7 +561,12 @@ $(document).ready(function(){
     var m=0;
     $("#umpireId").tokenInput(ctx+"/umpireSearchForCreateScheduler/",{
 	resultsFormatter: function(item){ 
-		
+		var citystate="";
+		if(item.city=="UNKNOWN"&& item.state=="UNKNOWN"||item.city==""&&item.state==""||item.city=="null"&&item.state=="null"||item.city==null&&item.state==null){
+			citystate= item.city;
+    	}else{
+    		citystate= item.city+','+item.state; 
+    	}
 		
 var htm="";
 		
@@ -632,7 +637,7 @@ var htm="";
 		
 		
 		
-		return "<li>" + "<img onError='userErrorDefaultImg(this)' src='" + item.userImageUrl + "' title='" + item.fullName + "' height='25px' width='25px' />" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name'>" + item.fullName + "</div></div>"+htm+"</li>" },
+		return "<li>" + "<img onError='userErrorDefaultImg(this)' src='" + item.userImageUrl + "' title='" + item.fullName + "' height='25px' width='25px' />" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name'>" + item.fullName + " "+citystate+"</div></div>"+htm+"</li>" },
 	preventDuplicates: true,
 	propertyToSearch: "fullName",
 	theme: "facebook",   
@@ -794,7 +799,12 @@ var htm="";
 	$("#scorerId").tokenInput(ctx+"/umpireSearchForCreateScheduler/",{
 		resultsFormatter: function(item){ 
 			
-			
+			var citystate="";
+			if(item.city=="UNKNOWN"&& item.state=="UNKNOWN"||item.city==""&&item.state==""||item.city=="null"&&item.state=="null"||item.city==null&&item.state==null){
+				citystate= item.city;
+	    	}else{
+	    		citystate= item.city+','+item.state; 
+	    	}
 			
 			var htm="";
 			
@@ -866,7 +876,7 @@ var htm="";
 			
 			
 			
-			return "<li>" + "<img onError='userErrorDefaultImg(this)' src='" + item.userImageUrl + "' title='" + item.fullName + "' height='25px' width='25px' />" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name'>" + item.fullName + "</div></div>"+htm+"</li>" },
+			return "<li>" + "<img onError='userErrorDefaultImg(this)' src='" + item.userImageUrl + "' title='" + item.fullName + "' height='25px' width='25px' />" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name'>" + item.fullName + " "+citystate+"</div></div>"+htm+"</li>" },
 		preventDuplicates: true,
 		propertyToSearch: "fullName",
 		theme: "facebook",   

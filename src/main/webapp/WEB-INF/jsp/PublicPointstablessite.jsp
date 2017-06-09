@@ -141,6 +141,8 @@
                         <th>Lost</th>
                         <th>Adj</th>
                         <th>Pts</th>
+                        <th>Tie</th>
+                        <th>No Result</th>
                         <th>Net RR</th>
                         <th class="alignCenter">For</th>
                         <th>Against</th>
@@ -171,18 +173,18 @@
                             </c:choose> --%>
                             
                             <td>${team.points}</td>
+                            <td>${team.tie}</td>
+                            <td>${team.abandoned}</td>
                             <td>
                                 <fmt:formatNumber type="number" pattern="##########.##" value="${team.netRunRate}" />
                             </td>
                             <%--  <td>${team.teamfor}</td>
 			                          <td>${team.teamgainst}</td> --%>
                                 <td>
-                                    <fmt:formatNumber type="number" pattern="##########.##" value="${team.retunteamruns}" />/
-                                    <fmt:formatNumber type="number" pattern="##########.##" value="${team.returntemovers}" />
+                                    <fmt:formatNumber type="number" pattern="##########.##" value="${team.retunteamruns}" />/<fmt:formatNumber type="number" pattern="##########.##" value="${team.returntemovers}" />
                                 </td>
                                 <td>
-                                    <fmt:formatNumber type="number" pattern="##########.##" value="${team.returnaginstteamruns}" />/
-                                    <fmt:formatNumber type="number" pattern="##########.##" value="${team.returnagainstteamovers}" />
+                                    <fmt:formatNumber type="number" pattern="##########.##" value="${team.returnaginstteamruns}" />/<fmt:formatNumber type="number" pattern="##########.##" value="${team.returnagainstteamovers}" />
                                 </td>
                                 <%--  <td>${team.tie}</td> --%>
                                     <td>

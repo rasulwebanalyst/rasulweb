@@ -21,6 +21,7 @@ public class EditRoster {
 	
 	
 	
+	
 	public List<String> getMemberList() {
 		return memberList;
 	}

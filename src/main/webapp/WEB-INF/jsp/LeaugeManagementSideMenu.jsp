@@ -42,7 +42,8 @@ ul.side_menu_main li span {
                                             <li><a href="${pageContext.request.contextPath}/CreateSchedule/boardId/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i><span> Create Schedule</span></a></li>
                                             <%-- <li><a href="${pageContext.request.contextPath}/AmendSchedule/boardId/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> Amend Schedule</a></li> --%>
                                              <li><a href="${pageContext.request.contextPath}/AssignUmpire/boardId/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> <span> Assign Umpire to Schedule</span> </a></li>
-                                            <li><a href="${pageContext.request.contextPath}/AssignScorer/boardId/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> <span>Assign Scorer to Schedule</span></a></li>
+                                            <li><a href="${pageContext.request.contextPath}/AssignScorer/boardId/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> <span>Assign App Scorer to schedule</span></a></li>
+                                            <li><a href="${pageContext.request.contextPath}/AssignPortalScorer/boardId/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> <span>Assign Portal Scorer to Schedule</span></a></li>
                                             <li><a href="${pageContext.request.contextPath}/SchedulerList/boardId/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> <span>Schedule List</span></a></li>
                                             <li><a href="${pageContext.request.contextPath}/GameSchedule/boardId/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> <span>Schedule & Scores</span></a></li>
                                             <li><a href="${pageContext.request.contextPath}/CancelGameByDate/boardId/${BoradInfo.boardId}"><i class="fa fa-angle-right"></i> <span>Cancel Game by date</span></a></li>

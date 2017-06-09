@@ -36,13 +36,16 @@ public class Scheduler {
 	
 	private String portalscorerId;
 	
+	
+	
+	
+	
 	public String getPortalscorerId() {
 		return portalscorerId;
 	}
 	public void setPortalscorerId(String portalscorerId) {
 		this.portalscorerId = portalscorerId;
 	}
-	
 	public String getGameDateforMail() {
 		return gameDateforMail;
 	}

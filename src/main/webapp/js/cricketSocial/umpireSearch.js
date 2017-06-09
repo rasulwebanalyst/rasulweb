@@ -42,7 +42,7 @@ function getUmpireList(elem,divId,hiddenId){
 	 										}
 	 								
 	 								
-	 								html +="<li onclick=setValueToTextBox(this,'"+textBoxId+"','"+divId+"','"+users[i].id+"','"+hiddenId+"')><div class='media'><div class='media-left'>";
+	 								/*html +="<li onclick=setValueToTextBox(this,'"+textBoxId+"','"+divId+"','"+users[i].id+"','"+hiddenId+"')><div class='media'><div class='media-left'>";
 			                            
 			                          
 			                      	if(users[i].userImageUrl != null && users[i].userImageUrl != ""){
@@ -56,6 +56,30 @@ function getUmpireList(elem,divId,hiddenId){
 			                          html+='</div>'
 			                       	 +'</div>'
 			              			+'</li>';
+	 									}
+	 								}else{
+	 									html+="<li>No results found...</li>";
+	 								}*/
+	 										
+	 										
+	 										 html +="<li class='selection-item' onclick=setValueToTextBox('"+name.replace(/ /g,"-")+"','"+textBoxId+"','"+divId+"','"+users[i].id+"','"+hiddenId+"')><div class='media'><div class='media-left'><a>";
+
+	 				                          
+		 				                      	if(users[i].userImageUrl != null && users[i].userImageUrl != ""){
+		 			                          		html +='<img onError="userErrorDefaultImg(this)" src="'+users[i].userImageUrl+'"  class="nav-avatar">';
+
+		 			                          	}else{
+		 			                          		html +='<img src="'+ctx+'/images/profileIcon.png" class="nav-avatar">';
+		 			                          	}
+		 				                      	html += "</a></div><div class='media-body'><a class='auto-blue'><h4 class='media-heading'> ";
+		 				                      	html+=""+name+"<br></a>";
+		 				                          if(users[i].city=="UNKNOWN"&&users[i].state=="UNKNOWN"||users[i].city==""&&users[i].state==""||users[i].city=="null"&&users[i].state=="null"||users[i].city==null&&users[i].state==null){
+		 				                        		html += '<span class="auto-black">'+users[i].city+'</span>';
+		 				                        	}else{
+		 				                        		html += '<span class="auto-black">'+users[i].city+','+users[i].state+'</span>'; 
+		 				                        	}
+
+		 				              			html+='</h4><div class="headRight" ></div></div></div></li>';
 	 									}
 	 								}else{
 	 									html+="<li>No results found...</li>";

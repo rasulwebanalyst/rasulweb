@@ -24,6 +24,10 @@
         <function-class>com.cricketsocial.common.Util</function-class>
         <function-signature>java.lang.String listToStringConvertion(java.util.List)</function-signature>
     </function>
-     
+     <function>
+     <name>extras</name>
+     <function-class>com.cricketsocial.common.Util</function-class>
+     <function-signature>java.lang.int extras(java.lang.String, java.util.List)</function-signature>
+     </function>
 </taglib>
 

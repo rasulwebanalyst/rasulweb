@@ -158,7 +158,7 @@ var secondInninBowlingArrayObjectList=[];
         <section id="cslide-slides" class="cslide-slides-master clearfix">
             <div class="cslide-prev-next clearfix">
                 <span class="cslide-prev">Prev</span>
-                <span class="cslide-next">Next</span>
+                <span id="Nextslidecaller" class="cslide-next">Next</span>
             </div>
             <div class="cslide-slides-container clearfix">
                 <div class="cslide-slide">
@@ -169,7 +169,7 @@ var secondInninBowlingArrayObjectList=[];
  		 <table class = "firInnBatting" id="firInnBattingTable">
   			<thead>
         	<tr>
-            	<th><sup>*</sup>Player Names</th>
+            	<th><sup>*</sup>Batsmen</th>
                 <th>Bowler</th>
                 <th>Fielder</th>
                 <th><sup>*</sup>Dismissal Type</th>
@@ -371,7 +371,14 @@ var secondInninBowlingArrayObjectList=[];
                 
             </tbody>
   </table><br>
-   <div><a class="enterScoreAddMore" href="javascript:void(0)" onclick="addFirstInningBowling()">Add More</a></div>
+   <div><a class="enterScoreAddMore" href="javascript:void(0)" onclick="addFirstInningBowling()">Add More</a>
+   
+   
+   <input type="text"  id="secslideshowdiv" readonly="readonly" style="height: 0; width: 0; opacity : 0;">
+   <input type="text"  id="" readonly="readonly" style="height: 0; width: 0; opacity : 0;">
+   
+   
+   </div>
   
                 </div>
                 <div id="SecondSlide" class="cslide-slide">
@@ -381,7 +388,7 @@ var secondInninBowlingArrayObjectList=[];
  		 <table id="secInnBattingTable">
   			<thead>
         	<tr>
-                <th><sup>*</sup>Player Names</th>
+                <th><sup>*</sup>Batsmen</th>
                 <th>Bowler</th>
                 <th>Fielder</th>
                 <th><sup>*</sup>Dismissal Type</th>
@@ -594,8 +601,12 @@ var secondInninBowlingArrayObjectList=[];
             </tbody>
   </table><br>
                   <div><a class="enterScoreAddMore" href="javascript:void(0)" onclick="addSecondInningBowling()">Add More</a></div>   
+                
+                
+                <input type="text"  id="secslideshowdiv1" readonly="readonly" style="height: 0; width: 0; opacity : 0;">
+                
                 </div>
-                <div class="cslide-slide">
+                <div id="ThirdSlide" class="cslide-slide">
                     
                     
                     
@@ -1090,9 +1101,10 @@ $(document).ready(function(){
 	html += '<div  class="out"></div>'; */
 	html += '<select  id="result" style="width: 100%;" name="result" onchange="winpointAutoPopulate();">';
 	html += '<option value="00" selected>Select Win Team</option>';
-	html += '<option value="tie" >Tie</option>';
 	html += '<option value="'+homeTeamId+'">'+homeTeam+'</option>';
 	html += '<option value="'+awayTeamId+'">'+awayTeam+'</option>';
+	html += '<option value="tie" >Match Tie</option>';
+	html += '<option value="Abandoned" >Abandoned/NoResult</option>';
 	html += '</select>';
 	$("#result").html(html).trigger('create');
 	
@@ -2871,27 +2883,29 @@ firstInninBowlingArrayList = [];
 }
 
 
-/* function changesecondinningstab(){
-	//alert("changes");
-	console.log("Changes");
-	}
-$( "#secInnPlayerName" ).focusin(function() {
-	//  $( this ).find( "span" ).css( "display", "inline" ).fadeOut( 1000 );
+$( "#secslideshowdiv" ).focusin(function() {
 	console.log("Changes1");
-	
-	//alert("Changes");
-	
-	
-	//$(".cslide-next").click();
 	
 	var contains=$('#SecondSlide').hasClass('cslide-active');
 	console.log(contains);
 	
 	if(contains ==  false){
-		//$(".cslide-next").click();
+		$("#Nextslidecaller").click();
 	}
 	return
-	}); */
+	}); 
+	
+$( "#secslideshowdiv1" ).focusin(function() {
+	console.log("Changes1");
+	
+	var contains=$('#ThirdSlide').hasClass('cslide-active');
+	console.log(contains);
+	
+	if(contains ==  false){
+		$("#Nextslidecaller").click();
+	}
+	return
+	});
 
 </script>	
 </body>

@@ -1019,7 +1019,7 @@ date.add(java.util.Calendar.DATE, +6);
 												</td> 	
 						
                           
-                           <td align="center">
+                            <td align="center">
                            <c:choose>
                            <c:when test="${completed.statusOfMatch eq 'tie'}">
                            <span class="text-danger">Match Tied</span>
@@ -1027,17 +1027,51 @@ date.add(java.util.Calendar.DATE, +6);
                            <c:when test="${completed.statusOfMatch eq 'draw'}">
                            <span class="text-danger">Match Drawn</span>
                            </c:when>
+                            <c:when test="${completed.statusOfMatch eq 'Noresult'}">
+                           <span class="text-danger">Match Abandoned</span>
+                           </c:when>
+                           <c:when test="${completed.statusOfMatch eq 'Abandoned'}">
+                           <span class="text-danger">Match Abandoned</span>
+                           </c:when>
                            <c:otherwise>
                            <span class="text-danger">${completed.winTeamName} won</span>
                            </c:otherwise>
                            </c:choose>
-                           
-                           
-                           
-                           
                            <br>
+                           
+                           <c:if test="${completed.statusOfMatch ne 'Noresult'}">
 							  ${completed.winTeamName} : ${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}<br>
-							  ${completed.loseTeamName} : ${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers}</td>
+							  ${completed.loseTeamName} : ${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers}
+							  </c:if>
+							  </td> 
+							  
+							  
+							 <%--  <td align="center">
+                           <c:choose>
+                           <c:when test="${completed.statusOfMatch eq 'tie'}">
+                           <span class="text-danger">Match Tied</span>
+                           </c:when>
+                           <c:when test="${completed.statusOfMatch eq 'draw'}">
+                           <span class="text-danger">Match Drawn</span>
+                           </c:when> 
+                           <c:otherwise>                       
+                           <c:choose>
+                           <c:when test="${completed.statusOfMatch ne 'Noresult'}"> 
+                           <span class="text-danger">${completed.winTeamName} won</span>     
+							  ${completed.winTeamName} : ${completed.winTeamRuns}/${completed.winTeamWickets} in ${completed.winTeamOvers}<br>
+							  ${completed.loseTeamName} : ${completed.loseTeamRuns}/${completed.loseTeamWickets} in ${completed.loseTeamOvers}
+							 </c:when>
+							 <c:otherwise>
+							 <span class="text-danger">Match Abandoned</span>							 
+							 </c:otherwise> 
+							 </c:choose>
+                        </c:otherwise>   
+                           </c:choose>
+                           <br>
+                           
+							 </td> --%>
+							  
+							  
 							  <td> 
                              <a href="javascript:void(0)" onclick="PleaseLogin()"><i class="fa fa-pencil" title="Edit Profile"></i></a>
                         	 <a href="javascript:void(0)" onclick="PleaseLogin()">Edit Scorecard</a>
@@ -1463,6 +1497,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    				htmlco+="<td> <div >";
    				
    				var upcommingumpire=upcomminglist[i].umpireNamesList;
+   				if(upcommingumpire != null){
    				if(upcommingumpire.length > 0){
    				for(var j=0; j < upcommingumpire.length;j++)
    				{
@@ -1478,6 +1513,10 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    					{
    					htmlco+="<span>-</span>";
    					}
+   				}else
+					{
+					htmlco+="<span>-</span>";
+					}
    				htmlco+="</div></td>";
    				
    				//App Scorer
@@ -1566,7 +1605,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
    					htmlco1+="<td>"+incomepltelist[i].groundName+"</td>";}
    				    htmlco1+="<td> <div>";
    				    var incompleteumpire=incomepltelist[i].umpireNamesList;
-   				    
+   				 if(incompleteumpire != null){
    				    if(incompleteumpire.length > 0){
    				    for(var j=0;j<incompleteumpire.length;j++){
    				    htmlco1+="<span><a href='${pageContext.request.contextPath}/buddy/"+incompleteumpire[j].umpireName+"/"+incompleteumpire[j].umpireId+"'><a href='javascript:void(0);' onclick='PleaseLogin()'>"+incompleteumpire[j].umpireName+"</a></a>";
@@ -1575,6 +1614,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
   			        	htmlco1 += ',</span>';
   			        } 
    				    }}else{ htmlco1+="<span>-</span>";}
+   				}else{ htmlco1+="<span>-</span>";}
    				    htmlco1+="</div></td> ";
    				    
    				//App Scorer
@@ -1666,6 +1706,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				    htmlco2+="<td class='tdAlignLeft'>"+inprogresslist[i].tournamentName+"</td>";
 				    htmlco2+="<td class='tdAlignLeft'> <div>";
 				    var inprogressumpire=inprogresslist[i].umpireNamesList;
+				    if(inprogressumpire != null){
 				    if(inprogressumpire.length > 0){
 				    for(var j=0;j<inprogressumpire.length;j++){
 				    htmlco2+="<span><a href='${pageContext.request.contextPath}/buddy/"+inprogressumpire[j].umpireName+"/"+inprogressumpire[j].umpireId+"'><a href='javascript:void(0);' onclick='PleaseLogin()'>"+inprogressumpire[j].umpireName+"</a></a>";
@@ -1674,6 +1715,9 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 			        	htmlco2 += ',</span>';
 			        } 
 				    }}else{
+				    	htmlco2+="<span>-</span>";
+				    }
+				    }else{
 				    	htmlco2+="<span>-</span>";
 				    }
 				    htmlco2+="</div></td> ";
@@ -1761,6 +1805,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				    htmlco3+="<td class='tdAlignLeft'>"+completedlist[i].tournamentName+"</td>";
 				    htmlco3+="<td class='tdAlignLeft'> <div>";
 				    var completeumpire=completedlist[i].umpireNamesList;
+				    if(completeumpire !=null){
 				    if(completeumpire.length > 0){
 				    for(var j=0;j<completeumpire.length;j++){
 				    htmlco3+="<span><a href='${pageContext.request.contextPath}/buddy/"+completeumpire[j].umpireName+"/"+completeumpire[j].umpireId+"'><a href='javascript:void(0);' onclick='PleaseLogin()'>"+completeumpire[j].umpireName+"</a></a>";
@@ -1769,6 +1814,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 			        	htmlco3 += ',</span>';
 			        } 
 				    }}else{htmlco3+="<span>-</span>";}
+				    }else{htmlco3+="<span>-</span>";}
 				    htmlco3+="</div></td> ";
 				    htmlco3+="<td class='tdAlignLeft'> <div>";
 				    var completescorer=completedlist[i].scorerNamesList;
@@ -1816,7 +1862,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				    
 				    
 				   // htmlco3+="<td><span class='text-success'>Active</span></td>";
-				   if(completedlist[i].statusOfMatch == 'tie'){
+				  /*  if(completedlist[i].statusOfMatch == 'tie'){
 				    htmlco3+="<td align='center'><span class='text-danger'>Match Tied</span><br>";
 				    }else if(completedlist[i].statusOfMatch == 'draw'){
 						   htmlco3+="<td align='center'><span class='text-danger'>Match Drawn</span><br>";
@@ -1825,6 +1871,31 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
 				   
 				    htmlco3+=""+completedlist[i].winTeamName+": "+completedlist[i].winTeamRuns+"/"+completedlist[i].winTeamWickets+" in "+completedlist[i].winTeamOvers+"<br>";
 				    htmlco3+=""+completedlist[i].loseTeamName+" : "+completedlist[i].loseTeamRuns+"/"+completedlist[i].loseTeamWickets+" in "+completedlist[i].loseTeamOvers+"</td>";
+				     */
+				    
+   	   			 
+				    if(completedlist[i].statusOfMatch == 'tie'){
+					    htmlco3+="<td align='center'><span class='text-danger'>Match Tied</span><br>";
+					    }else if(completedlist[i].statusOfMatch == 'draw'){
+							   htmlco3+="<td align='center'><span class='text-danger'>Match Drawn</span><br>";
+						   }else if(completedlist[i].statusOfMatch == 'Noresult'){
+					    
+							   htmlco3+="<td align='center'><span class='text-danger'>Match Abandoned</span><br>";}
+						   else if(completedlist[i].statusOfMatch == 'Abandoned'){
+							    
+							   htmlco3+="<td align='center'><span class='text-danger'>Match Abandoned</span><br>";
+						   }
+					    else{
+						   htmlco3+="<td align='center'><span class='text-danger'>"+completedlist[i].winTeamName+" won</span><br>";}
+				    
+				    if(completedlist[i].statusOfMatch != 'Noresult'){
+					    htmlco3+=""+completedlist[i].winTeamName+": "+completedlist[i].winTeamRuns+"/"+completedlist[i].winTeamWickets+" in "+completedlist[i].winTeamOvers+"<br>";
+					    htmlco3+=""+completedlist[i].loseTeamName+" : "+completedlist[i].loseTeamRuns+"/"+completedlist[i].loseTeamWickets+" in "+completedlist[i].loseTeamOvers+"</td>"; 
+					    
+				    }
+				    
+				    
+				    
 				    htmlco3+="<td><a href=javascript:void(0); onclick='PleaseLogin()'><i class='fa fa-pencil' title='Edit Profile'></i></a><a href=javascript:void(0); onclick='PleaseLogin()'>Edit Scorecard</a></td>";
 				    htmlco3+="<td align='center' >";
 				    

@@ -73,7 +73,7 @@ var formatAMPMTime = function(date) {
 	  hours = hours ? hours : 12; // the hour '0' should be '12'
 	  minutes = minutes < 10 ? '0'+minutes : minutes;
 	  hours = hours < 10 ? '0'+hours : hours ;
-	  var strTime = (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear();
+	  var strTime = (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear()+" "+ hours + ':' + minutes + ' ' + ampm;
 	  return strTime;
 	}
 	function test(id){
@@ -85,7 +85,29 @@ var formatAMPMTime = function(date) {
 	
 	}
 	
-	function getDateInObject(timestamp)
+	function formatDateValue(date1) {     		 
+		 
+        var date = date1;
+		    var offset = new Date().getTimezoneOffset() * 60 * 1000;
+		var gettingFromServer= new Date(date);
+		gettingFromServer = new Date(gettingFromServer.valueOf() - offset);
+		 
+		  var hours = gettingFromServer.getHours();
+		  console.log(hours)
+		  var minutes = gettingFromServer.getMinutes();
+		  var ampm = hours >= 12 ? 'PM' : 'AM';
+		  hours = hours % 12;
+		  hours = hours ? hours : 12; // the hour '0' should be '12'
+		  minutes = minutes < 10 ? '0'+minutes : minutes;
+		  hours = hours < 10 ? '0'+hours : hours ;
+		  var strTimeHours = hours + ':' + minutes + ampm;
+		  var strTime = (gettingFromServer.getMonth()+1)+"/"+gettingFromServer.getDate()+"/"+gettingFromServer.getFullYear()+" "+strTimeHours;
+		  return strTime;
+		};
+	
+	
+	
+	/* function getDateInObject(timestamp)
 	{
 		
 		var date = new Date(timestamp);
@@ -94,7 +116,7 @@ var formatAMPMTime = function(date) {
 		var gettingFromServer= new Date(dateNew);
 		gettingFromServer = new Date(gettingFromServer.valueOf() - offset);
 		return formatAMPMTime(gettingFromServer); 
-	}
+	} */
 	
 	 
 </script>
@@ -187,6 +209,7 @@ var formatAMPMTime = function(date) {
                                     
                                     <tbody style="cursor:pointer">
                                     <c:forEach var="tourDetails" items="${tournamentList}" varStatus="loop">
+                                    <c:if test="${tourDetails.status eq 'Upcoming'}">
                                     <tr id="trid_${loop.count}" onclick="showUmpireList('${tourDetails.tournamentSchedulerId}')">
                                     	
                                       <td>${tourDetails.tournamentName}</td>
@@ -197,7 +220,7 @@ var formatAMPMTime = function(date) {
 												<td><a href="${pageContext.request.contextPath}/${tourDetails.awayTeamName}/board/${tourDetails.awayTeamId}">${tourDetails.awayTeamName}</a></td>
                                   
                                    </tr>
-                                   
+                                  </c:if> 
                   </c:forEach>
                               </tbody>
                             </table>
@@ -314,9 +337,9 @@ var formatAMPMTime = function(date) {
 					}); */
 					
 					
-				/* 	$('.datepicker').on('changeDate', function(ev){
+				 	$('.datepicker').on('changeDate', function(ev){
 						$(this).datepicker('hide');
-					}); */
+					}); 
 					//$( ".datepicker" ).datepicker({ dateFormat: 'yyyy-MM-dd' });
 					});
 		</script>
@@ -590,12 +613,8 @@ var formatAMPMTime = function(date) {
 				 },
 				 error:function(err){
 					 console.log(err);
-				 }
-			 
-			 });
-			 
-			 
-			 
+				 }			 
+			 });			 
 		 }else{
 			// $("#error").show();
 			 $("#error").html("Already assigned as a umpire");
@@ -754,7 +773,11 @@ function loadPrev(text){
 			
 			 var startGameDate  = new Date(response.startDateStr);
 			 var endGameDate  = new Date(response.endDateStr);
-					
+			 console.log(JSON.stringify(response));   			 
+			     var fromStart = response.startDateStr.split("-");   		
+			     var fromDateToDatePicker = fromStart[1]+"/"+fromStart[2]+"/"+fromStart[0];   			
+			     var toEnd = response.endDateStr.split("-");
+			     var toDateToDatePicker = toEnd[1]+"/"+toEnd[2]+"/"+toEnd[0];	
 			
 
 			 if(text =='previous'){
@@ -765,8 +788,8 @@ function loadPrev(text){
 					//document.getElementById("showTo").innerHTML = startGameDate.toLocaleDateString();
 					
 					
-					$('#toDate').datepicker('update',endGameDate.toLocaleDateString());
-					$("#fromDate").datepicker("update", startGameDate.toLocaleDateString());
+					$('#toDate').datepicker('update',toDateToDatePicker);
+					$("#fromDate").datepicker("update", fromDateToDatePicker);
 				
 				}
 				else{
@@ -780,8 +803,8 @@ function loadPrev(text){
 					document.getElementById("fromDate").value = startGameDate.toLocaleDateString();
 					
 					
-					$('#fromDate').datepicker('update',startGameDate.toLocaleDateString());
-					$("#toDate").datepicker("update", endGameDate.toLocaleDateString());
+					$('#fromDate').datepicker('update',fromDateToDatePicker);
+					$("#toDate").datepicker("update",toDateToDatePicker);
 				
 				}
 			
@@ -825,7 +848,7 @@ function loadPrev(text){
 			
 				for(var i=0; i<res.length; i++){
 					
-					var dateNewObject = getDateInObject(res[i].gameDate);
+					var dateNewObject = formatDateValue(res[i].gameDate);
 					 console.log(res[i].gameDate);
 				//	var endDate = new Date(res[i].endDateString);
 					
@@ -838,7 +861,7 @@ function loadPrev(text){
 					 console.log("date ======="+date.toLocaleDateString());
 					 var dateChange = date.toLocaleDateString();
 			
-					
+					 if(res[i].status == "Upcoming"){
 					
 					html += "<tr id='trid_"+count+"' onclick='showUmpireList(\""+res[i].tournamentSchedulerId+"\")'>";
 					html += '<td>'+res[i].tournamentName+'</td>';
@@ -852,6 +875,11 @@ function loadPrev(text){
 				
 					count++;
 				}
+				}
+				
+				if(count == 1){
+ 					html += '<span id="errorSpan" class="noContentDivRed">No more '+text+' schedules available for this week</span>';
+ 				}
 				
 				html += '</tbody></table>';
 			

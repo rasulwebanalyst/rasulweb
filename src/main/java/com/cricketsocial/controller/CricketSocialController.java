@@ -28,6 +28,9 @@ import javax.servlet.http.HttpSession;
 
 
 
+
+
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -70,6 +73,7 @@ import com.cricketsocial.bean.board.CoOrdinator;
 import com.cricketsocial.bean.board.CompletedMatches;
 import com.cricketsocial.bean.board.DeleteRosterResponse;
 import com.cricketsocial.bean.board.EditRoster;
+import com.cricketsocial.bean.board.ExtrasDTO;
 import com.cricketsocial.bean.board.GameSchedule;
 import com.cricketsocial.bean.board.GameScheduleFilter;
 import com.cricketsocial.bean.board.InprogressMatches;
@@ -152,9 +156,11 @@ import com.cricketsocial.bean.response.UserFeedResponse;
 import com.cricketsocial.bean.response.UserResponse;
 import com.cricketsocial.bean.roaster.BattingPerformance;
 import com.cricketsocial.bean.roaster.BowlingPerformance;
+import com.cricketsocial.bean.roaster.FollowOfWickets;
 import com.cricketsocial.bean.roaster.RoasterEventSearch;
 import com.cricketsocial.bean.roaster.RoasterMedia;
 import com.cricketsocial.bean.roaster.RosterProfile;
+import com.cricketsocial.bean.roaster.RosterUserMap;
 import com.cricketsocial.bean.roaster.ScoreBean;
 import com.cricketsocial.bean.roaster.UmpireList;
 import com.cricketsocial.bean.role.SubRoleLevelFour;
@@ -7519,9 +7525,9 @@ public @ResponseBody ModelAndView getRosterDetails(HttpServletRequest request,@R
 							
 							request.setAttribute("RoasterResponseById", roasterResponseById);
 							
-							request.setAttribute("RoasterMemberList", roasterResponseById); //changed by vignesh
+						//	request.setAttribute("RoasterMemberList", roasterResponseById); //changed by vignesh
 							 
-							/* hubReq=new HubRequest();
+							 hubReq=new HubRequest();
 							 //hubReq.setMsgType(48);
 							 hubReq.setMsgType(188);// roster details based uisng cassandra
 							 ModelMap rosterMap2=new ModelMap();
@@ -7543,7 +7549,7 @@ public @ResponseBody ModelAndView getRosterDetails(HttpServletRequest request,@R
 										
 								 }
 									
-							 }*/
+							 }
 							
 							 
 							 
@@ -10731,6 +10737,12 @@ public ModelAndView boardPublicProfile(HttpServletRequest request, @PathVariable
 								  entrymenu.add(menu.getURL()); 
 							  }
 						  }
+						  /*if(entrymenu.size() >= 8){
+							  entrymenu.add(5, entrymenu.get(entrymenu.size()-1));
+							  entrymenu.remove(entrymenu.size()-1);
+						  }*/
+						  
+
 					  }
 					  model.addObject("Viewmenu", Viewmenu);
 					  model.addObject("entrymenu", entrymenu);
@@ -14863,7 +14875,7 @@ public ModelAndView insertTournamentDetails(@ModelAttribute Tournament tournamen
 			
 			
 				 
-				hubReq = new HubRequest(104);
+				/*hubReq = new HubRequest(104);
 				hubReq.setMsgType(104);
 				ModelMap m = new ModelMap();
 				m.put("createdBy",boardId);
@@ -14874,7 +14886,7 @@ public ModelAndView insertTournamentDetails(@ModelAttribute Tournament tournamen
 					if(hubRes !=  null && hubRes.getResults() !=  null){
 						mav.addObject("tournamentList", hubRes.getResults().getTournamentSchedulerList());
 						//System.out.println("scorer list size :"+ hubRes.getResults().getTournamentSchedulerList().get(0).getScorerNamesList().size());
-						/*if(hubRes.getResults().getTournamentsList().size() != 0)
+						if(hubRes.getResults().getTournamentsList().size() != 0)
 						{
 							List<TournamentScheduler> list = hubRes.getResults().getTournamentsList();
 							if(list.size() != 0){
@@ -14894,10 +14906,10 @@ public ModelAndView insertTournamentDetails(@ModelAttribute Tournament tournamen
 						//mav.addObject("groundListSize",hubRes.getResults().getGroundList().size());
 					
 							}
-							}*/
+							}
 					}
 			 
-				}	
+				}*/	
 			
 			
 			}
@@ -16072,7 +16084,7 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 							RoasterResponseById roasterResponseById=results1.getRosterInfo();
 							
 							request.setAttribute("RoasterResponseById", roasterResponseById);
-							request.setAttribute("RoasterMemberList", roasterResponseById); // changed by vignesh
+						//	request.setAttribute("RoasterMemberList", roasterResponseById); // changed by vignesh
 							
 							/*int userExit=5;
 							if(roasterResponseById.getRosterMembers() !=null){
@@ -16105,7 +16117,7 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 							
 						 }
 					 }
-					/* hubReq=new HubRequest();
+					 hubReq=new HubRequest();
 					 
 					 hubReq.setMsgType(188);// roster details based uisng cassandra
 					 ModelMap rosterMap2=new ModelMap();
@@ -16127,7 +16139,7 @@ public ModelAndView rosterProfile(@PathVariable String bid, HttpServletRequest r
 								
 						 }
 							
-					 }*/
+					 }
 					 
 					 
 					 // Print details
@@ -16511,7 +16523,7 @@ public ModelAndView rosterProfileDetails(@PathVariable String rid, @PathVariable
 				 if(results1 != null){
 					RoasterResponseById roasterResponseById=results1.getRosterInfo();
 					request.setAttribute("RoasterResponseById", roasterResponseById);
-					request.setAttribute("RoasterMemberList", roasterResponseById);
+					//request.setAttribute("RoasterMemberList", roasterResponseById);
 					
 					
 					
@@ -16533,7 +16545,7 @@ public ModelAndView rosterProfileDetails(@PathVariable String rid, @PathVariable
 				 
 				 
 				 
-				/* hubReq=new HubRequest();
+				 hubReq=new HubRequest();
 				 
 				 hubReq.setMsgType(188);// roster details based uisng cassandra
 				 ModelMap rosterMap2=new ModelMap();
@@ -16556,7 +16568,7 @@ public ModelAndView rosterProfileDetails(@PathVariable String rid, @PathVariable
 					 }
 						
 				 }
-				 */
+				 
 				// Print details
 				 
                  hubReq=new HubRequest();
@@ -22243,6 +22255,7 @@ public @ResponseBody List<ScorerNameList> showScorerListAssignUmpire(HttpServlet
 			hubReq.setMsgType(126);
 			ModelMap map = new ModelMap();
 			map.put("tournamentSchedulerId", scheduler.getTournamentSchedulerId());
+			map.put("scorerName", "APP");
 			hubReq.setRequestParam(map);
 			
 			GsonBuilder builder = new GsonBuilder();
@@ -22282,6 +22295,7 @@ public @ResponseBody List<ScorerNameList> addScorerFromAssignPage(HttpServletReq
 			ModelMap map = new ModelMap();
 			map.put("scorerId", scheduler.getUserId());
 			map.put("tournamentSchedulerId", scheduler.getTournamentSchedulerId());
+			map.put("scorerName", "APP");
 			hubReq.setRequestParam(map);
 			
 			GsonBuilder builder = new GsonBuilder();
@@ -22322,6 +22336,7 @@ public @ResponseBody List<ScorerNameList> deleteScorerFromAssignPage(HttpServlet
 			ModelMap map = new ModelMap();
 			map.put("tournamentSchedulerId", scheduler.getTournamentSchedulerId());
 			map.put("scorerId", scheduler.getUserId());
+			map.put("scorerName", "APP");
 			hubReq.setRequestParam(map);
 			
 			//System.out.println("tournamentSchedulerId : "+scheduler.getTournamentSchedulerId());
@@ -23336,7 +23351,7 @@ public @ResponseBody String cancelSchedule(@RequestBody TournamentScheduler sche
 	try{
 		HttpSession session = req.getSession(true);
 		if(session != null && session.getAttribute("USRID") != null){
-			
+			UUID palyerId=(UUID) session.getAttribute("USRID");
 			/*hubReq = new HubRequest();
 			hubReq.setMsgType(139);
 			ModelMap map = new ModelMap();
@@ -23365,13 +23380,17 @@ public @ResponseBody String cancelSchedule(@RequestBody TournamentScheduler sche
 			dto.setBoardId("");
 			dto.setShedulerArray(shedulerArray);
 			dto.setScheduleCancelReason(scheduler.getScheduleCancelReason());
-			
+			dto.setStatusType(scheduler.getStatusType());
+			dto.setPlayerId(palyerId);
 			hubReq = new HubRequest();
 			hubReq.setMsgType(203);
 			ModelMap map = new ModelMap();
 			map.put("boardId", dto.getBoardId());
 			map.put("schedulerArray", dto.getShedulerArray());
 			map.put("scheduleCancelReason", dto.getScheduleCancelReason());
+			map.put("statusType", dto.getStatusType());
+			map.put("playerId", palyerId);
+
 			hubReq.setRequestParam(map);
 			
 			String returnRes = cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -23392,6 +23411,10 @@ public @ResponseBody String cancelSchedule(@RequestBody TournamentScheduler sche
 	}
 	return returnResponse;
 }
+
+
+
+
 
 
 
@@ -24104,7 +24127,7 @@ public ModelAndView CancelGameByDate(HttpServletRequest req, @PathVariable Strin
 			 
 			 
 			
-			Date date=new Date();
+			/*Date date=new Date();
 		    Calendar cal = Calendar.getInstance();
 		    cal.setTime(date);
 		    int year = cal.get(Calendar.YEAR);
@@ -24127,7 +24150,25 @@ public ModelAndView CancelGameByDate(HttpServletRequest req, @PathVariable Strin
 				now.add(Calendar.DATE, 6);  // number of days to add
 				String nextDate = sdf1.format(now.getTime());
 				
-				System.out.println("Next date : :"+nextDate);
+				System.out.println("Next date : :"+nextDate);*/
+			 
+			 
+			 String todayDate;
+				String nextDate;
+				
+					Calendar now = Calendar.getInstance(); 
+				       SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+						String comingDateString = sdf1.format(now.getTime());
+						 now.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(comingDateString));
+						 System.out.println("Next :"+sdf1.format(now.getTime()));
+						now.add(Calendar.DATE, 0);  // number of days to add
+						String afterAddedOne = sdf1.format(now.getTime());
+						
+						System.out.println("Nextttttttttttttttttttttttt =============="+afterAddedOne);
+						todayDate=afterAddedOne;
+						now.add(Calendar.DATE, 6);
+						nextDate=sdf1.format(now.getTime());
+				
 				
 			 
 			 
@@ -24150,6 +24191,28 @@ public ModelAndView CancelGameByDate(HttpServletRequest req, @PathVariable Strin
 			 if(strGameScheduleList != null){
 				 HubResponse hubResponse = gson.fromJson(strGameScheduleList, HubResponse.class);
 				 if(hubResponse != null && hubResponse.getResults() != null){
+					 
+					 
+					 
+					 String endDate = hubResponse.getResults().getEndDateStr();
+					 String startDate = hubResponse.getResults().getStartDateStr();
+						String[] spliteDOB1 = startDate.split("-");
+						 String monthInEditProfile1 = spliteDOB1[0];
+						 String dayInEditProfile1 = spliteDOB1[1];
+						 String yearInEditProfile1 = spliteDOB1[2];
+						 String startDateSet= dayInEditProfile1+'/'+yearInEditProfile1+'/'+monthInEditProfile1;
+							mav.addObject("startDateSet", startDateSet);
+						
+						
+						String[] spliteDOB = endDate.split("-");
+						 String monthInEditProfile = spliteDOB[0];
+						 String dayInEditProfile = spliteDOB[1];
+						 String yearInEditProfile = spliteDOB[2];
+						 String endDateSet= dayInEditProfile+'/'+yearInEditProfile+'/'+monthInEditProfile;
+						 mav.addObject("endDateSet", endDateSet);
+					 
+					 
+					 
 					 mav.addObject("gameScheduleList", hubResponse.getResults().getGameSchedule());
 					 mav.addObject("upcomingMatchesList", hubResponse.getResults().getGameSchedule().getUpComingMatchesList());
 					 mav.addObject("completedMatchesList", hubResponse.getResults().getGameSchedule().getCompletedMatchesList());
@@ -25041,6 +25104,29 @@ public ModelAndView filterScheduleFunctionForUpcoming(HttpServletRequest req, @M
 				 if(strGameScheduleList != null){
 					 HubResponse hubResponse = gson.fromJson(strGameScheduleList, HubResponse.class);
 					 if(hubResponse != null && hubResponse.getResults().getGameSchedule().getUpComingMatchesList() != null){
+						 
+						 
+						 
+						 String endDate = hubResponse.getResults().getEndDateStr();
+						 String startDate = hubResponse.getResults().getStartDateStr();
+							String[] spliteDOB1 = startDate.split("-");
+							 String monthInEditProfile1 = spliteDOB1[0];
+							 String dayInEditProfile1 = spliteDOB1[1];
+							 String yearInEditProfile1 = spliteDOB1[2];
+							 String startDateSet= dayInEditProfile1+'/'+yearInEditProfile1+'/'+monthInEditProfile1;
+								mav.addObject("startDateSet", startDateSet);
+							
+							
+							String[] spliteDOB = endDate.split("-");
+							 String monthInEditProfile = spliteDOB[0];
+							 String dayInEditProfile = spliteDOB[1];
+							 String yearInEditProfile = spliteDOB[2];
+							 String endDateSet= dayInEditProfile+'/'+yearInEditProfile+'/'+monthInEditProfile;
+							 mav.addObject("endDateSet", endDateSet);
+							 
+							 
+						 
+						 
 						 mav.addObject("gameScheduleList", hubResponse.getResults().getGameSchedule());
 						 mav.addObject("upcomingMatchesList", hubResponse.getResults().getGameSchedule().getUpComingMatchesList());
 						 mav.addObject("completedMatchesList", hubResponse.getResults().getGameSchedule().getCompletedMatchesList());
@@ -25140,6 +25226,30 @@ public ModelAndView filterScheduleFunctionForUpcoming(HttpServletRequest req, @M
 				 if(strGameScheduleList != null){
 					 HubResponse hubResponse = gson.fromJson(strGameScheduleList, HubResponse.class);
 					 if(hubResponse != null && hubResponse.getResults().getGameSchedule().getUpComingMatchesList() != null){
+						 
+						 
+						 
+						 
+						 String endDate = hubResponse.getResults().getEndDateStr();
+						 String startDate = hubResponse.getResults().getStartDateStr();
+							String[] spliteDOB1 = startDate.split("-");
+							 String monthInEditProfile1 = spliteDOB1[0];
+							 String dayInEditProfile1 = spliteDOB1[1];
+							 String yearInEditProfile1 = spliteDOB1[2];
+							 String startDateSet= dayInEditProfile1+'/'+yearInEditProfile1+'/'+monthInEditProfile1;
+								mav.addObject("startDateSet", startDateSet);
+							
+							
+							String[] spliteDOB = endDate.split("-");
+							 String monthInEditProfile = spliteDOB[0];
+							 String dayInEditProfile = spliteDOB[1];
+							 String yearInEditProfile = spliteDOB[2];
+							 String endDateSet= dayInEditProfile+'/'+yearInEditProfile+'/'+monthInEditProfile;
+							 mav.addObject("endDateSet", endDateSet);
+							 
+							 
+						 
+						 
 						 mav.addObject("gameScheduleList", hubResponse.getResults().getGameSchedule());
 						 mav.addObject("upcomingMatchesList", hubResponse.getResults().getGameSchedule().getUpComingMatchesList());
 						 mav.addObject("completedMatchesList", hubResponse.getResults().getGameSchedule().getCompletedMatchesList());
@@ -26752,6 +26862,9 @@ public ModelAndView assignScorerProfile(HttpServletRequest req, @PathVariable St
 				
 			}
 		 }
+		 
+		 
+		
 		 
 		 hubReq = new HubRequest(104);
 			hubReq.setMsgType(104);
@@ -39641,13 +39754,16 @@ public @ResponseBody String cancelGame(@RequestBody CancelScheduleDTO dto, HttpS
 
 	String response = null;
 	try{
-		
+		HttpSession session = req.getSession(true);
+		UUID playerId=(UUID) session.getAttribute("USRID");
 		hubReq = new HubRequest();
 		hubReq.setMsgType(203);
 		ModelMap map = new ModelMap();
 		map.put("boardId", dto.getBoardId());
 		map.put("schedulerArray", dto.getShedulerArray());
 		map.put("scheduleCancelReason", dto.getScheduleCancelReason());
+		map.put("playerId", playerId);
+		map.put("statusType", dto.getStatusType());
 		hubReq.setRequestParam(map);
 		
 		String returnRes = cricketSocialRestTemplateService.userRegistration(hubReq);
@@ -39665,6 +39781,8 @@ public @ResponseBody String cancelGame(@RequestBody CancelScheduleDTO dto, HttpS
 	return response;
 	
 }
+		
+
 
 @RequestMapping(value="/CancelGameByDatePublicProfile/boardId/{boardId}", method = RequestMethod.GET)
 public ModelAndView CancelGameByDatePublicProfile(HttpServletRequest req, @PathVariable String boardId) throws CSException{
@@ -39720,7 +39838,7 @@ public ModelAndView CancelGameByDatePublicProfile(HttpServletRequest req, @PathV
 			 
 			 
 			 
-			 Date date=new Date();
+			 /*Date date=new Date();
 			    Calendar cal = Calendar.getInstance();
 			    cal.setTime(date);
 			    int year = cal.get(Calendar.YEAR);
@@ -39743,7 +39861,23 @@ public ModelAndView CancelGameByDatePublicProfile(HttpServletRequest req, @PathV
 					now.add(Calendar.DATE, 6);  // number of days to add
 					String nextDate = sdf1.format(now.getTime());
 					
-					System.out.println("Next date : :"+nextDate);
+					System.out.println("Next date : :"+nextDate);*/
+			 
+			 String todayDate;
+				String nextDate;
+				
+					Calendar now = Calendar.getInstance(); 
+				       SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+						String comingDateString = sdf1.format(now.getTime());
+						 now.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(comingDateString));
+						 System.out.println("Next :"+sdf1.format(now.getTime()));
+						now.add(Calendar.DATE, 0);  // number of days to add
+						String afterAddedOne = sdf1.format(now.getTime());
+						
+						System.out.println("Nextttttttttttttttttttttttt =============="+afterAddedOne);
+						todayDate=afterAddedOne;
+						now.add(Calendar.DATE, 6);
+						nextDate=sdf1.format(now.getTime());
 					
 			 
 			 
@@ -39763,6 +39897,29 @@ public ModelAndView CancelGameByDatePublicProfile(HttpServletRequest req, @PathV
 			 if(strGameScheduleList != null){
 				 HubResponse hubResponse = gson.fromJson(strGameScheduleList, HubResponse.class);
 				 if(hubResponse != null && hubResponse.getResults() != null){
+					 
+					 
+					 
+					 
+					 String endDate = hubResponse.getResults().getEndDateStr();
+					 String startDate = hubResponse.getResults().getStartDateStr();
+						String[] spliteDOB1 = startDate.split("-");
+						 String monthInEditProfile1 = spliteDOB1[0];
+						 String dayInEditProfile1 = spliteDOB1[1];
+						 String yearInEditProfile1 = spliteDOB1[2];
+						 String startDateSet= dayInEditProfile1+'/'+yearInEditProfile1+'/'+monthInEditProfile1;
+							mav.addObject("startDateSet", startDateSet);
+						
+						
+						String[] spliteDOB = endDate.split("-");
+						 String monthInEditProfile = spliteDOB[0];
+						 String dayInEditProfile = spliteDOB[1];
+						 String yearInEditProfile = spliteDOB[2];
+						 String endDateSet= dayInEditProfile+'/'+yearInEditProfile+'/'+monthInEditProfile;
+						 mav.addObject("endDateSet", endDateSet);
+					 
+					 
+					 
 					 mav.addObject("gameScheduleList", hubResponse.getResults().getGameSchedule());
 					 mav.addObject("upcomingMatchesList", hubResponse.getResults().getGameSchedule().getUpComingMatchesList());
 					 mav.addObject("completedMatchesList", hubResponse.getResults().getGameSchedule().getCompletedMatchesList());
@@ -39910,6 +40067,26 @@ public ModelAndView filterScheduleFunctionForUpcomingPublicProfile(HttpServletRe
 				 if(strGameScheduleList != null){
 					 HubResponse hubResponse = gson.fromJson(strGameScheduleList, HubResponse.class);
 					 if(hubResponse != null && hubResponse.getResults().getGameSchedule().getUpComingMatchesList() != null){
+						 
+						 
+						 
+						 String endDate = hubResponse.getResults().getEndDateStr();
+						 String startDate = hubResponse.getResults().getStartDateStr();
+							String[] spliteDOB1 = startDate.split("-");
+							 String monthInEditProfile1 = spliteDOB1[0];
+							 String dayInEditProfile1 = spliteDOB1[1];
+							 String yearInEditProfile1 = spliteDOB1[2];
+							 String startDateSet= dayInEditProfile1+'/'+yearInEditProfile1+'/'+monthInEditProfile1;
+								mav.addObject("startDateSet", startDateSet);
+							
+							
+							String[] spliteDOB = endDate.split("-");
+							 String monthInEditProfile = spliteDOB[0];
+							 String dayInEditProfile = spliteDOB[1];
+							 String yearInEditProfile = spliteDOB[2];
+							 String endDateSet= dayInEditProfile+'/'+yearInEditProfile+'/'+monthInEditProfile;
+							 mav.addObject("endDateSet", endDateSet);
+						 
 						 mav.addObject("gameScheduleList", hubResponse.getResults().getGameSchedule());
 						 mav.addObject("upcomingMatchesList", hubResponse.getResults().getGameSchedule().getUpComingMatchesList());
 						 mav.addObject("completedMatchesList", hubResponse.getResults().getGameSchedule().getCompletedMatchesList());
@@ -40005,6 +40182,27 @@ public ModelAndView filterScheduleFunctionForUpcomingPublicProfile(HttpServletRe
 				 if(strGameScheduleList != null){
 					 HubResponse hubResponse = gson.fromJson(strGameScheduleList, HubResponse.class);
 					 if(hubResponse != null && hubResponse.getResults().getGameSchedule().getUpComingMatchesList() != null){
+						 
+						 
+						 
+						 String endDate = hubResponse.getResults().getEndDateStr();
+						 String startDate = hubResponse.getResults().getStartDateStr();
+							String[] spliteDOB1 = startDate.split("-");
+							 String monthInEditProfile1 = spliteDOB1[0];
+							 String dayInEditProfile1 = spliteDOB1[1];
+							 String yearInEditProfile1 = spliteDOB1[2];
+							 String startDateSet= dayInEditProfile1+'/'+yearInEditProfile1+'/'+monthInEditProfile1;
+								mav.addObject("startDateSet", startDateSet);
+							
+							
+							String[] spliteDOB = endDate.split("-");
+							 String monthInEditProfile = spliteDOB[0];
+							 String dayInEditProfile = spliteDOB[1];
+							 String yearInEditProfile = spliteDOB[2];
+							 String endDateSet= dayInEditProfile+'/'+yearInEditProfile+'/'+monthInEditProfile;
+							 mav.addObject("endDateSet", endDateSet);
+						 
+						 
 						 mav.addObject("gameScheduleList", hubResponse.getResults().getGameSchedule());
 						 mav.addObject("upcomingMatchesList", hubResponse.getResults().getGameSchedule().getUpComingMatchesList());
 						 mav.addObject("completedMatchesList", hubResponse.getResults().getGameSchedule().getCompletedMatchesList());
@@ -42421,7 +42619,7 @@ public ModelAndView filterForScheduleListAssignUmpirePubProf(HttpServletRequest 
 			 String toDate = req.getParameter("toDate");
 			 
 			
-			mav = new ModelAndView("AssignUmpireProfile");
+			mav = new ModelAndView("AssignUmpireprofile");
 			mav.addObject("boardId", boardId);
 			
 			//*************************** Getting Board info  ***************************************
@@ -42439,6 +42637,9 @@ public ModelAndView filterForScheduleListAssignUmpirePubProf(HttpServletRequest 
 				if(hubResponse1!=null && hubResponse1.getResults().getBoardStatusDetail()!=null && hubResponse1.getResults().getBoardStatusDetail().size()>0){						 
 					 mav.addObject("BoradInfo", hubResponse1.getResults().getBoardStatusDetail().get(0));						
 					
+					 final String context = req.getContextPath();
+					 MenuList menuList= Util.leaugeMenuList(hubResponse1.getResults().getBoardStatusDetail().get(0), session.getAttribute("USRID")+"", context);						
+					 mav.addObject("LeaugeMenuList", menuList);
 				}
 			 }
 			
@@ -42657,6 +42858,9 @@ public ModelAndView filterForScheduleListAssignScorer(HttpServletRequest req, @M
 				if(hubResponse1!=null && hubResponse1.getResults().getBoardStatusDetail()!=null && hubResponse1.getResults().getBoardStatusDetail().size()>0){						 
 					 mav.addObject("BoradInfo", hubResponse1.getResults().getBoardStatusDetail().get(0));						
 					
+					 final String context = req.getContextPath();
+					 MenuList menuList= Util.leaugeMenuList(hubResponse1.getResults().getBoardStatusDetail().get(0), session.getAttribute("USRID")+"", context);						
+					 mav.addObject("LeaugeMenuList", menuList);
 				}
 			 }
 			
@@ -42869,7 +43073,9 @@ public ModelAndView filterForScheduleListAssignScorerPubProf(HttpServletRequest 
 				 HubResponse hubResponse1= gson.fromJson(strBoarddetail, HubResponse.class);
 				if(hubResponse1!=null && hubResponse1.getResults().getBoardStatusDetail()!=null && hubResponse1.getResults().getBoardStatusDetail().size()>0){						 
 					 mav.addObject("BoradInfo", hubResponse1.getResults().getBoardStatusDetail().get(0));						
-					
+					 final String context = req.getContextPath();
+					 MenuList menuList= Util.leaugeMenuList(hubResponse1.getResults().getBoardStatusDetail().get(0), session.getAttribute("USRID")+"", context);						
+					 mav.addObject("LeaugeMenuList", menuList);
 				}
 			 }
 			
@@ -49449,6 +49655,1879 @@ public ModelAndView errorPage(HttpServletRequest request){
 }
 
 
+
+@RequestMapping(value="/editscore/boardId/{boardId}/{tournamentId}/{tournamentSchedulerId}/{homeTeamId}/{awayTeamId}/{matchDate}/{leagueCreatedBy}", method = RequestMethod.GET)
+public ModelAndView editscore(HttpServletRequest req, @PathVariable String boardId,@PathVariable String tournamentId,@PathVariable String tournamentSchedulerId, @PathVariable String homeTeamId,@PathVariable String awayTeamId,@PathVariable String matchDate,@PathVariable String leagueCreatedBy){
+	ModelAndView mav = null;
+	try{
+		//EnterScoreSelectedMatch1/boardId/"+boardid+"/"+tournametid+"/"+tournamentschedulerid+"/"+homeid+"/"+awayteamid+"/"+date+"/"+createdby
+		
+		if(isUUID(boardId) && isUUID(tournamentId) && isUUID(tournamentSchedulerId) && isUUID(homeTeamId) && isUUID(awayTeamId) && isUUID(leagueCreatedBy)){
+		
+		System.out.println("id----->><><>"+boardId+"<><>"+tournamentId+"<><>"+tournamentSchedulerId+"<><>"+homeTeamId+"<><><"+awayTeamId+"<><><"+matchDate+"<><>leagueCreatedBy"+leagueCreatedBy);
+		
+		HttpSession session = req.getSession(true);
+		if(session != null && session.getAttribute("USRID") != null){
+			mav = new ModelAndView("EditScore");
+		//	mav = new ModelAndView("enterscore2");
+			mav.addObject("boardId", boardId);		
+			UUID userId = (UUID) session.getAttribute("USRID");			
+			hubReq= new HubRequest();
+			 hubReq.setMsgType(41);
+			 ModelMap map=new ModelMap();
+			 map.put("userId", userId);
+			 map.put("startNode", 0);
+			 map.put("endNode", 200);
+			  hubReq.setRequestParam(map);
+				 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
+				 GsonBuilder builder = new GsonBuilder();
+				 Gson gson = builder.create();
+				 if(strBoardList!=null)
+				 {
+					 HubResponse hubResponse= gson.fromJson(strBoardList, HubResponse.class);
+					 if(hubResponse!=null && hubResponse.getResults()!=null)
+					 {
+						 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
+					 }
+				 }				 
+				 hubReq = new HubRequest(161);
+					hubReq.setMsgType(161);					
+					ModelMap mod= new ModelMap();
+					mod.put("createdBy", boardId);
+					hubReq.setRequestParam(mod);
+					String tournamentListOfTheBoard = cricketSocialRestTemplateService.userRegistration(hubReq);
+					if(tournamentListOfTheBoard !=  null){
+						HubResponse  hubRes = gson.fromJson(tournamentListOfTheBoard, HubResponse.class);
+						if(hubRes !=  null && hubRes.getResults() !=  null && hubRes.getResults().getTournamentNamestList() != null){
+							mav.addObject("tournamentOfTheBoard", hubRes.getResults().getTournamentNamestList());
+							System.out.println("value============>"+new JSONArray(hubRes.getResults().getTournamentNamestList()));
+							//mav.addObject("groundListSize",hubRes.getResults().getGroundList().size());
+						}
+				 
+					}
+					
+					
+					
+
+					hubReq = new HubRequest();
+					hubReq.setMsgType(176);
+					ModelMap gameTypeMap = new ModelMap();
+					hubReq.setRequestParam(gameTypeMap);
+					String gameResponse = cricketSocialRestTemplateService.userRegistration(hubReq);
+					if(gameResponse != null){
+						HubResponse hubRes = GsonConverters.getGsonObject().fromJson(gameResponse, HubResponse.class);
+						if(hubRes != null && hubRes.getResults() != null){
+							mav.addObject("gameTypeList", hubRes.getResults().getGameList());
+							
+						}
+					}
+					
+
+					hubReq = new HubRequest();
+					hubReq.setMsgType(213);
+					ModelMap dismissalMap = new ModelMap();
+					hubReq.setRequestParam(dismissalMap);
+					String dismissalResponse = cricketSocialRestTemplateService.userRegistration(hubReq);
+					if(dismissalResponse != null){
+						HubResponse hubRes = GsonConverters.getGsonObject().fromJson(dismissalResponse, HubResponse.class);
+						if(hubRes != null && hubRes.getResults() != null && hubRes.getResults().getDismissalTypeList() != null){
+							mav.addObject("dismissalTypeList", hubRes.getResults().getDismissalTypeList());
+							
+						}
+					}
+				 
+				//*************************** Getting Board info  ***************************************
+				 HubRequest hubReq1=new HubRequest();
+				 hubReq1.setMsgType(40);
+				 ModelMap map11=new ModelMap();			
+				 map11.put("userId", session.getAttribute("USRID"));			 
+				 map11.put("boardId", boardId);
+				 hubReq1.setRequestParam(map11);
+				 String strBoarddetail=cricketSocialRestTemplateService.userRegistration(hubReq1);		
+				 if(strBoarddetail!=null)
+				 {
+					 HubResponse hubResponse1= gson.fromJson(strBoarddetail, HubResponse.class);
+					if(hubResponse1!=null && hubResponse1.getResults().getBoardStatusDetail()!=null && hubResponse1.getResults().getBoardStatusDetail().size()>0)
+					{
+						 mav.addObject("BoradInfo", hubResponse1.getResults().getBoardStatusDetail().get(0));
+						 final String context = req.getContextPath();
+						 MenuList menuList= Util.leaugeMenuList(hubResponse1.getResults().getBoardStatusDetail().get(0), session.getAttribute("USRID")+"", context);						
+						 mav.addObject("LeaugeMenuList", menuList);				
+					}
+				 }	
+			
+			
+				// response[i].homeTeamId+","+response[i].awayTeamId+","+response[i].tournamentSchedulerId+","+response[i].dateString;
+				 mav.addObject("selectedTournamentId",tournamentId);
+				 mav.addObject("selectedTeam", homeTeamId+","+awayTeamId+","+tournamentSchedulerId+","+matchDate);
+				 mav.addObject("homeTeamId", homeTeamId);
+				 mav.addObject("awayTeamId", awayTeamId);
+				 
+			//*************************************** Get Roaster Team Details ******************************//
+				 List<RosterUserMap> homeList1=new ArrayList<RosterUserMap>();
+				 List<RosterUserMap> awayList1=new ArrayList<RosterUserMap>();
+				 JSONArray homeList=new JSONArray();
+				 JSONArray awayList=new JSONArray();
+				 
+				 HubRequest hubReq2=new HubRequest();	 
+				 hubReq2.setMsgType(31);
+				 ModelMap map12=new ModelMap();			
+				 map12.put("leagueCreatedBy", leagueCreatedBy);			 
+				 map12.put("tournamentSchedulerId", tournamentSchedulerId);
+				 map12.put("boardId", homeTeamId);
+		
+				 hubReq2.setRequestParam(map12);
+				 String homeTeamRosterDetails=cricketSocialRestTemplateService.userRegistration1(hubReq2);	
+				 if(homeTeamRosterDetails != null){
+					 HubResponse hubResponse= gson.fromJson(homeTeamRosterDetails, HubResponse.class);
+					 System.out.println("roster Details---"+hubResponse.getResults().getRosterDetails().size());
+					 if(hubResponse.getResults().getRosterDetails().size() > 0){
+						  homeList = new JSONArray(hubResponse.getResults().getRosterDetails().get(0).getRosterUserMapList());
+						 System.out.println("----------------------"+homeList);
+						 homeList1=hubResponse.getResults().getRosterDetails().get(0).getRosterUserMapList();
+					 mav.addObject("homeTeamRosterList", homeList);
+					 }
+				 }
+				 
+				 HubRequest hubReq3=new HubRequest();	 
+				 hubReq3.setMsgType(31);
+				 ModelMap map13=new ModelMap();			
+				 map13.put("leagueCreatedBy", leagueCreatedBy);			 
+				 map13.put("tournamentSchedulerId", tournamentSchedulerId);
+				 map13.put("boardId", awayTeamId);
+		
+				 hubReq3.setRequestParam(map13);
+				 String awayTeamRosterDetails=cricketSocialRestTemplateService.userRegistration1(hubReq3);	
+				 if(awayTeamRosterDetails != null){
+					 HubResponse hubResponse= gson.fromJson(awayTeamRosterDetails, HubResponse.class);
+					 System.out.println("roster Details---12121"+hubResponse.getResults().getRosterDetails().size());
+					 if(hubResponse.getResults().getRosterDetails().size() > 0){
+						  awayList = new JSONArray(hubResponse.getResults().getRosterDetails().get(0).getRosterUserMapList());
+						 awayList1 = hubResponse.getResults().getRosterDetails().get(0).getRosterUserMapList();
+					 mav.addObject("awayTeamRosterList",awayList );
+					 }
+				 }
+				 
+				 
+				 
+				 mav.addObject("tournamentSchedulerid", tournamentSchedulerId);
+				 
+				
+				 
+				 hubReq = new HubRequest();
+				 hubReq.setMsgType(282);
+				 ModelMap map3 = new ModelMap();
+				 map3.put("matchId", tournamentSchedulerId);
+				 hubReq.setRequestParam(map3);
+				  
+				 String returnResponse = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 
+				 if(returnResponse != null){
+					 NewResponse res = gson.fromJson(returnResponse, NewResponse.class);
+					 if(res != null && res.getResults() != null){
+						mav.addObject("scoreCardList", res.getResults().getMatchResult());
+						mav.addObject("secondInnings", res.getResults().getSecondInnings());
+						mav.addObject("firstInnings", res.getResults().getFirstInnings());
+						mav.addObject("firstInningsBattingPlayer", res.getResults().getFirstInnings().getBattingPlayer());
+						mav.addObject("SecondInningsBattingPlayer", res.getResults().getSecondInnings().getBattingPlayer());
+						mav.addObject("firstInningsBowlingPlayer", res.getResults().getFirstInnings().getBowlingPlayer());
+						mav.addObject("SecondInningsBowlingPlayer", res.getResults().getSecondInnings().getBowlingPlayer());
+                        mav.addObject("fallOfWicketsFirstInningsWebPortal", res.getResults().getFirstInnings().getFallOfWickets());
+						mav.addObject("fallOfWicketsSecondInningsWebPortal", res.getResults().getSecondInnings().getFallOfWickets());
+						mav.addObject("firstInnfallowOfWicketsSize",res.getResults().getFirstInnings().getFallOfWickets().size());
+						mav.addObject("secondInnfallowOfWicketsSize",res.getResults().getSecondInnings().getFallOfWickets().size());
+						mav.addObject("MatchStatus", res.getResults().getMatchResult().getWonTeam());
+						
+						
+						if(res.getResults().getFirstInnings().getBattingTeamId().toString().equals(homeList1.get(0).getBoardId()))
+						{
+							
+							mav.addObject("homeTeamRosterList1", homeList1);
+							 mav.addObject("awayTeamRosterList1",awayList1);
+							 
+							 
+							/* mav.addObject("homeTeamRosterList", homeList);
+							 mav.addObject("awayTeamRosterList",awayList);*/
+							 
+						}else{
+							
+							 mav.addObject("homeTeamRosterList1", awayList1);
+							 mav.addObject("awayTeamRosterList1",homeList1);
+							 
+							 
+							/* mav.addObject("homeTeamRosterList", awayList);
+							 mav.addObject("awayTeamRosterList",homeList);*/
+						}
+						
+						mav.addObject("firstInningsextras", res.getResults().getFirstInnings().getExtrasvalue());
+						mav.addObject("SecondInningsextras", res.getResults().getSecondInnings().getExtrasvalue());
+						mav.addObject("firstInningsDNB",new JSONArray(res.getResults().getFirstInnings().getDoNotBatPlayersList()));
+						mav.addObject("SecondInningsDNB", new JSONArray(res.getResults().getSecondInnings().getDoNotBatPlayersList()));
+						
+						
+						//                Extras
+						
+						List<ExtrasDTO> firstExtrasList=res.getResults().getFirstInnings().getExtrasvalue();
+						String wide="",noBalls="",legByes="",byes="",penalties="";
+						for(int i=0; i<firstExtrasList.size();i++)
+						{							
+							if(firstExtrasList.get(i).getExtraType().equalsIgnoreCase("Wide"))
+							{
+								wide=Integer.toString(firstExtrasList.get(i).getCount());
+							}
+							if(firstExtrasList.get(i).getExtraType().equalsIgnoreCase("Byes"))
+							{
+								byes=Integer.toString(firstExtrasList.get(i).getCount());
+							}
+							if(firstExtrasList.get(i).getExtraType().equalsIgnoreCase("Noball"))
+							{
+								noBalls=Integer.toString(firstExtrasList.get(i).getCount());
+							}
+							if(firstExtrasList.get(i).getExtraType().equalsIgnoreCase("LegByes"))
+							{
+								legByes=Integer.toString(firstExtrasList.get(i).getCount());
+							}
+							if(firstExtrasList.get(i).getExtraType().equalsIgnoreCase("Penalties"))
+							{
+								penalties=Integer.toString(firstExtrasList.get(i).getCount());
+							}
+						}
+						mav.addObject("firstInnwide",wide);
+						mav.addObject("firstInnbyes",byes);
+						mav.addObject("firstInnnoBalls",noBalls);
+						mav.addObject("firstInnlegByes",legByes);
+						mav.addObject("firstInnpenalties",penalties);
+						
+						
+                        List<ExtrasDTO> secondExtrasList=res.getResults().getSecondInnings().getExtrasvalue();
+						String wide1="",noBalls1="",legByes1="",byes1="",penalties1="";
+						for(int i=0; i<secondExtrasList.size();i++)
+						{							
+							if(secondExtrasList.get(i).getExtraType().equalsIgnoreCase("Wide"))
+							{
+								wide1=Integer.toString(secondExtrasList.get(i).getCount());
+							}
+							if(secondExtrasList.get(i).getExtraType().equalsIgnoreCase("Byes"))
+							{
+								byes1=Integer.toString(secondExtrasList.get(i).getCount());
+							}
+							if(secondExtrasList.get(i).getExtraType().equalsIgnoreCase("Noball"))
+							{
+								noBalls1=Integer.toString(secondExtrasList.get(i).getCount());
+							}
+							if(secondExtrasList.get(i).getExtraType().equalsIgnoreCase("LegByes"))
+							{
+								legByes1=Integer.toString(secondExtrasList.get(i).getCount());
+							}
+							if(secondExtrasList.get(i).getExtraType().equalsIgnoreCase("Penalties"))
+							{
+								penalties1=Integer.toString(secondExtrasList.get(i).getCount());
+							}
+						}
+						mav.addObject("secondInnwide",wide1);
+						mav.addObject("secondInnbyes",byes1);
+						mav.addObject("secondInnnoBalls",noBalls1);
+						mav.addObject("secondInnlegByes",legByes1);
+						mav.addObject("secondInnpenalties",penalties1);
+						
+						
+						//               Followofwickets
+						
+						String f1st="",f2nd="",f3rd="",f4th="",f5th="",f6th="",f7th="",f8th="",f9th="",f10th="";
+						List<FollowOfWickets> firstInnWickets=res.getResults().getFirstInnings().getFallOfWickets();
+						for(int i=0;i<firstInnWickets.size();i++)
+						{
+							if(firstInnWickets.get(i).getWicketNumber() ==1)
+							{
+								f1st=Integer.toString(firstInnWickets.get(i).getRuns());
+								}
+							if(firstInnWickets.get(i).getWicketNumber() == 2)
+							{
+								f2nd=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							if(firstInnWickets.get(i).getWicketNumber() == 3)
+							{
+								f3rd=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							if(firstInnWickets.get(i).getWicketNumber() == 4)
+							{
+								f4th=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							if(firstInnWickets.get(i).getWicketNumber() == 5)
+							{
+								f5th=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							if(firstInnWickets.get(i).getWicketNumber() == 6)
+							{
+								f6th=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							if(firstInnWickets.get(i).getWicketNumber() == 7)
+							{
+								f7th=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							if(firstInnWickets.get(i).getWicketNumber() == 8)
+							{
+								f8th=Integer.toString(firstInnWickets.get(i).getRuns());
+							}if(firstInnWickets.get(i).getWicketNumber() == 9)
+							{
+								f9th=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							if(firstInnWickets.get(i).getWicketNumber() == 10)
+							{
+								f10th=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							
+						}
+						mav.addObject("firstInn1stWicket", f1st);
+						mav.addObject("firstInn2ndWicket", f2nd);
+						mav.addObject("firstInn3rdWicket", f3rd);
+						mav.addObject("firstInn4thWicket", f4th);
+						mav.addObject("firstInn5thWicket", f5th);
+						mav.addObject("firstInn6thWicket", f6th);
+						mav.addObject("firstInn7thWicket", f7th);
+						mav.addObject("firstInn8thWicket", f8th);
+						mav.addObject("firstInn9thWicket", f9th);
+						mav.addObject("firstInn10thWicket", f10th);
+						
+						
+						String s1st="",s2nd="",s3rd="",s4th="",s5th="",s6th="",s7th="",s8th="",s9th="",s10th="";
+						List<FollowOfWickets> secondInnWickets=res.getResults().getSecondInnings().getFallOfWickets();
+						for(int i=0;i<secondInnWickets.size();i++)
+						{
+							if(secondInnWickets.get(i).getWicketNumber() ==1)
+							{
+								s1st=Integer.toString(secondInnWickets.get(i).getRuns());
+								}
+							if(secondInnWickets.get(i).getWicketNumber() == 2)
+							{
+								s2nd=Integer.toString(secondInnWickets.get(i).getRuns());
+							}
+							if(secondInnWickets.get(i).getWicketNumber() == 3)
+							{
+								s3rd=Integer.toString(secondInnWickets.get(i).getRuns());
+							}
+							if(secondInnWickets.get(i).getWicketNumber() == 4)
+							{
+								s4th=Integer.toString(secondInnWickets.get(i).getRuns());
+							}
+							if(secondInnWickets.get(i).getWicketNumber() == 5)
+							{
+								s5th=Integer.toString(secondInnWickets.get(i).getRuns());
+							}
+							if(secondInnWickets.get(i).getWicketNumber() == 6)
+							{
+								s6th=Integer.toString(secondInnWickets.get(i).getRuns());
+							}
+							if(secondInnWickets.get(i).getWicketNumber() == 7)
+							{
+								s7th=Integer.toString(secondInnWickets.get(i).getRuns());
+							}
+							if(secondInnWickets.get(i).getWicketNumber() == 8)
+							{
+								s8th=Integer.toString(secondInnWickets.get(i).getRuns());
+							}if(secondInnWickets.get(i).getWicketNumber() == 9)
+							{
+								s9th=Integer.toString(secondInnWickets.get(i).getRuns());
+							}
+							if(secondInnWickets.get(i).getWicketNumber() == 10)
+							{
+								s10th=Integer.toString(secondInnWickets.get(i).getRuns());
+							}							
+						}
+						mav.addObject("secondInn1stWicket", s1st);
+						mav.addObject("secondInn2ndWicket", s2nd);
+						mav.addObject("secondInn3rdWicket", s3rd);
+						mav.addObject("secondInn4thWicket", s4th);
+						mav.addObject("secondInn5thWicket", s5th);
+						mav.addObject("secondInn6thWicket", s6th);
+						mav.addObject("secondInn7thWicket", s7th);
+						mav.addObject("secondInn8thWicket", s8th);
+						mav.addObject("secondInn9thWicket", s9th);
+						mav.addObject("secondInn10thWicket",s10th);
+						
+						String manOfTheMatch = "";
+						if(res.getResults().getMatchResult().getManoftheMaTchList() != null){
+						if(res.getResults().getMatchResult().getManoftheMaTchList().size() > 0){
+							mav.addObject("PlayerOfTheMatch", res.getResults().getMatchResult().getManoftheMaTchList().get(0));
+						}
+						}
+						
+						if(res.getResults().getMatchResult() == null ){
+							mav.addObject("scoreCardListSize", 0);
+						}else{
+							mav.addObject("scoreCardListSize", res.getResults().getMatchResult().toString().length());
+						}
+
+						if(res.getResults().getFirstInnings().getBattingPlayer() == null ){
+							mav.addObject("firstInningsBattingPlayerSize", 0);
+						}else{
+							mav.addObject("firstInningsBattingPlayerSize", res.getResults().getFirstInnings().getBattingPlayer().size());
+						}
+						if(res.getResults().getSecondInnings().getBattingPlayer() == null){
+							mav.addObject("SecondInningsBattingPlayerSize", 0);
+						}else{
+							mav.addObject("SecondInningsBattingPlayerSize", res.getResults().getSecondInnings().getBattingPlayer().size());
+						}
+						if(res.getResults().getFirstInnings().getBowlingPlayer() == null){
+							mav.addObject("firstInningsBowlingPlayerSize", 0);
+						}else{
+							mav.addObject("firstInningsBowlingPlayerSize", res.getResults().getFirstInnings().getBowlingPlayer().size());
+						}
+						if(res.getResults().getSecondInnings().getBowlingPlayer() == null){
+							mav.addObject("SecondInningsBowlingPlayerSize", 0);
+						}else{
+							mav.addObject("SecondInningsBowlingPlayerSize", res.getResults().getSecondInnings().getBowlingPlayer().size());
+						}						
+					 }else{
+						System.out.println("null condition"); 
+					 }
+				 }
+				 else{
+					 
+				 }
+				 
+				 // get Umpire and Scrorer details
+				 HubRequest hubReq4=new HubRequest();	 
+				 hubReq4.setMsgType(250);
+				 ModelMap map14=new ModelMap();			
+				 map14.put("tournamentSchedulerId", tournamentSchedulerId);
+		
+				 hubReq4.setRequestParam(map14);
+				 String umpireAndScorerDetails=cricketSocialRestTemplateService.userRegistration(hubReq4);
+				 if(umpireAndScorerDetails != null){
+					 HubResponse hubResponse = gson.fromJson(umpireAndScorerDetails, HubResponse.class);
+					 mav.addObject("umpireAndScorerDetails", hubResponse.getResults().getUmpireAndScorerDetails());
+					 mav.addObject("GroundId", hubResponse.getResults().getUmpireAndScorerDetails().getGroundId());
+					
+					 if(hubResponse.getResults().getUmpireAndScorerDetails().getUmpireNamesList().size() > 0){
+					 List<UmpireNameList> listOfUmpires = hubResponse.getResults().getUmpireAndScorerDetails().getUmpireNamesList();
+					 List<UserSearchVO> umpireNameList = new ArrayList<UserSearchVO>();
+					
+					 for(int k=0; k<listOfUmpires.size(); k++){
+						 String name = listOfUmpires.get(k).getUmpireName();
+						 UserSearchVO user = new UserSearchVO();
+						 user.setFullName(name);
+						 user.setId(listOfUmpires.get(k).getUmpireId());
+						 umpireNameList.add(user);
+						 					
+					 }
+					 JSONArray arr1 = new JSONArray(umpireNameList);
+					 mav.addObject("umpireNameList", arr1);
+					 mav.addObject("winPoint",hubResponse.getResults().getUmpireAndScorerDetails().getWinPoints());
+					 }else
+					 {
+						 JsonArray arr=new JsonArray();
+						 mav.addObject("umpireNameList",arr);
+						 mav.addObject("winPoint",hubResponse.getResults().getUmpireAndScorerDetails().getWinPoints());
+					 }
+					 
+				 }
+				 
+		}else{
+			mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
+		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
+		
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+	return mav;
+}
+
+@RequestMapping(value="/editScoreInsert", method = RequestMethod.POST)
+public @ResponseBody String editScoreInsert(@RequestBody ScoreBean scorer, HttpServletRequest req){
+	String returnResponse = null;
+	try{
+		
+		HttpSession session = req.getSession(true);
+		String postresponse=null;
+		if(session != null){
+			
+			UUID userid=(UUID) session.getAttribute("USRID");
+			
+			
+			
+			
+			
+			HubRequest hubreq1=new HubRequest(256);
+			 hubreq1.setMsgType(256);
+			 ModelMap map1=new ModelMap();
+			 map1.put("tournamentSchedulerId", scorer.getMatchId());
+			 hubreq1.setRequestParam(map1);
+			 String response1=cricketSocialRestTemplateService.userRegistration(hubreq1);
+			 System.out.println("the 256 response is :"+response1);
+			 if(response1 != null){
+					
+		 
+			 JSONObject jobj=new JSONObject(response1);
+			 JSONObject jresult=jobj.getJSONObject("results");
+			  postresponse=jresult.getString("scoreResponse");
+			  
+			 
+			  
+			hubReq = new HubRequest();
+			hubReq.setMsgType(165);
+			Map<String, String> myMap = new HashMap<String, String>();
+			
+			String dateString = scorer.getGameDate();
+
+			System.out.println("date string :"+dateString);
+			
+			String[] spliteDOB = dateString.split("/");
+			
+			 String monthInEditProfile = spliteDOB[0];
+			 String dayInEditProfile = spliteDOB[1];
+			 String yearInEditProfile = spliteDOB[2];
+			 
+			
+			 String convertedDate= yearInEditProfile+'-'+monthInEditProfile+'-'+dayInEditProfile;
+			 System.out.println(convertedDate);
+			
+			String ids = scorer.getUmpireId();
+			if(ids!= null){
+			List<String> umpireIds = Arrays.asList(ids.split(","));
+			
+			
+			
+			int count = 1;
+			
+			for(String i : umpireIds){
+				
+				myMap.put("umpire_id_"+count, i);
+				
+				String h="{";
+				
+				for (Map.Entry<String, String> entry : myMap.entrySet())
+				{
+				    System.out.println("------------------------"+entry.getKey() + "/" + entry.getValue());
+				   
+				    
+				    
+				    String key = entry.getKey();
+				    
+				    String value = entry.getValue();
+				    
+				    String key1="'"+key+"'";
+				    
+				    String value1="'"+value+"'";
+				    
+					if(h.endsWith("{"))
+					{
+						  h=h+key1+":"+value1;
+					}else{
+						  h=h+","+key1+":"+value1;
+					}
+
+				}
+				
+				h=h+"}";
+				
+				 count++;
+				
+				
+			}
+			
+			
+			}
+		
+			System.out.println("-----------------scrore-------"+scorer.getFirstInnings().getExtrasList().size());
+			System.out.println("-----------------scrore-------"+scorer.getFirstInnings().getFallowOfWickets().size());
+			
+			ScoreBean bean = new ScoreBean();
+			bean.setAwayTeamCoach(scorer.getAwayTeamCoach());
+			bean.setHomeTeamCoach(scorer.getHomeTeamCoach());
+			bean.setMatchId(scorer.getMatchId());
+			bean.setPlayerOfTheMatch(scorer.getPlayerOfTheMatch());
+			bean.setWinTeamOvers(scorer.getWinTeamOvers());
+			bean.setWinTeamPoints(scorer.getWinTeamPoints());
+			bean.setWinTeamRuns(scorer.getWinTeamRuns());
+			bean.setWinTeamWickets(scorer.getWinTeamWickets());
+			bean.setLoseTeamOvers(scorer.getLoseTeamOvers());
+			bean.setLoseTeamRuns(scorer.getLoseTeamRuns());
+			bean.setLoseTeamPoints(scorer.getLoseTeamPoints());
+			bean.setLoseTeamWickets(scorer.getLoseTeamWickets());
+			bean.setNoOfOvers(scorer.getNoOfOvers());
+			bean.setStatus(scorer.getStatus());
+			bean.setFirstInnings(scorer.getFirstInnings());
+			bean.setSecondInnings(scorer.getSecondInnings());
+			bean.setUmpireList(myMap);
+			bean.setGameType(scorer.getGameType());
+			bean.setHomeTeamId(scorer.getHomeTeamId());
+			bean.setAwayTeamId(scorer.getAwayTeamId());
+			bean.setResult(scorer.getResult());
+			bean.setGameDate(convertedDate);
+			bean.setSecondInningsTotalRuns(scorer.getSecondInningsTotalRuns());
+			bean.setFirstInningsTotalRuns(scorer.getFirstInningsTotalRuns());
+			bean.setFirstInningsTeamId(scorer.getFirstInningsTeamId());
+			bean.setSecondInningsTeamId(scorer.getSecondInningsTeamId());
+			bean.setGroundId(scorer.getGroundId());
+			bean.setScorerId(userid.toString());
+			hubReq.setRequestParam(bean);
+			
+			String response = cricketSocialRestTemplateService.userRegistration(hubReq);
+			if(response != null){
+				HubResponse hubRes = GsonConverters.getGsonObject().fromJson(response, HubResponse.class);
+				if(hubRes != null &&  hubRes.getResults() != null){
+					returnResponse  = hubRes.getResults().getEnterScoreStatus();
+				}else{
+					returnResponse = "failure";
+				}
+				
+			}
+			
+			
+			 }else{
+				 returnResponse="Failure";
+					 }
+			
+		}else{
+			
+		}
+		 
+		
+		
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}
+	return returnResponse;
+	
+}
+
+
+
+@RequestMapping(value="/editscorepublic/boardId/{boardId}/{tournamentId}/{tournamentSchedulerId}/{homeTeamId}/{awayTeamId}/{matchDate}/{leagueCreatedBy}", method = RequestMethod.GET)
+public ModelAndView editscorepublic(HttpServletRequest req, @PathVariable String boardId,@PathVariable String tournamentId,@PathVariable String tournamentSchedulerId, @PathVariable String homeTeamId,@PathVariable String awayTeamId,@PathVariable String matchDate,@PathVariable String leagueCreatedBy){
+	ModelAndView mav = null;
+	try{
+		//EnterScoreSelectedMatch1/boardId/"+boardid+"/"+tournametid+"/"+tournamentschedulerid+"/"+homeid+"/"+awayteamid+"/"+date+"/"+createdby
+		
+		if(isUUID(boardId) && isUUID(tournamentId) && isUUID(tournamentSchedulerId) && isUUID(homeTeamId) && isUUID(awayTeamId) && isUUID(leagueCreatedBy)){
+		
+		System.out.println("id----->><><>"+boardId+"<><>"+tournamentId+"<><>"+tournamentSchedulerId+"<><>"+homeTeamId+"<><><"+awayTeamId+"<><><"+matchDate+"<><>leagueCreatedBy"+leagueCreatedBy);
+		
+		HttpSession session = req.getSession(true);
+		if(session != null && session.getAttribute("USRID") != null){
+			mav = new ModelAndView("EditScorePublic");
+		//	mav = new ModelAndView("enterscore2");
+			mav.addObject("boardId", boardId);		
+			UUID userId = (UUID) session.getAttribute("USRID");			
+			hubReq= new HubRequest();
+			 hubReq.setMsgType(41);
+			 ModelMap map=new ModelMap();
+			 map.put("userId", userId);
+			 map.put("startNode", 0);
+			 map.put("endNode", 200);
+			  hubReq.setRequestParam(map);
+				 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);
+				 GsonBuilder builder = new GsonBuilder();
+				 Gson gson = builder.create();
+				 if(strBoardList!=null)
+				 {
+					 HubResponse hubResponse= gson.fromJson(strBoardList, HubResponse.class);
+					 if(hubResponse!=null && hubResponse.getResults()!=null)
+					 {
+						 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
+					 }
+				 }				 
+				 hubReq = new HubRequest(161);
+					hubReq.setMsgType(161);					
+					ModelMap mod= new ModelMap();
+					mod.put("createdBy", boardId);
+					hubReq.setRequestParam(mod);
+					String tournamentListOfTheBoard = cricketSocialRestTemplateService.userRegistration(hubReq);
+					if(tournamentListOfTheBoard !=  null){
+						HubResponse  hubRes = gson.fromJson(tournamentListOfTheBoard, HubResponse.class);
+						if(hubRes !=  null && hubRes.getResults() !=  null && hubRes.getResults().getTournamentNamestList() != null){
+							mav.addObject("tournamentOfTheBoard", hubRes.getResults().getTournamentNamestList());
+							System.out.println("value============>"+new JSONArray(hubRes.getResults().getTournamentNamestList()));
+							//mav.addObject("groundListSize",hubRes.getResults().getGroundList().size());
+						}
+				 
+					}
+					
+					
+					
+
+					hubReq = new HubRequest();
+					hubReq.setMsgType(176);
+					ModelMap gameTypeMap = new ModelMap();
+					hubReq.setRequestParam(gameTypeMap);
+					String gameResponse = cricketSocialRestTemplateService.userRegistration(hubReq);
+					if(gameResponse != null){
+						HubResponse hubRes = GsonConverters.getGsonObject().fromJson(gameResponse, HubResponse.class);
+						if(hubRes != null && hubRes.getResults() != null){
+							mav.addObject("gameTypeList", hubRes.getResults().getGameList());
+							
+						}
+					}
+					
+
+					hubReq = new HubRequest();
+					hubReq.setMsgType(213);
+					ModelMap dismissalMap = new ModelMap();
+					hubReq.setRequestParam(dismissalMap);
+					String dismissalResponse = cricketSocialRestTemplateService.userRegistration(hubReq);
+					if(dismissalResponse != null){
+						HubResponse hubRes = GsonConverters.getGsonObject().fromJson(dismissalResponse, HubResponse.class);
+						if(hubRes != null && hubRes.getResults() != null && hubRes.getResults().getDismissalTypeList() != null){
+							mav.addObject("dismissalTypeList", hubRes.getResults().getDismissalTypeList());
+							
+						}
+					}
+				 
+				//*************************** Getting Board info  ***************************************
+				 HubRequest hubReq1=new HubRequest();
+				 hubReq1.setMsgType(40);
+				 ModelMap map11=new ModelMap();			
+				 map11.put("userId", session.getAttribute("USRID"));			 
+				 map11.put("boardId", boardId);
+				 hubReq1.setRequestParam(map11);
+				 String strBoarddetail=cricketSocialRestTemplateService.userRegistration(hubReq1);		
+				 if(strBoarddetail!=null)
+				 {
+					 HubResponse hubResponse1= gson.fromJson(strBoarddetail, HubResponse.class);
+					if(hubResponse1!=null && hubResponse1.getResults().getBoardStatusDetail()!=null && hubResponse1.getResults().getBoardStatusDetail().size()>0)
+					{
+						 mav.addObject("BoradInfo", hubResponse1.getResults().getBoardStatusDetail().get(0));
+						 final String context = req.getContextPath();
+						 MenuList menuList= Util.leaugeMenuList(hubResponse1.getResults().getBoardStatusDetail().get(0), session.getAttribute("USRID")+"", context);						
+						 mav.addObject("LeaugeMenuList", menuList);				
+					}
+				 }	
+			
+			
+				// response[i].homeTeamId+","+response[i].awayTeamId+","+response[i].tournamentSchedulerId+","+response[i].dateString;
+				 mav.addObject("selectedTournamentId",tournamentId);
+				 mav.addObject("selectedTeam", homeTeamId+","+awayTeamId+","+tournamentSchedulerId+","+matchDate);
+				 mav.addObject("homeTeamId", homeTeamId);
+				 mav.addObject("awayTeamId", awayTeamId);
+				 
+			//*************************************** Get Roaster Team Details ******************************//
+				 List<RosterUserMap> homeList1=new ArrayList<RosterUserMap>();
+				 List<RosterUserMap> awayList1=new ArrayList<RosterUserMap>();
+				 JSONArray homeList=new JSONArray();
+				 JSONArray awayList=new JSONArray();
+				 
+				 HubRequest hubReq2=new HubRequest();	 
+				 hubReq2.setMsgType(31);
+				 ModelMap map12=new ModelMap();			
+				 map12.put("leagueCreatedBy", leagueCreatedBy);			 
+				 map12.put("tournamentSchedulerId", tournamentSchedulerId);
+				 map12.put("boardId", homeTeamId);
+		
+				 hubReq2.setRequestParam(map12);
+				 String homeTeamRosterDetails=cricketSocialRestTemplateService.userRegistration1(hubReq2);	
+				 if(homeTeamRosterDetails != null){
+					 HubResponse hubResponse= gson.fromJson(homeTeamRosterDetails, HubResponse.class);
+					 System.out.println("roster Details---"+hubResponse.getResults().getRosterDetails().size());
+					 if(hubResponse.getResults().getRosterDetails().size() > 0){
+						  homeList = new JSONArray(hubResponse.getResults().getRosterDetails().get(0).getRosterUserMapList());
+						 System.out.println("----------------------"+homeList);
+						 homeList1=hubResponse.getResults().getRosterDetails().get(0).getRosterUserMapList();
+					 mav.addObject("homeTeamRosterList", homeList);
+					 }
+				 }
+				 
+				 HubRequest hubReq3=new HubRequest();	 
+				 hubReq3.setMsgType(31);
+				 ModelMap map13=new ModelMap();			
+				 map13.put("leagueCreatedBy", leagueCreatedBy);			 
+				 map13.put("tournamentSchedulerId", tournamentSchedulerId);
+				 map13.put("boardId", awayTeamId);
+		
+				 hubReq3.setRequestParam(map13);
+				 String awayTeamRosterDetails=cricketSocialRestTemplateService.userRegistration1(hubReq3);	
+				 if(awayTeamRosterDetails != null){
+					 HubResponse hubResponse= gson.fromJson(awayTeamRosterDetails, HubResponse.class);
+					 System.out.println("roster Details---12121"+hubResponse.getResults().getRosterDetails().size());
+					 if(hubResponse.getResults().getRosterDetails().size() > 0){
+						  awayList = new JSONArray(hubResponse.getResults().getRosterDetails().get(0).getRosterUserMapList());
+						 awayList1 = hubResponse.getResults().getRosterDetails().get(0).getRosterUserMapList();
+					 mav.addObject("awayTeamRosterList",awayList );
+					 }
+				 }
+				 
+				 
+				 
+				 mav.addObject("tournamentSchedulerid", tournamentSchedulerId);
+				 
+				
+				 
+				 hubReq = new HubRequest();
+				 hubReq.setMsgType(282);
+				 ModelMap map3 = new ModelMap();
+				 map3.put("matchId", tournamentSchedulerId);
+				 hubReq.setRequestParam(map3);
+				  
+				 String returnResponse = cricketSocialRestTemplateService.userRegistration(hubReq);
+				 
+				 if(returnResponse != null){
+					 NewResponse res = gson.fromJson(returnResponse, NewResponse.class);
+					 if(res != null && res.getResults() != null){
+						mav.addObject("scoreCardList", res.getResults().getMatchResult());
+						mav.addObject("secondInnings", res.getResults().getSecondInnings());
+						mav.addObject("firstInnings", res.getResults().getFirstInnings());
+						mav.addObject("firstInningsBattingPlayer", res.getResults().getFirstInnings().getBattingPlayer());
+						mav.addObject("SecondInningsBattingPlayer", res.getResults().getSecondInnings().getBattingPlayer());
+						mav.addObject("firstInningsBowlingPlayer", res.getResults().getFirstInnings().getBowlingPlayer());
+						mav.addObject("SecondInningsBowlingPlayer", res.getResults().getSecondInnings().getBowlingPlayer());
+                        mav.addObject("fallOfWicketsFirstInningsWebPortal", res.getResults().getFirstInnings().getFallOfWickets());
+						mav.addObject("fallOfWicketsSecondInningsWebPortal", res.getResults().getSecondInnings().getFallOfWickets());
+						mav.addObject("firstInnfallowOfWicketsSize",res.getResults().getFirstInnings().getFallOfWickets().size());
+						mav.addObject("secondInnfallowOfWicketsSize",res.getResults().getSecondInnings().getFallOfWickets().size());
+						mav.addObject("MatchStatus", res.getResults().getMatchResult().getWonTeam());
+						
+						
+						if(res.getResults().getFirstInnings().getBattingTeamId().toString().equals(homeList1.get(0).getBoardId()))
+						{
+							
+							mav.addObject("homeTeamRosterList1", homeList1);
+							 mav.addObject("awayTeamRosterList1",awayList1);
+							 
+							 
+							/* mav.addObject("homeTeamRosterList", homeList);
+							 mav.addObject("awayTeamRosterList",awayList);*/
+							 
+						}else{
+							
+							 mav.addObject("homeTeamRosterList1", awayList1);
+							 mav.addObject("awayTeamRosterList1",homeList1);
+							 
+							 
+							/* mav.addObject("homeTeamRosterList", awayList);
+							 mav.addObject("awayTeamRosterList",homeList);*/
+						}
+						
+						mav.addObject("firstInningsextras", res.getResults().getFirstInnings().getExtrasvalue());
+						mav.addObject("SecondInningsextras", res.getResults().getSecondInnings().getExtrasvalue());
+						mav.addObject("firstInningsDNB",new JSONArray(res.getResults().getFirstInnings().getDoNotBatPlayersList()));
+						mav.addObject("SecondInningsDNB", new JSONArray(res.getResults().getSecondInnings().getDoNotBatPlayersList()));
+						
+						
+						//                Extras
+						
+						List<ExtrasDTO> firstExtrasList=res.getResults().getFirstInnings().getExtrasvalue();
+						String wide="",noBalls="",legByes="",byes="",penalties="";
+						for(int i=0; i<firstExtrasList.size();i++)
+						{							
+							if(firstExtrasList.get(i).getExtraType().equalsIgnoreCase("Wide"))
+							{
+								wide=Integer.toString(firstExtrasList.get(i).getCount());
+							}
+							if(firstExtrasList.get(i).getExtraType().equalsIgnoreCase("Byes"))
+							{
+								byes=Integer.toString(firstExtrasList.get(i).getCount());
+							}
+							if(firstExtrasList.get(i).getExtraType().equalsIgnoreCase("Noball"))
+							{
+								noBalls=Integer.toString(firstExtrasList.get(i).getCount());
+							}
+							if(firstExtrasList.get(i).getExtraType().equalsIgnoreCase("LegByes"))
+							{
+								legByes=Integer.toString(firstExtrasList.get(i).getCount());
+							}
+							if(firstExtrasList.get(i).getExtraType().equalsIgnoreCase("Penalties"))
+							{
+								penalties=Integer.toString(firstExtrasList.get(i).getCount());
+							}
+						}
+						mav.addObject("firstInnwide",wide);
+						mav.addObject("firstInnbyes",byes);
+						mav.addObject("firstInnnoBalls",noBalls);
+						mav.addObject("firstInnlegByes",legByes);
+						mav.addObject("firstInnpenalties",penalties);
+						
+						
+                        List<ExtrasDTO> secondExtrasList=res.getResults().getSecondInnings().getExtrasvalue();
+						String wide1="",noBalls1="",legByes1="",byes1="",penalties1="";
+						for(int i=0; i<secondExtrasList.size();i++)
+						{							
+							if(secondExtrasList.get(i).getExtraType().equalsIgnoreCase("Wide"))
+							{
+								wide1=Integer.toString(secondExtrasList.get(i).getCount());
+							}
+							if(secondExtrasList.get(i).getExtraType().equalsIgnoreCase("Byes"))
+							{
+								byes1=Integer.toString(secondExtrasList.get(i).getCount());
+							}
+							if(secondExtrasList.get(i).getExtraType().equalsIgnoreCase("Noball"))
+							{
+								noBalls1=Integer.toString(secondExtrasList.get(i).getCount());
+							}
+							if(secondExtrasList.get(i).getExtraType().equalsIgnoreCase("LegByes"))
+							{
+								legByes1=Integer.toString(secondExtrasList.get(i).getCount());
+							}
+							if(secondExtrasList.get(i).getExtraType().equalsIgnoreCase("Penalties"))
+							{
+								penalties1=Integer.toString(secondExtrasList.get(i).getCount());
+							}
+						}
+						mav.addObject("secondInnwide",wide1);
+						mav.addObject("secondInnbyes",byes1);
+						mav.addObject("secondInnnoBalls",noBalls1);
+						mav.addObject("secondInnlegByes",legByes1);
+						mav.addObject("secondInnpenalties",penalties1);
+						
+						
+						//               Followofwickets
+						
+						String f1st="",f2nd="",f3rd="",f4th="",f5th="",f6th="",f7th="",f8th="",f9th="",f10th="";
+						List<FollowOfWickets> firstInnWickets=res.getResults().getFirstInnings().getFallOfWickets();
+						for(int i=0;i<firstInnWickets.size();i++)
+						{
+							if(firstInnWickets.get(i).getWicketNumber() ==1)
+							{
+								f1st=Integer.toString(firstInnWickets.get(i).getRuns());
+								}
+							if(firstInnWickets.get(i).getWicketNumber() == 2)
+							{
+								f2nd=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							if(firstInnWickets.get(i).getWicketNumber() == 3)
+							{
+								f3rd=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							if(firstInnWickets.get(i).getWicketNumber() == 4)
+							{
+								f4th=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							if(firstInnWickets.get(i).getWicketNumber() == 5)
+							{
+								f5th=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							if(firstInnWickets.get(i).getWicketNumber() == 6)
+							{
+								f6th=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							if(firstInnWickets.get(i).getWicketNumber() == 7)
+							{
+								f7th=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							if(firstInnWickets.get(i).getWicketNumber() == 8)
+							{
+								f8th=Integer.toString(firstInnWickets.get(i).getRuns());
+							}if(firstInnWickets.get(i).getWicketNumber() == 9)
+							{
+								f9th=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							if(firstInnWickets.get(i).getWicketNumber() == 10)
+							{
+								f10th=Integer.toString(firstInnWickets.get(i).getRuns());
+							}
+							
+						}
+						mav.addObject("firstInn1stWicket", f1st);
+						mav.addObject("firstInn2ndWicket", f2nd);
+						mav.addObject("firstInn3rdWicket", f3rd);
+						mav.addObject("firstInn4thWicket", f4th);
+						mav.addObject("firstInn5thWicket", f5th);
+						mav.addObject("firstInn6thWicket", f6th);
+						mav.addObject("firstInn7thWicket", f7th);
+						mav.addObject("firstInn8thWicket", f8th);
+						mav.addObject("firstInn9thWicket", f9th);
+						mav.addObject("firstInn10thWicket", f10th);
+						
+						
+						String s1st="",s2nd="",s3rd="",s4th="",s5th="",s6th="",s7th="",s8th="",s9th="",s10th="";
+						List<FollowOfWickets> secondInnWickets=res.getResults().getSecondInnings().getFallOfWickets();
+						for(int i=0;i<secondInnWickets.size();i++)
+						{
+							if(secondInnWickets.get(i).getWicketNumber() ==1)
+							{
+								s1st=Integer.toString(secondInnWickets.get(i).getRuns());
+								}
+							if(secondInnWickets.get(i).getWicketNumber() == 2)
+							{
+								s2nd=Integer.toString(secondInnWickets.get(i).getRuns());
+							}
+							if(secondInnWickets.get(i).getWicketNumber() == 3)
+							{
+								s3rd=Integer.toString(secondInnWickets.get(i).getRuns());
+							}
+							if(secondInnWickets.get(i).getWicketNumber() == 4)
+							{
+								s4th=Integer.toString(secondInnWickets.get(i).getRuns());
+							}
+							if(secondInnWickets.get(i).getWicketNumber() == 5)
+							{
+								s5th=Integer.toString(secondInnWickets.get(i).getRuns());
+							}
+							if(secondInnWickets.get(i).getWicketNumber() == 6)
+							{
+								s6th=Integer.toString(secondInnWickets.get(i).getRuns());
+							}
+							if(secondInnWickets.get(i).getWicketNumber() == 7)
+							{
+								s7th=Integer.toString(secondInnWickets.get(i).getRuns());
+							}
+							if(secondInnWickets.get(i).getWicketNumber() == 8)
+							{
+								s8th=Integer.toString(secondInnWickets.get(i).getRuns());
+							}if(secondInnWickets.get(i).getWicketNumber() == 9)
+							{
+								s9th=Integer.toString(secondInnWickets.get(i).getRuns());
+							}
+							if(secondInnWickets.get(i).getWicketNumber() == 10)
+							{
+								s10th=Integer.toString(secondInnWickets.get(i).getRuns());
+							}							
+						}
+						mav.addObject("secondInn1stWicket", s1st);
+						mav.addObject("secondInn2ndWicket", s2nd);
+						mav.addObject("secondInn3rdWicket", s3rd);
+						mav.addObject("secondInn4thWicket", s4th);
+						mav.addObject("secondInn5thWicket", s5th);
+						mav.addObject("secondInn6thWicket", s6th);
+						mav.addObject("secondInn7thWicket", s7th);
+						mav.addObject("secondInn8thWicket", s8th);
+						mav.addObject("secondInn9thWicket", s9th);
+						mav.addObject("secondInn10thWicket",s10th);
+						
+						String manOfTheMatch = "";
+						if(res.getResults().getMatchResult().getManoftheMaTchList() != null){
+						if(res.getResults().getMatchResult().getManoftheMaTchList().size() > 0){
+							mav.addObject("PlayerOfTheMatch", res.getResults().getMatchResult().getManoftheMaTchList().get(0));
+						}
+						}
+						
+						if(res.getResults().getMatchResult() == null ){
+							mav.addObject("scoreCardListSize", 0);
+						}else{
+							mav.addObject("scoreCardListSize", res.getResults().getMatchResult().toString().length());
+						}
+
+						if(res.getResults().getFirstInnings().getBattingPlayer() == null ){
+							mav.addObject("firstInningsBattingPlayerSize", 0);
+						}else{
+							mav.addObject("firstInningsBattingPlayerSize", res.getResults().getFirstInnings().getBattingPlayer().size());
+						}
+						if(res.getResults().getSecondInnings().getBattingPlayer() == null){
+							mav.addObject("SecondInningsBattingPlayerSize", 0);
+						}else{
+							mav.addObject("SecondInningsBattingPlayerSize", res.getResults().getSecondInnings().getBattingPlayer().size());
+						}
+						if(res.getResults().getFirstInnings().getBowlingPlayer() == null){
+							mav.addObject("firstInningsBowlingPlayerSize", 0);
+						}else{
+							mav.addObject("firstInningsBowlingPlayerSize", res.getResults().getFirstInnings().getBowlingPlayer().size());
+						}
+						if(res.getResults().getSecondInnings().getBowlingPlayer() == null){
+							mav.addObject("SecondInningsBowlingPlayerSize", 0);
+						}else{
+							mav.addObject("SecondInningsBowlingPlayerSize", res.getResults().getSecondInnings().getBowlingPlayer().size());
+						}						
+					 }else{
+						System.out.println("null condition"); 
+					 }
+				 }
+				 else{
+					 
+				 }
+				 
+				 // get Umpire and Scrorer details
+				 HubRequest hubReq4=new HubRequest();	 
+				 hubReq4.setMsgType(250);
+				 ModelMap map14=new ModelMap();			
+				 map14.put("tournamentSchedulerId", tournamentSchedulerId);
+		
+				 hubReq4.setRequestParam(map14);
+				 String umpireAndScorerDetails=cricketSocialRestTemplateService.userRegistration(hubReq4);
+				 if(umpireAndScorerDetails != null){
+					 HubResponse hubResponse = gson.fromJson(umpireAndScorerDetails, HubResponse.class);
+					 mav.addObject("umpireAndScorerDetails", hubResponse.getResults().getUmpireAndScorerDetails());
+					 mav.addObject("GroundId", hubResponse.getResults().getUmpireAndScorerDetails().getGroundId());
+					
+					 if(hubResponse.getResults().getUmpireAndScorerDetails().getUmpireNamesList().size() > 0){
+					 List<UmpireNameList> listOfUmpires = hubResponse.getResults().getUmpireAndScorerDetails().getUmpireNamesList();
+					 List<UserSearchVO> umpireNameList = new ArrayList<UserSearchVO>();
+					
+					 for(int k=0; k<listOfUmpires.size(); k++){
+						 String name = listOfUmpires.get(k).getUmpireName();
+						 UserSearchVO user = new UserSearchVO();
+						 user.setFullName(name);
+						 user.setId(listOfUmpires.get(k).getUmpireId());
+						 umpireNameList.add(user);
+						 					
+					 }
+					 JSONArray arr1 = new JSONArray(umpireNameList);
+					 mav.addObject("umpireNameList", arr1);
+					 mav.addObject("winPoint",hubResponse.getResults().getUmpireAndScorerDetails().getWinPoints());
+					 }else
+					 {
+						 JsonArray arr=new JsonArray();
+						 mav.addObject("umpireNameList",arr);
+						 mav.addObject("winPoint",hubResponse.getResults().getUmpireAndScorerDetails().getWinPoints());
+					 }
+					 
+				 }
+				 
+		}else{
+			mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
+		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
+		
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+	return mav;
+}
+
+
+
+
+
+@RequestMapping(value="/matchType/MatchId/{matchId}",method=RequestMethod.GET)
+public @ResponseBody  String matchType(HttpServletRequest request,@PathVariable String matchId) throws Exception
+{
+	String value="";
+	 hubReq= new HubRequest();
+	 GsonBuilder builder = new GsonBuilder();
+	 Gson gson = builder.create();
+	 hubReq.setMsgType(243);
+	 ModelMap scoremap=new ModelMap();
+	 scoremap.put("matchId", matchId);		
+	 hubReq.setRequestParam(scoremap);
+	 String strscoremap=cricketSocialRestTemplateService.userRegistration(hubReq);	
+	 if(strscoremap!=null)
+	 {
+		 HubResponse hubResponse= gson.fromJson(strscoremap, HubResponse.class);
+		 if(hubResponse!=null)
+		 {
+			 if(hubResponse.getRequestStatus().equalsIgnoreCase("4")){
+				 value="4";
+			 }			
+		 }
+	 }
+	return value;
+}
+
+
+
+@RequestMapping(value="/AssignPortalScorer/boardId/{boardId}", method=RequestMethod.GET)
+public ModelAndView assignPortalScorer(HttpServletRequest req, @PathVariable String boardId) throws CSException{
+	ModelAndView mav = null;
+	try{
+		if(isUUID(boardId)){
+		HttpSession session = req.getSession(true);
+		
+		if(session != null && session.getAttribute("USRID") != null){
+		
+			UUID userId = (UUID) session.getAttribute("USRID");
+			
+		mav = new ModelAndView("AssignPortalScorer");
+		//*************************** Getting Board info  ***************************************
+		 HubRequest hubReq1=new HubRequest();
+		 hubReq1.setMsgType(40);
+		 ModelMap map1=new ModelMap();			
+		 map1.put("userId", userId);			 
+		 map1.put("boardId", boardId);
+		 hubReq1.setRequestParam(map1);
+		 String strBoarddetail=cricketSocialRestTemplateService.userRegistration(hubReq1);
+		 GsonBuilder builder = new GsonBuilder();
+		 Gson gson = builder.create();
+		 if(strBoarddetail!=null){
+			 HubResponse hubResponse1= gson.fromJson(strBoarddetail, HubResponse.class);
+			if(hubResponse1!=null && hubResponse1.getResults().getBoardStatusDetail()!=null && hubResponse1.getResults().getBoardStatusDetail().size()>0){						 
+				 mav.addObject("BoradInfo", hubResponse1.getResults().getBoardStatusDetail().get(0));						
+				
+			}
+		 }
+		 
+		 hubReq = new HubRequest(104);
+			hubReq.setMsgType(104);
+			ModelMap m = new ModelMap();
+			m.put("createdBy", boardId);
+			m.put("previousNextFlag", "current");
+			hubReq.setRequestParam(m);
+			String tournamentList = cricketSocialRestTemplateService.userRegistration(hubReq);
+			if(tournamentList !=  null){
+				HubResponse  hubRes = gson.fromJson(tournamentList, HubResponse.class);
+				if(hubRes !=  null && hubRes.getResults() !=  null){
+					mav.addObject("tournamentList", hubRes.getResults().getTournamentSchedulerList());
+					System.out.println("matchDate an d time ============>" +hubRes.getResults().getTournamentSchedulerList().get(1).getGameDate());
+					mav.addObject("dateString", hubRes.getResults().getEndDateStr());
+					mav.addObject("startDate", hubRes.getResults().getStartDateStr());
+					
+					String endDate = hubRes.getResults().getEndDateStr();
+
+					String startDate = hubRes.getResults().getStartDateStr();
+					String[] spliteDOB1 = startDate.split("-");
+					
+					 String monthInEditProfile1 = spliteDOB1[0];
+					 String dayInEditProfile1 = spliteDOB1[1];
+					 String yearInEditProfile1 = spliteDOB1[2];
+					
+					 String startDateSet= dayInEditProfile1+'/'+yearInEditProfile1+'/'+monthInEditProfile1;
+					
+					
+						mav.addObject("startDateSet", startDateSet);
+					
+					
+					String[] spliteDOB = endDate.split("-");
+					
+					 String monthInEditProfile = spliteDOB[0];
+					 String dayInEditProfile = spliteDOB[1];
+					 String yearInEditProfile = spliteDOB[2];
+					 
+					
+					 String endDateSet= dayInEditProfile+'/'+yearInEditProfile+'/'+monthInEditProfile;
+					
+					 mav.addObject("endDateSet", endDateSet);
+					
+				}
+			}
+			
+			
+				 hubReq= new HubRequest();
+				 hubReq.setMsgType(41);
+				 ModelMap map2=new ModelMap();
+				 map2.put("userId", userId);
+				 map2.put("startNode", 0);
+				 map2.put("endNode", 200);
+				  hubReq.setRequestParam(map2);
+
+					 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);	
+					 if(strBoardList!=null)
+					 {
+						 HubResponse hubResponse= gson.fromJson(strBoardList, HubResponse.class);
+						 if(hubResponse!=null && hubResponse.getResults()!=null)
+						 {
+							 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
+						 }
+					 }
+				
+			
+		}else{
+		ModelAndView model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
+		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}
+	
+	return mav;
+	
+}
+
+
+@RequestMapping(value="/showPortalScorerListInAssignUmpire", method=RequestMethod.POST)
+public @ResponseBody List<ScorerNameList> showPortalScorerListAssignUmpire(HttpServletRequest req, @RequestBody Scheduler scheduler) throws CSException{
+	List<ScorerNameList> scorerNameList = null;
+	try{
+		HttpSession session = req.getSession(true);
+		if(session != null && session.getAttribute("USRID") != null){
+			
+			hubReq = new HubRequest();
+			hubReq.setMsgType(126);
+			ModelMap map = new ModelMap();
+			map.put("tournamentSchedulerId", scheduler.getTournamentSchedulerId());
+			map.put("scorerName", "PORTAL");
+			hubReq.setRequestParam(map);
+			
+			GsonBuilder builder = new GsonBuilder();
+			Gson gson  = builder.create();
+			
+			String response = cricketSocialRestTemplateService.userRegistration(hubReq);
+			
+			if(response != null){
+				HubResponse hubRes = gson.fromJson(response, HubResponse.class);
+				if(hubRes != null && hubRes.getResults() != null){
+					scorerNameList =  hubRes.getResults().getScorerListOfSchedule().get(0).getScorerNamesList();
+					
+				}
+			}
+			
+
+		}else{
+			ModelAndView model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
+		}
+		
+		
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}
+	return scorerNameList;
+}
+
+@RequestMapping(value="/deletePortalScorerFromAssignPage", method = RequestMethod.POST)
+public @ResponseBody List<ScorerNameList> deletePortalScorerFromAssignPage(HttpServletRequest req, @RequestBody Scheduler scheduler) throws CSException{
+	List<ScorerNameList> scorerNameList = null;
+	try{
+		HttpSession session = req.getSession(true);
+		if(session != null && session.getAttribute("USRID") != null){			
+			hubReq = new HubRequest();
+			hubReq.setMsgType(127);
+			ModelMap map = new ModelMap();
+			map.put("tournamentSchedulerId", scheduler.getTournamentSchedulerId());
+			map.put("scorerName", "PORTAL");
+			map.put("scorerId", scheduler.getUserId());
+			hubReq.setRequestParam(map);			
+			//System.out.println("tournamentSchedulerId : "+scheduler.getTournamentSchedulerId());
+			GsonBuilder builder = new GsonBuilder();
+			Gson gson  = builder.create();			
+			String response = cricketSocialRestTemplateService.userRegistration(hubReq);			
+			if(response != null){
+				HubResponse hubRes = gson.fromJson(response, HubResponse.class);
+				if(hubRes != null && hubRes.getResults() != null){
+					scorerNameList =  hubRes.getResults().getScorerListOfSchedule().get(0).getScorerNamesList();
+				}
+			}
+		}else{
+			ModelAndView model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
+		}
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}
+	return scorerNameList;
+}
+
+@RequestMapping(value="/addPortalScorerFromAssignPage", method = RequestMethod.POST)
+public @ResponseBody List<ScorerNameList> addPortalScorerFromAssignPage(HttpServletRequest req, @RequestBody Scheduler scheduler) throws CSException{
+	List<ScorerNameList> scorerNameList = null;
+	try{
+		HttpSession session = req.getSession(true);
+		if(session != null && session.getAttribute("USRID") != null){
+			
+			hubReq = new HubRequest();
+			hubReq.setMsgType(128);
+			ModelMap map = new ModelMap();
+			map.put("scorerId", scheduler.getUserId());
+			map.put("scorerName", "PORTAL");
+			map.put("tournamentSchedulerId", scheduler.getTournamentSchedulerId());
+			hubReq.setRequestParam(map);
+			
+			GsonBuilder builder = new GsonBuilder();
+			Gson gson  = builder.create();
+			
+			String response = cricketSocialRestTemplateService.userRegistration(hubReq);
+			
+			if(response != null){
+				HubResponse hubRes = gson.fromJson(response, HubResponse.class);
+				if(hubRes != null && hubRes.getResults() != null){
+					scorerNameList =  hubRes.getResults().getScorerListOfSchedule().get(0).getScorerNamesList();
+					
+				}
+			}
+			
+
+		}else{
+			ModelAndView model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
+		}
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}
+	return scorerNameList;
+}
+
+
+@RequestMapping(value="/filterForScheduleListAssignPortalScorer", method = RequestMethod.POST)
+public ModelAndView filterForScheduleListAssignPortalScorer(HttpServletRequest req, @ModelAttribute GameSchedule gs ) throws CSException{
+	ModelAndView mav = null;
+	try{
+		HttpSession session = req.getSession(true);
+		if(session != null && session.getAttribute("USRID") != null){
+			UUID userId = (UUID) session.getAttribute("USRID");
+			 String boardId = req.getParameter("boardId");
+			 String fromDate = req.getParameter("fromDate");
+			 String toDate = req.getParameter("toDate");			
+			mav = new ModelAndView("AssignPortalScorer");
+			mav.addObject("boardId", boardId);			
+			//*************************** Getting Board info  ***************************************
+			 HubRequest hubReq1=new HubRequest();
+			 hubReq1.setMsgType(40);
+			 ModelMap map1=new ModelMap();			
+			 map1.put("userId", userId);			 
+			 map1.put("boardId", boardId);
+			 hubReq1.setRequestParam(map1);
+			 String strBoarddetail=cricketSocialRestTemplateService.userRegistration(hubReq1);
+			 GsonBuilder builder = new GsonBuilder();
+			 Gson gson = builder.create();
+			 if(strBoarddetail!=null){
+				 HubResponse hubResponse1= gson.fromJson(strBoarddetail, HubResponse.class);
+				if(hubResponse1!=null && hubResponse1.getResults().getBoardStatusDetail()!=null && hubResponse1.getResults().getBoardStatusDetail().size()>0){						 
+					 mav.addObject("BoradInfo", hubResponse1.getResults().getBoardStatusDetail().get(0));						
+							}
+			 }			
+			 hubReq= new HubRequest();
+			 hubReq.setMsgType(41);
+			 ModelMap map2=new ModelMap();
+			 map2.put("userId", userId);
+			 map2.put("startNode", 0);
+			 map2.put("endNode", 200);
+			  hubReq.setRequestParam(map2);
+
+				 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);	
+				 if(strBoardList!=null)
+				 {
+					 HubResponse hubResponse= gson.fromJson(strBoardList, HubResponse.class);
+					 if(hubResponse!=null && hubResponse.getResults()!=null)
+					 {
+						 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
+					 }
+				 }				 
+				
+
+				 String fromDateString = null;
+				 String toDateString = null;
+				 
+				
+				 if(fromDate != null && fromDate != ""){
+					 String[] spliteDOB = fromDate.split("/");
+						
+					 String monthInEditProfile = spliteDOB[0];
+					 String dayInEditProfile = spliteDOB[1];
+					 String yearInEditProfile = spliteDOB[2];
+					 
+					
+					  fromDateString= yearInEditProfile+'-'+monthInEditProfile+'-'+dayInEditProfile;
+					 System.out.println(fromDateString);
+					 }
+				 
+				 if(toDate != null && toDate != ""){
+					 String[] spliteDOB = toDate.split("/");
+						
+					 String monthInEditProfile = spliteDOB[0];
+					 String dayInEditProfile = spliteDOB[1];
+					 String yearInEditProfile = spliteDOB[2];
+					 
+					
+					 toDateString= yearInEditProfile+'-'+monthInEditProfile+'-'+dayInEditProfile;
+					 System.out.println(toDateString);
+					 }
+				 
+				 if(fromDateString != null && toDateString != null){
+
+
+					 System.out.println("inside if");
+					 
+					 hubReq = new HubRequest(221);
+						hubReq.setMsgType(221);
+						ModelMap m = new ModelMap();
+						m.put("createdBy", boardId);
+						m.put("fromDateString", fromDateString);
+						m.put("toDateString", toDateString);
+						
+						hubReq.setRequestParam(m);
+						String tournamentList = cricketSocialRestTemplateService.userRegistration(hubReq);
+						if(tournamentList !=  null){
+							HubResponse  hubRes = gson.fromJson(tournamentList, HubResponse.class);
+							if(hubRes !=  null && hubRes.getResults() !=  null){
+								mav.addObject("tournamentList", hubRes.getResults().getTournamentSchedulerList());
+								
+								mav.addObject("dateString", hubRes.getResults().getEndDateStr());
+								mav.addObject("startDate", hubRes.getResults().getStartDateStr());
+								
+								String endDate = hubRes.getResults().getEndDateStr();
+
+								String startDate = hubRes.getResults().getStartDateStr();
+								String[] spliteDOB1 = startDate.split("-");
+								
+								 String monthInEditProfile1 = spliteDOB1[0];
+								 String dayInEditProfile1 = spliteDOB1[1];
+								 String yearInEditProfile1 = spliteDOB1[2];
+								
+								 String startDateSet= dayInEditProfile1+'/'+yearInEditProfile1+'/'+monthInEditProfile1;
+								
+								
+									mav.addObject("startDateSet", startDateSet);
+								
+								
+								String[] spliteDOB = endDate.split("-");
+								
+								 String monthInEditProfile = spliteDOB[0];
+								 String dayInEditProfile = spliteDOB[1];
+								 String yearInEditProfile = spliteDOB[2];
+								 
+								
+								 String endDateSet= dayInEditProfile+'/'+yearInEditProfile+'/'+monthInEditProfile;
+								
+								 mav.addObject("endDateSet", endDateSet);
+								
+							
+							}
+						}
+					 
+				 }else{
+					 
+					 hubReq = new HubRequest(104);
+						hubReq.setMsgType(104);
+						ModelMap m = new ModelMap();
+						m.put("createdBy", boardId);
+						m.put("previousNextFlag", "current");
+						
+						hubReq.setRequestParam(m);
+						String tournamentList = cricketSocialRestTemplateService.userRegistration(hubReq);
+						if(tournamentList !=  null){
+							HubResponse  hubRes = gson.fromJson(tournamentList, HubResponse.class);
+							if(hubRes !=  null && hubRes.getResults() !=  null){
+								mav.addObject("tournamentList", hubRes.getResults().getTournamentSchedulerList());
+								
+								mav.addObject("dateString", hubRes.getResults().getEndDateStr());
+								mav.addObject("startDate", hubRes.getResults().getStartDateStr());
+								
+								String endDate = hubRes.getResults().getEndDateStr();
+
+								String startDate = hubRes.getResults().getStartDateStr();
+								String[] spliteDOB1 = startDate.split("-");
+								
+								 String monthInEditProfile1 = spliteDOB1[0];
+								 String dayInEditProfile1 = spliteDOB1[1];
+								 String yearInEditProfile1 = spliteDOB1[2];
+								
+								 String startDateSet= dayInEditProfile1+'/'+yearInEditProfile1+'/'+monthInEditProfile1;
+								
+								
+									mav.addObject("startDateSet", startDateSet);
+								
+								
+								String[] spliteDOB = endDate.split("-");
+								
+								 String monthInEditProfile = spliteDOB[0];
+								 String dayInEditProfile = spliteDOB[1];
+								 String yearInEditProfile = spliteDOB[2];
+								 
+								
+								 String endDateSet= dayInEditProfile+'/'+yearInEditProfile+'/'+monthInEditProfile;
+								
+								 mav.addObject("endDateSet", endDateSet);
+								
+								
+							}
+						}
+					 
+				 }
+				 
+			 
+			}
+			else{
+				mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
+			}
+			
+			
+		
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}
+	return mav;
+}
+
+
+
+@RequestMapping(value="/AssignPortalScorer/profile/boardId/{boardId}", method=RequestMethod.GET)
+public ModelAndView assignPortalScorerProfile(HttpServletRequest req, @PathVariable String boardId) throws CSException{
+	ModelAndView mav = null;
+	try{
+		if(isUUID(boardId)){
+		HttpSession session = req.getSession(true);
+		
+		if(session != null && session.getAttribute("USRID") != null){
+		
+			UUID userId = (UUID) session.getAttribute("USRID");
+			
+		mav = new ModelAndView("AssignPortalScorerProfile");
+		//*************************** Getting Board info  ***************************************
+		 HubRequest hubReq1=new HubRequest();
+		 hubReq1.setMsgType(40);
+		 ModelMap map1=new ModelMap();			
+		 map1.put("userId", userId);			 
+		 map1.put("boardId", boardId);
+		 hubReq1.setRequestParam(map1);
+		 String strBoarddetail=cricketSocialRestTemplateService.userRegistration(hubReq1);
+		 GsonBuilder builder = new GsonBuilder();
+		 Gson gson = builder.create();
+		 if(strBoarddetail!=null){
+			 HubResponse hubResponse1= gson.fromJson(strBoarddetail, HubResponse.class);
+			if(hubResponse1!=null && hubResponse1.getResults().getBoardStatusDetail()!=null && hubResponse1.getResults().getBoardStatusDetail().size()>0){						 
+				 mav.addObject("BoradInfo", hubResponse1.getResults().getBoardStatusDetail().get(0));	
+				 final String context = req.getContextPath();
+				 MenuList menuList= Util.leaugeMenuList(hubResponse1.getResults().getBoardStatusDetail().get(0), session.getAttribute("USRID")+"", context);						
+				 mav.addObject("LeaugeMenuList", menuList);
+				
+			}
+		 }
+		 
+		 hubReq = new HubRequest(104);
+			hubReq.setMsgType(104);
+			ModelMap m = new ModelMap();
+			m.put("createdBy", boardId);
+			m.put("previousNextFlag", "current");
+			hubReq.setRequestParam(m);
+			String tournamentList = cricketSocialRestTemplateService.userRegistration(hubReq);
+			if(tournamentList !=  null){
+				HubResponse  hubRes = gson.fromJson(tournamentList, HubResponse.class);
+				if(hubRes !=  null && hubRes.getResults() !=  null){
+					mav.addObject("tournamentList", hubRes.getResults().getTournamentSchedulerList());
+					
+					mav.addObject("dateString", hubRes.getResults().getEndDateStr());
+					mav.addObject("startDate", hubRes.getResults().getStartDateStr());
+					
+					String endDate = hubRes.getResults().getEndDateStr();
+
+					String startDate = hubRes.getResults().getStartDateStr();
+					String[] spliteDOB1 = startDate.split("-");
+					
+					 String monthInEditProfile1 = spliteDOB1[0];
+					 String dayInEditProfile1 = spliteDOB1[1];
+					 String yearInEditProfile1 = spliteDOB1[2];
+					
+					 String startDateSet= dayInEditProfile1+'/'+yearInEditProfile1+'/'+monthInEditProfile1;
+					
+					
+						mav.addObject("startDateSet", startDateSet);
+					
+					
+					String[] spliteDOB = endDate.split("-");
+					
+					 String monthInEditProfile = spliteDOB[0];
+					 String dayInEditProfile = spliteDOB[1];
+					 String yearInEditProfile = spliteDOB[2];
+					 
+					
+					 String endDateSet= dayInEditProfile+'/'+yearInEditProfile+'/'+monthInEditProfile;
+					
+					 mav.addObject("endDateSet", endDateSet);
+					
+				}
+			}
+			
+			
+				 hubReq= new HubRequest();
+				 hubReq.setMsgType(41);
+				 ModelMap map2=new ModelMap();
+				 map2.put("userId", userId);
+				 map2.put("startNode", 0);
+				 map2.put("endNode", 200);
+				  hubReq.setRequestParam(map2);
+
+					 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);	
+					 if(strBoardList!=null)
+					 {
+						 HubResponse hubResponse= gson.fromJson(strBoardList, HubResponse.class);
+						 if(hubResponse!=null && hubResponse.getResults()!=null)
+						 {
+							 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
+						 }
+					 }
+			
+		}else{
+		ModelAndView model=new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
+		}
+		}else{
+			mav=new ModelAndView("redirect:/login.htm?loginvalidation=InvalidUUID");
+		}
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}
+	
+	return mav;
+	
+}
+
+
+
+
+@RequestMapping(value="/filterForScheduleListAssignPortalScorerProfile", method = RequestMethod.POST)
+public ModelAndView filterForScheduleListAssignPortalScorerProfile(HttpServletRequest req, @ModelAttribute GameSchedule gs ) throws CSException{
+	ModelAndView mav = null;
+	try{
+		HttpSession session = req.getSession(true);
+		if(session != null && session.getAttribute("USRID") != null){
+			UUID userId = (UUID) session.getAttribute("USRID");
+			 String boardId = req.getParameter("boardId");
+			 String fromDate = req.getParameter("fromDate");
+			 String toDate = req.getParameter("toDate");			
+			mav = new ModelAndView("AssignPortalScorerProfile");
+			mav.addObject("boardId", boardId);			
+			//*************************** Getting Board info  ***************************************
+			 HubRequest hubReq1=new HubRequest();
+			 hubReq1.setMsgType(40);
+			 ModelMap map1=new ModelMap();			
+			 map1.put("userId", userId);			 
+			 map1.put("boardId", boardId);
+			 hubReq1.setRequestParam(map1);
+			 String strBoarddetail=cricketSocialRestTemplateService.userRegistration(hubReq1);
+			 GsonBuilder builder = new GsonBuilder();
+			 Gson gson = builder.create();
+			 if(strBoarddetail!=null){
+				 HubResponse hubResponse1= gson.fromJson(strBoarddetail, HubResponse.class);
+				if(hubResponse1!=null && hubResponse1.getResults().getBoardStatusDetail()!=null && hubResponse1.getResults().getBoardStatusDetail().size()>0){						 
+					 mav.addObject("BoradInfo", hubResponse1.getResults().getBoardStatusDetail().get(0));						
+							
+					 final String context = req.getContextPath();
+					 MenuList menuList= Util.leaugeMenuList(hubResponse1.getResults().getBoardStatusDetail().get(0), session.getAttribute("USRID")+"", context);						
+					 mav.addObject("LeaugeMenuList", menuList);
+				
+				}
+			 }			
+			 hubReq= new HubRequest();
+			 hubReq.setMsgType(41);
+			 ModelMap map2=new ModelMap();
+			 map2.put("userId", userId);
+			 map2.put("startNode", 0);
+			 map2.put("endNode", 200);
+			  hubReq.setRequestParam(map2);
+
+				 String strBoardList=cricketSocialRestTemplateService.userRegistration(hubReq);	
+				 if(strBoardList!=null)
+				 {
+					 HubResponse hubResponse= gson.fromJson(strBoardList, HubResponse.class);
+					 if(hubResponse!=null && hubResponse.getResults()!=null)
+					 {
+						 mav.addObject("BoardList", hubResponse.getResults().getBoardsList());
+					 }
+				 }				 
+				
+
+				 String fromDateString = null;
+				 String toDateString = null;
+				 
+				
+				 if(fromDate != null && fromDate != ""){
+					 String[] spliteDOB = fromDate.split("/");
+						
+					 String monthInEditProfile = spliteDOB[0];
+					 String dayInEditProfile = spliteDOB[1];
+					 String yearInEditProfile = spliteDOB[2];
+					 
+					
+					  fromDateString= yearInEditProfile+'-'+monthInEditProfile+'-'+dayInEditProfile;
+					 System.out.println(fromDateString);
+					 }
+				 
+				 if(toDate != null && toDate != ""){
+					 String[] spliteDOB = toDate.split("/");
+						
+					 String monthInEditProfile = spliteDOB[0];
+					 String dayInEditProfile = spliteDOB[1];
+					 String yearInEditProfile = spliteDOB[2];
+					 
+					
+					 toDateString= yearInEditProfile+'-'+monthInEditProfile+'-'+dayInEditProfile;
+					 System.out.println(toDateString);
+					 }
+				 
+				 if(fromDateString != null && toDateString != null){
+
+
+					 System.out.println("inside if");
+					 
+					 hubReq = new HubRequest(221);
+						hubReq.setMsgType(221);
+						ModelMap m = new ModelMap();
+						m.put("createdBy", boardId);
+						m.put("fromDateString", fromDateString);
+						m.put("toDateString", toDateString);
+						
+						hubReq.setRequestParam(m);
+						String tournamentList = cricketSocialRestTemplateService.userRegistration(hubReq);
+						if(tournamentList !=  null){
+							HubResponse  hubRes = gson.fromJson(tournamentList, HubResponse.class);
+							if(hubRes !=  null && hubRes.getResults() !=  null){
+								mav.addObject("tournamentList", hubRes.getResults().getTournamentSchedulerList());
+								
+								mav.addObject("dateString", hubRes.getResults().getEndDateStr());
+								mav.addObject("startDate", hubRes.getResults().getStartDateStr());
+								
+								String endDate = hubRes.getResults().getEndDateStr();
+
+								String startDate = hubRes.getResults().getStartDateStr();
+								String[] spliteDOB1 = startDate.split("-");
+								
+								 String monthInEditProfile1 = spliteDOB1[0];
+								 String dayInEditProfile1 = spliteDOB1[1];
+								 String yearInEditProfile1 = spliteDOB1[2];
+								
+								 String startDateSet= dayInEditProfile1+'/'+yearInEditProfile1+'/'+monthInEditProfile1;
+								
+								
+									mav.addObject("startDateSet", startDateSet);
+								
+								
+								String[] spliteDOB = endDate.split("-");
+								
+								 String monthInEditProfile = spliteDOB[0];
+								 String dayInEditProfile = spliteDOB[1];
+								 String yearInEditProfile = spliteDOB[2];
+								 
+								
+								 String endDateSet= dayInEditProfile+'/'+yearInEditProfile+'/'+monthInEditProfile;
+								
+								 mav.addObject("endDateSet", endDateSet);
+								
+							
+							}
+						}
+					 
+				 }else{
+					 
+					 hubReq = new HubRequest(104);
+						hubReq.setMsgType(104);
+						ModelMap m = new ModelMap();
+						m.put("createdBy", boardId);
+						m.put("previousNextFlag", "current");
+						
+						hubReq.setRequestParam(m);
+						String tournamentList = cricketSocialRestTemplateService.userRegistration(hubReq);
+						if(tournamentList !=  null){
+							HubResponse  hubRes = gson.fromJson(tournamentList, HubResponse.class);
+							if(hubRes !=  null && hubRes.getResults() !=  null){
+								mav.addObject("tournamentList", hubRes.getResults().getTournamentSchedulerList());
+								
+								mav.addObject("dateString", hubRes.getResults().getEndDateStr());
+								mav.addObject("startDate", hubRes.getResults().getStartDateStr());
+								
+								String endDate = hubRes.getResults().getEndDateStr();
+
+								String startDate = hubRes.getResults().getStartDateStr();
+								String[] spliteDOB1 = startDate.split("-");
+								
+								 String monthInEditProfile1 = spliteDOB1[0];
+								 String dayInEditProfile1 = spliteDOB1[1];
+								 String yearInEditProfile1 = spliteDOB1[2];
+								
+								 String startDateSet= dayInEditProfile1+'/'+yearInEditProfile1+'/'+monthInEditProfile1;
+								
+								
+									mav.addObject("startDateSet", startDateSet);
+								
+								
+								String[] spliteDOB = endDate.split("-");
+								
+								 String monthInEditProfile = spliteDOB[0];
+								 String dayInEditProfile = spliteDOB[1];
+								 String yearInEditProfile = spliteDOB[2];
+								 
+								
+								 String endDateSet= dayInEditProfile+'/'+yearInEditProfile+'/'+monthInEditProfile;
+								
+								 mav.addObject("endDateSet", endDateSet);
+								
+								
+							}
+						}
+					 
+				 }
+				 
+			 
+			}
+			else{
+				mav = new ModelAndView("redirect:/login.htm?loginvalidation=Your session has been expired");
+			}
+			
+			
+		
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}
+	return mav;
+}
 
 public boolean isUUID(String string) {
     try {

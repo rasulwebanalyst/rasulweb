@@ -458,8 +458,9 @@ $(function() {
 	  
 	  
 	  $(".OnlyNumber").on("keypress keyup blur",function (event) {    
-          $(this).val($(this).val().replace(/[^\d].+/, ""));
-           if ((event.which < 48 || event.which > 57)) {
+        //  $(this).val($(this).val().replace(/[^\d].+/, ""));
+         //  if ((event.which < 48 || event.which > 57)) {
+		  if (event.which != 8 && event.which != 0 && (event.which < 48 || event.which > 57) && event.which != 46) {
                event.preventDefault();
            }
        });
