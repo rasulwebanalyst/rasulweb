@@ -386,6 +386,25 @@ margin: 0;
             </div>
  
  	</div>
+ 	
+ 	
+ 	 <div id="popupDivAbandand" class="popupDiv" style="display: none;">
+
+           <div class="box">
+                <span class="head">Reason</span>
+                <span class="close_btn" > <i class="fa fa-close" onclick="okFun()"></i> </span>
+
+                <div class="popupContentDiv">
+                
+                		
+                        	<textarea class="form-control" id="abandandreason" rows="5" placeholder=""></textarea>
+                          
+                          <div class="centerbtns"><button type="button" class="btn btn-default blueBtn" onclick="Abandandcancel()">OK</button></div>
+                       
+                </div>
+            </div>
+ 
+ 	</div>
 
 
 
@@ -1303,6 +1322,7 @@ date.add(java.util.Calendar.DATE, +6);
 	 function okFun(){
 		 $("#popupDiv").hide();
 		 $("#cancelMatchSchedule").hide();
+		 $("#popupDivAbandand").hide();
 	 }
 	 
 	 function cancelFunction(){
@@ -2635,50 +2655,7 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
                 		  var completedPop = $("input[name='gender']:checked").val();	
                 		    if(completedPop=='2'){
                 		    	$("#cancelMatchSchedule").hide();
-                		    	
-                		    	
-                		    	var boardId = "${boardId}";
-                		   	 var id = $("#hiddenIdForCancel").val();
-                		   	 var reason = $("#reason").val();
-                		   	 
-                		   	 var scheduler = {
-                		   			 tournamentSchedulerId : id,
-                		   			 scheduleCancelReason : reason,
-                		   			 statusType:"NoResult"
-                		   	 }
-                		   	 $.ajax({
-                		   		type:"Post",
-                		   		url:"${pageContext.request.contextPath}/cancelSchedule",
-                		   		data : JSON.stringify(scheduler),
-                		   		contentType :"application/json",
-                		   		success : function(res){
-                		   			if(res == "Schedule cancelled"){
-                            		   	displaynotification("Game Cancelled successfully",2000);
-                		   			window.location.href = "${pageContext.request.contextPath}/GameSchedule/boardId/"+boardId;
-                		   			}
-                        		   	else{
-                        		   	displaynotification("Match has been abandoned",2000);
-                        		   	window.location.href = "${pageContext.request.contextPath}/CancelGameByDate/boardId/"+boardId;
-                        		   	}
-                		   			
-                		   			
-                		   			},
-                		   		error:function(err){
-                		   			console.log(err);
-                		   		}
-                		   		 
-                		   	 })
-                		    /*if(res == "Schedule cancelled"){
-                		   	displaynotification("Game Cancelled successfully",2000);
-                		   	window.location.href = "${pageContext.request.contextPath}/CancelGameByDate/boardId/"+boardId;
-
-                		   	}
-                		   	else{
-                		   	displaynotification("Match has been Abandoned / No result",2000);
-                		   	window.location.href = "${pageContext.request.contextPath}/CancelGameByDate/boardId/"+boardId;
-                		   	}
-                		    */
-                		    	
+                		    	$("#popupDivAbandand").show();	 
                 		    }
                 		    else
                 		    	{	   
@@ -2686,6 +2663,45 @@ function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
                 			   $("#popupDiv").show();	 
                 		    	}
                 	 }	
+                	
+                	
+                	 function Abandandcancel(){
+                		 
+                		 $("#popupDivAbandand").hide();	
+                			
+                		 var boardId = "${boardId}";
+            		   	 var id = $("#hiddenIdForCancel").val();
+            		   	var reason = $("#abandandreason").val();
+            		   	 
+            		   	 var scheduler = {
+            		   			 tournamentSchedulerId : id,
+            		   			 scheduleCancelReason : reason,
+            		   			 statusType:"NoResult"
+            		   	 }
+            		   	 $.ajax({
+            		   		type:"Post",
+            		   		url:"${pageContext.request.contextPath}/cancelSchedule",
+            		   		data : JSON.stringify(scheduler),
+            		   		contentType :"application/json",
+            		   		success : function(res){
+            		   			if(res == "Schedule cancelled"){
+                        		   	displaynotification("Game Cancelled successfully",2000);
+            		   			window.location.href = "${pageContext.request.contextPath}/GameSchedule/boardId/"+boardId;
+            		   			}
+                    		   	else{
+                    		   	displaynotification("Match has been abandoned",2000);
+                    		   	window.location.href = "${pageContext.request.contextPath}/GameSchedule/boardId/"+boardId;
+                    		   	}
+            		   			
+            		   			
+            		   			},
+            		   		error:function(err){
+            		   			console.log(err);
+            		   		}
+            		   		 
+            		   	 })
+                		 
+                	 }	 
                 	
                 	</script>
    

@@ -711,7 +711,12 @@ $(document).ready(function(){
 	resultsFormatter: function(item){ 
 		
 		
-		
+		var citystate="";
+		if(item.city=="UNKNOWN"&& item.state=="UNKNOWN"||item.city==""&&item.state==""||item.city=="null"&&item.state=="null"||item.city==null&&item.state==null){
+			citystate= item.city;
+    	}else{
+    		citystate= item.city+','+item.state; 
+    	}
 		
 		
 var htm="";
@@ -785,7 +790,7 @@ var htm="";
 		
 		
 		
-		return "<li>" + "<img onError='userErrorDefaultImg(this)' src='" + item.userImageUrl + "' title='" + item.fullName + "' height='25px' width='25px' />" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name'>" + item.fullName + "</div></div>"+htm+"</li>" },
+		return "<li>" + "<img onError='userErrorDefaultImg(this)' src='" + item.userImageUrl + "' title='" + item.fullName + "' height='25px' width='25px' />" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name'>" + item.fullName + " "+citystate+"</div></div>"+htm+"</li>" },
 	preventDuplicates: true,
 	propertyToSearch: "fullName",
 	theme: "facebook",   
@@ -949,6 +954,13 @@ var htm="";
 		resultsFormatter: function(item){ 
 			
 			
+			var citystate="";
+			if(item.city=="UNKNOWN"&& item.state=="UNKNOWN"||item.city==""&&item.state==""||item.city=="null"&&item.state=="null"||item.city==null&&item.state==null){
+				citystate= item.city;
+	    	}else{
+	    		citystate= item.city+','+item.state; 
+	    	}
+			
 			var htm="";
 			
 			
@@ -1019,7 +1031,7 @@ var htm="";
 			
 			
 			
-			return "<li>" + "<img onError='userErrorDefaultImg(this)' src='" + item.userImageUrl + "' title='" + item.fullName + "' height='25px' width='25px' />" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name'>" + item.fullName + "</div></div>"+htm+"</li>" },
+			return "<li>" + "<img onError='userErrorDefaultImg(this)' src='" + item.userImageUrl + "' title='" + item.fullName + "' height='25px' width='25px' />" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name'>" + item.fullName + " "+citystate+"</div></div>"+htm+"</li>" },
 		preventDuplicates: true,
 		propertyToSearch: "fullName",
 		theme: "facebook",   
@@ -1043,6 +1055,126 @@ var htm="";
 	  }
 	}
 	});
+	
+	
+	
+	
+	
+// portal
+	
+	var portalscorerArray=[];
+		$("#portalscorerId").tokenInput(ctx+"/umpireSearchForCreateScheduler/",{
+		resultsFormatter: function(item){ 
+			
+			var citystate="";
+			if(item.city=="UNKNOWN"&& item.state=="UNKNOWN"||item.city==""&&item.state==""||item.city=="null"&&item.state=="null"||item.city==null&&item.state==null){
+				citystate= item.city;
+	    	}else{
+	    		citystate= item.city+','+item.state; 
+	    	}
+			
+			
+			
+			
+			var htm="";
+			console.log(item.teamboardlist.length);
+			i++;
+			var m=0;
+			if(item.teamboardlist.length > 0)
+	        {
+	      	  
+	      	  htm +=" <div onmouseover=getposition("+i+") id=eye"+i+" class='tooltip1'><i class='fa fa-eye' aria-hidden='true' style='float: right;'></i>";
+	  		  htm +="<div id=showtool"+i+" class='tooltiptext1'>";
+	  		  
+
+	    		htm +="<div id='dropdown"+item.userId+"' class='test' >";
+	           
+	            for(var j in item.teamboardlist){
+	          	  
+	            var teamlist=item.teamboardlist[j];
+
+	            htm +="<ul><li><span class='sponser-Flow' title='"+teamlist.boardName+"'>"+teamlist.boardName+"</span>";
+	            
+	            var leagueboardlist=item.teamboardlist[j].leagueBoardList;
+	            
+	            
+	            if(leagueboardlist!=null && leagueboardlist.length > 0){
+	          	 
+	          		/*   htm +=" afflicated to "; */
+	          		  
+	          		  
+	          		  htm +=" <div class='tooltip2' onmouseover=getpositiontext("+m+") id=leagues"+m+">Leagues";
+	          		  htm +="<span id=showtooltext"+m+" class='tooltiptext2'><ul>";
+	          		  for(var k in leagueboardlist){
+	          			  htm +="<li>"+leagueboardlist[k].boardName+"</li>";
+	          		  
+	          		  }
+	          		 m++;
+	          			  htm +="</ul></span>";
+	          		  htm +="</div>";
+	            }
+	            
+	            htm +="</li></ul>";
+	            
+	            }
+	            htm +="</div>";
+	            
+	            htm +="</div>";
+	  		  htm +="</div>";
+	            
+	        }else{
+	      	  
+	        // no record
+	      	  htm +=" <div onmouseover=getposition("+i+") id=eye"+i+" class='tooltip1'><i class='fa fa-eye' aria-hidden='true' style='float: right;'></i>";
+	  		  htm +="<div id=showtool"+i+" class='tooltiptext1'>";
+	  		  
+
+	    		htm +="<div id='dropdown"+item.userId+"' class='test' >";
+	           
+
+	            htm +="<ul><li style='text-align: center;'>No Details</li></ul>";
+	           
+	            htm +="</div>";
+	            
+	            htm +="</div>";
+	  		  htm +="</div>";
+	        
+	        }
+
+			
+			
+			
+			return "<li>" + "<img onError='userErrorDefaultImg(this)' src='" + item.userImageUrl + "' title='" + item.fullName + "' height='25px' width='25px' />" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name'>" + item.fullName + " "+citystate+"</div></div>"+htm+""
+			
+			
+			+"</li>" },
+		preventDuplicates: true,
+		propertyToSearch: "fullName",
+		theme: "facebook",   
+		onAdd: function (item) {
+			portalscorerArray.push(item.id);
+			$('#portalhiddenScorerId').val(portalscorerArray);
+			scorerFunction();
+		},
+		onDelete: function (item) {
+	    	var index = portalscorerArray.indexOf(item.id);
+			if (index >= 0) {
+				portalscorerArray.splice( index, 1 );
+			}
+			$('#portalhiddenScorerId').val(portalscorerArray);
+			scorerFunction();
+	},onResult: function (item) {
+	    if($.isEmptyObject(item)){
+	        return [{id:'0',name: "No Results Found"}];
+	  }else{
+	        return item;
+	  }
+	}
+	});
+	
+	
+	
+	
 	
 	var tournamentName = $("#tournamentSelectBoxDIv :selected").text();
 	$(".tournamentSelectBoxOut").text(tournamentName);

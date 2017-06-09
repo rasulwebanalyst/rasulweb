@@ -120,6 +120,25 @@ var formatAMPMTime = function(date) {
             </div>
  
  	</div>
+ 	
+ 	<div id="popupDivAbandand" class="popupDiv" style="display: none;">
+
+           <div class="box">
+                <span class="head">Reason</span>
+                <span class="close_btn" > <i class="fa fa-close" onclick="okFun()"></i> </span>
+
+                <div class="popupContentDiv">
+                
+                		
+                        	<textarea class="form-control" id="abandandreason" rows="5" placeholder=""></textarea>
+                          
+                          <div class="centerbtns"><button type="button" class="btn btn-default blueBtn" onclick="Abandandcancel()">OK</button></div>
+                       
+                </div>
+            </div>
+ 
+ 	</div>
+ 	
       
       <div class="col-md-10">
       		<div class="col-md-12 whiteBox">
@@ -129,14 +148,14 @@ var formatAMPMTime = function(date) {
                      	
                         
                         <div class="col-md-3 noLeftPad">
-                        <label for="">From Date</label> <input type="text" class="form-control datepicker calIconImg" placeholder="" id="fromDate" name="fromDate"> 
+                        <label for="">From Date</label> <input type="text" class="form-control datepicker calIconImg" placeholder="" id="fromDate" name="fromDate" value="${startDateSet}"> 
                           <span id="error" style="color:red"></span>
                          <!--  <i class="fa fa-calendar calIcon"></i> -->
                         </div>
                         
                         
                         <div class="col-md-3">
-                          <label for="">To Date</label> <input type="text" class="form-control datepicker calIconImg" placeholder="" id="toDate" name="toDate"> 
+                          <label for="">To Date</label> <input type="text" class="form-control datepicker calIconImg" placeholder="" id="toDate" name="toDate" value="${endDateSet}"> 
                           <span id="error1" style="color:red"></span>
                         <!--   <i class="fa fa-calendar calIcon"></i> -->
                         
@@ -466,6 +485,7 @@ var formatAMPMTime = function(date) {
 	 function okFun(){
 		 $("#popupDiv").hide();
 		 $("#cancelMatchSchedule").hide();
+		 $("#popupDivAbandand").hide();
 	 }
 	 
 	 function cancelFunction(){
@@ -519,8 +539,9 @@ var formatAMPMTime = function(date) {
   function cancelPage(){		 
 		 var completedPop = $("input[name='gender']:checked").val(); 
 		    if(completedPop=='2'){
-		    	$("#cancelMatchSchedule").hide();		    	
-		    	var boardId = "${boardId}";
+		    	$("#cancelMatchSchedule").hide();	
+		    	$("#popupDivAbandand").show();	 
+		    	/* var boardId = "${boardId}";
 				 var check = [];
 				   $('input[name=rr]:checked').map(function() {
 					   check.push($(this).val());
@@ -554,7 +575,7 @@ var formatAMPMTime = function(date) {
 					}
 						
 					})		    	
-		    	
+		    	 */
 		    	
 		    }
 		    else
@@ -570,6 +591,79 @@ var formatAMPMTime = function(date) {
 		    	}
 	 }	
   
+  function Abandandcancel(){
+		 
+		 $("#popupDivAbandand").hide();	
+			
+		 /* var boardId = "${boardId}";
+	   	 var id = $("#hiddenIdForCancel").val();
+	   	var reason = $("#abandandreason").val();
+	   	 
+	   	 var scheduler = {
+	   			 tournamentSchedulerId : id,
+	   			 scheduleCancelReason : reason,
+	   			 statusType:"NoResult"
+	   	 }
+	   	 $.ajax({
+	   		type:"Post",
+	   		url:"${pageContext.request.contextPath}/cancelSchedule",
+	   		data : JSON.stringify(scheduler),
+	   		contentType :"application/json",
+	   		success : function(res){
+	   			if(res == "Schedule cancelled"){
+     		   	displaynotification("Game Cancelled successfully",2000);
+	   			window.location.href = "${pageContext.request.contextPath}/CancelGameByDatePublicProfile/boardId/"+boardId;
+	   			}
+ 		   	else{
+ 		   	displaynotification("Match has been abandoned",2000);
+ 		   	window.location.href = "${pageContext.request.contextPath}/CancelGameByDatePublicProfile/boardId/"+boardId;
+ 		   	}
+	   			
+	   			
+	   			},
+	   		error:function(err){
+	   			console.log(err);
+	   		}
+	   		 
+	   	 }) */
+	   	 
+		 var boardId = "${boardId}";
+		 var check = [];
+		   $('input[name=rr]:checked').map(function() {
+			   check.push($(this).val());
+		   });		 
+		   var reason = $("#reason").val();		   
+			var bean = {
+					boardId : boardId,
+					shedulerArray : check,
+					scheduleCancelReason : reason,
+					statusType:"NoResult",
+			}			
+    	
+    	$.ajax({
+			type:"post",
+			url:"${pageContext.request.contextPath}/cancelGame",
+			data:JSON.stringify(bean),
+			contentType :"application/json",
+			success : function(res){
+				if(res == "Schedule cancelled"){
+				displaynotification("Game Cancelled successfully",2000);
+				window.location.href = "${pageContext.request.contextPath}/CancelGameByDatePublicProfile/boardId/"+boardId;
+
+				}
+				else{
+					displaynotification("Match has been abandoned",2000);
+					window.location.href = "${pageContext.request.contextPath}/CancelGameByDatePublicProfile/boardId/"+boardId;
+				}
+			},
+			error : function(err){
+				console.log("err");
+			}
+				
+			})		
+		 
+	 }	 
+	
   
   </script>
    

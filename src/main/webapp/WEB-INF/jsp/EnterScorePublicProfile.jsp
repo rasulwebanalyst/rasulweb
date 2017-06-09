@@ -177,7 +177,7 @@ table sup{
  		 <table class = "firInnBatting" id="firInnBattingTable">
   			<thead>
         	<tr>
-            	<th><sup>*</sup>Player Names</th>
+            	<th><sup>*</sup>Batsmen</th>
                 <th>Bowler</th>
                 <th>Fielder</th>
                 <th><sup>*</sup>Dismissal Type</th>
@@ -392,7 +392,7 @@ table sup{
  		 <table id="secInnBattingTable">
   			<thead>
         	<tr>
-                <th><sup>*</sup>Player Names</th>
+                <th><sup>*</sup>Batsmen</th>
                 <th>Bowler</th>
                 <th>Fielder</th>
                 <th><sup>*</sup>Dismissal Type</th>

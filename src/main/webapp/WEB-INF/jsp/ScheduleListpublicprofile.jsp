@@ -74,10 +74,10 @@
  			
  	});
 		
-		$(".datepicker").each(function() {    
+		/* $(".datepicker").each(function() {    
 		
 		    $(this).datepicker('setDate', $(this).val());
-		});
+		}); */
 		
 		
 		$('.datepicker').on('changeDate', function(ev){

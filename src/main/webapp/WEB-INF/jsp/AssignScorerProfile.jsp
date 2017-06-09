@@ -19,7 +19,7 @@ var formatAMPMTime = function(date) {
 	  hours = hours ? hours : 12; // the hour '0' should be '12'
 	  minutes = minutes < 10 ? '0'+minutes : minutes;
 	  hours = hours < 10 ? '0'+hours : hours ;
-	  var strTime = (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear();
+	  var strTime = (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear()+" "+ hours + ':' + minutes + ' ' + ampm;
 	  return strTime;
 	}
 	function test(id){
@@ -31,15 +31,32 @@ var formatAMPMTime = function(date) {
 	
 	}
 	
-	function getDateInObject(timestamp)
+	function formatDateValue(date1)
 	{
 		
-		var date = new Date(timestamp);
+		/* var date = new Date(timestamp);
 		var dateNew = new Date(date.getTime() + date.getTimezoneOffset()*60000);
 		var offset = new Date().getTimezoneOffset() * 60 * 1000;
 		var gettingFromServer= new Date(dateNew);
 		gettingFromServer = new Date(gettingFromServer.valueOf() - offset);
-		return formatAMPMTime(gettingFromServer); 
+		return formatAMPMTime(gettingFromServer);  */
+		
+		  var date = date1;
+		    var offset = new Date().getTimezoneOffset() * 60 * 1000;
+		var gettingFromServer= new Date(date);
+		gettingFromServer = new Date(gettingFromServer.valueOf() - offset);
+		 
+		  var hours = gettingFromServer.getHours();
+		  console.log(hours)
+		  var minutes = gettingFromServer.getMinutes();
+		  var ampm = hours >= 12 ? 'PM' : 'AM';
+		  hours = hours % 12;
+		  hours = hours ? hours : 12; // the hour '0' should be '12'
+		  minutes = minutes < 10 ? '0'+minutes : minutes;
+		  hours = hours < 10 ? '0'+hours : hours ;
+		  var strTimeHours = hours + ':' + minutes + ampm;
+		  var strTime = (gettingFromServer.getMonth()+1)+"/"+gettingFromServer.getDate()+"/"+gettingFromServer.getFullYear()+" "+strTimeHours;
+		  return strTime;
 	}
 	 
 </script> 
@@ -50,7 +67,7 @@ var formatAMPMTime = function(date) {
 
 				<div class="col-md-10">
       		<div class="col-md-12 whiteBox">
-		          <h1 class="">Assign App Scorer to schedule</h1>
+		          <h1 class="">Assign App scorer to a schedule</h1>
                   <form id="filterForm" method="POST" action="${pageContext.request.contextPath}/filterForScheduleListAssignScorerPubProf.htm">
                   <div class="col-md-12 noPadding">
                      	
@@ -130,6 +147,7 @@ var formatAMPMTime = function(date) {
                                     
                                     <tbody style="cursor:pointer">
                                     <c:forEach var="tourDetails" items="${tournamentList}" varStatus="loop">
+                                    <c:if test="${tourDetails.status eq 'Upcoming'}">
                                     <tr id="trid_${loop.count}" onclick="showScorerList('${tourDetails.tournamentSchedulerId}','${loop.count}')">
                                     	
                                       <td>${tourDetails.tournamentName}</td>
@@ -141,7 +159,7 @@ var formatAMPMTime = function(date) {
 												<td><a href="${pageContext.request.contextPath}/${tourDetails.awayTeamName}/board/${tourDetails.awayTeamId}">${tourDetails.awayTeamName}</a></td>
                                   
                                    </tr>
-                                   
+                                  </c:if> 
                   </c:forEach>
                               </tbody>
                             </table>
@@ -249,10 +267,10 @@ var formatAMPMTime = function(date) {
 						autoclose:true
 					});
 					
-					$(".datepicker").each(function() {    
+				/* 	$(".datepicker").each(function() {    
 					
 					    $(this).datepicker('setDate', $(this).val());
-					});
+					}); */
 					
 					
 					$('.datepicker').on('changeDate', function(ev){
@@ -267,7 +285,7 @@ var formatAMPMTime = function(date) {
    var scorerArray = [];
    
    function showScorerList(schedulerId, id){
-	   
+	   scorerArray = [];
 
 	   $("#myTableAssign").click(function(e) {
 		    if(e.target.tagName == "TD"){
@@ -362,6 +380,7 @@ var formatAMPMTime = function(date) {
 				 userId : scorerId,
 				 tournamentSchedulerId:schedulerId,
 		 }
+		 scorerArray = [];
 		 $.ajax({
 		
 			 type:"post",
@@ -417,7 +436,7 @@ var formatAMPMTime = function(date) {
 			
 			 if(scorerId == scorerArray[i])
 				 {
-				$("#error").html("This user already assigned as scorer for this schedule");
+				$("#error").html("This user already assigned as app scorer for this schedule");
 				 return false;
 				 }else{
 					 
@@ -514,7 +533,7 @@ var formatAMPMTime = function(date) {
 		 										if(users[i].fullName != null){
 		 											 name=users[i].fullName;
 		 										}
-		 								
+		 								/* 
 		 								html +="<li onclick=setValueToTextBox(this,'"+textBoxId+"','"+divId+"','"+users[i].id+"','"+hiddenId+"')><div class='media'><div class='media-left'>";
 				                            
 				                          
@@ -530,7 +549,32 @@ var formatAMPMTime = function(date) {
 				                       	 +'</div>'
 				              			+'</li>';
 		 									}
+		 								} */
+		 								
+		 								
+		 								
+		 										html +="<li class='selection-item' onclick=setValueToTextBox('"+name.replace(/ /g,"-")+"','"+textBoxId+"','"+divId+"','"+users[i].id+"','"+hiddenId+"')><div class='media'><div class='media-left'><a>";
+
+		 				                          
+		 				                      	if(users[i].userImageUrl != null && users[i].userImageUrl != ""){
+		 			                          		html +='<img onError="userErrorDefaultImg(this)" src="'+users[i].userImageUrl+'"  class="nav-avatar">';
+
+		 			                          	}else{
+		 			                          		html +='<img src="'+ctx+'/images/profileIcon.png" class="nav-avatar">';
+		 			                          	}
+		 				                      	html += "</a></div><div class='media-body'><a class='auto-blue'><h4 class='media-heading'> ";
+		 				                      	html+=""+name+"<br></a>";
+		 				                          if(users[i].city=="UNKNOWN"&&users[i].state=="UNKNOWN"||users[i].city==""&&users[i].state==""||users[i].city=="null"&&users[i].state=="null"||users[i].city==null&&users[i].state==null){
+		 				                        		html += '<span class="auto-black">'+users[i].city+'</span>';
+		 				                        	}else{
+		 				                        		html += '<span class="auto-black">'+users[i].city+','+users[i].state+'</span>'; 
+		 				                        	}
+
+		 				              			html+='</h4><div class="headRight" ></div></div></div></li>';
+		 									}
 		 								}
+		 								
+		 								
 		 								
 		 								
 												html+="</ul>";
@@ -562,7 +606,11 @@ var formatAMPMTime = function(date) {
 		 } 
 	 
 	 function setValueToTextBox(elem,textBox,divId,userId,hiddenId){
-			$('#'+textBox).val($(elem).text());
+			/* $('#'+textBox).val($(elem).text());
+			$('#'+divId).hide();	
+			$('#'+hiddenId).val(userId);	 */
+		 var name=elem.replace(/-/g," ");
+		    $('#'+textBox).val(name);
 			$('#'+divId).hide();	
 			$('#'+hiddenId).val(userId);	
 			
@@ -608,9 +656,12 @@ var formatAMPMTime = function(date) {
 	 			
 	 			 var startGameDate  = new Date(response.startDateStr);
 	 			 var endGameDate  = new Date(response.endDateStr);
-	 					
-	 			
-	 			i
+	 			 console.log(JSON.stringify(response));   			 
+   			     var fromStart = response.startDateStr.split("-");   		
+   			     var fromDateToDatePicker = fromStart[1]+"/"+fromStart[2]+"/"+fromStart[0];   			
+   			     var toEnd = response.endDateStr.split("-");
+   			     var toDateToDatePicker = toEnd[1]+"/"+toEnd[2]+"/"+toEnd[0];
+   			     
 				 if(text =='previous'){
 						document.getElementById("fromDate").value = startGameDate.toLocaleDateString();
 						document.getElementById("toDate").value = endGameDate.toLocaleDateString();
@@ -619,8 +670,8 @@ var formatAMPMTime = function(date) {
 						//document.getElementById("showTo").innerHTML = startGameDate.toLocaleDateString();
 						
 						
-						$('#toDate').datepicker('update',endGameDate.toLocaleDateString());
-						$("#fromDate").datepicker("update", startGameDate.toLocaleDateString());
+						$('#toDate').datepicker('update',toDateToDatePicker);
+						$("#fromDate").datepicker("update", fromDateToDatePicker);
 					
 					}
 					else{
@@ -634,8 +685,8 @@ var formatAMPMTime = function(date) {
 						document.getElementById("fromDate").value = startGameDate.toLocaleDateString();
 						
 						
-						$('#fromDate').datepicker('update',startGameDate.toLocaleDateString());
-						$("#toDate").datepicker("update", endGameDate.toLocaleDateString());
+						$('#fromDate').datepicker('update',fromDateToDatePicker);
+						$("#toDate").datepicker("update", toDateToDatePicker);
 					
 					}
 				
@@ -679,7 +730,7 @@ var formatAMPMTime = function(date) {
 	 			
 	 				for(var i=0; i<res.length; i++){
 	 					
-	 					var dateNewObject = getDateInObject(res[i].gameDate);
+	 					var dateNewObject = formatDateValue(res[i].gameDate);
 	 					
 	 					 console.log(res[i].gameDate);
 	 				//	var endDate = new Date(res[i].endDateString);
@@ -693,7 +744,7 @@ var formatAMPMTime = function(date) {
 	 					 console.log("date ======="+date.toLocaleDateString());
 	 					 var dateChange = date.toLocaleDateString();
 	 			
-	 					
+	 					if(res[i].status == "Upcoming"){
 	 					
 	 					html += "<tr id='trid_"+count+"' onclick='showScorerList(\""+res[i].tournamentSchedulerId+"\")'>";
 	 					html += '<td>'+res[i].tournamentName+'</td>';
@@ -707,8 +758,13 @@ var formatAMPMTime = function(date) {
 	 				
 	 					count++;
 	 				}
+	 				}
 	 				
 	 				html += '</tbody></table>';
+	 				
+	 				if(count == 1){
+	 					html += '<span id="errorSpan" class="noContentDivRed">No more '+text+' schedules available for this week</span>';
+	 				}
 	 			
 	 	
 	 				 $("#myTableAssign").html(html).trigger('create');

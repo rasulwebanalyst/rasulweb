@@ -305,7 +305,7 @@ function getGmailContacts() {
      //'client_id': '199727375065-10dcv13ql2vkdijvfrl6q1ifnruld40n.apps.googleusercontent.com', // Dev 
     	//	'client_id': '1077808914943-6qc5il3h9odjpnna5j1qsmh7i81pg4d6.apps.googleusercontent.com',  // QA
     		//'client_id': '575004365806-sbdnc074cvqg3bqioomamtoirfnl2789.apps.googleusercontent.com',  // Prod
-     'client_id': '575004365806-75h30uhausuu6pamhqaf304r312kk6q6.apps.googleusercontent.com',  //  want to check for prod
+     'client_id': '575004365806-75h30uhausuu6pamhqaf304r312kk6q6.apps.googleusercontent.com',  //  qa prod working
       'scope': 'https://www.google.com/m8/feeds'
     };
     gapi.auth.authorize(config, function() {
