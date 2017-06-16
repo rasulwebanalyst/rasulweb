@@ -296,12 +296,12 @@ var secondInninBowlingArrayObjectList=[];
 
 
 
-									<div style="margin-top: 33px;">
+									<div style="margin-top: 33px; text-align: -webkit-right" >
 										<!-- <input type="text" value="" id="matchDate" style="height: 36px;" readonly> -->
 
 										<input type="button" style="margin-right: 10px;"
-											class="btn btn-default blueBtn pull-right"
-											onclick="validateFunction()" value="Enter score">
+											class="btn btn-default blueBtn"
+											onclick="validateFunction()" id="enterscoreStartbtn" value="Enter score">
 
 
 
@@ -1027,7 +1027,10 @@ var secondInninBowlingArrayObjectList=[];
 																Match</label>
 														</div>
 
-														<div class="sfRight">
+                                                 <div class="sfRight"> 
+                                                    <div  id="manOftheMAtch"></div>
+                                                    </div>
+														<!-- <div class="sfRight">
 															<input type="text" placeholder=""
 																class="form-control tbox fomtexbox"
 																id="PlayerOfTheMatch"
@@ -1039,16 +1042,14 @@ var secondInninBowlingArrayObjectList=[];
 																	<li></li>
 																</ul>
 															</div>
-															<!-- <select style="width: 100%;" id="PlayerOfTheMatch" onchange="manOfTheMatchPlayerSelection()">
-			                      	<option value="00">Select man of the match player</option>
-			                      </select> -->
+															
 															<input type="hidden" class="form-control" placeholder=""
 																id="addMemberIDDIVPlayerOfMatch"
 																name="addMemberIDDIVPlayerOfMatch"> <label
 																for="addMemberIDDIVPlayerOfMatch" generated="true"
 																class="error" style="display: inline-block;"
 																id="addMemberIDDIVPlayerOfMatchError"></label>
-														</div>
+														</div> -->
 													</div>
 
 
@@ -1453,8 +1454,26 @@ $(document).ready(function(){
 				}); 
 				
 				//console.log("First team player id :"+JSON.stringify(firstTeamPlayersId));
+				
+				
+				// Player of the match
+				
+					
 				  
-				  
+					var htmlContent2 ='<select name="manOftheMAtch" id="manOftheMAtch" multiple="multiple" class="form-control" ';
+					for(var i =0;i<firstTeamPlayersId.length;i++ ){
+						htmlContent2 += '<option value="'+firstTeamPlayersId[i].userId+'">'+firstTeamPlayersId[i].userProfile.fullName+'</option>';
+					}
+					for(var i =0;i<sceondTeamPlayersId.length;i++ ){	   
+						   htmlContent2 += '<option value="'+sceondTeamPlayersId[i].userId+'">'+sceondTeamPlayersId[i].userProfile.fullName+'</option>';
+					}
+				htmlContent2 += '</select>';
+			 $("#manOftheMAtch").html(htmlContent2).trigger('create');
+				$('select[multiple]').multiselect({
+			    columns: 2,
+			    selectAll: true,
+			    placeholder: 'Select Players'
+			}); 
 				 
 				 }
 				 else{
@@ -1846,6 +1865,7 @@ $(document).ready(function(){
 		   	if(rowCount == 3){
 		   		$("#removebattingrow").hide();	
 		   		}
+		   	totalCalculate('First');
 			}
 		   	else{
 		   		var table = document.getElementById("secInnBattingTable");
@@ -1858,7 +1878,7 @@ $(document).ready(function(){
 			   		$("#removesecondbattingrow").hide();	
 			   		}
 		   		
-		   		
+			   	totalCalculate('Second');
 		   	
 		   	}
 		   	
