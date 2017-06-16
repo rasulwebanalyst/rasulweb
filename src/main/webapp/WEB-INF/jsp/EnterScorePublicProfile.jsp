@@ -178,78 +178,45 @@ table sup{
   			<thead>
         	<tr>
             	<th><sup>*</sup>Batsmen</th>
-                <th>Bowler</th>
+            	<th><sup>*</sup>Dismissal Type</th>
                 <th>Fielder</th>
-                <th><sup>*</sup>Dismissal Type</th>
+                 <th>Bowler</th>
                 <th><sup>*</sup>R</th>
-                <th>M</th>
                 <th><sup>*</sup>B</th>
                 <th>4's</th>
                 <th>6's</th>
+                <th>0's</th>
+                <th>M</th>
                 <th><sup>*</sup>SR</th>
-                <th>0's<th>
             </tr>
             </thead>
             <tbody>
             <tr>
-            	<td><!-- <input  type="text" class="wi-sel" id="firInnPlayerName" onkeyup="getBuddiesAutoCompleteFirstInning(this,'addMemberautoCompleteDIV','addMemberIDDIV')" onfocus="checkFunction()" value="" name="firInnPlayerName">  
+            	
+            	
+            	<!-- <td><input  type="text" class="wi-sel" id="firInnPlayerName" onkeyup="getBuddiesAutoCompleteFirstInning(this,'addMemberautoCompleteDIV','addMemberIDDIV')" onfocus="checkFunction()" value="" name="firInnPlayerName">   -->
+            	<td >
+					<select style="width:100px" id="firInnPlayerName" name="firInnPlayerName" onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIV','FistInningBatting')">
+													<option value="0">Select Player</option>
+											</select>					
+            	
             	<div class="autoComplete" id="addMemberautoCompleteDIV" style="display:none;">
 													<ul>
 			                                        	<li></li>
 			                                        </ul>                                  	
-			                                  </div>  -->
-			                     <!--  <div class="selectdiv" style="width:120px">
-											<select class="selectboxdiv" id="firInnPlayerName" name="firInnPlayerName" onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIV','FistInningBatting')">
-													<option value="0">Select Player</option>
-											</select>
-											<div  class="out"></div>
-										</div> --> 
-								<select style="width: 100px;" id="firInnPlayerName" name="firInnPlayerName" onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIV','FistInningBatting')">
-													<option value="0">Select Player</option>
-											</select>		           
+			                                  </div> 
                                   <input type="hidden" class="addMemberIDDIV" class="form-control" placeholder="" id="addMemberIDDIV" name="addMemberIDDIVName" >
-                                  </td>
-                <td><!-- <input type="text" class="wi-sel" id="firInnBowlerName" onkeyup="getBuddiesAutoComplete1(this,'addMemberautoCompleteDIVBow','addMemberIDDIVBow')" >
-                <div class="autoComplete" id="addMemberautoCompleteDIVBow" style="display:none;">
-													<ul>
-			                                        	<li></li>
-			                                        </ul>                                  	
-			                                  </div>  -->
-			                                 <!--  <div class="selectdiv" style="width:120px">
-											<select class="selectboxdiv" id="firInnBowlerName" name="firInnBowlerName" onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVBow')">
-													<option value="0">Select Player</option>
-											</select>
-											<div  class="out"></div>
-										</div> -->
-								<select style="width: 100px;" id="firInnBowlerName" name="firInnBowlerName" onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVBow')">
-													<option value="0">Select Player</option>
-											</select>		
-                                  <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVBow" name="addMemberIDDIVBowName" >
-                </td>
-                <td><!-- <input type="text" class="wi-sel" id="firInnFielderName" onkeyup="getBuddiesAutoComplete1(this,'addMemberautoCompleteDIVFiel','addMemberIDDIVFiel')">
-                  <div class="autoComplete" id="addMemberautoCompleteDIVFiel" style="display:none;">
-													<ul>
-			                                        	<li></li>
-			                                        </ul>                                  	
-			                                  </div>  -->
-			                      <!-- <div class="selectdiv" style="width:120px">
-											<select class="selectboxdiv" id="firInnFielderName" name="firInnFielderName" onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVFiel')">
-													<option value="0">Select Player</option>
-											</select>
-											<div  class="out"></div>
-										</div> -->   
-								<select style="width: 100px;" id="firInnFielderName" name="firInnFielderName" onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVFiel')">
-													<option value="0">Select Player</option>
-											</select>		          
-                                  <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVFiel" name="addMemberIDDIVFiel" >
-                </td>
-				<td><div class="amdSbox">
+                 </td>
+                                  
+                                  
+                 <td><div class="amdSbox">
 								
                            <div class="selectdiv" style="width:121px">
 											<select class="selectboxdiv" id="dissmissalType" name="dismissalType" onchange="selectDismissal(this,'firInnDismissal')">
 												<option value="0">Select dissmissal type</option>
 											 	<c:forEach var="dismissal" items="${dismissalTypeList}">
-											 	<option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option> 
+											 <%-- 	<option value="${dismissal.dismissalTypeId}">${dismissal.dismissalTypeName}</option>  --%>
+											 		<option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
 												</c:forEach>  
 											</select>
 											<div  class="out"></div>
@@ -257,19 +224,45 @@ table sup{
                             </div>
                             <input type="hidden" class="wid" id="firInnDismissal" name="firInnDismissal" >
                  </td>
-                <td><input type="text" class="wid OnlyNumber" id="firInnRuns" onfocus = "numberCheck(this)" name="firInnRuns" onblur="calculateStrikerate('firInnRuns','firInnBalls','firInnStrikeRate')"></td>
-                <td><input type="text" class="wid " id="firInnMins" onfocus = "numberCheck(this)" name="firInnMins"></td>
+                 
+                 <td>   
+									<select style="width:100px" id="firInnFielderName" name="firInnFielderName" onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVFiel')">
+													<option value="0">Select Player</option>
+											</select>		         
+                                  <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVFiel" name="addMemberIDDIVFiel" >
+                </td>
+                                  
+                <td>
+                                  <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVBow" name="addMemberIDDIVBowName" > 
+             
+								<select style="width:100px" id="firInnBowlerName" name="firInnBowlerName" onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVBow')">
+													<option value="0">Select Player</option>
+											</select>		
+                </td>
+               
+				
+                <td><input type="text" class="wid OnlyNumber" id="firInnRuns" onfocus = "numberCheck(this)" name="firInnRuns" onblur="calculateStrikerate('firInnRuns','firInnBalls','firInnStrikeRate'); totalCalculate('First')" onkeyup="calculateruns('firInnRuns','firInnFours','firInnSixs','Totalruns')"></td>
+               
                 <td><input type="text" class="wid OnlyNumber" id="firInnBalls" onfocus = "numberCheck(this)" name="firInnBalls" onblur="calculateStrikerate('firInnRuns','firInnBalls','firInnStrikeRate')"></td>
-                <td><input type="text" class="wid OnlyNumber" id="firInnFours" onfocus = "numberCheck(this)" name="firInnFours"></td> 
-                <td><input type="text" class="wid OnlyNumber" id="firInnSixs"  onfocus = "numberCheck(this)" name="firInnSixs"></td> 
+                <td><input type="text" class="wid OnlyNumber" id="firInnFours" onfocus = "numberCheck(this)" name="firInnFours" onkeyup="calculateruns('firInnRuns','firInnFours','firInnSixs','Fours')"></td> 
+                <td><input type="text" class="wid OnlyNumber" id="firInnSixs"  onfocus = "numberCheck(this)" name="firInnSixs" onkeyup="calculateruns('firInnRuns','firInnFours','firInnSixs','Sixes')"></td> 
+                <td><input type="text" class="wid OnlyNumber" id="firInnBattingOvers" onfocus = "numberCheck(this)" name="firInnBattingOvers"></td>
+                 <td><input type="text" class="wid " id="firInnMins" onfocus = "numberCheck(this)" name="firInnMins"></td>
                 <td><input type="text" class="wid" id="firInnStrikeRate" onfocus = "numberCheck(this)" name="firInnStrikeRate" readonly="readonly"></td>   
-                <td><input type="text" class="wid OnlyNumber" id="firInnBattingOvers" onfocus = "numberCheck(this)" name="firInnBattingOvers"></td>            
+                            
+            	
+            	            
                 </tr>
                 
             </tbody>
   </table>
   <br>
-  <div><a href="javascript:void(0)" class="enterScoreAddMore" onclick="addFirstInningsBatting()">Add More</a></div><br><br>
+  <div><a href="javascript:void(0)" class="enterScoreAddMore" onclick="addFirstInningsBatting()">Add More</a>
+  
+  
+    <a id="removebattingrow" href="javascript:void(0)" class="enterScoreAddMore" onclick="removeFirstInningsBatting('first')" style="display: none;">Remove</a>
+  
+  </div><br><br>
   
   <!-- score table -->
   <div class="pull-left score-details-table-holder">
@@ -379,6 +372,8 @@ table sup{
   </table><br>
    <div><a class="enterScoreAddMore" href="javascript:void(0)" onclick="addFirstInningBowling()">Add More</a>
    
+   <a id="removefirstbowling" class="enterScoreAddMore" href="javascript:void(0)" onclick="removeInningBowling('first')" style="display: none;">Remove</a>
+   
    <input type="text"  id="secslideshowdiv" readonly="readonly" style="height: 0; width: 0; opacity : 0;">
    <input type="text"  id="" readonly="readonly" style="height: 0; width: 0; opacity : 0;">
    
@@ -393,82 +388,37 @@ table sup{
   			<thead>
         	<tr>
                 <th><sup>*</sup>Batsmen</th>
-                <th>Bowler</th>
-                <th>Fielder</th>
                 <th><sup>*</sup>Dismissal Type</th>
+                <th>Fielder</th>
+                <th>Bowler</th>
                 <th><sup>*</sup>R</th>
-                <th>M</th>
                 <th><sup>*</sup>B</th>
                 <th>4s</th>
                 <th>6s</th>
-                <th><sup>*</sup>SR</th>
                 <th>O</th>
+                <th>M</th>
+                <th><sup>*</sup>SR</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-            	<td><!-- <input type="text" class="wi-sel" id="secInnPlayerName" onkeyup="getBuddiesAutoCompleteSecondInning(this,'addMemberautoCompleteDIVPlayer','addMemberIDDIVPlayer')">
             	
-            	<div class="autoComplete" id="addMemberautoCompleteDIVPlayer" style="display:none;">
-													<ul>
-			                                        	<li></li>
-			                                        </ul>                                  	
-			                                  </div>  -->
-			                      <!-- <div class="selectdiv" style="width:120px">
-											<select class="selectboxdiv" id="secInnPlayerName" name="secInnPlayerName" onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIVPlayer','SecondInningBatting')">
+            	<td>
+								<select style="width:100px" id="secInnPlayerName" name="secInnPlayerName" onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIVPlayer','SecondInningBatting')" >
 								                 <option value="0">Select Player</option>
-											</select>
-											<div  class="out"></div>
-										</div> -->          
-								<select style="width: 100px;" id="secInnPlayerName" name="secInnPlayerName" onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIVPlayer','SecondInningBatting')">
-								                 <option value="0">Select Player</option>
-											</select>		    
+											</select>		                  
                                   <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVPlayer" name="addMemberIDDIVPlayer">
             	
             	</td>
-                <td><!-- <input type="text" class="wi-sel" id="secInnBowlerName" onkeyup="getBuddiesAutoComplete(this,'addMemberautoCompleteDIVBowlerSec','addMemberIDDIVBowlerSec')" name="secInnBowlerName">
-                <div class="autoComplete" id="addMemberautoCompleteDIVBowlerSec" style="display:none;">
-													<ul>
-			                                        	<li></li>
-			                                        </ul>                                  	
-			                                  </div> --> 
-			             <!--  <div class="selectdiv" style="width:120px">
-											<select class="selectboxdiv" id="secInnBowlerName" name="secInnBowlerName" onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVBowlerSec')">
-													<option value="0">Select Player</option>
-											</select>
-											<div  class="out"></div>
-										</div> -->
-								<select style="width: 100px;" id="secInnBowlerName" name="secInnBowlerName" onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVBowlerSec')">
-													<option value="0">Select Player</option>
-											</select>		                     
-                                  <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVBowlerSec" name="addMemberIDDIVBowlerSec">
-                
-                </td>
-                <td><!-- <input type="text" class="wi-sel" id="secInnFielderName" onkeyup="getBuddiesAutoCompleteSecondInning(this,'addMemberautoCompleteDIVFielderSec','addMemberIDDIVFielderSec')">
-                <div class="autoComplete" id="addMemberautoCompleteDIVFielderSec" style="display:none;">
-													<ul>
-			                                        	<li></li>
-			                                        </ul>                                  	
-			                                  </div>  -->
-			               <!-- <div class="selectdiv" style="width:120px">
-											<select class="selectboxdiv" id="secInnFielderName" name="secInnFielderName" onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVFielderSec')">
-												<option value="0">Select Player</option>
-											</select>
-											<div  class="out"></div>
-										</div> -->
-							<select style="width: 100px;" id="secInnFielderName" name="secInnFielderName" onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVFielderSec')">
-												<option value="0">Select Player</option>
-											</select>			                            
-                                  <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVFielderSec" name="addMemberIDDIVFielderSec">
-                
-                </td>
-				<td><div class="amdSbox">
+            	
+            	<td><div class="amdSbox">
 								
                            <div class="selectdiv" style="width:121px">
 											<select class="selectboxdiv" id="dissmissalTypeSec" name="dismissalType" onchange="selectDismissal(this,'secInnDismissal')">
 												<option value="0">Select dismissal type</option>
 											 	<c:forEach var="dismissal" items="${dismissalTypeList}">
 											 	
+											 	<%-- <option value="${dismissal.dismissalTypeId}">${dismissal.dismissalTypeName}</option> --%>
 											 	<option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
 												 
 												</c:forEach>  
@@ -476,19 +426,45 @@ table sup{
 											<div  class="out"></div>
 										</div>
                             </div>
-                           <input type="hidden" class="wid" id="secInnDismissal"></td>
-                <td><input type="text" class="wid OnlyNumber" id="secInnRuns" onfocus = "numberCheck(this)" name="secInnRuns" onblur="calculateStrikerate('secInnRuns','secInnBalls','secInnStrikeRate')"></td>
-                <td><input type="text" class="wid" id="secInnMins" onfocus = "numberCheck(this)" name="secInnMins"></td>
+                           <input type="hidden" class="wid" id="secInnDismissal">
+                  </td>
+            	
+            	
+            	 <td> 
+							<select style="width:100px" id="secInnFielderName" name="secInnFielderName" onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVFielderSec')">
+												<option value="0">Select Player</option>
+											</select>			                         
+                                  <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVFielderSec" name="addMemberIDDIVFielderSec">
+                
+                </td>
+            	
+                <td> 
+								<select style="width:100px" id="secInnBowlerName" name="secInnBowlerName" onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVBowlerSec')">
+													<option value="0">Select Player</option>
+											</select>		                           
+                                  <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVBowlerSec" name="addMemberIDDIVBowlerSec">
+                
+                </td>
+               
+				
+                <td><input type="text" class="wid OnlyNumber" id="secInnRuns" onfocus = "numberCheck(this)" name="secInnRuns" onblur="calculateStrikerate('secInnRuns','secInnBalls','secInnStrikeRate')" onkeyup="calculateruns('secInnRuns','secInnFours','secInnSixs','Totalruns')"></td>
                 <td><input type="text" class="wid OnlyNumber" id="secInnBalls" onfocus = "numberCheck(this)" name="secInnBalls" onblur="calculateStrikerate('secInnRuns','secInnBalls','secInnStrikeRate')"></td>
-                <td><input type="text" class="wid OnlyNumber" id="secInnFours" onfocus = "numberCheck(this)" name="secInnFours"></td>        
-                <td><input type="text" class="wid OnlyNumber" id="secInnSixs" onfocus = "numberCheck(this)" name="secInnSixs"></td>           
-                <td><input type="text" class="wid" id="secInnStrikeRate" onfocus = "numberCheck(this)" name="secInnStrikeRate" readonly="readonly"></td>    
-                 <td><input type="text" class="wid OnlyNumber" id="secInnBattingOvers" onfocus = "numberCheck(this)" name="secInnBattingOvers"></td>                 
+                <td><input type="text" class="wid OnlyNumber" id="secInnFours" onfocus = "numberCheck(this)" name="secInnFours" onkeyup="calculateruns('secInnRuns','secInnFours','secInnSixs','Fours')"></td>        
+                <td><input type="text" class="wid OnlyNumber" id="secInnSixs" onfocus = "numberCheck(this)" name="secInnSixs" onkeyup="calculateruns('secInnRuns','secInnFours','secInnSixs','Sixes')"></td>           
+                <td><input type="text" class="wid OnlyNumber" id="secInnBattingOvers" onfocus = "numberCheck(this)" name="secInnBattingOvers"></td>
+                <td><input type="text" class="wid" id="secInnMins" onfocus = "numberCheck(this)" name="secInnMins"></td>
+                <td><input type="text" class="wid" id="secInnStrikeRate" onfocus = "numberCheck(this)" name="secInnStrikeRate" readonly="readonly"></td>
+            	                 
                 </tr>
                 
             </tbody>
   </table><br>
-   <div><a class="enterScoreAddMore" href="javascript:void(0)" onclick="addSecondInningsBatting()">Add More</a></div><br><br>
+   <div><a class="enterScoreAddMore" href="javascript:void(0)" onclick="addSecondInningsBatting()">Add More</a>
+   
+   
+   <a id="removesecondbattingrow" href="javascript:void(0)" class="enterScoreAddMore" onclick="removeFirstInningsBatting('second')" style="display: none;">Remove</a>
+   
+   </div><br><br>
   
    <!-- score table -->
   <div class="pull-left score-details-table-holder">
@@ -599,6 +575,8 @@ table sup{
             </tbody>
   </table><br>
                   <div><a class="enterScoreAddMore" href="javascript:void(0)" onclick="addSecondInningBowling()">Add More</a>
+                  
+                  <a id="removesecondbowling" class="enterScoreAddMore" href="javascript:void(0)" onclick="removeInningBowling('second')" style="display: none;">Remove</a>
                   
                   <input type="text"  id="secslideshowdiv1" readonly="readonly" style="height: 0; width: 0; opacity : 0;">
                   
@@ -1268,31 +1246,41 @@ $(document).ready(function(){
 			}
 			
 		}
-		   var htmlContentBattingPlayer ='<select style="width:100px;" id="firInnPlayerName_'+count+'" name="firInnPlayerName_'+count+'" onchange=firstIningsbattingPlayerOnchange(this,"addMemberIDDIV'+count+'","FistInningBatting")>';
+		  
+		       
+		       var htmlContentBattingPlayer ='<select style="width:100px"  id="firInnPlayerName_'+count+'" name="firInnPlayerName_'+count+'" onchange=firstIningsbattingPlayerOnchange(this,"addMemberIDDIV'+count+'","FistInningBatting")>';
 		       htmlContentBattingPlayer += htmlContent;
 		       htmlContentBattingPlayer +='</select> <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIV'+count+'" name="addMemberIDDIVName">';		       
 		       cell1.innerHTML = htmlContentBattingPlayer;
-		   var htmlContentFirstInningsBowlers = '<select style="width:100px;" id="firInnBowlerName_'+count+'" name="firInnBowlerName_'+count+'" onchange=firstIningsbattingPlayerOnchange1(this,"addMemberIDDIVBow'+count+'")>';
-		       htmlContentFirstInningsBowlers += htmlContent1;
-		       htmlContentFirstInningsBowlers +='</select> <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVBow'+count+'" name="">';
-		       cell2.innerHTML = htmlContentFirstInningsBowlers;
-		   var htmlContentFirstInningsFeilders =  '<select  style="width:100px;" id="firInnFielderName_'+count+'" name="firInnFielderName_'+count+'" onchange=firstIningsbattingPlayerOnchange1(this,"addMemberIDDIVFiel'+count+'")>';   
+		       
+		       
+		       cell2.innerHTML = '<div class="amdSbox"><div class="selectdiv" style="width:121px"><select class="selectboxdiv" id="dissmissalType'+count+'" name="dismissalType" onchange=selectDismissal(this,"firInnDismissal_'+count+'")><option value="0">Select dissmissal type</option><c:forEach var="dismissal" items="${dismissalTypeList}"><option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option></c:forEach>  </select><div  class="out"></div></div></div><input type="hidden" class="wid" id="firInnDismissal_'+count+'">';
+		       
+		   var htmlContentFirstInningsFeilders =  '<select style="width:100px" id="firInnFielderName_'+count+'" name="firInnFielderName_'+count+'" onchange=firstIningsbattingPlayerOnchange1(this,"addMemberIDDIVFiel'+count+'")>';   
                htmlContentFirstInningsFeilders += htmlContent1;
                htmlContentFirstInningsFeilders += '</select> <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVFiel'+count+'" name="">';	     
-		       cell3.innerHTML = htmlContentFirstInningsFeilders;
+               cell3.innerHTML = htmlContentFirstInningsFeilders;
+               
+           var htmlContentFirstInningsBowlers = '<select style="width:100px" id="firInnBowlerName_'+count+'" name="firInnBowlerName_'+count+'" onchange=firstIningsbattingPlayerOnchange1(this,"addMemberIDDIVBow'+count+'")>';
+		       htmlContentFirstInningsBowlers += htmlContent1;
+		       htmlContentFirstInningsBowlers +='</select><input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVBow'+count+'" name="">';
+		       cell4.innerHTML = htmlContentFirstInningsBowlers;
 		     
 		      //cell1.innerHTML = '<input type="text" class="wi-sel" id="firInnPlayerName_'+count+'" onkeyup=getBuddiesAutoCompleteFirstInning(this,"addMemberautoCompleteDIV'+count+'","addMemberIDDIV'+count+'") class="dummy"/><div class="autoComplete" id="addMemberautoCompleteDIV'+count+'" style="display:none;"><ul><li></li></ul></div> <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIV'+count+'" name="addMemberIDDIVName">';  
 		      //cell2.innerHTML = '<input type="text" class="wi-sel" id="firInnBowlerName_'+count+'" onkeyup=getBuddiesAutoComplete1(this,"addMemberautoCompleteDIVBow'+count+'","addMemberIDDIVBow'+count+'") /><div class="autoComplete" id="addMemberautoCompleteDIVBow'+count+'" style="display:none;"><ul><li></li></ul></div> <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVBow'+count+'" name="">';
 		      //cell3.innerHTML = '<input type="text" class="wi-sel" id="firInnFielderName_'+count+'" onkeyup=getBuddiesAutoComplete1(this,"addMemberautoCompleteDIVFiel'+count+'","addMemberIDDIVFiel'+count+'") /><div class="autoComplete" id="addMemberautoCompleteDIVFiel'+count+'" style="display:none;"><ul><li></li></ul></div> <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVFiel'+count+'" name="">';
 		      // cell4.innerHTML = '<div class="amdSbox"><div class="selectdiv" style="width:147px"><select class="selectboxdiv"  id="dissmissalType'+count+'" name="dismissalType" onchange=selectDismissal(this,"firInnDismissal_'+count+'")><option value="0">Select dissmissal type</option><c:forEach var="dismissal" items="${dismissalTypeList}"><option value="${dismissal.dismissalTypeId}">${dismissal.dismissalTypeName}</option></c:forEach>  </select><div  class="out">Select dissmissal type</div></div></div><input type="hidden" class="wid" id="firInnDismissal_'+count+'">';
-		       cell4.innerHTML = '<div class="amdSbox"><div class="selectdiv" style="width:121px"><select class="selectboxdiv" id="dissmissalType'+count+'" name="dismissalType" onchange=selectDismissal(this,"firInnDismissal_'+count+'")><option value="0"></option><c:forEach var="dismissal" items="${dismissalTypeList}"><option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option></c:forEach>  </select><div  class="out"></div></div></div><input type="hidden" class="wid" id="firInnDismissal_'+count+'">'; 
-		       cell5.innerHTML = '<input type="text" class="wid OnlyNumber" id="firInnRuns_'+count+'" onfocus = "numberCheck(this)" name="firInnRuns" onblur=calculateStrikerate("firInnRuns_'+count+'","firInnBalls_'+count+'","firInnStrikeRate_'+count+'")>';
-		       cell6.innerHTML = '<input type="text" class="wid" id="firInnMins_'+count+'" onfocus = "numberCheck(this)" name="firInnMins">';
-		       cell7.innerHTML = '<input type="text" class="wid OnlyNumber" id="firInnBalls_'+count+'" onfocus = "numberCheck(this)" name="firInnBalls" onblur=calculateStrikerate("firInnRuns_'+count+'","firInnBalls_'+count+'","firInnStrikeRate_'+count+'")>';
-		       cell8.innerHTML = '<input type="text" class="wid OnlyNumber" id="firInnFours_'+count+'" onfocus = "numberCheck(this)" name="firInnFours">';
-		       cell9.innerHTML = '<input type="text" class="wid OnlyNumber" id="firInnSixs_'+count+'" onfocus = "numberCheck(this)" name="firInnSixs">';
-		       cell10.innerHTML = '<input type="text" class="wid" id="firInnStrikeRate_'+count+'" onfocus = "numberCheck(this)" name="firInnStrikeRate" readonly="readonly">';
-		       cell11.innerHTML = '<input type="text" class="wid OnlyNumber" id="firInnBattingOver_'+count+'" onfocus = "numberCheck(this)" name="firInnBattingOvers">';
+		        
+		       cell5.innerHTML = '<input type="text" class="wid OnlyNumber" id="firInnRuns_'+count+'" onfocus = "numberCheck(this)" name="firInnRuns" onblur=calculateStrikerate("firInnRuns_'+count+'","firInnBalls_'+count+'","firInnStrikeRate_'+count+'") onkeyup=calculateruns("firInnRuns_'+count+'","firInnFours_'+count+'","firInnSixs_'+count+'","Totalruns")>';
+		       
+		       cell6.innerHTML = '<input type="text" class="wid OnlyNumber" id="firInnBalls_'+count+'" onfocus = "numberCheck(this)" name="firInnBalls" onblur=calculateStrikerate("firInnRuns_'+count+'","firInnBalls_'+count+'","firInnStrikeRate_'+count+'")>';
+		       cell7.innerHTML = '<input type="text" class="wid OnlyNumber" id="firInnFours_'+count+'" onfocus = "numberCheck(this)" name="firInnFours" onkeyup=calculateruns("firInnRuns_'+count+'","firInnFours_'+count+'","firInnSixs_'+count+'","Fours")>';
+		       cell8.innerHTML = '<input type="text" class="wid OnlyNumber" id="firInnSixs_'+count+'" onfocus = "numberCheck(this)" name="firInnSixs" onkeyup=calculateruns("firInnRuns_'+count+'","firInnFours_'+count+'","firInnSixs_'+count+'","Sixes")>';
+		       cell9.innerHTML = '<input type="text" class="wid OnlyNumber" id="firInnBattingOver_'+count+'" onfocus = "numberCheck(this)" name="firInnBattingOvers">';
+		       cell10.innerHTML = '<input type="text" class="wid" id="firInnMins_'+count+'" onfocus = "numberCheck(this)" name="firInnMins">';
+		       cell11.innerHTML = '<input type="text" class="wid" id="firInnStrikeRate_'+count+'" onfocus = "numberCheck(this)" name="firInnStrikeRate" readonly="readonly">';
+		       
+		       
 		       count = parseInt(count) + 1;
 		       
 		       newArray.splice(0,newArray.length);
@@ -1307,6 +1295,8 @@ $(document).ready(function(){
 	                $(this).next(".out").text(str);
 	            }).trigger('change');   */
 	            
+		       $("#removebattingrow").show();
+	            
 		    }else{
 			   
 			   displaynotification("Please fill in current row before adding a new one.",2000);
@@ -1315,6 +1305,40 @@ $(document).ready(function(){
    
 
    }
+		   
+		   
+   function removeFirstInningsBatting(innings){
+		if(innings == 'first'){
+		var table = document.getElementById("firInnBattingTable");
+		  
+  		   
+  		   var rowCount = table.rows.length;
+	   	console.log('rowcount---> '+rowCount);
+	   	if(rowCount > 2){
+	   		table.deleteRow(rowCount -1);
+	   		}
+	   	if(rowCount == 3){
+	   		$("#removebattingrow").hide();	
+	   		}
+		}
+	   	else{
+	   		var table = document.getElementById("secInnBattingTable");
+	   		   var rowCount = table.rows.length;
+		   	console.log('rowcount---> '+rowCount);
+		   	if(rowCount > 2){
+		   		table.deleteRow(rowCount -1);
+		   		}
+		   	if(rowCount == 3){
+		   		$("#removesecondbattingrow").hide();	
+		   		}
+	   		
+	   		
+	   	
+	   	}
+	   	
+	}
+		   
+		   
    var count1 = 1;
    
    function addSecondInningsBatting(){
@@ -1405,15 +1429,20 @@ $(document).ready(function(){
 			}
 			
 		}
-		   var htmlContentBattingPlayer ='<select style="width:100px;" id="secInnPlayerName_'+count1+'"  name="secInnPlayerName_'+count1+'" onchange=firstIningsbattingPlayerOnchange(this,"addMemberIDDIVPlayer'+count1+'","SecondInningBatting")>';
+		  
+		       var htmlContentBattingPlayer ='<select style="width:100px" id="secInnPlayerName_'+count1+'"  name="secInnPlayerName_'+count1+'" onchange=firstIningsbattingPlayerOnchange(this,"addMemberIDDIVPlayer'+count1+'","SecondInningBatting")>';
 		       htmlContentBattingPlayer += htmlContent1;
 		       htmlContentBattingPlayer +='</select> <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVPlayer'+count1+'" name="addMemberIDDIVPlayer">';		       
 		       cell1.innerHTML = htmlContentBattingPlayer;
-		   var htmlContentFirstInningsBowlers = '<select style="width:100px;" id="secInnBowlerName_'+count1+'" name="secInnBowlerName_'+count1+'" onchange=firstIningsbattingPlayerOnchange1(this,"addMemberIDDIVBowlerSec'+count1+'")>';
+		       
+		       
+		       cell2.innerHTML = '<div class="amdSbox"><div class="selectdiv" style="width:121px"><select class="selectboxdiv" id="dissmissalTypeSec'+count1+'" name="dismissalType" onchange=selectDismissal(this,"secInnDismissal_'+count1+'")><option value="0"></option><c:forEach var="dismissal" items="${dismissalTypeList}"></option><option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option></c:forEach>  </select><div  class="out"></div></div></div><input type="hidden" class="wid" id="secInnDismissal_'+count1+'">';
+		       
+		   var htmlContentFirstInningsBowlers = '<select style="width:100px"  id="secInnBowlerName_'+count1+'" name="secInnBowlerName_'+count1+'" onchange=firstIningsbattingPlayerOnchange1(this,"addMemberIDDIVBowlerSec'+count1+'")>';
 		       htmlContentFirstInningsBowlers += htmlContent;
 		       htmlContentFirstInningsBowlers +='</select> <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVBowlerSec'+count1+'" name="addMemberIDDIVBowlerSec">';
-		       cell2.innerHTML = htmlContentFirstInningsBowlers;
-		   var htmlContentFirstInningsFeilders =  '<select style="width:100px;" id="secInnFielderName_'+count1+'"  name="secInnFielderName_'+count1+'" onchange=firstIningsbattingPlayerOnchange1(this,"addMemberIDDIVFielderSec'+count1+'")>';   
+		       cell4.innerHTML = htmlContentFirstInningsBowlers;
+		   var htmlContentFirstInningsFeilders =  '<select style="width:100px"  id="secInnFielderName_'+count1+'"  name="secInnFielderName_'+count1+'" onchange=firstIningsbattingPlayerOnchange1(this,"addMemberIDDIVFielderSec'+count1+'")>';   
                htmlContentFirstInningsFeilders += htmlContent;
                htmlContentFirstInningsFeilders += '</select><input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVFielderSec'+count1+'" name="addMemberIDDIVFielderSec">';	     
 		       cell3.innerHTML = htmlContentFirstInningsFeilders;
@@ -1423,14 +1452,16 @@ $(document).ready(function(){
 			       //cell2.innerHTML = '<input type="text" class="wi-sel" id="secInnBowlerName_'+count1+'" onkeyup=getBuddiesAutoComplete(this,"addMemberautoCompleteDIVBowlerSec'+count1+'","addMemberIDDIVBowlerSec'+count1+'") /><div class="autoComplete" id="addMemberautoCompleteDIVBowlerSec'+count1+'" style="display:none;"><ul><li></li></ul></div> <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVBowlerSec'+count1+'" name="addMemberIDDIVBowlerSec">';
 			       //cell3.innerHTML = '<input type="text" class="wi-sel" id="secInnFielderName_'+count1+'" onkeyup=getBuddiesAutoComplete(this,"addMemberautoCompleteDIVFielderSec'+count1+'","addMemberIDDIVFielderSec'+count1+'") /><div class="autoComplete" id="addMemberautoCompleteDIVFielderSec'+count1+'" style="display:none;"><ul><li></li></ul></div> <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVFielderSec'+count1+'" name="addMemberIDDIVFielderSec">';
 			       
-			       cell4.innerHTML = '<div class="amdSbox"><div class="selectdiv" style="width:121px"><select class="selectboxdiv" id="dissmissalTypeSec'+count1+'" name="dismissalType" onchange=selectDismissal(this,"secInnDismissal_'+count1+'")><option value="0"></option><c:forEach var="dismissal" items="${dismissalTypeList}"></option><option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option></c:forEach>  </select><div  class="out"></div></div></div><input type="hidden" class="wid" id="secInnDismissal_'+count1+'">';
-			       cell5.innerHTML = '<input type="text" class="wid OnlyNumber" id="secInnRuns_'+count1+'" onfocus = "numberCheck(this)" name="secInnRuns" onblur=calculateStrikerate("secInnRuns_'+count1+'","secInnBalls_'+count1+'","secInnStrikeRate_'+count1+'")>';
-			       cell6.innerHTML = '<input type="text" class="wid" id="secInnMins_'+count1+'" onfocus = "numberCheck(this)" name="secInnMins">';
-			       cell7.innerHTML = '<input type="text" class="wid OnlyNumber" id="secInnBalls_'+count1+'" onfocus = "numberCheck(this)" name="secInnBalls" onblur=calculateStrikerate("secInnRuns_'+count1+'","secInnBalls_'+count1+'","secInnStrikeRate_'+count1+'")>';
-			       cell8.innerHTML = '<input type="text" class="wid OnlyNumber" id="secInnFours_'+count1+'" onfocus = "numberCheck(this)" name="secInnFours">';
-			       cell9.innerHTML = '<input type="text" class="wid OnlyNumber" id="secInnSixs_'+count1+'" onfocus = "numberCheck(this)" name="secInnSixs">';
-			       cell10.innerHTML = '<input type="text" class="wid" id="secInnStrikeRate_'+count1+'" onfocus = "numberCheck(this)" name="secInnStrikeRate" readonly="readonly">';
-			       cell11.innerHTML = '<input type="text" class="wid OnlyNumber" id="SecInnBattingOver_'+count1+'" onfocus = "numberCheck(this)" name="secInnBattingOvers">';
+			       
+			       cell5.innerHTML = '<input type="text" class="wid OnlyNumber" id="secInnRuns_'+count1+'" onfocus = "numberCheck(this)" name="secInnRuns" onblur=calculateStrikerate("secInnRuns_'+count1+'","secInnBalls_'+count1+'","secInnStrikeRate_'+count1+'") onkeyup=calculateruns("secInnRuns_'+count1+'","secInnFours_'+count1+'","secInnSixs_'+count1+'","Totalruns")>';
+			       cell6.innerHTML = '<input type="text" class="wid OnlyNumber" id="secInnBalls_'+count1+'" onfocus = "numberCheck(this)" name="secInnBalls" onblur=calculateStrikerate("secInnRuns_'+count1+'","secInnBalls_'+count1+'","secInnStrikeRate_'+count1+'")>';
+			       cell7.innerHTML = '<input type="text" class="wid OnlyNumber" id="secInnFours_'+count1+'" onfocus = "numberCheck(this)" name="secInnFours" onkeyup=calculateruns("secInnRuns_'+count1+'","secInnFours_'+count1+'","secInnSixs_'+count1+'","Fours")>';
+			       cell8.innerHTML = '<input type="text" class="wid OnlyNumber" id="secInnSixs_'+count1+'" onfocus = "numberCheck(this)" name="secInnSixs" onkeyup=calculateruns("secInnRuns_'+count1+'","secInnFours_'+count1+'","secInnSixs_'+count1+'","Sixes")>';
+			       cell9.innerHTML = '<input type="text" class="wid OnlyNumber" id="SecInnBattingOver_'+count1+'" onfocus = "numberCheck(this)" name="secInnBattingOvers">';
+			       cell10.innerHTML = '<input type="text" class="wid" id="secInnMins_'+count1+'" onfocus = "numberCheck(this)" name="secInnMins">';
+			       cell11.innerHTML = '<input type="text" class="wid" id="secInnStrikeRate_'+count1+'" onfocus = "numberCheck(this)" name="secInnStrikeRate" readonly="readonly">';
+			       
+		       
 			       count1 = parseInt(count1) + 1;
 		       
 		       newArray.splice(0,newArray.length);
@@ -1439,6 +1470,8 @@ $(document).ready(function(){
 	                str = $(this).find(":selected").text();
 	                $(this).next(".out").text(str);
 	            }).trigger('change'); */
+	            
+		       $("#removesecondbattingrow").show();	
 		      
 		    }else{
 			   
@@ -1551,6 +1584,8 @@ $(document).ready(function(){
 			       firstBowling = parseInt(firstBowling) + 1;
 		       
 		       newArray.splice(0,newArray.length);
+		       
+		       $("#removefirstbowling").show();
 		     
 		    }else{
 			   
@@ -1559,6 +1594,34 @@ $(document).ready(function(){
 	  
 
    }
+ 
+ function removeInningBowling(innings){
+	  
+	  if(innings == 'first'){
+		  var table = document.getElementById("firInnBowlingTable");
+		  
+			   
+			   var rowCount = table.rows.length;
+	  	console.log('rowcount---> '+rowCount);
+	  	if(rowCount > 2){
+	  		table.deleteRow(rowCount -1);
+	  		}
+	  	if(rowCount == 3){
+	  		$("#removefirstbowling").hide();		   		}
+	  	}else{
+	  		
+	  		var table = document.getElementById("secInnBowlingTable");
+			   var rowCount = table.rows.length;
+		console.log('rowcount---> '+rowCount);
+		if(rowCount > 2){
+			table.deleteRow(rowCount -1);
+			}
+		if(rowCount == 3){
+			$("#removesecondbowling").hide();		   	
+			}
+	  		
+	  	}
+	  }
    
    var secondBowling = 1;
   function addSecondInningBowling(){
@@ -1655,6 +1718,7 @@ $(document).ready(function(){
 			       secondBowling = parseInt(secondBowling) + 1;
 	
 		       newArray.splice(0,newArray.length);
+		       $("#removesecondbattingrow").show();	
 		     
 		    }else{
 			   
@@ -2067,48 +2131,50 @@ function saveFunction(){
         var $row = $(row), $input = $row.find('input');
         $input.each(function (i) {
          
-            if(i==0){
-            	
-            	firstInningsBattingObj.playerId=this.value;
-            }
-            if(i==1){
-            	firstInningsBattingObj.battingWicketTakenBy = this.value;
-            }
-            if(i==2){
-            	firstInningsBattingObj.fielderId=this.value;
-            }
-            /* if(i==3){
-            	firstInningsBattingObj.dismissalType=this.value;
-            } */
-            if(i==3){
-                if(this.value == 'Run Out' || this.value == 'Timed Out' || this.value == 'Double Hit'){
-                	var dismissalType = this.value;
-                	firstInningsBattingObj.dismissalType=dismissalType.replace(/ /g, "");
-                }else{
-            	 firstInningsBattingObj.dismissalType=this.value;
-                };            
-            }
-            if(i==4){
-            	firstInningsBattingObj.battingRuns = this.value;
-            }
-            if(i==5){
-            	firstInningsBattingObj.minutes = this.value;
-            }
-            if(i==6){
-            	firstInningsBattingObj.battingBallnumber = this.value;
-            }
-            if(i==7){
-            	firstInningsBattingObj.battingFours = this.value;
-            }
-            if(i==8){
-            	firstInningsBattingObj.battingSix = this.value;
-            }
-            if(i==9){
-            	firstInningsBattingObj.battingStrikeRating = this.value;
-            }
-            if(i==10){
-            	firstInningsBattingObj.battingOvers = this.value;
-            }
+           
+        	  if(i==0){
+              	
+              	firstInningsBattingObj.playerId=this.value;
+              }
+              if(i==1){
+              	//firstInningsBattingObj.dismissalType=this.value;
+                  if(this.value == 'Run Out' || this.value == 'Timed Out' || this.value == 'Double Hit'){
+                  	var dismissalType = this.value;
+                  	firstInningsBattingObj.dismissalType=dismissalType.replace(/ /g, "");
+                  }else{
+              	 firstInningsBattingObj.dismissalType=this.value;
+                  };            
+              }
+              if(i==2){
+              	firstInningsBattingObj.fielderId=this.value;
+              }
+              if(i==3){
+              	firstInningsBattingObj.battingWicketTakenBy = this.value;
+              }
+              
+              if(i==4){
+              	firstInningsBattingObj.battingRuns = this.value;
+              }
+              if(i==5){
+              	firstInningsBattingObj.battingBallnumber = this.value;
+              }
+              if(i==6){
+              	firstInningsBattingObj.battingFours = this.value;
+              }
+              if(i==7){
+              	firstInningsBattingObj.battingSix = this.value;
+              }
+              if(i==8){
+              	firstInningsBattingObj.battingOvers = this.value;
+              }
+              if(i==9){
+              	firstInningsBattingObj.minutes = this.value;
+              }
+             
+              if(i==10){
+              	firstInningsBattingObj.battingStrikeRating = this.value;
+              }
+        	
             firstInningsBattingObj.innings = "1";
             firstInningsBattingObj.matchId = matchId;
             firstInningsBattingObj.teamId=	 homeTeamId;
@@ -2126,47 +2192,49 @@ function saveFunction(){
         var $row = $(row), $input = $row.find('input');
         $input.each(function (i) {
             
-            if(i==0){
-            	secondInningsBattingObj.playerId=this.value;
-            }
-            if(i==1){
-            	secondInningsBattingObj.battingWicketTakenBy = this.value;
-            }
-            if(i==2){
-            	secondInningsBattingObj.fielderId=this.value;
-            }
-           /*  if(i==3){
-            	secondInningsBattingObj.dismissalType=this.value;
-            } */
-            if(i==3){
-            	 if(this.value == 'Run Out' || this.value == 'Timed Out' || this.value == 'Double Hit'){
-                	var dismissalType = this.value;
-                	secondInningsBattingObj.dismissalType=dismissalType.replace(/ /g, "");
-                }else{
-            	secondInningsBattingObj.dismissalType=this.value;
-            	};
-            }
-            if(i==4){
-            	secondInningsBattingObj.battingRuns = this.value;
-            }
-            if(i==5){
-            	secondInningsBattingObj.minutes = this.value;
-            }
-            if(i==6){
-            	secondInningsBattingObj.battingBallnumber = this.value;
-            }
-            if(i==7){
-            	secondInningsBattingObj.battingFours = this.value;
-            }
-            if(i==8){
-            	secondInningsBattingObj.battingSix = this.value;
-            }
-            if(i==9){
-            	secondInningsBattingObj.battingStrikeRating = this.value;
-            }
-            if(i==10){
-            	secondInningsBattingObj.battingOvers = this.value;
-            }
+           
+        	
+        	 if(i==0){
+             	secondInningsBattingObj.playerId=this.value;
+             }
+             if(i==1){
+             	//secondInningsBattingObj.dismissalType=this.value;
+             	 if(this.value == 'Run Out' || this.value == 'Timed Out' || this.value == 'Double Hit'){
+                 	var dismissalType = this.value;
+                 	secondInningsBattingObj.dismissalType=dismissalType.replace(/ /g, "");
+                 }else{
+             	secondInningsBattingObj.dismissalType=this.value;
+             	};
+             }
+             if(i==2){
+             	secondInningsBattingObj.fielderId=this.value;
+             }
+             if(i==3){
+             	secondInningsBattingObj.battingWicketTakenBy = this.value;
+             }
+             if(i==4){
+             	secondInningsBattingObj.battingRuns = this.value;
+             }
+             
+             if(i==5){
+             	secondInningsBattingObj.battingBallnumber = this.value;
+             }
+             if(i==6){
+             	secondInningsBattingObj.battingFours = this.value;
+             }
+             if(i==7){
+             	secondInningsBattingObj.battingSix = this.value;
+             }
+             if(i==8){
+             	secondInningsBattingObj.battingOvers = this.value;
+             }
+             if(i==9){
+             	secondInningsBattingObj.minutes = this.value;
+             }
+             if(i==10){
+             	secondInningsBattingObj.battingStrikeRating = this.value;
+             }
+        	
             secondInningsBattingObj.innings = "2";
             secondInningsBattingObj.matchId = matchId;
             secondInningsBattingObj.teamId = awayTeamId;

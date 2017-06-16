@@ -14,6 +14,9 @@ $(function(){
 function inningSelection(){
 	var homeTeamName=$('#homeTeamName').val();
 	var awayTeamName=$('#awayTeamName').val();
+	console.log("homeTeamNamehomeTeamName :"+homeTeamName);
+	console.log("homeTeamNamehomeTeamName :"+awayTeamName);
+	
 	if(homeTeamName!='0'&& awayTeamName!='0'){
 		return true;
 	}else{
@@ -132,8 +135,12 @@ function matchStart(homeTeamId,awayTeamId){
 		$("#homeTeamName").prop('disabled', 'disabled');
 		$("#awayTeamName").prop('disabled', 'disabled');
 		$("#enterscoreStartbtn").prop('disabled', 'disabled');
-		$("#firstInningsId").html($("#homeTeamName option:selected").text());
-		$("#secondInningsId").html($("#awayTeamName option:selected").text());
+		
+		
+		/*$("#firstInningsId").html($("#homeTeamName option:selected").text());
+		$("#secondInningsId").html($("#awayTeamName option:selected").text());*/
+		
+		
 		$('#entescoreMainDIV').show();
 		
 		
@@ -1298,7 +1305,7 @@ function firstInningBattingValidation(){
             	//firstInningsBattingObj.fielderId=this.value;
             	console.log('------------------------------------');
             }*/
-            if(i==3){
+            if(i==1){
             	//firstInningsBattingObj.dismissalType=this.value;
             	console.log('-----------dismissalType-------------------------');
             	var id=this.value;
@@ -1318,7 +1325,7 @@ function firstInningBattingValidation(){
             	}
             	
             }
-            if(i==6){
+            if(i==5){
             	///firstInningsBattingObj.minutes = this.value;
             	console.log('---------------batting balls---------------------');
             	var id=this.value;
@@ -1346,7 +1353,7 @@ function firstInningBattingValidation(){
             		count=parseInt(count)+parseInt(1);
             	}
             }*/
-            if(i==9){
+            if(i==10){
             	//firstInningsBattingObj.battingFours = this.value;
             	console.log('-------------------strike rate-----------------');
             	var id=this.value;
@@ -1556,7 +1563,7 @@ function secondInningBattingValidation(){
             		this.value=0;
             	}
             }
-            if(i==3){
+            if(i==1){
             	//secondInningsBattingObj.dismissalType=this.value;
             	console.log('------------------------------------');
             	var id=this.value;
@@ -1582,7 +1589,7 @@ function secondInningBattingValidation(){
             		count=parseInt(count)+parseInt(1);
             	}
             }
-            if(i==9){
+            if(i==10){
             	//secondInningsBattingObj.battingStrikeRating = this.value;
             	console.log('------------------------------------');
             	var id=this.value;
@@ -1779,5 +1786,79 @@ function secodingInnigBowlingValidation(){
 			 displaynotification("Second innings bowling details not completed",1500);
 			return false;
 		}
+	
+}
+
+
+function calculateruns(total,fours,six,type){
+	
+	var runs=$("#"+total).val();
+	if(runs == ""){
+		if(type != 'Totalruns'){
+		displaynotification("Please first enter total runs",1500);
+		$("#"+fours).val("");
+		$("#"+six).val("");
+		}
+	}else{
+		var fourhitten=$("#"+fours).val();
+		var sixhitten=$("#"+six).val();
+		var byBoundary=(fourhitten*4)+(sixhitten*6);
+		if(byBoundary > runs){
+			displaynotification("4's and 6's does not match with total runs",1500);
+			$("#"+fours).val("");
+			$("#"+six).val("");
+		}
+		
+	}
+	
+}
+
+function totalCalculate(type){
+	
+	var totalrun=0;
+	if(type == 'First'){
+		$('#firInnBattingTable tbody tr').each(function (i, row) {
+	        var $row = $(row), $input = $row.find('input');
+	        console.log(i);
+	        console.log(row);
+	        $input.each(function (i) {
+	         
+	           
+	            if(i==4){
+	            	//firstInningsBattingObj.battingRuns = this.value;
+	            		            	
+	            	totalrun=parseInt(totalrun)+parseInt(this.value);
+	            }
+	            
+	            
+	        });
+	    });
+		
+		$("#firstInnigsScore").val(totalrun);
+	}else{
+		
+		$('#secInnBattingTable tbody tr').each(function (i, row) {
+	        var $row = $(row), $input = $row.find('input');
+	        console.log(i);
+	        console.log(row);
+	        $input.each(function (i) {
+	         
+	           
+	            if(i==4){
+	            	//firstInningsBattingObj.battingRuns = this.value;
+	            		            	
+	            	totalrun=parseInt(totalrun)+parseInt(this.value);
+	            }
+	            
+	            
+	        });
+	    });
+		
+		$("#secondInnigsScore").val(totalrun);
+		
+	}
+	
+	
+	
 	
 }

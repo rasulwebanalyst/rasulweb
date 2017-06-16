@@ -1,27 +1,34 @@
- <!DOCTYPE html>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html lang="en">
 
 <head>
- <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/Faveicon.png" />
- <title>Cricket Social</title>
-	<%@ include file="CSCommon.jsp" %>
-		<%@ include file="BoardHeader.jsp" %>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/token-input.css" type="text/css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/token-input-facebook.css" type="text/css" />
+<link rel="icon" type="image/png"
+	href="${pageContext.request.contextPath}/images/Faveicon.png" />
+<title>Cricket Social</title>
+<%@ include file="CSCommon.jsp"%>
+<%@ include file="BoardHeader.jsp"%>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/token-input.css"
+	type="text/css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/token-input-facebook.css"
+	type="text/css" />
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/jquery.multiselect.css" type="text/css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/jquery.multiselect.css"
+	type="text/css" />
 <style type="text/css">
-
-table sup{
+table sup {
 	color: red;
 }
 </style>
- 
+
 </head>
 <body>
-<script type="text/javascript">
+	<script type="text/javascript">
 <!--
 
 //-->
@@ -42,34 +49,39 @@ var secondInninBowlingArrayObjectList=[];
  
 </script>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/cricketSocial/enterScoreValidation.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/js/cricketSocial/enterScoreValidation.js"></script>
 
- <section class="middleContentBlock">
-<div class="profileBanner"> <img src="${pageContext.request.contextPath}/images/innerBanner.png"> </div>
-<div class="container">
-  <div class="row">
-    <!--Content Block-->
-    <div class="col-md-12 middleContBlock noPadding">
-      <div class="col-md-12 noPadding">
-        
-         <%@ include file="LeaugeManagementSideMenu.jsp" %>
+	<section class="middleContentBlock">
+		<div class="profileBanner">
+			<img src="${pageContext.request.contextPath}/images/innerBanner.png">
+		</div>
+		<div class="container">
+			<div class="row">
+				<!--Content Block-->
+				<div class="col-md-12 middleContBlock noPadding">
+					<div class="col-md-12 noPadding">
 
-      <div class="col-md-10">
-      		<div class="col-md-12 whiteBox">
-		          <h1 class="pageHead noBorder">Enter Score
-                  
-                  <div class="h1Sbox">
-                              
-                                
-                                <div class="selectdiv pull-right">
-                                    <select class="selectboxdiv" id="scheduler" onchange="teamName(this.value)">
-                                        <option value="0">Scheduler list</option> 
-                                        
-                                    </select>
-                                    <div class="out" id="schedulerTextVal">Scheduler list</div>    
-                                </div>
-                                
-                                <%-- <div class="selectdiv pull-right">
+						<%@ include file="LeaugeManagementSideMenu.jsp"%>
+
+						<div class="col-md-10">
+							<div class="col-md-12 whiteBox">
+								<h1 class="pageHead noBorder">
+									Enter Score
+
+									<div class="h1Sbox">
+
+
+										<div class="selectdiv pull-right">
+											<select class="selectboxdiv" id="scheduler"
+												onchange="teamName(this.value)">
+												<option value="0">Scheduler list</option>
+
+											</select>
+											<div class="out" id="schedulerTextVal">Scheduler list</div>
+										</div>
+
+										<%-- <div class="selectdiv pull-right">
                                     <select class="selectboxdiv" id="tournament" onchange="loadScheduler(this.value)">
                                         <option value="0">select tournament</option>
                                         <c:forEach var="tournaments" items="${tournamentOfTheBoard}">
@@ -78,39 +90,45 @@ var secondInninBowlingArrayObjectList=[];
                                     </select>
                                     <div class="out">select tournament</div>    
                                 </div> --%>
-                                <div class="selectdiv pull-right">
-                                    <%-- <select class="selectboxdiv valid" id="tournament" onchange="loadScheduler(this.value)">
+										<div class="selectdiv pull-right">
+											<%-- <select class="selectboxdiv valid" id="tournament" onchange="loadScheduler(this.value)">
                                     <option value="0" selected="selected">Select tournament</option>
                                         <c:forEach var="tournaments" items="${tournamentOfTheBoard}">
                                         <option value="${tournaments.tournamentId }" selected="selected">${tournaments.tournamentName }</option>
                                         </c:forEach>
                                         
                                     </select> --%>
-                                    <select class="selectboxdiv valid" id="tournament" onchange="loadScheduler(this.value)">
-                                    <!--  <option value="0" >Select tournament</option>  -->
-                                        <c:forEach var="tournaments" items="${tournamentOfTheBoard}">
-                                        <c:if test="${tournaments.tournamentId == selectedTournamentId }">
-                                          <option value="${tournaments.tournamentId }" >${tournaments.tournamentName }</option>
-                                        </c:if>
-                                      
-                                        </c:forEach>
-                                        
-                                    </select>
-                                    <div class="out" id="tournamentTextVal">Select tournament</div>    
-                                </div>
-                                <script type="text/javascript">
+											<select class="selectboxdiv valid" id="tournament"
+												onchange="loadScheduler(this.value)">
+												<!--  <option value="0" >Select tournament</option>  -->
+												<c:forEach var="tournaments" items="${tournamentOfTheBoard}">
+													<c:if
+														test="${tournaments.tournamentId == selectedTournamentId }">
+														<option value="${tournaments.tournamentId }">${tournaments.tournamentName }</option>
+													</c:if>
+
+												</c:forEach>
+
+											</select>
+											<div class="out" id="tournamentTextVal">Select
+												tournament</div>
+										</div>
+										<script type="text/javascript">
                                 	               //  document.getElementById('tournament').options[0].selected=true;               
                                 </script>
-                              </div>
-                  
-                  </h1>
-                  
-                  </div></div>
-                  <div class="col-md-10">
-                           
-                  <div class="col-md-12 whiteBox" id="inningsDropdown">
-                  
-                           <div class="h1Sbox inningSelectBox" >
+									</div>
+
+								</h1>
+
+							</div>
+						</div>
+
+						<form action="">
+							<div class="col-md-10">
+
+								<div class="col-md-12 whiteBox" id="inningsDropdown">
+
+									<!--  <div class="h1Sbox inningSelectBox" >
                            
                            
                               <div style="float: right;width: 45%; margin-right: 2%;">
@@ -124,7 +142,7 @@ var secondInninBowlingArrayObjectList=[];
                                     <div class="out" id="awayTeamNameOUT" >Select first inning</div>  
                                      <label class="error"></label>  
                                 </div>
-                                </div><!-- div end -->
+                                </div>
                                 <div style="float: left; width: 45%;">
                                 <label style="float: left;width: 52%;"><b>First Innings</b></label> 
                                 
@@ -136,176 +154,397 @@ var secondInninBowlingArrayObjectList=[];
                                     <div class="out" id="homeTeamNameOUT">Select second inning</div>
                                     <label class="error"></label>    
                                 </div>
-                                </div><!-- div end -->
+                                </div>
                                 	
-                              </div>
-                              <div style="margin-top: 33px;">
-                              	<input type="text" value="" id="matchDate" style="height: 36px;" readonly>
-                              	<button onclick="matchStart('${homeTeamId}','${awayTeamId}')" class="btn btn-default dBtn" style="margin-left: 6px;" id="enterscoreStartbtn" >Enter score</button> <a href="#" style="margin-left: 6px;width: 98px;" class="btn btn-default dBtn" onclick="cancelValues()">Cancel</a>
-                              	
-                              </div>
-                           
-                           </div> 
-               
-                  </div>
-            <div class="col-md-10 pull-right">            
-          
-          <div class="col-md-12 statusUpdateBox whiteBox rooster enterScorePage" id="entescoreMainDIV" style="display: none;">
-                        	<!--<h1 class="noBorder">Enter Score</h1>-->
-                           
-                            
-                            
-        <section id="cslide-slides" class="cslide-slides-master clearfix">
-            <div class="cslide-prev-next clearfix">
-                <span class="cslide-prev">Prev</span>
-                <span id="Nextslidecaller" class="cslide-next">Next</span>
-            </div>
-            <div class="cslide-slides-container clearfix">
-                <div class="cslide-slide">
-                   	<!-- <p id="">(1st Innings)</p> -->
-                   	   <p> 1st Innings <span id="firstInningsId" style="width: 80%;"></span><div id="inningsDropdown" style="display:none"><!-- <select id="homeTeamName"  onchange="checkInnings(this.value,this)"></select> --></div></p>
-                   	   
-
- 		 <table class = "firInnBatting" id="firInnBattingTable">
-  			<thead>
-        	<tr>
-            	<th><sup>*</sup>Batsmen</th>
-                <th>Bowler</th>
-                <th>Fielder</th>
-                <th><sup>*</sup>Dismissal Type</th>
-                <th><sup>*</sup>R</th>
-                <th>M</th>
-                <th><sup>*</sup>B</th>
-                <th>4's</th>
-                <th>6's</th>
-                <th><sup>*</sup>SR</th>
-                <th>0's<th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-            	<!-- <td><input  type="text" class="wi-sel" id="firInnPlayerName" onkeyup="getBuddiesAutoCompleteFirstInning(this,'addMemberautoCompleteDIV','addMemberIDDIV')" onfocus="checkFunction()" value="" name="firInnPlayerName">   -->
-            	<td ><!-- <div class="selectdiv" style="width:120px">
-											<select class="selectboxdiv" id="firInnPlayerName" name="firInnPlayerName" onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIV','FistInningBatting')">
-													<option value="0">Select Player</option>
-											</select>
-											<div  class="out"></div>
-										</div> -->
-					<select style="width:100px" id="firInnPlayerName" name="firInnPlayerName" onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIV','FistInningBatting')">
-													<option value="0">Select Player</option>
-											</select>					
-            	
-            	<div class="autoComplete" id="addMemberautoCompleteDIV" style="display:none;">
-													<ul>
-			                                        	<li></li>
-			                                        </ul>                                  	
-			                                  </div> 
-                                  <input type="hidden" class="addMemberIDDIV" class="form-control" placeholder="" id="addMemberIDDIV" name="addMemberIDDIVName" >
-                                  </td>
-                <td><!-- <input type="text" class="wi-sel" id="firInnBowlerName" onkeyup="getBuddiesAutoComplete1(this,'addMemberautoCompleteDIVBow','addMemberIDDIVBow')" >
-                <div class="autoComplete" id="addMemberautoCompleteDIVBow" style="display:none;">
-													<ul>
-			                                        	<li></li>
-			                                        </ul>                                  	
-			                                  </div> -->
-                                  <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVBow" name="addMemberIDDIVBowName" > 
-              <!--  <div class="selectdiv" style="width:120px">
-											<select class="selectboxdiv" id="firInnBowlerName" name="firInnBowlerName" onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVBow')">
-													<option value="0">Select Player</option>
-											</select>
-											<div  class="out"></div>
-										</div> -->
-								<select style="width:100px" id="firInnBowlerName" name="firInnBowlerName" onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVBow')">
-													<option value="0">Select Player</option>
-											</select>		
-                </td>
-                <td><!-- <input type="text" class="wi-sel" id="firInnFielderName" onkeyup="getBuddiesAutoComplete1(this,'addMemberautoCompleteDIVFiel','addMemberIDDIVFiel')">
-                  <div class="autoComplete" id="addMemberautoCompleteDIVFiel" style="display:none;">
-													<ul>
-			                                        	<li></li>
-			                                        </ul>                                  	
-			                                  </div>  -->
-			                  <!-- <div class="selectdiv" style="width:120px">
-											<select class="selectboxdiv" id="firInnFielderName" name="firInnFielderName" onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVFiel')">
-													<option value="0">Select Player</option>
-											</select>
-											<div  class="out"></div>
-										</div> -->       
-									<select style="width:100px" id="firInnFielderName" name="firInnFielderName" onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVFiel')">
-													<option value="0">Select Player</option>
-											</select>		         
-                                  <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVFiel" name="addMemberIDDIVFiel" >
-                </td>
-				<td><div class="amdSbox">
-								
-                           <div class="selectdiv" style="width:121px">
-											<select class="selectboxdiv" id="dissmissalType" name="dismissalType" onchange="selectDismissal(this,'firInnDismissal')">
-												<option value="0">Select dissmissal type</option>
-											 	<c:forEach var="dismissal" items="${dismissalTypeList}">
-											 <%-- 	<option value="${dismissal.dismissalTypeId}">${dismissal.dismissalTypeName}</option>  --%>
-											 		<option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
-												</c:forEach>  
-											</select>
-											<div  class="out"></div>
+                              </div>  -->
+                              
+                              <div id="headerSlide">
+                              <input type="hidden" id="awayTeamName">
+                              <input type="hidden" id="homeRosterName">
+                              <input type="hidden" id="awayRosterName">
+                              
+                              
+									<div class="form-horizontal">
+										<div class="form-group">
+											<label for="inputEmail3" class="col-sm-2 control-label">Match
+												Date :</label>
+											<div class="col-sm-4">
+												<input type="text" class="form-control" value=""
+													id="matchDate" readonly>
+											</div>
 										</div>
-                            </div>
-                            <input type="hidden" class="wid" id="firInnDismissal" name="firInnDismissal" >
-                 </td>
-                <td><input type="text" class="wid OnlyNumber" id="firInnRuns" onfocus = "numberCheck(this)" name="firInnRuns" onblur="calculateStrikerate('firInnRuns','firInnBalls','firInnStrikeRate')"></td>
-                <td><input type="text" class="wid " id="firInnMins" onfocus = "numberCheck(this)" name="firInnMins"></td>
-                <td><input type="text" class="wid OnlyNumber" id="firInnBalls" onfocus = "numberCheck(this)" name="firInnBalls" onblur="calculateStrikerate('firInnRuns','firInnBalls','firInnStrikeRate')"></td>
-                <td><input type="text" class="wid OnlyNumber" id="firInnFours" onfocus = "numberCheck(this)" name="firInnFours"></td> 
-                <td><input type="text" class="wid OnlyNumber" id="firInnSixs"  onfocus = "numberCheck(this)" name="firInnSixs"></td> 
-                <td><input type="text" class="wid" id="firInnStrikeRate" onfocus = "numberCheck(this)" name="firInnStrikeRate" readonly="readonly"></td>   
-                <td><input type="text" class="wid OnlyNumber" id="firInnBattingOvers" onfocus = "numberCheck(this)" name="firInnBattingOvers"></td>            
-                </tr>
-                
-            </tbody>
-  </table>
-  <br>
-  <div><a href="javascript:void(0)" class="enterScoreAddMore" onclick="addFirstInningsBatting()">Add More</a></div><br><br>
-  
-  <!-- score table -->
-  <div class="pull-left score-details-table-holder">
-  	<div class="score-detail-label">EXTRAS :</div>
-  	<table class="score-details-table">
-  	<tr><th>Wides</th><th>No Balls</th><th>Byes</th><th>Leg Byes</th><th>Penalties</th></tr>
-  	<tr><td><input type="text" id="firstInningsWide" value=""></td><td><input type="text" id="firstInningsNoBalls" value=""></td><td><input type="text" id="firstInningsByes" value=""></td><td><input type="text" id="firstInningsLegByes" value=""></td><td><input type="text" id="firstInningsPenalties" value=""></td></tr>
-  	</table>
-  	<input type="hidden" id="WinTeamdetails">
-  	<div class="score-details-in">		
-    	<label for="email" class="totscor">TOTAL SCORE</label>
-        <input type="text" class="TOT-E OnlyNumber" id="firstInnigsScore" onfocus="numberCheck(this);" onblur="firstInningsTotalScore(this.value)">
-        <label for="email" class="totscor">TOTAL WICKET</label>
-        <input type="text" class="TOT-E OnlyNumber" id="firstInnigsTotalWicket" onfocus="numberCheck(this);" onblur="firstInningsWickets(this.value)">
-        <label for="text" class="totscor">TOTAL OVER</label>
-        <input type="text" class="TOT-E" id="firstBattingTotalOvers" onfocus="numberCheck(this);" onblur="firstInningsTotalOversChange()">
-  	</div><!-- score details in end -->	
-  </div><!-- score-details-table-holder end -->
-  
-  <div class="score-table-holder">
-  <div class="score-label">FOW :</div>
-  
-  <table class="score-table">
-  	<tr>
-  	<td>1</td><td><input type="text" id="firstInningsFirstWicket" value=""></td>
-  	<td>2</td><td><input type="text" id="firstInningsSecondWicket" value=""></td>
-  	<td>3</td><td><input type="text" id="firstInningsThirdWicket" value=""></td>
-  	<td>4</td><td><input type="text" id="firstInningsFourthWicket" value=""></td>
-  	<td>5</td><td><input type="text" id="firstInningsFithWicket" value=""></td>
-  	<td>6</td><td><input type="text" id="firstInningsSixthWicket" value=""></td>
-  	<td>7</td><td><input type="text" id="firstInningsSevenWicket" value=""></td>
-  	<td>8</td><td><input type="text" id="firstInningsEightWicket" value=""></td>
-  	<td>9</td><td><input type="text" id="firstInningsNineWicket" value=""></td>
-  	<td>10</td><td><input type="text" id="firstInningsTendWicket" value=""></td>
-  </tr>
-  
-  </table>
-  </div><!-- score-table-holder end -->
-  <div class="col-md-12 col-lg-12" >
-  <label for="text" class="totscor sel-label">DNB Players</label>   
-  <div class="sel-holder" id="donotbatDivFirstInnings">     
-    <!-- <select name="dntPlayerList" id="dntPlayerList" multiple="multiple" class="form-control" >
+									</div>
+									<div class="form-horizontal">
+										<div class="form-group">
+											<label for="inputEmail3" class="col-sm-2 control-label">Match
+												Type :</label>
+											<div class="col-sm-4">
+												<!-- <input type="text" class="form-control" value="" id="matchDate"  readonly> -->
+												<select class="form-control" id="matchType" onchange="matchTypevalidation()">
+													<option value="">Choose match type</option>
+													<option value="One Day Cricket">One Day Cricket</option>
+													<option value="Twenty 20">Twenty 20</option>
+												</select>
+											</div>
+										</div>
+										<div id="matchTypeerror" class="createschedulError"></div>
+									</div>
+									<div class="form-horizontal">
+										<div class="form-group">
+											<label for="inputEmail3" class="col-sm-2 control-label">Overs
+												:</label>
+											<div class="col-sm-4">
+												<input type="text" id="totalOverPerInnings" class="form-control" value="" onfocus="numberCheck(this)" onkeyup="totaloverperinnings()">
+											</div>
+										</div>
+										<div id="totalovererror" class="createschedulError"></div>
+
+									</div>
+
+									<div class="form-horizontal">
+										<div class="form-group">
+											<label for="inputEmail3" class="col-sm-2 control-label">Toss
+												Won By :</label>
+											<div class="col-sm-4">
+												<select class="form-control" id="tossWonby" onchange="tossWonbyvalidation()">
+
+												</select>
+											</div>
+										</div>
+										<div id="tosswonerror" class="createschedulError"></div>
+									</div>
+
+									<div class="form-horizontal">
+										<div class="form-group">
+											<label for="inputEmail3" class="col-sm-2 control-label">Elected
+												to :</label>
+											<div class="col-sm-4">
+												<select class="form-control" id="ElectedTo" onchange="electedTovalidation()">
+												   <option value="">Select</option>
+													<option value="Bat">Bat</option>
+													<option value="Bowl">Bowl</option>
+												</select>
+											</div>
+										</div>
+										<div id="electedtoerror" class="createschedulError"></div>
+									</div>
+									
+									
+									<div class="form-horizontal">
+										<div class="form-group">
+											<label for="inputEmail3" class="col-sm-2 control-label"><span id="hometeamBattingname" style="width: 80%;"></span></label>
+											<div class="col-sm-5">
+												<div id="hometeamBattingEleven"></div>
+											</div>
+										</div>
+										<div id="homeelevenselecterrorError" class="createschedulError"></div>
+									</div>
+									
+									<div class="form-horizontal">
+										<div class="form-group">
+											<label for="inputEmail3" class="col-sm-2 control-label"><span id="awayteamBattingname" style="width: 80%;"></span></label>
+											<div class="col-sm-5">
+												<div id="awayteamBattingEleven"></div>
+											</div>
+										</div>
+										<div id="awayelevenselecterror" class="createschedulError"></div>
+									</div>
+
+                                    </div>
+
+									<!-- <label><b>Match Date :</b></label><input type="text" value="" id="matchDate" style="height: 36px;" readonly><br> -->
+									<!-- <label><b>Match Type :</b></label><input type="text" value=""  style="height: 36px;" ><br> -->
+									<!-- <label><b>Overs :</b></label><input type="text" value=""  style="height: 36px;" ><br> -->
+
+									<!-- <label style="float: left;"><b> Toss Won By :</b></label>
+								<div class="selectdiv"
+									style="float: left; width: 20%; margin-left: 0;">
+
+									<select class="selectboxdiv" id="tossWonby">
+
+
+									</select>
+								</div> -->
+									<!-- <br> <label style="float: left;"><b> Elected to
+										:</b></label>
+								<div class="selectdiv"
+									style="float: left; width: 20%; margin-left: 0;">
+
+									<select class="selectboxdiv" id="ElectedTo">
+										<option value="Bat">Bat</option>
+										<option value="Bowl">Bowl</option>
+
+									</select>
+								</div> -->
+
+									<!-- <label for="t25pxext" class="totscor sel-label"><span id="hometeamBattingname" style="width: 80%;"></span></label>
+									<div class="sel-holder" id="hometeamBattingEleven"></div> -->
+
+									<!-- <label for="text" class="totscor sel-label"><span
+										id="awayteamBattingname" style="width: 80%;"></span></label>
+									<div class="sel-holder" id="awayteamBattingEleven"></div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+									<div style="margin-top: 33px;">
+										<!-- <input type="text" value="" id="matchDate" style="height: 36px;" readonly> -->
+
+										<input type="button" style="margin-right: 10px;"
+											class="btn btn-default blueBtn pull-right"
+											onclick="validateFunction()" value="Enter score">
+
+
+
+										<%-- <button onclick="matchStart('${homeTeamId}','${awayTeamId}')"
+										class="btn btn-default dBtn" style="margin-left: 6px;"
+										id="enterscoreStartbtn">Enter score</button> --%>
+										<a href="#" style="margin-left: 6px; width: 98px;"
+											class="btn btn-default dBtn" onclick="cancelValues()">Cancel</a>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</form>
+						<div class="col-md-10 pull-right">
+
+							<div
+								class="col-md-12 statusUpdateBox whiteBox rooster enterScorePage"
+								id="entescoreMainDIV" style="display: none;">
+								<!--<h1 class="noBorder">Enter Score</h1>-->
+
+
+
+								<section id="cslide-slides"
+									class="cslide-slides-master clearfix">
+									<div class="cslide-prev-next clearfix">
+										<span class="cslide-prev">Prev</span> <span
+											id="Nextslidecaller" class="cslide-next">Next</span>
+									</div>
+									<div class="cslide-slides-container clearfix">
+										<div class="cslide-slide">
+											<!-- <p id="">(1st Innings)</p> -->
+											<p>
+												1st Innings <span id="firstInningsId" style="width: 80%;"></span>
+											<div id="inningsDropdown" style="display: none">
+												<!-- <select id="homeTeamName"  onchange="checkInnings(this.value,this)"></select> -->
+											</div>
+											</p>
+
+
+											<table class="firInnBatting" id="firInnBattingTable">
+												<thead>
+													<tr>
+														<th><sup>*</sup>Batsmen</th>
+														<th><sup>*</sup>Dismissal Type</th>
+														<th>Fielder</th>
+														<th>Bowler</th>
+														<th><sup>*</sup>R</th>
+														<th><sup>*</sup>B</th>
+														<th>4's</th>
+														<th>6's</th>
+														<th>0's</th>
+														<th>M</th>
+														<th><sup>*</sup>SR</th>
+
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<!-- <td><input  type="text" class="wi-sel" id="firInnPlayerName" onkeyup="getBuddiesAutoCompleteFirstInning(this,'addMemberautoCompleteDIV','addMemberIDDIV')" onfocus="checkFunction()" value="" name="firInnPlayerName">   -->
+														<td><select style="width: 100px"
+															id="firInnPlayerName" name="firInnPlayerName"
+															onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIV','FistInningBatting')">
+																<option value="0">Select Player</option>
+														</select>
+
+															<div class="autoComplete" id="addMemberautoCompleteDIV"
+																style="display: none;">
+																<ul>
+																	<li></li>
+																</ul>
+															</div> <input type="hidden" class="addMemberIDDIV"
+															class="form-control" placeholder="" id="addMemberIDDIV"
+															name="addMemberIDDIVName"></td>
+
+
+														<td><div class="amdSbox">
+
+																<div class="selectdiv" style="width: 121px">
+																	<select class="selectboxdiv" id="dissmissalType"
+																		name="dismissalType"
+																		onchange="selectDismissal(this,'firInnDismissal')">
+																		<option value="0">Select dissmissal type</option>
+																		<c:forEach var="dismissal"
+																			items="${dismissalTypeList}">
+																			<%-- 	<option value="${dismissal.dismissalTypeId}">${dismissal.dismissalTypeName}</option>  --%>
+																			<option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
+																		</c:forEach>
+																	</select>
+																	<div class="out"></div>
+																</div>
+															</div> <input type="hidden" class="wid" id="firInnDismissal"
+															name="firInnDismissal"></td>
+
+														<td><select style="width: 100px"
+															id="firInnFielderName" name="firInnFielderName"
+															onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVFiel')">
+																<option value="0">Select Player</option>
+														</select> <input type="hidden" class="form-control" placeholder=""
+															id="addMemberIDDIVFiel" name="addMemberIDDIVFiel">
+														</td>
+
+														<td><input type="hidden" class="form-control"
+															placeholder="" id="addMemberIDDIVBow"
+															name="addMemberIDDIVBowName"> <select
+															style="width: 100px" id="firInnBowlerName"
+															name="firInnBowlerName"
+															onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVBow')">
+																<option value="0">Select Player</option>
+														</select></td>
+
+
+														<td><input type="text" class="wid OnlyNumber"
+															id="firInnRuns" onfocus="numberCheck(this)"
+															name="firInnRuns"
+															onblur="calculateStrikerate('firInnRuns','firInnBalls','firInnStrikeRate'); totalCalculate('First')"
+															onkeyup="calculateruns('firInnRuns','firInnFours','firInnSixs','Totalruns')"></td>
+
+														<td><input type="text" class="wid OnlyNumber"
+															id="firInnBalls" onfocus="numberCheck(this)"
+															name="firInnBalls"
+															onblur="calculateStrikerate('firInnRuns','firInnBalls','firInnStrikeRate')"></td>
+														<td><input type="text" class="wid OnlyNumber"
+															id="firInnFours" onfocus="numberCheck(this)"
+															name="firInnFours"
+															onkeyup="calculateruns('firInnRuns','firInnFours','firInnSixs','Fours')"></td>
+														<td><input type="text" class="wid OnlyNumber"
+															id="firInnSixs" onfocus="numberCheck(this)"
+															name="firInnSixs"
+															onkeyup="calculateruns('firInnRuns','firInnFours','firInnSixs','Sixes')"></td>
+														<td><input type="text" class="wid OnlyNumber"
+															id="firInnBattingOvers" onfocus="numberCheck(this)"
+															name="firInnBattingOvers"></td>
+														<td><input type="text" class="wid " id="firInnMins"
+															onfocus="numberCheck(this)" name="firInnMins"></td>
+														<td><input type="text" class="wid"
+															id="firInnStrikeRate" onfocus="numberCheck(this)"
+															name="firInnStrikeRate" readonly="readonly"></td>
+
+													</tr>
+
+												</tbody>
+											</table>
+											<br>
+											<div>
+												<a href="javascript:void(0)" class="enterScoreAddMore"
+													onclick="addFirstInningsBatting()">Add More</a> <a
+													id="removebattingrow" href="javascript:void(0)"
+													class="enterScoreAddMore"
+													onclick="removeFirstInningsBatting('first')"
+													style="display: none;">Remove</a>
+
+											</div>
+											<br> <br>
+
+											<!-- score table -->
+											<div class="pull-left score-details-table-holder">
+												<div class="score-detail-label">EXTRAS :</div>
+												<table class="score-details-table">
+													<tr>
+														<th>Wides</th>
+														<th>No Balls</th>
+														<th>Byes</th>
+														<th>Leg Byes</th>
+														<th>Penalties</th>
+													</tr>
+													<tr>
+														<td><input type="text" id="firstInningsWide" value=""></td>
+														<td><input type="text" id="firstInningsNoBalls"
+															value=""></td>
+														<td><input type="text" id="firstInningsByes" value=""></td>
+														<td><input type="text" id="firstInningsLegByes"
+															value=""></td>
+														<td><input type="text" id="firstInningsPenalties"
+															value=""></td>
+													</tr>
+												</table>
+												<input type="hidden" id="WinTeamdetails">
+												<div class="score-details-in">
+													<label for="email" class="totscor">TOTAL SCORE</label> <input
+														type="text" class="TOT-E OnlyNumber" id="firstInnigsScore"
+														onfocus="numberCheck(this);"
+														onblur="firstInningsTotalScore(this.value)"> <label
+														for="email" class="totscor">TOTAL WICKET</label> <input
+														type="text" class="TOT-E OnlyNumber"
+														id="firstInnigsTotalWicket" onfocus="numberCheck(this);"
+														onblur="firstInningsWickets(this.value)"> <label
+														for="text" class="totscor">TOTAL OVER</label> <input
+														type="text" class="TOT-E" id="firstBattingTotalOvers"
+														onfocus="numberCheck(this);"
+														onblur="firstInningsTotalOversChange()">
+												</div>
+												<!-- score details in end -->
+											</div>
+											<!-- score-details-table-holder end -->
+
+											<div class="score-table-holder">
+												<div class="score-label">FOW :</div>
+
+												<table class="score-table">
+													<tr>
+														<td>1</td>
+														<td><input type="text" id="firstInningsFirstWicket"
+															value=""></td>
+														<td>2</td>
+														<td><input type="text" id="firstInningsSecondWicket"
+															value=""></td>
+														<td>3</td>
+														<td><input type="text" id="firstInningsThirdWicket"
+															value=""></td>
+														<td>4</td>
+														<td><input type="text" id="firstInningsFourthWicket"
+															value=""></td>
+														<td>5</td>
+														<td><input type="text" id="firstInningsFithWicket"
+															value=""></td>
+														<td>6</td>
+														<td><input type="text" id="firstInningsSixthWicket"
+															value=""></td>
+														<td>7</td>
+														<td><input type="text" id="firstInningsSevenWicket"
+															value=""></td>
+														<td>8</td>
+														<td><input type="text" id="firstInningsEightWicket"
+															value=""></td>
+														<td>9</td>
+														<td><input type="text" id="firstInningsNineWicket"
+															value=""></td>
+														<td>10</td>
+														<td><input type="text" id="firstInningsTendWicket"
+															value=""></td>
+													</tr>
+
+												</table>
+											</div>
+											<!-- score-table-holder end -->
+											<div class="col-md-12 col-lg-12">
+												<label for="text" class="totscor sel-label">DNB
+													Players</label>
+												<div class="sel-holder" id="donotbatDivFirstInnings">
+													<!-- <select name="dntPlayerList" id="dntPlayerList" multiple="multiple" class="form-control" >
  <option value="">Afghanistanfghfhgjjhj</option>
 <option value="AF">Afghanistanfghfhgjjhj</option>
 <option value="AL">Afghanistanfghfhgjjhj</option>
@@ -314,230 +553,313 @@ var secondInninBowlingArrayObjectList=[];
 <option value="AF">Afghanistan</option>
 <option value="AL">Albania</option>
 </select>  -->
-</div>
+												</div>
 
-  </div>
-  
-  <!-- score table end -->
-   
-  
-  <table id="firInnBowlingTable" style="margin-top: 1%;">
-  		<thead>
-        	<tr>
-            	<th><sup>*</sup>Bowler Names</th>
-                <th><sup>*</sup>O</th>
-                <th><sup>*</sup>R</th>
-                <th>M</th>
-                <th><sup>*</sup>W</th>
-                <th><sup>*</sup>Eco</th>
-                <th>0's</th>
-                <th>4's</th>
-                <th>6's</th>
-                <th>B</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-            	<td><!-- <input type="text" class="wi-sel" id="firInnBowlingName" onkeyup="getBuddiesAutoCompleteFirstBowling(this,'addMemberautoCompleteDIVBowling','addMemberIDDIVBowling')">
+											</div>
+
+											<!-- score table end -->
+
+
+											<table id="firInnBowlingTable" style="margin-top: 1%;">
+												<thead>
+													<tr>
+														<th><sup>*</sup>Bowler Names</th>
+														<th><sup>*</sup>O</th>
+														<th><sup>*</sup>R</th>
+														<th>M</th>
+														<th><sup>*</sup>W</th>
+														<th><sup>*</sup>Eco</th>
+														<th>0's</th>
+														<th>4's</th>
+														<th>6's</th>
+														<th>B</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>
+															<!-- <input type="text" class="wi-sel" id="firInnBowlingName" onkeyup="getBuddiesAutoCompleteFirstBowling(this,'addMemberautoCompleteDIVBowling','addMemberIDDIVBowling')">
             	
             	<div class="autoComplete" id="addMemberautoCompleteDIVBowling" style="display:none;">
 													<ul>
 			                                        	<li></li>
 			                                        </ul>                                  	
-			                                  </div>  -->
-			                  <!--  <div class="selectdiv" style="width:120px">
+			                                  </div>  --> <!--  <div class="selectdiv" style="width:120px">
 											<select class="selectboxdiv" id="firInnBowlingName" name="firInnBowlingName" onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIVBowling','FirstInningBowling')">
 													<option value="0">Select Player</option>
 											</select>
 											<div  class="out"></div>
-										</div>   -->   
-										
-										
-								<select  id="firInnBowlingName" name="firInnBowlingName" size="1" onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIVBowling','FirstInningBowling')">
-													<option value="0">Select Player</option>
-											</select>		     
-                                  <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVBowling" name="addMemberIDDIVBowling">
-            	</td>
-                <td><input type="text" class="wid" id="firInnOvers" onfocus = "numberCheck(this)" onblur="oversVal(this);calculateBowlingEconamic('firInnBowRuns','firInnOvers','firInnEco','firInnBowBalls')" name="firInnOvers"></td>
-                <td><input type="text" class="wid OnlyNumber" id="firInnBowRuns" onfocus = "numberCheck(this)" name="firInnBowRuns" onblur="calculateBowlingEconamic('firInnBowRuns','firInnOvers','firInnEco','firInnBowBalls')"></td>
-				<td><input type="text" class="wid OnlyNumber" id="firInnMaiden" onfocus = "numberCheck(this)" name="firInnMaiden"></td>
-                <td><input type="text" class="wid OnlyNumber" id="firInnWickets" onfocus = "numberCheck(this)" name="firInnWickets"></td>
-                <td><input type="text" class="wid" id="firInnEco" onfocus = "numberCheck(this)" name="firInnEco" readonly="readonly"></td>
-                <td><input type="text" class="wid OnlyNumber" id="firInnZeros" onfocus = "numberCheck(this)" name="firInnZeros"></td>
-                <td><input type="text" class="wid OnlyNumber" id="firInnBowFours" onfocus = "numberCheck(this)" name="firInnBowFours"></td>
-                <td><input type="text" class="wid OnlyNumber" id="firInnBowSixs" onfocus = "numberCheck(this)" name="firInnBowSixs"></td>    
-                 <td><input type="text" class="wid OnlyNumber" id="firInnBowBalls" onfocus = "numberCheck(this)" name="firInnBowBalls" readonly="readonly"></td>           
-                </tr>
-                
-            </tbody>
-  </table><br>
-   <div><a class="enterScoreAddMore" href="javascript:void(0)" onclick="addFirstInningBowling()">Add More</a>
-   
-   
-   <input type="text"  id="secslideshowdiv" readonly="readonly" style="height: 0; width: 0; opacity : 0;">
-   <input type="text"  id="" readonly="readonly" style="height: 0; width: 0; opacity : 0;">
-   
-   
-   </div>
-  
-                </div>
-                <div id="SecondSlide" class="cslide-slide">
-                    
-                    <p> 2nd Innings <span id="secondInningsId" style="width: 80%;"></span><div id="inningsDropdown1" style="display:none"><!-- <select id="awayTeamName"  onchange="checkInnings(this.value,this)"></select> --></div></p>
+										</div>   --> <select id="firInnBowlingName"
+															name="firInnBowlingName" size="1"
+															onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIVBowling','FirstInningBowling')">
+																<option value="0">Select Player</option>
+														</select> <input type="hidden" class="form-control" placeholder=""
+															id="addMemberIDDIVBowling" name="addMemberIDDIVBowling">
+														</td>
+														<td><input type="text" class="wid" id="firInnOvers"
+															onfocus="numberCheck(this)"
+															onblur="oversVal(this);calculateBowlingEconamic('firInnBowRuns','firInnOvers','firInnEco','firInnBowBalls')"
+															name="firInnOvers"></td>
+														<td><input type="text" class="wid OnlyNumber"
+															id="firInnBowRuns" onfocus="numberCheck(this)"
+															name="firInnBowRuns"
+															onblur="calculateBowlingEconamic('firInnBowRuns','firInnOvers','firInnEco','firInnBowBalls')"></td>
+														<td><input type="text" class="wid OnlyNumber"
+															id="firInnMaiden" onfocus="numberCheck(this)"
+															name="firInnMaiden"></td>
+														<td><input type="text" class="wid OnlyNumber"
+															id="firInnWickets" onfocus="numberCheck(this)"
+															name="firInnWickets"></td>
+														<td><input type="text" class="wid" id="firInnEco"
+															onfocus="numberCheck(this)" name="firInnEco"
+															readonly="readonly"></td>
+														<td><input type="text" class="wid OnlyNumber"
+															id="firInnZeros" onfocus="numberCheck(this)"
+															name="firInnZeros"></td>
+														<td><input type="text" class="wid OnlyNumber"
+															id="firInnBowFours" onfocus="numberCheck(this)"
+															name="firInnBowFours"></td>
+														<td><input type="text" class="wid OnlyNumber"
+															id="firInnBowSixs" onfocus="numberCheck(this)"
+															name="firInnBowSixs"></td>
+														<td><input type="text" class="wid OnlyNumber"
+															id="firInnBowBalls" onfocus="numberCheck(this)"
+															name="firInnBowBalls" readonly="readonly"></td>
+													</tr>
 
- 		 <table id="secInnBattingTable">
-  			<thead>
-        	<tr>
-                <th><sup>*</sup>Batsmen</th>
-                <th>Bowler</th>
-                <th>Fielder</th>
-                <th><sup>*</sup>Dismissal Type</th>
-                <th><sup>*</sup>R</th>
-                <th>M</th>
-                <th><sup>*</sup>B</th>
-                <th>4s</th>
-                <th>6s</th>
-                <th><sup>*</sup>SR</th>
-                <th>O</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-            	<td><!-- <input type="text" class="wi-sel" id="secInnPlayerName" onkeyup="getBuddiesAutoCompleteSecondInning(this,'addMemberautoCompleteDIVPlayer','addMemberIDDIVPlayer')">
-            	
-            	<div class="autoComplete" id="addMemberautoCompleteDIVPlayer" style="display:none;">
-													<ul>
-			                                        	<li></li>
-			                                        </ul>                                  	
-			                                  </div>  -->
-			           <!--   <div class="selectdiv" style="width:120px">
-											<select class="selectboxdiv" id="secInnPlayerName" name="secInnPlayerName" onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIVPlayer','SecondInningBatting')">
-								                 <option value="0">Select Player</option>
-											</select>
-											<div  class="out"></div>
-										</div>  -->  
-								<select style="width:100px" id="secInnPlayerName" name="secInnPlayerName" onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIVPlayer','SecondInningBatting')" >
-								                 <option value="0">Select Player</option>
-											</select>		                  
-                                  <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVPlayer" name="addMemberIDDIVPlayer">
-            	
-            	</td>
-                <td><!-- <input type="text" class="wi-sel" id="secInnBowlerName" onkeyup="getBuddiesAutoComplete(this,'addMemberautoCompleteDIVBowlerSec','addMemberIDDIVBowlerSec')" name="secInnBowlerName">
-                <div class="autoComplete" id="addMemberautoCompleteDIVBowlerSec" style="display:none;">
-													<ul>
-			                                        	<li></li>
-			                                        </ul>                                  	
-			                                  </div>  -->
-			    <!--   <div class="selectdiv" style="width:120px">
-											<select class="selectboxdiv" id="secInnBowlerName" name="secInnBowlerName" onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVBowlerSec')">
-													<option value="0">Select Player</option>
-											</select>
-											<div  class="out"></div>
-										</div> -->   
-								<select style="width:100px" id="secInnBowlerName" name="secInnBowlerName" onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVBowlerSec')">
-													<option value="0">Select Player</option>
-											</select>		                           
-                                  <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVBowlerSec" name="addMemberIDDIVBowlerSec">
-                
-                </td>
-                <td><!-- <input type="text" class="wi-sel" id="secInnFielderName" onkeyup="getBuddiesAutoCompleteSecondInning(this,'addMemberautoCompleteDIVFielderSec','addMemberIDDIVFielderSec')">
-                <div class="autoComplete" id="addMemberautoCompleteDIVFielderSec" style="display:none;">
-													<ul>
-			                                        	<li></li>
-			                                        </ul>                                  	
-			                                  </div>  -->
-			       <!-- <div class="selectdiv" style="width:120px">
-											<select class="selectboxdiv" id="secInnFielderName" name="secInnFielderName" onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVFielderSec')">
-												<option value="0">Select Player</option>
-											</select>
-											<div  class="out"></div>
-										</div> -->    
-							<select style="width:100px" id="secInnFielderName" name="secInnFielderName" onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVFielderSec')">
-												<option value="0">Select Player</option>
-											</select>			                         
-                                  <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVFielderSec" name="addMemberIDDIVFielderSec">
-                
-                </td>
-				<td><div class="amdSbox">
-								
-                           <div class="selectdiv" style="width:121px">
-											<select class="selectboxdiv" id="dissmissalTypeSec" name="dismissalType" onchange="selectDismissal(this,'secInnDismissal')">
-												<option value="0">Select dismissal type</option>
-											 	<c:forEach var="dismissal" items="${dismissalTypeList}">
-											 	
-											 	<%-- <option value="${dismissal.dismissalTypeId}">${dismissal.dismissalTypeName}</option> --%>
-											 	<option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
-												 
-												</c:forEach>  
-											</select>
-											<div  class="out"></div>
+												</tbody>
+											</table>
+											<br>
+											<div>
+												<a class="enterScoreAddMore" href="javascript:void(0)"
+													onclick="addFirstInningBowling()">Add More</a> <a
+													id="removefirstbowling" class="enterScoreAddMore"
+													href="javascript:void(0)"
+													onclick="removeInningBowling('first')"
+													style="display: none;">Remove</a> <input type="text"
+													id="secslideshowdiv" readonly="readonly"
+													style="height: 0; width: 0; opacity: 0;"> <input
+													type="text" id="" readonly="readonly"
+													style="height: 0; width: 0; opacity: 0;">
+
+
+											</div>
+
 										</div>
-                            </div>
-                           <input type="hidden" class="wid" id="secInnDismissal"></td>
-                <td><input type="text" class="wid OnlyNumber" id="secInnRuns" onfocus = "numberCheck(this)" name="secInnRuns" onblur="calculateStrikerate('secInnRuns','secInnBalls','secInnStrikeRate')"></td>
-                <td><input type="text" class="wid" id="secInnMins" onfocus = "numberCheck(this)" name="secInnMins"></td>
-                <td><input type="text" class="wid OnlyNumber" id="secInnBalls" onfocus = "numberCheck(this)" name="secInnBalls" onblur="calculateStrikerate('secInnRuns','secInnBalls','secInnStrikeRate')"></td>
-                <td><input type="text" class="wid OnlyNumber" id="secInnFours" onfocus = "numberCheck(this)" name="secInnFours"></td>        
-                <td><input type="text" class="wid OnlyNumber" id="secInnSixs" onfocus = "numberCheck(this)" name="secInnSixs"></td>           
-                <td><input type="text" class="wid" id="secInnStrikeRate" onfocus = "numberCheck(this)" name="secInnStrikeRate" readonly="readonly"></td>    
-                 <td><input type="text" class="wid OnlyNumber" id="secInnBattingOvers" onfocus = "numberCheck(this)" name="secInnBattingOvers"></td>                 
-                </tr>
-                
-            </tbody>
-  </table><br>
-   <div><a class="enterScoreAddMore" href="javascript:void(0)" onclick="addSecondInningsBatting()">Add More</a></div><br><br>
-  
-  <!-- <div class="pull-right margin" style="width: 63% !important;">
+										<div id="SecondSlide" class="cslide-slide">
+
+											<p>
+												2nd Innings <span id="secondInningsId" style="width: 80%;"></span>
+											<div id="inningsDropdown1" style="display: none">
+												<!-- <select id="awayTeamName"  onchange="checkInnings(this.value,this)"></select> -->
+											</div>
+											</p>
+
+											<table id="secInnBattingTable">
+												<thead>
+													<tr>
+														<th><sup>*</sup>Batsmen</th>
+														<th><sup>*</sup>Dismissal Type</th>
+														<th>Fielder</th>
+														<th>Bowler</th>
+														<th><sup>*</sup>R</th>
+														<th><sup>*</sup>B</th>
+														<th>4s</th>
+														<th>6s</th>
+														<th>O</th>
+														<th>M</th>
+														<th><sup>*</sup>SR</th>
+
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><select style="width: 100px"
+															id="secInnPlayerName" name="secInnPlayerName"
+															onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIVPlayer','SecondInningBatting')">
+																<option value="0">Select Player</option>
+														</select> <input type="hidden" class="form-control" placeholder=""
+															id="addMemberIDDIVPlayer" name="addMemberIDDIVPlayer">
+
+														</td>
+
+														<td><div class="amdSbox">
+
+																<div class="selectdiv" style="width: 121px">
+																	<select class="selectboxdiv" id="dissmissalTypeSec"
+																		name="dismissalType"
+																		onchange="selectDismissal(this,'secInnDismissal')">
+																		<option value="0">Select dismissal type</option>
+																		<c:forEach var="dismissal"
+																			items="${dismissalTypeList}">
+
+																			<%-- <option value="${dismissal.dismissalTypeId}">${dismissal.dismissalTypeName}</option> --%>
+																			<option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option>
+
+																		</c:forEach>
+																	</select>
+																	<div class="out"></div>
+																</div>
+															</div> <input type="hidden" class="wid" id="secInnDismissal">
+														</td>
+
+
+														<td><select style="width: 100px"
+															id="secInnFielderName" name="secInnFielderName"
+															onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVFielderSec')">
+																<option value="0">Select Player</option>
+														</select> <input type="hidden" class="form-control" placeholder=""
+															id="addMemberIDDIVFielderSec"
+															name="addMemberIDDIVFielderSec"></td>
+
+														<td><select style="width: 100px"
+															id="secInnBowlerName" name="secInnBowlerName"
+															onchange="firstIningsbattingPlayerOnchange1(this,'addMemberIDDIVBowlerSec')">
+																<option value="0">Select Player</option>
+														</select> <input type="hidden" class="form-control" placeholder=""
+															id="addMemberIDDIVBowlerSec"
+															name="addMemberIDDIVBowlerSec"></td>
+
+
+														<td><input type="text" class="wid OnlyNumber"
+															id="secInnRuns" onfocus="numberCheck(this)"
+															name="secInnRuns"
+															onblur="calculateStrikerate('secInnRuns','secInnBalls','secInnStrikeRate'); totalCalculate('Second')"
+															onkeyup="calculateruns('secInnRuns','secInnFours','secInnSixs','Totalruns')"></td>
+														<td><input type="text" class="wid OnlyNumber"
+															id="secInnBalls" onfocus="numberCheck(this)"
+															name="secInnBalls"
+															onblur="calculateStrikerate('secInnRuns','secInnBalls','secInnStrikeRate')"></td>
+														<td><input type="text" class="wid OnlyNumber"
+															id="secInnFours" onfocus="numberCheck(this)"
+															name="secInnFours"
+															onkeyup="calculateruns('secInnRuns','secInnFours','secInnSixs','Fours')"></td>
+														<td><input type="text" class="wid OnlyNumber"
+															id="secInnSixs" onfocus="numberCheck(this)"
+															name="secInnSixs"
+															onkeyup="calculateruns('secInnRuns','secInnFours','secInnSixs','Sixes')"></td>
+														<td><input type="text" class="wid OnlyNumber"
+															id="secInnBattingOvers" onfocus="numberCheck(this)"
+															name="secInnBattingOvers"></td>
+														<td><input type="text" class="wid" id="secInnMins"
+															onfocus="numberCheck(this)" name="secInnMins"></td>
+														<td><input type="text" class="wid"
+															id="secInnStrikeRate" onfocus="numberCheck(this)"
+															name="secInnStrikeRate" readonly="readonly"></td>
+													</tr>
+
+												</tbody>
+											</table>
+											<br>
+											<div>
+												<a class="enterScoreAddMore" href="javascript:void(0)"
+													onclick="addSecondInningsBatting()">Add More</a> <a
+													id="removesecondbattingrow" href="javascript:void(0)"
+													class="enterScoreAddMore"
+													onclick="removeFirstInningsBatting('second')"
+													style="display: none;">Remove</a>
+
+											</div>
+											<br> <br>
+
+											<!-- <div class="pull-right margin" style="width: 63% !important;">
   	
     	<label for="email" class="totscor">TOTAL SCORE</label>
         <input type="text" class="TOT-E OnlyNumber" onfocus="numberCheck(this);" onblur="secondInningsTotalScore(this.value)">
         <label for="email" class="totscor">TOTAL WICKET</label>
         <input type="text" class="TOT-E OnlyNumber" onfocus="numberCheck(this);" onblur="secondInningsWickets(this.value)">
   </div> -->
-  
-  <!-- score table -->
-  <div class="pull-left score-details-table-holder">
-  	<div class="score-detail-label">EXTRAS :</div>
-  	<table class="score-details-table">
-  	<tr><th>Wides</th><th>No Balls</th><th>Byes</th><th>Leg Byes</th><th>Penalties</th></tr>
-  	<tr><td><input type="text" id="secondInningsWide" value=""></td><td><input type="text" id="secondInningsNoBalls" value=""></td><td><input type="text" id="secondInningsByes" value=""></td><td><input type="text" id="secondInningsLegByes" value=""></td><td><input type="text" id="secondInningsPenalties" value=""></td></tr>
-  	</table>
-  	<div class="score-details-in">		
-    	<label for="email" class="totscor">TOTAL SCORE</label>
-        <input type="text" class="TOT-E OnlyNumber" id="secondInnigsScore" onfocus="numberCheck(this);" onblur="secondInningsTotalScore(this.value)">
-        <label for="email" class="totscor">TOTAL WICKET</label>
-        <input type="text" class="TOT-E OnlyNumber" id="secondInnigsTotalWicket" onfocus="numberCheck(this);" onblur="secondInningsWickets(this.value)">
-         <label for="text" class="totscor">TOTAL OVER</label>
-        <input type="text" class="TOT-E" id="secondBattingTotalOvers" onfocus="numberCheck(this);" onblur="secondInningsTotalOversChange()">
-  	</div><!-- score details in end -->	
-  </div><!-- score-details-table-holder end -->
-  
-  <div class="score-table-holder">
-  <div class="score-label">FOW :</div>
-  
-  <table class="score-table">
-  	<tr>
-  	<td>1</td><td><input type="text" id="scondInningsFirstWicket" value=""></td>
-  	<td>2</td><td><input type="text" id="scondInningsSecondWicket" value=""></td>
-  	<td>3</td><td><input type="text" id="scondInningsThirdWicket" value=""></td>
-  	<td>4</td><td><input type="text" id="scondInningsFourthWicket" value=""></td>
-  	<td>5</td><td><input type="text" id="scondInningsFithWicket" value=""></td>
-  	<td>6</td><td><input type="text" id="scondInningsSixthWicket" value=""></td>
-  	<td>7</td><td><input type="text" id="scondInningsSevenWicket" value=""></td>
-  	<td>8</td><td><input type="text" id="scondInningsEightWicket" value=""></td>
-  	<td>9</td><td><input type="text" id="scondInningsNineWicket" value=""></td>
-  	<td>10</td><td><input type="text" id="scondInningsTendWicket" value=""></td>
-  </tr>
-  
-  </table>
-  
-  </div><!-- score-table-holder end -->
-  
-  <!-- score table end -->
-  <div class="col-md-12 col-lg-12" >
-  <label for="text" class="totscor sel-label">DNB Players</label>   
-  <div class="sel-holder" id="donotbatDivSeconInnings">     
-    <!-- <select name="dntPlayerList" id="dntPlayerList" multiple="multiple" class="form-control" >
+
+											<!-- score table -->
+											<div class="pull-left score-details-table-holder">
+												<div class="score-detail-label">EXTRAS :</div>
+												<table class="score-details-table">
+													<tr>
+														<th>Wides</th>
+														<th>No Balls</th>
+														<th>Byes</th>
+														<th>Leg Byes</th>
+														<th>Penalties</th>
+													</tr>
+													<tr>
+														<td><input type="text" id="secondInningsWide"
+															value=""></td>
+														<td><input type="text" id="secondInningsNoBalls"
+															value=""></td>
+														<td><input type="text" id="secondInningsByes"
+															value=""></td>
+														<td><input type="text" id="secondInningsLegByes"
+															value=""></td>
+														<td><input type="text" id="secondInningsPenalties"
+															value=""></td>
+													</tr>
+												</table>
+												<div class="score-details-in">
+													<label for="email" class="totscor">TOTAL SCORE</label> <input
+														type="text" class="TOT-E OnlyNumber"
+														id="secondInnigsScore" onfocus="numberCheck(this);"
+														onblur="secondInningsTotalScore(this.value)"> <label
+														for="email" class="totscor">TOTAL WICKET</label> <input
+														type="text" class="TOT-E OnlyNumber"
+														id="secondInnigsTotalWicket" onfocus="numberCheck(this);"
+														onblur="secondInningsWickets(this.value)"> <label
+														for="text" class="totscor">TOTAL OVER</label> <input
+														type="text" class="TOT-E" id="secondBattingTotalOvers"
+														onfocus="numberCheck(this);"
+														onblur="secondInningsTotalOversChange()">
+												</div>
+												<!-- score details in end -->
+											</div>
+											<!-- score-details-table-holder end -->
+
+											<div class="score-table-holder">
+												<div class="score-label">FOW :</div>
+
+												<table class="score-table">
+													<tr>
+														<td>1</td>
+														<td><input type="text" id="scondInningsFirstWicket"
+															value=""></td>
+														<td>2</td>
+														<td><input type="text" id="scondInningsSecondWicket"
+															value=""></td>
+														<td>3</td>
+														<td><input type="text" id="scondInningsThirdWicket"
+															value=""></td>
+														<td>4</td>
+														<td><input type="text" id="scondInningsFourthWicket"
+															value=""></td>
+														<td>5</td>
+														<td><input type="text" id="scondInningsFithWicket"
+															value=""></td>
+														<td>6</td>
+														<td><input type="text" id="scondInningsSixthWicket"
+															value=""></td>
+														<td>7</td>
+														<td><input type="text" id="scondInningsSevenWicket"
+															value=""></td>
+														<td>8</td>
+														<td><input type="text" id="scondInningsEightWicket"
+															value=""></td>
+														<td>9</td>
+														<td><input type="text" id="scondInningsNineWicket"
+															value=""></td>
+														<td>10</td>
+														<td><input type="text" id="scondInningsTendWicket"
+															value=""></td>
+													</tr>
+
+												</table>
+
+											</div>
+											<!-- score-table-holder end -->
+
+											<!-- score table end -->
+											<div class="col-md-12 col-lg-12">
+												<label for="text" class="totscor sel-label">DNB
+													Players</label>
+												<div class="sel-holder" id="donotbatDivSeconInnings">
+													<!-- <select name="dntPlayerList" id="dntPlayerList" multiple="multiple" class="form-control" >
  <option value="">Afghanistanfghfhgjjhj</option>
 <option value="AF">Afghanistanfghfhgjjhj</option>
 <option value="AL">Afghanistanfghfhgjjhj</option>
@@ -546,269 +868,374 @@ var secondInninBowlingArrayObjectList=[];
 <option value="AF">Afghanistan</option>
 <option value="AL">Albania</option>
 </select>  -->
-</div>
+												</div>
 
-  </div>
-  
-  
-  
-  <table id="secInnBowlingTable">
-  		<thead>
-        	<tr>
-            	<th><sup>*</sup>Bowler Names</th>
-                <th><sup>*</sup>O</th>
-                <th><sup>*</sup>R</th>
-                <th>M</th>
-                <th><sup>*</sup>W</th>
-                <th><sup>*</sup>Eco</th>
-                <th>0s</th>
-                <th>4s</th>
-                <th>6s</th>
-                <th>B</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-            	<td><!-- <input type="text" class="wi-sel" id="secInnBowlingName" onkeyup="getBuddiesAutoCompleteSecondBowling(this,'addMemberautoCompleteDIVBowlingSec','addMemberIDDIVBowlingSec')">
+											</div>
+
+
+
+											<table id="secInnBowlingTable">
+												<thead>
+													<tr>
+														<th><sup>*</sup>Bowler Names</th>
+														<th><sup>*</sup>O</th>
+														<th><sup>*</sup>R</th>
+														<th>M</th>
+														<th><sup>*</sup>W</th>
+														<th><sup>*</sup>Eco</th>
+														<th>0s</th>
+														<th>4s</th>
+														<th>6s</th>
+														<th>B</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>
+															<!-- <input type="text" class="wi-sel" id="secInnBowlingName" onkeyup="getBuddiesAutoCompleteSecondBowling(this,'addMemberautoCompleteDIVBowlingSec','addMemberIDDIVBowlingSec')">
             	<div class="autoComplete" id="addMemberautoCompleteDIVBowlingSec" style="display:none;">
 													<ul>
 			                                        	<li></li>
 			                                        </ul>                                  	
-			                                  </div>  -->
-			                 <!--  <div class="selectdiv" style="width:120px">
+			                                  </div>  --> <!--  <div class="selectdiv" style="width:120px">
 											<select class="selectboxdiv" id="secInnBowlingName" name="secInnBowlingName" onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIVBowlingSec','SecondInningBowling')">
 								               <option value="0">Select Player</option>
 											</select>
 											<div  class="out"></div>
-										</div> --> 
-							<select style="width:120px" id="secInnBowlingName" name="secInnBowlingName" onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIVBowlingSec','SecondInningBowling')">
-								               <option value="0">Select Player</option>
-											</select>			                  
-                                  <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVBowlingSec" name="addMemberIDDIVBowlingSec">
-            	
-            	</td>
-                <td><input type="text" class="wid" id="secInnOvers" onfocus = "numberCheck(this)" name="secInnOvers" onblur="calculateBowlingEconamic('secInnBowRuns','secInnOvers','secInnEco','secInnBowBalls')"></td>
-                <td><input type="text" class="wid OnlyNumber" id="secInnBowRuns" onfocus = "numberCheck(this)" name="secInnBowRuns" onblur="calculateBowlingEconamic('secInnBowRuns','secInnOvers','secInnEco','secInnBowBalls')"></td>
-				<td><input type="text" class="wid OnlyNumber" id="secInnMaiden" onfocus = "numberCheck(this)" name="secInnMaiden"></td>
-                <td><input type="text" class="wid OnlyNumber" id="secInnWickets" onfocus = "numberCheck(this)" name="secInnWickets"></td>
-                <td><input type="text" class="wid" id="secInnEco" onfocus = "numberCheck(this)" name="secInnEco" readonly="readonly"></td>
-                <td><input type="text" class="wid OnlyNumber" id="secInnZeros" onfocus = "numberCheck(this)" name="secInnZeros"></td>
-                <td><input type="text" class="wid OnlyNumber" id="secInnBowFours" onfocus = "numberCheck(this)" name="secInnBowFours"></td>
-                <td><input type="text" class="wid OnlyNumber" id="secInnBowSixs" onfocus = "numberCheck(this)" name="secInnBowSixs"></td> 
-                <td><input type="text" class="wid OnlyNumber" id="secInnBowBalls" onfocus = "numberCheck(this)" name="secInnBowBalls" readonly="readonly"></td>                  
-                </tr>
-                
-            </tbody>
-  </table><br>
-                  <div><a class="enterScoreAddMore" href="javascript:void(0)" onclick="addSecondInningBowling()">Add More</a></div>   
-                
-                
-                <input type="text"  id="secslideshowdiv1" readonly="readonly" style="height: 0; width: 0; opacity : 0;">
-                
-                </div>
-                <div id="ThirdSlide" class="cslide-slide">
-                    
-                    
-                    
-              
-                
-                
-                <div class="col-md-10 scoreForm">
-                    
-                    
-                    
+										</div> --> <select style="width: 120px" id="secInnBowlingName"
+															name="secInnBowlingName"
+															onchange="firstIningsbattingPlayerOnchange(this,'addMemberIDDIVBowlingSec','SecondInningBowling')">
+																<option value="0">Select Player</option>
+														</select> <input type="hidden" class="form-control" placeholder=""
+															id="addMemberIDDIVBowlingSec"
+															name="addMemberIDDIVBowlingSec">
 
-                    
-                    <form role="form" id="enterScoreform" name="enterScoreform">
-                    	
-                    	<div class="form-group">
-                            <div class="sfLeft">
-				            <label for="email" class="fomlabel">Match Date</label>
-				            </div>
-				            
-				             <div class="sfRight">
-                            <input type="text" class="form-control" placeholder="" id="gameDate" name="gameDate" onfocus = "blurFunction()" onblur="checkDateField()"> 
-                          <span style="color:red" id="dateError"></span>
-                          </div>
-                          </div>
-                    	
-				         	<div class="form-group">
-									
-									<div class="sfLeft">
-									<label for="email" class="fomlabel">Game Type</label> 
-                           			</div>
-                           				
-                           			<div class="sfRight">
-                           			<div class="enterSSbox fomtexbox ">
-	                           			<div class="selectdiv">
-												<select class="selectboxdiv" id="gameType" name="gameId">
-													
-												 	<c:forEach var="gameType" items="${gameTypeList}">
-													<c:choose>
-													<c:when test="${gameType.gameId == '33cb27f1-4b02-4db6-84fd-0b979f81792a' }">
-													<option value="${gameType.gameId}" selected>${gameType.gameName}</option>
-													</c:when>
-													<c:otherwise>
-													<option value="${gameType.gameId}">${gameType.gameName}</option>
-													</c:otherwise>
-													
-													</c:choose>
-													</c:forEach>  
-												</select>
-												<div  class="out"></div>
+														</td>
+														<td><input type="text" class="wid" id="secInnOvers"
+															onfocus="numberCheck(this)" name="secInnOvers"
+															onblur="calculateBowlingEconamic('secInnBowRuns','secInnOvers','secInnEco','secInnBowBalls')"></td>
+														<td><input type="text" class="wid OnlyNumber"
+															id="secInnBowRuns" onfocus="numberCheck(this)"
+															name="secInnBowRuns"
+															onblur="calculateBowlingEconamic('secInnBowRuns','secInnOvers','secInnEco','secInnBowBalls')"></td>
+														<td><input type="text" class="wid OnlyNumber"
+															id="secInnMaiden" onfocus="numberCheck(this)"
+															name="secInnMaiden"></td>
+														<td><input type="text" class="wid OnlyNumber"
+															id="secInnWickets" onfocus="numberCheck(this)"
+															name="secInnWickets"></td>
+														<td><input type="text" class="wid" id="secInnEco"
+															onfocus="numberCheck(this)" name="secInnEco"
+															readonly="readonly"></td>
+														<td><input type="text" class="wid OnlyNumber"
+															id="secInnZeros" onfocus="numberCheck(this)"
+															name="secInnZeros"></td>
+														<td><input type="text" class="wid OnlyNumber"
+															id="secInnBowFours" onfocus="numberCheck(this)"
+															name="secInnBowFours"></td>
+														<td><input type="text" class="wid OnlyNumber"
+															id="secInnBowSixs" onfocus="numberCheck(this)"
+															name="secInnBowSixs"></td>
+														<td><input type="text" class="wid OnlyNumber"
+															id="secInnBowBalls" onfocus="numberCheck(this)"
+															name="secInnBowBalls" readonly="readonly"></td>
+													</tr>
+
+												</tbody>
+											</table>
+											<br>
+											<div>
+												<a class="enterScoreAddMore" href="javascript:void(0)"
+													onclick="addSecondInningBowling()">Add More</a> <a
+													id="removesecondbowling" class="enterScoreAddMore"
+													href="javascript:void(0)"
+													onclick="removeInningBowling('second')"
+													style="display: none;">Remove</a>
+
+
 											</div>
+
+
+											<input type="text" id="secslideshowdiv1" readonly="readonly"
+												style="height: 0; width: 0; opacity: 0;">
+
 										</div>
-										</div>
-                            </div>
-                     
-                             
-                    
-                          <div class="form-group">
-                          <div class="sfLeft">
-				            <label class="fomlabel" for="r1">Player of the Match</label>
-                            </div>
-                            
-                            <div class="sfRight">
-                            <input type="text" placeholder="" class="form-control tbox fomtexbox" id="PlayerOfTheMatch" onkeyup="normalUserSearch(this,'addMemberautoCompleteDIVPlayerOfMatch','addMemberIDDIVPlayerOfMatch')" >
-                            <div class="autoComplete" id="addMemberautoCompleteDIVPlayerOfMatch" style="display:none;">
-													<ul>
-			                                        	<li></li>
-			                                        </ul>                                  	
-			                                  </div> 
-			                      <!-- <select style="width: 100%;" id="PlayerOfTheMatch" onchange="manOfTheMatchPlayerSelection()">
+										<div id="ThirdSlide" class="cslide-slide">
+
+
+
+
+
+
+											<div class="col-md-10 scoreForm">
+
+
+
+
+
+												<form role="form" id="enterScoreform" name="enterScoreform">
+
+													<div class="form-group">
+														<div class="sfLeft">
+															<label for="email" class="fomlabel">Match Date</label>
+														</div>
+
+														<div class="sfRight">
+															<input type="text" class="form-control" placeholder=""
+																id="gameDate" name="gameDate" onfocus="blurFunction()"
+																onblur="checkDateField()"> <span
+																style="color: red" id="dateError"></span>
+														</div>
+													</div>
+
+													<div class="form-group">
+
+														<div class="sfLeft">
+															<label for="email" class="fomlabel">Game Type</label>
+														</div>
+
+														<div class="sfRight">
+															<div class="enterSSbox fomtexbox ">
+																<div class="selectdiv">
+																	<select class="selectboxdiv" id="gameType"
+																		name="gameId">
+
+																		<c:forEach var="gameType" items="${gameTypeList}">
+																			<c:choose>
+																				<c:when
+																					test="${gameType.gameId == '33cb27f1-4b02-4db6-84fd-0b979f81792a' }">
+																					<option value="${gameType.gameId}" selected>${gameType.gameName}</option>
+																				</c:when>
+																				<c:otherwise>
+																					<option value="${gameType.gameId}">${gameType.gameName}</option>
+																				</c:otherwise>
+
+																			</c:choose>
+																		</c:forEach>
+																	</select>
+																	<div class="out"></div>
+																</div>
+															</div>
+														</div>
+													</div>
+
+
+
+													<div class="form-group">
+														<div class="sfLeft">
+															<label class="fomlabel" for="r1">Player of the
+																Match</label>
+														</div>
+
+														<div class="sfRight">
+															<input type="text" placeholder=""
+																class="form-control tbox fomtexbox"
+																id="PlayerOfTheMatch"
+																onkeyup="normalUserSearch(this,'addMemberautoCompleteDIVPlayerOfMatch','addMemberIDDIVPlayerOfMatch')">
+															<div class="autoComplete"
+																id="addMemberautoCompleteDIVPlayerOfMatch"
+																style="display: none;">
+																<ul>
+																	<li></li>
+																</ul>
+															</div>
+															<!-- <select style="width: 100%;" id="PlayerOfTheMatch" onchange="manOfTheMatchPlayerSelection()">
 			                      	<option value="00">Select man of the match player</option>
-			                      </select> -->            
-                                  <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVPlayerOfMatch" name="addMemberIDDIVPlayerOfMatch">
-                          <label for="addMemberIDDIVPlayerOfMatch" generated="true" class="error" style="display: inline-block;" id="addMemberIDDIVPlayerOfMatchError"></label>
-                          </div>
-                          </div>
-                          
-                              
-                          
-                          <div class="form-group">
-                          <div class="sfLeft">
-				            <label class="fomlabel" for="r1">Umpires</label>
-                            </div>
-                            
-                            <div class="sfRight">
-                            
-                            <input type="text" placeholder="" class="form-control tbox fomtexbox" id="umpireId" name="umpireId">
-                            <input type="hidden" id="hiddenUmpireId" name="hiddenUmpireId">
-                            <label for="hiddenUmpireId" generated="true" class="error" id="hiddenUmpireIdError"></label>
-                          </div>
-                          </div>
-                          
-                          <div class="form-group">
-                           <div class="sfLeft">
-				            <label class="fomlabel" for="r1">Home team coach</label>
-				            </div>
-				             <div class="sfRight">
-                            <input type="text" placeholder="" class="form-control fomtexbox" id="homeTeamcoach" onkeyup="normalUserSearch(this,'addMemberautoCompleteDIVHomeCoach','addMemberIDDIVHomeCoach')">
-                            <div class="autoComplete" id="addMemberautoCompleteDIVHomeCoach" style="display:none;">
-													<ul>
-			                                        	<li></li>
-			                                        </ul>                                  	
-			                                  </div> 
-                                  <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVHomeCoach" name="">
-                          </div></div>
-                          
-                          <div class="form-group">
-                           <div class="sfLeft">
-				            <label class="fomlabel" for="r1">Away team coach</label>
-				            </div>
-				            
-				             <div class="sfRight">
-                            <input type="text" placeholder="" class="form-control fomtexbox" id="awayTeamCoach" onkeyup="normalUserSearch(this,'addMemberautoCompleteDIVAwayCoach','addMemberIDDIVAwayCoach')">
-                            <div class="autoComplete" id="addMemberautoCompleteDIVAwayCoach" style="display:none;">
-													<ul>
-			                                        	<li></li>
-			                                        </ul>                                  	
-			                                  </div> 
-                                  <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVAwayCoach" name="">
-                          </div></div>
-                          
-                          
-                          
-                          
-                          <div id="showHideDiv" style="display:none">
-                          
-                          
-                          
-                           <div class="form-group">
-                            <div class="sfLeft">
-				            <label class="fomlabel" for="r1" id="homeTeamOvers">Win Team Overs</label>
-				            </div>
-				            
-				             <div class="sfRight">
-                            <input type="text" placeholder="" class="form-control tbox fomtexbox" id="winTeamOvers" name="winTeamOvers" onfocus = "numberCheck(this)" readonly="readonly"/>
-                          
-                          </div>
-                          </div>
-                          
-                          <div class="form-group">
-                           <div class="sfLeft">
-				            <label class="fomlabel" for="r1" id="homeTeamPoints">Win Team Points</label>
-				            </div>
-				             <div class="sfRight">
-                            <input type="text" placeholder="" class="form-control tbox fomtexbox OnlyNumber" id="winTeamPoints" onfocus = "numberCheck(this)" name="winTeamPoints" readonly="readonly"/>
-                          </div></div>
-                          <div class="form-group">
-                           <div class="sfLeft">
-				            <label class="fomlabel" for="r1" id="homeTeamRuns">Win Team Runs</label>
-				            </div>
-				             <div class="sfRight">
-                            <input type="text" placeholder="" class="form-control tbox fomtexbox OnlyNumber" id="winTeamRuns" onfocus = "numberCheck(this)" name="winTeamRuns"  readonly />
-                          </div></div>
-                          <div class="form-group">
-                           <div class="sfLeft">
-				            <label class="fomlabel" for="r1" id="homeTeamWickets">Win Team Wickets</label>
-				            </div>
-				             <div class="sfRight">
-                            <input type="text" placeholder="" class="form-control tbox fomtexbox OnlyNumber" id="winTeamWickets" onfocus = "numberCheck(this)" name="winTeamWickets" readonly="readonly" />
-                          </div></div>
-                          <div class="form-group">
-                           <div class="sfLeft">
-				            <label class="fomlabel" for="r1" id="awayTeamOvers">lose Team Overs</label>
-				            </div>
-				             <div class="sfRight">
-                            <input type="text" placeholder="" class="form-control tbox fomtexbox" id="loseTeamOvers" onfocus = "numberCheck(this)" name="loseTeamOvers" readonly="readonly" />
-                          </div></div>
-                          <div class="form-group">
-                           <div class="sfLeft">
-				            <label class="fomlabel" for="r1" id="awayTeamRuns">lose Team Runs</label>
-				            </div>
-				             <div class="sfRight">
-                            <input type="text" placeholder="" class="form-control tbox fomtexbox OnlyNumber" id="loseTeamRuns" onfocus = "numberCheck(this)" name="loseTeamRuns" readonly />
-                          </div></div>
-                          <div class="form-group">
-                           <div class="sfLeft">
-				            <label class="fomlabel" for="r1" id="awayTeamPoints">lose Team Points</label>
-				            </div>
-				             <div class="sfRight">
-                            <input type="text" placeholder="" class="form-control tbox fomtexbox OnlyNumber" id="loseTeamPoints" onfocus = "numberCheck(this)" name="loseTeamPoints"  readonly="readonly"/>
-                          </div></div>
-                          <div class="form-group">
-                           <div class="sfLeft">
-				            <label class="fomlabel" for="r1" id="awayTeamWickets">lose Team Wickets</label>
-				            </div>
-				             <div class="sfRight">
-                            <input type="text" placeholder="" class="form-control tbox fomtexbox OnlyNumber" id="loseTeamWickets" onfocus = "numberCheck(this)" name="loseTeamWickets"  readonly="readonly"/>
-                          </div></div>
-                          <div class="form-group">
-                           <div class="sfLeft">
-				            <label class="fomlabel" for="r1" id="awayTeamWickets">Overs Per Side</label>
-				            </div>
-				             <div class="sfRight">
-                            <input type="text" placeholder="" class="form-control tbox fomtexbox OnlyNumber" id="totalOver" onfocus = "numberCheck(this)" name="totalOver"  />
-                          </div></div>
-                          
-                          <div class="form-group">
-                           <div class="sfLeft">
-									<label for="email" class="fomlabel">Result</label> 
-									</div>
-                            <div class="sfRight">
-                           			<div class="enterSSbox fomtexbox ">
-	                           			<!-- <div class="selectdiv">
+			                      </select> -->
+															<input type="hidden" class="form-control" placeholder=""
+																id="addMemberIDDIVPlayerOfMatch"
+																name="addMemberIDDIVPlayerOfMatch"> <label
+																for="addMemberIDDIVPlayerOfMatch" generated="true"
+																class="error" style="display: inline-block;"
+																id="addMemberIDDIVPlayerOfMatchError"></label>
+														</div>
+													</div>
+
+
+
+													<div class="form-group">
+														<div class="sfLeft">
+															<label class="fomlabel" for="r1">Umpires</label>
+														</div>
+
+														<div class="sfRight">
+
+															<input type="text" placeholder=""
+																class="form-control tbox fomtexbox" id="umpireId"
+																name="umpireId"> <input type="hidden"
+																id="hiddenUmpireId" name="hiddenUmpireId"> <label
+																for="hiddenUmpireId" generated="true" class="error"
+																id="hiddenUmpireIdError"></label>
+														</div>
+													</div>
+
+													<div class="form-group">
+														<div class="sfLeft">
+															<label class="fomlabel" for="r1">Home team coach</label>
+														</div>
+														<div class="sfRight">
+															<input type="text" placeholder=""
+																class="form-control fomtexbox" id="homeTeamcoach"
+																onkeyup="normalUserSearch(this,'addMemberautoCompleteDIVHomeCoach','addMemberIDDIVHomeCoach')">
+															<div class="autoComplete"
+																id="addMemberautoCompleteDIVHomeCoach"
+																style="display: none;">
+																<ul>
+																	<li></li>
+																</ul>
+															</div>
+															<input type="hidden" class="form-control" placeholder=""
+																id="addMemberIDDIVHomeCoach" name="">
+														</div>
+													</div>
+
+													<div class="form-group">
+														<div class="sfLeft">
+															<label class="fomlabel" for="r1">Away team coach</label>
+														</div>
+
+														<div class="sfRight">
+															<input type="text" placeholder=""
+																class="form-control fomtexbox" id="awayTeamCoach"
+																onkeyup="normalUserSearch(this,'addMemberautoCompleteDIVAwayCoach','addMemberIDDIVAwayCoach')">
+															<div class="autoComplete"
+																id="addMemberautoCompleteDIVAwayCoach"
+																style="display: none;">
+																<ul>
+																	<li></li>
+																</ul>
+															</div>
+															<input type="hidden" class="form-control" placeholder=""
+																id="addMemberIDDIVAwayCoach" name="">
+														</div>
+													</div>
+
+
+
+
+													<div id="showHideDiv" style="display: none">
+
+
+
+														<div class="form-group">
+															<div class="sfLeft">
+																<label class="fomlabel" for="r1" id="homeTeamOvers">Win
+																	Team Overs</label>
+															</div>
+
+															<div class="sfRight">
+																<input type="text" placeholder=""
+																	class="form-control tbox fomtexbox" id="winTeamOvers"
+																	name="winTeamOvers" onfocus="numberCheck(this)"
+																	readonly="readonly" />
+
+															</div>
+														</div>
+
+														<div class="form-group">
+															<div class="sfLeft">
+																<label class="fomlabel" for="r1" id="homeTeamPoints">Win
+																	Team Points</label>
+															</div>
+															<div class="sfRight">
+																<input type="text" placeholder=""
+																	class="form-control tbox fomtexbox OnlyNumber"
+																	id="winTeamPoints" onfocus="numberCheck(this)"
+																	name="winTeamPoints" readonly="readonly" />
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="sfLeft">
+																<label class="fomlabel" for="r1" id="homeTeamRuns">Win
+																	Team Runs</label>
+															</div>
+															<div class="sfRight">
+																<input type="text" placeholder=""
+																	class="form-control tbox fomtexbox OnlyNumber"
+																	id="winTeamRuns" onfocus="numberCheck(this)"
+																	name="winTeamRuns" readonly />
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="sfLeft">
+																<label class="fomlabel" for="r1" id="homeTeamWickets">Win
+																	Team Wickets</label>
+															</div>
+															<div class="sfRight">
+																<input type="text" placeholder=""
+																	class="form-control tbox fomtexbox OnlyNumber"
+																	id="winTeamWickets" onfocus="numberCheck(this)"
+																	name="winTeamWickets" readonly="readonly" />
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="sfLeft">
+																<label class="fomlabel" for="r1" id="awayTeamOvers">lose
+																	Team Overs</label>
+															</div>
+															<div class="sfRight">
+																<input type="text" placeholder=""
+																	class="form-control tbox fomtexbox" id="loseTeamOvers"
+																	onfocus="numberCheck(this)" name="loseTeamOvers"
+																	readonly="readonly" />
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="sfLeft">
+																<label class="fomlabel" for="r1" id="awayTeamRuns">lose
+																	Team Runs</label>
+															</div>
+															<div class="sfRight">
+																<input type="text" placeholder=""
+																	class="form-control tbox fomtexbox OnlyNumber"
+																	id="loseTeamRuns" onfocus="numberCheck(this)"
+																	name="loseTeamRuns" readonly />
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="sfLeft">
+																<label class="fomlabel" for="r1" id="awayTeamPoints">lose
+																	Team Points</label>
+															</div>
+															<div class="sfRight">
+																<input type="text" placeholder=""
+																	class="form-control tbox fomtexbox OnlyNumber"
+																	id="loseTeamPoints" onfocus="numberCheck(this)"
+																	name="loseTeamPoints" readonly="readonly" />
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="sfLeft">
+																<label class="fomlabel" for="r1" id="awayTeamWickets">lose
+																	Team Wickets</label>
+															</div>
+															<div class="sfRight">
+																<input type="text" placeholder=""
+																	class="form-control tbox fomtexbox OnlyNumber"
+																	id="loseTeamWickets" onfocus="numberCheck(this)"
+																	name="loseTeamWickets" readonly="readonly" />
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="sfLeft">
+																<label class="fomlabel" for="r1" id="awayTeamWickets">Overs
+																	Per Side</label>
+															</div>
+															<div class="sfRight">
+																<input type="text" placeholder=""
+																	class="form-control tbox fomtexbox OnlyNumber"
+																	id="totalOver" onfocus="numberCheck(this)"
+																	name="totalOver" />
+															</div>
+														</div>
+
+														<div class="form-group">
+															<div class="sfLeft">
+																<label for="email" class="fomlabel">Result</label>
+															</div>
+															<div class="sfRight">
+																<div class="enterSSbox fomtexbox ">
+																	<!-- <div class="selectdiv">
 												<select class="selectboxdiv" id="result" name="result" onchange="winpointAutoPopulate();">
 													<option value="00" selected>Tie</option>
 													<option value="">Tie</option>
@@ -816,78 +1243,84 @@ var secondInninBowlingArrayObjectList=[];
 												</select>
 												<div  class="out"></div>
 											</div> -->
-											<select  id="result" style="width: 100%;" name="result" onchange="winpointAutoPopulate();">
-											<option value="00" selected>Select Win Team</option>
-													<option value="">Tie</option>
-													<option value="">Tie</option>
-											</select>
-										</div></div>
-                            </div>
-                          
-                          </div>
+																	<select id="result" style="width: 100%;" name="result"
+																		onchange="winpointAutoPopulate();">
+																		<option value="00" selected>Select Win Team</option>
+																		<option value="">Tie</option>
+																		<option value="">Tie</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+
+													</div>
 
 
-				<div class="col-md-12 alignCenter margintop">
-                    <input type="button" class="btn btn-default dBtn btn" value="Save" onclick="teamValidation()">
-                    <button class="btn btn-default dBtn btn" onclick = "cancelFunction()">CANCEL</button>
-                  </div>
-                          
-                          
-                   </form>
-                 </div>
-                
-                
-                
-                
-            </div>
-            </div>
-            
-            <div class="cslide-prev-next clearfix" style="margin-top:10px;">
-                <span class="cslide-prev">Prev</span>
-                <span class="cslide-next">Next</span>
-            </div>
-            
-            
-        </section>
-                    
-        <input type="hidden" id="schedulerId">  
-        <input type="hidden" id="hiddenHomeId">
-        <input type="hidden" id="hiddenAwayId">
-        <input type="hidden" id="GroundId" name="GroundId" value="${GroundId}">
-                          
-      
-    
-    
-  </div>  
-            
-            
-</div>
-</div>
- </div>
-                    
-                    
-                    
-                    
-                    
-            
-          	
-          </div>    
-      </div>
-          
-          
-   
-  <!--/Content Block-->
+													<div class="col-md-12 alignCenter margintop">
+														<input type="button" class="btn btn-default dBtn btn"
+															value="Save" onclick="teamValidation()">
+														<button class="btn btn-default dBtn btn"
+															onclick="cancelFunction()">CANCEL</button>
+													</div>
 
-</section>
-   <%@ include file="Footer.jsp" %>
- <script src="${pageContext.request.contextPath }/js/jquery.colorbox.js"></script>
+
+												</form>
+											</div>
 
 
 
-<!--Silde-->
-   
-   <script src="${pageContext.request.contextPath}/js/jquery.cslide.js" type="text/javascript"></script>
-<script>
+
+										</div>
+									</div>
+
+									<div class="cslide-prev-next clearfix"
+										style="margin-top: 10px;">
+										<span class="cslide-prev">Prev</span> <span
+											class="cslide-next">Next</span>
+									</div>
+
+
+								</section>
+
+								<input type="hidden" id="schedulerId"> <input
+									type="hidden" id="hiddenHomeId"> <input type="hidden"
+									id="hiddenAwayId"> <input type="hidden" id="GroundId"
+									name="GroundId" value="${GroundId}">
+
+
+
+
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+
+
+			</div>
+		</div>
+
+
+
+		<!--/Content Block-->
+
+	</section>
+	<%@ include file="Footer.jsp"%>
+	<script src="${pageContext.request.contextPath }/js/jquery.colorbox.js"></script>
+
+
+
+	<!--Silde-->
+
+	<script src="${pageContext.request.contextPath}/js/jquery.cslide.js"
+		type="text/javascript"></script>
+	<script>
 $(document).ready(function(){
       
 		
@@ -917,8 +1350,8 @@ $(document).ready(function(){
 		//$('#tournament option[value="'+selectedTournamentId+'"]').prop('selected', true);
 });
 </script>
-   
-   <script>
+
+	<script>
    
   
    function loadScheduler(val){
@@ -956,7 +1389,13 @@ $(document).ready(function(){
 					
 					 if(selectedMatch == homeId){
 				      htmlContent+="<option value="+homeId+">"+response[i].homeTeamName+","+response[i].awayTeamName+"</option>";
-				    }
+				    
+					 
+				      
+				      $("#hometeamBattingname").text(response[i].homeTeamName);
+				      $("#awayteamBattingname").text(response[i].awayTeamName);
+				      
+					 }
 						 
 				 }
 				
@@ -976,6 +1415,46 @@ $(document).ready(function(){
 	                  // $("#tournamentTextVal").text(tournamentName);
 				  // $('#scheduler option[value='+selectedMatch+']').prop('selected', true);
 				 } 
+				  
+				  
+				  
+				  
+				  
+				  
+				  // changes to eleven team select
+				  
+				  
+				  
+				 var htmlContent ='<select name="dntPlayerList" id="elevenhometeam" multiple="multiple" class="form-control" onchange="elevenhomevalidation()">';
+						for(var i =0;i<firstTeamPlayersId.length;i++ ){
+							//console.log("asa"+firstTeamPlayersId[i]);
+							htmlContent += '<option value="'+firstTeamPlayersId[i].userId+'">'+firstTeamPlayersId[i].userProfile.fullName+'</option>';
+						}
+					htmlContent += '</select>';
+				 $("#hometeamBattingEleven").html(htmlContent).trigger('create');
+					$('select[multiple]').multiselect({
+				    columns: 2,
+				    selectAll: true,
+				    placeholder: 'Select Players'
+				}); 
+					
+				
+				var htmlContent1 ='<select name="dntPlayerList" id="elevenawayteam" multiple="multiple" class="form-control" onchange="elevenawayvalidation()">';
+				for(var i =0;i<sceondTeamPlayersId.length;i++ ){	   
+					   htmlContent1 += '<option value="'+sceondTeamPlayersId[i].userId+'">'+sceondTeamPlayersId[i].userProfile.fullName+'</option>';
+				}
+				htmlContent1 += '</select>';
+				
+				 $("#awayteamBattingEleven").html(htmlContent1).trigger('create');
+					$('select[multiple]').multiselect({
+				    columns: 2,
+				    selectAll: true,
+				    placeholder: 'Select Players'
+				}); 
+				
+				//console.log("First team player id :"+JSON.stringify(firstTeamPlayersId));
+				  
+				  
 				 
 				 }
 				 else{
@@ -1134,7 +1613,22 @@ $(document).ready(function(){
 		///   document.getElementById('awayTeamName').options[0].selected=true; 
 		//	document.getElementById('homeTeamName').options[0].selected=true; 
 		
-		
+		   
+		   var html3 ='';
+			html3 += '<select class="selectboxdiv" id="tossWonby">';
+			html3 += '<option value= "0" selected >Choose Team Name</option>';
+			html3 += '<option value="'+homeTeamId+'">'+homeTeam+'</option>';
+			html3 += '<option value="'+awayTeamId+'">'+awayTeam+'</option>';
+			html3 += '</select>';
+			$("#tossWonby").html(html3).trigger('create');
+			
+			
+			$("#homeRosterName").val(homeTeam);
+			$("#awayRosterName").val(awayTeam);
+			
+			
+			
+			
 	   
 	   }else{
 		   
@@ -1284,27 +1778,34 @@ $(document).ready(function(){
 		       htmlContentBattingPlayer += htmlContent;
 		       htmlContentBattingPlayer +='</select> <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIV'+count+'" name="addMemberIDDIVName">';		       
 		       cell1.innerHTML = htmlContentBattingPlayer;
-		   var htmlContentFirstInningsBowlers = '<select style="width:100px" id="firInnBowlerName_'+count+'" name="firInnBowlerName_'+count+'" onchange=firstIningsbattingPlayerOnchange1(this,"addMemberIDDIVBow'+count+'")>';
-		       htmlContentFirstInningsBowlers += htmlContent1;
-		       htmlContentFirstInningsBowlers +='</select><input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVBow'+count+'" name="">';
-		       cell2.innerHTML = htmlContentFirstInningsBowlers;
+		       
+		       
+		       cell2.innerHTML = '<div class="amdSbox"><div class="selectdiv" style="width:121px"><select class="selectboxdiv" id="dissmissalType'+count+'" name="dismissalType" onchange=selectDismissal(this,"firInnDismissal_'+count+'")><option value="0">Select dissmissal type</option><c:forEach var="dismissal" items="${dismissalTypeList}"><option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option></c:forEach>  </select><div  class="out"></div></div></div><input type="hidden" class="wid" id="firInnDismissal_'+count+'">';
+		       
 		   var htmlContentFirstInningsFeilders =  '<select style="width:100px" id="firInnFielderName_'+count+'" name="firInnFielderName_'+count+'" onchange=firstIningsbattingPlayerOnchange1(this,"addMemberIDDIVFiel'+count+'")>';   
                htmlContentFirstInningsFeilders += htmlContent1;
                htmlContentFirstInningsFeilders += '</select> <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVFiel'+count+'" name="">';	     
-		       cell3.innerHTML = htmlContentFirstInningsFeilders;
+               cell3.innerHTML = htmlContentFirstInningsFeilders;
+               
+           var htmlContentFirstInningsBowlers = '<select style="width:100px" id="firInnBowlerName_'+count+'" name="firInnBowlerName_'+count+'" onchange=firstIningsbattingPlayerOnchange1(this,"addMemberIDDIVBow'+count+'")>';
+		       htmlContentFirstInningsBowlers += htmlContent1;
+		       htmlContentFirstInningsBowlers +='</select><input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVBow'+count+'" name="">';
+		       cell4.innerHTML = htmlContentFirstInningsBowlers;
 		     
 		      //cell1.innerHTML = '<input type="text" class="wi-sel" id="firInnPlayerName_'+count+'" onkeyup=getBuddiesAutoCompleteFirstInning(this,"addMemberautoCompleteDIV'+count+'","addMemberIDDIV'+count+'") class="dummy"/><div class="autoComplete" id="addMemberautoCompleteDIV'+count+'" style="display:none;"><ul><li></li></ul></div> <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIV'+count+'" name="addMemberIDDIVName">';  
 		      //cell2.innerHTML = '<input type="text" class="wi-sel" id="firInnBowlerName_'+count+'" onkeyup=getBuddiesAutoComplete1(this,"addMemberautoCompleteDIVBow'+count+'","addMemberIDDIVBow'+count+'") /><div class="autoComplete" id="addMemberautoCompleteDIVBow'+count+'" style="display:none;"><ul><li></li></ul></div> <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVBow'+count+'" name="">';
 		      //cell3.innerHTML = '<input type="text" class="wi-sel" id="firInnFielderName_'+count+'" onkeyup=getBuddiesAutoComplete1(this,"addMemberautoCompleteDIVFiel'+count+'","addMemberIDDIVFiel'+count+'") /><div class="autoComplete" id="addMemberautoCompleteDIVFiel'+count+'" style="display:none;"><ul><li></li></ul></div> <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVFiel'+count+'" name="">';
 		      // cell4.innerHTML = '<div class="amdSbox"><div class="selectdiv" style="width:147px"><select class="selectboxdiv"  id="dissmissalType'+count+'" name="dismissalType" onchange=selectDismissal(this,"firInnDismissal_'+count+'")><option value="0">Select dissmissal type</option><c:forEach var="dismissal" items="${dismissalTypeList}"><option value="${dismissal.dismissalTypeId}">${dismissal.dismissalTypeName}</option></c:forEach>  </select><div  class="out">Select dissmissal type</div></div></div><input type="hidden" class="wid" id="firInnDismissal_'+count+'">';
-		       cell4.innerHTML = '<div class="amdSbox"><div class="selectdiv" style="width:121px"><select class="selectboxdiv" id="dissmissalType'+count+'" name="dismissalType" onchange=selectDismissal(this,"firInnDismissal_'+count+'")><option value="0">Select dissmissal type</option><c:forEach var="dismissal" items="${dismissalTypeList}"><option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option></c:forEach>  </select><div  class="out"></div></div></div><input type="hidden" class="wid" id="firInnDismissal_'+count+'">'; 
-		       cell5.innerHTML = '<input type="text" class="wid OnlyNumber" id="firInnRuns_'+count+'" onfocus = "numberCheck(this)" name="firInnRuns" onblur=calculateStrikerate("firInnRuns_'+count+'","firInnBalls_'+count+'","firInnStrikeRate_'+count+'")>';
-		       cell6.innerHTML = '<input type="text" class="wid" id="firInnMins_'+count+'" onfocus = "numberCheck(this)" name="firInnMins">';
-		       cell7.innerHTML = '<input type="text" class="wid OnlyNumber" id="firInnBalls_'+count+'" onfocus = "numberCheck(this)" name="firInnBalls" onblur=calculateStrikerate("firInnRuns_'+count+'","firInnBalls_'+count+'","firInnStrikeRate_'+count+'")>';
-		       cell8.innerHTML = '<input type="text" class="wid OnlyNumber" id="firInnFours_'+count+'" onfocus = "numberCheck(this)" name="firInnFours">';
-		       cell9.innerHTML = '<input type="text" class="wid OnlyNumber" id="firInnSixs_'+count+'" onfocus = "numberCheck(this)" name="firInnSixs">';
-		       cell10.innerHTML = '<input type="text" class="wid" id="firInnStrikeRate_'+count+'" onfocus = "numberCheck(this)" name="firInnStrikeRate" readonly="readonly">';
-		       cell11.innerHTML = '<input type="text" class="wid OnlyNumber" id="firInnBattingOver_'+count+'" onfocus = "numberCheck(this)" name="firInnBattingOvers">';
+		        
+		       cell5.innerHTML = '<input type="text" class="wid OnlyNumber" id="firInnRuns_'+count+'" onfocus = "numberCheck(this)" name="firInnRuns" onblur=calculateStrikerate("firInnRuns_'+count+'","firInnBalls_'+count+'","firInnStrikeRate_'+count+'");totalCalculate("First") onkeyup=calculateruns("firInnRuns_'+count+'","firInnFours_'+count+'","firInnSixs_'+count+'","Totalruns")>';
+		       
+		       cell6.innerHTML = '<input type="text" class="wid OnlyNumber" id="firInnBalls_'+count+'" onfocus = "numberCheck(this)" name="firInnBalls" onblur=calculateStrikerate("firInnRuns_'+count+'","firInnBalls_'+count+'","firInnStrikeRate_'+count+'")>';
+		       cell7.innerHTML = '<input type="text" class="wid OnlyNumber" id="firInnFours_'+count+'" onfocus = "numberCheck(this)" name="firInnFours" onkeyup=calculateruns("firInnRuns_'+count+'","firInnFours_'+count+'","firInnSixs_'+count+'","Fours")>';
+		       cell8.innerHTML = '<input type="text" class="wid OnlyNumber" id="firInnSixs_'+count+'" onfocus = "numberCheck(this)" name="firInnSixs" onkeyup=calculateruns("firInnRuns_'+count+'","firInnFours_'+count+'","firInnSixs_'+count+'","Sixes")>';
+		       cell9.innerHTML = '<input type="text" class="wid OnlyNumber" id="firInnBattingOver_'+count+'" onfocus = "numberCheck(this)" name="firInnBattingOvers">';
+		       cell10.innerHTML = '<input type="text" class="wid" id="firInnMins_'+count+'" onfocus = "numberCheck(this)" name="firInnMins">';
+		       cell11.innerHTML = '<input type="text" class="wid" id="firInnStrikeRate_'+count+'" onfocus = "numberCheck(this)" name="firInnStrikeRate" readonly="readonly">';
+		       
 		       count = parseInt(count) + 1;
 		       
 		       newArray.splice(0,newArray.length);
@@ -1319,6 +1820,9 @@ $(document).ready(function(){
 	                $(this).next(".out").text(str);
 	            }).trigger('change');   */
 	            
+	            
+		       $("#removebattingrow").show();
+	            
 		    }else{
 			   
 			   displaynotification("Please fill in current row before adding a new one.",2000);
@@ -1327,6 +1831,40 @@ $(document).ready(function(){
    
 
    }
+		   
+		   
+		function removeFirstInningsBatting(innings){
+			if(innings == 'first'){
+			var table = document.getElementById("firInnBattingTable");
+			  
+	   		   
+	   		   var rowCount = table.rows.length;
+		   	console.log('rowcount---> '+rowCount);
+		   	if(rowCount > 2){
+		   		table.deleteRow(rowCount -1);
+		   		}
+		   	if(rowCount == 3){
+		   		$("#removebattingrow").hide();	
+		   		}
+			}
+		   	else{
+		   		var table = document.getElementById("secInnBattingTable");
+		   		   var rowCount = table.rows.length;
+			   	console.log('rowcount---> '+rowCount);
+			   	if(rowCount > 2){
+			   		table.deleteRow(rowCount -1);
+			   		}
+			   	if(rowCount == 3){
+			   		$("#removesecondbattingrow").hide();	
+			   		}
+		   		
+		   		
+		   	
+		   	}
+		   	
+		}
+		   
+		   
    var count1 = 1;
    
    function addSecondInningsBatting(){
@@ -1421,10 +1959,14 @@ $(document).ready(function(){
 		       htmlContentBattingPlayer += htmlContent1;
 		       htmlContentBattingPlayer +='</select> <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVPlayer'+count1+'" name="addMemberIDDIVPlayer">';		       
 		       cell1.innerHTML = htmlContentBattingPlayer;
+		       
+		       
+		       cell2.innerHTML = '<div class="amdSbox"><div class="selectdiv" style="width:121px"><select class="selectboxdiv" id="dissmissalTypeSec'+count1+'" name="dismissalType" onchange=selectDismissal(this,"secInnDismissal_'+count1+'")><option value="0"></option><c:forEach var="dismissal" items="${dismissalTypeList}"></option><option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option></c:forEach>  </select><div  class="out"></div></div></div><input type="hidden" class="wid" id="secInnDismissal_'+count1+'">';
+		       
 		   var htmlContentFirstInningsBowlers = '<select style="width:100px"  id="secInnBowlerName_'+count1+'" name="secInnBowlerName_'+count1+'" onchange=firstIningsbattingPlayerOnchange1(this,"addMemberIDDIVBowlerSec'+count1+'")>';
 		       htmlContentFirstInningsBowlers += htmlContent;
 		       htmlContentFirstInningsBowlers +='</select> <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVBowlerSec'+count1+'" name="addMemberIDDIVBowlerSec">';
-		       cell2.innerHTML = htmlContentFirstInningsBowlers;
+		       cell4.innerHTML = htmlContentFirstInningsBowlers;
 		   var htmlContentFirstInningsFeilders =  '<select style="width:100px"  id="secInnFielderName_'+count1+'"  name="secInnFielderName_'+count1+'" onchange=firstIningsbattingPlayerOnchange1(this,"addMemberIDDIVFielderSec'+count1+'")>';   
                htmlContentFirstInningsFeilders += htmlContent;
                htmlContentFirstInningsFeilders += '</select><input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVFielderSec'+count1+'" name="addMemberIDDIVFielderSec">';	     
@@ -1435,14 +1977,15 @@ $(document).ready(function(){
 			       //cell2.innerHTML = '<input type="text" class="wi-sel" id="secInnBowlerName_'+count1+'" onkeyup=getBuddiesAutoComplete(this,"addMemberautoCompleteDIVBowlerSec'+count1+'","addMemberIDDIVBowlerSec'+count1+'") /><div class="autoComplete" id="addMemberautoCompleteDIVBowlerSec'+count1+'" style="display:none;"><ul><li></li></ul></div> <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVBowlerSec'+count1+'" name="addMemberIDDIVBowlerSec">';
 			       //cell3.innerHTML = '<input type="text" class="wi-sel" id="secInnFielderName_'+count1+'" onkeyup=getBuddiesAutoComplete(this,"addMemberautoCompleteDIVFielderSec'+count1+'","addMemberIDDIVFielderSec'+count1+'") /><div class="autoComplete" id="addMemberautoCompleteDIVFielderSec'+count1+'" style="display:none;"><ul><li></li></ul></div> <input type="hidden" class="form-control" placeholder="" id="addMemberIDDIVFielderSec'+count1+'" name="addMemberIDDIVFielderSec">';
 			       
-			       cell4.innerHTML = '<div class="amdSbox"><div class="selectdiv" style="width:121px"><select class="selectboxdiv" id="dissmissalTypeSec'+count1+'" name="dismissalType" onchange=selectDismissal(this,"secInnDismissal_'+count1+'")><option value="0"></option><c:forEach var="dismissal" items="${dismissalTypeList}"></option><option value="${dismissal.dismissalTypeName}">${dismissal.dismissalTypeName}</option></c:forEach>  </select><div  class="out"></div></div></div><input type="hidden" class="wid" id="secInnDismissal_'+count1+'">';
-			       cell5.innerHTML = '<input type="text" class="wid OnlyNumber" id="secInnRuns_'+count1+'" onfocus = "numberCheck(this)" name="secInnRuns" onblur=calculateStrikerate("secInnRuns_'+count1+'","secInnBalls_'+count1+'","secInnStrikeRate_'+count1+'")>';
-			       cell6.innerHTML = '<input type="text" class="wid" id="secInnMins_'+count1+'" onfocus = "numberCheck(this)" name="secInnMins">';
-			       cell7.innerHTML = '<input type="text" class="wid OnlyNumber" id="secInnBalls_'+count1+'" onfocus = "numberCheck(this)" name="secInnBalls" onblur=calculateStrikerate("secInnRuns_'+count1+'","secInnBalls_'+count1+'","secInnStrikeRate_'+count1+'")>';
-			       cell8.innerHTML = '<input type="text" class="wid OnlyNumber" id="secInnFours_'+count1+'" onfocus = "numberCheck(this)" name="secInnFours">';
-			       cell9.innerHTML = '<input type="text" class="wid OnlyNumber" id="secInnSixs_'+count1+'" onfocus = "numberCheck(this)" name="secInnSixs">';
-			       cell10.innerHTML = '<input type="text" class="wid" id="secInnStrikeRate_'+count1+'" onfocus = "numberCheck(this)" name="secInnStrikeRate" readonly="readonly">';
-			       cell11.innerHTML = '<input type="text" class="wid OnlyNumber" id="SecInnBattingOver_'+count1+'" onfocus = "numberCheck(this)" name="secInnBattingOvers">';
+			       
+			       cell5.innerHTML = '<input type="text" class="wid OnlyNumber" id="secInnRuns_'+count1+'" onfocus = "numberCheck(this)" name="secInnRuns" onblur=calculateStrikerate("secInnRuns_'+count1+'","secInnBalls_'+count1+'","secInnStrikeRate_'+count1+'");totalCalculate("Second") onkeyup=calculateruns("secInnRuns_'+count1+'","secInnFours_'+count1+'","secInnSixs_'+count1+'","Totalruns")>';
+			       cell6.innerHTML = '<input type="text" class="wid OnlyNumber" id="secInnBalls_'+count1+'" onfocus = "numberCheck(this)" name="secInnBalls" onblur=calculateStrikerate("secInnRuns_'+count1+'","secInnBalls_'+count1+'","secInnStrikeRate_'+count1+'")>';
+			       cell7.innerHTML = '<input type="text" class="wid OnlyNumber" id="secInnFours_'+count1+'" onfocus = "numberCheck(this)" name="secInnFours" onkeyup=calculateruns("secInnRuns_'+count1+'","secInnFours_'+count1+'","secInnSixs_'+count1+'","Fours")>';
+			       cell8.innerHTML = '<input type="text" class="wid OnlyNumber" id="secInnSixs_'+count1+'" onfocus = "numberCheck(this)" name="secInnSixs" onkeyup=calculateruns("secInnRuns_'+count1+'","secInnFours_'+count1+'","secInnSixs_'+count1+'","Sixes")>';
+			       cell9.innerHTML = '<input type="text" class="wid OnlyNumber" id="SecInnBattingOver_'+count1+'" onfocus = "numberCheck(this)" name="secInnBattingOvers">';
+			       cell10.innerHTML = '<input type="text" class="wid" id="secInnMins_'+count1+'" onfocus = "numberCheck(this)" name="secInnMins">';
+			       cell11.innerHTML = '<input type="text" class="wid" id="secInnStrikeRate_'+count1+'" onfocus = "numberCheck(this)" name="secInnStrikeRate" readonly="readonly">';
+			       
 			       count1 = parseInt(count1) + 1;
 		       
 		       newArray.splice(0,newArray.length);
@@ -1451,6 +1994,8 @@ $(document).ready(function(){
 	                str = $(this).find(":selected").text();
 	                $(this).next(".out").text(str);
 	            }).trigger('change'); */
+	            
+		       $("#removesecondbattingrow").show();	
 		      
 		    }else{
 			   
@@ -1564,6 +2109,8 @@ $(document).ready(function(){
 			       firstBowling = parseInt(firstBowling) + 1;
 		       
 		       newArray.splice(0,newArray.length);
+		       
+		       $("#removefirstbowling").show();
 		     
 		 }else{
 			   
@@ -1572,6 +2119,35 @@ $(document).ready(function(){
 	  
 
    }
+  
+  
+  function removeInningBowling(innings){
+	  
+  if(innings == 'first'){
+	  var table = document.getElementById("firInnBowlingTable");
+	  
+		   
+		   var rowCount = table.rows.length;
+  	console.log('rowcount---> '+rowCount);
+  	if(rowCount > 2){
+  		table.deleteRow(rowCount -1);
+  		}
+  	if(rowCount == 3){
+  		$("#removefirstbowling").hide();		   		}
+  	}else{
+  		
+  		var table = document.getElementById("secInnBowlingTable");
+		   var rowCount = table.rows.length;
+	console.log('rowcount---> '+rowCount);
+	if(rowCount > 2){
+		table.deleteRow(rowCount -1);
+		}
+	if(rowCount == 3){
+		$("#removesecondbowling").hide();		   	
+		}
+  		
+  	}
+  }
    
    var secondBowling = 1;
    function addSecondInningBowling(){
@@ -1668,6 +2244,8 @@ $(document).ready(function(){
 			       secondBowling = parseInt(secondBowling) + 1;
 	
 		       newArray.splice(0,newArray.length);
+		       
+		       $("#removesecondbowling").show();
 		     
 		    }else{
 			   
@@ -2085,12 +2663,6 @@ function saveFunction(){
             	firstInningsBattingObj.playerId=this.value;
             }
             if(i==1){
-            	firstInningsBattingObj.battingWicketTakenBy = this.value;
-            }
-            if(i==2){
-            	firstInningsBattingObj.fielderId=this.value;
-            }
-            if(i==3){
             	//firstInningsBattingObj.dismissalType=this.value;
                 if(this.value == 'Run Out' || this.value == 'Timed Out' || this.value == 'Double Hit'){
                 	var dismissalType = this.value;
@@ -2099,27 +2671,36 @@ function saveFunction(){
             	 firstInningsBattingObj.dismissalType=this.value;
                 };            
             }
+            if(i==2){
+            	firstInningsBattingObj.fielderId=this.value;
+            }
+            if(i==3){
+            	firstInningsBattingObj.battingWicketTakenBy = this.value;
+            }
+            
             if(i==4){
             	firstInningsBattingObj.battingRuns = this.value;
             }
             if(i==5){
-            	firstInningsBattingObj.minutes = this.value;
-            }
-            if(i==6){
             	firstInningsBattingObj.battingBallnumber = this.value;
             }
-            if(i==7){
+            if(i==6){
             	firstInningsBattingObj.battingFours = this.value;
             }
-            if(i==8){
+            if(i==7){
             	firstInningsBattingObj.battingSix = this.value;
             }
-            if(i==9){
-            	firstInningsBattingObj.battingStrikeRating = this.value;
-            }
-            if(i==10){
+            if(i==8){
             	firstInningsBattingObj.battingOvers = this.value;
             }
+            if(i==9){
+            	firstInningsBattingObj.minutes = this.value;
+            }
+           
+            if(i==10){
+            	firstInningsBattingObj.battingStrikeRating = this.value;
+            }
+           
             firstInningsBattingObj.innings = "1";
             firstInningsBattingObj.matchId = matchId;
             firstInningsBattingObj.teamId=	 homeTeamId;
@@ -2141,12 +2722,6 @@ function saveFunction(){
             	secondInningsBattingObj.playerId=this.value;
             }
             if(i==1){
-            	secondInningsBattingObj.battingWicketTakenBy = this.value;
-            }
-            if(i==2){
-            	secondInningsBattingObj.fielderId=this.value;
-            }
-            if(i==3){
             	//secondInningsBattingObj.dismissalType=this.value;
             	 if(this.value == 'Run Out' || this.value == 'Timed Out' || this.value == 'Double Hit'){
                 	var dismissalType = this.value;
@@ -2155,27 +2730,35 @@ function saveFunction(){
             	secondInningsBattingObj.dismissalType=this.value;
             	};
             }
+            if(i==2){
+            	secondInningsBattingObj.fielderId=this.value;
+            }
+            if(i==3){
+            	secondInningsBattingObj.battingWicketTakenBy = this.value;
+            }
             if(i==4){
             	secondInningsBattingObj.battingRuns = this.value;
             }
+            
             if(i==5){
-            	secondInningsBattingObj.minutes = this.value;
-            }
-            if(i==6){
             	secondInningsBattingObj.battingBallnumber = this.value;
             }
-            if(i==7){
+            if(i==6){
             	secondInningsBattingObj.battingFours = this.value;
             }
-            if(i==8){
+            if(i==7){
             	secondInningsBattingObj.battingSix = this.value;
             }
-            if(i==9){
-            	secondInningsBattingObj.battingStrikeRating = this.value;
-            }
-            if(i==10){
+            if(i==8){
             	secondInningsBattingObj.battingOvers = this.value;
             }
+            if(i==9){
+            	secondInningsBattingObj.minutes = this.value;
+            }
+            if(i==10){
+            	secondInningsBattingObj.battingStrikeRating = this.value;
+            }
+           
             secondInningsBattingObj.innings = "2";
             secondInningsBattingObj.matchId = matchId;
             secondInningsBattingObj.teamId = awayTeamId;
@@ -2696,7 +3279,7 @@ function blurFunction()
 	}
 
    </script>
-   <script type="text/javascript">
+	<script type="text/javascript">
   
    $(function(){
 		getNotification();
@@ -2745,10 +3328,11 @@ function blurFunction()
    
     
    </script>
-  <script type="text/javascript"
-		src="${pageContext.request.contextPath}/js/cricketSocial/token-input.js"></script> 
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.multiselect.js"></script>
- <script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/js/cricketSocial/token-input.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/js/jquery.multiselect.js"></script>
+	<script>
 
 function setDonotBatPlayersFirstInnings(){
 
@@ -2906,7 +3490,210 @@ $( "#secslideshowdiv1" ).focusin(function() {
 	}
 	return
 	});
+	
+	
+	function validateFunction(){
+		matchTypevalidation();
+		totaloverperinnings();
+		tossWonbyvalidation();
+		electedTovalidation();
+		elevenhomevalidation();
+		elevenawayvalidation();
+		
+		
+		
+		if(matchTypevalidation() && totaloverperinnings() && tossWonbyvalidation() && electedTovalidation() && elevenhomevalidation() && elevenawayvalidation())
+			{
+			
+			
+			
+			var homeid="${homeTeamId}";
+			var awayid="${awayTeamId}";
+			var eleven=$("#elevenhometeam").val();
+			var firstteamnewids=[];
+			for(var i=0; i<firstTeamPlayersId.length; i++){
+				if(eleven.indexOf(firstTeamPlayersId[i].userId) != -1){
+					console.log(firstTeamPlayersId[i].userId)
+					firstteamnewids.push(firstTeamPlayersId[i]);
+				} 
+			}
+			firstTeamPlayersId=firstteamnewids;
+			console.log(JSON.stringify(firstTeamPlayersId));
+			
+			var elevenaway=$("#elevenawayteam").val();
+			var secondteamnewids=[];
+			for(var i=0; i<sceondTeamPlayersId.length; i++){
+				if(elevenaway.indexOf(sceondTeamPlayersId[i].userId) != -1){
+					console.log(sceondTeamPlayersId[i].userId)
+					secondteamnewids.push(sceondTeamPlayersId[i]);
+				} 
+			}
+			sceondTeamPlayersId=secondteamnewids;
+			
+			console.log(JSON.stringify(sceondTeamPlayersId));
+			
+			
+			
+			var tosswonby=$("#tossWonby").val();
+			var electedto=$("#ElectedTo").val();
+            var homename=$("#homeRosterName").val();
+            var awayname=$("#awayRosterName").val();
+			/* if(electedto == 'Bowl'){
+				$("#awayTeamName").val(tosswonby);
+				console.log(tosswonby);
+			}else{
+				if(tosswonby != homeid){
+					$("#awayTeamName").val(awayid);
+				}
+			} */
+			
+			matchStart(homeid,awayid);
+			
+			$("#headerSlide").hide();
+			
+			
+			
+			if(electedto == 'Bat'){
+				
+				if($("#tossWonby option:selected").text() == homename){
+					
+					$("#firstInningsId").html(homename);
+					$("#secondInningsId").html(awayname);
+					
+					$("#awayTeamName").val(awayid);
+				}else{
+					$("#firstInningsId").html(awayname);
+					$("#secondInningsId").html(homename);
+					
+					$("#awayTeamName").val(tosswonby);
+				}
+			}else{
+				if($("#tossWonby option:selected").text() == homename){
+					$("#firstInningsId").html(awayname);
+					$("#secondInningsId").html(homename);
+					
+					$("#awayTeamName").val(tosswonby);
+				}else{
+					$("#firstInningsId").html(homename);
+					$("#secondInningsId").html(awayname);
+					
+					$("#awayTeamName").val(awayid);
+				}
+			}
+			
+			
+			
+			
+			
+			return true;
+			}
+			else{
+				return	false;
+			}
+			
+	}
+	var matchtypenumber=0;
+	function matchTypevalidation(){
+		var matchtype=$("#matchType").val();
+	
+	if(matchtypenumber !=0 ){
+	
+		if(matchtype == 0 || matchtype == "" || typeof matchtype == 'undefined'){
+			document.getElementById("matchTypeerror").innerHTML = "Please select the match type";
+			return false;
+		}else{
+			document.getElementById("matchTypeerror").innerHTML = "";
+			return true;
+		}
+	}else{
+		matchtypenumber =1;
+	}
+	}
+	
+	
+	function totaloverperinnings(){
+		var overs=$("#totalOverPerInnings").val();
+		if(overs == 0 || overs == ""){
+			document.getElementById("totalovererror").innerHTML = "Please enter the over";
+			return false;
+		}else{
+			document.getElementById("totalovererror").innerHTML = "";
+			return true;
+		}
+	}
+	
+	var wontypenumber =0;
+	function tossWonbyvalidation(){
+		
+		
+		var tosswonby=$("#tossWonby").val();
+		
+		if(wontypenumber !=0 ){
+		
+			if(tosswonby == 0 || tosswonby == "" || typeof tosswonby == 'undefined'){
+				document.getElementById("tosswonerror").innerHTML = "Please select the toss won by";
+				return false;
+			}else{
+				document.getElementById("tosswonerror").innerHTML = "";
+				return true;
+			}
+		}else{
+			wontypenumber =1;
+		}
+		
+	}
+	
+	
+var electedtypenumber =0;
+function electedTovalidation(){
+	
+	
+	var electedto=$("#ElectedTo").val();
+	
+	if(electedtypenumber !=0 ){
+	
+		if(electedto == 0 || electedto == "" || typeof electedto == 'undefined'){
+			document.getElementById("electedtoerror").innerHTML = "Please select the toss won by";
+			return false;
+		}else{
+			document.getElementById("electedtoerror").innerHTML = "";
+			return true;
+		}
+	}else{
+		electedtypenumber =1;
+	}
+	
+}
 
-</script>	
+function elevenhomevalidation(){
+	var eleven=$("#elevenhometeam").val();
+	
+		if(eleven == 0 || eleven == "" || eleven == null || typeof eleven == 'undefined'){
+			document.getElementById("homeelevenselecterrorError").innerHTML = "Please select the eleven squad";
+			return false;
+		}else{
+			document.getElementById("homeelevenselecterrorError").innerHTML = "";
+			return true;
+		}
+	
+}
+
+function elevenawayvalidation(){
+	var eleven=$("#elevenawayteam").val();
+	
+		if(eleven == 0 || eleven == "" || eleven == null || typeof eleven == 'undefined'){
+			document.getElementById("awayelevenselecterror").innerHTML = "Please select the eleven squad";
+			return false;
+		}else{
+			document.getElementById("awayelevenselecterror").innerHTML = "";
+			return true;
+		}
+	
+}
+
+
+
+	
+</script>
 </body>
 </html>
